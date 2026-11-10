@@ -1,0 +1,41 @@
+{
+  "id": "nightsilver",
+  "subtitle": { "ru": "Священная роща богини Луны", "en": "The Moon Goddess's sacred grove" },
+  "biome": "forest",
+  "ambient": { "type": "sparkles", "density": 0.35 },
+  "traits": {
+    "rule": { "ru": "Орден Тёмной Луны", "en": "Dark Moon Order" },
+    "magic": { "ru": "Лунная магия священна", "en": "Lunar magic is sacred" },
+    "biome": { "ru": "Древний лес", "en": "Ancient forest" }
+  },
+  "description": {
+    "ru": "Древний лес, принадлежащий Селемене, богине Луны. Настоящая тьма сюда не опускается: под кронами светятся серебристые пруды, а растущие в них лотосы почитаются как святыня. Чужаков встречают воины Тёмной Луны — или луч лунного света, посланный самой богиней.\n\nЗдесь водятся звери, которых больше нигде не встретишь, а где-то в чаще, по слухам, обитает священная лунная моль. Нынешний покой обманчив: у леса долгая история распрей и крови.\n\nСелемене служат две героини. Luna, когда-то беспощадная предводительница армий, сама того не зная прошла здесь обряд Тёмной Луны и стала вечной стражницей леса. Mirana отказалась от права на Солнечный трон, чтобы верхом на огромной кошке охранять лотосы богини от воров. Underlord поклялся однажды сжечь лес дотла, а Орда Тёмной Луны уже штурмовала храм Мены.",
+    "en": "An ancient forest that belongs to Selemene, goddess of the Moon. True darkness never settles here: silver pools glow beneath the canopy, and the luminous lotuses growing in them are held sacred. Intruders are met by the warriors of the Dark Moon — or by a shaft of moonlight sent by the goddess herself.\n\nThe woods shelter beasts found nowhere else, and somewhere in the deep thickets the sacred Lunar Moth is said to dwell. Today's calm is deceptive: the forest has a long history of feuds and bloodshed.\n\nTwo heroines serve Selemene here. Luna, once a merciless warlord, unknowingly passed the rites of the Dark Moon and became the forest's ever-loyal guardian. Mirana gave up her claim to the Solar Throne to ride the glades on her great cat, hunting anyone who would poach the goddess's lotuses. The Underlord has vowed to burn the woods to the ground, and the Dark Moon Horde has already stormed the Temple of Mene."
+  },
+  "places": {
+    "Nightsilver Woods": {
+      "name": { "ru": "Лес Найтсильвер", "en": "Nightsilver Woods" },
+      "type": { "ru": "Священный лес", "en": "Sacred forest" },
+      "description": {
+        "ru": "Сердце владений Селемены: светящиеся пруды, лотосы и тропы, по которым ездят Luna и Mirana. Посторонним здесь не рады, хотя Monkey King иногда проводит в лесу лето.",
+        "en": "The heart of Selemene's domain — glowing pools, sacred lotuses and moonlit trails patrolled by Luna and Mirana. Outsiders are unwelcome, though Monkey King sometimes spends his summers here."
+      }
+    },
+    "Temple of Mene": {
+      "name": { "ru": "Храм Мены", "en": "Temple of Mene" },
+      "type": { "ru": "Храм", "en": "Temple" },
+      "description": {
+        "ru": "Храм Селемены, скорее всего скрытый в глубине леса; Мена — прежнее имя богини. Mirana приходит сюда молиться, и здесь ей являются видения — в том числе о её участии в войне Древних. Когда храм атаковала Орда Тёмной Луны, на его защиту пришлось звать героев со стороны.",
+        "en": "A temple to Selemene, most likely hidden deep in the woods — Mene is an older name of the goddess. Mirana comes here to pray and receives visions within its walls, among them a glimpse of her part in the war of the Ancients. When the Dark Moon Horde attacked it, champions from beyond the forest had to come to its defence."
+      }
+    },
+    "Shrine of Selemene": {
+      "name": { "ru": "Святилище Селемены", "en": "Shrine of Selemene" },
+      "type": { "ru": "Святилище", "en": "Shrine" },
+      "description": {
+        "ru": "Стоит там, где в ещё молодой лес упал осколок с неба — возможно, кусочек самой луны. Из него позже сделали реликвию Ордена Тёмной Луны. Не исключено, что святилище и храм Мены — одно и то же место.",
+        "en": "Built where a shard fell from the sky while the forest was still young — perhaps a piece of the moon itself. The shard was later shaped into a relic of the Dark Moon Order. The shrine may even be the same site as the Temple of Mene."
+      }
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "id": "free-cities",
+  "subtitle": { "ru": "Контрабандисты, маги и фейри", "en": "Smugglers, sorcerers and fae" },
+  "biome": "city",
+  "ambient": { "type": "fog", "density": 0.25 },
+  "traits": {
+    "rule": { "ru": "Города-государства", "en": "City-states" },
+    "magic": { "ru": "Свободна, но под надзором", "en": "Free, but policed" },
+    "biome": { "ru": "Города", "en": "Cities" }
+  },
+  "description": {
+    "ru": "Цепочка городов к северу от Хазадальских пустошей — совсем рядом со Стоунхоллом, но вне досягаемости его легионов. Каждый живёт по своим законам, а иногда и вовсе без них. Название «Вольные города» придумали мы: в лоре у этих земель нет общего имени.\n\nБелый Шпиль — устремлённый ввысь город контрабандистов, банд и тайных обществ, где делают ставки на всё, от звериных бегов до гонок курьеров. Ревтел — роскошное и смертельно опасное государство фейри под властью трёх королей-купцов. Над Плачущей Розой никогда не встаёт солнце: запретной магии здесь нет, но тех, кто злоупотребляет свободой, отправляют в Поместье Тайлер.\n\nСюда тянутся герои со всего света. В Белом Шпиле живут Monkey King, Pangolier и Bounty Hunter, из Ревтела сбежала Dark Willow, а Lion добивается убежища у Кворума Плачущей Розы. Anti-Mage и Silencer работают на Поместье Тайлер, выслеживая магов-преступников.",
+    "en": "A chain of cities north of the Hazhadal Barrens — right next to Stonehall, yet beyond the reach of its legions. Each keeps its own laws, and some keep none at all. The name 'Free Cities' is ours; the lore never gathers them under one banner.\n\nWhite Spire is a towering haven for smugglers, gangs and secret societies, where people bet on everything from animal races to courier derbies. Revtel is a lavish and lethal fae nation ruled by three merchant kings. Over Weeping Rose the sun never rises: no magic is forbidden there, but those who abuse that freedom end up in the Tyler Estate.\n\nHeroes from every corner of the world drift here. Monkey King, Pangolier and Bounty Hunter can all be found in White Spire; Dark Willow ran away from Revtel; Lion is petitioning the Quorum of Weeping Rose for asylum. Anti-Mage and Silencer both hunt rogue mages on the Tyler Estate's behalf."
+  },
+  "places": {
+    "White Spire": {
+      "name": { "ru": "Белый Шпиль", "en": "White Spire" },
+      "type": { "ru": "Вольный город", "en": "Free city" },
+      "description": {
+        "ru": "«Город коварных наслаждений», поделённый на кварталы между главарями преступного мира — Энно, Анессикс, Джуллом и Хобгеном. Порядок здесь держался на Мамаше Иб, пока её не убили; теперь за её место дерутся соперники, а в город съезжаются герои, чтобы сразиться в Битве Древних. Здесь живут Monkey King, Pangolier и Bounty Hunter — последний не прочь сжульничать за игорным столом.",
+        "en": "The City of Dastardly Delights, carved into districts by crime lords — Enno, Anessix, Jull and Hobgen. Momma Eeb kept the peace until someone murdered her; now rivals scramble for her place while heroes pour in to fight in the Battle of the Ancients. Monkey King, Pangolier and Bounty Hunter all live here, the last of them known to cheat at the gambling tables."
+      }
+    },
+    "Revtel": {
+      "name": { "ru": "Ревтел", "en": "Revtel" },
+      "type": { "ru": "Государство фейри", "en": "Fae nation" },
+      "description": {
+        "ru": "Сказочно богатое государство фейри, где за изысканным этикетом скрываются безжалостные интриги, а убийство — дело обычное; к столу здесь подают даже мясо драконов. Правят им три короля-купца — одного из них, Квертиаса, убила Phantom Assassin. Здесь выросла Dark Willow, Миреска Санбриз, которая сожгла родовое поместье и сбежала из дома.",
+        "en": "A fabulously rich fae nation where exquisite etiquette masks ruthless scheming and murder is routine; even dragon meat is served at its tables. Three merchant kings rule it — or did, until Phantom Assassin killed one of them, Kwerthias. Dark Willow, born Mireska Sunbreeze, grew up here before burning down her family estate and running away."
+      }
+    },
+    "Weeping Rose": {
+      "name": { "ru": "Плачущая Роза", "en": "Weeping Rose" },
+      "type": { "ru": "Город магов", "en": "City of wizards" },
+      "description": {
+        "ru": "Город чародеев, окутанный вечной ночью. Им правит Кворум — совет тридцати одного мага, готовый даровать что угодно, но всегда за плату; местные мастера торгуют редкими книгами и големами. Lion ищет здесь убежища, а Queen of Pain приходила сюда к изгнанному демону-принцу Ногу за его правом рождения.",
+        "en": "A city of sorcerers wrapped in perpetual night. It is governed by the Quorum, a senate of thirty-one wizards who will grant almost any favour — for a price — while local artificers sell rare tomes and forged golems. Lion has come seeking asylum, and Queen of Pain once visited the exiled demon prince Knogh here to take over his birthright."
+      }
+    },
+    "Tyler Estate": {
+      "name": { "ru": "Поместье Тайлер", "en": "Tyler Estate" },
+      "type": { "ru": "Тюрьма для магов", "en": "Asylum for mages" },
+      "description": {
+        "ru": "Лечебница-тюрьма для магов-преступников, которая следит за немногими, но непреложными законами Плачущей Розы. Над узниками ставят опыты, а беглецов выслеживают агенты поместья — среди них Anti-Mage и Silencer.",
+        "en": "An asylum for the criminally wizardous that enforces Weeping Rose's few but absolute laws. Inmates are experimented upon, and escapees are hunted down by the Estate's agents — Anti-Mage and Silencer among them."
+      }
+    },
+    "Sundered Moon": {
+      "name": { "ru": "«Расколотая Луна»", "en": "The Sundered Moon" },
+      "type": { "ru": "Таверна", "en": "Tavern" },
+      "description": {
+        "ru": "Таверна Джулла в Белом Шпиле с контрабандной выпивкой и знаменитым коктейлем на основе чумного стража. Пускают сюда в основном героев — на входе могут попросить голову крипа, — а главный соперник заведения — магический бар «Кантрип».",
+        "en": "Jull's tavern in White Spire, pouring bootleg liquor and a notorious cocktail brewed from plague wards. It caters mostly to heroes — a creep's head may be demanded at the door — and its chief rival is the mage-run Cantrip Mana Lounge and Bar."
+      }
+    },
+    "Iron Fog": {
+      "name": { "ru": "Железный Туман", "en": "Iron Fog" },
+      "type": { "ru": "Город машин", "en": "City of machines" },
+      "description": {
+        "ru": "Город машин и механизмов под властью Медного Глашатая, одного из королей-купцов Ревтела. Хозяин гордится его точностью и порядком, но Миреска говорит, что с людьми там творят страшные вещи. Где он находится, неизвестно — мы поместили его рядом с Ревтелом.",
+        "en": "A city of industry and machinery run by the Brass Herald, one of Revtel's merchant kings. He boasts of its precision; Mireska says terrible things are done to people there. Its location is unknown — we placed it near Revtel."
+      }
+    },
+    "Highseat": {
+      "name": { "ru": "Хайсит", "en": "Highseat" },
+      "type": { "ru": "Лагеря мятежников", "en": "Rebel camps" },
+      "description": {
+        "ru": "Здесь стояли лагеря мятежников и скрывался легендарный вор Белый Плащ. По слухам, Bounty Hunter пробрался туда, выследил вора и доставил его на суд. Где лежит Хайсит, в лоре не сказано.",
+        "en": "Once dotted with rebel camps and the hideout of the legendary thief White Cape. Rumour has it Bounty Hunter slipped in, tracked him down and hauled him off to face judgment. The lore never says where Highseat lies."
+      }
+    }
+  }
+}

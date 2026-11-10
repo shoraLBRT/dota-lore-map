@@ -1,0 +1,49 @@
+{
+  "id": "quoidge",
+  "subtitle": { "ru": "Где мёртвые не знают покоя", "en": "Where the dead find no rest" },
+  "biome": "plains",
+  "ambient": { "type": "fog", "density": 0.45 },
+  "traits": {
+    "rule": { "ru": "Неизвестно", "en": "Unknown" },
+    "magic": { "ru": "Некромантия и проклятия", "en": "Necromancy and curses" },
+    "biome": { "ru": "Проклятые равнины", "en": "Cursed plains" }
+  },
+  "description": {
+    "ru": "На севере края стоит Квойдж — город, где нежить живёт вполне цивилизованно бок о бок с неопрятными мясниками. Говорят, его создал бог Марс, возможно на месте давней битвы, а из развлечений здесь в почёте разве что бои в ямах. В дне пути лежит Дымная Гавань — порт, где не задают лишних вопросов.\n\nДалеко на юге, между Хазадальскими пустошами и Друудом, тянутся Поля Вечной Бойни. Это проклятая земля: тела павших не гниют и не уходят в почву, как глубоко ни копай. Ночами здесь трудится Pudge — разделывает мёртвых, чтобы к рассвету поле было чистым, и давно уже не только разделывает.\n\nК этому краю мы отнесли и собор Румуска: его клирики совершили паломничество на Поля, чтобы очистить их от скверны Мёртвого бога. Из стен собора вышел Necrophos — монах, который подхватил чуму, но вместо того чтобы умереть, стал её пророком.",
+    "en": "In the north stands Quoidge, a city where the undead lead perfectly civilised lives alongside slovenly butchers. The god Mars is said to have founded it, perhaps on the site of some old battle, and pit fighting is about the only sport in town. A day's journey away lies Smoke Harbor, a port that asks no questions.\n\nFar to the south, between the Hazhadal Barrens and Druud, stretch the Fields of Endless Carnage — a cursed land where the fallen never rot and never return to the soil, however deep the grave. Here Pudge works through the night, carving up the dead so the field is clear by dawn, and long ago acquired a taste for the job.\n\nWe also place the Cathedral of Rumusque here: its clerics once marched on the Fields to purge them of the Dead God's taint. The Necrophos rose from within its walls — a monk who caught the plague and, instead of dying, became its prophet."
+  },
+  "places": {
+    "Quoidge": {
+      "name": { "ru": "Квойдж", "en": "Quoidge" },
+      "type": { "ru": "Город нежити", "en": "Undead city" },
+      "description": {
+        "ru": "Город цивилизованной нежити далеко к северу от Полей и к югу от Скайрата; по преданию, его основал Марс. Pudge охотно водит гостей по городу и мрачным окрестностям — от Равнин Нескончаемых Мук до Реки Скорби.",
+        "en": "A city of civilised undead far north of the Fields and south of Skywrath, said to have been founded by Mars. Pudge happily gives tours of the city and its grim surroundings, from the Plains of Ceaseless Torment to the River of Woe."
+      }
+    },
+    "Smoke Harbor": {
+      "name": { "ru": "Дымная Гавань", "en": "Smoke Harbor" },
+      "type": { "ru": "Портовый город", "en": "Port city" },
+      "description": {
+        "ru": "Порт в дне пути от Квойджа, где без лишних вопросов швартуются и флот Кладда, и пираты, и левиафаны, и корабли-призраки. Застрявший здесь Kunkka помог Vengeful Spirit бежать во льды Айсрака, а в окрестных водах рыщут теневые акулы.",
+        "en": "A port a day's journey from Quoidge where the Claddish Navy, pirate brigands, leviathans and ghost ships all drop anchor without judgment. A marooned Kunkka helped Vengeful Spirit escape from here to the frozen wastes of Icewrack, and shadow sharks prowl the nearby waters."
+      }
+    },
+    "Fields of Endless Carnage": {
+      "name": { "ru": "Поля Вечной Бойни", "en": "Fields of Endless Carnage" },
+      "type": { "ru": "Поле битвы", "en": "Battlefield" },
+      "description": {
+        "ru": "Бескрайнее поле битвы к югу от Хазадальских пустошей и к северу от красных пустынь Друуда. Тела здесь не разлагаются, и Pudge без устали расчищает их. Когда клирики Румуска пришли очищать эти земли, мясник уже успел уйти.",
+        "en": "An endless battlefield south of the Hazhadal Barrens and north of the red deserts of Druud. Corpses here never decay, and Pudge toils ceaselessly to clear them. By the time the clerics of Rumusque came to purge the land, the Butcher had already moved on."
+      }
+    },
+    "Cathedral of Rumusque": {
+      "name": { "ru": "Собор Румуска", "en": "Cathedral of Rumusque" },
+      "type": { "ru": "Собор", "en": "Cathedral" },
+      "description": {
+        "ru": "Обитель духовенства, которое борется со смертью, тленом и порчей Мёртвого бога; жрица этого ордена Крелла выковала цепи, сковывающие его слуг. Во время великой чумы монах Ротунд'жер наживался на умирающих дворянах, был осуждён и заперт в чумной палате — и вышел оттуда Necrophos.",
+        "en": "Seat of a clergy sworn to fight death, decay and the corruption of the Dead God; one of its priestesses, Crella, forged chains to bind his servants. During a great plague the monk Rotund'jere preyed on dying nobles, was condemned to a plague ward — and walked out as the Necrophos."
+      }
+    }
+  }
+}
