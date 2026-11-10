@@ -1,0 +1,27 @@
+.divider {
+  position: relative;
+  height: 1px;
+  margin: var(--space-4) 5px;
+  border: 0;
+  background: linear-gradient(90deg, var(--metal) 0%, var(--metal-bright) 50%, var(--metal) 100%);
+  overflow: visible;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  width: 7px;
+  height: 7px;
+  background: var(--metal-bright);
+  transform: rotate(45deg);
+}
+
+.divider::before {
+  left: -5px;
+}
+
+.divider::after {
+  right: -5px;
+}
