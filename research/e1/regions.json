@@ -1,0 +1,356 @@
+{
+  "_legend": {
+    "tier": "upper = Верхний ярус, continent = материк и острова, abyss = Бездна",
+    "side": "radiant / dire — по официальной карте Source 1 (Land of the Radiant / Scorch of the Dire); neutral — места нет на этой карте",
+    "placement": "lore = расположение следует из лора; s1map = место подписано на карте Source 1 в этой половине; ours = мы сами относим место к этому региону (в лоре расположение не указано)"
+  },
+  "regions": [
+    {
+      "id": "heavens", "tier": "upper", "side": "neutral",
+      "en": "The Heavens", "ru": "Небеса",
+      "geo": "Небо над миром и небесные тела: столица скайрасов высоко над землёй, Безумная Луна (разрушена, её осколки — Radiant Ore и Direstone), Луна Селемены, Солнце.",
+      "locations": [
+        { "name": "Ghastly Eyrie", "capital": true, "placement": "lore", "note": "столица расы скайрасов, «среди облаков и звёзд»" },
+        { "name": "Mad Moon", "placement": "lore" },
+        { "name": "Selemene's Moon", "placement": "lore", "note": "вместе с Demon Star" },
+        { "name": "The Sun", "placement": "lore", "note": "Children of Light и солнечная кузня (страницы на Liquipedia нет)" },
+        { "name": "Olympus", "placement": "ours", "note": "небесная обитель Зевса; страницы на Liquipedia нет" },
+        { "name": "Ultoria", "placement": "lore", "note": "небесное тело со своими лунами" }
+      ]
+    },
+    {
+      "id": "planes", "tier": "upper", "side": "neutral",
+      "en": "The Seven Planes and the Void", "ru": "Семь планов и Пустота",
+      "geo": "Иные планы бытия и измерения вне Terrene Plane (наш мир).",
+      "locations": [
+        { "name": "Fundamental Plane", "placement": "lore" },
+        { "name": "Primordial Plane", "placement": "lore" },
+        { "name": "Elemental Plane", "placement": "lore" },
+        { "name": "Astral Plane", "placement": "lore" },
+        { "name": "Fabric of Creation", "placement": "lore" },
+        { "name": "Claszureme", "placement": "lore", "note": "мир вне времени" },
+        { "name": "The Void", "placement": "lore" },
+        { "name": "The Outworld", "placement": "lore", "note": "«мир на краю Бездны», у границы Пустоты" },
+        { "name": "Land Behind the Wall", "placement": "lore", "note": "родная реальность Dark Seer; страницы на Liquipedia нет" },
+        { "name": "Ivory Incubarium", "placement": "lore", "note": "в другой вселенной" },
+        { "name": "Heart of Nature", "placement": "ours" },
+        { "name": "Light's Keep", "placement": "ours" },
+        { "name": "The Dream", "placement": "ours" }
+      ]
+    },
+    {
+      "id": "icewrack", "tier": "continent", "side": "radiant",
+      "en": "Icewrack", "ru": "Айсрак",
+      "geo": "Крайний север. Южнее горного хребта The Barrier, у Северного (Кипящего) моря. Единственный морской путь — порт Frostreach. На карте Source 1: «The cold northern realm of Ice» в половине Radiant.",
+      "locations": [
+        { "name": "Icewrack", "capital": true, "placement": "lore" },
+        { "name": "The Barrier", "placement": "lore" },
+        { "name": "Blueheart Glacier", "placement": "lore" },
+        { "name": "Black Pool", "placement": "lore" },
+        { "name": "Cobalt", "placement": "lore" },
+        { "name": "Azura", "placement": "lore" },
+        { "name": "White Fields", "placement": "lore" },
+        { "name": "Wolfsden Tavern", "placement": "lore" },
+        { "name": "Njord's Hearth", "placement": "lore" },
+        { "name": "Boiling Sea", "placement": "lore" },
+        { "name": "Frostreach", "placement": "lore", "note": "самый северный порт мира; страницы на Liquipedia нет" },
+        { "name": "Onyx Grove", "placement": "lore", "note": "в северных сосновых лесах" }
+      ]
+    },
+    {
+      "id": "radiant-lands", "tier": "continent", "side": "radiant",
+      "en": "Land of the Radiant", "ru": "Земля Сияющих",
+      "geo": "Название и состав — с карты Source 1: Peaceful Village of Pole, Violet Archives, Castle of the Fold, Home of the Keen Folk, Thousand Tarns.",
+      "locations": [
+        { "name": "Pole", "placement": "s1map" },
+        { "name": "Violet Archives", "placement": "s1map" },
+        { "name": "Violet Plateau", "placement": "lore", "note": "архивы находятся в нём или рядом" },
+        { "name": "Castle of the Fold", "placement": "s1map" },
+        { "name": "Home of the Keen Folk", "placement": "s1map" },
+        { "name": "Knollen", "placement": "ours", "note": "горные долины кинов" },
+        { "name": "Dredger's Bight", "placement": "ours", "note": "родина Techies (кины); страницы на Liquipedia нет" },
+        { "name": "Thousand Tarns", "placement": "s1map" }
+      ]
+    },
+    {
+      "id": "nightsilver", "tier": "continent", "side": "radiant",
+      "en": "Nightsilver Woods", "ru": "Лес Найтсильвер",
+      "geo": "Священный лес Селемены. Temple of Mene на карте Source 1 — в половине Radiant.",
+      "locations": [
+        { "name": "Nightsilver Woods", "capital": true, "placement": "lore" },
+        { "name": "Temple of Mene", "placement": "s1map" },
+        { "name": "Shrine of Selemene", "placement": "lore" }
+      ]
+    },
+    {
+      "id": "stonehall", "tier": "continent", "side": "neutral",
+      "en": "Stonehall", "ru": "Стоунхолл",
+      "geo": "Империя вокруг города Стоунхолл. Расположение городов относительно столицы известно точно (запад, юг, северо-восток и т. д.).",
+      "locations": [
+        { "name": "Stonehall", "capital": true, "placement": "lore" },
+        { "name": "Qine", "placement": "lore" },
+        { "name": "Quath", "placement": "lore" },
+        { "name": "Tares", "placement": "lore", "note": "к югу от Стоунхолла" },
+        { "name": "Roseleaf", "placement": "lore" },
+        { "name": "Tarrin", "placement": "lore", "note": "к юго-западу" },
+        { "name": "Sashire", "placement": "lore", "note": "к югу" },
+        { "name": "Milltown", "placement": "lore", "note": "к западу, на реке между Roseleaf и Tarrin" },
+        { "name": "Ember (City)", "placement": "lore", "note": "к западу" },
+        { "name": "Redmaw", "placement": "lore", "note": "к западу от Roseleaf" },
+        { "name": "Lormount", "placement": "lore" },
+        { "name": "Goldlake", "placement": "lore" },
+        { "name": "Lightglass", "placement": "lore", "note": "озеро к северу" },
+        { "name": "Lincastle", "placement": "lore", "note": "к востоку" },
+        { "name": "Mistmill", "placement": "lore", "note": "к востоку" },
+        { "name": "Pinelyn", "placement": "lore", "note": "к северо-востоку" },
+        { "name": "Crester", "placement": "lore", "note": "к югу от Tares" },
+        { "name": "Filedo", "placement": "lore" },
+        { "name": "Clacline", "placement": "lore" },
+        { "name": "Kailens", "placement": "lore" },
+        { "name": "Sloquoit", "placement": "lore" },
+        { "name": "Coldbank Plains", "placement": "lore", "note": "к западу" },
+        { "name": "Janau", "placement": "lore" },
+        { "name": "Leadbelly's", "placement": "lore", "note": "таверна в Стоунхолле" }
+      ]
+    },
+    {
+      "id": "free-cities", "tier": "continent", "side": "neutral",
+      "en": "The Free Cities", "ru": "Вольные города",
+      "geo": "Города рядом со Стоунхоллом, но вне его власти: White Spire «сразу за пределами» Стоунхолла и Ревтела, севернее Hazhadal Barrens; Weeping Rose — соседний с White Spire город. Название региона — наше.",
+      "locations": [
+        { "name": "White Spire", "capital": true, "placement": "lore" },
+        { "name": "Revtel", "placement": "lore" },
+        { "name": "Weeping Rose", "placement": "lore" },
+        { "name": "Tyler Estate", "placement": "lore", "note": "в Weeping Rose" },
+        { "name": "Sundered Moon", "placement": "lore", "note": "таверна в White Spire" },
+        { "name": "Iron Fog", "placement": "ours" },
+        { "name": "Highseat", "placement": "ours" }
+      ]
+    },
+    {
+      "id": "quoidge", "tier": "continent", "side": "neutral",
+      "en": "Quoidge and the Fields of Carnage", "ru": "Квойдж и Поля Бойни",
+      "geo": "Квойдж — к югу от Skywrath, в дне пути от Smoke Harbor, далеко к северу от Полей. Поля — к югу от Hazhadal Barrens и к северу от Друуда.",
+      "locations": [
+        { "name": "Quoidge", "capital": true, "placement": "lore" },
+        { "name": "Smoke Harbor", "placement": "lore" },
+        { "name": "Fields of Endless Carnage", "placement": "lore" },
+        { "name": "Cathedral of Rumusque", "placement": "lore" }
+      ]
+    },
+    {
+      "id": "hazhadal", "tier": "continent", "side": "neutral",
+      "en": "Hazhadal Barrens", "ru": "Хазадальские пустоши",
+      "geo": "К северу от Fields of Endless Carnage и к югу от места битвы Древних. Земля безбожных племён-изгоев.",
+      "locations": [
+        { "name": "Hazhadal Barrens", "capital": true, "placement": "lore" },
+        { "name": "Fortress of Valhessi", "placement": "lore", "note": "страницы на Liquipedia нет" }
+      ]
+    },
+    {
+      "id": "druud", "tier": "continent", "side": "neutral",
+      "en": "Druud", "ru": "Друуд",
+      "geo": "Плоскогорье (Red Deserts of Druud) к югу от Fields of Endless Carnage. Земля кланов кентавров.",
+      "locations": [
+        { "name": "Druud", "capital": true, "placement": "lore" },
+        { "name": "Omexe", "placement": "lore" }
+      ]
+    },
+    {
+      "id": "scintillant", "tier": "continent", "side": "dire",
+      "en": "Scintillant Waste", "ru": "Сверкающая пустошь",
+      "geo": "Экваториальные пустыни. Desert of Misrule — внутри или к западу от Scintillant Waste. На карте Source 1 Blazing Desert of Misrule и Riftshadow Ruins — в половине Dire.",
+      "locations": [
+        { "name": "Scintillant Waste", "capital": true, "placement": "lore" },
+        { "name": "Desert of Misrule", "placement": "s1map" },
+        { "name": "Riftshadow Ruins", "placement": "s1map" },
+        { "name": "Qaldin", "placement": "lore" },
+        { "name": "El'Harath", "placement": "lore" },
+        { "name": "The Barrens", "placement": "lore" },
+        { "name": "Halgalreh", "placement": "ours", "note": "руины пустынной империи" },
+        { "name": "Bone Ruins", "placement": "ours" },
+        { "name": "Singer's Gulch", "placement": "ours" }
+      ]
+    },
+    {
+      "id": "wailing-mountains", "tier": "continent", "side": "dire",
+      "en": "Wailing Mountains", "ru": "Стонущие горы",
+      "geo": "На карте Source 1 в половине Dire: The Wailing Mountains, The Ruined City, The monasteries of Turstarkuri, The Mountain Joerlak, The Feral Road.",
+      "locations": [
+        { "name": "Ruined City", "capital": true, "placement": "s1map" },
+        { "name": "Fortress of Flares", "placement": "lore" },
+        { "name": "Turstarkuri", "placement": "s1map" },
+        { "name": "Mount Joerlak", "placement": "s1map" },
+        { "name": "Feral Road", "placement": "s1map" },
+        { "name": "The Upland", "placement": "ours", "note": "нагорье священного нефрита" }
+      ]
+    },
+    {
+      "id": "shadeshore", "tier": "continent", "side": "neutral",
+      "en": "Shadeshore", "ru": "Тенистый берег",
+      "geo": "Приморский край. Tidemarsh связывает Shadeshore, Wailing Mountains и Ruelands.",
+      "locations": [
+        { "name": "Shadeshore Ruins", "capital": true, "placement": "lore" },
+        { "name": "Tidemarsh", "placement": "lore" },
+        { "name": "Ruelands", "placement": "lore" },
+        { "name": "Vigil Keep", "placement": "ours" },
+        { "name": "Inner Colonnade", "placement": "ours", "note": "при Vigil Keep" }
+      ]
+    },
+    {
+      "id": "the-deep", "tier": "continent", "side": "dire",
+      "en": "The Deep", "ru": "Глубины",
+      "geo": "Затонувшие города на дне океана под охраной слизеринов; ещё глубже — Infernal Hollow. На карте Source 1 «The Slithereen» — в половине Dire.",
+      "locations": [
+        { "name": "Dark Reef", "capital": true, "placement": "lore" },
+        { "name": "Crey", "placement": "lore" },
+        { "name": "Deep Vault", "placement": "lore", "note": "оно же Sunken Treasury" },
+        { "name": "Coral Breach", "placement": "lore" },
+        { "name": "Reef's Edge", "placement": "lore" },
+        { "name": "Recluse Reef", "placement": "lore" },
+        { "name": "Infernal Hollow", "placement": "lore", "note": "страницы на Liquipedia нет" }
+      ]
+    },
+    {
+      "id": "cladd", "tier": "continent", "side": "neutral",
+      "en": "Cladd and the Isles", "ru": "Кладд и острова",
+      "geo": "Островное государство Кладд и окрестные острова и проливы.",
+      "locations": [
+        { "name": "Cladd", "capital": true, "placement": "lore" },
+        { "name": "Trembling Isle", "placement": "lore" },
+        { "name": "Sunken Isles", "placement": "ours" },
+        { "name": "Isle of Songs", "placement": "ours" },
+        { "name": "Port Mignin", "placement": "ours" },
+        { "name": "Narrow Channel", "placement": "ours" }
+      ]
+    },
+    {
+      "id": "tropic-isles", "tier": "continent", "side": "neutral",
+      "en": "Tropic Isles", "ru": "Тропические острова",
+      "geo": "Острова в тропиках. Ash Archipelago — место отдыха кинов. Название региона — наше.",
+      "locations": [
+        { "name": "Isle of Masks", "capital": true, "placement": "lore" },
+        { "name": "Temple of Masks", "placement": "lore" },
+        { "name": "Ivory Isles", "placement": "lore" },
+        { "name": "Jidi Isle", "placement": "lore" },
+        { "name": "Acid Jungles", "placement": "lore" },
+        { "name": "Bay of Fradj", "placement": "lore" },
+        { "name": "Ash Archipelago", "placement": "lore" }
+      ]
+    },
+    {
+      "id": "western-forests", "tier": "continent", "side": "neutral",
+      "en": "Western Forests", "ru": "Западные леса",
+      "geo": "На западе мира много лесов: Western Forests с деревней Zaru'Kina и высокие леса за Vale of Augury. Western Forests граничат с павшим королевством Слом.",
+      "locations": [
+        { "name": "Western Forests", "capital": true, "placement": "lore" },
+        { "name": "Zaru'Kina", "placement": "lore" },
+        { "name": "Vale of Augury", "placement": "lore" },
+        { "name": "Augury Bay", "placement": "lore" },
+        { "name": "Endless Copse", "placement": "ours" },
+        { "name": "Manglewood Forest", "placement": "ours" }
+      ]
+    },
+    {
+      "id": "slom-elze", "tier": "continent", "side": "neutral",
+      "en": "Slom and Elze", "ru": "Слом и Эльзе",
+      "geo": "Два враждующих королевства-соседа, связанных дорогой с тавернами. Слом граничит с Western Forests.",
+      "locations": [
+        { "name": "Slom", "capital": true, "placement": "lore" },
+        { "name": "Elze", "placement": "lore" },
+        { "name": "Stone Hills", "placement": "ours" }
+      ]
+    },
+    {
+      "id": "hoven", "tier": "continent", "side": "neutral",
+      "en": "The Hoven and Nishai", "ru": "Ховен и Нишай",
+      "geo": "Огромный лес Ховен у подножия Bleeding Hills; с холмов стекает чёрная смола. Страница Bleeding Hills связывает их с Нишаем — краем землетрясений.",
+      "locations": [
+        { "name": "The Hoven", "capital": true, "placement": "lore" },
+        { "name": "Bleeding Hills", "placement": "lore" },
+        { "name": "Nishai", "placement": "lore" },
+        { "name": "The Red Mountain", "placement": "lore", "note": "предположительно в Нишае" }
+      ]
+    },
+    {
+      "id": "fellstrath", "tier": "continent", "side": "neutral",
+      "en": "Fellstrath", "ru": "Феллстрат",
+      "geo": "Тропические джунгли с муссонами и руинами Overgrown Empire, за горами у Ашкавора.",
+      "locations": [
+        { "name": "Fellstrath", "capital": true, "placement": "lore" },
+        { "name": "Overgrown Empire", "placement": "lore" },
+        { "name": "Ashkavor", "placement": "lore" },
+        { "name": "Yama Raskav Jungle", "placement": "ours" },
+        { "name": "Xhacatocatl", "placement": "ours", "note": "окутанные туманом горы" },
+        { "name": "Velu'Mar", "placement": "ours", "note": "Murkroots of Velu'Mar, родина Largo; страницы на Liquipedia нет" }
+      ]
+    },
+    {
+      "id": "tomokan", "tier": "continent", "side": "neutral",
+      "en": "Tomo'kan and the Outlands", "ru": "Томо'кан и Окраины",
+      "geo": "Туманный лес Томо'кан (Mistwood, Darkwood). К югу — королевство Кримвол в Окраинах. Окраины — всё, что за Dread Marsh, рядом с пустыней Nanarak. Сюда упали камни Неместиса.",
+      "locations": [
+        { "name": "Tomo'kan", "capital": true, "placement": "lore" },
+        { "name": "Krimwohl", "placement": "lore" },
+        { "name": "Outlands", "placement": "lore" },
+        { "name": "Nanarak", "placement": "lore" },
+        { "name": "Dread Marsh", "placement": "lore" },
+        { "name": "Praxa'cia", "placement": "lore" }
+      ]
+    },
+    {
+      "id": "empire-of-bone", "tier": "continent", "side": "neutral",
+      "en": "Empire of Bone", "ru": "Империя Костей",
+      "geo": "Владения Остариона: дворец, башни, мостовые и даже лес — из кости. Его армии разрушили Levinthal (Gleaming City).",
+      "locations": [
+        { "name": "Throne of Bone", "capital": true, "placement": "lore" },
+        { "name": "Ivory Forest", "placement": "lore" },
+        { "name": "Levinthal", "placement": "ours", "note": "возможно, то же, что Gleaming City" }
+      ]
+    },
+    {
+      "id": "middle-kingdoms", "tier": "continent", "side": "neutral",
+      "en": "The Middle Kingdoms", "ru": "Срединные королевства",
+      "geo": "Название и состав — наши. Здесь собраны королевства и места, расположение которых в лоре не указано. Регион можно разделить, когда будет готова схема карты (E2).",
+      "locations": [
+        { "name": "Candoness", "placement": "ours" },
+        { "name": "Devarque", "placement": "ours" },
+        { "name": "Yoskreth", "placement": "ours" },
+        { "name": "Ultimyr Academy", "placement": "ours" },
+        { "name": "Emauracus", "placement": "ours" },
+        { "name": "Font of Avernus", "placement": "ours" },
+        { "name": "Hidden Temple", "placement": "ours" },
+        { "name": "Hidden Hive", "placement": "ours" },
+        { "name": "Mount Pyrotheos", "placement": "ours" },
+        { "name": "Skirm", "placement": "ours", "note": "страницы на Liquipedia нет" },
+        { "name": "Solar Throne", "placement": "ours", "note": "трон империи Helio Imperium" }
+      ]
+    },
+    {
+      "id": "underdark", "tier": "abyss", "side": "neutral",
+      "en": "The Underdark", "ru": "Подземье",
+      "geo": "Физическое подземелье мира: город Азийог под магмой и корнями вулканов, Nether Reaches у тектонических плит, пещеры Emerald Abyss. Название региона — наше.",
+      "locations": [
+        { "name": "Aziyog", "capital": true, "placement": "lore" },
+        { "name": "Nether Reaches", "placement": "lore" },
+        { "name": "The Emerald Abyss", "placement": "lore" },
+        { "name": "The Underhollow", "placement": "lore" }
+      ]
+    },
+    {
+      "id": "hells", "tier": "abyss", "side": "neutral",
+      "en": "The Seven Hells and the Afterlife", "ru": "Семь Преисподних и загробье",
+      "geo": "Семь слоёв ада, тюрьма Foulfell, путь мёртвых душ (Narrow Maze → Underscape) и загробный мир Nothl.",
+      "locations": [
+        { "name": "Seven Hells", "capital": true, "placement": "lore" },
+        { "name": "Vashundol", "placement": "lore" },
+        { "name": "Abysm", "placement": "lore" },
+        { "name": "Foulfell", "placement": "lore" },
+        { "name": "Outer Hells", "placement": "lore" },
+        { "name": "Narrow Maze", "placement": "lore" },
+        { "name": "Underscape", "placement": "lore" },
+        { "name": "Nothl Realm", "placement": "lore" }
+      ]
+    }
+  ]
+}
