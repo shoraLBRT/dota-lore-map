@@ -5,6 +5,7 @@ Interactive map of the Dota 2 world: regions, locations, the heroes who live the
 
 - Техническое задание: [docs/SPEC.md](docs/SPEC.md)
 - Бэклог: [Issues](../../issues)
+- Исследование лора (E1): [docs/research/E1-places.md](docs/research/E1-places.md), данные в [research/e1/](research/e1/)
 
 ---
 

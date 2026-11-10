@@ -1,0 +1,1076 @@
+{
+  "_legend": {
+    "role": "origin = родина; home = живёт сейчас; link = другая связь (служба, изгнание, бывал, основал) — рисуется нитью",
+    "basis": "infobox = поле origins в лор-инфобоксе Liquipedia; bio = официальная биография героя; page = герой указан на странице места на Liquipedia (самая слабая связь, часто из-за предмета или реплики); ours = наше решение, в лоре прямо не сказано",
+    "region": "вместо place можно указать region — герой привязан к региону целиком",
+    "note": "пояснение к связи (обязательно для героев «Неизведанных земель»)"
+  },
+  "heroes": {
+    "Abaddon": [
+      {
+        "place": "Font of Avernus",
+        "role": "origin",
+        "basis": "bio"
+      }
+    ],
+    "Alchemist": [
+      {
+        "region": "uncharted",
+        "role": "origin",
+        "basis": "ours",
+        "note": "в биографии нет мест (семья Darkbrew)"
+      }
+    ],
+    "Ancient Apparition": [
+      {
+        "place": "The Void",
+        "role": "origin",
+        "basis": "infobox"
+      }
+    ],
+    "Anti-Mage": [
+      {
+        "place": "Turstarkuri",
+        "role": "origin",
+        "basis": "bio"
+      },
+      {
+        "place": "Tyler Estate",
+        "role": "link",
+        "basis": "infobox"
+      }
+    ],
+    "Arc Warden": [
+      {
+        "place": "Mad Moon",
+        "role": "origin",
+        "basis": "page"
+      },
+      {
+        "place": "Tomo'kan",
+        "role": "link",
+        "basis": "page"
+      }
+    ],
+    "Axe": [
+      {
+        "place": "Thousand Tarns",
+        "role": "origin",
+        "basis": "bio"
+      }
+    ],
+    "Bane": [
+      {
+        "place": "The Dream",
+        "role": "origin",
+        "basis": "ours"
+      }
+    ],
+    "Batrider": [
+      {
+        "place": "Yama Raskav Jungle",
+        "role": "origin",
+        "basis": "bio"
+      }
+    ],
+    "Beastmaster": [
+      {
+        "place": "Slom",
+        "role": "origin",
+        "basis": "bio"
+      }
+    ],
+    "Bloodseeker": [
+      {
+        "place": "Xhacatocatl",
+        "role": "origin",
+        "basis": "bio"
+      }
+    ],
+    "Bounty Hunter": [
+      {
+        "place": "White Spire",
+        "role": "home",
+        "basis": "page"
+      },
+      {
+        "place": "Highseat",
+        "role": "link",
+        "basis": "bio"
+      }
+    ],
+    "Brewmaster": [
+      {
+        "place": "Ruined City",
+        "role": "origin",
+        "basis": "bio"
+      }
+    ],
+    "Bristleback": [
+      {
+        "place": "Elze",
+        "role": "home",
+        "basis": "bio"
+      }
+    ],
+    "Broodmother": [
+      {
+        "place": "Mount Pyrotheos",
+        "role": "home",
+        "basis": "infobox"
+      }
+    ],
+    "Centaur Warrunner": [
+      {
+        "place": "Druud",
+        "role": "origin",
+        "basis": "bio"
+      }
+    ],
+    "Chaos Knight": [
+      {
+        "place": "Fundamental Plane",
+        "role": "origin",
+        "basis": "infobox"
+      }
+    ],
+    "Chen": [
+      {
+        "place": "Hazhadal Barrens",
+        "role": "origin",
+        "basis": "bio"
+      }
+    ],
+    "Clinkz": [
+      {
+        "place": "The Hoven",
+        "role": "origin",
+        "basis": "infobox"
+      },
+      {
+        "place": "Bleeding Hills",
+        "role": "link",
+        "basis": "bio"
+      }
+    ],
+    "Clockwerk": [
+      {
+        "place": "Home of the Keen Folk",
+        "role": "origin",
+        "basis": "bio"
+      }
+    ],
+    "Crystal Maiden": [
+      {
+        "place": "Icewrack",
+        "role": "home",
+        "basis": "infobox"
+      }
+    ],
+    "Dark Seer": [
+      {
+        "place": "Land Behind the Wall",
+        "role": "origin",
+        "basis": "infobox"
+      }
+    ],
+    "Dark Willow": [
+      {
+        "place": "Revtel",
+        "role": "origin",
+        "basis": "bio"
+      }
+    ],
+    "Dawnbreaker": [
+      {
+        "place": "The Sun",
+        "role": "origin",
+        "basis": "ours"
+      }
+    ],
+    "Dazzle": [
+      {
+        "place": "Nothl Realm",
+        "role": "link",
+        "basis": "bio"
+      },
+      {
+        "place": "Fellstrath",
+        "role": "home",
+        "basis": "page"
+      }
+    ],
+    "Death Prophet": [
+      {
+        "region": "uncharted",
+        "role": "origin",
+        "basis": "ours",
+        "note": "в биографии нет мест"
+      }
+    ],
+    "Disruptor": [
+      {
+        "place": "Druud",
+        "role": "origin",
+        "basis": "bio"
+      }
+    ],
+    "Doom": [
+      {
+        "place": "Vashundol",
+        "role": "origin",
+        "basis": "bio"
+      }
+    ],
+    "Dragon Knight": [
+      {
+        "place": "Candoness",
+        "role": "home",
+        "basis": "page"
+      }
+    ],
+    "Drow Ranger": [
+      {
+        "region": "icewrack",
+        "role": "origin",
+        "basis": "ours"
+      }
+    ],
+    "Earth Spirit": [
+      {
+        "place": "The Upland",
+        "role": "origin",
+        "basis": "infobox"
+      }
+    ],
+    "Earthshaker": [
+      {
+        "place": "Nishai",
+        "role": "origin",
+        "basis": "bio"
+      }
+    ],
+    "Elder Titan": [
+      {
+        "place": "Primordial Plane",
+        "role": "origin",
+        "basis": "page"
+      }
+    ],
+    "Ember Spirit": [
+      {
+        "place": "Fortress of Flares",
+        "role": "home",
+        "basis": "bio"
+      }
+    ],
+    "Enchantress": [
+      {
+        "region": "uncharted",
+        "role": "origin",
+        "basis": "ours",
+        "note": "в биографии нет мест; по образу — лесные земли"
+      }
+    ],
+    "Enigma": [
+      {
+        "place": "Fundamental Plane",
+        "role": "origin",
+        "basis": "infobox"
+      }
+    ],
+    "Faceless Void": [
+      {
+        "place": "Claszureme",
+        "role": "origin",
+        "basis": "bio"
+      }
+    ],
+    "Grimstroke": [
+      {
+        "place": "Ashkavor",
+        "role": "origin",
+        "basis": "bio"
+      }
+    ],
+    "Gyrocopter": [
+      {
+        "place": "Ash Archipelago",
+        "role": "home",
+        "basis": "bio"
+      }
+    ],
+    "Hoodwink": [
+      {
+        "place": "Krimwohl",
+        "role": "origin",
+        "basis": "bio"
+      },
+      {
+        "place": "Tomo'kan",
+        "role": "home",
+        "basis": "bio"
+      }
+    ],
+    "Huskar": [
+      {
+        "place": "Nothl Realm",
+        "role": "link",
+        "basis": "bio"
+      }
+    ],
+    "Invoker": [
+      {
+        "place": "Ultimyr Academy",
+        "role": "link",
+        "basis": "page"
+      }
+    ],
+    "Io": [
+      {
+        "place": "Fundamental Plane",
+        "role": "origin",
+        "basis": "infobox"
+      }
+    ],
+    "Jakiro": [
+      {
+        "region": "uncharted",
+        "role": "origin",
+        "basis": "ours",
+        "note": "в биографии нет мест (раса Pyrexae)"
+      }
+    ],
+    "Juggernaut": [
+      {
+        "place": "Isle of Masks",
+        "role": "origin",
+        "basis": "bio"
+      }
+    ],
+    "Keeper of the Light": [
+      {
+        "place": "Fundamental Plane",
+        "role": "origin",
+        "basis": "bio"
+      },
+      {
+        "place": "Light's Keep",
+        "role": "link",
+        "basis": "infobox"
+      }
+    ],
+    "Kez": [
+      {
+        "place": "Ghastly Eyrie",
+        "role": "origin",
+        "basis": "infobox"
+      },
+      {
+        "place": "Icewrack",
+        "role": "home",
+        "basis": "bio"
+      }
+    ],
+    "Kunkka": [
+      {
+        "place": "Cladd",
+        "role": "origin",
+        "basis": "bio"
+      }
+    ],
+    "Largo": [
+      {
+        "place": "Velu'Mar",
+        "role": "origin",
+        "basis": "infobox"
+      }
+    ],
+    "Legion Commander": [
+      {
+        "place": "Qine",
+        "role": "origin",
+        "basis": "infobox"
+      },
+      {
+        "place": "Stonehall",
+        "role": "home",
+        "basis": "bio"
+      }
+    ],
+    "Leshrac": [
+      {
+        "place": "Heart of Nature",
+        "role": "origin",
+        "basis": "infobox"
+      }
+    ],
+    "Lich": [
+      {
+        "place": "Black Pool",
+        "role": "home",
+        "basis": "bio"
+      }
+    ],
+    "Lifestealer": [
+      {
+        "place": "Devarque",
+        "role": "link",
+        "basis": "bio"
+      }
+    ],
+    "Lina": [
+      {
+        "place": "Desert of Misrule",
+        "role": "origin",
+        "basis": "bio"
+      }
+    ],
+    "Lion": [
+      {
+        "place": "Weeping Rose",
+        "role": "origin",
+        "basis": "infobox"
+      }
+    ],
+    "Lone Druid": [
+      {
+        "place": "Onyx Grove",
+        "role": "home",
+        "basis": "page"
+      }
+    ],
+    "Luna": [
+      {
+        "place": "Nightsilver Woods",
+        "role": "home",
+        "basis": "bio"
+      }
+    ],
+    "Lycan": [
+      {
+        "place": "Slom",
+        "role": "origin",
+        "basis": "bio"
+      }
+    ],
+    "Magnus": [
+      {
+        "place": "Mount Joerlak",
+        "role": "origin",
+        "basis": "page"
+      }
+    ],
+    "Marci": [
+      {
+        "region": "uncharted",
+        "role": "origin",
+        "basis": "ours",
+        "note": "места есть только в сериале «DOTA: Dragon's Blood» (Hauptstadt, Barrowhaven и др.) — по решению В5 места сериала на карту не добавляем"
+      }
+    ],
+    "Mars": [
+      {
+        "place": "Olympus",
+        "role": "origin",
+        "basis": "ours"
+      },
+      {
+        "place": "Quoidge",
+        "role": "link",
+        "basis": "page"
+      }
+    ],
+    "Medusa": [
+      {
+        "place": "Yama Raskav Jungle",
+        "role": "home",
+        "basis": "page"
+      }
+    ],
+    "Meepo": [
+      {
+        "place": "Riftshadow Ruins",
+        "role": "origin",
+        "basis": "bio"
+      },
+      {
+        "place": "Singer's Gulch",
+        "role": "link",
+        "basis": "page"
+      }
+    ],
+    "Mirana": [
+      {
+        "place": "Nightsilver Woods",
+        "role": "home",
+        "basis": "bio"
+      },
+      {
+        "place": "Solar Throne",
+        "role": "origin",
+        "basis": "bio"
+      }
+    ],
+    "Monkey King": [
+      {
+        "place": "White Spire",
+        "role": "home",
+        "basis": "infobox"
+      }
+    ],
+    "Morphling": [
+      {
+        "region": "the-deep",
+        "role": "home",
+        "basis": "bio"
+      }
+    ],
+    "Muerta": [
+      {
+        "place": "Skirm",
+        "role": "origin",
+        "basis": "infobox"
+      }
+    ],
+    "Naga Siren": [
+      {
+        "place": "Crey",
+        "role": "home",
+        "basis": "bio"
+      }
+    ],
+    "Nature's Prophet": [
+      {
+        "place": "Endless Copse",
+        "role": "home",
+        "basis": "page"
+      }
+    ],
+    "Necrophos": [
+      {
+        "place": "Cathedral of Rumusque",
+        "role": "origin",
+        "basis": "bio"
+      }
+    ],
+    "Night Stalker": [
+      {
+        "place": "The Void",
+        "role": "origin",
+        "basis": "page"
+      }
+    ],
+    "Nyx Assassin": [
+      {
+        "place": "Hidden Hive",
+        "role": "home",
+        "basis": "infobox"
+      }
+    ],
+    "Ogre Magi": [
+      {
+        "region": "uncharted",
+        "role": "origin",
+        "basis": "ours",
+        "note": "в биографии нет мест"
+      }
+    ],
+    "Omniknight": [
+      {
+        "place": "Emauracus",
+        "role": "home",
+        "basis": "bio"
+      }
+    ],
+    "Oracle": [
+      {
+        "place": "Ivory Incubarium",
+        "role": "origin",
+        "basis": "bio"
+      }
+    ],
+    "Outworld Destroyer": [
+      {
+        "place": "The Outworld",
+        "role": "origin",
+        "basis": "infobox"
+      }
+    ],
+    "Pangolier": [
+      {
+        "place": "White Spire",
+        "role": "home",
+        "basis": "page"
+      },
+      {
+        "place": "Qaldin",
+        "role": "link",
+        "basis": "page"
+      }
+    ],
+    "Phantom Assassin": [
+      {
+        "place": "Tares",
+        "role": "origin",
+        "basis": "infobox"
+      }
+    ],
+    "Phantom Lancer": [
+      {
+        "place": "Pole",
+        "role": "origin",
+        "basis": "bio"
+      }
+    ],
+    "Phoenix": [
+      {
+        "place": "The Sun",
+        "role": "origin",
+        "basis": "ours"
+      }
+    ],
+    "Primal Beast": [
+      {
+        "place": "Tomo'kan",
+        "role": "home",
+        "basis": "infobox"
+      }
+    ],
+    "Puck": [
+      {
+        "place": "Claszureme",
+        "role": "origin",
+        "basis": "page"
+      },
+      {
+        "place": "Tomo'kan",
+        "role": "link",
+        "basis": "page"
+      }
+    ],
+    "Pudge": [
+      {
+        "place": "Fields of Endless Carnage",
+        "role": "home",
+        "basis": "bio"
+      },
+      {
+        "place": "Quoidge",
+        "role": "link",
+        "basis": "bio"
+      }
+    ],
+    "Pugna": [
+      {
+        "place": "Nether Reaches",
+        "role": "origin",
+        "basis": "bio"
+      }
+    ],
+    "Queen of Pain": [
+      {
+        "place": "Elze",
+        "role": "link",
+        "basis": "bio"
+      },
+      {
+        "place": "Weeping Rose",
+        "role": "link",
+        "basis": "page"
+      }
+    ],
+    "Razor": [
+      {
+        "place": "Narrow Maze",
+        "role": "home",
+        "basis": "bio"
+      },
+      {
+        "place": "Underscape",
+        "role": "link",
+        "basis": "bio"
+      }
+    ],
+    "Riki": [
+      {
+        "region": "uncharted",
+        "role": "origin",
+        "basis": "ours",
+        "note": "в биографии нет мест (Tahlin не описан как место)"
+      }
+    ],
+    "Ringmaster": [
+      {
+        "region": "uncharted",
+        "role": "origin",
+        "basis": "ours",
+        "note": "в биографии нет мест; кандидат — руины цирка в Ozenja (догадка)"
+      }
+    ],
+    "Rubick": [
+      {
+        "region": "uncharted",
+        "role": "origin",
+        "basis": "ours",
+        "note": "в биографии нет мест; Liquipedia связывает с Ultimyr Archives (слабая связь)"
+      }
+    ],
+    "Sand King": [
+      {
+        "place": "Scintillant Waste",
+        "role": "origin",
+        "basis": "bio"
+      },
+      {
+        "place": "Qaldin",
+        "role": "link",
+        "basis": "bio"
+      }
+    ],
+    "Shadow Demon": [
+      {
+        "place": "Seven Hells",
+        "role": "origin",
+        "basis": "page"
+      }
+    ],
+    "Shadow Fiend": [
+      {
+        "place": "Abysm",
+        "role": "origin",
+        "basis": "bio"
+      }
+    ],
+    "Shadow Shaman": [
+      {
+        "place": "Bleeding Hills",
+        "role": "origin",
+        "basis": "bio"
+      }
+    ],
+    "Silencer": [
+      {
+        "place": "Hazhadal Barrens",
+        "role": "origin",
+        "basis": "bio"
+      },
+      {
+        "place": "Tyler Estate",
+        "role": "link",
+        "basis": "page"
+      }
+    ],
+    "Skywrath Mage": [
+      {
+        "place": "Ghastly Eyrie",
+        "role": "origin",
+        "basis": "bio"
+      }
+    ],
+    "Slardar": [
+      {
+        "place": "Deep Vault",
+        "role": "home",
+        "basis": "infobox"
+      }
+    ],
+    "Slark": [
+      {
+        "place": "Dark Reef",
+        "role": "origin",
+        "basis": "bio"
+      },
+      {
+        "region": "shadeshore",
+        "role": "home",
+        "basis": "bio"
+      }
+    ],
+    "Snapfire": [
+      {
+        "place": "Nanarak",
+        "role": "home",
+        "basis": "bio"
+      }
+    ],
+    "Sniper": [
+      {
+        "place": "Knollen",
+        "role": "origin",
+        "basis": "bio"
+      }
+    ],
+    "Spectre": [
+      {
+        "region": "planes",
+        "role": "origin",
+        "basis": "infobox"
+      },
+      {
+        "place": "Ruelands",
+        "role": "link",
+        "basis": "page"
+      },
+      {
+        "place": "Hidden Temple",
+        "role": "link",
+        "basis": "page"
+      }
+    ],
+    "Spirit Breaker": [
+      {
+        "place": "Elemental Plane",
+        "role": "origin",
+        "basis": "infobox"
+      },
+      {
+        "place": "Nether Reaches",
+        "role": "link",
+        "basis": "infobox"
+      },
+      {
+        "place": "Ultoria",
+        "role": "link",
+        "basis": "page"
+      }
+    ],
+    "Storm Spirit": [
+      {
+        "place": "Ruined City",
+        "role": "home",
+        "basis": "bio"
+      }
+    ],
+    "Sven": [
+      {
+        "place": "Shadeshore Ruins",
+        "role": "origin",
+        "basis": "bio"
+      },
+      {
+        "place": "Vigil Keep",
+        "role": "link",
+        "basis": "bio"
+      },
+      {
+        "place": "Feral Road",
+        "role": "link",
+        "basis": "page"
+      }
+    ],
+    "Techies": [
+      {
+        "place": "Dredger's Bight",
+        "role": "origin",
+        "basis": "bio"
+      },
+      {
+        "place": "Ruelands",
+        "role": "link",
+        "basis": "page"
+      }
+    ],
+    "Templar Assassin": [
+      {
+        "place": "Hidden Temple",
+        "role": "home",
+        "basis": "bio"
+      },
+      {
+        "place": "Violet Archives",
+        "role": "link",
+        "basis": "bio"
+      },
+      {
+        "place": "Halgalreh",
+        "role": "link",
+        "basis": "page"
+      }
+    ],
+    "Terrorblade": [
+      {
+        "place": "Foulfell",
+        "role": "origin",
+        "basis": "bio"
+      }
+    ],
+    "Tidehunter": [
+      {
+        "place": "Sunken Isles",
+        "role": "origin",
+        "basis": "bio"
+      }
+    ],
+    "Timbersaw": [
+      {
+        "place": "Augury Bay",
+        "role": "origin",
+        "basis": "bio"
+      }
+    ],
+    "Tinker": [
+      {
+        "place": "Violet Plateau",
+        "role": "home",
+        "basis": "bio"
+      }
+    ],
+    "Tiny": [
+      {
+        "region": "uncharted",
+        "role": "origin",
+        "basis": "ours",
+        "note": "в биографии нет мест"
+      }
+    ],
+    "Treant Protector": [
+      {
+        "place": "Vale of Augury",
+        "role": "home",
+        "basis": "bio"
+      }
+    ],
+    "Troll Warlord": [
+      {
+        "place": "The Hoven",
+        "role": "home",
+        "basis": "infobox"
+      }
+    ],
+    "Tusk": [
+      {
+        "place": "Cobalt",
+        "role": "origin",
+        "basis": "bio"
+      },
+      {
+        "place": "Wolfsden Tavern",
+        "role": "link",
+        "basis": "bio"
+      }
+    ],
+    "Underlord": [
+      {
+        "place": "Aziyog",
+        "role": "home",
+        "basis": "bio"
+      },
+      {
+        "place": "Stonehall",
+        "role": "link",
+        "basis": "page"
+      }
+    ],
+    "Undying": [
+      {
+        "region": "uncharted",
+        "role": "origin",
+        "basis": "ours",
+        "note": "служит Мёртвому богу, чей легион разорил Turstarkuri; Liquipedia связывает с Seven Hells"
+      }
+    ],
+    "Ursa": [
+      {
+        "place": "Tomo'kan",
+        "role": "home",
+        "basis": "infobox"
+      }
+    ],
+    "Vengeful Spirit": [
+      {
+        "place": "Ghastly Eyrie",
+        "role": "origin",
+        "basis": "bio"
+      }
+    ],
+    "Venomancer": [
+      {
+        "place": "Acid Jungles",
+        "role": "origin",
+        "basis": "bio"
+      }
+    ],
+    "Viper": [
+      {
+        "place": "Nether Reaches",
+        "role": "origin",
+        "basis": "bio"
+      }
+    ],
+    "Visage": [
+      {
+        "place": "Narrow Maze",
+        "role": "home",
+        "basis": "bio"
+      }
+    ],
+    "Void Spirit": [
+      {
+        "place": "The Void",
+        "role": "origin",
+        "basis": "infobox"
+      },
+      {
+        "place": "Hidden Temple",
+        "role": "link",
+        "basis": "bio"
+      }
+    ],
+    "Warlock": [
+      {
+        "place": "Ultimyr Academy",
+        "role": "home",
+        "basis": "bio"
+      },
+      {
+        "place": "Outer Hells",
+        "role": "link",
+        "basis": "bio"
+      }
+    ],
+    "Weaver": [
+      {
+        "place": "Fabric of Creation",
+        "role": "origin",
+        "basis": "infobox"
+      }
+    ],
+    "Windranger": [
+      {
+        "place": "Zaru'Kina",
+        "role": "origin",
+        "basis": "infobox"
+      }
+    ],
+    "Winter Wyvern": [
+      {
+        "place": "Icewrack",
+        "role": "home",
+        "basis": "page"
+      }
+    ],
+    "Witch Doctor": [
+      {
+        "region": "uncharted",
+        "role": "origin",
+        "basis": "ours",
+        "note": "в биографии нет мест"
+      }
+    ],
+    "Wraith King": [
+      {
+        "place": "Throne of Bone",
+        "role": "home",
+        "basis": "infobox"
+      }
+    ],
+    "Zeus": [
+      {
+        "place": "Olympus",
+        "role": "origin",
+        "basis": "infobox"
+      }
+    ]
+  }
+}
