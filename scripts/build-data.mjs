@@ -292,6 +292,7 @@ export function buildWorld({ heroes, regions, heroPlaces, contents = [], layout 
       id: r.id,
       tier: r.tier,
       side: r.side,
+      sideBasis: r.sideBasis,
       name: { ru: r.ru, en: r.en },
       geo: r.geo,
       subtitle: c?.subtitle,

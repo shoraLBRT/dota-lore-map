@@ -1,10 +1,21 @@
 {
   "aspect": 1.6,
+  "bands": {
+    "upper": [
+      0,
+      0.13
+    ],
+    "abyss": [
+      0.87,
+      1
+    ]
+  },
   "regions": [
     {
       "id": "heavens",
       "tier": "upper",
       "side": "neutral",
+      "sideBasis": "tier",
       "name": {
         "ru": "Небеса",
         "en": "The Heavens"
@@ -37,6 +48,71 @@
         "ru": "Над облаками мир не кончается. Здесь, недосягаемые для бескрылых народов, парят крепости скайрасов, а ещё выше кружат светила, от которых зависит судьба всего, что лежит внизу.\n\nНебеса помнят Безумную Луну — тюрьму двух древних разумов, Радинтула и Дируулта. Когда она раскололась, её осколки дождём упали на землю, и с тех пор войны Сияющих и Тьмы ведутся за этот звёздный камень. Рядом всё так же светит Луна Селемены, богини, которой служат Mirana и Luna.\n\nОтсюда родом скайрас Драгонус (Skywrath Mage) и свергнутая принцесса Шендельзаре, ставшая Vengeful Spirit. С небесами связаны и боги-громовержцы, и дети звёзд — Phoenix и Dawnbreaker.",
         "en": "The world does not end at the clouds. Above them, out of reach of anything without wings, drift the fortresses of the Skywrath, and higher still wheel the celestial bodies whose fate shapes everything below.\n\nThe heavens remember the Mad Moon, a prison built for two ancient minds, Radinthul and Diruulth. When it cracked apart, its shards rained down on the earth, and the Radiant and the Dire have fought over that starstone ever since. Beside the ruin still glows the moon of Selemene, the goddess served by Mirana and Luna.\n\nThis is the home of Dragonus the Skywrath Mage and of Shendelzare, the deposed princess who became the Vengeful Spirit. Thunder gods and the children of stars, Phoenix and Valora, are bound to these skies as well."
       },
+      "layout": {
+        "polygon": [
+          [
+            0,
+            0
+          ],
+          [
+            0.5,
+            0
+          ],
+          [
+            0.5,
+            0.118
+          ],
+          [
+            0.45,
+            0.122
+          ],
+          [
+            0.4,
+            0.112
+          ],
+          [
+            0.35,
+            0.12
+          ],
+          [
+            0.3,
+            0.11
+          ],
+          [
+            0.25,
+            0.118
+          ],
+          [
+            0.2,
+            0.124
+          ],
+          [
+            0.15,
+            0.113
+          ],
+          [
+            0.1,
+            0.12
+          ],
+          [
+            0.05,
+            0.112
+          ],
+          [
+            0,
+            0.118
+          ]
+        ],
+        "label": [
+          0.25,
+          0.0625
+        ],
+        "camera": {
+          "x": 0.3571,
+          "y": 0.3571,
+          "zoom": 1.4
+        }
+      },
       "places": [
         {
           "name": "Ghastly Eyrie",
@@ -57,7 +133,11 @@
               "ru": "Столица скайрасов, поднятая так высоко, что другие народы почти не могут до неё добраться. Ею правит королева Гнезда Шипов: трон, предназначенный Шендельзаре, захватила её младшая сестра Империя, и с тех пор во дворце зреет заговор.",
               "en": "The Skywrath capital, perched so high that other races can barely reach it. It answers to the queen of the Nest of Thorns: the throne meant for Shendelzare was seized by her younger sister Imperia, and the palace has bred conspiracies ever since."
             }
-          }
+          },
+          "pos": [
+            0.12,
+            0.065
+          ]
         },
         {
           "name": "Mad Moon",
@@ -77,7 +157,11 @@
               "ru": "Сияющая хрустальная сфера, в которую Зет (Arc Warden) заточил двух враждующих Древних. Борьба внутри, приливы и удар уснувшей Валоры (Dawnbreaker) расшатали её, пока она не разлетелась на куски, осыпав мир Сияющей рудой и Камнем Тьмы.",
               "en": "A glowing crystal sphere in which Zet, the Arc Warden, sealed two warring Ancients. Their struggle within, tidal strain and the impact of the dormant Valora wore it down until it burst apart, showering the world with Radiant Ore and Direstone."
             }
-          }
+          },
+          "pos": [
+            0.22,
+            0.035
+          ]
         },
         {
           "name": "Selemene's Moon",
@@ -98,7 +182,11 @@
               "ru": "Вторая луна мира, обитель богини Селемены. Её свет меняется от серебряного до красноватого, а в узкий серп заглядывает Звезда Демона. Её последователи боятся Тёмной Луны — дня, когда она может погаснуть навсегда.",
               "en": "The world's second moon and the seat of the goddess Selemene. Its glow shifts from silver to blood-red, and the Demon Star peers between the horns of its crescent. Her faithful dread the Dark Moon, the day its light might go out for good."
             }
-          }
+          },
+          "pos": [
+            0.32,
+            0.045
+          ]
         },
         {
           "name": "The Sun",
@@ -119,7 +207,11 @@
               "ru": "Первое солнце зажёг Keeper of the Light, и от него пошёл род звёзд — Дети Света. Они выковали в солнечной кузне Валору (Dawnbreaker), а их далёкий потомок Phoenix однажды снова разжёг эту кузню.",
               "en": "The first sun was lit by the Keeper of the Light, and from it descended a lineage of stars, the Children of Light. In their solar forge they shaped Valora the Dawnbreaker, and their distant heir Phoenix once rekindled that forge."
             }
-          }
+          },
+          "pos": [
+            0.43,
+            0.04
+          ]
         },
         {
           "name": "Olympus",
@@ -140,7 +232,11 @@
               "ru": "Небесный дом пантеона, к которому принадлежат Zeus и его сын Mars. Zeus изгнан оттуда и теперь живёт на горной вершине в смертном мире, а Mars мечтает опрокинуть отцовский пантеон. В лоре Олимп почти не описан.",
               "en": "The celestial home of the pantheon that Zeus and his son Mars belong to. Zeus was cast out and now lives on a mountaintop in the mortal world, while Mars dreams of toppling his father's pantheon. The lore says little about the place itself."
             }
-          }
+          },
+          "pos": [
+            0.17,
+            0.09
+          ]
         },
         {
           "name": "Ultoria",
@@ -161,7 +257,11 @@
               "ru": "Далёкий мир со своими лунами, чей цикл длится целый год. Известно лишь, что там шла важная битва, куда хозяин послал Баратрума (Spirit Breaker).",
               "en": "A distant world with moons of its own, whose cycle takes a full year. All that is known is that a great battle was fought there, and Barathrum the Spirit Breaker was sent by his master to intervene."
             }
-          }
+          },
+          "pos": [
+            0.39,
+            0.088
+          ]
         }
       ],
       "regionHeroes": []
@@ -170,6 +270,7 @@
       "id": "planes",
       "tier": "upper",
       "side": "neutral",
+      "sideBasis": "tier",
       "name": {
         "ru": "Семь планов и Пустота",
         "en": "The Seven Planes and the Void"
@@ -202,6 +303,71 @@
         "ru": "Наш мир — лишь один из планов бытия. Когда Elder Titan расколол изначальную гармонию, первосущности разлетелись по Семи планам, и родилось само время. Каждый план живёт по своим законам: где-то время видно, как карту, где-то из потерянных душ вырастают минералы.\n\nВсё это держится на Ткани творения, которую латают Ткачи, а за её краем лежит Пустота — ничто, существовавшее до всего и пронизывающее всё.\n\nОтсюда приходят самые странные герои: первосущности Io, Chaos Knight, Enigma и Keeper of the Light, повелитель времени Faceless Void, страж Внемирья Outworld Destroyer, затерявшийся между мирами Dark Seer и дух пустоты Void Spirit.",
         "en": "Our world is only one plane of existence among many. When the Elder Titan broke the primordial harmony, the Fundamentals were flung across the Seven Planes and time itself was born. Each plane keeps its own laws: in one, time lies open like a map; in another, lost spirits slowly harden into ore.\n\nAll of it hangs on the Fabric of Creation, patched by the Weavers, and beyond its edges waits the Void, the nothing that came before everything and runs through it still.\n\nThe strangest heroes come from here: the Fundamentals Io, Chaos Knight, Enigma and the Keeper of the Light; Darkterror, master of time; the lone sentinel of the Outworld; the Dark Seer, lost between realities; and Inai, the Void Spirit."
       },
+      "layout": {
+        "polygon": [
+          [
+            0.5,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0.115
+          ],
+          [
+            0.95,
+            0.122
+          ],
+          [
+            0.9,
+            0.112
+          ],
+          [
+            0.85,
+            0.119
+          ],
+          [
+            0.8,
+            0.11
+          ],
+          [
+            0.75,
+            0.12
+          ],
+          [
+            0.7,
+            0.113
+          ],
+          [
+            0.65,
+            0.123
+          ],
+          [
+            0.6,
+            0.112
+          ],
+          [
+            0.55,
+            0.12
+          ],
+          [
+            0.5,
+            0.118
+          ]
+        ],
+        "label": [
+          0.875,
+          0.0575
+        ],
+        "camera": {
+          "x": 0.6429,
+          "y": 0.3571,
+          "zoom": 1.4
+        }
+      },
       "places": [
         {
           "name": "Fundamental Plane",
@@ -221,7 +387,11 @@
               "ru": "Один из Семи планов, обитель четырёх первосущностей — основ мироздания. Сюда они возвращаются после гибели. Это родина Io, Chaos Knight, Enigma и Keeper of the Light.",
               "en": "One of the Seven Planes and home of the four Fundamentals, the pillars of the universe, who return here when they fall. Io, Chaos Knight, Enigma and the Keeper of the Light all come from this realm."
             }
-          }
+          },
+          "pos": [
+            0.54,
+            0.035
+          ]
         },
         {
           "name": "Primordial Plane",
@@ -241,7 +411,11 @@
               "ru": "Один из Семи планов. О нём известно мало: по словам Elder Titan, сюда, возможно, уходят существа после смерти.",
               "en": "One of the Seven Planes, and one of the least known. The Elder Titan hints that it may be where beings go after they die."
             }
-          }
+          },
+          "pos": [
+            0.6,
+            0.03
+          ]
         },
         {
           "name": "Elemental Plane",
@@ -261,7 +435,11 @@
               "ru": "Царство стихий и дом элементалей; наш материальный мир — лишь его тень. Его трение терзает тех, кто скользит между планами, а затерянные здесь духи со временем становятся рудой. Отсюда родом Баратрум (Spirit Breaker).",
               "en": "The realm of the elements and home of the elementals; our material world is only its shadow. Its friction grinds at anyone sliding between planes, and spirits lost here eventually turn to ore. Barathrum the Spirit Breaker hails from this place."
             }
-          }
+          },
+          "pos": [
+            0.66,
+            0.035
+          ]
         },
         {
           "name": "Astral Plane",
@@ -281,7 +459,11 @@
               "ru": "Один из Семи планов, вмещающий бесчисленные измерения. Время здесь видно, как карту, и могущественные существа следят за его ходом. Отсюда Elder Titan призывает свой астральный дух, а Инай (Void Spirit) прорывается сквозь этот план, как сквозь ткань.",
               "en": "One of the Seven Planes, holding countless dimensions. Here time can be read like a map, and mighty beings watch it unfold. The Elder Titan calls his Astral Spirit from this plane, and Inai tears through it as if through cloth."
             }
-          }
+          },
+          "pos": [
+            0.72,
+            0.03
+          ]
         },
         {
           "name": "Fabric of Creation",
@@ -301,7 +483,11 @@
               "ru": "Полотно, на котором держатся наш мир и множество других; нити для него создал Ткацкий станок. Ткачи вроде Скитскурра (Weaver) штопают протёртые места и истребляют паразитов, способных сожрать целую вселенную. Там, где одно полотно сшито с другим, проходят швы между мирами.",
               "en": "The weave that holds up our world and countless others, spun from threads made by the Loom. Weavers like Skitskurr mend its worn patches and hunt the pests that could devour a whole universe. Where one fabric is stitched to the next run the seams between worlds."
             }
-          }
+          },
+          "pos": [
+            0.78,
+            0.035
+          ]
         },
         {
           "name": "Claszureme",
@@ -322,7 +508,11 @@
               "ru": "Бесконечные залы вне времени, названные в честь бога Класза. Пространство вокруг них смертельно холодно, а на краях добывают хронит — камень, неподвластный времени. Отсюда пришёл Дарктеррор (Faceless Void); с этим миром связывают и Puck.",
               "en": "Endless halls outside of time, named after the god Clasz. The space around them is bitterly cold, and chronite, a stone untouched by time, is found at its edges. Darkterror the Faceless Void came from here, and Puck is tied to it too."
             }
-          }
+          },
+          "pos": [
+            0.84,
+            0.03
+          ]
         },
         {
           "name": "The Void",
@@ -342,7 +532,11 @@
               "ru": "Ничто, которое было до начала всего и молча наблюдало рождение мира. Оно темнее простого отсутствия света и есть в каждой вещи, как всё сущее есть в нём. С Пустотой связаны Инай (Void Spirit), Кальдр (Ancient Apparition) и Night Stalker.",
               "en": "The nothing that existed before anything began and silently watched the world come into being. It is darker than the mere absence of light, and it dwells in every thing just as every thing dwells in it. Inai, Kaldr the Ancient Apparition and the Night Stalker are bound to it."
             }
-          }
+          },
+          "pos": [
+            0.935,
+            0.045
+          ]
         },
         {
           "name": "The Outworld",
@@ -363,7 +557,11 @@
               "ru": "Кристаллический мир, вечно повёрнутый лицом к Пустоте. Здесь растут деревья-кристаллы, а камни полны тайной силы. Последний из своего народа, Харбингер (Outworld Destroyer), несёт тут дозор в ожидании зла, о котором поёт музыка его разума.",
               "en": "A crystalline world forever tilted to face the Void. Augural crystal trees grow here, and its stones brim with arcane power. Harbinger, last of his kind, keeps watch from it, awaiting the evil foretold by the dark music in his mind."
             }
-          }
+          },
+          "pos": [
+            0.905,
+            0.085
+          ]
         },
         {
           "name": "Land Behind the Wall",
@@ -384,7 +582,11 @@
               "ru": "Родной мир Иш'Кафеля (Dark Seer), отделённый от нашего Стеной. О нём почти ничего не известно: Dark Seer заплутал в лабиринте между стенами миров и так и не нашёл дороги домой.",
               "en": "The home reality of Ish'Kafel the Dark Seer, sealed off from ours by the Wall. Almost nothing is known of it: the Dark Seer strayed into the maze between the walls of worlds and never found his way back."
             }
-          }
+          },
+          "pos": [
+            0.55,
+            0.088
+          ]
         },
         {
           "name": "Ivory Incubarium",
@@ -405,7 +607,11 @@
               "ru": "Древняя школа на вершинах полых пиков Хребта Фанатиков, в иной вселенной. Бледные Сивиллы растили здесь оракулов, которых затем выкупали советники Кимурри. Юный Нериф (Oracle) увидел во сне, как школу погребла лавина, — и через несколько часов сон сбылся.",
               "en": "An ancient school atop the hollow peaks of Zealot's Range, in another universe. The Pallid Sybils raised oracles here, to be bought by the Cymurri advisors. Young Nerif dreamed of an avalanche burying it, and within hours the news proved him right."
             }
-          }
+          },
+          "pos": [
+            0.61,
+            0.09
+          ]
         },
         {
           "name": "Heart of Nature",
@@ -425,7 +631,11 @@
               "ru": "Скрытая глубина мироздания, где сутью вещей оказываются мука и распад. Leshrac заглянул туда через призрачные кристаллы и навсегда изменился. По его словам, отсюда берёт начало всякая плоть.",
               "en": "The hidden core of creation, where the true nature of things is torment and decay. Leshrac glimpsed it through haunted crystals and was changed forever. He claims that every physical form begins here."
             }
-          }
+          },
+          "pos": [
+            0.67,
+            0.085
+          ]
         },
         {
           "name": "Light's Keep",
@@ -445,7 +655,11 @@
               "ru": "Таинственная твердыня Эзалора (Keeper of the Light). Отсюда он выезжает в свой благородный поход и сюда же возвращается, когда его свет гаснет, чтобы вновь разгореться. Больше о ней почти ничего не известно.",
               "en": "The mysterious keep of Ezalor, the Keeper of the Light. He rides out from it on his noble quest and returns whenever his light is snuffed out, to be kindled again. Beyond that, little is known."
             }
-          }
+          },
+          "pos": [
+            0.79,
+            0.085
+          ]
         },
         {
           "name": "The Dream",
@@ -465,7 +679,11 @@
               "ru": "Царство снов и кошмаров. Мы помещаем сюда родину Bane — ужаса, рождённого страхом спящей богини. Как место в лоре игры оно почти не описано.",
               "en": "The realm of dreams and nightmares. We place here the birthplace of Bane, a terror born of a sleeping goddess's fear. The game's lore barely describes it as a place."
             }
-          }
+          },
+          "pos": [
+            0.85,
+            0.09
+          ]
         }
       ],
       "regionHeroes": [
@@ -476,6 +694,7 @@
       "id": "icewrack",
       "tier": "continent",
       "side": "radiant",
+      "sideBasis": "s1map",
       "name": {
         "ru": "Айсрак",
         "en": "Icewrack"
@@ -508,6 +727,119 @@
         "ru": "Крайний север мира: замёрзшая равнина между хребтом Барьер и Кипящим морем. Сюда почти не ходят корабли — единственный морской путь лежит через Фростреч, самый северный порт на свете. Сквозь весь край течёт Ледник Голубого Сердца — источник всей магии холода.\n\nКогда-то здешние королевства стонали под властью колдуна Этреина, пока восставшие подданные не убили его и не сбросили в Чёрный омут; теперь он вернулся как Lich. Сегодня на севере живут суровые племена вроде Фростайронов, а в тавернах до сих пор пересказывают драки Tusk.\n\nВ Айсрак отправили маленькую Райлай, которая замораживала всё вокруг, — здесь она стала ученицей Ледяного Волшебника и стала Crystal Maiden. В изгнании здесь жил бескрылый скайрас Kez, а в северных сосновых лесах бродит Lone Druid.",
         "en": "The far north of the world: a frozen expanse between the Barrier mountains and the Boiling Sea. Few ships ever arrive; the only sea route runs through Frostreach, the northernmost port there is. Through the heart of the land flows the Blueheart Glacier, the wellspring of all frost magic.\n\nIts kingdoms once suffered under the sorcerer Ethreain until his own subjects rose up, killed him and sank him in the Black Pool; he has since returned as the Lich. Today the north belongs to hardy tribes like the Frostiron, and its taverns still retell Tusk's brawls.\n\nYoung Rylai, who froze everything around her, was sent to Icewrack and found a teacher in the Ice Wizard, becoming the Crystal Maiden. The flightless Skywrath Kez spent his exile here, and the Lone Druid roams the northern pines."
       },
+      "layout": {
+        "polygon": [
+          [
+            0.34,
+            0.185
+          ],
+          [
+            0.37,
+            0.168
+          ],
+          [
+            0.41,
+            0.16
+          ],
+          [
+            0.45,
+            0.152
+          ],
+          [
+            0.5,
+            0.156
+          ],
+          [
+            0.545,
+            0.147
+          ],
+          [
+            0.585,
+            0.157
+          ],
+          [
+            0.615,
+            0.165
+          ],
+          [
+            0.605,
+            0.2
+          ],
+          [
+            0.6149,
+            0.2191
+          ],
+          [
+            0.62,
+            0.24
+          ],
+          [
+            0.6078,
+            0.2593
+          ],
+          [
+            0.605,
+            0.282
+          ],
+          [
+            0.565,
+            0.29
+          ],
+          [
+            0.5375,
+            0.2966
+          ],
+          [
+            0.51,
+            0.29
+          ],
+          [
+            0.4859,
+            0.2784
+          ],
+          [
+            0.46,
+            0.272
+          ],
+          [
+            0.4351,
+            0.2788
+          ],
+          [
+            0.41,
+            0.285
+          ],
+          [
+            0.382,
+            0.2856
+          ],
+          [
+            0.355,
+            0.278
+          ],
+          [
+            0.3535,
+            0.2539
+          ],
+          [
+            0.35,
+            0.23
+          ],
+          [
+            0.3485,
+            0.2067
+          ]
+        ],
+        "label": [
+          0.48,
+          0.1795
+        ],
+        "camera": {
+          "x": 0.48,
+          "y": 0.2218,
+          "zoom": 2.5
+        }
+      },
       "places": [
         {
           "name": "Icewrack",
@@ -527,7 +859,11 @@
               "ru": "Сердце северных земель, которое ещё зовут Ледяной пустошью. Здесь Райлай училась у Ледяного Волшебника, а теперь сама стережёт этот край, пока учитель спит в толще ледника.",
               "en": "The heart of the northern lands, also called the Frozen Waste. Rylai studied here under the Ice Wizard, and now she keeps watch over it while her master sleeps deep in the glacier."
             }
-          }
+          },
+          "pos": [
+            0.46,
+            0.222
+          ]
         },
         {
           "name": "The Barrier",
@@ -547,7 +883,11 @@
               "ru": "Цепь ледяных пиков и ледников на самом краю севера, за тундрой и Айсраком. У его подножия разбросаны Кобальт, Белоснежные поля и Чёрный омут.",
               "en": "A chain of icy peaks and glaciers at the very edge of the north, beyond the tundra and Icewrack. Cobalt, the White Fields and the Black Pool lie scattered at its feet."
             }
-          }
+          },
+          "pos": [
+            0.4,
+            0.178
+          ]
         },
         {
           "name": "Blueheart Glacier",
@@ -567,7 +907,11 @@
               "ru": "Застывшая река, что спускается от Барьера к Кипящему морю. Ледник — проводник всей магии холода и обладает собственным разумом; в его льдах встречаются сапфиры. Ледяной Волшебник ушёл в его глубины спать, и однажды туда на тысячу лет уйдёт и Райлай.",
               "en": "A frozen river that runs from the Barrier down to the Boiling Sea. The glacier channels all frost magic and has a mind of its own, and sapphires glint in its ice. The Ice Wizard went down into it to hibernate, and one day Rylai means to sleep there for a thousand years."
             }
-          }
+          },
+          "pos": [
+            0.42,
+            0.205
+          ]
         },
         {
           "name": "Black Pool",
@@ -587,7 +931,11 @@
               "ru": "Будто бы бездонный водоём в Барьере: вода в нём не замерзает даже в лютый холод, но кристаллизуется, стоит её зачерпнуть. Сюда бросили связанного Этреина; через века геомант Анхил выудил тело и воскресил его — и был тут же поглощён. Теперь из омута черпает силу Lich.",
               "en": "A supposedly bottomless pool in the Barrier whose water stays liquid in killing cold yet crystallizes the moment it is drawn out. The bound Ethreain was thrown into it; ages later the geomancer Anhil fished up the body, revived it and was promptly devoured. The pool now feeds the Lich's power."
             }
-          }
+          },
+          "pos": [
+            0.5,
+            0.245
+          ]
         },
         {
           "name": "Cobalt",
@@ -607,7 +955,11 @@
               "ru": "Северная деревня где-то у Барьера. Отсюда родом Tusk, которого прозвали Снежком из Кобальта.",
               "en": "A northern village somewhere near the Barrier. It is the home of Tusk, known far and wide as the Snowball from Cobalt."
             }
-          }
+          },
+          "pos": [
+            0.4,
+            0.25
+          ]
         },
         {
           "name": "Azura",
@@ -627,7 +979,11 @@
               "ru": "Деревня на севере, где когда-то жили одобенусы. Теперь она пуста, и о ней почти ничего не известно.",
               "en": "A northern village once home to the Odobenus. It now stands empty, and almost nothing else is known of it."
             }
-          }
+          },
+          "pos": [
+            0.55,
+            0.215
+          ]
         },
         {
           "name": "White Fields",
@@ -647,7 +1003,11 @@
               "ru": "Снежная равнина у Барьера, где однажды разгорелась великая драка. Именно здесь Tusk впервые скатился на врагов огромным снежным комом.",
               "en": "A snowfield near the Barrier where a legendary brawl once broke out. It was here that Tusk first rolled into his foes as a giant snowball."
             }
-          }
+          },
+          "pos": [
+            0.445,
+            0.258
+          ]
         },
         {
           "name": "Wolfsden Tavern",
@@ -667,7 +1027,11 @@
               "ru": "Таверна, прославленная дракой Tusk и Bristleback. Где именно она стоит, неясно: то ли в северных горах, то ли на дороге между Сломом и Эльзе.",
               "en": "A tavern made famous by Tusk's fight with Bristleback. No one is sure where it stands: perhaps in the northern mountains, perhaps on the road between Slom and Elze."
             }
-          }
+          },
+          "pos": [
+            0.477,
+            0.205
+          ]
         },
         {
           "name": "Njord's Hearth",
@@ -687,7 +1051,11 @@
               "ru": "Тёплый лесной край среди северных холодов, где круглый год стоит весна. Местные носят косы и делают всё из дерева. Лиралея (Windranger) однажды спасла здешний лес и получила за это золотой венец.",
               "en": "A warm, wooded domain amid the northern cold, where spring never ends. Its people braid their hair and craft their tools from wood. Windranger once saved its forest and was rewarded with a golden circlet."
             }
-          }
+          },
+          "pos": [
+            0.52,
+            0.19
+          ]
         },
         {
           "name": "Boiling Sea",
@@ -707,7 +1075,11 @@
               "ru": "Северное море, куда впадает Ледник Голубого Сердца, — край пара и талого снега. Райлай месяцами медитировала на его берегу, пока одно её слово не обратило пар в снегопад.",
               "en": "The northern sea where the Blueheart Glacier ends, a land of steam and slush. Rylai meditated on its shore for months, until a single word from her turned the steam into falling snow."
             }
-          }
+          },
+          "pos": [
+            0.535,
+            0.163
+          ]
         },
         {
           "name": "Frostreach",
@@ -728,7 +1100,11 @@
               "ru": "Самый северный порт мира и единственные морские ворота в Айсрак. Больше о нём ничего не известно.",
               "en": "The northernmost port in the world and the only gateway to Icewrack by sea. Nothing more is known about it."
             }
-          }
+          },
+          "pos": [
+            0.585,
+            0.172
+          ]
         },
         {
           "name": "Onyx Grove",
@@ -749,7 +1125,11 @@
               "ru": "Тёмное потаённое место в северных сосновых лесах, где собираются на свои схватки свирепые звери. Сильла (Lone Druid) нашёл рощу и принял новый облик, чтобы стать среди них своим.",
               "en": "A dark, secret place in the northern pine forests where fierce beasts gather to fight. Sylla the Lone Druid found it and took on a new shape so he could join them."
             }
-          }
+          },
+          "pos": [
+            0.57,
+            0.25
+          ]
         }
       ],
       "regionHeroes": [
@@ -760,6 +1140,7 @@
       "id": "radiant-lands",
       "tier": "continent",
       "side": "radiant",
+      "sideBasis": "s1map",
       "name": {
         "ru": "Земля Сияющих",
         "en": "Land of the Radiant"
@@ -792,6 +1173,131 @@
         "ru": "На старой пергаментной карте северная половина мира подписана как Земля Сияющих. Это край горных долин, рыбацких деревень и тысяч малых озёр, а среди его жителей больше всего слышно о кинах — маленьком народе изобретателей, стрелков и подрывников.\n\nСлава у этих земель двоякая. В долинах Кноллена юные кины доказывают меткость одним-единственным выстрелом, а мастерские Clockwerk и Tinker славятся на весь мир. Но там же стоит Фиолетовое плато, окутанное вечной чёрной мглой с того дня, как опыт Tinker пробил дыру в иной мир.\n\nОтсюда родом Sniper, Techies, Clockwerk и Phantom Lancer, а через Тысячеболотье с боями прошёл Axe.",
         "en": "On the old parchment map, the northern half of the world is labeled the Land of the Radiant. It is a country of mountain valleys, fishing villages and a thousand little lakes, and of all its peoples the one heard of most is the Keen, a small folk of inventors, marksmen and demolitionists.\n\nIts fame cuts both ways. In the valleys of Knollen, young Keen prove themselves with a single shot, and the workshops of Clockwerk and Tinker are known across the world. Yet here too stands the Violet Plateau, wrapped in black mist ever since one of Tinker's experiments tore a hole into another world.\n\nSniper, the Techies, Clockwerk and Phantom Lancer were all born here, and Axe fought his way across the Thousand Tarns."
       },
+      "layout": {
+        "polygon": [
+          [
+            0.07,
+            0.345
+          ],
+          [
+            0.062,
+            0.31
+          ],
+          [
+            0.075,
+            0.27
+          ],
+          [
+            0.095,
+            0.235
+          ],
+          [
+            0.125,
+            0.208
+          ],
+          [
+            0.165,
+            0.198
+          ],
+          [
+            0.215,
+            0.188
+          ],
+          [
+            0.26,
+            0.196
+          ],
+          [
+            0.3,
+            0.18
+          ],
+          [
+            0.34,
+            0.185
+          ],
+          [
+            0.3485,
+            0.2067
+          ],
+          [
+            0.35,
+            0.23
+          ],
+          [
+            0.3535,
+            0.2539
+          ],
+          [
+            0.355,
+            0.278
+          ],
+          [
+            0.3533,
+            0.3046
+          ],
+          [
+            0.345,
+            0.33
+          ],
+          [
+            0.338,
+            0.37
+          ],
+          [
+            0.335,
+            0.4
+          ],
+          [
+            0.3118,
+            0.3945
+          ],
+          [
+            0.29,
+            0.385
+          ],
+          [
+            0.2674,
+            0.3869
+          ],
+          [
+            0.245,
+            0.39
+          ],
+          [
+            0.2264,
+            0.3772
+          ],
+          [
+            0.205,
+            0.37
+          ],
+          [
+            0.183,
+            0.363
+          ],
+          [
+            0.16,
+            0.36
+          ],
+          [
+            0.1356,
+            0.3518
+          ],
+          [
+            0.11,
+            0.355
+          ]
+        ],
+        "label": [
+          0.2195,
+          0.29
+        ],
+        "camera": {
+          "x": 0.2093,
+          "y": 0.29,
+          "zoom": 2.39
+        }
+      },
       "places": [
         {
           "name": "Pole",
@@ -811,7 +1317,11 @@
               "ru": "Мирная рыбацкая деревня, где бьют рыбу острогой и благодарят каждого зверя, отданного в пищу; в окрестных водах водятся рыбы, способные проглотить человека. Жителей Поля призвали на войну с Ворном, Ужасным Магом, и один из них, Азрейт, вернулся с неё как Phantom Lancer — но домой уже не пошёл.",
               "en": "A peaceful fishing village whose people spear their catch and honor every animal they take for food, though the nearby waters hide fish big enough to swallow a man whole. Pole was called to war against Vorn the Dread Magus, and one villager, Azwraith, came back from it as the Phantom Lancer, though never back home."
             }
-          }
+          },
+          "pos": [
+            0.15,
+            0.28
+          ]
         },
         {
           "name": "Violet Archives",
@@ -831,7 +1341,11 @@
               "ru": "Хранилище записей об опытах кинов у Фиолетового плато, наполовину разрушенное после катастрофы. В уцелевших бумагах нашёлся чертёж оружия, собирающего силу разума в пронзающий луч, — по нему создали клинок для Templar Assassin. Ланайя потом заучила то, что осталось от записей.",
               "en": "The record hall for Keen experiments at the Violet Plateau, half destroyed after the disaster. Among the surviving papers was a blueprint for a weapon that focuses the mind into a piercing blast, the source of the Templar Assassin's blade. Lanaya later committed what remained to memory."
             }
-          }
+          },
+          "pos": [
+            0.24,
+            0.25
+          ]
         },
         {
           "name": "Violet Plateau",
@@ -852,7 +1366,11 @@
               "ru": "Плато с подземными лабораториями кинов, которые основал Tinker. Пытаясь создать межпланарный щит, исследователи свернули свет и пробили брешь в тёмный мир. С тех пор плато окутано чёрной мглой и стонет кошмарными звуками, а выжил один Tinker.",
               "en": "A plateau housing the Keen's underground laboratories, founded by Tinker. Trying to build an interplanar shield, the researchers folded light in on itself and tore a breach into a darker world. Since then the plateau has been shrouded in black mist and haunted by nightmare sounds, and Tinker alone made it out alive."
             }
-          }
+          },
+          "pos": [
+            0.265,
+            0.225
+          ]
         },
         {
           "name": "Castle of the Fold",
@@ -872,7 +1390,11 @@
               "ru": "Замок, подписанный на старой пергаментной карте Земли Сияющих. Больше о нём ничего не известно: в биографиях героев он не упоминается.",
               "en": "A castle marked on the old parchment map of the Land of the Radiant. Nothing else is known about it; no hero's story mentions it."
             }
-          }
+          },
+          "pos": [
+            0.3,
+            0.3
+          ]
         },
         {
           "name": "Home of the Keen Folk",
@@ -892,7 +1414,11 @@
               "ru": "Так на старой карте подписаны исконные земли кинов — невысокого народа изобретателей и мастеров. Отсюда родом механик Clockwerk; подробностей о самом месте лор не даёт.",
               "en": "The name the old map gives to the ancestral lands of the Keen, a small folk of inventors and craftsmen. Clockwerk the mechanic comes from here; the lore offers no details about the place itself."
             }
-          }
+          },
+          "pos": [
+            0.115,
+            0.32
+          ]
         },
         {
           "name": "Knollen",
@@ -913,7 +1439,11 @@
               "ru": "Горные долины кинов-стрелков, где ружьё переходит от отца к сыну. Чтобы стать своим, юноша должен сразить горного зверя-стипсталкера одним выстрелом со дна долины; пуля Карделя (Sniper) попала зверю в глаз — знак то ли славы, то ли беды. Здесь любят сигары и летние ярмарки с тиром.",
               "en": "Mountain valleys of Keen marksmen, where a father's rifle passes to his son. To be accepted, a youth must drop a steepstalker with one shot from the valley floor; Kardel's bullet struck its eye, an omen of glory or of doom. Knollen loves its cigars and midsummer shooting fairs."
             }
-          }
+          },
+          "pos": [
+            0.15,
+            0.335
+          ]
         },
         {
           "name": "Dredger's Bight",
@@ -934,7 +1464,11 @@
               "ru": "Городок кинов, родина Techies — неразлучной троицы подрывников Сквии, Сплина и Спуна. О самом месте известно мало.",
               "en": "A Keen town and the birthplace of the Techies, the inseparable demolition trio of Squee, Spleen and Spoon. Little else is known about the place."
             }
-          }
+          },
+          "pos": [
+            0.11,
+            0.245
+          ]
         },
         {
           "name": "Thousand Tarns",
@@ -954,7 +1488,11 @@
               "ru": "Край бесчисленных горных озёр, где жили тарнсмены, поклонявшиеся демонам, а правили ими демоны в людском обличье. Армия Красного Тумана, в рядах которой шёл Axe, семь лет пробивалась через эти земли, и кровь павших смешалась в озёрах — человеческая с демонической.",
               "en": "A country of countless mountain lakes, home to the Tarnsmen, who worshiped demons and were secretly ruled by demons in human guise. The Red Mist army, Axe among its ranks, spent seven brutal years fighting across it, and the blood of the fallen, human and demon alike, pooled in the tarns."
             }
-          }
+          },
+          "pos": [
+            0.21,
+            0.32
+          ]
         }
       ],
       "regionHeroes": []
@@ -963,6 +1501,7 @@
       "id": "nightsilver",
       "tier": "continent",
       "side": "radiant",
+      "sideBasis": "s1map",
       "name": {
         "ru": "Лес Найтсильвер",
         "en": "Nightsilver Woods"
@@ -995,6 +1534,87 @@
         "ru": "Древний лес, принадлежащий Селемене, богине Луны. Настоящая тьма сюда не опускается: под кронами светятся серебристые пруды, а растущие в них лотосы почитаются как святыня. Чужаков встречают воины Тёмной Луны — или луч лунного света, посланный самой богиней.\n\nЗдесь водятся звери, которых больше нигде не встретишь, а где-то в чаще, по слухам, обитает священная лунная моль. Нынешний покой обманчив: у леса долгая история распрей и крови.\n\nСелемене служат две героини. Luna, когда-то беспощадная предводительница армий, сама того не зная прошла здесь обряд Тёмной Луны и стала вечной стражницей леса. Mirana отказалась от права на Солнечный трон, чтобы верхом на огромной кошке охранять лотосы богини от воров. Underlord поклялся однажды сжечь лес дотла, а Орда Тёмной Луны уже штурмовала храм Мены.",
         "en": "An ancient forest that belongs to Selemene, goddess of the Moon. True darkness never settles here: silver pools glow beneath the canopy, and the luminous lotuses growing in them are held sacred. Intruders are met by the warriors of the Dark Moon — or by a shaft of moonlight sent by the goddess herself.\n\nThe woods shelter beasts found nowhere else, and somewhere in the deep thickets the sacred Lunar Moth is said to dwell. Today's calm is deceptive: the forest has a long history of feuds and bloodshed.\n\nTwo heroines serve Selemene here. Luna, once a merciless warlord, unknowingly passed the rites of the Dark Moon and became the forest's ever-loyal guardian. Mirana gave up her claim to the Solar Throne to ride the glades on her great cat, hunting anyone who would poach the goddess's lotuses. The Underlord has vowed to burn the woods to the ground, and the Dark Moon Horde has already stormed the Temple of Mene."
       },
+      "layout": {
+        "polygon": [
+          [
+            0.615,
+            0.165
+          ],
+          [
+            0.66,
+            0.176
+          ],
+          [
+            0.71,
+            0.168
+          ],
+          [
+            0.75,
+            0.188
+          ],
+          [
+            0.78,
+            0.22
+          ],
+          [
+            0.797,
+            0.262
+          ],
+          [
+            0.785,
+            0.3
+          ],
+          [
+            0.755,
+            0.315
+          ],
+          [
+            0.72,
+            0.3
+          ],
+          [
+            0.6983,
+            0.3088
+          ],
+          [
+            0.675,
+            0.31
+          ],
+          [
+            0.64,
+            0.3
+          ],
+          [
+            0.605,
+            0.282
+          ],
+          [
+            0.6078,
+            0.2593
+          ],
+          [
+            0.62,
+            0.24
+          ],
+          [
+            0.6149,
+            0.2191
+          ],
+          [
+            0.605,
+            0.2
+          ]
+        ],
+        "label": [
+          0.6525,
+          0.195
+        ],
+        "camera": {
+          "x": 0.701,
+          "y": 0.24,
+          "zoom": 3.65
+        }
+      },
       "places": [
         {
           "name": "Nightsilver Woods",
@@ -1014,7 +1634,11 @@
               "ru": "Сердце владений Селемены: светящиеся пруды, лотосы и тропы, по которым ездят Luna и Mirana. Посторонним здесь не рады, хотя Monkey King иногда проводит в лесу лето.",
               "en": "The heart of Selemene's domain — glowing pools, sacred lotuses and moonlit trails patrolled by Luna and Mirana. Outsiders are unwelcome, though Monkey King sometimes spends his summers here."
             }
-          }
+          },
+          "pos": [
+            0.7,
+            0.225
+          ]
         },
         {
           "name": "Temple of Mene",
@@ -1034,7 +1658,11 @@
               "ru": "Храм Селемены, скорее всего скрытый в глубине леса; Мена — прежнее имя богини. Mirana приходит сюда молиться, и здесь ей являются видения — в том числе о её участии в войне Древних. Когда храм атаковала Орда Тёмной Луны, на его защиту пришлось звать героев со стороны.",
               "en": "A temple to Selemene, most likely hidden deep in the woods — Mene is an older name of the goddess. Mirana comes here to pray and receives visions within its walls, among them a glimpse of her part in the war of the Ancients. When the Dark Moon Horde attacked it, champions from beyond the forest had to come to its defence."
             }
-          }
+          },
+          "pos": [
+            0.74,
+            0.255
+          ]
         },
         {
           "name": "Shrine of Selemene",
@@ -1054,7 +1682,11 @@
               "ru": "Стоит там, где в ещё молодой лес упал осколок с неба — возможно, кусочек самой луны. Из него позже сделали реликвию Ордена Тёмной Луны. Не исключено, что святилище и храм Мены — одно и то же место.",
               "en": "Built where a shard fell from the sky while the forest was still young — perhaps a piece of the moon itself. The shard was later shaped into a relic of the Dark Moon Order. The shrine may even be the same site as the Temple of Mene."
             }
-          }
+          },
+          "pos": [
+            0.665,
+            0.255
+          ]
         }
       ],
       "regionHeroes": []
@@ -1062,7 +1694,8 @@
     {
       "id": "stonehall",
       "tier": "continent",
-      "side": "neutral",
+      "side": "radiant",
+      "sideBasis": "position",
       "name": {
         "ru": "Стоунхолл",
         "en": "Stonehall"
@@ -1095,6 +1728,131 @@
         "ru": "Имперский город Стоунхолл и земли вокруг него — плодородные равнины, реки, озёра и десятки городов. На троне сидит император Галаний, но славу империи принесли её армии, прежде всего Бронзовый легион. Стоунхолл растёт за счёт соседей: легион осаждает город, присоединяет его и забирает годных к службе пленников в рекруты. Многие называют эти войны напрасным кровопролитием.\n\nРасположение здешних городов известно на редкость подробно: Тарес и Сашир — на юге, Таррин — на юго-западе, Миллтаун, Эмбер и Колдбэнкские равнины — на западе, Линкасл и Мистмилл — на востоке, озеро Лайтгласс — на севере. Но кроме места на карте лор почти ничего о них не рассказывает.\n\nОднажды посреди городской площади открылся разлом, и в столицу хлынула орда Бездны во главе с Underlord. Legion Commander — командир Трездин — со своим легионом отбросила её, но почти все бойцы погибли, а город лёг в руины; с тех пор она ведёт личную войну против Бездны. Из этих же краёв родом Phantom Assassin: она родилась в купеческой семье в Таресе.",
         "en": "The imperial city of Stonehall and the lands around it — fertile plains, rivers, lakes and dozens of towns. Emperor Galanius holds the throne, but the empire owes its reputation to its armies, above all the Bronze Legion. Stonehall grows at its neighbours' expense: the Legion besieges a city, annexes it and drafts any captives fit to fight. Plenty of people call these wars needless bloodshed.\n\nThe layout of the realm is known in unusual detail — Tares and Sashire to the south, Tarrin to the south-west, Milltown, Ember and the Coldbank Plains to the west, Lincastle and Mistmill to the east, Lake Lightglass to the north. Beyond their bearings, though, the lore says very little about most of them.\n\nOne day a rift tore open in the city square and an abyssal horde led by the Underlord poured into the capital. Legion Commander Tresdin and her Legion drove it back, but nearly every soldier fell and the city was left in ruins; she has waged a personal war on the Abyss ever since. Phantom Assassin also hails from these lands — she was born to a merchant family in Tares."
       },
+      "layout": {
+        "polygon": [
+          [
+            0.355,
+            0.278
+          ],
+          [
+            0.382,
+            0.2856
+          ],
+          [
+            0.41,
+            0.285
+          ],
+          [
+            0.4351,
+            0.2788
+          ],
+          [
+            0.46,
+            0.272
+          ],
+          [
+            0.4859,
+            0.2784
+          ],
+          [
+            0.51,
+            0.29
+          ],
+          [
+            0.5375,
+            0.2966
+          ],
+          [
+            0.565,
+            0.29
+          ],
+          [
+            0.5735,
+            0.3144
+          ],
+          [
+            0.57,
+            0.34
+          ],
+          [
+            0.5625,
+            0.367
+          ],
+          [
+            0.562,
+            0.395
+          ],
+          [
+            0.5666,
+            0.4236
+          ],
+          [
+            0.572,
+            0.452
+          ],
+          [
+            0.5452,
+            0.4509
+          ],
+          [
+            0.52,
+            0.46
+          ],
+          [
+            0.4943,
+            0.4602
+          ],
+          [
+            0.47,
+            0.452
+          ],
+          [
+            0.4454,
+            0.4614
+          ],
+          [
+            0.42,
+            0.468
+          ],
+          [
+            0.3902,
+            0.4633
+          ],
+          [
+            0.36,
+            0.465
+          ],
+          [
+            0.345,
+            0.435
+          ],
+          [
+            0.335,
+            0.4
+          ],
+          [
+            0.338,
+            0.37
+          ],
+          [
+            0.345,
+            0.33
+          ],
+          [
+            0.3533,
+            0.3046
+          ]
+        ],
+        "label": [
+          0.39,
+          0.3295
+        ],
+        "camera": {
+          "x": 0.4543,
+          "y": 0.37,
+          "zoom": 2.94
+        }
+      },
       "places": [
         {
           "name": "Stonehall",
@@ -1114,7 +1872,11 @@
               "ru": "Столица империи и дом Бронзового легиона; по её улицам ходит элитная королевская стража, а местные школы славятся на всю округу. После прорыва Бездны большая часть города лежит в руинах, но Стоунхолл устоял.",
               "en": "Capital of the empire and home of the Bronze Legion, patrolled by an elite royal guard and known for its fine schools. Much of the city still lies in ruins after the abyssal breach, but Stonehall did not fall."
             }
-          }
+          },
+          "pos": [
+            0.455,
+            0.37
+          ]
         },
         {
           "name": "Qine",
@@ -1134,7 +1896,11 @@
               "ru": "Обнесённый стенами город, который Бронзовый легион осадил и присоединил к Стоунхоллу. Пятнадцатилетняя Трездин была здесь рабыней; после штурма её забрали в рекруты, и здесь же она одолела в поединке тогдашнего командира легиона — хотя его звание тогда так и не получила.",
               "en": "A walled city besieged by the Bronze Legion and claimed for Stonehall. Fifteen-year-old Tresdin toiled here as a slave; after the siege she was taken as a recruit, and on the same ground she beat the Legion's commander of the day in a duel — though his title did not pass to her then."
             }
-          }
+          },
+          "pos": [
+            0.415,
+            0.305
+          ]
         },
         {
           "name": "Quath",
@@ -1154,7 +1920,11 @@
               "ru": "Небольшой город по соседству со Стоунхоллом. Больше о нём ничего не известно.",
               "en": "A small town near Stonehall. Nothing more is recorded about it."
             }
-          }
+          },
+          "pos": [
+            0.54,
+            0.33
+          ]
         },
         {
           "name": "Tares",
@@ -1175,7 +1945,11 @@
               "ru": "Крупный город к югу от столицы. Здесь жила купеческая семья, в которой родилась Мортред, прежде чем её избрали Сёстры Вуали и она стала Phantom Assassin.",
               "en": "A major city south of the capital, home to the merchant family Mortred was born into before the Sisters of the Veil chose her to become a Phantom Assassin."
             }
-          }
+          },
+          "pos": [
+            0.455,
+            0.405
+          ]
         },
         {
           "name": "Roseleaf",
@@ -1195,7 +1969,11 @@
               "ru": "Город вхулов, ставший полем битвы: Бронзовый легион устроил здесь засаду на армию Красного Тумана, а горожане восстали против обеих сторон. Для Трездин сражение закончилось катастрофой, и позже Миреска подобрала в руинах знамя легиона.",
               "en": "A vhoul city turned battlefield: the Bronze Legion laid an ambush here for the Red Mist army while the townsfolk rose up against both. The battle went disastrously for Tresdin, and Mireska later picked a Legion banner out of the ruins."
             }
-          }
+          },
+          "pos": [
+            0.405,
+            0.355
+          ]
         },
         {
           "name": "Tarrin",
@@ -1216,7 +1994,11 @@
               "ru": "Крупный город к юго-западу от Стоунхолла.",
               "en": "A major city south-west of Stonehall."
             }
-          }
+          },
+          "pos": [
+            0.415,
+            0.415
+          ]
         },
         {
           "name": "Sashire",
@@ -1237,7 +2019,11 @@
               "ru": "Небольшой город к югу от столицы, сдавшийся Бронзовому легиону почти без боя. По словам Трездин, храбро сражался лишь один защитник — Овин.",
               "en": "A small town south of the capital that fell to the Bronze Legion with barely a fight. By Tresdin's account, only one defender, Owine, showed any real courage."
             }
-          }
+          },
+          "pos": [
+            0.475,
+            0.415
+          ]
         },
         {
           "name": "Milltown",
@@ -1258,7 +2044,11 @@
               "ru": "Небольшой рабочий город к западу от столицы, на реке между Розолистом и Таррином. Реку отвели на поля, и Миллтаун стал главным поставщиком ржи в округе. Город под защитой Стоунхолла, и когда его разорили твари из Редфернского леса, разбираться приехала сама Трездин.",
               "en": "A small workers' town west of the capital, on the river between Roseleaf and Tarrin. The river was diverted to water its fields, making it the region's biggest rye producer. It lives under Stonehall's protection, and when creatures from the Redfern Forest raided it, Tresdin came to investigate in person."
             }
-          }
+          },
+          "pos": [
+            0.408,
+            0.388
+          ]
         },
         {
           "name": "Ember (City)",
@@ -1279,7 +2069,11 @@
               "ru": "Город к западу от Стоунхолла, сожжённый армией Красного Тумана на пути к Розолисту. Отсюда был родом как минимум один великий магистр Дома Хитрости.",
               "en": "A city west of Stonehall, put to the torch by the Red Mist on its march toward Roseleaf. At least one Grand Master of the House of the Cunning came from here."
             }
-          }
+          },
+          "pos": [
+            0.39,
+            0.378
+          ]
         },
         {
           "name": "Redmaw",
@@ -1300,7 +2094,11 @@
               "ru": "Город к западу от Розолиста, на берегу озера Голдлейк.",
               "en": "A city west of Roseleaf, on the shore of Goldlake."
             }
-          }
+          },
+          "pos": [
+            0.375,
+            0.35
+          ]
         },
         {
           "name": "Lormount",
@@ -1320,7 +2118,11 @@
               "ru": "Город у озера Голдлейк, сосед Редмо.",
               "en": "A city beside Goldlake, a neighbour of Redmaw."
             }
-          }
+          },
+          "pos": [
+            0.375,
+            0.31
+          ]
         },
         {
           "name": "Goldlake",
@@ -1340,7 +2142,11 @@
               "ru": "Озеро между Редмо и Лормаунтом, которое питает река Аурен.",
               "en": "A lake between Redmaw and Lormount, fed by the river Auren."
             }
-          }
+          },
+          "pos": [
+            0.43,
+            0.335
+          ]
         },
         {
           "name": "Lightglass",
@@ -1361,7 +2167,11 @@
               "ru": "Озеро к северу от Стоунхолла.",
               "en": "A lake to the north of Stonehall."
             }
-          }
+          },
+          "pos": [
+            0.455,
+            0.302
+          ]
         },
         {
           "name": "Lincastle",
@@ -1382,7 +2192,11 @@
               "ru": "Замок к востоку от столицы.",
               "en": "A castle east of the capital."
             }
-          }
+          },
+          "pos": [
+            0.505,
+            0.37
+          ]
         },
         {
           "name": "Mistmill",
@@ -1403,7 +2217,11 @@
               "ru": "Город к востоку от Стоунхолла, неподалёку от Линкасла.",
               "en": "A city east of Stonehall, not far from Lincastle."
             }
-          }
+          },
+          "pos": [
+            0.53,
+            0.385
+          ]
         },
         {
           "name": "Pinelyn",
@@ -1424,7 +2242,11 @@
               "ru": "Город к северо-востоку от Стоунхолла.",
               "en": "A city north-east of Stonehall."
             }
-          }
+          },
+          "pos": [
+            0.505,
+            0.325
+          ]
         },
         {
           "name": "Crester",
@@ -1445,7 +2267,11 @@
               "ru": "Крупный город к югу от Тареса, окружённый несколькими малыми городами.",
               "en": "A major city south of Tares, ringed by several smaller towns."
             }
-          }
+          },
+          "pos": [
+            0.455,
+            0.435
+          ]
         },
         {
           "name": "Filedo",
@@ -1465,7 +2291,11 @@
               "ru": "Небольшой город к югу от Тареса.",
               "en": "A small town south of Tares."
             }
-          }
+          },
+          "pos": [
+            0.51,
+            0.415
+          ]
         },
         {
           "name": "Clacline",
@@ -1485,7 +2315,11 @@
               "ru": "Небольшой город к востоку от Крестера.",
               "en": "A small town east of Crester."
             }
-          }
+          },
+          "pos": [
+            0.395,
+            0.44
+          ]
         },
         {
           "name": "Kailens",
@@ -1505,7 +2339,11 @@
               "ru": "Небольшой город к западу от Крестера.",
               "en": "A small town west of Crester."
             }
-          }
+          },
+          "pos": [
+            0.54,
+            0.415
+          ]
         },
         {
           "name": "Sloquoit",
@@ -1525,7 +2363,11 @@
               "ru": "Небольшой город к западу от Крестера; встречается и написание «Слокойт».",
               "en": "A small town west of Crester, sometimes spelled Sloqoit."
             }
-          }
+          },
+          "pos": [
+            0.495,
+            0.437
+          ]
         },
         {
           "name": "Coldbank Plains",
@@ -1546,7 +2388,11 @@
               "ru": "Равнинный край к западу от Стоунхолла.",
               "en": "Open country west of Stonehall."
             }
-          }
+          },
+          "pos": [
+            0.36,
+            0.39
+          ]
         },
         {
           "name": "Janau",
@@ -1566,7 +2412,11 @@
               "ru": "Озеро к югу от Таррина.",
               "en": "A lake south of Tarrin."
             }
-          }
+          },
+          "pos": [
+            0.375,
+            0.425
+          ]
         },
         {
           "name": "Leadbelly's",
@@ -1587,7 +2437,11 @@
               "ru": "Таверна в Стоунхолле, знаменитая медовым элем; его особенно любят Маркус и Рикс.",
               "en": "A Stonehall tavern famous for its honey ale, a favourite of Marcus and Rix."
             }
-          }
+          },
+          "pos": [
+            0.47,
+            0.358
+          ]
         }
       ],
       "regionHeroes": []
@@ -1595,7 +2449,8 @@
     {
       "id": "free-cities",
       "tier": "continent",
-      "side": "neutral",
+      "side": "radiant",
+      "sideBasis": "position",
       "name": {
         "ru": "Вольные города",
         "en": "The Free Cities"
@@ -1628,6 +2483,91 @@
         "ru": "Цепочка городов к северу от Хазадальских пустошей — совсем рядом со Стоунхоллом, но вне досягаемости его легионов. Каждый живёт по своим законам, а иногда и вовсе без них. Название «Вольные города» придумали мы: в лоре у этих земель нет общего имени.\n\nБелый Шпиль — устремлённый ввысь город контрабандистов, банд и тайных обществ, где делают ставки на всё, от звериных бегов до гонок курьеров. Ревтел — роскошное и смертельно опасное государство фейри под властью трёх королей-купцов. Над Плачущей Розой никогда не встаёт солнце: запретной магии здесь нет, но тех, кто злоупотребляет свободой, отправляют в Поместье Тайлер.\n\nСюда тянутся герои со всего света. В Белом Шпиле живут Monkey King, Pangolier и Bounty Hunter, из Ревтела сбежала Dark Willow, а Lion добивается убежища у Кворума Плачущей Розы. Anti-Mage и Silencer работают на Поместье Тайлер, выслеживая магов-преступников.",
         "en": "A chain of cities north of the Hazhadal Barrens — right next to Stonehall, yet beyond the reach of its legions. Each keeps its own laws, and some keep none at all. The name 'Free Cities' is ours; the lore never gathers them under one banner.\n\nWhite Spire is a towering haven for smugglers, gangs and secret societies, where people bet on everything from animal races to courier derbies. Revtel is a lavish and lethal fae nation ruled by three merchant kings. Over Weeping Rose the sun never rises: no magic is forbidden there, but those who abuse that freedom end up in the Tyler Estate.\n\nHeroes from every corner of the world drift here. Monkey King, Pangolier and Bounty Hunter can all be found in White Spire; Dark Willow ran away from Revtel; Lion is petitioning the Quorum of Weeping Rose for asylum. Anti-Mage and Silencer both hunt rogue mages on the Tyler Estate's behalf."
       },
+      "layout": {
+        "polygon": [
+          [
+            0.565,
+            0.29
+          ],
+          [
+            0.605,
+            0.282
+          ],
+          [
+            0.64,
+            0.3
+          ],
+          [
+            0.675,
+            0.31
+          ],
+          [
+            0.6671,
+            0.3345
+          ],
+          [
+            0.67,
+            0.36
+          ],
+          [
+            0.676,
+            0.3806
+          ],
+          [
+            0.685,
+            0.4
+          ],
+          [
+            0.68,
+            0.435
+          ],
+          [
+            0.6554,
+            0.441
+          ],
+          [
+            0.63,
+            0.44
+          ],
+          [
+            0.6,
+            0.455
+          ],
+          [
+            0.572,
+            0.452
+          ],
+          [
+            0.5666,
+            0.4236
+          ],
+          [
+            0.562,
+            0.395
+          ],
+          [
+            0.5625,
+            0.367
+          ],
+          [
+            0.57,
+            0.34
+          ],
+          [
+            0.5735,
+            0.3144
+          ]
+        ],
+        "label": [
+          0.622,
+          0.3695
+        ],
+        "camera": {
+          "x": 0.6235,
+          "y": 0.3685,
+          "zoom": 4.05
+        }
+      },
       "places": [
         {
           "name": "White Spire",
@@ -1647,7 +2587,11 @@
               "ru": "«Город коварных наслаждений», поделённый на кварталы между главарями преступного мира — Энно, Анессикс, Джуллом и Хобгеном. Порядок здесь держался на Мамаше Иб, пока её не убили; теперь за её место дерутся соперники, а в город съезжаются герои, чтобы сразиться в Битве Древних. Здесь живут Monkey King, Pangolier и Bounty Hunter — последний не прочь сжульничать за игорным столом.",
               "en": "The City of Dastardly Delights, carved into districts by crime lords — Enno, Anessix, Jull and Hobgen. Momma Eeb kept the peace until someone murdered her; now rivals scramble for her place while heroes pour in to fight in the Battle of the Ancients. Monkey King, Pangolier and Bounty Hunter all live here, the last of them known to cheat at the gambling tables."
             }
-          }
+          },
+          "pos": [
+            0.59,
+            0.37
+          ]
         },
         {
           "name": "Revtel",
@@ -1667,7 +2611,11 @@
               "ru": "Сказочно богатое государство фейри, где за изысканным этикетом скрываются безжалостные интриги, а убийство — дело обычное; к столу здесь подают даже мясо драконов. Правят им три короля-купца — одного из них, Квертиаса, убила Phantom Assassin. Здесь выросла Dark Willow, Миреска Санбриз, которая сожгла родовое поместье и сбежала из дома.",
               "en": "A fabulously rich fae nation where exquisite etiquette masks ruthless scheming and murder is routine; even dragon meat is served at its tables. Three merchant kings rule it — or did, until Phantom Assassin killed one of them, Kwerthias. Dark Willow, born Mireska Sunbreeze, grew up here before burning down her family estate and running away."
             }
-          }
+          },
+          "pos": [
+            0.62,
+            0.33
+          ]
         },
         {
           "name": "Weeping Rose",
@@ -1687,7 +2635,11 @@
               "ru": "Город чародеев, окутанный вечной ночью. Им правит Кворум — совет тридцати одного мага, готовый даровать что угодно, но всегда за плату; местные мастера торгуют редкими книгами и големами. Lion ищет здесь убежища, а Queen of Pain приходила сюда к изгнанному демону-принцу Ногу за его правом рождения.",
               "en": "A city of sorcerers wrapped in perpetual night. It is governed by the Quorum, a senate of thirty-one wizards who will grant almost any favour — for a price — while local artificers sell rare tomes and forged golems. Lion has come seeking asylum, and Queen of Pain once visited the exiled demon prince Knogh here to take over his birthright."
             }
-          }
+          },
+          "pos": [
+            0.625,
+            0.4
+          ]
         },
         {
           "name": "Tyler Estate",
@@ -1708,7 +2660,11 @@
               "ru": "Лечебница-тюрьма для магов-преступников, которая следит за немногими, но непреложными законами Плачущей Розы. Над узниками ставят опыты, а беглецов выслеживают агенты поместья — среди них Anti-Mage и Silencer.",
               "en": "An asylum for the criminally wizardous that enforces Weeping Rose's few but absolute laws. Inmates are experimented upon, and escapees are hunted down by the Estate's agents — Anti-Mage and Silencer among them."
             }
-          }
+          },
+          "pos": [
+            0.64,
+            0.415
+          ]
         },
         {
           "name": "Sundered Moon",
@@ -1729,7 +2685,11 @@
               "ru": "Таверна Джулла в Белом Шпиле с контрабандной выпивкой и знаменитым коктейлем на основе чумного стража. Пускают сюда в основном героев — на входе могут попросить голову крипа, — а главный соперник заведения — магический бар «Кантрип».",
               "en": "Jull's tavern in White Spire, pouring bootleg liquor and a notorious cocktail brewed from plague wards. It caters mostly to heroes — a creep's head may be demanded at the door — and its chief rival is the mage-run Cantrip Mana Lounge and Bar."
             }
-          }
+          },
+          "pos": [
+            0.595,
+            0.39
+          ]
         },
         {
           "name": "Iron Fog",
@@ -1749,7 +2709,11 @@
               "ru": "Город машин и механизмов под властью Медного Глашатая, одного из королей-купцов Ревтела. Хозяин гордится его точностью и порядком, но Миреска говорит, что с людьми там творят страшные вещи. Где он находится, неизвестно — мы поместили его рядом с Ревтелом.",
               "en": "A city of industry and machinery run by the Brass Herald, one of Revtel's merchant kings. He boasts of its precision; Mireska says terrible things are done to people there. Its location is unknown — we placed it near Revtel."
             }
-          }
+          },
+          "pos": [
+            0.65,
+            0.345
+          ]
         },
         {
           "name": "Highseat",
@@ -1769,7 +2733,11 @@
               "ru": "Здесь стояли лагеря мятежников и скрывался легендарный вор Белый Плащ. По слухам, Bounty Hunter пробрался туда, выследил вора и доставил его на суд. Где лежит Хайсит, в лоре не сказано.",
               "en": "Once dotted with rebel camps and the hideout of the legendary thief White Cape. Rumour has it Bounty Hunter slipped in, tracked him down and hauled him off to face judgment. The lore never says where Highseat lies."
             }
-          }
+          },
+          "pos": [
+            0.605,
+            0.315
+          ]
         }
       ],
       "regionHeroes": []
@@ -1778,6 +2746,7 @@
       "id": "quoidge",
       "tier": "continent",
       "side": "neutral",
+      "sideBasis": "position",
       "name": {
         "ru": "Квойдж и Поля Бойни",
         "en": "Quoidge and the Fields of Carnage"
@@ -1810,6 +2779,139 @@
         "ru": "На севере края стоит Квойдж — город, где нежить живёт вполне цивилизованно бок о бок с неопрятными мясниками. Говорят, его создал бог Марс, возможно на месте давней битвы, а из развлечений здесь в почёте разве что бои в ямах. В дне пути лежит Дымная Гавань — порт, где не задают лишних вопросов.\n\nДалеко на юге, между Хазадальскими пустошами и Друудом, тянутся Поля Вечной Бойни. Это проклятая земля: тела павших не гниют и не уходят в почву, как глубоко ни копай. Ночами здесь трудится Pudge — разделывает мёртвых, чтобы к рассвету поле было чистым, и давно уже не только разделывает.\n\nК этому краю мы отнесли и собор Румуска: его клирики совершили паломничество на Поля, чтобы очистить их от скверны Мёртвого бога. Из стен собора вышел Necrophos — монах, который подхватил чуму, но вместо того чтобы умереть, стал её пророком.",
         "en": "In the north stands Quoidge, a city where the undead lead perfectly civilised lives alongside slovenly butchers. The god Mars is said to have founded it, perhaps on the site of some old battle, and pit fighting is about the only sport in town. A day's journey away lies Smoke Harbor, a port that asks no questions.\n\nFar to the south, between the Hazhadal Barrens and Druud, stretch the Fields of Endless Carnage — a cursed land where the fallen never rot and never return to the soil, however deep the grave. Here Pudge works through the night, carving up the dead so the field is clear by dawn, and long ago acquired a taste for the job.\n\nWe also place the Cathedral of Rumusque here: its clerics once marched on the Fields to purge them of the Dead God's taint. The Necrophos rose from within its walls — a monk who caught the plague and, instead of dying, became its prophet."
       },
+      "layout": {
+        "polygon": [
+          [
+            0.675,
+            0.31
+          ],
+          [
+            0.6983,
+            0.3088
+          ],
+          [
+            0.72,
+            0.3
+          ],
+          [
+            0.755,
+            0.315
+          ],
+          [
+            0.785,
+            0.3
+          ],
+          [
+            0.803,
+            0.345
+          ],
+          [
+            0.812,
+            0.385
+          ],
+          [
+            0.816,
+            0.465
+          ],
+          [
+            0.798,
+            0.545
+          ],
+          [
+            0.806,
+            0.59
+          ],
+          [
+            0.79,
+            0.63
+          ],
+          [
+            0.7548,
+            0.6249
+          ],
+          [
+            0.72,
+            0.632
+          ],
+          [
+            0.6839,
+            0.6327
+          ],
+          [
+            0.65,
+            0.62
+          ],
+          [
+            0.6227,
+            0.6246
+          ],
+          [
+            0.595,
+            0.625
+          ],
+          [
+            0.6,
+            0.595
+          ],
+          [
+            0.59,
+            0.565
+          ],
+          [
+            0.615,
+            0.5684
+          ],
+          [
+            0.64,
+            0.565
+          ],
+          [
+            0.6633,
+            0.5517
+          ],
+          [
+            0.69,
+            0.55
+          ],
+          [
+            0.684,
+            0.51
+          ],
+          [
+            0.692,
+            0.47
+          ],
+          [
+            0.68,
+            0.435
+          ],
+          [
+            0.685,
+            0.4
+          ],
+          [
+            0.676,
+            0.3806
+          ],
+          [
+            0.67,
+            0.36
+          ],
+          [
+            0.6671,
+            0.3345
+          ]
+        ],
+        "label": [
+          0.725,
+          0.495
+        ],
+        "camera": {
+          "x": 0.703,
+          "y": 0.4664,
+          "zoom": 2.1
+        }
+      },
       "places": [
         {
           "name": "Quoidge",
@@ -1829,7 +2931,11 @@
               "ru": "Город цивилизованной нежити далеко к северу от Полей и к югу от Скайрата; по преданию, его основал Марс. Pudge охотно водит гостей по городу и мрачным окрестностям — от Равнин Нескончаемых Мук до Реки Скорби.",
               "en": "A city of civilised undead far north of the Fields and south of Skywrath, said to have been founded by Mars. Pudge happily gives tours of the city and its grim surroundings, from the Plains of Ceaseless Torment to the River of Woe."
             }
-          }
+          },
+          "pos": [
+            0.73,
+            0.345
+          ]
         },
         {
           "name": "Smoke Harbor",
@@ -1849,7 +2955,11 @@
               "ru": "Порт в дне пути от Квойджа, где без лишних вопросов швартуются и флот Кладда, и пираты, и левиафаны, и корабли-призраки. Застрявший здесь Kunkka помог Vengeful Spirit бежать во льды Айсрака, а в окрестных водах рыщут теневые акулы.",
               "en": "A port a day's journey from Quoidge where the Claddish Navy, pirate brigands, leviathans and ghost ships all drop anchor without judgment. A marooned Kunkka helped Vengeful Spirit escape from here to the frozen wastes of Icewrack, and shadow sharks prowl the nearby waters."
             }
-          }
+          },
+          "pos": [
+            0.775,
+            0.375
+          ]
         },
         {
           "name": "Fields of Endless Carnage",
@@ -1869,7 +2979,11 @@
               "ru": "Бескрайнее поле битвы к югу от Хазадальских пустошей и к северу от красных пустынь Друуда. Тела здесь не разлагаются, и Pudge без устали расчищает их. Когда клирики Румуска пришли очищать эти земли, мясник уже успел уйти.",
               "en": "An endless battlefield south of the Hazhadal Barrens and north of the red deserts of Druud. Corpses here never decay, and Pudge toils ceaselessly to clear them. By the time the clerics of Rumusque came to purge the land, the Butcher had already moved on."
             }
-          }
+          },
+          "pos": [
+            0.65,
+            0.595
+          ]
         },
         {
           "name": "Cathedral of Rumusque",
@@ -1889,7 +3003,11 @@
               "ru": "Обитель духовенства, которое борется со смертью, тленом и порчей Мёртвого бога; жрица этого ордена Крелла выковала цепи, сковывающие его слуг. Во время великой чумы монах Ротунд'жер наживался на умирающих дворянах, был осуждён и заперт в чумной палате — и вышел оттуда Necrophos.",
               "en": "Seat of a clergy sworn to fight death, decay and the corruption of the Dead God; one of its priestesses, Crella, forged chains to bind his servants. During a great plague the monk Rotund'jere preyed on dying nobles, was condemned to a plague ward — and walked out as the Necrophos."
             }
-          }
+          },
+          "pos": [
+            0.74,
+            0.46
+          ]
         }
       ],
       "regionHeroes": []
@@ -1898,6 +3016,7 @@
       "id": "hazhadal",
       "tier": "continent",
       "side": "neutral",
+      "sideBasis": "position",
       "name": {
         "ru": "Хазадальские пустоши",
         "en": "Hazhadal Barrens"
@@ -1930,6 +3049,79 @@
         "ru": "Раскалённая пустыня и холмы к северу от Полей Вечной Бойни. Богов здесь не чтят: эти земли принадлежат племенам-изгоям, которые живут на грани голода и жажды и воюют с соседями и друг с другом. Древним искусством подчинения зверей они держат стада локути — низкорослых роющих драконов, которые плавят песок в стеклянные трубы для сбора редкой дождевой воды.\n\nЗдесь родился Chen. Его клан напал не на тот караван и был перебит Рыцарями Паствы; поставленный перед выбором — смерть или обращение, — Chen принял их веру и стал самым ярым её фанатиком.\n\nСреди холмов спрятан лагерь ордена Аэол Драйас, заклятых врагов Паствы. Здесь вырос Silencer — ученик, которого наставники считали бездарным, пока в день испытаний он не заставил замолчать всех соперников. Где-то в пустошах стоит и крепость Валхесси, которую штурмовал Axe.",
         "en": "Scorching desert and hills north of the Fields of Endless Carnage. No gods are honoured here: the land belongs to outlaw tribes who live on the edge of hunger and thirst, fighting their neighbours and one another. Through an ancient art of enthrallment they herd the locuthi, stunted burrowing dragons that melt sand into glass tubes to catch the rare rains.\n\nChen was born here. His clan ambushed the wrong caravan and was cut down by the Knights of the Fold; offered death or conversion, Chen embraced the faith and became its fiercest zealot.\n\nHidden among the hills is a cantonment of the Aeol Drias, the Fold's sworn enemies. Silencer grew up there — the student his teachers wrote off as talentless, until he silenced every rival on the day of testing. Somewhere in the barrens also stands the Fortress of Valhessi, once stormed by Axe."
       },
+      "layout": {
+        "polygon": [
+          [
+            0.572,
+            0.452
+          ],
+          [
+            0.6,
+            0.455
+          ],
+          [
+            0.63,
+            0.44
+          ],
+          [
+            0.6554,
+            0.441
+          ],
+          [
+            0.68,
+            0.435
+          ],
+          [
+            0.692,
+            0.47
+          ],
+          [
+            0.684,
+            0.51
+          ],
+          [
+            0.69,
+            0.55
+          ],
+          [
+            0.6633,
+            0.5517
+          ],
+          [
+            0.64,
+            0.565
+          ],
+          [
+            0.615,
+            0.5684
+          ],
+          [
+            0.59,
+            0.565
+          ],
+          [
+            0.578,
+            0.535
+          ],
+          [
+            0.585,
+            0.5
+          ],
+          [
+            0.5817,
+            0.4751
+          ]
+        ],
+        "label": [
+          0.6345,
+          0.4575
+        ],
+        "camera": {
+          "x": 0.632,
+          "y": 0.5017,
+          "zoom": 5
+        }
+      },
       "places": [
         {
           "name": "Hazhadal Barrens",
@@ -1949,7 +3141,11 @@
               "ru": "Безбожная пустыня племён-изгоев и родина Chen. В её холмах укрыт лагерь ордена Аэол Драйас, где растили Silencer.",
               "en": "A godless desert of outlaw tribes and the birthplace of Chen. Its hills conceal the Aeol Drias cantonment where Silencer was raised."
             }
-          }
+          },
+          "pos": [
+            0.625,
+            0.49
+          ]
         },
         {
           "name": "Fortress of Valhessi",
@@ -1970,7 +3166,11 @@
               "ru": "Крепость в Хазадальских пустошах, на которую обрушился Axe в комиксе Valve «The Last Castle». Больше о ней почти ничего не известно.",
               "en": "A stronghold in the Hazhadal Barrens that Axe assaults in Valve's comic The Last Castle. Little else is known about it."
             }
-          }
+          },
+          "pos": [
+            0.655,
+            0.525
+          ]
         }
       ],
       "regionHeroes": []
@@ -1978,7 +3178,8 @@
     {
       "id": "druud",
       "tier": "continent",
-      "side": "neutral",
+      "side": "dire",
+      "sideBasis": "position",
       "name": {
         "ru": "Друуд",
         "en": "Druud"
@@ -2011,6 +3212,99 @@
         "ru": "Высокое плато к югу от Полей Вечной Бойни — красные пустыни, продуваемые ветрами степи и бесконечные столовые горы. Это земля кланов кентавров. Чужакам они кажутся грубыми дикарями: у них нет ни письменности, ни музыки, ни устроенной веры. Но для кентавра бой и есть высшая форма мысли.\n\nНа плоскогорье живут и горные оглоди — последний осколок некогда великой цивилизации. Они ездят на страйдерах, роются в руинах городов предков и почитают погоду как божество: летние грозы приносят дождь, но оставляют за собой обугленные тела. С юга на их земли постоянно давят оседлые королевства.\n\nОтсюда родом двое героев. Centaur Warrunner стал непобедимым чемпионом арены Омекс и ушёл искать достойного противника по всему миру. Disruptor, юный мастер бурь, приспособил древнюю катушку, которая призывает молнию по его воле, и обратил её против южных захватчиков.",
         "en": "A high plateau south of the Fields of Endless Carnage — red deserts, wind-scoured steppe and endless tablelands. This is the country of the centaur clans. Outsiders take them for brutes: they have no writing, no formal music, no organised faith. To a centaur, though, combat is the purest form of thought.\n\nThe uplands are also home to the Oglodi, the last remnant of a once-great civilisation. They ride stryders, scavenge the ruins of their ancestors' cities and revere the weather itself — summer storms bring rain but leave charred bodies in their wake. Settled kingdoms to the south keep pressing on their land.\n\nTwo heroes hail from here. Centaur Warrunner became the undisputed champion of the Omexe arena, then rode off in search of an opponent worthy of him. Disruptor, a young stormcrafter, adapted an ancient coil that calls down lightning at will and turned it on the southern intruders."
       },
+      "layout": {
+        "polygon": [
+          [
+            0.595,
+            0.625
+          ],
+          [
+            0.6227,
+            0.6246
+          ],
+          [
+            0.65,
+            0.62
+          ],
+          [
+            0.6839,
+            0.6327
+          ],
+          [
+            0.72,
+            0.632
+          ],
+          [
+            0.7548,
+            0.6249
+          ],
+          [
+            0.79,
+            0.63
+          ],
+          [
+            0.802,
+            0.67
+          ],
+          [
+            0.795,
+            0.7
+          ],
+          [
+            0.785,
+            0.725
+          ],
+          [
+            0.75,
+            0.732
+          ],
+          [
+            0.7247,
+            0.7343
+          ],
+          [
+            0.7,
+            0.728
+          ],
+          [
+            0.6727,
+            0.7331
+          ],
+          [
+            0.645,
+            0.735
+          ],
+          [
+            0.6228,
+            0.7295
+          ],
+          [
+            0.605,
+            0.715
+          ],
+          [
+            0.61,
+            0.69
+          ],
+          [
+            0.62,
+            0.66
+          ],
+          [
+            0.6058,
+            0.6437
+          ]
+        ],
+        "label": [
+          0.6975,
+          0.695
+        ],
+        "camera": {
+          "x": 0.6985,
+          "y": 0.6775,
+          "zoom": 3.38
+        }
+      },
       "places": [
         {
           "name": "Druud",
@@ -2030,7 +3324,11 @@
               "ru": "Ветреное нагорье кентавров и оглоди, где грозы одновременно дают жизнь и отнимают её. Родина Centaur Warrunner и Disruptor.",
               "en": "Windswept highlands of centaurs and Oglodi, where storms both give life and take it. Home of Centaur Warrunner and Disruptor."
             }
-          }
+          },
+          "pos": [
+            0.68,
+            0.67
+          ]
         },
         {
           "name": "Omexe",
@@ -2050,7 +3348,11 @@
               "ru": "Древняя арена, где кланы кентавров тысячелетиями сходятся в смертельных боях до последнего стоящего на ногах. Победитель получает Великий пояс Омекса; его носит Centaur Warrunner, который хотел бы однажды лечь в эту землю.",
               "en": "An ancient arena where the centaur clans have met for millennia to fight to the last one standing. The victor is awarded the Great Belt of Omexe — now worn by Centaur Warrunner, who wishes to be buried in these grounds one day."
             }
-          }
+          },
+          "pos": [
+            0.735,
+            0.69
+          ]
         }
       ],
       "regionHeroes": []
@@ -2059,6 +3361,7 @@
       "id": "scintillant",
       "tier": "continent",
       "side": "dire",
+      "sideBasis": "s1map",
       "name": {
         "ru": "Сверкающая пустошь",
         "en": "Scintillant Waste"
@@ -2091,6 +3394,119 @@
         "ru": "Огромная пустыня на экваторе — и, пожалуй, самое странное живое существо мира. Её пески разумны: пустыня думает сама с собой, а чтобы говорить с другими, вселяет частицу себя в зачарованный панцирь. Так появился Sand King, Криксалис — «Душа Песка», страж и посол пустыни. В зыбучих песках сгинуло немало исследователей, а повсюду снуют паукообразные — их облик Sand King и принял.\n\nНа восточном краю стоит нестерпимый зной; там живут мастера, которые куют оружие из золота и поклоняются Солнечной богине. На западе — или в самой пустоши — лежит Пустыня Мизрул, куда родители отослали юную Lina к тётке, подальше от сестры. Рядом находится царство Калдин с его джиннами и обрядами-танцами, а пески хранят руины Эль-Харата и других павших империй.\n\nЕсть здесь и дождливые руины Рифтшэдоу, где вырос Meepo. Он жил продажей древней резьбы, пока один из местных кристаллов не расколол его душу на части.",
         "en": "A vast desert on the equator — and perhaps the strangest living thing in the world. Its sands are sentient: the desert thinks to itself, and when it must speak with smaller minds it pours a sliver of itself into an enchanted carapace. That is how Sand King came to be — Crixalis, the 'Soul of the Sand', guardian and envoy of the dunes. Quicksand has swallowed many explorers, and arachnids skitter everywhere; Sand King took their shape.\n\nThe eastern reaches burn with unbearable heat and are home to artisans who forge weapons from gold and worship a Solar Goddess. To the west, or perhaps within the waste itself, lies the Desert of Misrule, where young Lina was sent to live with an aunt, far away from her sister. Nearby is the kingdom of Qaldin with its djinn and dance-borne rites, while the sands bury the ruins of El'Harath and other fallen empires.\n\nHere too lie the rain-soaked Riftshadow Ruins, where Meepo grew up. He scraped a living selling ancient carvings — until one of the ruins' crystals shattered his soul into many pieces."
       },
+      "layout": {
+        "polygon": [
+          [
+            0.385,
+            0.595
+          ],
+          [
+            0.42,
+            0.6
+          ],
+          [
+            0.4409,
+            0.5918
+          ],
+          [
+            0.46,
+            0.58
+          ],
+          [
+            0.4949,
+            0.5767
+          ],
+          [
+            0.53,
+            0.575
+          ],
+          [
+            0.5593,
+            0.5659
+          ],
+          [
+            0.59,
+            0.565
+          ],
+          [
+            0.6,
+            0.595
+          ],
+          [
+            0.595,
+            0.625
+          ],
+          [
+            0.6058,
+            0.6437
+          ],
+          [
+            0.62,
+            0.66
+          ],
+          [
+            0.61,
+            0.69
+          ],
+          [
+            0.605,
+            0.715
+          ],
+          [
+            0.582,
+            0.713
+          ],
+          [
+            0.56,
+            0.72
+          ],
+          [
+            0.5346,
+            0.7229
+          ],
+          [
+            0.51,
+            0.73
+          ],
+          [
+            0.4824,
+            0.7283
+          ],
+          [
+            0.455,
+            0.725
+          ],
+          [
+            0.43,
+            0.715
+          ],
+          [
+            0.4,
+            0.715
+          ],
+          [
+            0.39,
+            0.68
+          ],
+          [
+            0.4,
+            0.64
+          ],
+          [
+            0.3931,
+            0.6173
+          ]
+        ],
+        "label": [
+          0.4325,
+          0.6175
+        ],
+        "camera": {
+          "x": 0.5025,
+          "y": 0.6475,
+          "zoom": 2.98
+        }
+      },
       "places": [
         {
           "name": "Scintillant Waste",
@@ -2110,7 +3526,11 @@
               "ru": "Разумная пустыня, полная зыбучих песков и паукообразных; её голос и страж — Sand King. На её краю, в огромном кратере, нашли Солнечную кузню.",
               "en": "A sentient desert of quicksand and arachnids, with Sand King as its voice and guardian. The Solar Forge was found in a vast crater at its edge."
             }
-          }
+          },
+          "pos": [
+            0.52,
+            0.64
+          ]
         },
         {
           "name": "Desert of Misrule",
@@ -2130,7 +3550,11 @@
               "ru": "Знойная бесплодная пустыня на экваторе, где водятся пустынные вирмы, а немногочисленные поселенцы живут тихо и скромно. Когда-то здесь правила знать в рубинах и золоте, теперь — Повелитель Мизрула. Сюда к тётке отправили юную Lina, и с тех пор местные женихи то и дело уходят от неё с опалёнными бровями.",
               "en": "A blazing, barren desert on the equator, home to desert wyrms and a handful of quiet, humble settlements. Ruby-decked nobles once ruled it; today the Lord of Misrule reigns. Young Lina was sent here to live with her aunt, and local suitors have been leaving with singed eyebrows ever since."
             }
-          }
+          },
+          "pos": [
+            0.43,
+            0.65
+          ]
         },
         {
           "name": "Riftshadow Ruins",
@@ -2150,7 +3574,11 @@
               "ru": "Останки древней цивилизации, чей дворец славился тёмными обрядами: души выживших заключали в кристаллы и раскалывали. Здесь часто идут дожди и бродят опасные звери. Meepo продавал отсюда резьбу и статуи, пока сам не раскололся на множество копий.",
               "en": "Remains of an ancient civilisation whose palace was infamous for dark rites: survivors' souls were sealed in crystals and shattered. Rain falls often here, and dangerous beasts roam the rubble. Meepo made a living hauling carvings out of the ruins — until he split into many copies of himself."
             }
-          }
+          },
+          "pos": [
+            0.565,
+            0.69
+          ]
         },
         {
           "name": "Qaldin",
@@ -2170,7 +3598,11 @@
               "ru": "Пустынное царство рядом со Сверкающей пустошью. Здесь живёт джинн, создавший панцирь для Sand King, и обосновались калдинские ассасины. Магические обряды тут совершают танцем, а Калдин славится ещё и своей кухней.",
               "en": "A desert kingdom on the fringe of the Scintillant Waste, home to the djinn who crafted Sand King's carapace and base of the Qaldin Assassins. Its magic is worked through dance, and its cuisine is renowned."
             }
-          }
+          },
+          "pos": [
+            0.48,
+            0.61
+          ]
         },
         {
           "name": "El'Harath",
@@ -2190,7 +3622,11 @@
               "ru": "Разрушенный город Древнего Владыки где-то в Сверкающей пустоши. Его населяли существа, похожие на Sand King, но с настоящими крыльями.",
               "en": "A fallen city of the Ancient Sovereign, lost somewhere in the Scintillant Waste. Its people resembled Sand King, but had working wings."
             }
-          }
+          },
+          "pos": [
+            0.57,
+            0.615
+          ]
         },
         {
           "name": "The Barrens",
@@ -2210,7 +3646,11 @@
               "ru": "Бескрайняя пустошь, которой когда-то правил король; здесь жил Маг Шпиля. Возможно, это часть Сверкающей пустоши — или другое имя Хазадальских пустошей.",
               "en": "A vast wasteland once ruled by a king and home to the Spire Mage. It may be part of the Scintillant Waste — or simply another name for the Hazhadal Barrens."
             }
-          }
+          },
+          "pos": [
+            0.47,
+            0.69
+          ]
         },
         {
           "name": "Halgalreh",
@@ -2231,7 +3671,11 @@
               "ru": "Руины пустынной империи, чьи призматические башни рассыпались в опасную для лёгких стеклянную пыль; по ночам странный лунный свет насылает здесь видения. В руинах искала тайное знание Templar Assassin. Где они лежат, в лоре не сказано — сюда их поместили мы.",
               "en": "The ruins of a desert empire whose prismatic towers have crumbled into glass dust that is deadly to breathe; at night a strange moonlight brings visions. Templar Assassin has searched these ruins for arcane secrets. The lore never says where they lie — placing them here is our choice."
             }
-          }
+          },
+          "pos": [
+            0.52,
+            0.68
+          ]
         },
         {
           "name": "Bone Ruins",
@@ -2251,7 +3695,11 @@
               "ru": "Место раскопок, вход в которое украшала триумфальная арка — теперь изрядно повреждённая взрывчаткой. Ключи от неё у Meepo, который, судя по всему, выгнал отсюда бандитов. Расположение в лоре не указано.",
               "en": "A dig site once entered through a triumphal arch, now badly damaged by explosives. Meepo holds the keys to it and seems to have driven out the bandits who lived here. Its location is not given in the lore."
             }
-          }
+          },
+          "pos": [
+            0.42,
+            0.69
+          ]
         },
         {
           "name": "Singer's Gulch",
@@ -2271,7 +3719,11 @@
               "ru": "Долина гигантских звенящих кристаллов — отсюда, видимо, и название. Meepo годами копал здесь и наконец добыл огромный поющий кристалл, но продать его не может: слишком шумный. Расположение в лоре не указано.",
               "en": "A valley of giant resonating crystals, likely named for the sound they make. Meepo spent years digging here and finally unearthed a huge singing crystal — which nobody will buy, because it is far too loud. Its location is not given in the lore."
             }
-          }
+          },
+          "pos": [
+            0.53,
+            0.6
+          ]
         }
       ],
       "regionHeroes": []
@@ -2280,6 +3732,7 @@
       "id": "wailing-mountains",
       "tier": "continent",
       "side": "dire",
+      "sideBasis": "s1map",
       "name": {
         "ru": "Стонущие горы",
         "en": "Wailing Mountains"
@@ -2312,6 +3765,99 @@
         "ru": "Стонущие горы тянутся через южные земли Dire — край высоких перевалов, снежных пещер и долин, где ветер не стихает ни днём, ни ночью. Местные мудрецы верят, что в его вое слышна память о начале мира: будто вселенная родилась, когда единое божество раскололось надвое.\n\nВ этих горах прячутся руины древнего города, заброшенная крепость огненных воинов и монастыри, давно сожжённые захватчиками. Здесь же живёт орден Ойо, ищущий просветления в хмельном напитке.\n\nОтсюда родом Brewmaster и Anti-Mage, здесь нашёл приют Storm Spirit, а Ember Spirit возродился в пепле своего учителя. Небесные родичи этой семьи — повод считать Стонущие горы колыбелью Духов стихий.",
         "en": "The Wailing Mountains run across the southern lands of the Dire: high passes, snow-choked caves and valleys where the wind never rests. Local sages hear an old story in its howl, of a universe born when a single divine mind split in two.\n\nThe peaks hide the ruins of an ancient city, an abandoned fortress of fire-sworn warriors and monasteries burned long ago by invaders. In the valleys lives the Order of the Oyo, who chase enlightenment through strong drink.\n\nBrewmaster and Anti-Mage were born here, Storm Spirit found a home here, and Ember Spirit rose from his master's ashes in these mountains. With so many Celestial kin tied to one range, it is easy to call it the cradle of the elemental Spirits."
       },
+      "layout": {
+        "polygon": [
+          [
+            0.455,
+            0.725
+          ],
+          [
+            0.4824,
+            0.7283
+          ],
+          [
+            0.51,
+            0.73
+          ],
+          [
+            0.5346,
+            0.7229
+          ],
+          [
+            0.56,
+            0.72
+          ],
+          [
+            0.582,
+            0.713
+          ],
+          [
+            0.605,
+            0.715
+          ],
+          [
+            0.6228,
+            0.7295
+          ],
+          [
+            0.645,
+            0.735
+          ],
+          [
+            0.6474,
+            0.763
+          ],
+          [
+            0.655,
+            0.79
+          ],
+          [
+            0.6492,
+            0.815
+          ],
+          [
+            0.655,
+            0.84
+          ],
+          [
+            0.61,
+            0.852
+          ],
+          [
+            0.56,
+            0.845
+          ],
+          [
+            0.51,
+            0.852
+          ],
+          [
+            0.465,
+            0.835
+          ],
+          [
+            0.4597,
+            0.8078
+          ],
+          [
+            0.46,
+            0.78
+          ],
+          [
+            0.4585,
+            0.7524
+          ]
+        ],
+        "label": [
+          0.53,
+          0.743
+        ],
+        "camera": {
+          "x": 0.555,
+          "y": 0.7825,
+          "zoom": 3.5
+        }
+      },
       "places": [
         {
           "name": "Ruined City",
@@ -2331,7 +3877,11 @@
               "ru": "Руины на горных вершинах, под которыми, в долине, живёт орден Ойо. Здесь хранятся «колёсные книги», что звучат, как песни. Brewmaster мечтает однажды вернуться сюда и лечь в эту землю.",
               "en": "A ruin perched among the peaks, with the Order of the Oyo living in the valley below. Its wheel-books turn and hum like songs. Brewmaster hopes to come back one day and be buried here."
             }
-          }
+          },
+          "pos": [
+            0.55,
+            0.78
+          ]
         },
         {
           "name": "Fortress of Flares",
@@ -2351,7 +3901,11 @@
               "ru": "Затерянная в горах школа воинов, где мастер Синь учил искусству Хранящего Пламени. Сейчас крепость заброшена и заросла, но в запечатанном храме небесный огонь разжёг прах Синя — так появился Ember Spirit.",
               "en": "A lost training ground where the master Xin taught the bonds of the Guardian Flame. It now lies empty and overgrown, yet in its sealed temple a Celestial fire rekindled Xin's ashes, and Ember Spirit was born."
             }
-          }
+          },
+          "pos": [
+            0.6,
+            0.805
+          ]
         },
         {
           "name": "Turstarkuri",
@@ -2371,7 +3925,11 @@
               "ru": "Горный край, чьи королевства в долинах веками терпели набеги, а на вершинах стоял монастырь мирных монахов. Легионы Мёртвого бога уничтожили и то и другое; уцелевший послушник стал тем, кого зовут Anti-Mage.",
               "en": "A mountain land whose valley kingdoms endured raid after raid, with a monastery of peaceful monks above them. The legions of the Dead God razed both, and the one novice who lived became Anti-Mage."
             }
-          }
+          },
+          "pos": [
+            0.5,
+            0.765
+          ]
         },
         {
           "name": "Mount Joerlak",
@@ -2391,7 +3949,11 @@
               "ru": "Неспокойный вулкан, на склонах которого работают искусные кузнецы. Однажды он взорвался и погубил многих магноцеросов; Magnus уверен, что извержение было не случайным.",
               "en": "A restless volcano whose slopes are home to master smiths. One day it erupted and killed many of the magnoceroi, and Magnus is convinced someone made it happen."
             }
-          }
+          },
+          "pos": [
+            0.52,
+            0.815
+          ]
         },
         {
           "name": "Feral Road",
@@ -2411,7 +3973,11 @@
               "ru": "Горная дорога, о которой известно лишь одно: здесь огр напал на Sven и нашёл смерть на шипах его доспеха.",
               "en": "A mountain road known for a single tale: an ogre ambushed Sven here and died on the spikes of his armor."
             }
-          }
+          },
+          "pos": [
+            0.585,
+            0.755
+          ]
         },
         {
           "name": "The Upland",
@@ -2432,7 +3998,11 @@
               "ru": "Скалистое нагорье, пронизанное жилами священного нефрита. Местные рудокопы обходят их стороной, ведь из этого камня когда-то высекли Earth Spirit.",
               "en": "Rocky highlands threaded with veins of sacred jade. Local miners dig around them, never through: Earth Spirit was carved from this stone long ago."
             }
-          }
+          },
+          "pos": [
+            0.62,
+            0.775
+          ]
         }
       ],
       "regionHeroes": []
@@ -2440,7 +4010,8 @@
     {
       "id": "shadeshore",
       "tier": "continent",
-      "side": "neutral",
+      "side": "dire",
+      "sideBasis": "position",
       "name": {
         "ru": "Тенистый берег",
         "en": "Shadeshore"
@@ -2473,6 +4044,79 @@
         "ru": "Тенистый берег — сумрачная полоса между морем и сушей. О его пляжах известно мало, зато на юге растут мангры, которые охотятся на зазевавшихся путников. Дальше вглубь лежат приливные топи и выжженные войнами пустоши.\n\nСреди руин на берегу живут меранты, полулюди-полурыбы. Здесь вырос Sven, сын рыцаря Бдящих и мерантки, — и здесь он хочет быть похоронен. Неподалёку стоит твердыня ордена, казнившего его отца.\n\nПосле побега из Тёмного рифа в здешних хищных зарослях затаился Slark. Для беглеца лучшего укрытия не найти: сюда редко заходят по своей воле.",
         "en": "Shadeshore is a dim strip where sea and land blur together. Little is told of its beaches, but in the south grow mangroves that feed on careless travelers. Further inland lie tidal marshes and wastelands scarred by old wars.\n\nMeranths, the fish-folk of the coast, dwell among the shoreline ruins. Sven grew up there, son of a Vigil Knight and a meranth mother, and it is where he wants his grave. Not far off stands the keep of the order that executed his father.\n\nAfter breaking out of Dark Reef, Slark went to ground in these carnivorous thickets. For a fugitive there is no better hideout: almost nobody comes here by choice."
       },
+      "layout": {
+        "polygon": [
+          [
+            0.645,
+            0.735
+          ],
+          [
+            0.6727,
+            0.7331
+          ],
+          [
+            0.7,
+            0.728
+          ],
+          [
+            0.7247,
+            0.7343
+          ],
+          [
+            0.75,
+            0.732
+          ],
+          [
+            0.785,
+            0.725
+          ],
+          [
+            0.8,
+            0.76
+          ],
+          [
+            0.792,
+            0.795
+          ],
+          [
+            0.762,
+            0.822
+          ],
+          [
+            0.72,
+            0.835
+          ],
+          [
+            0.685,
+            0.846
+          ],
+          [
+            0.655,
+            0.84
+          ],
+          [
+            0.6492,
+            0.815
+          ],
+          [
+            0.655,
+            0.79
+          ],
+          [
+            0.6474,
+            0.763
+          ]
+        ],
+        "label": [
+          0.7,
+          0.8175
+        ],
+        "camera": {
+          "x": 0.7225,
+          "y": 0.7855,
+          "zoom": 4.52
+        }
+      },
       "places": [
         {
           "name": "Shadeshore Ruins",
@@ -2492,7 +4136,11 @@
               "ru": "Руины где-то на пляжах Тенистого берега, вероятно, населённые мерантами. Здесь прошло детство Sven, и сюда он завещал принести своё тело.",
               "en": "Ruins somewhere along the Shadeshore beaches, likely home to meranths. Sven spent his childhood here and asks to be laid to rest here when he dies."
             }
-          }
+          },
+          "pos": [
+            0.72,
+            0.8
+          ]
         },
         {
           "name": "Tidemarsh",
@@ -2512,7 +4160,11 @@
               "ru": "Прибрежный край, где хищные анемоны притворяются деревьями, а петляющие тропы сами ведут путника к ним в пасть. Жители хижин на границе охотно подсказывают дорогу — именно туда. По ночам «лес» понемногу ползёт за свои пределы.",
               "en": "A coastal maze where carnivorous anemones pass for trees and the winding paths lead travelers straight into their maws. The hut-dwellers on its edge are happy to point the way, right into it. At night the so-called forest quietly creeps past its borders."
             }
-          }
+          },
+          "pos": [
+            0.668,
+            0.775
+          ]
         },
         {
           "name": "Ruelands",
@@ -2532,7 +4184,11 @@
               "ru": "Песчаная каменистая земля, пропитанная кровью. По старым преданиям, три королевства разорились в войне за сокровища, которых под ней не оказалось. Здесь впервые явилась в этот мир Spectre, а летописица Гудкайнд встретила тут Techies.",
               "en": "Sandy, rocky ground soaked in blood. Old tales say three kingdoms ruined themselves fighting for riches that turned out never to be there. Spectre first appeared in this world here, and the chronicler Goodkind found Techies on these sands."
             }
-          }
+          },
+          "pos": [
+            0.7,
+            0.755
+          ]
         },
         {
           "name": "Vigil Keep",
@@ -2552,7 +4208,11 @@
               "ru": "Оплот рыцарей Бдения, где хранились реликвии ордена: Кодекс, Изгнанный клинок, Священный шлем и Святое пламя. Sven ворвался сюда, чтобы отомстить ордену за казнь отца, и унёс клинок с собой.",
               "en": "Stronghold of the Vigil Knights and vault of their relics: the Codex, the Outcast Blade, the Sacred Helm and the Holy Flame. Sven stormed it to avenge his executed father and left with the blade."
             }
-          }
+          },
+          "pos": [
+            0.75,
+            0.76
+          ]
         },
         {
           "name": "Inner Colonnade",
@@ -2573,7 +4233,11 @@
               "ru": "Святилище рыцарей Бдения, в Твердыне или рядом с ней. Здесь горит Святое пламя под охраной секты Пламенных стражей.",
               "en": "The Vigil Knights' sanctum, inside or beside their keep. The Holy Flame burns here, watched over by the Flameguard sect."
             }
-          }
+          },
+          "pos": [
+            0.762,
+            0.777
+          ]
         }
       ],
       "regionHeroes": [
@@ -2584,6 +4248,7 @@
       "id": "the-deep",
       "tier": "continent",
       "side": "dire",
+      "sideBasis": "s1map",
       "name": {
         "ru": "Глубины",
         "en": "The Deep"
@@ -2616,6 +4281,79 @@
         "ru": "Под толщей океана лежат затонувшие города, их сокровищницы и тюрьмы. Это владения слизеринов, наг и мерантов, а порядок здесь держат Конклав Пучины и стража, верная своему долгу тысячелетиями.\n\nSlardar стережёт глубинные хранилища, Naga Siren когда-то отбила Крей у захватчиков, а Slark остаётся единственным, кто сумел сбежать из Тёмного рифа. Morphling, ожившая вода с упавшей кометы, считает эти глубины своим домом.\n\nЕщё ниже, за последними руинами, лежит Адская впадина. Оттуда демон Буки'вак Порченый расползается гнилью по всему дну.",
         "en": "Beneath the weight of the ocean lie sunken cities with their vaults and prisons. This is the realm of slithereen, naga and meranths, kept in order by the Conclave of the Brine and guards who have held their posts for millennia.\n\nSlardar watches over the deep treasuries, Naga Siren once drove raiders out of Crey, and Slark is still the only prisoner ever to escape Dark Reef. Morphling, living water fallen from a comet, calls these depths home.\n\nFurther down, past the last ruins, opens the Infernal Hollow. From there the demon Buki'vak the Corrupted spreads his rot across the sea floor."
       },
+      "layout": {
+        "polygon": [
+          [
+            0.86,
+            0.55
+          ],
+          [
+            0.91,
+            0.54
+          ],
+          [
+            0.955,
+            0.56
+          ],
+          [
+            0.975,
+            0.61
+          ],
+          [
+            0.97,
+            0.67
+          ],
+          [
+            0.978,
+            0.73
+          ],
+          [
+            0.965,
+            0.79
+          ],
+          [
+            0.94,
+            0.835
+          ],
+          [
+            0.895,
+            0.85
+          ],
+          [
+            0.855,
+            0.835
+          ],
+          [
+            0.835,
+            0.79
+          ],
+          [
+            0.84,
+            0.735
+          ],
+          [
+            0.83,
+            0.68
+          ],
+          [
+            0.838,
+            0.62
+          ],
+          [
+            0.845,
+            0.575
+          ]
+        ],
+        "label": [
+          0.905,
+          0.705
+        ],
+        "camera": {
+          "x": 0.7786,
+          "y": 0.695,
+          "zoom": 2.26
+        }
+      },
       "places": [
         {
           "name": "Dark Reef",
@@ -2635,7 +4373,11 @@
               "ru": "Подводная тюрьма в глубокой впадине под металлической решёткой: тёмный лабиринт, угри-патрульные и ядовитые анемоны у выходов. Здесь держат худших обитателей моря. Сбежать отсюда удалось только одному узнику — Slark.",
               "en": "An underwater prison sunk into a trench beneath a metal grid: a dark labyrinth, patrolling eels and stinging anemones at every exit. It holds the worst the sea has to offer. Slark is the only one who ever got out."
             }
-          }
+          },
+          "pos": [
+            0.9,
+            0.68
+          ]
         },
         {
           "name": "Crey",
@@ -2655,7 +4397,11 @@
               "ru": "Затонувший город с гротами, где морские жители ставят на кровавые бои. Naga Siren отстояла его сокровища от армии левиантов, но из хранилищ пропала одна чаша, и за это её изгнали.",
               "en": "A sunken city full of grottoes where sea folk bet on blood sports. Naga Siren defended its treasures from a levianth army, but one chalice went missing, and she was exiled until it is found."
             }
-          }
+          },
+          "pos": [
+            0.87,
+            0.62
+          ]
         },
         {
           "name": "Deep Vault",
@@ -2676,7 +4422,11 @@
               "ru": "Бездонная сокровищница затонувших городов, её же зовут Затонувшей казной. Её стерегут Глубинные — слизерины с гребнями на спинах, среди них Slardar.",
               "en": "The bottomless treasury of the sunken cities, also called the Sunken Treasury. It is guarded by the Deep Ones, crested slithereen sentinels, Slardar among them."
             }
-          }
+          },
+          "pos": [
+            0.93,
+            0.62
+          ]
         },
         {
           "name": "Coral Breach",
@@ -2696,7 +4446,11 @@
               "ru": "Подводный каньон, где тысячи лет лежали запечатанные сокровища.",
               "en": "An ocean canyon where treasures lay sealed for thousands of years."
             }
-          }
+          },
+          "pos": [
+            0.87,
+            0.74
+          ]
         },
         {
           "name": "Reef's Edge",
@@ -2716,7 +4470,11 @@
               "ru": "Подводные заросли кораллов и ламинарий у стен Тёмного рифа. Рядом, судя по всему, стоит город наг, а статуи спрута намекают на культ морского бога Мелрауна.",
               "en": "Coral and kelp gardens at the edge of Dark Reef. A naga settlement seems to sit nearby, and octopus-like statues hint at the worship of the sea god Maelrawn."
             }
-          }
+          },
+          "pos": [
+            0.94,
+            0.73
+          ]
         },
         {
           "name": "Recluse Reef",
@@ -2736,7 +4494,11 @@
               "ru": "Опасные воды с коварными течениями и острыми кораллами. Акулы и огромные моллюски здесь утаскивают на дно целые корабли. Tidehunter знает эти места.",
               "en": "Treacherous waters of sharp coral and cruel currents, where sharks and giant barnacles can drag whole ships under. Tidehunter knows them well."
             }
-          }
+          },
+          "pos": [
+            0.9,
+            0.78
+          ]
         },
         {
           "name": "Infernal Hollow",
@@ -2757,7 +4519,11 @@
               "ru": "Провал далеко под затонувшими городами, логово демона Буки'вака Порченого. Lion спустился сюда, одолел демона и забрал его руку.",
               "en": "A chasm far beneath the sunken cities and the lair of the demon Buki'vak the Corrupted. Lion descended here, defeated him and took his hand."
             }
-          }
+          },
+          "pos": [
+            0.9,
+            0.815
+          ]
         }
       ],
       "regionHeroes": [
@@ -2767,7 +4533,8 @@
     {
       "id": "cladd",
       "tier": "continent",
-      "side": "neutral",
+      "side": "radiant",
+      "sideBasis": "position",
       "name": {
         "ru": "Кладд и острова",
         "en": "Cladd and the Isles"
@@ -2800,6 +4567,75 @@
         "ru": "Кладд — островная держава, чья сила всегда была в кораблях. Её флот славился на весь мир, кладдская сталь — тоже, а маги-смертники умели звать на войну духов предков.\n\nВокруг лежат острова и проливы, памятные по морским сражениям. У Дрожащего острова флот адмирала Kunkka сошёлся с демонами Катаракты, и в разгар боя Tidehunter призвал бога глубин Мелрауна. Шторм поглотил обе армады; от флота Кладда остался лишь один корабль-призрак.\n\nTidehunter был когда-то защитником соседних Затонувших островов, но отрёкся от них ради службы Мелрауну. С тех пор адмирал и левиафан — заклятые враги.",
         "en": "Cladd is an island nation whose strength has always been its ships. Its navy was famed across the world, as was Claddish steel, and its suicide-mages could call ancestral spirits into battle.\n\nAround it lie islands and straits remembered for sea battles. Off the Trembling Isle, Admiral Kunkka's fleet met the Demons of the Cataract, and at the height of the fight Tidehunter summoned Maelrawn, god of the deep. The storm swallowed both armadas; all that remained of Cladd's navy was one ghost ship.\n\nTidehunter was once champion of the nearby Sunken Isles before turning his back on them to serve Maelrawn. Admiral and leviathan have been sworn enemies ever since."
       },
+      "layout": {
+        "polygon": [
+          [
+            0.865,
+            0.335
+          ],
+          [
+            0.895,
+            0.325
+          ],
+          [
+            0.925,
+            0.335
+          ],
+          [
+            0.945,
+            0.36
+          ],
+          [
+            0.95,
+            0.395
+          ],
+          [
+            0.94,
+            0.425
+          ],
+          [
+            0.948,
+            0.455
+          ],
+          [
+            0.93,
+            0.475
+          ],
+          [
+            0.895,
+            0.47
+          ],
+          [
+            0.865,
+            0.478
+          ],
+          [
+            0.845,
+            0.455
+          ],
+          [
+            0.85,
+            0.425
+          ],
+          [
+            0.84,
+            0.39
+          ],
+          [
+            0.85,
+            0.355
+          ]
+        ],
+        "label": [
+          0.895,
+          0.4025
+        ],
+        "camera": {
+          "x": 0.8907,
+          "y": 0.4015,
+          "zoom": 4.58
+        }
+      },
       "places": [
         {
           "name": "Cladd",
@@ -2819,7 +4655,11 @@
               "ru": "Архипелаг, откуда родом Kunkka. Держит могучий флот, куёт знаменитую сталь и растит магов-смертников, призывающих духов предков.",
               "en": "An archipelago and Kunkka's homeland. It fields a mighty navy, forges renowned steel and trains suicide-mages who call on ancestral spirits."
             }
-          }
+          },
+          "pos": [
+            0.89,
+            0.4
+          ]
         },
         {
           "name": "Trembling Isle",
@@ -2839,7 +4679,11 @@
               "ru": "Остров в опасных водах, часть Кладда или его сосед. Здесь Мелраун уничтожил и демонический флот, и флот Кладда, а Катаракта без демонов умчалась в пустоту.",
               "en": "An island ringed by treacherous water, part of Cladd or close to it. Here Maelrawn wiped out both the demon fleet and Cladd's, and the abandoned Cataract roared off into the void."
             }
-          }
+          },
+          "pos": [
+            0.92,
+            0.36
+          ]
         },
         {
           "name": "Sunken Isles",
@@ -2859,7 +4703,11 @@
               "ru": "Острова, чьим защитником был Tidehunter. Он ушёл, назвав их жрецов шарлатанами, а знать — жадной, и перебил многих, когда отправился служить Мелрауну.",
               "en": "The isles Tidehunter once fought for. He left them, calling their priests frauds and their lords greedy, and killed a good many of them on his way to serve Maelrawn."
             }
-          }
+          },
+          "pos": [
+            0.865,
+            0.44
+          ]
         },
         {
           "name": "Isle of Songs",
@@ -2879,7 +4727,11 @@
               "ru": "Остров, местоположение которого неизвестно. Принцесса с него когда-то подарила пояс из паучьего шёлка Kunkka, и он хранит его до сих пор.",
               "en": "An island whose location is unknown. A princess from here once gave Kunkka a sash of spider silk, which he keeps to this day."
             }
-          }
+          },
+          "pos": [
+            0.92,
+            0.44
+          ]
         },
         {
           "name": "Port Mignin",
@@ -2899,7 +4751,11 @@
               "ru": "Гавань, где когда-то шла яростная битва, в которой участвовал Kunkka. После неё у него оказался клинок Цунами.",
               "en": "A harbor that once saw a ferocious battle with Kunkka in the thick of it. He came away holding the Tsunami Blade."
             }
-          }
+          },
+          "pos": [
+            0.87,
+            0.37
+          ]
         },
         {
           "name": "Narrow Channel",
@@ -2919,7 +4775,11 @@
               "ru": "Пролив, через который шёл корабль с сокровищами некоего принца. Kunkka как-то добыл с него церемониальную рапиру.",
               "en": "A strait once crossed by a prince's treasure ship. Somehow Kunkka relieved it of a ceremonial rapier."
             }
-          }
+          },
+          "pos": [
+            0.895,
+            0.43
+          ]
         }
       ],
       "regionHeroes": []
@@ -2927,7 +4787,8 @@
     {
       "id": "tropic-isles",
       "tier": "continent",
-      "side": "neutral",
+      "side": "dire",
+      "sideBasis": "position",
       "name": {
         "ru": "Тропические острова",
         "en": "Tropic Isles"
@@ -2960,6 +4821,79 @@
         "ru": "Россыпь островов в тёплых южных морях. Одни из них — тихие курорты, другие — смертельные ловушки, а самый знаменитый уже давно лежит на дне.\n\nОстров Масок был родиной народа в масках, хранившего древние обряды и почитавшего драконьих духов. В одну ночь мстительной магии море вокруг закипело, и остров ушёл под воду. Juggernaut — последний из своего народа, кто ещё помнит эти обряды.\n\nНа острове Джиди раскинулись Кислотные джунгли, где травник Лесаль превратился в Venomancer. А на Пепельном архипелаге коротают старость отставные кины, и один из них, Аурел, собрал там свой гирокоптер.",
         "en": "A scatter of islands across warm southern seas. Some are quiet retreats, some are deadly traps, and the most famous of them has long rested on the seabed.\n\nThe Isle of Masks was home to the Masked Ones, keepers of ancient rites who honored dragon spirits. On a single night of vengeful magic the sea around it boiled and the island sank. Juggernaut is the last of his people still carrying those rites.\n\nOn Jidi Isle sprawl the Acid Jungles, where the herbalist Lesale turned into Venomancer. Meanwhile, retired Keen spend their twilight years in the Ash Archipelago, and one of them, Aurel, built his gyrocopter there."
       },
+      "layout": {
+        "polygon": [
+          [
+            0.05,
+            0.615
+          ],
+          [
+            0.08,
+            0.625
+          ],
+          [
+            0.095,
+            0.66
+          ],
+          [
+            0.09,
+            0.7
+          ],
+          [
+            0.105,
+            0.74
+          ],
+          [
+            0.1,
+            0.785
+          ],
+          [
+            0.11,
+            0.82
+          ],
+          [
+            0.09,
+            0.85
+          ],
+          [
+            0.055,
+            0.852
+          ],
+          [
+            0.03,
+            0.83
+          ],
+          [
+            0.022,
+            0.79
+          ],
+          [
+            0.03,
+            0.75
+          ],
+          [
+            0.018,
+            0.71
+          ],
+          [
+            0.025,
+            0.665
+          ],
+          [
+            0.03,
+            0.63
+          ]
+        ],
+        "label": [
+          0.063,
+          0.785
+        ],
+        "camera": {
+          "x": 0.1693,
+          "y": 0.7335,
+          "zoom": 2.95
+        }
+      },
       "places": [
         {
           "name": "Isle of Masks",
@@ -2979,7 +4913,11 @@
               "ru": "Родина народа в масках, откуда родом Juggernaut. В ночь мстительной магии из моря поднялся огонь, воды вскипели, и остров скрылся под волнами вместе со всеми святынями.",
               "en": "Homeland of the Masked Ones and of Juggernaut. On a night of vengeful magic fire welled up from the sea, the waters boiled, and the island sank with every shrine it held."
             }
-          }
+          },
+          "pos": [
+            0.06,
+            0.72
+          ]
         },
         {
           "name": "Temple of Masks",
@@ -2999,7 +4937,11 @@
               "ru": "Храм Творца Масок, куда паломничал юный Юрнеро. Он утонул вместе с островом, и теперь Juggernaut совершает обряды прямо на поле боя.",
               "en": "The temple of the Maker of Masks, where young Yurnero made his pilgrimages. It drowned with the island, so Juggernaut now performs his rites on the battlefield."
             }
-          }
+          },
+          "pos": [
+            0.075,
+            0.735
+          ]
         },
         {
           "name": "Ivory Isles",
@@ -3019,7 +4961,11 @@
               "ru": "Острова, вероятно, неподалёку от Острова Масок, где водятся кородонты. Их сочли потерянными, когда у них украли Защитника; Juggernaut настиг воров и вернул реликвию.",
               "en": "Islands, probably near the Isle of Masks, where corodonts roam. They were counted as lost when their Defender was stolen, until Juggernaut hunted down the thieves and took it back."
             }
-          }
+          },
+          "pos": [
+            0.05,
+            0.655
+          ]
         },
         {
           "name": "Jidi Isle",
@@ -3039,7 +4985,11 @@
               "ru": "Большой остров, знаменитый ядовитыми джунглями. Отсюда родом зачарованное манго, а туристы, говорят, приезжают сюда охотно. Snapfire бывала здесь и мечтает вернуться.",
               "en": "A large island famous for its venomous jungle. The Enchanted Mango comes from here, and visitors are said to flock to it anyway. Snapfire has been and would love to go back."
             }
-          }
+          },
+          "pos": [
+            0.075,
+            0.675
+          ]
         },
         {
           "name": "Acid Jungles",
@@ -3059,7 +5009,11 @@
               "ru": "Джунгли на острове Джиди, где почти всё живое научилось убивать ядом: светящиеся лианы с едким соком, плюющиеся многоножки, рептилии под видом цветов. Укус такой рептилии и неудачное противоядие превратили травника Лесаля в Venomancer.",
               "en": "Jungles on Jidi Isle where nearly every living thing kills with venom: glowing vines with caustic sap, spitting centipedes, reptiles disguised as flowers. One such bite, and a failed antidote, turned the herbalist Lesale into Venomancer."
             }
-          }
+          },
+          "pos": [
+            0.06,
+            0.78
+          ]
         },
         {
           "name": "Bay of Fradj",
@@ -3079,7 +5033,11 @@
               "ru": "Спокойный залив у острова Джиди. Лесаль переплыл его на утлой лодке, отправляясь за травами. В честь залива названа фраджская моль.",
               "en": "A calm bay beside Jidi Isle. Lesale crossed it in a small coracle on his hunt for herbs. The Fradjan moth is named after it."
             }
-          }
+          },
+          "pos": [
+            0.08,
+            0.8
+          ]
         },
         {
           "name": "Ash Archipelago",
@@ -3099,7 +5057,11 @@
               "ru": "Цепь тропических островов, любимое место отставных кинов. Бывший солдат Аурел поселился здесь и испытывает свой гирокоптер.",
               "en": "A chain of tropical islands and a favorite retirement spot for the Keen. The former soldier Aurel settled here to build and test his gyrocopter."
             }
-          }
+          },
+          "pos": [
+            0.05,
+            0.825
+          ]
         }
       ],
       "regionHeroes": []
@@ -3107,7 +5069,8 @@
     {
       "id": "western-forests",
       "tier": "continent",
-      "side": "neutral",
+      "side": "radiant",
+      "sideBasis": "position",
       "name": {
         "ru": "Западные леса",
         "en": "Western Forests"
@@ -3140,6 +5103,107 @@
         "ru": "Запад мира покрыт лесами. Над ними часто гремят грозы, а иные деревья так стары и высоки, что достают до дождевых туч. Люди живут здесь деревнями, почитают золотых соколов и духа ветра, а из великанских деревьев делают лучшие луки.\n\nВ одной такой деревне, Зару'Кине, родилась Windranger. Буря, что пришла в ночь её рождения, стёрла деревню с лица земли, а саму девочку унесла к приёмным родителям.\n\nЗа Долиной Предзнаменований, в горах с колдовской почвой, живут древни. Когда портовый город изобретателей показался им угрозой лесу, они пришли и снесли его; выживший Timbersaw с тех пор воюет с деревьями. В этих чащах бродит со своей стаей Lycan, а Nature's Prophet добывал в здешних рощах дерево и цветы для своих посохов.",
         "en": "The west of the world is a sea of forest. Storms break over it often, and some trees are so old and tall they scrape the rainclouds. People live here in villages, honor gilded falcons and the spirit of the wind, and turn the giant trees into the finest bows anywhere.\n\nIn one such village, Zaru'Kina, Windranger was born. The storm that came on the night of her birth wiped the village away and carried the infant off to a foster home.\n\nBeyond the Vale of Augury, in mountains of eldritch soil, live the treants. When a port city of tinkerers came to look like a threat to the forest, they marched on it and tore it down; Timbersaw, one of the few survivors, has been at war with trees ever since. Lycan and his pack roam these woods, and Nature's Prophet has taken wood and blossoms from its groves for his staves."
       },
+      "layout": {
+        "polygon": [
+          [
+            0.07,
+            0.345
+          ],
+          [
+            0.11,
+            0.355
+          ],
+          [
+            0.1356,
+            0.3518
+          ],
+          [
+            0.16,
+            0.36
+          ],
+          [
+            0.183,
+            0.363
+          ],
+          [
+            0.205,
+            0.37
+          ],
+          [
+            0.2049,
+            0.396
+          ],
+          [
+            0.215,
+            0.42
+          ],
+          [
+            0.2077,
+            0.4445
+          ],
+          [
+            0.205,
+            0.47
+          ],
+          [
+            0.2113,
+            0.4973
+          ],
+          [
+            0.215,
+            0.525
+          ],
+          [
+            0.2035,
+            0.5443
+          ],
+          [
+            0.195,
+            0.565
+          ],
+          [
+            0.1727,
+            0.5568
+          ],
+          [
+            0.15,
+            0.55
+          ],
+          [
+            0.115,
+            0.562
+          ],
+          [
+            0.085,
+            0.555
+          ],
+          [
+            0.07,
+            0.52
+          ],
+          [
+            0.058,
+            0.48
+          ],
+          [
+            0.066,
+            0.44
+          ],
+          [
+            0.056,
+            0.4
+          ]
+        ],
+        "label": [
+          0.136,
+          0.475
+        ],
+        "camera": {
+          "x": 0.1571,
+          "y": 0.455,
+          "zoom": 3.18
+        }
+      },
       "places": [
         {
           "name": "Western Forests",
@@ -3159,7 +5223,11 @@
               "ru": "Огромный лес у границ павшего Слома, где растут кровавые деревья и смертельно ядовитые солнечные лозы. Охотники выслеживают здесь редких зелёных ойолоэ.",
               "en": "A vast forest bordering fallen Slom, home to ancient bloodwoods and deadly sun vines. Hunters stalk the rare green oyoloe beneath its canopy."
             }
-          }
+          },
+          "pos": [
+            0.13,
+            0.45
+          ]
         },
         {
           "name": "Zaru'Kina",
@@ -3179,7 +5247,11 @@
               "ru": "Деревня, которой правил совет, а духовно вёл верховный жрец — дед Лиралей. Он настроил людей против ветропоклонников, и в ночь рождения внучки дух ветра стёр деревню бурей. Выжила одна Лиралей.",
               "en": "A village led by a council and, in spirit, by a high priest, Lyralei's grandfather. He turned the people against the wind-worshippers, and on the night of his granddaughter's birth the wind spirit erased the village in a storm. Only Lyralei survived."
             }
-          }
+          },
+          "pos": [
+            0.1,
+            0.415
+          ]
         },
         {
           "name": "Vale of Augury",
@@ -3199,7 +5271,11 @@
               "ru": "Долина на западе с портом на берегу. В горах за ней колдовская почва питает древней — хранителей леса.",
               "en": "A western valley with a port on its shore. In the mountains beyond, eldritch soil feeds the treants who guard the forest."
             }
-          }
+          },
+          "pos": [
+            0.16,
+            0.5
+          ]
         },
         {
           "name": "Augury Bay",
@@ -3219,7 +5295,11 @@
               "ru": "Портовый город изобретателей, вероятно кинов, с мастерскими и крепкими стенами. Стены не спасли: древни разрушили город, и среди немногих выживших был Timbersaw.",
               "en": "A port city of inventors, probably Keen, with busy workshops and strong walls. The walls were not enough: the treants razed it, and Timbersaw was among the few who lived."
             }
-          }
+          },
+          "pos": [
+            0.085,
+            0.5
+          ]
         },
         {
           "name": "Endless Copse",
@@ -3239,7 +5319,11 @@
               "ru": "Роща, у которой нет конца, — уже само название звучит как загадка. В её сердце растёт цветок Кандрал, который Nature's Prophet сорвал для своего посоха.",
               "en": "A copse with no end, a riddle in its very name. At its heart grows the Candral-Flower, which Nature's Prophet plucked to bind to his staff."
             }
-          }
+          },
+          "pos": [
+            0.17,
+            0.4
+          ]
         },
         {
           "name": "Manglewood Forest",
@@ -3259,7 +5343,11 @@
               "ru": "О лесе с искорёженными деревьями известно мало. Nature's Prophet срезал здесь ветвь самого корявого дерева и сделал из неё зачарованный посох.",
               "en": "Little is known of this forest of twisted trees. Nature's Prophet took a limb from its gnarliest tree and made it into an enchanted staff."
             }
-          }
+          },
+          "pos": [
+            0.12,
+            0.53
+          ]
         }
       ],
       "regionHeroes": []
@@ -3267,7 +5355,8 @@
     {
       "id": "slom-elze",
       "tier": "continent",
-      "side": "neutral",
+      "side": "radiant",
+      "sideBasis": "position",
       "name": {
         "ru": "Слом и Эльзе",
         "en": "Slom and Elze"
@@ -3300,6 +5389,107 @@
         "ru": "Слом и Эльзе были соседями и вечными врагами. Их соединяет дорога, вдоль которой одна за другой стоят таверны; зимой здесь порой идёт снег. Оба королевства погубили собственные правители.\n\nПоследний король Слома окружил себя колдунами и зверинцем диковинных тварей. Знать восстала, король утопил мятеж в крови и проклял сына мятежного лорда ликантропией — так появился Lycan. Вскоре смотритель зверинца Карроч выпустил зверей, и они растерзали короля. Так Карроч стал тем, кого зовут Beastmaster.\n\nКороль-первосвященник Эльзе, одержимый жаждой боли, велел своим демонологам призвать для него суккуба. Им стала Queen of Pain. Король забросил дела, подданные сбросили его с башни, и Эльзе пал. Сегодня в тавернах на старой дороге вышибалой служит Bristleback — и драки там не редкость.",
         "en": "Slom and Elze were neighbors and bitter rivals, joined by a road lined with one tavern after another, where winter sometimes brings snow. Both kingdoms were brought down by their own rulers.\n\nThe last King of Slom surrounded himself with sorcerers and a menagerie of strange beasts. When the nobles rose against him, he drowned the revolt in blood and cursed the rebel lord's son with lycanthropy, creating Lycan. Soon after, the menagerie keeper Karroch set the animals loose and they tore the king apart. Karroch became Beastmaster.\n\nThe Ecclesiast-King of Elze craved pain and had his demonologists summon a succubus for his private torment: the Queen of Pain. He let his realm rot, his subjects threw him from his tower, and Elze fell. These days Bristleback works the taverns along the old road as a bouncer, and brawls there are never in short supply."
       },
+      "layout": {
+        "polygon": [
+          [
+            0.205,
+            0.37
+          ],
+          [
+            0.2264,
+            0.3772
+          ],
+          [
+            0.245,
+            0.39
+          ],
+          [
+            0.2674,
+            0.3869
+          ],
+          [
+            0.29,
+            0.385
+          ],
+          [
+            0.3118,
+            0.3945
+          ],
+          [
+            0.335,
+            0.4
+          ],
+          [
+            0.345,
+            0.435
+          ],
+          [
+            0.36,
+            0.465
+          ],
+          [
+            0.37,
+            0.5
+          ],
+          [
+            0.365,
+            0.53
+          ],
+          [
+            0.3427,
+            0.5346
+          ],
+          [
+            0.32,
+            0.535
+          ],
+          [
+            0.2903,
+            0.5271
+          ],
+          [
+            0.26,
+            0.522
+          ],
+          [
+            0.2373,
+            0.5199
+          ],
+          [
+            0.215,
+            0.525
+          ],
+          [
+            0.2113,
+            0.4973
+          ],
+          [
+            0.205,
+            0.47
+          ],
+          [
+            0.2077,
+            0.4445
+          ],
+          [
+            0.215,
+            0.42
+          ],
+          [
+            0.2049,
+            0.396
+          ]
+        ],
+        "label": [
+          0.2649,
+          0.475
+        ],
+        "camera": {
+          "x": 0.2875,
+          "y": 0.4525,
+          "zoom": 4.24
+        }
+      },
       "places": [
         {
           "name": "Slom",
@@ -3319,7 +5509,11 @@
               "ru": "Кастовое королевство у границ Западных лесов с королевским зверинцем. Пало после бойни отступников и гибели последнего короля в когтях собственных зверей. В его бывших землях бродят фелл-олени и бараны хеллвезер.",
               "en": "A caste-bound kingdom on the edge of the Western Forests, famed for its royal menagerie. It fell after the Massacre of the Apostates and the death of its last king beneath his own beasts. Fell-deer and hellwether rams still roam its old lands."
             }
-          }
+          },
+          "pos": [
+            0.24,
+            0.45
+          ]
         },
         {
           "name": "Elze",
@@ -3339,7 +5533,11 @@
               "ru": "Королевство религиозного рвения, где держали в заточении демонологов. С Башни Заклинаний восставший народ сбросил своего короля, призвавшего Queen of Pain.",
               "en": "A kingdom of religious zeal that kept demonologists in its dungeons. From the Tower of Invocations its people hurled the king who had summoned the Queen of Pain."
             }
-          }
+          },
+          "pos": [
+            0.32,
+            0.46
+          ]
         },
         {
           "name": "Stone Hills",
@@ -3359,7 +5557,11 @@
               "ru": "Холмы, где живут древние замкнутые племена. Полёт они считают даром небес и шьют одежду по образу птиц.",
               "en": "Hills home to ancient, secluded tribes who see flight as a gift from the heavens and dress in the likeness of birds."
             }
-          }
+          },
+          "pos": [
+            0.28,
+            0.42
+          ]
         }
       ],
       "regionHeroes": []
@@ -3367,7 +5569,8 @@
     {
       "id": "hoven",
       "tier": "continent",
-      "side": "neutral",
+      "side": "dire",
+      "sideBasis": "position",
       "name": {
         "ru": "Ховен и Нишай",
         "en": "The Hoven and Nishai"
@@ -3400,6 +5603,95 @@
         "ru": "Ховен — лес шириной в тысячу лиг у подножия Кровоточащих холмов. С холмов веками стекает чёрная смола и собирается в лесу вязкими озёрами; хватит одной искры, чтобы они вспыхнули. Правит лесом милостивый король-маг Сутерекс.\n\nЭто край троллей: монгеры роют норы под корнями Ховена, а их холмовая родня живёт выше по склонам. Отсюда вышли Troll Warlord и Shadow Shaman, которых, впрочем, не назовёшь друзьями.\n\nКогда демон Мараксиформ поднялся из Шестой преисподней за этим лесом, его остановил лучник Clinkz. Умирающий демон поджёг смоляные озёра, и Clinkz сгорел заживо, но получил от Сутерекса бессмертие. Он до сих пор стережёт Ховен — пылающим скелетом.\n\nК востоку от холмов лежит Нишай, страна землетрясений и лавин. Там очнулся от каменного сна Earthshaker.",
         "en": "The Hoven is a forest a thousand leagues wide at the foot of the Bleeding Hills. For centuries black tar has seeped down from the hills and pooled among its trees, and a single spark can set those pools ablaze. The forest is ruled by the kindly mage-king Sutherex.\n\nThis is troll country: monger trolls dig their warrens beneath the Hoven's roots, while their hill-dwelling kin live higher up the slopes. Troll Warlord and Shadow Shaman both come from here, though nobody would call them friends.\n\nWhen the demon Maraxiform rose from the Sixth Hell to claim the forest, the archer Clinkz drove him back. The dying demon set the tar pools alight and Clinkz burned alive, yet Sutherex rewarded him with eternal life. He still patrols the Hoven, a skeleton forever wreathed in flame.\n\nEast of the hills lies Nishai, a land of quakes and avalanches, where Earthshaker woke from his stone slumber."
       },
+      "layout": {
+        "polygon": [
+          [
+            0.215,
+            0.525
+          ],
+          [
+            0.2373,
+            0.5199
+          ],
+          [
+            0.26,
+            0.522
+          ],
+          [
+            0.2903,
+            0.5271
+          ],
+          [
+            0.32,
+            0.535
+          ],
+          [
+            0.3427,
+            0.5346
+          ],
+          [
+            0.365,
+            0.53
+          ],
+          [
+            0.375,
+            0.565
+          ],
+          [
+            0.385,
+            0.595
+          ],
+          [
+            0.3665,
+            0.6079
+          ],
+          [
+            0.345,
+            0.615
+          ],
+          [
+            0.3223,
+            0.6107
+          ],
+          [
+            0.3,
+            0.605
+          ],
+          [
+            0.2742,
+            0.6129
+          ],
+          [
+            0.25,
+            0.625
+          ],
+          [
+            0.22,
+            0.6
+          ],
+          [
+            0.2041,
+            0.5849
+          ],
+          [
+            0.195,
+            0.565
+          ],
+          [
+            0.2035,
+            0.5443
+          ]
+        ],
+        "label": [
+          0.26,
+          0.5399
+        ],
+        "camera": {
+          "x": 0.29,
+          "y": 0.5725,
+          "zoom": 3.68
+        }
+      },
       "places": [
         {
           "name": "The Hoven",
@@ -3419,7 +5711,11 @@
               "ru": "Огромный лес древних деревьев и смоляных озёр под властью короля-мага Сутерекса. Под землёй живут тролли-монгеры, среди них — Troll Warlord, а на страже стоит вечно горящий Clinkz.",
               "en": "A vast forest of ancient trees and tar pools ruled by the mage-king Sutherex. Monger trolls such as Troll Warlord live in caverns below, and the ever-burning Clinkz stands guard above."
             }
-          }
+          },
+          "pos": [
+            0.265,
+            0.56
+          ]
         },
         {
           "name": "Bleeding Hills",
@@ -3439,7 +5735,11 @@
               "ru": "Нагорье, из которого сочится густая чёрная смола. В её ямах лежат кости древних чудовищ. Здесь живут холмовые тролли, и здесь родился Shadow Shaman.",
               "en": "Highlands that bleed thick black tar, its pits full of the bones of ancient beasts. Hill trolls make their home here, and Shadow Shaman was born among them."
             }
-          }
+          },
+          "pos": [
+            0.305,
+            0.59
+          ]
         },
         {
           "name": "Nishai",
@@ -3459,7 +5759,11 @@
               "ru": "Горы, где каждый сезон приходят землетрясения и сходят лавины, а в запечатанных пещерах светятся лишь подземные твари. Тайный орден оружейников выковал здесь тотем для Earthshaker, а горгульи стали его друзьями.",
               "en": "Mountains shaken by seasonal quakes and avalanches, with sealed caverns lit only by glowing creatures. A secret order of smiths forged a totem for Earthshaker here, and the local gargoyles count him as a friend."
             }
-          }
+          },
+          "pos": [
+            0.335,
+            0.56
+          ]
         },
         {
           "name": "The Red Mountain",
@@ -3480,7 +5784,11 @@
               "ru": "Гору охраняет Earthshaker. Где она, точно неизвестно; скорее всего, в Нишае.",
               "en": "A mountain under Earthshaker's protection. Its exact place is unknown, most likely somewhere in Nishai."
             }
-          }
+          },
+          "pos": [
+            0.352,
+            0.578
+          ]
         }
       ],
       "regionHeroes": []
@@ -3488,7 +5796,8 @@
     {
       "id": "fellstrath",
       "tier": "continent",
-      "side": "neutral",
+      "side": "dire",
+      "sideBasis": "position",
       "name": {
         "ru": "Феллстрат",
         "en": "Fellstrath"
@@ -3521,6 +5830,115 @@
         "ru": "Феллстрат — душные джунгли за горным хребтом, куда без нужды не ходят. Здесь бушуют муссоны, в кронах кричат птицы-носороги, а по ночам слышно зверьё, которое редко кому удаётся увидеть. Под лианами спят руины Заросшей империи и её звероподобные боги.\n\nВокруг лежат земли с похожей судьбой. Ашкавор погиб, когда Grimstroke отравил священные чернила. В туманных горах Шакатокатля жрецы Освежёванных Близнецов отправляют Bloodseeker за кровью для богов. В чаще Яма-Раскав живут дикие племена, и оттуда родом Batrider.\n\nВ этих джунглях бывали и пришлые: Dazzle отыскал здесь бабочек, кормящихся силой царства Нотл, а Dark Willow разбудила древних Мо'рокаев. А где-то в здешних водах странствует Велу'Мар — живой остров, на котором выросли бард-монах Largo и его народ.",
         "en": "Fellstrath is a sweltering jungle beyond a mountain wall that few cross without good reason. Monsoons lash it, hornbills cry in the canopy, and at night it fills with the voices of animals almost nobody sees. Under the vines sleep the ruins of the Overgrown Empire and its beast-gods.\n\nThe lands around it share a similar fate. Ashkavor died when Grimstroke poisoned its sacred ink. In the misty peaks of Xhacatocatl, the priests of the Flayed Twins send Bloodseeker out to bring blood back for their gods. The Yama Raskav jungle is home to wild tribes, Batrider among them.\n\nOutsiders have passed through too: Dazzle found butterflies here that sip power from the Nothl Realm, and Dark Willow stirred the ancient Mo'rokai from their sleep. And somewhere in nearby waters drifts Velu'Mar, the living island that raised the bard-monk Largo and his people."
       },
+      "layout": {
+        "polygon": [
+          [
+            0.085,
+            0.555
+          ],
+          [
+            0.115,
+            0.562
+          ],
+          [
+            0.15,
+            0.55
+          ],
+          [
+            0.1727,
+            0.5568
+          ],
+          [
+            0.195,
+            0.565
+          ],
+          [
+            0.2041,
+            0.5849
+          ],
+          [
+            0.22,
+            0.6
+          ],
+          [
+            0.25,
+            0.625
+          ],
+          [
+            0.2556,
+            0.6506
+          ],
+          [
+            0.265,
+            0.675
+          ],
+          [
+            0.2711,
+            0.7023
+          ],
+          [
+            0.275,
+            0.73
+          ],
+          [
+            0.2691,
+            0.7555
+          ],
+          [
+            0.26,
+            0.78
+          ],
+          [
+            0.27,
+            0.804
+          ],
+          [
+            0.27,
+            0.83
+          ],
+          [
+            0.23,
+            0.838
+          ],
+          [
+            0.19,
+            0.826
+          ],
+          [
+            0.155,
+            0.8
+          ],
+          [
+            0.137,
+            0.76
+          ],
+          [
+            0.13,
+            0.72
+          ],
+          [
+            0.118,
+            0.68
+          ],
+          [
+            0.104,
+            0.64
+          ],
+          [
+            0.098,
+            0.6
+          ]
+        ],
+        "label": [
+          0.18,
+          0.675
+        ],
+        "camera": {
+          "x": 0.2057,
+          "y": 0.694,
+          "zoom": 2.43
+        }
+      },
       "places": [
         {
           "name": "Fellstrath",
@@ -3540,7 +5958,11 @@
               "ru": "Тропические джунгли за горами у Ашкавора, полные змей, хищных растений и копьеносных крокодилидов. Говорят, у входа в них когда-то видели пропавший отряд рыцарей Бдения.",
               "en": "Tropical jungle beyond the mountains near Ashkavor, crawling with snakes, carnivorous plants and spear-wielding crocodylians. A lost band of Vigil Knights was once sighted near its entrance."
             }
-          }
+          },
+          "pos": [
+            0.19,
+            0.7
+          ]
         },
         {
           "name": "Overgrown Empire",
@@ -3560,7 +5982,11 @@
               "ru": "Руины цивилизации, поклонявшейся паре могучих зверей Мо'рокаев. Храмы стерегут каменные статуи, которых оживили Древние. Миреска Санбриз, искавшая здесь реликвии, разбудила спящих богов.",
               "en": "Ruins of a civilization that worshiped the Mo'rokai, a pair of mighty beasts. Stone statues brought to life by the Ancients guard its temples. Mireska Sunbreeze came looking for relics and woke the sleeping gods."
             }
-          }
+          },
+          "pos": [
+            0.17,
+            0.75
+          ]
         },
         {
           "name": "Ashkavor",
@@ -3580,7 +6006,11 @@
               "ru": "Земля древних родов, чья магия передаётся по крови, а избранные Вознесённые становятся стражами народа. Grimstroke, последний из Вознесённых, осквернил ритуальные чернила и обратил сородичей в тени.",
               "en": "A land of ancient bloodlines whose magic runs in the blood, protected by chosen guardians called the Ascended. Grimstroke, the last to ascend, tainted the ritual ink and turned his whole people into shades."
             }
-          }
+          },
+          "pos": [
+            0.22,
+            0.65
+          ]
         },
         {
           "name": "Yama Raskav Jungle",
@@ -3600,7 +6030,11 @@
               "ru": "Густые джунгли со множеством племён и рощей древних волшебных деревьев в самом сердце. Отсюда родом Batrider, а из окаменевшего яда здешней гадюки сделан лук, которым стреляет Medusa.",
               "en": "Dense jungle home to many tribes, with a grove of ancient magical trees at its heart. Batrider hails from here, and Medusa's bow was made from the crystallized venom of a local viper."
             }
-          }
+          },
+          "pos": [
+            0.15,
+            0.645
+          ]
         },
         {
           "name": "Xhacatocatl",
@@ -3621,7 +6055,11 @@
               "ru": "Окутанные туманом горы, где Освежёванным Близнецам постоянно приносят в жертву кровь. Отсюда родом Bloodseeker, а на вершинах рыщут клыкастые пернатые хлотли.",
               "en": "Mist-shrouded mountains where the Flayed Twins demand a steady flow of fresh blood. Bloodseeker comes from here, and feathered hlotl beasts prowl the high peaks."
             }
-          }
+          },
+          "pos": [
+            0.235,
+            0.69
+          ]
         },
         {
           "name": "Velu'Mar",
@@ -3642,7 +6080,11 @@
               "ru": "Древнее существо размером с остров, которое откликнулось на песню изгнанников Муркрутов и стало им домом. Тысячу лет бард-монахи поют ему, а их глава Largo странствует в поисках новых мелодий.",
               "en": "An ancient creature the size of an island that answered the song of the exiled Murkroots and became their home. For a thousand years the bard-monks have sung to it, while their head monk Largo roams the world for new melodies."
             }
-          }
+          },
+          "pos": [
+            0.21,
+            0.79
+          ]
         }
       ],
       "regionHeroes": []
@@ -3650,7 +6092,8 @@
     {
       "id": "tomokan",
       "tier": "continent",
-      "side": "neutral",
+      "side": "dire",
+      "sideBasis": "position",
       "name": {
         "ru": "Томо'кан и Окраины",
         "en": "Tomo'kan and the Outlands"
@@ -3683,6 +6126,95 @@
         "ru": "Томо'кан, или Туманный лес, лежит к югу от Айсрака. Под его вечной дымкой прячутся медвежьи берлоги, брошенные заставы и капища безымянного культа смерти. Когда-то сюда рухнули камни Неместиса, и лес до сих пор хранит следы этой порчи.\n\nВ чаще живут Ursa и его сородичи, охраняющие спящих медвежат. Сюда же из чужого мира вышвырнуло Primal Beast — хищника, которого так никто и не сумел приручить. А белка Hoodwink нашла здесь новый дом, когда люди Кримвола вырубили её родной лес.\n\nЗа Гиблой топью начинаются Окраины — сухие земли без закона, где хозяйничают бандиты. Там, в пустыне Нанарак, живёт старушка Snapfire, чей порох и помог Кримволу извести лес.",
         "en": "Tomo'kan, the Mistwood, lies south of Icewrack. Beneath its endless haze hide bear dens, abandoned outposts and the shrines of a nameless death cult. The stones of Nemestice once crashed down here, and the woods still bear the blight they left behind.\n\nUrsa and his kin live deep in the woods, guarding their sleeping cubs. Primal Beast was flung into these trees from another world, a predator nobody ever managed to tame. And the squirrel Hoodwink found a new home here after the people of Krimwohl cleared away her native forest.\n\nPast the Dread Marsh begin the Outlands, dry and lawless country where bandits do as they please. Out there, in the Nanarak desert, lives old Snapfire, whose gunpowder is what let Krimwohl strip that forest bare."
       },
+      "layout": {
+        "polygon": [
+          [
+            0.275,
+            0.73
+          ],
+          [
+            0.31,
+            0.735
+          ],
+          [
+            0.35,
+            0.725
+          ],
+          [
+            0.3749,
+            0.7197
+          ],
+          [
+            0.4,
+            0.715
+          ],
+          [
+            0.43,
+            0.715
+          ],
+          [
+            0.455,
+            0.725
+          ],
+          [
+            0.4585,
+            0.7524
+          ],
+          [
+            0.46,
+            0.78
+          ],
+          [
+            0.4597,
+            0.8078
+          ],
+          [
+            0.465,
+            0.835
+          ],
+          [
+            0.435,
+            0.818
+          ],
+          [
+            0.405,
+            0.846
+          ],
+          [
+            0.365,
+            0.83
+          ],
+          [
+            0.32,
+            0.846
+          ],
+          [
+            0.27,
+            0.83
+          ],
+          [
+            0.27,
+            0.804
+          ],
+          [
+            0.26,
+            0.78
+          ],
+          [
+            0.2691,
+            0.7555
+          ]
+        ],
+        "label": [
+          0.3675,
+          0.765
+        ],
+        "camera": {
+          "x": 0.3625,
+          "y": 0.7805,
+          "zoom": 3.41
+        }
+      },
       "places": [
         {
           "name": "Tomo'kan",
@@ -3702,7 +6234,11 @@
               "ru": "Туманный и тёмный лес к югу от Айсрака, дом для Ursa, Primal Beast и Hoodwink. Сюда заглядывают маги, оборотни и даже Arc Warden.",
               "en": "A misty, shadowed forest south of Icewrack and home to Ursa, Primal Beast and Hoodwink. Wizards, shapeshifters and even Arc Warden have passed through."
             }
-          }
+          },
+          "pos": [
+            0.3,
+            0.755
+          ]
         },
         {
           "name": "Krimwohl",
@@ -3722,7 +6258,11 @@
               "ru": "Королевство на Окраинах, к югу от Томо'кана. Получив порох, который продала им Snapfire, его жители вырубили окрестный лес ради дерева и руды, а лесной народ, к которому принадлежит Hoodwink, загнали в трудовые лагеря.",
               "en": "A kingdom in the Outlands, south of Tomo'kan. Once Snapfire sold them gunpowder, its people felled the surrounding forest for timber and ore and drove Hoodwink's folk into labor camps."
             }
-          }
+          },
+          "pos": [
+            0.33,
+            0.81
+          ]
         },
         {
           "name": "Outlands",
@@ -3742,7 +6282,11 @@
               "ru": "Общее название всех земель за Гиблой топью. Здесь сухо, людей мало, закона нет, а бродячие бандиты рано или поздно встречают Snapfire.",
               "en": "A catch-all name for everything beyond the Dread Marsh. It is dry, thinly peopled and lawless, and its wandering bandits sooner or later run into Snapfire."
             }
-          }
+          },
+          "pos": [
+            0.41,
+            0.8
+          ]
         },
         {
           "name": "Nanarak",
@@ -3762,7 +6306,11 @@
               "ru": "Пустыня у Окраин, где немногие жители держатся у оазисов. Здесь живёт Snapfire, а в песках, возможно, водятся жабы-драконы.",
               "en": "A desert on the edge of the Outlands where the few locals cling to the oases. Snapfire lives here, and dragon toads may roam its sands."
             }
-          }
+          },
+          "pos": [
+            0.435,
+            0.75
+          ]
         },
         {
           "name": "Dread Marsh",
@@ -3782,7 +6330,11 @@
               "ru": "Болото с ядовитой водой у самого порога Окраин. Snapfire однажды ушла через него от погони.",
               "en": "A marsh of poisoned water at the threshold of the Outlands. Snapfire once fled through it to shake off her pursuers."
             }
-          }
+          },
+          "pos": [
+            0.37,
+            0.8
+          ]
         },
         {
           "name": "Praxa'cia",
@@ -3802,7 +6354,11 @@
               "ru": "Земля на Окраинах. Эоны назад, в её третью эпоху, здесь выковали Убийцу магов, чтобы низвергнуть Лжекороля.",
               "en": "A land in the Outlands. Eons ago, in its third age, the Mage Slayer was forged here to bring down its False King."
             }
-          }
+          },
+          "pos": [
+            0.29,
+            0.8
+          ]
         }
       ],
       "regionHeroes": []
@@ -3810,7 +6366,8 @@
     {
       "id": "empire-of-bone",
       "tier": "continent",
-      "side": "neutral",
+      "side": "dire",
+      "sideBasis": "position",
       "name": {
         "ru": "Империя Костей",
         "en": "Empire of Bone"
@@ -3843,6 +6400,91 @@
         "ru": "Империя Костей — владения короля Остариона, где из кости сделано всё: дворец, башни, мостовые и даже деревья окрестного леса. Чем дольше длилось его правление, тем больше живого вокруг превращалось в мёртвое.\n\nОстарион веками копил призрачную сущность, надеясь пережить саму смерть. В Ночь Призраков он возродился как Wraith King, и вместе с ним переменилось его царство: кости покрылись зеленоватой призрачной плотью, а трон теперь светится в темноте.\n\nСоседям империя приносила только гибель. Её армии стёрли с лица земли Левинталь — возможно, тот самый Сверкающий город, где герцог Левинталя заседал среди выборщиков.",
         "en": "The Empire of Bone is King Ostarion's domain, where everything is made of bone: the palace, the towers, the paving stones, even the trees of the nearby forest. The longer his reign went on, the more of the living world around him turned to the dead.\n\nFor ages Ostarion hoarded wraith essence, hoping to outlast death itself. On Wraith-Night he was reborn as the Wraith King, and his realm changed with him: its bones are now sheathed in pale green wraith flesh, and his throne glows in the dark.\n\nTo its neighbors the empire brought nothing but ruin. Its armies wiped out Levinthal, perhaps the very Gleaming City where the Duke of Levinthal sat among the Electors."
       },
+      "layout": {
+        "polygon": [
+          [
+            0.25,
+            0.625
+          ],
+          [
+            0.2742,
+            0.6129
+          ],
+          [
+            0.3,
+            0.605
+          ],
+          [
+            0.3223,
+            0.6107
+          ],
+          [
+            0.345,
+            0.615
+          ],
+          [
+            0.3665,
+            0.6079
+          ],
+          [
+            0.385,
+            0.595
+          ],
+          [
+            0.3931,
+            0.6173
+          ],
+          [
+            0.4,
+            0.64
+          ],
+          [
+            0.39,
+            0.68
+          ],
+          [
+            0.4,
+            0.715
+          ],
+          [
+            0.3749,
+            0.7197
+          ],
+          [
+            0.35,
+            0.725
+          ],
+          [
+            0.31,
+            0.735
+          ],
+          [
+            0.275,
+            0.73
+          ],
+          [
+            0.2711,
+            0.7023
+          ],
+          [
+            0.265,
+            0.675
+          ],
+          [
+            0.2556,
+            0.6506
+          ]
+        ],
+        "label": [
+          0.325,
+          0.64
+        ],
+        "camera": {
+          "x": 0.325,
+          "y": 0.665,
+          "zoom": 4.67
+        }
+      },
       "places": [
         {
           "name": "Throne of Bone",
@@ -3862,7 +6504,11 @@
               "ru": "Дворец-трон, который ещё зовут Башнями Остариона. Отсюда Wraith King правит своей империей; после Ночи Призраков трон окутан зеленоватым сиянием.",
               "en": "A towering palace and throne, also called the Towers of Ostarion. From here the Wraith King rules his empire, and since Wraith-Night the throne has glowed a sickly green."
             }
-          }
+          },
+          "pos": [
+            0.33,
+            0.665
+          ]
         },
         {
           "name": "Ivory Forest",
@@ -3882,7 +6528,11 @@
               "ru": "Лес, в котором деревья обратились в кость. После Ночи Призраков он оброс зелёной призрачной плотью.",
               "en": "A forest whose trees have all turned to bone. Since Wraith-Night it has been overgrown with green wraith flesh."
             }
-          }
+          },
+          "pos": [
+            0.29,
+            0.69
+          ]
         },
         {
           "name": "Levinthal",
@@ -3903,7 +6553,11 @@
               "ru": "Владения герцога Левинталя, уничтоженные армиями Остариона. Возможно, это и есть Сверкающий город, где герцог был одним из выборщиков.",
               "en": "The seat of the Duke of Levinthal, destroyed by Ostarion's armies. It may be the same place as the Gleaming City, where the duke was one of the Electors."
             }
-          }
+          },
+          "pos": [
+            0.36,
+            0.7
+          ]
         }
       ],
       "regionHeroes": []
@@ -3912,6 +6566,7 @@
       "id": "middle-kingdoms",
       "tier": "continent",
       "side": "neutral",
+      "sideBasis": "position",
       "name": {
         "ru": "Срединные королевства",
         "en": "The Middle Kingdoms"
@@ -3944,6 +6599,111 @@
         "ru": "Сердце обитаемого мира, где короны передаются по наследству, а за каждым троном стоит своя тайна. Где именно лежат эти земли, лор не говорит, поэтому мы собрали их вместе: королевства, храмы, академии и логова, которые знает каждый герой, но ни одна карта.\n\nЗдесь короли платят дань драконам и зовут охотников на магов, а знатные советы придумывают пытки для узников. Маги учатся в Академии Ультимира, жрецы Всеведения спускаются в пещеры Эмарака, а в скрытых храмах и ульях служат своим господам тайные убийцы.\n\nС этими землями связаны Dragon Knight и Mirana, Invoker и Warlock, Omniknight, Abaddon, Templar Assassin, Nyx Assassin, Broodmother, Lifestealer и Muerta.",
         "en": "The heart of the settled world, where crowns pass down bloodlines and every throne hides a secret. The lore never says exactly where these lands lie, so we have gathered them together: kingdoms, temples, academies and lairs that every hero knows but no map shows.\n\nHere kings pay tribute to dragons and send for mage hunters, while noble councils invent new tortures for their prisoners. Mages train at the Ultimyr Academy, priests of the Omniscience descend into the caves of Emauracus, and secret assassins serve their masters from hidden temples and hives.\n\nThese lands belong to the stories of Davion and Mirana, Invoker and Warlock, Omniknight, Abaddon, the Templar Assassin, Nyx Assassin, Broodmother, Lifestealer and Muerta."
       },
+      "layout": {
+        "polygon": [
+          [
+            0.36,
+            0.465
+          ],
+          [
+            0.3902,
+            0.4633
+          ],
+          [
+            0.42,
+            0.468
+          ],
+          [
+            0.4454,
+            0.4614
+          ],
+          [
+            0.47,
+            0.452
+          ],
+          [
+            0.4943,
+            0.4602
+          ],
+          [
+            0.52,
+            0.46
+          ],
+          [
+            0.5452,
+            0.4509
+          ],
+          [
+            0.572,
+            0.452
+          ],
+          [
+            0.5817,
+            0.4751
+          ],
+          [
+            0.585,
+            0.5
+          ],
+          [
+            0.578,
+            0.535
+          ],
+          [
+            0.59,
+            0.565
+          ],
+          [
+            0.5593,
+            0.5659
+          ],
+          [
+            0.53,
+            0.575
+          ],
+          [
+            0.4949,
+            0.5767
+          ],
+          [
+            0.46,
+            0.58
+          ],
+          [
+            0.4409,
+            0.5918
+          ],
+          [
+            0.42,
+            0.6
+          ],
+          [
+            0.385,
+            0.595
+          ],
+          [
+            0.375,
+            0.565
+          ],
+          [
+            0.365,
+            0.53
+          ],
+          [
+            0.37,
+            0.5
+          ]
+        ],
+        "label": [
+          0.48,
+          0.5184
+        ],
+        "camera": {
+          "x": 0.475,
+          "y": 0.5255,
+          "zoom": 3.04
+        }
+      },
       "places": [
         {
           "name": "Candoness",
@@ -3963,7 +6723,11 @@
               "ru": "Королевство, где при каждой коронации платили дань дракону Ульдораку. В день восшествия на трон Тансиса XIII сэр Давион (Dragon Knight) подстерёг и убил дракона, заслужив благодарность королевской семьи.",
               "en": "A kingdom that had to pay tribute to the dragon Uldorak every time a new monarch was crowned. On the day Tansis XIII took the throne, Sir Davion the Dragon Knight ambushed and slew the beast, earning the royal family's gratitude."
             }
-          }
+          },
+          "pos": [
+            0.41,
+            0.48
+          ]
         },
         {
           "name": "Devarque",
@@ -3983,7 +6747,11 @@
               "ru": "Королевство Мерзкого совета, приговорившего вора Н'айкса к пожизненному заключению. Знать Деварка, даже её дети, славилась жестокостью и изобретала для узника всё новые пытки; так началась история Lifestealer.",
               "en": "Kingdom of the Vile Council, which sentenced the thief N'aix to life in prison. Devarque's nobles, their children included, were famed for cruelty and kept inventing new tortures for him; so began the story of the Lifestealer."
             }
-          }
+          },
+          "pos": [
+            0.46,
+            0.472
+          ]
         },
         {
           "name": "Yoskreth",
@@ -4003,7 +6771,11 @@
               "ru": "Королевство, которое терзал колдун Сахск, пока государь не призвал прославленного Anti-Mage. Тот победил колдуна и получил в награду доспехи, шелка и оружие. Йоскрет известен причудливой модой — например, ирокезами.",
               "en": "A kingdom tormented by the sorcerer Sahsk until its sovereign summoned the famous Anti-Mage. He defeated the sorcerer and was paid in armor, silk and weapons. Yoskreth is also known for its odd fashions, mohawks among them."
             }
-          }
+          },
+          "pos": [
+            0.51,
+            0.468
+          ]
         },
         {
           "name": "Ultimyr Academy",
@@ -4023,7 +6795,11 @@
               "ru": "Школа тайных искусств, где писцы переводят древние руны. Нынешняя гордость академии — Демнок Ланник (Warlock), пришедший сюда за знаниями ради редких книг. Века назад здесь учился юный Invoker, но, переросши учителей, разгромил академию и ушёл.",
               "en": "A school of the arcane arts whose scribes translate ancient runes. Its pride today is Demnok Lannik, the Warlock, who came seeking magic to aid his hunt for rare texts. Ages ago the young Invoker studied here, then outgrew his masters, wrecked the place and left."
             }
-          }
+          },
+          "pos": [
+            0.555,
+            0.49
+          ]
         },
         {
           "name": "Emauracus",
@@ -4043,7 +6819,11 @@
               "ru": "Изрезанные пещерами утёсы, где живут жрецы Всеведения. Их ходы неделями ведут в глубь земли, к самому божеству; символ здешних высоких скал — пара крыльев. В хранилищах лежат древние реликвии, а родом отсюда Omniknight.",
               "en": "Cliffs riddled with caves where the priests of the Omniscience dwell. Their tunnels lead for weeks deep into the earth, toward the god itself, and a pair of wings stands for these high cliffs. Ancient relics rest in its vaults, and it is Omniknight's home."
             }
-          }
+          },
+          "pos": [
+            0.395,
+            0.515
+          ]
         },
         {
           "name": "Font of Avernus",
@@ -4063,7 +6843,11 @@
               "ru": "Трещина в камне, из которой сочится чёрный туман, поглощающий свет. Он дарует дому Аверно власть над жизнью и смертью и показывает судьбы — даже демоны ненавидят эту силу. Abaddon пил из купели глубже всех и сам стал созданием тумана.",
               "en": "A crack in the stone that breathes out a black, light-swallowing mist. It grants House Avernus power over life and death and reveals fates within its swirl, a gift even demons despise. Abaddon drank deeper than anyone and became a creature of the mist himself."
             }
-          }
+          },
+          "pos": [
+            0.39,
+            0.548
+          ]
         },
         {
           "name": "Hidden Temple",
@@ -4083,7 +6867,11 @@
               "ru": "Храм, вход в который скрыт в самой природе и невидим для обычных глаз. Здесь живут Скрытые во главе с Инаем и хранятся зашифрованные кодексы. Ланайя нашла храм и в обмен на его тайны стала убийцей Скрытых — Templar Assassin.",
               "en": "A temple whose door is hidden in nature itself and invisible to ordinary eyes. The Hidden Ones live here under Inai, guarding encrypted codices. Lanaya found it and, in exchange for its secrets, became the Hidden Ones' assassin, the Templar Assassin."
             }
-          }
+          },
+          "pos": [
+            0.562,
+            0.535
+          ]
         },
         {
           "name": "Hidden Hive",
@@ -4103,7 +6891,11 @@
               "ru": "Тайная колония жуков-фанатиков, где, по-видимому, живёт их королева Никс. Сюда присылают каждого нового Nyx Assassin: его утверждают, облачают в броню и посвящают в замыслы королевы. Стены улья усеяны кристаллами, усиливающими скарабеев.",
               "en": "A secret colony of zealot scarabs, most likely home to their queen Nyx. Every new Nyx Assassin is sent here to be confirmed, armored and let in on the queen's schemes. Crystals set into its walls sharpen the scarabs' powers."
             }
-          }
+          },
+          "pos": [
+            0.43,
+            0.567
+          ]
         },
         {
           "name": "Mount Pyrotheos",
@@ -4123,7 +6915,11 @@
               "ru": "Потухший вулкан, в лавовых трубах которого живёт Чёрная Арахния (Broodmother) со своим потомством. Когда-то ей поклонялся культ, ковавший ей доспехи и бросавшийся в её паутину. Позже на склоне визирь Птолопталес построил Магнитный зиккурат, приманивший сюда бесконечный поток воров.",
               "en": "A dead volcano whose lava tubes are home to Black Arachnia the Broodmother and her young. A cult once worshiped her, forging armor for her and throwing themselves into her webs. Later the vizier Ptholopthales raised his Magnetic Ziggurat on its slopes, drawing an endless stream of thieves."
             }
-          }
+          },
+          "pos": [
+            0.525,
+            0.556
+          ]
         },
         {
           "name": "Skirm",
@@ -4144,7 +6940,11 @@
               "ru": "Городок в далёкой пустыне, который каждый год грабили бандиты Зонгом. Здесь росла девочка Селеста — будущая Muerta.",
               "en": "A town in the distant desert, raided every year by the Zongom bandits. A girl named Celeste grew up here; the world would later know her as Muerta."
             }
-          }
+          },
+          "pos": [
+            0.478,
+            0.562
+          ]
         },
         {
           "name": "Solar Throne",
@@ -4165,7 +6965,11 @@
               "ru": "Престол Гелио-империи, власть которого простирается над огромным королевством. Наследница Mirana оставила его ради служения богине Селемене, и трон уже много лет пустует.",
               "en": "The seat of the Helio Imperium, its sway reaching across a vast realm. Its heir, Mirana, turned her back on it to serve the goddess Selemene, and the throne has waited for her for many years."
             }
-          }
+          },
+          "pos": [
+            0.548,
+            0.512
+          ]
         }
       ],
       "regionHeroes": []
@@ -4174,6 +6978,7 @@
       "id": "uncharted",
       "tier": "continent",
       "side": "neutral",
+      "sideBasis": "position",
       "name": {
         "ru": "Неизведанные земли",
         "en": "The Uncharted Lands"
@@ -4206,6 +7011,55 @@
         "ru": "Не всякий путь можно проследить до начала. У многих героев есть биография, но нет родины: лор рассказывает, кем они стали, и молчит о том, откуда пришли.\n\nДля них на краю карты лежат Неизведанные земли — остров, затянутый туманом. Это не место из лора, а честное «неизвестно»: мы не выдумываем героям родину, пока её не назовёт сама история. Отдельных мест здесь нет — герои привязаны к острову целиком.\n\nЗдесь ждут своей карты Alchemist, Death Prophet, Enchantress, Jakiro, Marci, Ogre Magi, Riki, Ringmaster, Rubick, Tiny, Undying и Witch Doctor.",
         "en": "Not every road can be traced back to where it began. Many heroes have a story but no homeland: the lore tells us who they became and stays silent about where they came from.\n\nFor them, at the edge of the map, lie the Uncharted Lands, an island lost in mist. It is not a place from the lore but an honest unknown: we do not invent homelands until the story itself names them. There are no places inside; these heroes belong to the island as a whole.\n\nAlchemist, Death Prophet, Enchantress, Jakiro, Marci, Ogre Magi, Riki, Ringmaster, Rubick, Tiny, Undying and Witch Doctor are still waiting here for a map of their own."
       },
+      "layout": {
+        "polygon": [
+          [
+            0.905,
+            0.165
+          ],
+          [
+            0.94,
+            0.16
+          ],
+          [
+            0.965,
+            0.18
+          ],
+          [
+            0.975,
+            0.21
+          ],
+          [
+            0.962,
+            0.245
+          ],
+          [
+            0.935,
+            0.265
+          ],
+          [
+            0.9,
+            0.26
+          ],
+          [
+            0.88,
+            0.235
+          ],
+          [
+            0.882,
+            0.195
+          ]
+        ],
+        "label": [
+          0.9275,
+          0.2125
+        ],
+        "camera": {
+          "x": 0.9,
+          "y": 0.2125,
+          "zoom": 5
+        }
+      },
       "places": [],
       "regionHeroes": [
         "tiny",
@@ -4226,6 +7080,7 @@
       "id": "underdark",
       "tier": "abyss",
       "side": "neutral",
+      "sideBasis": "tier",
       "name": {
         "ru": "Подземье",
         "en": "The Underdark"
@@ -4258,6 +7113,71 @@
         "ru": "Под корнями вулканов и слоем магмы лежит другой мир — без неба и солнца. Обсидиановые своды, светящиеся пещеры и леса гигантских грибов тянутся до самых тектонических плит.\n\nЗдесь правит сила. Врогрос (Underlord) собирает Абиссальную Орду в городе Азийог, чтобы однажды выйти на поверхность и потребовать себе земли наверху. Ещё глубже, в запечатанных Нижних пределах, миллионы лет живут ядовитые незердрейки.\n\nИз этих глубин вышли Underlord, Viper и Pugna — колдун, родившийся в Нижних пределах и выросший в храме Искусств Забвения.",
         "en": "Beneath the roots of volcanoes and the layer of magma lies another world, one without sky or sun. Obsidian vaults, glowing caverns and forests of giant fungi stretch all the way down to the tectonic plates.\n\nStrength rules here. Vrogros the Underlord gathers the Abyssal Horde in the city of Aziyog, waiting for the day it marches up to claim the lands above. Deeper still, in the sealed Nether Reaches, venomous netherdrakes have dwelt for millions of years.\n\nThe Underlord, Viper and Pugna all rose from these depths, Pugna born in the Nether Reaches and raised in a temple of the Arts of Oblivion."
       },
+      "layout": {
+        "polygon": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            0.885
+          ],
+          [
+            0.05,
+            0.878
+          ],
+          [
+            0.1,
+            0.888
+          ],
+          [
+            0.15,
+            0.88
+          ],
+          [
+            0.2,
+            0.89
+          ],
+          [
+            0.25,
+            0.879
+          ],
+          [
+            0.3,
+            0.887
+          ],
+          [
+            0.35,
+            0.878
+          ],
+          [
+            0.4,
+            0.889
+          ],
+          [
+            0.45,
+            0.88
+          ],
+          [
+            0.5,
+            0.886
+          ],
+          [
+            0.5,
+            1
+          ]
+        ],
+        "label": [
+          0.2375,
+          0.938
+        ],
+        "camera": {
+          "x": 0.3571,
+          "y": 0.6429,
+          "zoom": 1.4
+        }
+      },
       "places": [
         {
           "name": "Aziyog",
@@ -4277,7 +7197,11 @@
               "ru": "Обсидиановый город в огромной пещере под магмой; стены его изрыты гротами, скреплёнными костями рабов. Здесь стоит Абиссальная Орда Врогроса, и где-то в глубине, по слухам, есть проход в Нижние пределы.",
               "en": "An obsidian city in a vast cavern below the magma, its walls honeycombed with grottoes mortared with the bones of slaves. The Underlord's Abyssal Horde is quartered here, and somewhere in its depths a passage is rumored to lead to the Nether Reaches."
             }
-          }
+          },
+          "pos": [
+            0.15,
+            0.94
+          ]
         },
         {
           "name": "Nether Reaches",
@@ -4297,7 +7221,11 @@
               "ru": "Древний край у тектонических плит, со светящимися пещерами незердрейков. Сдвиг земной коры давно отрезал его от поверхности. Одни считают его местом, другие — духовным планом: изгнанные сюда становятся бесплотными. Родина Pugna и Viper.",
               "en": "An ancient realm near the tectonic plates, with luminous caverns where netherdrakes breed. Shifting plates sealed it off from the surface long ago. Some call it a place, others a spiritual plane, since those banished here turn ethereal. It is the birthplace of Pugna and Viper."
             }
-          }
+          },
+          "pos": [
+            0.28,
+            0.93
+          ]
         },
         {
           "name": "The Emerald Abyss",
@@ -4317,7 +7245,11 @@
               "ru": "Пещеры зелёных кристаллов, жеод и висмута, густо заросшие грибами; в их водах живут бледные аксолотли, а среди камней стоят статуи неизвестного народа. Underlord бился здесь за власть над срединными глубинами и унёс отсюда изумрудный клинок.",
               "en": "Caves of green crystal, geodes and bismuth, thick with fungi, where pale axolotls swim and statues of some unknown race stand among the stones. The Underlord fought here for mastery of the middle depths and carried off an emerald blade."
             }
-          }
+          },
+          "pos": [
+            0.38,
+            0.95
+          ]
         },
         {
           "name": "The Underhollow",
@@ -4337,7 +7269,11 @@
               "ru": "Кольца пещер, сходящиеся к центру, где Рошан хранит свой редчайший сыр. О лоре этого места известно мало: оно знакомо прежде всего как арена 2018 года.",
               "en": "Rings of caverns spiraling inward to where Roshan guards his rarest cheese. Little lore is attached to it; it is known mostly as the battleground of 2018."
             }
-          }
+          },
+          "pos": [
+            0.22,
+            0.97
+          ]
         }
       ],
       "regionHeroes": []
@@ -4346,6 +7282,7 @@
       "id": "hells",
       "tier": "abyss",
       "side": "neutral",
+      "sideBasis": "tier",
       "name": {
         "ru": "Семь Преисподних и загробье",
         "en": "The Seven Hells and the Afterlife"
@@ -4378,6 +7315,71 @@
         "ru": "Семь слоёв вечной тьмы и мучений, разделённых перепонками, сквозь которые свободно проходит один лишь Doom. Он — владыка всех преисподних, за ним идут Shadow Demon и, последним из Владык демонов, Невермор (Shadow Fiend).\n\nНо ад — не только демоны. Каждую новую душу ждёт Узкий лабиринт: Razor гонит мёртвых по его тёмным, усеянным клинками ходам, и одни выходят к свету, другие — во тьму Андерскейпа. Где-то рядом лежит Мир Нотл, где свет и тьма поменялись местами.\n\nСюда ведут судьбы многих героев: Terrorblade, сбежавшего из тюрьмы демонов, Visage, жреца Dazzle, Huskar, однажды вернувшегося к жизни, и Warlock, призывающего големов из Внешних преисподних.",
         "en": "Seven layers of endless darkness and torment, divided by membranes that only Doom may freely cross. He is sovereign of every hell; below him stand the Shadow Demon and, least of the Demon Lords, Nevermore.\n\nYet hell is more than demons. Every newly dead soul must walk the Narrow Maze, where Razor drives the dead through cold, blade-lined passages; some emerge into light, others into the dark of the Underscape. Close by lies the Nothl Realm, where light and darkness have traded places.\n\nMany heroes' stories run through here: Terrorblade, who broke out of the demons' own prison; Visage; the shadow priest Dazzle; Huskar, who once came back to the living; and Warlock, who summons golems from the Outer Hells."
       },
+      "layout": {
+        "polygon": [
+          [
+            0.5,
+            1
+          ],
+          [
+            0.5,
+            0.886
+          ],
+          [
+            0.55,
+            0.878
+          ],
+          [
+            0.6,
+            0.888
+          ],
+          [
+            0.65,
+            0.88
+          ],
+          [
+            0.7,
+            0.889
+          ],
+          [
+            0.75,
+            0.879
+          ],
+          [
+            0.8,
+            0.887
+          ],
+          [
+            0.85,
+            0.878
+          ],
+          [
+            0.9,
+            0.888
+          ],
+          [
+            0.95,
+            0.88
+          ],
+          [
+            1,
+            0.884
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "label": [
+          0.75,
+          0.968
+        ],
+        "camera": {
+          "x": 0.6429,
+          "y": 0.6429,
+          "zoom": 1.4
+        }
+      },
       "places": [
         {
           "name": "Seven Hells",
@@ -4397,7 +7399,11 @@
               "ru": "Семь слоёв вечной тьмы, где обитают демоны. Каждый слой отделён от соседнего перепонкой, и переходить между ними может только Doom. Чем глубже слой, тем страшнее кара; Невермор мечтает отнять у Doom седьмую преисподнюю.",
               "en": "Seven layers of eternal dark, home to the demons. Each is sealed from the next by a membrane only Doom can pass. The deeper the layer, the crueler the punishment, and Nevermore schemes to take the seventh hell from Doom."
             }
-          }
+          },
+          "pos": [
+            0.76,
+            0.935
+          ]
         },
         {
           "name": "Vashundol",
@@ -4417,7 +7423,11 @@
               "ru": "Царство, связанное с Doom и, вероятно, лежащее в одной из преисподних. О нём известно мало: там висит огромный стальной колокол, отзванивающий имена тех, кому суждено пасть.",
               "en": "A realm tied to Doom, most likely somewhere within the Seven Hells. Little is known of it beyond its great steel bell, which tolls the names of those about to fall."
             }
-          }
+          },
+          "pos": [
+            0.6,
+            0.93
+          ]
         },
         {
           "name": "Abysm",
@@ -4437,7 +7447,11 @@
               "ru": "Бездонная пропасть, дом Невермора (Shadow Fiend). Собранные им души вечно кружат в её глубинах, куда ещё никто не решился заглянуть.",
               "en": "A bottomless chasm and the home of Nevermore, the Shadow Fiend. The souls he harvests swirl forever in its depths, which no one has ever dared to look into."
             }
-          }
+          },
+          "pos": [
+            0.7,
+            0.925
+          ]
         },
         {
           "name": "Foulfell",
@@ -4457,7 +7471,11 @@
               "ru": "Скрытое измерение, где демоны держат своих преступников, — ад для самого ада. Его фрактальные стены, как тёмные зеркала, множат отражения узников. Terrorblade научился повелевать своими отражениями и разбил стены вдребезги; их чёрные осколки до сих пор хранят запертых демонов.",
               "en": "A hidden dimension where demons lock away their own outlaws, a hell for hell itself. Its fractal walls act as dark mirrors, multiplying the prisoners' reflections. Terrorblade learned to command his and shattered the walls, and their black shards still hold demons captive."
             }
-          }
+          },
+          "pos": [
+            0.84,
+            0.93
+          ]
         },
         {
           "name": "Outer Hells",
@@ -4477,7 +7495,11 @@
               "ru": "Окраинный слой ада, полный стонов проклятых. Отсюда Warlock вызывает демонов-големов — низших бесов, которыми он, в отличие от истинных дьяволов, способен повелевать.",
               "en": "An outlying layer of hell, loud with the wailing of the damned. From here Warlock calls up his golem demons, lesser fiends he can command, unlike the true devils of the deeper hells."
             }
-          }
+          },
+          "pos": [
+            0.92,
+            0.95
+          ]
         },
         {
           "name": "Narrow Maze",
@@ -4497,7 +7519,11 @@
               "ru": "Холодные извилистые ходы с лезвиями в стенах, через которые проходит каждая новая душа. Лабиринт сортирует мёртвых по уму и упорству; Razor и фамильяры Visage следят за ним, а сопротивляющихся навсегда отправляют в межмирье. Всем здесь заправляет Двор Ристула.",
               "en": "Cold, twisting, blade-lined passages that every new soul must travel. The maze sorts the dead by wit and persistence; Razor and Visage's familiars stand guard, and those who resist are cast into the herebetween forever. The Court of Ristul pulls the strings."
             }
-          }
+          },
+          "pos": [
+            0.55,
+            0.96
+          ]
         },
         {
           "name": "Underscape",
@@ -4517,7 +7543,11 @@
               "ru": "Царство, куда попадают души, прошедшие Узкий лабиринт. О нём самом известно мало.",
               "en": "The realm where souls arrive once they have passed through the Narrow Maze. Little is known of the place itself."
             }
-          }
+          },
+          "pos": [
+            0.62,
+            0.965
+          ]
         },
         {
           "name": "Nothl Realm",
@@ -4537,7 +7567,11 @@
               "ru": "Измерение, где всё вывернуто наизнанку: тьма здесь ослепительно сияет, а слабость оборачивается силой в мире живых. Путешествие сюда опасно — можно не вернуться или вернуться безумцем. Отсюда черпает силу Dazzle, а Huskar вернулся отсюда к жизни.",
               "en": "A dimension where everything is inverted: darkness shines blindingly, and whatever burdens you here becomes strength in the living world. The journey is perilous; travelers may never return, or come back mad. Dazzle draws his power from it, and Huskar came back from it to life."
             }
-          }
+          },
+          "pos": [
+            0.88,
+            0.975
+          ]
         }
       ],
       "regionHeroes": []

@@ -21,7 +21,7 @@ npm run lint        # ESLint
 npm test            # тесты Vitest
 npm run build       # сборка в dist/
 npm run preview     # посмотреть собранный dist/
-npm run check       # всё перед PR: data → typecheck → lint → test → build → python research/e1/build.py --check
+npm run check       # всё перед PR: data → typecheck → lint → test → build → node map/check-layout.mjs → python research/e1/build.py --check
 ```
 
 После правки `research/e1/`, `content/regions/` или `map/layout.json` запустите `npm run data` и закоммитьте `src/data/world.generated.json` — CI проверяет, что файл актуален.

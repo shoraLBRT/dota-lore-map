@@ -5,6 +5,7 @@ export type Localized = Record<Lang, string>;
 
 export type Tier = 'upper' | 'continent' | 'abyss';
 export type Side = 'radiant' | 'dire' | 'neutral';
+export type SideBasis = 's1map' | 'position' | 'tier';
 export type Biome =
   | 'snow'
   | 'forest'
@@ -73,6 +74,8 @@ export interface Region {
   id: string;
   tier: Tier;
   side: Side;
+  /** Откуда взята сторона: s1map — карта Source 1, position — положение на схеме E2, tier — ярус. */
+  sideBasis?: SideBasis;
   name: Localized;
   /** Справка исследования о географии (по-русски). */
   geo: string;
