@@ -1,61 +1,112 @@
 {
   "id": "tomokan",
-  "subtitle": { "ru": "Туманный лес и дикие окраины", "en": "Misty woods, lawless outlands" },
+  "subtitle": {
+    "ru": "Туманный лес и дикие окраины",
+    "en": "Misty woods, lawless outlands"
+  },
   "biome": "forest",
-  "ambient": { "type": "fog", "density": 0.6 },
+  "ambient": {
+    "type": "fog",
+    "density": 0.6
+  },
   "traits": {
-    "rule": { "ru": "Беззаконие", "en": "Lawless" },
-    "magic": { "ru": "Неизвестно", "en": "Unknown" },
-    "biome": { "ru": "Туманный лес и пустыня", "en": "Misty forest and desert" }
+    "rule": {
+      "ru": "Беззаконие",
+      "en": "Lawless"
+    },
+    "magic": {
+      "ru": "Неизвестно",
+      "en": "Unknown"
+    },
+    "biome": {
+      "ru": "Туманный лес и пустыня",
+      "en": "Misty forest and desert"
+    }
   },
   "description": {
-    "ru": "Томо'кан, или Туманный лес, лежит к югу от Айсрака. Под его вечной дымкой прячутся медвежьи берлоги, брошенные заставы и капища безымянного культа смерти. Когда-то сюда рухнули камни Неместиса, и лес до сих пор хранит следы этой порчи.\n\nВ чаще живут Урса и его сородичи, охраняющие спящих медвежат. Сюда же из чужого мира вышвырнуло Праймал Биста — хищника, которого так никто и не сумел приручить. А белка Худвинк нашла здесь новый дом, когда люди Кримвола вырубили её родной лес.\n\nЗа Гиблой топью начинаются Окраины — сухие земли без закона, где хозяйничают бандиты. Там, в пустыне Нанарак, живёт старушка Снэпфайр, чей порох и помог Кримволу извести лес.",
+    "ru": "Томо'кан, или Туманный лес, лежит к югу от Айсрака. Под его вечной дымкой прячутся медвежьи берлоги, брошенные заставы и капища безымянного культа смерти. Когда-то сюда рухнули камни Неместиса, и лес до сих пор хранит следы этой порчи.\n\nВ чаще живут Ursa и его сородичи, охраняющие спящих медвежат. Сюда же из чужого мира вышвырнуло Primal Beast — хищника, которого так никто и не сумел приручить. А белка Hoodwink нашла здесь новый дом, когда люди Кримвола вырубили её родной лес.\n\nЗа Гиблой топью начинаются Окраины — сухие земли без закона, где хозяйничают бандиты. Там, в пустыне Нанарак, живёт старушка Snapfire, чей порох и помог Кримволу извести лес.",
     "en": "Tomo'kan, the Mistwood, lies south of Icewrack. Beneath its endless haze hide bear dens, abandoned outposts and the shrines of a nameless death cult. The stones of Nemestice once crashed down here, and the woods still bear the blight they left behind.\n\nUrsa and his kin live deep in the woods, guarding their sleeping cubs. Primal Beast was flung into these trees from another world, a predator nobody ever managed to tame. And the squirrel Hoodwink found a new home here after the people of Krimwohl cleared away her native forest.\n\nPast the Dread Marsh begin the Outlands, dry and lawless country where bandits do as they please. Out there, in the Nanarak desert, lives old Snapfire, whose gunpowder is what let Krimwohl strip that forest bare."
   },
   "places": {
     "Tomo'kan": {
-      "name": { "ru": "Томо'кан", "en": "Tomo'kan" },
-      "type": { "ru": "Лес", "en": "Forest" },
+      "name": {
+        "ru": "Томо'кан",
+        "en": "Tomo'kan"
+      },
+      "type": {
+        "ru": "Лес",
+        "en": "Forest"
+      },
       "description": {
-        "ru": "Туманный и тёмный лес к югу от Айсрака, дом Урсы, Праймал Биста и Худвинк. Сюда заглядывают маги, оборотни и даже Арк Варден.",
+        "ru": "Туманный и тёмный лес к югу от Айсрака, дом для Ursa, Primal Beast и Hoodwink. Сюда заглядывают маги, оборотни и даже Arc Warden.",
         "en": "A misty, shadowed forest south of Icewrack and home to Ursa, Primal Beast and Hoodwink. Wizards, shapeshifters and even Arc Warden have passed through."
       }
     },
     "Krimwohl": {
-      "name": { "ru": "Кримвол", "en": "Krimwohl" },
-      "type": { "ru": "Королевство", "en": "Kingdom" },
+      "name": {
+        "ru": "Кримвол",
+        "en": "Krimwohl"
+      },
+      "type": {
+        "ru": "Королевство",
+        "en": "Kingdom"
+      },
       "description": {
-        "ru": "Королевство на Окраинах, к югу от Томо'кана. Получив порох от Снэпфайр, его жители вырубили окрестный лес ради дерева и руды, а лесной народ Худвинк загнали в трудовые лагеря.",
+        "ru": "Королевство на Окраинах, к югу от Томо'кана. Получив порох, который продала им Snapfire, его жители вырубили окрестный лес ради дерева и руды, а лесной народ, к которому принадлежит Hoodwink, загнали в трудовые лагеря.",
         "en": "A kingdom in the Outlands, south of Tomo'kan. Once Snapfire sold them gunpowder, its people felled the surrounding forest for timber and ore and drove Hoodwink's folk into labor camps."
       }
     },
     "Outlands": {
-      "name": { "ru": "Окраины", "en": "Outlands" },
-      "type": { "ru": "Пустоши", "en": "Wastes" },
+      "name": {
+        "ru": "Окраины",
+        "en": "Outlands"
+      },
+      "type": {
+        "ru": "Пустоши",
+        "en": "Wastes"
+      },
       "description": {
-        "ru": "Общее название всех земель за Гиблой топью. Здесь сухо, людей мало, закона нет, а бродячие бандиты рано или поздно встречают Снэпфайр.",
+        "ru": "Общее название всех земель за Гиблой топью. Здесь сухо, людей мало, закона нет, а бродячие бандиты рано или поздно встречают Snapfire.",
         "en": "A catch-all name for everything beyond the Dread Marsh. It is dry, thinly peopled and lawless, and its wandering bandits sooner or later run into Snapfire."
       }
     },
     "Nanarak": {
-      "name": { "ru": "Нанарак", "en": "Nanarak" },
-      "type": { "ru": "Пустыня", "en": "Desert" },
+      "name": {
+        "ru": "Нанарак",
+        "en": "Nanarak"
+      },
+      "type": {
+        "ru": "Пустыня",
+        "en": "Desert"
+      },
       "description": {
-        "ru": "Пустыня у Окраин, где немногие жители держатся у оазисов. Здесь живёт Снэпфайр, а в песках, возможно, водятся жабы-драконы.",
+        "ru": "Пустыня у Окраин, где немногие жители держатся у оазисов. Здесь живёт Snapfire, а в песках, возможно, водятся жабы-драконы.",
         "en": "A desert on the edge of the Outlands where the few locals cling to the oases. Snapfire lives here, and dragon toads may roam its sands."
       }
     },
     "Dread Marsh": {
-      "name": { "ru": "Гиблая топь", "en": "Dread Marsh" },
-      "type": { "ru": "Болото", "en": "Marsh" },
+      "name": {
+        "ru": "Гиблая топь",
+        "en": "Dread Marsh"
+      },
+      "type": {
+        "ru": "Болото",
+        "en": "Marsh"
+      },
       "description": {
-        "ru": "Болото с ядовитой водой у самого порога Окраин. Снэпфайр однажды ушла через него от погони.",
+        "ru": "Болото с ядовитой водой у самого порога Окраин. Snapfire однажды ушла через него от погони.",
         "en": "A marsh of poisoned water at the threshold of the Outlands. Snapfire once fled through it to shake off her pursuers."
       }
     },
     "Praxa'cia": {
-      "name": { "ru": "Пракса'сия", "en": "Praxa'cia" },
-      "type": { "ru": "Древнее царство", "en": "Ancient realm" },
+      "name": {
+        "ru": "Пракса'сия",
+        "en": "Praxa'cia"
+      },
+      "type": {
+        "ru": "Древнее царство",
+        "en": "Ancient realm"
+      },
       "description": {
         "ru": "Земля на Окраинах. Эоны назад, в её третью эпоху, здесь выковали Убийцу магов, чтобы низвергнуть Лжекороля.",
         "en": "A land in the Outlands. Eons ago, in its third age, the Mage Slayer was forged here to bring down its False King."
