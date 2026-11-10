@@ -21,6 +21,7 @@ ROLE = {"origin": "", "home": " (живёт)", "link": " (связь)"}
 BASIS = {"infobox": "", "bio": "", "page": "†", "ours": "*"}
 PLACEMENT = {"lore": "лор", "s1map": "карта S1", "ours": "наше"}
 SIDE = {"radiant": "Radiant", "dire": "Dire", "neutral": "нейтрально"}
+SIDE_BASIS = {"s1map": "карта S1", "position": "по схеме E2", "tier": "ярус"}
 TIER = {"upper": "Верхний ярус", "continent": "Материк и острова", "abyss": "Бездна"}
 
 
@@ -44,6 +45,12 @@ def validate(heroes, regions, places):
     for r in regions["regions"]:
         if r["tier"] not in TIER or r["side"] not in SIDE:
             errors.append(f"регион {r['id']}: неверный tier/side")
+        if r.get("sideBasis") not in SIDE_BASIS:
+            errors.append(f"регион {r['id']}: неверный sideBasis")
+        elif (r["tier"] != "continent") != (r["sideBasis"] == "tier"):
+            errors.append(f"регион {r['id']}: sideBasis «tier» — только у ярусов, и у ярусов — только он")
+        elif r["sideBasis"] == "tier" and r["side"] != "neutral":
+            errors.append(f"регион {r['id']}: ярус должен быть нейтральным")
         if sum(1 for l in r["locations"] if l.get("capital")) > 1:
             errors.append(f"регион {r['id']}: больше одной столицы")
         for l in r["locations"]:
@@ -102,7 +109,7 @@ def render(heroes, regions, places, loc_region):
     out.append("| Ярус | Регион | Сторона | Мест | Героев |")
     out.append("|---|---|---|---|---|")
     for r in regions["regions"]:
-        out.append(f"| {TIER[r['tier']]} | {r['ru']} ({r['en']}) | {SIDE[r['side']]} | "
+        out.append(f"| {TIER[r['tier']]} | {r['ru']} ({r['en']}) | {SIDE[r['side']]} ({SIDE_BASIS[r['sideBasis']]}) | "
                    f"{len(r['locations'])} | {len(region_heroes(r))} |")
     out.append("")
 
@@ -112,7 +119,7 @@ def render(heroes, regions, places, loc_region):
             tier = r["tier"]
             out.append(f"### {TIER[tier]}\n")
         out.append(f"#### {r['ru']} · {r['en']}\n")
-        out.append(f"Сторона: **{SIDE[r['side']]}**. {r['geo']}\n")
+        out.append(f"Сторона: **{SIDE[r['side']]}** ({SIDE_BASIS[r['sideBasis']]}). {r['geo']}\n")
         if r["id"] == "uncharted":
             out.append("| Герой | Почему здесь |")
             out.append("|---|---|")
