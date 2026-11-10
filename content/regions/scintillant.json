@@ -1,0 +1,89 @@
+{
+  "id": "scintillant",
+  "subtitle": { "ru": "Живые пески экватора", "en": "The living sands of the equator" },
+  "biome": "desert",
+  "ambient": { "type": "sand", "density": 0.65 },
+  "traits": {
+    "rule": { "ru": "Разрозненные царства", "en": "Scattered kingdoms" },
+    "magic": { "ru": "Обрядовая магия", "en": "Ritual magic" },
+    "biome": { "ru": "Экваториальная пустыня", "en": "Equatorial desert" }
+  },
+  "description": {
+    "ru": "Огромная пустыня на экваторе — и, пожалуй, самое странное живое существо мира. Её пески разумны: пустыня думает сама с собой, а чтобы говорить с другими, вселяет частицу себя в зачарованный панцирь. Так появился Sand King, Криксалис — «Душа Песка», страж и посол пустыни. В зыбучих песках сгинуло немало исследователей, а повсюду снуют паукообразные — их облик Sand King и принял.\n\nНа восточном краю стоит нестерпимый зной; там живут мастера, которые куют оружие из золота и поклоняются Солнечной богине. На западе — или в самой пустоши — лежит Пустыня Мизрул, куда родители отослали юную Lina к тётке, подальше от сестры. Рядом находится царство Калдин с его джиннами и обрядами-танцами, а пески хранят руины Эль-Харата и других павших империй.\n\nЕсть здесь и дождливые руины Рифтшэдоу, где вырос Meepo. Он жил продажей древней резьбы, пока один из местных кристаллов не расколол его душу на части.",
+    "en": "A vast desert on the equator — and perhaps the strangest living thing in the world. Its sands are sentient: the desert thinks to itself, and when it must speak with smaller minds it pours a sliver of itself into an enchanted carapace. That is how Sand King came to be — Crixalis, the 'Soul of the Sand', guardian and envoy of the dunes. Quicksand has swallowed many explorers, and arachnids skitter everywhere; Sand King took their shape.\n\nThe eastern reaches burn with unbearable heat and are home to artisans who forge weapons from gold and worship a Solar Goddess. To the west, or perhaps within the waste itself, lies the Desert of Misrule, where young Lina was sent to live with an aunt, far away from her sister. Nearby is the kingdom of Qaldin with its djinn and dance-borne rites, while the sands bury the ruins of El'Harath and other fallen empires.\n\nHere too lie the rain-soaked Riftshadow Ruins, where Meepo grew up. He scraped a living selling ancient carvings — until one of the ruins' crystals shattered his soul into many pieces."
+  },
+  "places": {
+    "Scintillant Waste": {
+      "name": { "ru": "Сверкающая пустошь", "en": "Scintillant Waste" },
+      "type": { "ru": "Живая пустыня", "en": "Living desert" },
+      "description": {
+        "ru": "Разумная пустыня, полная зыбучих песков и паукообразных; её голос и страж — Sand King. На её краю, в огромном кратере, нашли Солнечную кузню.",
+        "en": "A sentient desert of quicksand and arachnids, with Sand King as its voice and guardian. The Solar Forge was found in a vast crater at its edge."
+      }
+    },
+    "Desert of Misrule": {
+      "name": { "ru": "Пустыня Мизрул", "en": "Desert of Misrule" },
+      "type": { "ru": "Пустыня", "en": "Desert" },
+      "description": {
+        "ru": "Знойная бесплодная пустыня на экваторе, где водятся пустынные вирмы, а немногочисленные поселенцы живут тихо и скромно. Когда-то здесь правила знать в рубинах и золоте, теперь — Повелитель Мизрула. Сюда к тётке отправили юную Lina, и с тех пор местные женихи то и дело уходят от неё с опалёнными бровями.",
+        "en": "A blazing, barren desert on the equator, home to desert wyrms and a handful of quiet, humble settlements. Ruby-decked nobles once ruled it; today the Lord of Misrule reigns. Young Lina was sent here to live with her aunt, and local suitors have been leaving with singed eyebrows ever since."
+      }
+    },
+    "Riftshadow Ruins": {
+      "name": { "ru": "Руины Рифтшэдоу", "en": "Riftshadow Ruins" },
+      "type": { "ru": "Руины", "en": "Ruins" },
+      "description": {
+        "ru": "Останки древней цивилизации, чей дворец славился тёмными обрядами: души выживших заключали в кристаллы и раскалывали. Здесь часто идут дожди и бродят опасные звери. Meepo продавал отсюда резьбу и статуи, пока сам не раскололся на множество копий.",
+        "en": "Remains of an ancient civilisation whose palace was infamous for dark rites: survivors' souls were sealed in crystals and shattered. Rain falls often here, and dangerous beasts roam the rubble. Meepo made a living hauling carvings out of the ruins — until he split into many copies of himself."
+      }
+    },
+    "Qaldin": {
+      "name": { "ru": "Калдин", "en": "Qaldin" },
+      "type": { "ru": "Царство", "en": "Kingdom" },
+      "description": {
+        "ru": "Пустынное царство рядом со Сверкающей пустошью. Здесь живёт джинн, создавший панцирь для Sand King, и обосновались калдинские ассасины. Магические обряды тут совершают танцем, а Калдин славится ещё и своей кухней.",
+        "en": "A desert kingdom on the fringe of the Scintillant Waste, home to the djinn who crafted Sand King's carapace and base of the Qaldin Assassins. Its magic is worked through dance, and its cuisine is renowned."
+      }
+    },
+    "El'Harath": {
+      "name": { "ru": "Эль-Харат", "en": "El'Harath" },
+      "type": { "ru": "Руины города", "en": "Ruined city" },
+      "description": {
+        "ru": "Разрушенный город Древнего Владыки где-то в Сверкающей пустоши. Его населяли существа, похожие на Sand King, но с настоящими крыльями.",
+        "en": "A fallen city of the Ancient Sovereign, lost somewhere in the Scintillant Waste. Its people resembled Sand King, but had working wings."
+      }
+    },
+    "The Barrens": {
+      "name": { "ru": "Пустоши", "en": "The Barrens" },
+      "type": { "ru": "Пустошь", "en": "Wasteland" },
+      "description": {
+        "ru": "Бескрайняя пустошь, которой когда-то правил король; здесь жил Маг Шпиля. Возможно, это часть Сверкающей пустоши — или другое имя Хазадальских пустошей.",
+        "en": "A vast wasteland once ruled by a king and home to the Spire Mage. It may be part of the Scintillant Waste — or simply another name for the Hazhadal Barrens."
+      }
+    },
+    "Halgalreh": {
+      "name": { "ru": "Халгалре", "en": "Halgalreh" },
+      "type": { "ru": "Руины империи", "en": "Ruined empire" },
+      "description": {
+        "ru": "Руины пустынной империи, чьи призматические башни рассыпались в опасную для лёгких стеклянную пыль; по ночам странный лунный свет насылает здесь видения. В руинах искала тайное знание Templar Assassin. Где они лежат, в лоре не сказано — сюда их поместили мы.",
+        "en": "The ruins of a desert empire whose prismatic towers have crumbled into glass dust that is deadly to breathe; at night a strange moonlight brings visions. Templar Assassin has searched these ruins for arcane secrets. The lore never says where they lie — placing them here is our choice."
+      }
+    },
+    "Bone Ruins": {
+      "name": { "ru": "Костяные руины", "en": "Bone Ruins" },
+      "type": { "ru": "Раскопки", "en": "Excavation site" },
+      "description": {
+        "ru": "Место раскопок, вход в которое украшала триумфальная арка — теперь изрядно повреждённая взрывчаткой. Ключи от неё у Meepo, который, судя по всему, выгнал отсюда бандитов. Расположение в лоре не указано.",
+        "en": "A dig site once entered through a triumphal arch, now badly damaged by explosives. Meepo holds the keys to it and seems to have driven out the bandits who lived here. Its location is not given in the lore."
+      }
+    },
+    "Singer's Gulch": {
+      "name": { "ru": "Ущелье Певцов", "en": "Singer's Gulch" },
+      "type": { "ru": "Долина", "en": "Valley" },
+      "description": {
+        "ru": "Долина гигантских звенящих кристаллов — отсюда, видимо, и название. Meepo годами копал здесь и наконец добыл огромный поющий кристалл, но продать его не может: слишком шумный. Расположение в лоре не указано.",
+        "en": "A valley of giant resonating crystals, likely named for the sound they make. Meepo spent years digging here and finally unearthed a huge singing crystal — which nobody will buy, because it is far too loud. Its location is not given in the lore."
+      }
+    }
+  }
+}

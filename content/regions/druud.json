@@ -1,0 +1,33 @@
+{
+  "id": "druud",
+  "subtitle": { "ru": "Плато кентавров и гроз", "en": "Plateau of centaurs and storms" },
+  "biome": "mountains",
+  "ambient": { "type": "sand", "density": 0.3 },
+  "traits": {
+    "rule": { "ru": "Кланы", "en": "Clans" },
+    "magic": { "ru": "Почитают бури", "en": "Storms are worshipped" },
+    "biome": { "ru": "Высокогорное плато", "en": "Highland plateau" }
+  },
+  "description": {
+    "ru": "Высокое плато к югу от Полей Вечной Бойни — красные пустыни, продуваемые ветрами степи и бесконечные столовые горы. Это земля кланов кентавров. Чужакам они кажутся грубыми дикарями: у них нет ни письменности, ни музыки, ни устроенной веры. Но для кентавра бой и есть высшая форма мысли.\n\nНа плоскогорье живут и горные оглоди — последний осколок некогда великой цивилизации. Они ездят на страйдерах, роются в руинах городов предков и почитают погоду как божество: летние грозы приносят дождь, но оставляют за собой обугленные тела. С юга на их земли постоянно давят оседлые королевства.\n\nОтсюда родом двое героев. Centaur Warrunner стал непобедимым чемпионом арены Омекс и ушёл искать достойного противника по всему миру. Disruptor, юный мастер бурь, приспособил древнюю катушку, которая призывает молнию по его воле, и обратил её против южных захватчиков.",
+    "en": "A high plateau south of the Fields of Endless Carnage — red deserts, wind-scoured steppe and endless tablelands. This is the country of the centaur clans. Outsiders take them for brutes: they have no writing, no formal music, no organised faith. To a centaur, though, combat is the purest form of thought.\n\nThe uplands are also home to the Oglodi, the last remnant of a once-great civilisation. They ride stryders, scavenge the ruins of their ancestors' cities and revere the weather itself — summer storms bring rain but leave charred bodies in their wake. Settled kingdoms to the south keep pressing on their land.\n\nTwo heroes hail from here. Centaur Warrunner became the undisputed champion of the Omexe arena, then rode off in search of an opponent worthy of him. Disruptor, a young stormcrafter, adapted an ancient coil that calls down lightning at will and turned it on the southern intruders."
+  },
+  "places": {
+    "Druud": {
+      "name": { "ru": "Друуд", "en": "Druud" },
+      "type": { "ru": "Нагорье", "en": "Highlands" },
+      "description": {
+        "ru": "Ветреное нагорье кентавров и оглоди, где грозы одновременно дают жизнь и отнимают её. Родина Centaur Warrunner и Disruptor.",
+        "en": "Windswept highlands of centaurs and Oglodi, where storms both give life and take it. Home of Centaur Warrunner and Disruptor."
+      }
+    },
+    "Omexe": {
+      "name": { "ru": "Омекс", "en": "Omexe" },
+      "type": { "ru": "Арена", "en": "Arena" },
+      "description": {
+        "ru": "Древняя арена, где кланы кентавров тысячелетиями сходятся в смертельных боях до последнего стоящего на ногах. Победитель получает Великий пояс Омекса; его носит Centaur Warrunner, который хотел бы однажды лечь в эту землю.",
+        "en": "An ancient arena where the centaur clans have met for millennia to fight to the last one standing. The victor is awarded the Great Belt of Omexe — now worn by Centaur Warrunner, who wishes to be buried in these grounds one day."
+      }
+    }
+  }
+}
