@@ -1,21 +1,76 @@
-/* Временные токены каркаса. Финальная палитра и шрифты — дизайн-система E12 (SPEC §8). */
+/* Токены дизайн-системы (SPEC §8.2, ARCHITECTURE A8). Значения — только здесь, в компонентах — var(--…). */
 :root {
-  --color-bg: #121214;
-  --color-surface: #1c1c20;
-  --color-border: #3a3a40;
-  --color-text: #e8e4dc;
-  --color-muted: #a19c92;
-  --color-accent: #c2413a;
-  --color-sea: #16222c;
-  --color-radiant: #7fb35a;
-  --color-dire: #b0352c;
+  /* Фоны: тёмный камень с холодным оттенком */
+  --bg-0: #0b0d11;
+  --bg-1: #16181d;
+  --bg-2: #22252c;
+  --sea: #101a22;
 
-  --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-display: Georgia, 'Times New Roman', serif;
+  /* Металл: сталь с бронзой — рамки и разделители */
+  --metal: #6e6250;
+  --metal-bright: #b39a6c;
+  --metal-dim: #3a352d;
+  --border: var(--metal-dim);
 
+  /* Акцент: фирменный красный Dota */
+  --accent: #c23c2a;
+  --accent-bright: #e2543f;
+  --accent-dim: #7a2519;
+
+  /* Стороны (SPEC §8.3) */
+  --radiant: #7fae4a;
+  --dire: #c8402a;
+  --neutral: #8a9bab;
+
+  /* Подсветка регионов: полупрозрачные варианты сторон */
+  --radiant-glow: rgb(127 174 74 / 0.35);
+  --dire-glow: rgb(200 64 42 / 0.35);
+  --neutral-glow: rgb(138 155 171 / 0.3);
+
+  /* Текст: тёплый светлый → приглушённый → служебный */
+  --text-1: #e9e2d4;
+  --text-2: #a59d8e;
+  --text-3: #6d675d;
+
+  /* Шрифты (решение В6, ARCHITECTURE A8) */
+  --font-display: 'Cormorant SC', 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-body: Manrope, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --tracking-display: 0.08em;
+
+  /* Отступы: шкала 4 px */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
   --space-4: 1rem;
   --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+
+  /* Радиусы: интерфейс Dota почти без скруглений, углы срезаем */
+  --radius-1: 2px;
+  --radius-2: 4px;
+  --radius-round: 50%;
+  --cut: 10px;
+  --cut-sm: 6px;
+
+  /* Тени */
+  --shadow-1: 0 2px 6px rgb(0 0 0 / 0.5);
+  --shadow-2: 0 8px 24px rgb(0 0 0 / 0.6);
+  --shadow-inset: inset 0 1px 0 rgb(255 255 255 / 0.06), inset 0 -1px 0 rgb(0 0 0 / 0.5);
+  --glow-accent: 0 0 12px rgb(194 60 42 / 0.55);
+  --glow-metal: 0 0 10px rgb(179 154 108 / 0.35);
+
+  /* Длительности анимаций (SPEC §7.1) */
+  --dur-hover: 200ms;
+  --dur-fade: 250ms;
+  --dur-panel: 400ms;
+  --dur-thread: 600ms;
+  --dur-place: 700ms;
+  --dur-camera: 1200ms;
+  --dur-intro: 1800ms;
+
+  /* Сглаживание */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
 }
+

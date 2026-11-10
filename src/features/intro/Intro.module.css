@@ -23,7 +23,7 @@
 
 .kicker {
   margin: 0;
-  color: var(--color-muted);
+  color: var(--text-2);
   letter-spacing: 0.2em;
   text-transform: uppercase;
 }
@@ -41,7 +41,7 @@
 .footer {
   padding: var(--space-3) var(--space-4);
   font-size: 0.8rem;
-  color: var(--color-muted);
+  color: var(--text-2);
   text-align: center;
 }
 

@@ -14,7 +14,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-sea);
+  background: var(--sea);
 }
 
 .layer {
@@ -30,24 +30,24 @@
 }
 
 .region {
-  stroke: var(--color-border);
+  stroke: var(--border);
   stroke-width: 2;
   cursor: pointer;
 }
 
 .region:hover,
 .region:focus-visible {
-  stroke: var(--color-text);
+  stroke: var(--text-1);
   outline: none;
 }
 
 .active .region {
-  stroke: var(--color-accent);
+  stroke: var(--accent);
   stroke-width: 3;
 }
 
 .label {
-  fill: var(--color-text);
+  fill: var(--text-1);
   font-size: 22px;
   text-transform: uppercase;
   pointer-events: none;
@@ -58,12 +58,12 @@
 
 .marker {
   cursor: pointer;
-  fill: var(--color-text);
+  fill: var(--text-1);
   font-size: 12px;
 }
 
 .marker circle {
-  stroke: var(--color-accent);
+  stroke: var(--accent);
   stroke-width: 2;
 }
 
@@ -85,5 +85,5 @@
 }
 
 .list button[aria-current='true'] {
-  border-color: var(--color-accent);
+  border-color: var(--accent);
 }
