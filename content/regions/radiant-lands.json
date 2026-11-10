@@ -1,0 +1,81 @@
+{
+  "id": "radiant-lands",
+  "subtitle": { "ru": "Озёра, долины и мастерские кинов", "en": "Tarns, valleys and Keen workshops" },
+  "biome": "mountains",
+  "ambient": { "type": "leaves", "density": 0.3 },
+  "traits": {
+    "rule": { "ru": "Деревенские общины", "en": "Village communities" },
+    "magic": { "ru": "Предпочитают технику", "en": "Favor technology" },
+    "biome": { "ru": "Горные долины и озёра", "en": "Mountain valleys and tarns" }
+  },
+  "description": {
+    "ru": "На старой пергаментной карте северная половина мира подписана как Земля Сияющих. Это край горных долин, рыбацких деревень и тысяч малых озёр, а среди его жителей больше всего слышно о кинах — маленьком народе изобретателей, стрелков и подрывников.\n\nСлава у этих земель двоякая. В долинах Кноллена юные кины доказывают меткость одним-единственным выстрелом, а мастерские Клокверка и Тинкера славятся на весь мир. Но там же стоит Фиолетовое плато, окутанное вечной чёрной мглой с того дня, как опыт Тинкера пробил дыру в иной мир.\n\nОтсюда родом Снайпер, Техики, Клокверк и Фантом Лансер, а через Тысячеболотье с боями прошёл Акс.",
+    "en": "On the old parchment map, the northern half of the world is labeled the Land of the Radiant. It is a country of mountain valleys, fishing villages and a thousand little lakes, and of all its peoples the one heard of most is the Keen, a small folk of inventors, marksmen and demolitionists.\n\nIts fame cuts both ways. In the valleys of Knollen, young Keen prove themselves with a single shot, and the workshops of Clockwerk and Tinker are known across the world. Yet here too stands the Violet Plateau, wrapped in black mist ever since one of Tinker's experiments tore a hole into another world.\n\nSniper, the Techies, Clockwerk and Phantom Lancer were all born here, and Axe fought his way across the Thousand Tarns."
+  },
+  "places": {
+    "Pole": {
+      "name": { "ru": "Поль", "en": "Pole" },
+      "type": { "ru": "Деревня", "en": "Village" },
+      "description": {
+        "ru": "Мирная рыбацкая деревня, где бьют рыбу острогой и благодарят каждого зверя, отданного в пищу; в окрестных водах водятся рыбы, способные проглотить человека. Жителей Поля призвали на войну с Ворном, Ужасным Магом, и один из них, Азрейт, вернулся с неё Фантом Лансером — но домой уже не пошёл.",
+        "en": "A peaceful fishing village whose people spear their catch and honor every animal they take for food, though the nearby waters hide fish big enough to swallow a man whole. Pole was called to war against Vorn the Dread Magus, and one villager, Azwraith, came back from it as the Phantom Lancer, though never back home."
+      }
+    },
+    "Violet Archives": {
+      "name": { "ru": "Фиолетовые архивы", "en": "Violet Archives" },
+      "type": { "ru": "Архив", "en": "Archive" },
+      "description": {
+        "ru": "Хранилище записей об опытах кинов у Фиолетового плато, наполовину разрушенное после катастрофы. В уцелевших бумагах нашёлся чертёж оружия, собирающего силу разума в пронзающий луч, — по нему создали клинок Темплар Ассассин. Ланайя потом заучила то, что осталось от записей.",
+        "en": "The record hall for Keen experiments at the Violet Plateau, half destroyed after the disaster. Among the surviving papers was a blueprint for a weapon that focuses the mind into a piercing blast, the source of the Templar Assassin's blade. Lanaya later committed what remained to memory."
+      }
+    },
+    "Violet Plateau": {
+      "name": { "ru": "Фиолетовое плато", "en": "Violet Plateau" },
+      "type": { "ru": "Плато", "en": "Plateau" },
+      "description": {
+        "ru": "Плато с подземными лабораториями кинов, основанными Тинкером. Пытаясь создать межпланарный щит, исследователи свернули свет и пробили брешь в тёмный мир. С тех пор плато окутано чёрной мглой и стонет кошмарными звуками, а выжил один Тинкер.",
+        "en": "A plateau housing the Keen's underground laboratories, founded by Tinker. Trying to build an interplanar shield, the researchers folded light in on itself and tore a breach into a darker world. Since then the plateau has been shrouded in black mist and haunted by nightmare sounds, and Tinker alone made it out alive."
+      }
+    },
+    "Castle of the Fold": {
+      "name": { "ru": "Замок Фолд", "en": "Castle of the Fold" },
+      "type": { "ru": "Замок", "en": "Castle" },
+      "description": {
+        "ru": "Замок, подписанный на старой пергаментной карте Земли Сияющих. Больше о нём ничего не известно: в биографиях героев он не упоминается.",
+        "en": "A castle marked on the old parchment map of the Land of the Radiant. Nothing else is known about it; no hero's story mentions it."
+      }
+    },
+    "Home of the Keen Folk": {
+      "name": { "ru": "Дом народа кинов", "en": "Home of the Keen Folk" },
+      "type": { "ru": "Земли народа", "en": "Homeland" },
+      "description": {
+        "ru": "Так на старой карте подписаны исконные земли кинов — невысокого народа изобретателей и мастеров. Отсюда родом механик Клокверк; подробностей о самом месте лор не даёт.",
+        "en": "The name the old map gives to the ancestral lands of the Keen, a small folk of inventors and craftsmen. Clockwerk the mechanic comes from here; the lore offers no details about the place itself."
+      }
+    },
+    "Knollen": {
+      "name": { "ru": "Кноллен", "en": "Knollen" },
+      "type": { "ru": "Горные долины", "en": "Mountain valleys" },
+      "description": {
+        "ru": "Горные долины кинов-стрелков, где ружьё переходит от отца к сыну. Чтобы стать своим, юноша должен сразить горного зверя-стипсталкера одним выстрелом со дна долины; пуля Карделя попала зверю в глаз — знак то ли славы, то ли беды. Здесь любят сигары и летние ярмарки с тиром.",
+        "en": "Mountain valleys of Keen marksmen, where a father's rifle passes to his son. To be accepted, a youth must drop a steepstalker with one shot from the valley floor; Kardel's bullet struck its eye, an omen of glory or of doom. Knollen loves its cigars and midsummer shooting fairs."
+      }
+    },
+    "Dredger's Bight": {
+      "name": { "ru": "Дреджерс-Байт", "en": "Dredger's Bight" },
+      "type": { "ru": "Городок", "en": "Town" },
+      "description": {
+        "ru": "Городок кинов, родина Техиков — неразлучной троицы подрывников Сквии, Сплина и Спуна. О самом месте известно мало.",
+        "en": "A Keen town and the birthplace of the Techies, the inseparable demolition trio of Squee, Spleen and Spoon. Little else is known about the place."
+      }
+    },
+    "Thousand Tarns": {
+      "name": { "ru": "Тысячеболотье", "en": "Thousand Tarns" },
+      "type": { "ru": "Озёрный край", "en": "Lake country" },
+      "description": {
+        "ru": "Край бесчисленных горных озёр, где жили тарнсмены, поклонявшиеся демонам, а правили ими демоны в людском обличье. Армия Красного Тумана, в рядах которой шёл Акс, семь лет пробивалась через эти земли, и кровь павших смешалась в озёрах — человеческая с демонической.",
+        "en": "A country of countless mountain lakes, home to the Tarnsmen, who worshiped demons and were secretly ruled by demons in human guise. The Red Mist army, Axe among its ranks, spent seven brutal years fighting across it, and the blood of the fallen, human and demon alike, pooled in the tarns."
+      }
+    }
+  }
+}
