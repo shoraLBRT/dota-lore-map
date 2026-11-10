@@ -1,0 +1,105 @@
+{
+  "id": "middle-kingdoms",
+  "subtitle": { "ru": "Короны, храмы и тайные ордены", "en": "Crowns, temples and secret orders" },
+  "biome": "plains",
+  "ambient": { "type": "leaves", "density": 0.2 },
+  "traits": {
+    "rule": { "ru": "Короли и ордены", "en": "Kings and orders" },
+    "magic": { "ru": "Изучают в академиях", "en": "Studied in academies" },
+    "biome": { "ru": "Королевства и дикие земли", "en": "Kingdoms and wilds" }
+  },
+  "description": {
+    "ru": "Сердце обитаемого мира, где короны передаются по наследству, а за каждым троном стоит своя тайна. Где именно лежат эти земли, лор не говорит, поэтому мы собрали их вместе: королевства, храмы, академии и логова, которые знает каждый герой, но ни одна карта.\n\nЗдесь короли платят дань драконам и зовут охотников на магов, а знатные советы придумывают пытки для узников. Маги учатся в Академии Ультимира, жрецы Всеведения спускаются в пещеры Эмарака, а в скрытых храмах и ульях служат своим господам тайные убийцы.\n\nЭти земли связаны с Давионом и Мираной, Инвокером и Варлоком, Омникнайтом, Абаддоном, Темплар Ассассин, Никс Ассассином, Брудмазер, Лайфстилером и Муэртой.",
+    "en": "The heart of the settled world, where crowns pass down bloodlines and every throne hides a secret. The lore never says exactly where these lands lie, so we have gathered them together: kingdoms, temples, academies and lairs that every hero knows but no map shows.\n\nHere kings pay tribute to dragons and send for mage hunters, while noble councils invent new tortures for their prisoners. Mages train at the Ultimyr Academy, priests of the Omniscience descend into the caves of Emauracus, and secret assassins serve their masters from hidden temples and hives.\n\nThese lands belong to the stories of Davion and Mirana, Invoker and Warlock, Omniknight, Abaddon, the Templar Assassin, Nyx Assassin, Broodmother, Lifestealer and Muerta."
+  },
+  "places": {
+    "Candoness": {
+      "name": { "ru": "Кандонес", "en": "Candoness" },
+      "type": { "ru": "Королевство", "en": "Kingdom" },
+      "description": {
+        "ru": "Королевство, где при каждой коронации платили дань дракону Ульдораку. В день восшествия на трон Тансиса XIII сэр Давион, Драконий Рыцарь, подстерёг и убил дракона, заслужив благодарность королевской семьи.",
+        "en": "A kingdom that had to pay tribute to the dragon Uldorak every time a new monarch was crowned. On the day Tansis XIII took the throne, Sir Davion the Dragon Knight ambushed and slew the beast, earning the royal family's gratitude."
+      }
+    },
+    "Devarque": {
+      "name": { "ru": "Деварк", "en": "Devarque" },
+      "type": { "ru": "Королевство", "en": "Kingdom" },
+      "description": {
+        "ru": "Королевство Мерзкого совета, приговорившего вора Н'айкса к пожизненному заключению. Знать Деварка, даже её дети, славилась жестокостью и изобретала для узника всё новые пытки; так началась история Лайфстилера.",
+        "en": "Kingdom of the Vile Council, which sentenced the thief N'aix to life in prison. Devarque's nobles, their children included, were famed for cruelty and kept inventing new tortures for him; so began the story of the Lifestealer."
+      }
+    },
+    "Yoskreth": {
+      "name": { "ru": "Йоскрет", "en": "Yoskreth" },
+      "type": { "ru": "Королевство", "en": "Kingdom" },
+      "description": {
+        "ru": "Королевство, которое терзал колдун Сахск, пока государь не призвал прославленного Антимага. Тот победил колдуна и получил в награду доспехи, шелка и оружие. Йоскрет известен причудливой модой — например, ирокезами.",
+        "en": "A kingdom tormented by the sorcerer Sahsk until its sovereign summoned the famous Anti-Mage. He defeated the sorcerer and was paid in armor, silk and weapons. Yoskreth is also known for its odd fashions, mohawks among them."
+      }
+    },
+    "Ultimyr Academy": {
+      "name": { "ru": "Академия Ультимира", "en": "Ultimyr Academy" },
+      "type": { "ru": "Магическая академия", "en": "Arcane academy" },
+      "description": {
+        "ru": "Школа тайных искусств, где писцы переводят древние руны. Нынешняя гордость академии — Демнок Ланник, Варлок, пришедший сюда за знаниями ради редких книг. Века назад здесь учился юный Инвокер, но, переросши учителей, разгромил академию и ушёл.",
+        "en": "A school of the arcane arts whose scribes translate ancient runes. Its pride today is Demnok Lannik, the Warlock, who came seeking magic to aid his hunt for rare texts. Ages ago the young Invoker studied here, then outgrew his masters, wrecked the place and left."
+      }
+    },
+    "Emauracus": {
+      "name": { "ru": "Эмарак", "en": "Emauracus" },
+      "type": { "ru": "Скальная обитель", "en": "Cliff sanctuary" },
+      "description": {
+        "ru": "Изрезанные пещерами утёсы, где живут жрецы Всеведения. Их ходы неделями ведут в глубь земли, к самому божеству; символ здешних высоких скал — пара крыльев. В хранилищах лежат древние реликвии, а родом отсюда Омникнайт.",
+        "en": "Cliffs riddled with caves where the priests of the Omniscience dwell. Their tunnels lead for weeks deep into the earth, toward the god itself, and a pair of wings stands for these high cliffs. Ancient relics rest in its vaults, and it is Omniknight's home."
+      }
+    },
+    "Font of Avernus": {
+      "name": { "ru": "Купель Аверно", "en": "Font of Avernus" },
+      "type": { "ru": "Источник", "en": "Sacred spring" },
+      "description": {
+        "ru": "Трещина в камне, из которой сочится чёрный туман, поглощающий свет. Он дарует дому Аверно власть над жизнью и смертью и показывает судьбы — даже демоны ненавидят эту силу. Абаддон пил из купели глубже всех и сам стал созданием тумана.",
+        "en": "A crack in the stone that breathes out a black, light-swallowing mist. It grants House Avernus power over life and death and reveals fates within its swirl, a gift even demons despise. Abaddon drank deeper than anyone and became a creature of the mist himself."
+      }
+    },
+    "Hidden Temple": {
+      "name": { "ru": "Потаённый храм", "en": "Hidden Temple" },
+      "type": { "ru": "Тайный храм", "en": "Secret temple" },
+      "description": {
+        "ru": "Храм, вход в который скрыт в самой природе и невидим для обычных глаз. Здесь живут Скрытые во главе с Инаем и хранятся зашифрованные кодексы. Ланайя нашла храм и в обмен на его тайны стала убийцей Скрытых — Темплар Ассассин.",
+        "en": "A temple whose door is hidden in nature itself and invisible to ordinary eyes. The Hidden Ones live here under Inai, guarding encrypted codices. Lanaya found it and, in exchange for its secrets, became the Hidden Ones' assassin, the Templar Assassin."
+      }
+    },
+    "Hidden Hive": {
+      "name": { "ru": "Скрытый Улей", "en": "Hidden Hive" },
+      "type": { "ru": "Улей", "en": "Hive" },
+      "description": {
+        "ru": "Тайная колония жуков-фанатиков, где, по-видимому, живёт их королева Никс. Сюда присылают каждого нового Никс Ассассина: его утверждают, облачают в броню и посвящают в замыслы королевы. Стены улья усеяны кристаллами, усиливающими скарабеев.",
+        "en": "A secret colony of zealot scarabs, most likely home to their queen Nyx. Every new Nyx Assassin is sent here to be confirmed, armored and let in on the queen's schemes. Crystals set into its walls sharpen the scarabs' powers."
+      }
+    },
+    "Mount Pyrotheos": {
+      "name": { "ru": "Гора Пиротеос", "en": "Mount Pyrotheos" },
+      "type": { "ru": "Потухший вулкан", "en": "Dead volcano" },
+      "description": {
+        "ru": "Потухший вулкан, в лавовых трубах которого живёт Чёрная Арахния, Брудмазер, со своим потомством. Когда-то ей поклонялся культ, ковавший ей доспехи и бросавшийся в её паутину. Позже на склоне визирь Птолопталес построил Магнитный зиккурат, приманивший сюда бесконечный поток воров.",
+        "en": "A dead volcano whose lava tubes are home to Black Arachnia the Broodmother and her young. A cult once worshiped her, forging armor for her and throwing themselves into her webs. Later the vizier Ptholopthales raised his Magnetic Ziggurat on its slopes, drawing an endless stream of thieves."
+      }
+    },
+    "Skirm": {
+      "name": { "ru": "Скирм", "en": "Skirm" },
+      "type": { "ru": "Пустынный городок", "en": "Desert town" },
+      "description": {
+        "ru": "Городок в далёкой пустыне, который каждый год грабили бандиты Зонгом. Здесь росла девочка Селеста — будущая Муэрта.",
+        "en": "A town in the distant desert, raided every year by the Zongom bandits. A girl named Celeste grew up here; the world would later know her as Muerta."
+      }
+    },
+    "Solar Throne": {
+      "name": { "ru": "Лучезарный трон", "en": "Solar Throne" },
+      "type": { "ru": "Престол империи", "en": "Imperial seat" },
+      "description": {
+        "ru": "Престол Гелио-империи, власть которого простирается над огромным королевством. Наследница Мирана оставила его ради служения богине Селемене, и трон уже много лет пустует.",
+        "en": "The seat of the Helio Imperium, its sway reaching across a vast realm. Its heir, Mirana, turned her back on it to serve the goddess Selemene, and the throne has waited for her for many years."
+      }
+    }
+  }
+}

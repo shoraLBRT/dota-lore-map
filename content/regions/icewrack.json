@@ -1,0 +1,113 @@
+{
+  "id": "icewrack",
+  "subtitle": { "ru": "Суровая ледяная пустошь", "en": "Harsh frozen wasteland" },
+  "biome": "snow",
+  "ambient": { "type": "snow", "density": 0.7 },
+  "traits": {
+    "rule": { "ru": "Племена", "en": "Tribes" },
+    "magic": { "ru": "Чтут магию льда", "en": "Revere frost magic" },
+    "biome": { "ru": "Ледяная пустошь", "en": "Frozen waste" }
+  },
+  "description": {
+    "ru": "Крайний север мира: замёрзшая равнина между хребтом Барьер и Кипящим морем. Сюда почти не ходят корабли — единственный морской путь лежит через Фростреч, самый северный порт на свете. Сквозь весь край течёт Ледник Голубого Сердца — источник всей магии холода.\n\nКогда-то здешние королевства стонали под властью колдуна Этреина, пока восставшие подданные не убили его и не сбросили в Чёрный омут; теперь он вернулся как Лич. Сегодня на севере живут суровые племена вроде Фростайронов, а в тавернах до сих пор пересказывают драки Таска.\n\nВ Айсрак отправили маленькую Райлай, которая замораживала всё вокруг, — здесь она стала ученицей Ледяного Волшебника и Кристальной Девой. В изгнании здесь жил бескрылый скайрас Кез, а в северных сосновых лесах бродит Лон Друид.",
+    "en": "The far north of the world: a frozen expanse between the Barrier mountains and the Boiling Sea. Few ships ever arrive; the only sea route runs through Frostreach, the northernmost port there is. Through the heart of the land flows the Blueheart Glacier, the wellspring of all frost magic.\n\nIts kingdoms once suffered under the sorcerer Ethreain until his own subjects rose up, killed him and sank him in the Black Pool; he has since returned as the Lich. Today the north belongs to hardy tribes like the Frostiron, and its taverns still retell Tusk's brawls.\n\nYoung Rylai, who froze everything around her, was sent to Icewrack and found a teacher in the Ice Wizard, becoming the Crystal Maiden. The flightless Skywrath Kez spent his exile here, and the Lone Druid roams the northern pines."
+  },
+  "places": {
+    "Icewrack": {
+      "name": { "ru": "Айсрак", "en": "Icewrack" },
+      "type": { "ru": "Ледяной край", "en": "Frozen realm" },
+      "description": {
+        "ru": "Сердце северных земель, которое ещё зовут Ледяной пустошью. Здесь Райлай училась у Ледяного Волшебника, а теперь сама стережёт этот край, пока учитель спит в толще ледника.",
+        "en": "The heart of the northern lands, also called the Frozen Waste. Rylai studied here under the Ice Wizard, and now she keeps watch over it while her master sleeps deep in the glacier."
+      }
+    },
+    "The Barrier": {
+      "name": { "ru": "Барьер", "en": "The Barrier" },
+      "type": { "ru": "Горный хребет", "en": "Mountain range" },
+      "description": {
+        "ru": "Цепь ледяных пиков и ледников на самом краю севера, за тундрой и Айсраком. У его подножия разбросаны Кобальт, Белоснежные поля и Чёрный омут.",
+        "en": "A chain of icy peaks and glaciers at the very edge of the north, beyond the tundra and Icewrack. Cobalt, the White Fields and the Black Pool lie scattered at its feet."
+      }
+    },
+    "Blueheart Glacier": {
+      "name": { "ru": "Ледник Голубого Сердца", "en": "Blueheart Glacier" },
+      "type": { "ru": "Ледник", "en": "Glacier" },
+      "description": {
+        "ru": "Застывшая река, что спускается от Барьера к Кипящему морю. Ледник — проводник всей магии холода и обладает собственным разумом; в его льдах встречаются сапфиры. Ледяной Волшебник ушёл в его глубины спать, и однажды туда на тысячу лет уйдёт и Райлай.",
+        "en": "A frozen river that runs from the Barrier down to the Boiling Sea. The glacier channels all frost magic and has a mind of its own, and sapphires glint in its ice. The Ice Wizard went down into it to hibernate, and one day Rylai means to sleep there for a thousand years."
+      }
+    },
+    "Black Pool": {
+      "name": { "ru": "Чёрный омут", "en": "Black Pool" },
+      "type": { "ru": "Бездонный омут", "en": "Bottomless pool" },
+      "description": {
+        "ru": "Будто бы бездонный водоём в Барьере: вода в нём не замерзает даже в лютый холод, но кристаллизуется, стоит её зачерпнуть. Сюда бросили связанного Этреина; через века геомант Анхил выудил тело и воскресил его — и был тут же поглощён. Теперь омут питает силу Лича.",
+        "en": "A supposedly bottomless pool in the Barrier whose water stays liquid in killing cold yet crystallizes the moment it is drawn out. The bound Ethreain was thrown into it; ages later the geomancer Anhil fished up the body, revived it and was promptly devoured. The pool now feeds the Lich's power."
+      }
+    },
+    "Cobalt": {
+      "name": { "ru": "Кобальт", "en": "Cobalt" },
+      "type": { "ru": "Деревня", "en": "Village" },
+      "description": {
+        "ru": "Северная деревня где-то у Барьера. Отсюда родом Таск, которого прозвали Снежком из Кобальта.",
+        "en": "A northern village somewhere near the Barrier. It is the home of Tusk, known far and wide as the Snowball from Cobalt."
+      }
+    },
+    "Azura": {
+      "name": { "ru": "Азура", "en": "Azura" },
+      "type": { "ru": "Заброшенная деревня", "en": "Abandoned village" },
+      "description": {
+        "ru": "Деревня на севере, где когда-то жили одобенусы. Теперь она пуста, и о ней почти ничего не известно.",
+        "en": "A northern village once home to the Odobenus. It now stands empty, and almost nothing else is known of it."
+      }
+    },
+    "White Fields": {
+      "name": { "ru": "Белоснежные поля", "en": "White Fields" },
+      "type": { "ru": "Снежная равнина", "en": "Snowfield" },
+      "description": {
+        "ru": "Снежная равнина у Барьера, где однажды разгорелась великая драка. Именно здесь Таск впервые скатился на врагов огромным снежным комом.",
+        "en": "A snowfield near the Barrier where a legendary brawl once broke out. It was here that Tusk first rolled into his foes as a giant snowball."
+      }
+    },
+    "Wolfsden Tavern": {
+      "name": { "ru": "Таверна «Волчья дыра»", "en": "Wolfsden Tavern" },
+      "type": { "ru": "Таверна", "en": "Tavern" },
+      "description": {
+        "ru": "Таверна, прославленная дракой Таска с Бристлбэком. Где именно она стоит, неясно: то ли в северных горах, то ли на дороге между Сломом и Эльзе.",
+        "en": "A tavern made famous by Tusk's fight with Bristleback. No one is sure where it stands: perhaps in the northern mountains, perhaps on the road between Slom and Elze."
+      }
+    },
+    "Njord's Hearth": {
+      "name": { "ru": "Очаг Ньорда", "en": "Njord's Hearth" },
+      "type": { "ru": "Лесной край", "en": "Forest domain" },
+      "description": {
+        "ru": "Тёплый лесной край среди северных холодов, где круглый год стоит весна. Местные носят косы и делают всё из дерева. Виндрейнджер однажды спасла здешний лес и получила за это золотой венец.",
+        "en": "A warm, wooded domain amid the northern cold, where spring never ends. Its people braid their hair and craft their tools from wood. Windranger once saved its forest and was rewarded with a golden circlet."
+      }
+    },
+    "Boiling Sea": {
+      "name": { "ru": "Кипящее море", "en": "Boiling Sea" },
+      "type": { "ru": "Море", "en": "Sea" },
+      "description": {
+        "ru": "Северное море, куда впадает Ледник Голубого Сердца, — край пара и талого снега. Райлай месяцами медитировала на его берегу, пока одно её слово не обратило пар в снегопад.",
+        "en": "The northern sea where the Blueheart Glacier ends, a land of steam and slush. Rylai meditated on its shore for months, until a single word from her turned the steam into falling snow."
+      }
+    },
+    "Frostreach": {
+      "name": { "ru": "Фростреч", "en": "Frostreach" },
+      "type": { "ru": "Портовый город", "en": "Port city" },
+      "description": {
+        "ru": "Самый северный порт мира и единственные морские ворота в Айсрак. Больше о нём ничего не известно.",
+        "en": "The northernmost port in the world and the only gateway to Icewrack by sea. Nothing more is known about it."
+      }
+    },
+    "Onyx Grove": {
+      "name": { "ru": "Ониксовая роща", "en": "Onyx Grove" },
+      "type": { "ru": "Роща", "en": "Grove" },
+      "description": {
+        "ru": "Тёмное потаённое место в северных сосновых лесах, где собираются на свои схватки свирепые звери. Сильла, Лон Друид, нашёл рощу и принял новый облик, чтобы стать среди них своим.",
+        "en": "A dark, secret place in the northern pine forests where fierce beasts gather to fight. Sylla the Lone Druid found it and took on a new shape so he could join them."
+      }
+    }
+  }
+}
