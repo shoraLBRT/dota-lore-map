@@ -1,0 +1,65 @@
+{
+  "id": "fellstrath",
+  "subtitle": { "ru": "Джунгли павших империй", "en": "Jungle of fallen empires" },
+  "biome": "jungle",
+  "ambient": { "type": "rain", "density": 0.6 },
+  "traits": {
+    "rule": { "ru": "Павшие державы", "en": "Fallen realms" },
+    "magic": { "ru": "Обряды крови", "en": "Blood rites" },
+    "biome": { "ru": "Тропические джунгли", "en": "Tropical jungle" }
+  },
+  "description": {
+    "ru": "Феллстрат — душные джунгли за горным хребтом, куда без нужды не ходят. Здесь бушуют муссоны, в кронах кричат птицы-носороги, а по ночам слышно зверьё, которое редко кому удаётся увидеть. Под лианами спят руины Заросшей империи и её звероподобные боги.\n\nВокруг лежат земли с похожей судьбой. Ашкавор погиб, когда Гримстроук отравил священные чернила. В туманных горах Шакатокатля жрецы Освежёванных Близнецов посылают Бладсикера за кровью для богов. В чаще Яма-Раскав живут дикие племена, и оттуда родом Бэтрайдер.\n\nВ этих джунглях бывали и пришлые: Дазл отыскал здесь бабочек, кормящихся силой царства Нотл, а Дарк Уиллоу разбудила древних Мо'рокаев. А где-то в здешних водах странствует Велу'Мар — живой остров, на котором выросли бард-монах Ларго и его народ.",
+    "en": "Fellstrath is a sweltering jungle beyond a mountain wall that few cross without good reason. Monsoons lash it, hornbills cry in the canopy, and at night it fills with the voices of animals almost nobody sees. Under the vines sleep the ruins of the Overgrown Empire and its beast-gods.\n\nThe lands around it share a similar fate. Ashkavor died when Grimstroke poisoned its sacred ink. In the misty peaks of Xhacatocatl, the priests of the Flayed Twins send Bloodseeker out to bring blood back for their gods. The Yama Raskav jungle is home to wild tribes, Batrider among them.\n\nOutsiders have passed through too: Dazzle found butterflies here that sip power from the Nothl Realm, and Dark Willow stirred the ancient Mo'rokai from their sleep. And somewhere in nearby waters drifts Velu'Mar, the living island that raised the bard-monk Largo and his people."
+  },
+  "places": {
+    "Fellstrath": {
+      "name": { "ru": "Феллстрат", "en": "Fellstrath" },
+      "type": { "ru": "Джунгли", "en": "Jungle" },
+      "description": {
+        "ru": "Тропические джунгли за горами у Ашкавора, полные змей, хищных растений и копьеносных крокодилидов. Говорят, у входа в них когда-то видели пропавший отряд рыцарей Бдения.",
+        "en": "Tropical jungle beyond the mountains near Ashkavor, crawling with snakes, carnivorous plants and spear-wielding crocodylians. A lost band of Vigil Knights was once sighted near its entrance."
+      }
+    },
+    "Overgrown Empire": {
+      "name": { "ru": "Заросшая империя", "en": "Overgrown Empire" },
+      "type": { "ru": "Руины", "en": "Ruins" },
+      "description": {
+        "ru": "Руины цивилизации, поклонявшейся паре могучих зверей Мо'рокаев. Храмы стерегут каменные статуи, которых оживили Древние. Мирэска Санбриз, искавшая здесь реликвии, разбудила спящих богов.",
+        "en": "Ruins of a civilization that worshiped the Mo'rokai, a pair of mighty beasts. Stone statues brought to life by the Ancients guard its temples. Mireska Sunbreeze came looking for relics and woke the sleeping gods."
+      }
+    },
+    "Ashkavor": {
+      "name": { "ru": "Ашкавор", "en": "Ashkavor" },
+      "type": { "ru": "Павшее царство", "en": "Fallen realm" },
+      "description": {
+        "ru": "Земля древних родов, чья магия передаётся по крови, а избранные Вознесённые становятся стражами народа. Гримстроук, последний из Вознесённых, осквернил ритуальные чернила и обратил сородичей в тени.",
+        "en": "A land of ancient bloodlines whose magic runs in the blood, protected by chosen guardians called the Ascended. Grimstroke, the last to ascend, tainted the ritual ink and turned his whole people into shades."
+      }
+    },
+    "Yama Raskav Jungle": {
+      "name": { "ru": "Джунгли Яма-Раскав", "en": "Yama Raskav Jungle" },
+      "type": { "ru": "Джунгли", "en": "Jungle" },
+      "description": {
+        "ru": "Густые джунгли со множеством племён и рощей древних волшебных деревьев в самом сердце. Отсюда родом Бэтрайдер, а из окаменевшего яда здешней гадюки сделан лук Медузы.",
+        "en": "Dense jungle home to many tribes, with a grove of ancient magical trees at its heart. Batrider hails from here, and Medusa's bow was made from the crystallized venom of a local viper."
+      }
+    },
+    "Xhacatocatl": {
+      "name": { "ru": "Шакатокатль", "en": "Xhacatocatl" },
+      "type": { "ru": "Горы", "en": "Mountains" },
+      "description": {
+        "ru": "Окутанные туманом горы, где Освежёванным Близнецам постоянно приносят в жертву кровь. Отсюда родом Бладсикер, а на вершинах рыщут клыкастые пернатые хлотли.",
+        "en": "Mist-shrouded mountains where the Flayed Twins demand a steady flow of fresh blood. Bloodseeker comes from here, and feathered hlotl beasts prowl the high peaks."
+      }
+    },
+    "Velu'Mar": {
+      "name": { "ru": "Велу'Мар", "en": "Velu'Mar" },
+      "type": { "ru": "Живой остров", "en": "Living island" },
+      "description": {
+        "ru": "Древнее существо размером с остров, которое откликнулось на песню изгнанников Муркрутов и стало им домом. Тысячу лет бард-монахи поют ему, а их глава Ларго странствует в поисках новых мелодий.",
+        "en": "An ancient creature the size of an island that answered the song of the exiled Murkroots and became their home. For a thousand years the bard-monks have sung to it, while their head monk Largo roams the world for new melodies."
+      }
+    }
+  }
+}

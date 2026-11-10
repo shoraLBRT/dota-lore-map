@@ -1,0 +1,73 @@
+{
+  "id": "tropic-isles",
+  "subtitle": { "ru": "Тёплые моря и утонувшие святыни", "en": "Warm seas, drowned shrines" },
+  "biome": "islands",
+  "ambient": { "type": "sparkles", "density": 0.25 },
+  "traits": {
+    "rule": { "ru": "Нет единой власти", "en": "No single ruler" },
+    "magic": { "ru": "Почитают духов", "en": "Revere spirits" },
+    "biome": { "ru": "Тропические острова", "en": "Tropical islands" }
+  },
+  "description": {
+    "ru": "Россыпь островов в тёплых южных морях. Одни из них — тихие курорты, другие — смертельные ловушки, а самый знаменитый уже давно лежит на дне.\n\nОстров Масок был родиной народа в масках, хранившего древние обряды и почитавшего драконьих духов. В одну ночь мстительной магии море вокруг закипело, и остров ушёл под воду. Джаггернаут — последний из своего народа, кто ещё помнит эти обряды.\n\nНа острове Джиди раскинулись Кислотные джунгли, где травник Лесаль превратился в Веномансера. А на Пепельном архипелаге коротают старость отставные кины, и один из них, Аурел, собрал там свой гирокоптер.",
+    "en": "A scatter of islands across warm southern seas. Some are quiet retreats, some are deadly traps, and the most famous of them has long rested on the seabed.\n\nThe Isle of Masks was home to the Masked Ones, keepers of ancient rites who honored dragon spirits. On a single night of vengeful magic the sea around it boiled and the island sank. Juggernaut is the last of his people still carrying those rites.\n\nOn Jidi Isle sprawl the Acid Jungles, where the herbalist Lesale turned into Venomancer. Meanwhile, retired Keen spend their twilight years in the Ash Archipelago, and one of them, Aurel, built his gyrocopter there."
+  },
+  "places": {
+    "Isle of Masks": {
+      "name": { "ru": "Остров Масок", "en": "Isle of Masks" },
+      "type": { "ru": "Затонувший остров", "en": "Sunken island" },
+      "description": {
+        "ru": "Родина народа в масках и Джаггернаута. В ночь мстительной магии из моря поднялся огонь, воды вскипели, и остров скрылся под волнами вместе со всеми святынями.",
+        "en": "Homeland of the Masked Ones and of Juggernaut. On a night of vengeful magic fire welled up from the sea, the waters boiled, and the island sank with every shrine it held."
+      }
+    },
+    "Temple of Masks": {
+      "name": { "ru": "Храм Масок", "en": "Temple of Masks" },
+      "type": { "ru": "Храм", "en": "Temple" },
+      "description": {
+        "ru": "Храм Творца Масок, куда паломничал юный Юрнеро. Он утонул вместе с островом, и теперь Джаггернаут совершает обряды прямо на поле боя.",
+        "en": "The temple of the Maker of Masks, where young Yurnero made his pilgrimages. It drowned with the island, so Juggernaut now performs his rites on the battlefield."
+      }
+    },
+    "Ivory Isles": {
+      "name": { "ru": "Острова Слоновой Кости", "en": "Ivory Isles" },
+      "type": { "ru": "Острова", "en": "Islands" },
+      "description": {
+        "ru": "Острова, вероятно, неподалёку от Острова Масок, где водятся кородонты. Их сочли потерянными, когда у них украли Защитника; Джаггернаут настиг воров и вернул реликвию.",
+        "en": "Islands, probably near the Isle of Masks, where corodonts roam. They were counted as lost when their Defender was stolen, until Juggernaut hunted down the thieves and took it back."
+      }
+    },
+    "Jidi Isle": {
+      "name": { "ru": "Остров Джиди", "en": "Jidi Isle" },
+      "type": { "ru": "Остров", "en": "Island" },
+      "description": {
+        "ru": "Большой остров, знаменитый ядовитыми джунглями. Отсюда родом зачарованное манго, а туристы, говорят, приезжают сюда охотно. Снэпфайр бывала здесь и мечтает вернуться.",
+        "en": "A large island famous for its venomous jungle. The Enchanted Mango comes from here, and visitors are said to flock to it anyway. Snapfire has been and would love to go back."
+      }
+    },
+    "Acid Jungles": {
+      "name": { "ru": "Кислотные джунгли", "en": "Acid Jungles" },
+      "type": { "ru": "Джунгли", "en": "Jungle" },
+      "description": {
+        "ru": "Джунгли на острове Джиди, где почти всё живое научилось убивать ядом: светящиеся лианы с едким соком, плюющиеся многоножки, рептилии под видом цветов. Укус такой рептилии и неудачное противоядие сделали травника Лесаля Веномансером.",
+        "en": "Jungles on Jidi Isle where nearly every living thing kills with venom: glowing vines with caustic sap, spitting centipedes, reptiles disguised as flowers. One such bite, and a failed antidote, turned the herbalist Lesale into Venomancer."
+      }
+    },
+    "Bay of Fradj": {
+      "name": { "ru": "Залив Фрадж", "en": "Bay of Fradj" },
+      "type": { "ru": "Залив", "en": "Bay" },
+      "description": {
+        "ru": "Спокойный залив у острова Джиди. Лесаль переплыл его на утлой лодке, отправляясь за травами. В честь залива названа фраджская моль.",
+        "en": "A calm bay beside Jidi Isle. Lesale crossed it in a small coracle on his hunt for herbs. The Fradjan moth is named after it."
+      }
+    },
+    "Ash Archipelago": {
+      "name": { "ru": "Пепельный архипелаг", "en": "Ash Archipelago" },
+      "type": { "ru": "Архипелаг", "en": "Archipelago" },
+      "description": {
+        "ru": "Цепь тропических островов, любимое место отставных кинов. Бывший солдат Аурел поселился здесь и испытывает свой гирокоптер.",
+        "en": "A chain of tropical islands and a favorite retirement spot for the Keen. The former soldier Aurel settled here to build and test his gyrocopter."
+      }
+    }
+  }
+}

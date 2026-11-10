@@ -1,0 +1,41 @@
+{
+  "id": "slom-elze",
+  "subtitle": { "ru": "Два павших королевства", "en": "Two fallen kingdoms" },
+  "biome": "plains",
+  "ambient": { "type": "snow", "density": 0.15 },
+  "traits": {
+    "rule": { "ru": "Павшие монархии", "en": "Fallen monarchies" },
+    "magic": { "ru": "Призывают демонов", "en": "Summon demons" },
+    "biome": { "ru": "Равнины и холмы", "en": "Plains and hills" }
+  },
+  "description": {
+    "ru": "Слом и Эльзе были соседями и вечными врагами. Их соединяет дорога, вдоль которой одна за другой стоят таверны; зимой здесь порой идёт снег. Оба королевства погубили собственные правители.\n\nПоследний король Слома окружил себя колдунами и зверинцем диковинных тварей. Знать восстала, король утопил мятеж в крови и проклял сына мятежного лорда ликантропией — так появился Ликан. Вскоре смотритель зверинца Карроч выпустил зверей, и они растерзали короля. Карроч стал Бистмастером.\n\nКороль-первосвященник Эльзе, одержимый жаждой боли, велел своим демонологам призвать для него суккуба. Им стала Квинн оф Пейн. Король забросил дела, подданные сбросили его с башни, и Эльзе пал. Сегодня в тавернах на старой дороге вышибалой служит Бристлбэк — и драки там не редкость.",
+    "en": "Slom and Elze were neighbors and bitter rivals, joined by a road lined with one tavern after another, where winter sometimes brings snow. Both kingdoms were brought down by their own rulers.\n\nThe last King of Slom surrounded himself with sorcerers and a menagerie of strange beasts. When the nobles rose against him, he drowned the revolt in blood and cursed the rebel lord's son with lycanthropy, creating Lycan. Soon after, the menagerie keeper Karroch set the animals loose and they tore the king apart. Karroch became Beastmaster.\n\nThe Ecclesiast-King of Elze craved pain and had his demonologists summon a succubus for his private torment: the Queen of Pain. He let his realm rot, his subjects threw him from his tower, and Elze fell. These days Bristleback works the taverns along the old road as a bouncer, and brawls there are never in short supply."
+  },
+  "places": {
+    "Slom": {
+      "name": { "ru": "Слом", "en": "Slom" },
+      "type": { "ru": "Павшее королевство", "en": "Fallen kingdom" },
+      "description": {
+        "ru": "Кастовое королевство у границ Западных лесов с королевским зверинцем. Пало после бойни отступников и гибели последнего короля в когтях собственных зверей. В его бывших землях бродят фелл-олени и бараны хеллвезер.",
+        "en": "A caste-bound kingdom on the edge of the Western Forests, famed for its royal menagerie. It fell after the Massacre of the Apostates and the death of its last king beneath his own beasts. Fell-deer and hellwether rams still roam its old lands."
+      }
+    },
+    "Elze": {
+      "name": { "ru": "Эльзе", "en": "Elze" },
+      "type": { "ru": "Павшее королевство", "en": "Fallen kingdom" },
+      "description": {
+        "ru": "Королевство религиозного рвения, где держали в заточении демонологов. С Башни Заклинаний восставший народ сбросил своего короля, призвавшего Квинн оф Пейн.",
+        "en": "A kingdom of religious zeal that kept demonologists in its dungeons. From the Tower of Invocations its people hurled the king who had summoned the Queen of Pain."
+      }
+    },
+    "Stone Hills": {
+      "name": { "ru": "Каменные холмы", "en": "Stone Hills" },
+      "type": { "ru": "Холмы", "en": "Hills" },
+      "description": {
+        "ru": "Холмы, где живут древние замкнутые племена. Полёт они считают даром небес и шьют одежду по образу птиц.",
+        "en": "Hills home to ancient, secluded tribes who see flight as a gift from the heavens and dress in the likeness of birds."
+      }
+    }
+  }
+}

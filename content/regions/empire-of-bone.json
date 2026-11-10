@@ -1,0 +1,41 @@
+{
+  "id": "empire-of-bone",
+  "subtitle": { "ru": "Королевство из костей", "en": "A kingdom built of bone" },
+  "biome": "city",
+  "ambient": { "type": "ash", "density": 0.35 },
+  "traits": {
+    "rule": { "ru": "Король-призрак", "en": "Wraith king" },
+    "magic": { "ru": "Призрачная сущность", "en": "Wraith essence" },
+    "biome": { "ru": "Костяные земли", "en": "Lands of bone" }
+  },
+  "description": {
+    "ru": "Империя Костей — владения короля Остариона, где из кости сделано всё: дворец, башни, мостовые и даже деревья окрестного леса. Чем дольше длилось его правление, тем больше живого вокруг превращалось в мёртвое.\n\nОстарион веками копил призрачную сущность, надеясь пережить саму смерть. В Ночь Призраков он возродился Королём-призраком, и вместе с ним переменилось его царство: кости покрылись зеленоватой призрачной плотью, а трон теперь светится в темноте.\n\nСоседям империя приносила только гибель. Её армии стёрли с лица земли Левинталь — возможно, тот самый Сверкающий город, где герцог Левинталя заседал среди выборщиков.",
+    "en": "The Empire of Bone is King Ostarion's domain, where everything is made of bone: the palace, the towers, the paving stones, even the trees of the nearby forest. The longer his reign went on, the more of the living world around him turned to the dead.\n\nFor ages Ostarion hoarded wraith essence, hoping to outlast death itself. On Wraith-Night he was reborn as the Wraith King, and his realm changed with him: its bones are now sheathed in pale green wraith flesh, and his throne glows in the dark.\n\nTo its neighbors the empire brought nothing but ruin. Its armies wiped out Levinthal, perhaps the very Gleaming City where the Duke of Levinthal sat among the Electors."
+  },
+  "places": {
+    "Throne of Bone": {
+      "name": { "ru": "Костяной трон", "en": "Throne of Bone" },
+      "type": { "ru": "Дворец", "en": "Palace" },
+      "description": {
+        "ru": "Дворец-трон, который ещё зовут Башнями Остариона. Отсюда Король-призрак правит своей империей; после Ночи Призраков трон окутан зеленоватым сиянием.",
+        "en": "A towering palace and throne, also called the Towers of Ostarion. From here the Wraith King rules his empire, and since Wraith-Night the throne has glowed a sickly green."
+      }
+    },
+    "Ivory Forest": {
+      "name": { "ru": "Костяной лес", "en": "Ivory Forest" },
+      "type": { "ru": "Лес", "en": "Forest" },
+      "description": {
+        "ru": "Лес, в котором деревья обратились в кость. После Ночи Призраков он оброс зелёной призрачной плотью.",
+        "en": "A forest whose trees have all turned to bone. Since Wraith-Night it has been overgrown with green wraith flesh."
+      }
+    },
+    "Levinthal": {
+      "name": { "ru": "Левинталь", "en": "Levinthal" },
+      "type": { "ru": "Разрушенный город", "en": "Ruined city" },
+      "description": {
+        "ru": "Владения герцога Левинталя, уничтоженные армиями Остариона. Возможно, это и есть Сверкающий город, где герцог был одним из выборщиков.",
+        "en": "The seat of the Duke of Levinthal, destroyed by Ostarion's armies. It may be the same place as the Gleaming City, where the duke was one of the Electors."
+      }
+    }
+  }
+}

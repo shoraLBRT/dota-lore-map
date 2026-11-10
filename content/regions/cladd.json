@@ -1,0 +1,65 @@
+{
+  "id": "cladd",
+  "subtitle": { "ru": "Острова адмиралов и штормов", "en": "Isles of admirals and storms" },
+  "biome": "islands",
+  "ambient": { "type": "rain", "density": 0.4 },
+  "traits": {
+    "rule": { "ru": "Морская держава", "en": "Naval power" },
+    "magic": { "ru": "Призывают предков", "en": "Summon the ancestors" },
+    "biome": { "ru": "Острова и проливы", "en": "Isles and straits" }
+  },
+  "description": {
+    "ru": "Кладд — островная держава, чья сила всегда была в кораблях. Её флот славился на весь мир, кладдская сталь — тоже, а маги-смертники умели звать на войну духов предков.\n\nВокруг лежат острова и проливы, памятные по морским сражениям. У Дрожащего острова флот адмирала Кункки сошёлся с демонами Катаракты, и в разгар боя Тайдхантер призвал бога глубин Мелрауна. Шторм поглотил обе армады; от флота Кладда остался лишь один корабль-призрак.\n\nТайдхантер был когда-то защитником соседних Затонувших островов, но отрёкся от них ради службы Мелрауну. С тех пор адмирал и левиафан — заклятые враги.",
+    "en": "Cladd is an island nation whose strength has always been its ships. Its navy was famed across the world, as was Claddish steel, and its suicide-mages could call ancestral spirits into battle.\n\nAround it lie islands and straits remembered for sea battles. Off the Trembling Isle, Admiral Kunkka's fleet met the Demons of the Cataract, and at the height of the fight Tidehunter summoned Maelrawn, god of the deep. The storm swallowed both armadas; all that remained of Cladd's navy was one ghost ship.\n\nTidehunter was once champion of the nearby Sunken Isles before turning his back on them to serve Maelrawn. Admiral and leviathan have been sworn enemies ever since."
+  },
+  "places": {
+    "Cladd": {
+      "name": { "ru": "Кладд", "en": "Cladd" },
+      "type": { "ru": "Островное государство", "en": "Island nation" },
+      "description": {
+        "ru": "Архипелаг и родина Кункки. Держит могучий флот, куёт знаменитую сталь и растит магов-смертников, призывающих духов предков.",
+        "en": "An archipelago and Kunkka's homeland. It fields a mighty navy, forges renowned steel and trains suicide-mages who call on ancestral spirits."
+      }
+    },
+    "Trembling Isle": {
+      "name": { "ru": "Дрожащий остров", "en": "Trembling Isle" },
+      "type": { "ru": "Остров", "en": "Island" },
+      "description": {
+        "ru": "Остров в опасных водах, часть Кладда или его сосед. Здесь Мелраун уничтожил и демонический флот, и флот Кладда, а Катаракта без демонов умчалась в пустоту.",
+        "en": "An island ringed by treacherous water, part of Cladd or close to it. Here Maelrawn wiped out both the demon fleet and Cladd's, and the abandoned Cataract roared off into the void."
+      }
+    },
+    "Sunken Isles": {
+      "name": { "ru": "Затонувшие острова", "en": "Sunken Isles" },
+      "type": { "ru": "Острова", "en": "Islands" },
+      "description": {
+        "ru": "Острова, чьим защитником был Тайдхантер. Он ушёл, назвав их жрецов шарлатанами, а знать — жадной, и перебил многих, когда отправился служить Мелрауну.",
+        "en": "The isles Tidehunter once fought for. He left them, calling their priests frauds and their lords greedy, and killed a good many of them on his way to serve Maelrawn."
+      }
+    },
+    "Isle of Songs": {
+      "name": { "ru": "Остров Песен", "en": "Isle of Songs" },
+      "type": { "ru": "Остров", "en": "Island" },
+      "description": {
+        "ru": "Остров, местоположение которого неизвестно. Принцесса с него когда-то подарила Кункке пояс из паучьего шёлка.",
+        "en": "An island whose location is unknown. A princess from here once gave Kunkka a sash of spider silk, which he keeps to this day."
+      }
+    },
+    "Port Mignin": {
+      "name": { "ru": "Порт Миньин", "en": "Port Mignin" },
+      "type": { "ru": "Порт", "en": "Port" },
+      "description": {
+        "ru": "Гавань, где когда-то шла яростная битва с участием Кункки. После неё в его руках оказался клинок Цунами.",
+        "en": "A harbor that once saw a ferocious battle with Kunkka in the thick of it. He came away holding the Tsunami Blade."
+      }
+    },
+    "Narrow Channel": {
+      "name": { "ru": "Узкий пролив", "en": "Narrow Channel" },
+      "type": { "ru": "Пролив", "en": "Strait" },
+      "description": {
+        "ru": "Пролив, через который шёл корабль с сокровищами некоего принца. Кункка как-то добыл с него церемониальную рапиру.",
+        "en": "A strait once crossed by a prince's treasure ship. Somehow Kunkka relieved it of a ceremonial rapier."
+      }
+    }
+  }
+}

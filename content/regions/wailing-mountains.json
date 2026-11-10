@@ -1,0 +1,65 @@
+{
+  "id": "wailing-mountains",
+  "subtitle": { "ru": "Горы, где поют ветра", "en": "Peaks where the wind sings" },
+  "biome": "mountains",
+  "ambient": { "type": "snow", "density": 0.4 },
+  "traits": {
+    "rule": { "ru": "Монашеские ордены", "en": "Monastic orders" },
+    "magic": { "ru": "Почитают стихии", "en": "Revere the elements" },
+    "biome": { "ru": "Снежные хребты", "en": "Snowbound ranges" }
+  },
+  "description": {
+    "ru": "Стонущие горы тянутся через южные земли Dire — край высоких перевалов, снежных пещер и долин, где ветер не стихает ни днём, ни ночью. Местные мудрецы верят, что в его вое слышна память о начале мира: будто вселенная родилась, когда единое божество раскололось надвое.\n\nВ этих горах прячутся руины древнего города, заброшенная крепость огненных воинов и монастыри, давно сожжённые захватчиками. Здесь же живёт орден Ойо, ищущий просветления в хмельном напитке.\n\nОтсюда родом Брюмастер и Антимаг, здесь нашёл приют Шторм Спирит, а Эмбер Спирит возродился в пепле своего учителя. Небесные родичи этой семьи — повод считать Стонущие горы колыбелью Духов стихий.",
+    "en": "The Wailing Mountains run across the southern lands of the Dire: high passes, snow-choked caves and valleys where the wind never rests. Local sages hear an old story in its howl, of a universe born when a single divine mind split in two.\n\nThe peaks hide the ruins of an ancient city, an abandoned fortress of fire-sworn warriors and monasteries burned long ago by invaders. In the valleys lives the Order of the Oyo, who chase enlightenment through strong drink.\n\nBrewmaster and Anti-Mage were born here, Storm Spirit found a home here, and Ember Spirit rose from his master's ashes in these mountains. With so many Celestial kin tied to one range, it is easy to call it the cradle of the elemental Spirits."
+  },
+  "places": {
+    "Ruined City": {
+      "name": { "ru": "Разрушенный город", "en": "Ruined City" },
+      "type": { "ru": "Руины", "en": "Ruins" },
+      "description": {
+        "ru": "Руины на горных вершинах, под которыми, в долине, живёт орден Ойо. Здесь хранятся «колёсные книги», что звучат, как песни. Брюмастер мечтает однажды вернуться сюда и лечь в эту землю.",
+        "en": "A ruin perched among the peaks, with the Order of the Oyo living in the valley below. Its wheel-books turn and hum like songs. Brewmaster hopes to come back one day and be buried here."
+      }
+    },
+    "Fortress of Flares": {
+      "name": { "ru": "Крепость Огней", "en": "Fortress of Flares" },
+      "type": { "ru": "Крепость", "en": "Fortress" },
+      "description": {
+        "ru": "Затерянная в горах школа воинов, где мастер Синь учил искусству Хранящего Пламени. Сейчас крепость заброшена и заросла, но в запечатанном храме небесный огонь разжёг прах Синя — так появился Эмбер Спирит.",
+        "en": "A lost training ground where the master Xin taught the bonds of the Guardian Flame. It now lies empty and overgrown, yet in its sealed temple a Celestial fire rekindled Xin's ashes, and Ember Spirit was born."
+      }
+    },
+    "Turstarkuri": {
+      "name": { "ru": "Турстаркури", "en": "Turstarkuri" },
+      "type": { "ru": "Монастырь", "en": "Monastery" },
+      "description": {
+        "ru": "Горный край, чьи королевства в долинах веками терпели набеги, а на вершинах стоял монастырь мирных монахов. Легионы Мёртвого бога уничтожили и то и другое; уцелевший послушник стал Антимагом.",
+        "en": "A mountain land whose valley kingdoms endured raid after raid, with a monastery of peaceful monks above them. The legions of the Dead God razed both, and the one novice who lived became Anti-Mage."
+      }
+    },
+    "Mount Joerlak": {
+      "name": { "ru": "Гора Йорлак", "en": "Mount Joerlak" },
+      "type": { "ru": "Вулкан", "en": "Volcano" },
+      "description": {
+        "ru": "Неспокойный вулкан, на склонах которого работают искусные кузнецы. Однажды он взорвался и погубил многих магноцеросов; Магнус уверен, что извержение было не случайным.",
+        "en": "A restless volcano whose slopes are home to master smiths. One day it erupted and killed many of the magnoceroi, and Magnus is convinced someone made it happen."
+      }
+    },
+    "Feral Road": {
+      "name": { "ru": "Дикая дорога", "en": "Feral Road" },
+      "type": { "ru": "Дорога", "en": "Road" },
+      "description": {
+        "ru": "Горная дорога, о которой известно лишь одно: здесь на Свена напал огр и нашёл смерть на шипах его доспеха.",
+        "en": "A mountain road known for a single tale: an ogre ambushed Sven here and died on the spikes of his armor."
+      }
+    },
+    "The Upland": {
+      "name": { "ru": "Нагорье", "en": "The Upland" },
+      "type": { "ru": "Нагорье", "en": "Highlands" },
+      "description": {
+        "ru": "Скалистое нагорье, пронизанное жилами священного нефрита. Местные рудокопы обходят их стороной, ведь из этого камня когда-то высекли Эрт Спирита.",
+        "en": "Rocky highlands threaded with veins of sacred jade. Local miners dig around them, never through: Earth Spirit was carved from this stone long ago."
+      }
+    }
+  }
+}
