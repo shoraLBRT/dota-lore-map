@@ -1,0 +1,89 @@
+.stage {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  height: 100%;
+  min-height: 0;
+}
+
+.viewport {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-sea);
+}
+
+.layer {
+  width: min(100%, calc((100vh - 8rem) * 1.6));
+  aspect-ratio: 16 / 10;
+  transform-origin: 0 0;
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.region {
+  stroke: var(--color-border);
+  stroke-width: 2;
+  cursor: pointer;
+}
+
+.region:hover,
+.region:focus-visible {
+  stroke: var(--color-text);
+  outline: none;
+}
+
+.active .region {
+  stroke: var(--color-accent);
+  stroke-width: 3;
+}
+
+.label {
+  fill: var(--color-text);
+  font-size: 22px;
+  text-transform: uppercase;
+  pointer-events: none;
+  paint-order: stroke;
+  stroke: rgb(0 0 0 / 0.6);
+  stroke-width: 3px;
+}
+
+.marker {
+  cursor: pointer;
+  fill: var(--color-text);
+  font-size: 12px;
+}
+
+.marker circle {
+  stroke: var(--color-accent);
+  stroke-width: 2;
+}
+
+.marker:focus-visible {
+  outline: none;
+}
+
+.marker:focus-visible circle {
+  stroke-width: 4;
+}
+
+.list ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list button[aria-current='true'] {
+  border-color: var(--color-accent);
+}

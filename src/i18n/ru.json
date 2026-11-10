@@ -1,0 +1,16 @@
+{
+  "app.title": "Мир Dota 2",
+  "intro.kicker": "Исследуй мир",
+  "intro.title": "Мир Dota 2",
+  "intro.start": "Начать",
+  "disclaimer": "Некоммерческий фанатский проект. Не связан с Valve Corporation и не одобрен ею. Dota 2 и связанные материалы — товарные знаки и собственность Valve Corporation.",
+  "lang.label": "Язык",
+  "world.map": "Карта мира",
+  "world.regions": "Регионы",
+  "panel.places": "Места",
+  "panel.heroes": "Герои",
+  "panel.capital": "столица",
+  "panel.backToWorld": "‹ Мир",
+  "panel.backTo": "‹ {name}",
+  "hero.newTab": "{name} — официальная страница (откроется в новой вкладке)"
+}
