@@ -1,0 +1,3283 @@
+{
+  "aspect": 1.6,
+  "regions": [
+    {
+      "id": "heavens",
+      "tier": "upper",
+      "side": "neutral",
+      "name": {
+        "ru": "Небеса",
+        "en": "The Heavens"
+      },
+      "geo": "Небо над миром и небесные тела: столица скайрасов высоко над землёй, Безумная Луна (разрушена, её осколки — Radiant Ore и Direstone), Луна Селемены, Солнце.",
+      "places": [
+        {
+          "name": "Ghastly Eyrie",
+          "slug": "ghastly-eyrie",
+          "capital": true,
+          "placement": "lore",
+          "note": "столица расы скайрасов, «среди облаков и звёзд»"
+        },
+        {
+          "name": "Mad Moon",
+          "slug": "mad-moon",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Selemene's Moon",
+          "slug": "selemenes-moon",
+          "capital": false,
+          "placement": "lore",
+          "note": "вместе с Demon Star"
+        },
+        {
+          "name": "The Sun",
+          "slug": "the-sun",
+          "capital": false,
+          "placement": "lore",
+          "note": "Children of Light и солнечная кузня (страницы на Liquipedia нет)"
+        },
+        {
+          "name": "Olympus",
+          "slug": "olympus",
+          "capital": false,
+          "placement": "ours",
+          "note": "небесная обитель Зевса; страницы на Liquipedia нет"
+        },
+        {
+          "name": "Ultoria",
+          "slug": "ultoria",
+          "capital": false,
+          "placement": "lore",
+          "note": "небесное тело со своими лунами"
+        }
+      ],
+      "regionHeroes": []
+    },
+    {
+      "id": "planes",
+      "tier": "upper",
+      "side": "neutral",
+      "name": {
+        "ru": "Семь планов и Пустота",
+        "en": "The Seven Planes and the Void"
+      },
+      "geo": "Иные планы бытия и измерения вне Terrene Plane (наш мир).",
+      "places": [
+        {
+          "name": "Fundamental Plane",
+          "slug": "fundamental-plane",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Primordial Plane",
+          "slug": "primordial-plane",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Elemental Plane",
+          "slug": "elemental-plane",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Astral Plane",
+          "slug": "astral-plane",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Fabric of Creation",
+          "slug": "fabric-of-creation",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Claszureme",
+          "slug": "claszureme",
+          "capital": false,
+          "placement": "lore",
+          "note": "мир вне времени"
+        },
+        {
+          "name": "The Void",
+          "slug": "the-void",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "The Outworld",
+          "slug": "the-outworld",
+          "capital": false,
+          "placement": "lore",
+          "note": "«мир на краю Бездны», у границы Пустоты"
+        },
+        {
+          "name": "Land Behind the Wall",
+          "slug": "land-behind-the-wall",
+          "capital": false,
+          "placement": "lore",
+          "note": "родная реальность Dark Seer; страницы на Liquipedia нет"
+        },
+        {
+          "name": "Ivory Incubarium",
+          "slug": "ivory-incubarium",
+          "capital": false,
+          "placement": "lore",
+          "note": "в другой вселенной"
+        },
+        {
+          "name": "Heart of Nature",
+          "slug": "heart-of-nature",
+          "capital": false,
+          "placement": "ours"
+        },
+        {
+          "name": "Light's Keep",
+          "slug": "lights-keep",
+          "capital": false,
+          "placement": "ours"
+        },
+        {
+          "name": "The Dream",
+          "slug": "the-dream",
+          "capital": false,
+          "placement": "ours"
+        }
+      ],
+      "regionHeroes": [
+        "spectre"
+      ]
+    },
+    {
+      "id": "icewrack",
+      "tier": "continent",
+      "side": "radiant",
+      "name": {
+        "ru": "Айсрак",
+        "en": "Icewrack"
+      },
+      "geo": "Крайний север. Южнее горного хребта The Barrier, у Северного (Кипящего) моря. Единственный морской путь — порт Frostreach. На карте Source 1: «The cold northern realm of Ice» в половине Radiant.",
+      "places": [
+        {
+          "name": "Icewrack",
+          "slug": "icewrack",
+          "capital": true,
+          "placement": "lore"
+        },
+        {
+          "name": "The Barrier",
+          "slug": "the-barrier",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Blueheart Glacier",
+          "slug": "blueheart-glacier",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Black Pool",
+          "slug": "black-pool",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Cobalt",
+          "slug": "cobalt",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Azura",
+          "slug": "azura",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "White Fields",
+          "slug": "white-fields",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Wolfsden Tavern",
+          "slug": "wolfsden-tavern",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Njord's Hearth",
+          "slug": "njords-hearth",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Boiling Sea",
+          "slug": "boiling-sea",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Frostreach",
+          "slug": "frostreach",
+          "capital": false,
+          "placement": "lore",
+          "note": "самый северный порт мира; страницы на Liquipedia нет"
+        },
+        {
+          "name": "Onyx Grove",
+          "slug": "onyx-grove",
+          "capital": false,
+          "placement": "lore",
+          "note": "в северных сосновых лесах"
+        }
+      ],
+      "regionHeroes": [
+        "drow_ranger"
+      ]
+    },
+    {
+      "id": "radiant-lands",
+      "tier": "continent",
+      "side": "radiant",
+      "name": {
+        "ru": "Земля Сияющих",
+        "en": "Land of the Radiant"
+      },
+      "geo": "Название и состав — с карты Source 1: Peaceful Village of Pole, Violet Archives, Castle of the Fold, Home of the Keen Folk, Thousand Tarns.",
+      "places": [
+        {
+          "name": "Pole",
+          "slug": "pole",
+          "capital": false,
+          "placement": "s1map"
+        },
+        {
+          "name": "Violet Archives",
+          "slug": "violet-archives",
+          "capital": false,
+          "placement": "s1map"
+        },
+        {
+          "name": "Violet Plateau",
+          "slug": "violet-plateau",
+          "capital": false,
+          "placement": "lore",
+          "note": "архивы находятся в нём или рядом"
+        },
+        {
+          "name": "Castle of the Fold",
+          "slug": "castle-of-the-fold",
+          "capital": false,
+          "placement": "s1map"
+        },
+        {
+          "name": "Home of the Keen Folk",
+          "slug": "home-of-the-keen-folk",
+          "capital": false,
+          "placement": "s1map"
+        },
+        {
+          "name": "Knollen",
+          "slug": "knollen",
+          "capital": false,
+          "placement": "ours",
+          "note": "горные долины кинов"
+        },
+        {
+          "name": "Dredger's Bight",
+          "slug": "dredgers-bight",
+          "capital": false,
+          "placement": "ours",
+          "note": "родина Techies (кины); страницы на Liquipedia нет"
+        },
+        {
+          "name": "Thousand Tarns",
+          "slug": "thousand-tarns",
+          "capital": false,
+          "placement": "s1map"
+        }
+      ],
+      "regionHeroes": []
+    },
+    {
+      "id": "nightsilver",
+      "tier": "continent",
+      "side": "radiant",
+      "name": {
+        "ru": "Лес Найтсильвер",
+        "en": "Nightsilver Woods"
+      },
+      "geo": "Священный лес Селемены. Temple of Mene на карте Source 1 — в половине Radiant.",
+      "places": [
+        {
+          "name": "Nightsilver Woods",
+          "slug": "nightsilver-woods",
+          "capital": true,
+          "placement": "lore"
+        },
+        {
+          "name": "Temple of Mene",
+          "slug": "temple-of-mene",
+          "capital": false,
+          "placement": "s1map"
+        },
+        {
+          "name": "Shrine of Selemene",
+          "slug": "shrine-of-selemene",
+          "capital": false,
+          "placement": "lore"
+        }
+      ],
+      "regionHeroes": []
+    },
+    {
+      "id": "stonehall",
+      "tier": "continent",
+      "side": "neutral",
+      "name": {
+        "ru": "Стоунхолл",
+        "en": "Stonehall"
+      },
+      "geo": "Империя вокруг города Стоунхолл. Расположение городов относительно столицы известно точно (запад, юг, северо-восток и т. д.).",
+      "places": [
+        {
+          "name": "Stonehall",
+          "slug": "stonehall",
+          "capital": true,
+          "placement": "lore"
+        },
+        {
+          "name": "Qine",
+          "slug": "qine",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Quath",
+          "slug": "quath",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Tares",
+          "slug": "tares",
+          "capital": false,
+          "placement": "lore",
+          "note": "к югу от Стоунхолла"
+        },
+        {
+          "name": "Roseleaf",
+          "slug": "roseleaf",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Tarrin",
+          "slug": "tarrin",
+          "capital": false,
+          "placement": "lore",
+          "note": "к юго-западу"
+        },
+        {
+          "name": "Sashire",
+          "slug": "sashire",
+          "capital": false,
+          "placement": "lore",
+          "note": "к югу"
+        },
+        {
+          "name": "Milltown",
+          "slug": "milltown",
+          "capital": false,
+          "placement": "lore",
+          "note": "к западу, на реке между Roseleaf и Tarrin"
+        },
+        {
+          "name": "Ember (City)",
+          "slug": "ember-city",
+          "capital": false,
+          "placement": "lore",
+          "note": "к западу"
+        },
+        {
+          "name": "Redmaw",
+          "slug": "redmaw",
+          "capital": false,
+          "placement": "lore",
+          "note": "к западу от Roseleaf"
+        },
+        {
+          "name": "Lormount",
+          "slug": "lormount",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Goldlake",
+          "slug": "goldlake",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Lightglass",
+          "slug": "lightglass",
+          "capital": false,
+          "placement": "lore",
+          "note": "озеро к северу"
+        },
+        {
+          "name": "Lincastle",
+          "slug": "lincastle",
+          "capital": false,
+          "placement": "lore",
+          "note": "к востоку"
+        },
+        {
+          "name": "Mistmill",
+          "slug": "mistmill",
+          "capital": false,
+          "placement": "lore",
+          "note": "к востоку"
+        },
+        {
+          "name": "Pinelyn",
+          "slug": "pinelyn",
+          "capital": false,
+          "placement": "lore",
+          "note": "к северо-востоку"
+        },
+        {
+          "name": "Crester",
+          "slug": "crester",
+          "capital": false,
+          "placement": "lore",
+          "note": "к югу от Tares"
+        },
+        {
+          "name": "Filedo",
+          "slug": "filedo",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Clacline",
+          "slug": "clacline",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Kailens",
+          "slug": "kailens",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Sloquoit",
+          "slug": "sloquoit",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Coldbank Plains",
+          "slug": "coldbank-plains",
+          "capital": false,
+          "placement": "lore",
+          "note": "к западу"
+        },
+        {
+          "name": "Janau",
+          "slug": "janau",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Leadbelly's",
+          "slug": "leadbellys",
+          "capital": false,
+          "placement": "lore",
+          "note": "таверна в Стоунхолле"
+        }
+      ],
+      "regionHeroes": []
+    },
+    {
+      "id": "free-cities",
+      "tier": "continent",
+      "side": "neutral",
+      "name": {
+        "ru": "Вольные города",
+        "en": "The Free Cities"
+      },
+      "geo": "Города рядом со Стоунхоллом, но вне его власти: White Spire «сразу за пределами» Стоунхолла и Ревтела, севернее Hazhadal Barrens; Weeping Rose — соседний с White Spire город. Название региона — наше.",
+      "places": [
+        {
+          "name": "White Spire",
+          "slug": "white-spire",
+          "capital": true,
+          "placement": "lore"
+        },
+        {
+          "name": "Revtel",
+          "slug": "revtel",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Weeping Rose",
+          "slug": "weeping-rose",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Tyler Estate",
+          "slug": "tyler-estate",
+          "capital": false,
+          "placement": "lore",
+          "note": "в Weeping Rose"
+        },
+        {
+          "name": "Sundered Moon",
+          "slug": "sundered-moon",
+          "capital": false,
+          "placement": "lore",
+          "note": "таверна в White Spire"
+        },
+        {
+          "name": "Iron Fog",
+          "slug": "iron-fog",
+          "capital": false,
+          "placement": "ours"
+        },
+        {
+          "name": "Highseat",
+          "slug": "highseat",
+          "capital": false,
+          "placement": "ours"
+        }
+      ],
+      "regionHeroes": []
+    },
+    {
+      "id": "quoidge",
+      "tier": "continent",
+      "side": "neutral",
+      "name": {
+        "ru": "Квойдж и Поля Бойни",
+        "en": "Quoidge and the Fields of Carnage"
+      },
+      "geo": "Квойдж — к югу от Skywrath, в дне пути от Smoke Harbor, далеко к северу от Полей. Поля — к югу от Hazhadal Barrens и к северу от Друуда.",
+      "places": [
+        {
+          "name": "Quoidge",
+          "slug": "quoidge",
+          "capital": true,
+          "placement": "lore"
+        },
+        {
+          "name": "Smoke Harbor",
+          "slug": "smoke-harbor",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Fields of Endless Carnage",
+          "slug": "fields-of-endless-carnage",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Cathedral of Rumusque",
+          "slug": "cathedral-of-rumusque",
+          "capital": false,
+          "placement": "lore"
+        }
+      ],
+      "regionHeroes": []
+    },
+    {
+      "id": "hazhadal",
+      "tier": "continent",
+      "side": "neutral",
+      "name": {
+        "ru": "Хазадальские пустоши",
+        "en": "Hazhadal Barrens"
+      },
+      "geo": "К северу от Fields of Endless Carnage и к югу от места битвы Древних. Земля безбожных племён-изгоев.",
+      "places": [
+        {
+          "name": "Hazhadal Barrens",
+          "slug": "hazhadal-barrens",
+          "capital": true,
+          "placement": "lore"
+        },
+        {
+          "name": "Fortress of Valhessi",
+          "slug": "fortress-of-valhessi",
+          "capital": false,
+          "placement": "lore",
+          "note": "страницы на Liquipedia нет"
+        }
+      ],
+      "regionHeroes": []
+    },
+    {
+      "id": "druud",
+      "tier": "continent",
+      "side": "neutral",
+      "name": {
+        "ru": "Друуд",
+        "en": "Druud"
+      },
+      "geo": "Плоскогорье (Red Deserts of Druud) к югу от Fields of Endless Carnage. Земля кланов кентавров.",
+      "places": [
+        {
+          "name": "Druud",
+          "slug": "druud",
+          "capital": true,
+          "placement": "lore"
+        },
+        {
+          "name": "Omexe",
+          "slug": "omexe",
+          "capital": false,
+          "placement": "lore"
+        }
+      ],
+      "regionHeroes": []
+    },
+    {
+      "id": "scintillant",
+      "tier": "continent",
+      "side": "dire",
+      "name": {
+        "ru": "Сверкающая пустошь",
+        "en": "Scintillant Waste"
+      },
+      "geo": "Экваториальные пустыни. Desert of Misrule — внутри или к западу от Scintillant Waste. На карте Source 1 Blazing Desert of Misrule и Riftshadow Ruins — в половине Dire.",
+      "places": [
+        {
+          "name": "Scintillant Waste",
+          "slug": "scintillant-waste",
+          "capital": true,
+          "placement": "lore"
+        },
+        {
+          "name": "Desert of Misrule",
+          "slug": "desert-of-misrule",
+          "capital": false,
+          "placement": "s1map"
+        },
+        {
+          "name": "Riftshadow Ruins",
+          "slug": "riftshadow-ruins",
+          "capital": false,
+          "placement": "s1map"
+        },
+        {
+          "name": "Qaldin",
+          "slug": "qaldin",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "El'Harath",
+          "slug": "elharath",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "The Barrens",
+          "slug": "the-barrens",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Halgalreh",
+          "slug": "halgalreh",
+          "capital": false,
+          "placement": "ours",
+          "note": "руины пустынной империи"
+        },
+        {
+          "name": "Bone Ruins",
+          "slug": "bone-ruins",
+          "capital": false,
+          "placement": "ours"
+        },
+        {
+          "name": "Singer's Gulch",
+          "slug": "singers-gulch",
+          "capital": false,
+          "placement": "ours"
+        }
+      ],
+      "regionHeroes": []
+    },
+    {
+      "id": "wailing-mountains",
+      "tier": "continent",
+      "side": "dire",
+      "name": {
+        "ru": "Стонущие горы",
+        "en": "Wailing Mountains"
+      },
+      "geo": "На карте Source 1 в половине Dire: The Wailing Mountains, The Ruined City, The monasteries of Turstarkuri, The Mountain Joerlak, The Feral Road.",
+      "places": [
+        {
+          "name": "Ruined City",
+          "slug": "ruined-city",
+          "capital": true,
+          "placement": "s1map"
+        },
+        {
+          "name": "Fortress of Flares",
+          "slug": "fortress-of-flares",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Turstarkuri",
+          "slug": "turstarkuri",
+          "capital": false,
+          "placement": "s1map"
+        },
+        {
+          "name": "Mount Joerlak",
+          "slug": "mount-joerlak",
+          "capital": false,
+          "placement": "s1map"
+        },
+        {
+          "name": "Feral Road",
+          "slug": "feral-road",
+          "capital": false,
+          "placement": "s1map"
+        },
+        {
+          "name": "The Upland",
+          "slug": "the-upland",
+          "capital": false,
+          "placement": "ours",
+          "note": "нагорье священного нефрита"
+        }
+      ],
+      "regionHeroes": []
+    },
+    {
+      "id": "shadeshore",
+      "tier": "continent",
+      "side": "neutral",
+      "name": {
+        "ru": "Тенистый берег",
+        "en": "Shadeshore"
+      },
+      "geo": "Приморский край. Tidemarsh связывает Shadeshore, Wailing Mountains и Ruelands.",
+      "places": [
+        {
+          "name": "Shadeshore Ruins",
+          "slug": "shadeshore-ruins",
+          "capital": true,
+          "placement": "lore"
+        },
+        {
+          "name": "Tidemarsh",
+          "slug": "tidemarsh",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Ruelands",
+          "slug": "ruelands",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Vigil Keep",
+          "slug": "vigil-keep",
+          "capital": false,
+          "placement": "ours"
+        },
+        {
+          "name": "Inner Colonnade",
+          "slug": "inner-colonnade",
+          "capital": false,
+          "placement": "ours",
+          "note": "при Vigil Keep"
+        }
+      ],
+      "regionHeroes": [
+        "slark"
+      ]
+    },
+    {
+      "id": "the-deep",
+      "tier": "continent",
+      "side": "dire",
+      "name": {
+        "ru": "Глубины",
+        "en": "The Deep"
+      },
+      "geo": "Затонувшие города на дне океана под охраной слизеринов; ещё глубже — Infernal Hollow. На карте Source 1 «The Slithereen» — в половине Dire.",
+      "places": [
+        {
+          "name": "Dark Reef",
+          "slug": "dark-reef",
+          "capital": true,
+          "placement": "lore"
+        },
+        {
+          "name": "Crey",
+          "slug": "crey",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Deep Vault",
+          "slug": "deep-vault",
+          "capital": false,
+          "placement": "lore",
+          "note": "оно же Sunken Treasury"
+        },
+        {
+          "name": "Coral Breach",
+          "slug": "coral-breach",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Reef's Edge",
+          "slug": "reefs-edge",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Recluse Reef",
+          "slug": "recluse-reef",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Infernal Hollow",
+          "slug": "infernal-hollow",
+          "capital": false,
+          "placement": "lore",
+          "note": "страницы на Liquipedia нет"
+        }
+      ],
+      "regionHeroes": [
+        "morphling"
+      ]
+    },
+    {
+      "id": "cladd",
+      "tier": "continent",
+      "side": "neutral",
+      "name": {
+        "ru": "Кладд и острова",
+        "en": "Cladd and the Isles"
+      },
+      "geo": "Островное государство Кладд и окрестные острова и проливы.",
+      "places": [
+        {
+          "name": "Cladd",
+          "slug": "cladd",
+          "capital": true,
+          "placement": "lore"
+        },
+        {
+          "name": "Trembling Isle",
+          "slug": "trembling-isle",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Sunken Isles",
+          "slug": "sunken-isles",
+          "capital": false,
+          "placement": "ours"
+        },
+        {
+          "name": "Isle of Songs",
+          "slug": "isle-of-songs",
+          "capital": false,
+          "placement": "ours"
+        },
+        {
+          "name": "Port Mignin",
+          "slug": "port-mignin",
+          "capital": false,
+          "placement": "ours"
+        },
+        {
+          "name": "Narrow Channel",
+          "slug": "narrow-channel",
+          "capital": false,
+          "placement": "ours"
+        }
+      ],
+      "regionHeroes": []
+    },
+    {
+      "id": "tropic-isles",
+      "tier": "continent",
+      "side": "neutral",
+      "name": {
+        "ru": "Тропические острова",
+        "en": "Tropic Isles"
+      },
+      "geo": "Острова в тропиках. Ash Archipelago — место отдыха кинов. Название региона — наше.",
+      "places": [
+        {
+          "name": "Isle of Masks",
+          "slug": "isle-of-masks",
+          "capital": true,
+          "placement": "lore"
+        },
+        {
+          "name": "Temple of Masks",
+          "slug": "temple-of-masks",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Ivory Isles",
+          "slug": "ivory-isles",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Jidi Isle",
+          "slug": "jidi-isle",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Acid Jungles",
+          "slug": "acid-jungles",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Bay of Fradj",
+          "slug": "bay-of-fradj",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Ash Archipelago",
+          "slug": "ash-archipelago",
+          "capital": false,
+          "placement": "lore"
+        }
+      ],
+      "regionHeroes": []
+    },
+    {
+      "id": "western-forests",
+      "tier": "continent",
+      "side": "neutral",
+      "name": {
+        "ru": "Западные леса",
+        "en": "Western Forests"
+      },
+      "geo": "На западе мира много лесов: Western Forests с деревней Zaru'Kina и высокие леса за Vale of Augury. Western Forests граничат с павшим королевством Слом.",
+      "places": [
+        {
+          "name": "Western Forests",
+          "slug": "western-forests",
+          "capital": true,
+          "placement": "lore"
+        },
+        {
+          "name": "Zaru'Kina",
+          "slug": "zarukina",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Vale of Augury",
+          "slug": "vale-of-augury",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Augury Bay",
+          "slug": "augury-bay",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Endless Copse",
+          "slug": "endless-copse",
+          "capital": false,
+          "placement": "ours"
+        },
+        {
+          "name": "Manglewood Forest",
+          "slug": "manglewood-forest",
+          "capital": false,
+          "placement": "ours"
+        }
+      ],
+      "regionHeroes": []
+    },
+    {
+      "id": "slom-elze",
+      "tier": "continent",
+      "side": "neutral",
+      "name": {
+        "ru": "Слом и Эльзе",
+        "en": "Slom and Elze"
+      },
+      "geo": "Два враждующих королевства-соседа, связанных дорогой с тавернами. Слом граничит с Western Forests.",
+      "places": [
+        {
+          "name": "Slom",
+          "slug": "slom",
+          "capital": true,
+          "placement": "lore"
+        },
+        {
+          "name": "Elze",
+          "slug": "elze",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Stone Hills",
+          "slug": "stone-hills",
+          "capital": false,
+          "placement": "ours"
+        }
+      ],
+      "regionHeroes": []
+    },
+    {
+      "id": "hoven",
+      "tier": "continent",
+      "side": "neutral",
+      "name": {
+        "ru": "Ховен и Нишай",
+        "en": "The Hoven and Nishai"
+      },
+      "geo": "Огромный лес Ховен у подножия Bleeding Hills; с холмов стекает чёрная смола. Страница Bleeding Hills связывает их с Нишаем — краем землетрясений.",
+      "places": [
+        {
+          "name": "The Hoven",
+          "slug": "the-hoven",
+          "capital": true,
+          "placement": "lore"
+        },
+        {
+          "name": "Bleeding Hills",
+          "slug": "bleeding-hills",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Nishai",
+          "slug": "nishai",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "The Red Mountain",
+          "slug": "the-red-mountain",
+          "capital": false,
+          "placement": "lore",
+          "note": "предположительно в Нишае"
+        }
+      ],
+      "regionHeroes": []
+    },
+    {
+      "id": "fellstrath",
+      "tier": "continent",
+      "side": "neutral",
+      "name": {
+        "ru": "Феллстрат",
+        "en": "Fellstrath"
+      },
+      "geo": "Тропические джунгли с муссонами и руинами Overgrown Empire, за горами у Ашкавора.",
+      "places": [
+        {
+          "name": "Fellstrath",
+          "slug": "fellstrath",
+          "capital": true,
+          "placement": "lore"
+        },
+        {
+          "name": "Overgrown Empire",
+          "slug": "overgrown-empire",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Ashkavor",
+          "slug": "ashkavor",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Yama Raskav Jungle",
+          "slug": "yama-raskav-jungle",
+          "capital": false,
+          "placement": "ours"
+        },
+        {
+          "name": "Xhacatocatl",
+          "slug": "xhacatocatl",
+          "capital": false,
+          "placement": "ours",
+          "note": "окутанные туманом горы"
+        },
+        {
+          "name": "Velu'Mar",
+          "slug": "velumar",
+          "capital": false,
+          "placement": "ours",
+          "note": "Murkroots of Velu'Mar, родина Largo; страницы на Liquipedia нет"
+        }
+      ],
+      "regionHeroes": []
+    },
+    {
+      "id": "tomokan",
+      "tier": "continent",
+      "side": "neutral",
+      "name": {
+        "ru": "Томо'кан и Окраины",
+        "en": "Tomo'kan and the Outlands"
+      },
+      "geo": "Туманный лес Томо'кан (Mistwood, Darkwood). К югу — королевство Кримвол в Окраинах. Окраины — всё, что за Dread Marsh, рядом с пустыней Nanarak. Сюда упали камни Неместиса.",
+      "places": [
+        {
+          "name": "Tomo'kan",
+          "slug": "tomokan",
+          "capital": true,
+          "placement": "lore"
+        },
+        {
+          "name": "Krimwohl",
+          "slug": "krimwohl",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Outlands",
+          "slug": "outlands",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Nanarak",
+          "slug": "nanarak",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Dread Marsh",
+          "slug": "dread-marsh",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Praxa'cia",
+          "slug": "praxacia",
+          "capital": false,
+          "placement": "lore"
+        }
+      ],
+      "regionHeroes": []
+    },
+    {
+      "id": "empire-of-bone",
+      "tier": "continent",
+      "side": "neutral",
+      "name": {
+        "ru": "Империя Костей",
+        "en": "Empire of Bone"
+      },
+      "geo": "Владения Остариона: дворец, башни, мостовые и даже лес — из кости. Его армии разрушили Levinthal (Gleaming City).",
+      "places": [
+        {
+          "name": "Throne of Bone",
+          "slug": "throne-of-bone",
+          "capital": true,
+          "placement": "lore"
+        },
+        {
+          "name": "Ivory Forest",
+          "slug": "ivory-forest",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Levinthal",
+          "slug": "levinthal",
+          "capital": false,
+          "placement": "ours",
+          "note": "возможно, то же, что Gleaming City"
+        }
+      ],
+      "regionHeroes": []
+    },
+    {
+      "id": "middle-kingdoms",
+      "tier": "continent",
+      "side": "neutral",
+      "name": {
+        "ru": "Срединные королевства",
+        "en": "The Middle Kingdoms"
+      },
+      "geo": "Название и состав — наши. Здесь собраны королевства и места, расположение которых в лоре не указано. Регион можно разделить, когда будет готова схема карты (E2).",
+      "places": [
+        {
+          "name": "Candoness",
+          "slug": "candoness",
+          "capital": false,
+          "placement": "ours"
+        },
+        {
+          "name": "Devarque",
+          "slug": "devarque",
+          "capital": false,
+          "placement": "ours"
+        },
+        {
+          "name": "Yoskreth",
+          "slug": "yoskreth",
+          "capital": false,
+          "placement": "ours"
+        },
+        {
+          "name": "Ultimyr Academy",
+          "slug": "ultimyr-academy",
+          "capital": false,
+          "placement": "ours"
+        },
+        {
+          "name": "Emauracus",
+          "slug": "emauracus",
+          "capital": false,
+          "placement": "ours"
+        },
+        {
+          "name": "Font of Avernus",
+          "slug": "font-of-avernus",
+          "capital": false,
+          "placement": "ours"
+        },
+        {
+          "name": "Hidden Temple",
+          "slug": "hidden-temple",
+          "capital": false,
+          "placement": "ours"
+        },
+        {
+          "name": "Hidden Hive",
+          "slug": "hidden-hive",
+          "capital": false,
+          "placement": "ours"
+        },
+        {
+          "name": "Mount Pyrotheos",
+          "slug": "mount-pyrotheos",
+          "capital": false,
+          "placement": "ours"
+        },
+        {
+          "name": "Skirm",
+          "slug": "skirm",
+          "capital": false,
+          "placement": "ours",
+          "note": "страницы на Liquipedia нет"
+        },
+        {
+          "name": "Solar Throne",
+          "slug": "solar-throne",
+          "capital": false,
+          "placement": "ours",
+          "note": "трон империи Helio Imperium"
+        }
+      ],
+      "regionHeroes": []
+    },
+    {
+      "id": "uncharted",
+      "tier": "continent",
+      "side": "neutral",
+      "name": {
+        "ru": "Неизведанные земли",
+        "en": "The Uncharted Lands"
+      },
+      "geo": "Остров в тумане у края карты — для героев, чья родина в лоре не названа (решение В1). Мест внутри нет: герои привязаны к региону целиком. Название и регион — наши.",
+      "places": [],
+      "regionHeroes": [
+        "tiny",
+        "witch_doctor",
+        "riki",
+        "death_prophet",
+        "enchantress",
+        "jakiro",
+        "alchemist",
+        "ogre_magi",
+        "undying",
+        "rubick",
+        "ringmaster",
+        "marci"
+      ]
+    },
+    {
+      "id": "underdark",
+      "tier": "abyss",
+      "side": "neutral",
+      "name": {
+        "ru": "Подземье",
+        "en": "The Underdark"
+      },
+      "geo": "Физическое подземелье мира: город Азийог под магмой и корнями вулканов, Nether Reaches у тектонических плит, пещеры Emerald Abyss. Название региона — наше.",
+      "places": [
+        {
+          "name": "Aziyog",
+          "slug": "aziyog",
+          "capital": true,
+          "placement": "lore"
+        },
+        {
+          "name": "Nether Reaches",
+          "slug": "nether-reaches",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "The Emerald Abyss",
+          "slug": "the-emerald-abyss",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "The Underhollow",
+          "slug": "the-underhollow",
+          "capital": false,
+          "placement": "lore"
+        }
+      ],
+      "regionHeroes": []
+    },
+    {
+      "id": "hells",
+      "tier": "abyss",
+      "side": "neutral",
+      "name": {
+        "ru": "Семь Преисподних и загробье",
+        "en": "The Seven Hells and the Afterlife"
+      },
+      "geo": "Семь слоёв ада, тюрьма Foulfell, путь мёртвых душ (Narrow Maze → Underscape) и загробный мир Nothl.",
+      "places": [
+        {
+          "name": "Seven Hells",
+          "slug": "seven-hells",
+          "capital": true,
+          "placement": "lore"
+        },
+        {
+          "name": "Vashundol",
+          "slug": "vashundol",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Abysm",
+          "slug": "abysm",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Foulfell",
+          "slug": "foulfell",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Outer Hells",
+          "slug": "outer-hells",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Narrow Maze",
+          "slug": "narrow-maze",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Underscape",
+          "slug": "underscape",
+          "capital": false,
+          "placement": "lore"
+        },
+        {
+          "name": "Nothl Realm",
+          "slug": "nothl-realm",
+          "capital": false,
+          "placement": "lore"
+        }
+      ],
+      "regionHeroes": []
+    }
+  ],
+  "heroes": [
+    {
+      "key": "antimage",
+      "name": "Anti-Mage",
+      "slug": "antimage",
+      "links": [
+        {
+          "regionId": "wailing-mountains",
+          "placeSlug": "turstarkuri",
+          "role": "origin",
+          "basis": "bio"
+        },
+        {
+          "regionId": "free-cities",
+          "placeSlug": "tyler-estate",
+          "role": "link",
+          "basis": "infobox"
+        }
+      ]
+    },
+    {
+      "key": "axe",
+      "name": "Axe",
+      "slug": "axe",
+      "links": [
+        {
+          "regionId": "radiant-lands",
+          "placeSlug": "thousand-tarns",
+          "role": "origin",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "bane",
+      "name": "Bane",
+      "slug": "bane",
+      "links": [
+        {
+          "regionId": "planes",
+          "placeSlug": "the-dream",
+          "role": "origin",
+          "basis": "ours"
+        }
+      ]
+    },
+    {
+      "key": "bloodseeker",
+      "name": "Bloodseeker",
+      "slug": "bloodseeker",
+      "links": [
+        {
+          "regionId": "fellstrath",
+          "placeSlug": "xhacatocatl",
+          "role": "origin",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "crystal_maiden",
+      "name": "Crystal Maiden",
+      "slug": "crystalmaiden",
+      "links": [
+        {
+          "regionId": "icewrack",
+          "placeSlug": "icewrack",
+          "role": "home",
+          "basis": "infobox"
+        }
+      ]
+    },
+    {
+      "key": "drow_ranger",
+      "name": "Drow Ranger",
+      "slug": "drowranger",
+      "links": [
+        {
+          "regionId": "icewrack",
+          "role": "origin",
+          "basis": "ours"
+        }
+      ]
+    },
+    {
+      "key": "earthshaker",
+      "name": "Earthshaker",
+      "slug": "earthshaker",
+      "links": [
+        {
+          "regionId": "hoven",
+          "placeSlug": "nishai",
+          "role": "origin",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "juggernaut",
+      "name": "Juggernaut",
+      "slug": "juggernaut",
+      "links": [
+        {
+          "regionId": "tropic-isles",
+          "placeSlug": "isle-of-masks",
+          "role": "origin",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "mirana",
+      "name": "Mirana",
+      "slug": "mirana",
+      "links": [
+        {
+          "regionId": "nightsilver",
+          "placeSlug": "nightsilver-woods",
+          "role": "home",
+          "basis": "bio"
+        },
+        {
+          "regionId": "middle-kingdoms",
+          "placeSlug": "solar-throne",
+          "role": "origin",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "morphling",
+      "name": "Morphling",
+      "slug": "morphling",
+      "links": [
+        {
+          "regionId": "the-deep",
+          "role": "home",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "nevermore",
+      "name": "Shadow Fiend",
+      "slug": "shadowfiend",
+      "links": [
+        {
+          "regionId": "hells",
+          "placeSlug": "abysm",
+          "role": "origin",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "phantom_lancer",
+      "name": "Phantom Lancer",
+      "slug": "phantomlancer",
+      "links": [
+        {
+          "regionId": "radiant-lands",
+          "placeSlug": "pole",
+          "role": "origin",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "puck",
+      "name": "Puck",
+      "slug": "puck",
+      "links": [
+        {
+          "regionId": "planes",
+          "placeSlug": "claszureme",
+          "role": "origin",
+          "basis": "page"
+        },
+        {
+          "regionId": "tomokan",
+          "placeSlug": "tomokan",
+          "role": "link",
+          "basis": "page"
+        }
+      ]
+    },
+    {
+      "key": "pudge",
+      "name": "Pudge",
+      "slug": "pudge",
+      "links": [
+        {
+          "regionId": "quoidge",
+          "placeSlug": "fields-of-endless-carnage",
+          "role": "home",
+          "basis": "bio"
+        },
+        {
+          "regionId": "quoidge",
+          "placeSlug": "quoidge",
+          "role": "link",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "razor",
+      "name": "Razor",
+      "slug": "razor",
+      "links": [
+        {
+          "regionId": "hells",
+          "placeSlug": "narrow-maze",
+          "role": "home",
+          "basis": "bio"
+        },
+        {
+          "regionId": "hells",
+          "placeSlug": "underscape",
+          "role": "link",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "sand_king",
+      "name": "Sand King",
+      "slug": "sandking",
+      "links": [
+        {
+          "regionId": "scintillant",
+          "placeSlug": "scintillant-waste",
+          "role": "origin",
+          "basis": "bio"
+        },
+        {
+          "regionId": "scintillant",
+          "placeSlug": "qaldin",
+          "role": "link",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "storm_spirit",
+      "name": "Storm Spirit",
+      "slug": "stormspirit",
+      "links": [
+        {
+          "regionId": "wailing-mountains",
+          "placeSlug": "ruined-city",
+          "role": "home",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "sven",
+      "name": "Sven",
+      "slug": "sven",
+      "links": [
+        {
+          "regionId": "shadeshore",
+          "placeSlug": "shadeshore-ruins",
+          "role": "origin",
+          "basis": "bio"
+        },
+        {
+          "regionId": "shadeshore",
+          "placeSlug": "vigil-keep",
+          "role": "link",
+          "basis": "bio"
+        },
+        {
+          "regionId": "wailing-mountains",
+          "placeSlug": "feral-road",
+          "role": "link",
+          "basis": "page"
+        }
+      ]
+    },
+    {
+      "key": "tiny",
+      "name": "Tiny",
+      "slug": "tiny",
+      "links": [
+        {
+          "regionId": "uncharted",
+          "role": "origin",
+          "basis": "ours",
+          "note": "в биографии нет мест"
+        }
+      ]
+    },
+    {
+      "key": "vengefulspirit",
+      "name": "Vengeful Spirit",
+      "slug": "vengefulspirit",
+      "links": [
+        {
+          "regionId": "heavens",
+          "placeSlug": "ghastly-eyrie",
+          "role": "origin",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "windrunner",
+      "name": "Windranger",
+      "slug": "windranger",
+      "links": [
+        {
+          "regionId": "western-forests",
+          "placeSlug": "zarukina",
+          "role": "origin",
+          "basis": "infobox"
+        }
+      ]
+    },
+    {
+      "key": "zuus",
+      "name": "Zeus",
+      "slug": "zeus",
+      "links": [
+        {
+          "regionId": "heavens",
+          "placeSlug": "olympus",
+          "role": "origin",
+          "basis": "infobox"
+        }
+      ]
+    },
+    {
+      "key": "kunkka",
+      "name": "Kunkka",
+      "slug": "kunkka",
+      "links": [
+        {
+          "regionId": "cladd",
+          "placeSlug": "cladd",
+          "role": "origin",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "lina",
+      "name": "Lina",
+      "slug": "lina",
+      "links": [
+        {
+          "regionId": "scintillant",
+          "placeSlug": "desert-of-misrule",
+          "role": "origin",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "lion",
+      "name": "Lion",
+      "slug": "lion",
+      "links": [
+        {
+          "regionId": "free-cities",
+          "placeSlug": "weeping-rose",
+          "role": "origin",
+          "basis": "infobox"
+        }
+      ]
+    },
+    {
+      "key": "shadow_shaman",
+      "name": "Shadow Shaman",
+      "slug": "shadowshaman",
+      "links": [
+        {
+          "regionId": "hoven",
+          "placeSlug": "bleeding-hills",
+          "role": "origin",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "slardar",
+      "name": "Slardar",
+      "slug": "slardar",
+      "links": [
+        {
+          "regionId": "the-deep",
+          "placeSlug": "deep-vault",
+          "role": "home",
+          "basis": "infobox"
+        }
+      ]
+    },
+    {
+      "key": "tidehunter",
+      "name": "Tidehunter",
+      "slug": "tidehunter",
+      "links": [
+        {
+          "regionId": "cladd",
+          "placeSlug": "sunken-isles",
+          "role": "origin",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "witch_doctor",
+      "name": "Witch Doctor",
+      "slug": "witchdoctor",
+      "links": [
+        {
+          "regionId": "uncharted",
+          "role": "origin",
+          "basis": "ours",
+          "note": "в биографии нет мест"
+        }
+      ]
+    },
+    {
+      "key": "lich",
+      "name": "Lich",
+      "slug": "lich",
+      "links": [
+        {
+          "regionId": "icewrack",
+          "placeSlug": "black-pool",
+          "role": "home",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "riki",
+      "name": "Riki",
+      "slug": "riki",
+      "links": [
+        {
+          "regionId": "uncharted",
+          "role": "origin",
+          "basis": "ours",
+          "note": "в биографии нет мест (Tahlin не описан как место)"
+        }
+      ]
+    },
+    {
+      "key": "enigma",
+      "name": "Enigma",
+      "slug": "enigma",
+      "links": [
+        {
+          "regionId": "planes",
+          "placeSlug": "fundamental-plane",
+          "role": "origin",
+          "basis": "infobox"
+        }
+      ]
+    },
+    {
+      "key": "tinker",
+      "name": "Tinker",
+      "slug": "tinker",
+      "links": [
+        {
+          "regionId": "radiant-lands",
+          "placeSlug": "violet-plateau",
+          "role": "home",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "sniper",
+      "name": "Sniper",
+      "slug": "sniper",
+      "links": [
+        {
+          "regionId": "radiant-lands",
+          "placeSlug": "knollen",
+          "role": "origin",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "necrolyte",
+      "name": "Necrophos",
+      "slug": "necrophos",
+      "links": [
+        {
+          "regionId": "quoidge",
+          "placeSlug": "cathedral-of-rumusque",
+          "role": "origin",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "warlock",
+      "name": "Warlock",
+      "slug": "warlock",
+      "links": [
+        {
+          "regionId": "middle-kingdoms",
+          "placeSlug": "ultimyr-academy",
+          "role": "home",
+          "basis": "bio"
+        },
+        {
+          "regionId": "hells",
+          "placeSlug": "outer-hells",
+          "role": "link",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "beastmaster",
+      "name": "Beastmaster",
+      "slug": "beastmaster",
+      "links": [
+        {
+          "regionId": "slom-elze",
+          "placeSlug": "slom",
+          "role": "origin",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "queenofpain",
+      "name": "Queen of Pain",
+      "slug": "queenofpain",
+      "links": [
+        {
+          "regionId": "slom-elze",
+          "placeSlug": "elze",
+          "role": "link",
+          "basis": "bio"
+        },
+        {
+          "regionId": "free-cities",
+          "placeSlug": "weeping-rose",
+          "role": "link",
+          "basis": "page"
+        }
+      ]
+    },
+    {
+      "key": "venomancer",
+      "name": "Venomancer",
+      "slug": "venomancer",
+      "links": [
+        {
+          "regionId": "tropic-isles",
+          "placeSlug": "acid-jungles",
+          "role": "origin",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "faceless_void",
+      "name": "Faceless Void",
+      "slug": "facelessvoid",
+      "links": [
+        {
+          "regionId": "planes",
+          "placeSlug": "claszureme",
+          "role": "origin",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "skeleton_king",
+      "name": "Wraith King",
+      "slug": "wraithking",
+      "links": [
+        {
+          "regionId": "empire-of-bone",
+          "placeSlug": "throne-of-bone",
+          "role": "home",
+          "basis": "infobox"
+        }
+      ]
+    },
+    {
+      "key": "death_prophet",
+      "name": "Death Prophet",
+      "slug": "deathprophet",
+      "links": [
+        {
+          "regionId": "uncharted",
+          "role": "origin",
+          "basis": "ours",
+          "note": "в биографии нет мест"
+        }
+      ]
+    },
+    {
+      "key": "phantom_assassin",
+      "name": "Phantom Assassin",
+      "slug": "phantomassassin",
+      "links": [
+        {
+          "regionId": "stonehall",
+          "placeSlug": "tares",
+          "role": "origin",
+          "basis": "infobox"
+        }
+      ]
+    },
+    {
+      "key": "pugna",
+      "name": "Pugna",
+      "slug": "pugna",
+      "links": [
+        {
+          "regionId": "underdark",
+          "placeSlug": "nether-reaches",
+          "role": "origin",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "templar_assassin",
+      "name": "Templar Assassin",
+      "slug": "templarassassin",
+      "links": [
+        {
+          "regionId": "middle-kingdoms",
+          "placeSlug": "hidden-temple",
+          "role": "home",
+          "basis": "bio"
+        },
+        {
+          "regionId": "radiant-lands",
+          "placeSlug": "violet-archives",
+          "role": "link",
+          "basis": "bio"
+        },
+        {
+          "regionId": "scintillant",
+          "placeSlug": "halgalreh",
+          "role": "link",
+          "basis": "page"
+        }
+      ]
+    },
+    {
+      "key": "viper",
+      "name": "Viper",
+      "slug": "viper",
+      "links": [
+        {
+          "regionId": "underdark",
+          "placeSlug": "nether-reaches",
+          "role": "origin",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "luna",
+      "name": "Luna",
+      "slug": "luna",
+      "links": [
+        {
+          "regionId": "nightsilver",
+          "placeSlug": "nightsilver-woods",
+          "role": "home",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "dragon_knight",
+      "name": "Dragon Knight",
+      "slug": "dragonknight",
+      "links": [
+        {
+          "regionId": "middle-kingdoms",
+          "placeSlug": "candoness",
+          "role": "home",
+          "basis": "page"
+        }
+      ]
+    },
+    {
+      "key": "dazzle",
+      "name": "Dazzle",
+      "slug": "dazzle",
+      "links": [
+        {
+          "regionId": "hells",
+          "placeSlug": "nothl-realm",
+          "role": "link",
+          "basis": "bio"
+        },
+        {
+          "regionId": "fellstrath",
+          "placeSlug": "fellstrath",
+          "role": "home",
+          "basis": "page"
+        }
+      ]
+    },
+    {
+      "key": "rattletrap",
+      "name": "Clockwerk",
+      "slug": "clockwerk",
+      "links": [
+        {
+          "regionId": "radiant-lands",
+          "placeSlug": "home-of-the-keen-folk",
+          "role": "origin",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "leshrac",
+      "name": "Leshrac",
+      "slug": "leshrac",
+      "links": [
+        {
+          "regionId": "planes",
+          "placeSlug": "heart-of-nature",
+          "role": "origin",
+          "basis": "infobox"
+        }
+      ]
+    },
+    {
+      "key": "furion",
+      "name": "Nature's Prophet",
+      "slug": "naturesprophet",
+      "links": [
+        {
+          "regionId": "western-forests",
+          "placeSlug": "endless-copse",
+          "role": "home",
+          "basis": "page"
+        }
+      ]
+    },
+    {
+      "key": "life_stealer",
+      "name": "Lifestealer",
+      "slug": "lifestealer",
+      "links": [
+        {
+          "regionId": "middle-kingdoms",
+          "placeSlug": "devarque",
+          "role": "link",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "dark_seer",
+      "name": "Dark Seer",
+      "slug": "darkseer",
+      "links": [
+        {
+          "regionId": "planes",
+          "placeSlug": "land-behind-the-wall",
+          "role": "origin",
+          "basis": "infobox"
+        }
+      ]
+    },
+    {
+      "key": "clinkz",
+      "name": "Clinkz",
+      "slug": "clinkz",
+      "links": [
+        {
+          "regionId": "hoven",
+          "placeSlug": "the-hoven",
+          "role": "origin",
+          "basis": "infobox"
+        },
+        {
+          "regionId": "hoven",
+          "placeSlug": "bleeding-hills",
+          "role": "link",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "omniknight",
+      "name": "Omniknight",
+      "slug": "omniknight",
+      "links": [
+        {
+          "regionId": "middle-kingdoms",
+          "placeSlug": "emauracus",
+          "role": "home",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "enchantress",
+      "name": "Enchantress",
+      "slug": "enchantress",
+      "links": [
+        {
+          "regionId": "uncharted",
+          "role": "origin",
+          "basis": "ours",
+          "note": "в биографии нет мест; по образу — лесные земли"
+        }
+      ]
+    },
+    {
+      "key": "huskar",
+      "name": "Huskar",
+      "slug": "huskar",
+      "links": [
+        {
+          "regionId": "hells",
+          "placeSlug": "nothl-realm",
+          "role": "link",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "night_stalker",
+      "name": "Night Stalker",
+      "slug": "nightstalker",
+      "links": [
+        {
+          "regionId": "planes",
+          "placeSlug": "the-void",
+          "role": "origin",
+          "basis": "page"
+        }
+      ]
+    },
+    {
+      "key": "broodmother",
+      "name": "Broodmother",
+      "slug": "broodmother",
+      "links": [
+        {
+          "regionId": "middle-kingdoms",
+          "placeSlug": "mount-pyrotheos",
+          "role": "home",
+          "basis": "infobox"
+        }
+      ]
+    },
+    {
+      "key": "bounty_hunter",
+      "name": "Bounty Hunter",
+      "slug": "bountyhunter",
+      "links": [
+        {
+          "regionId": "free-cities",
+          "placeSlug": "white-spire",
+          "role": "home",
+          "basis": "page"
+        },
+        {
+          "regionId": "free-cities",
+          "placeSlug": "highseat",
+          "role": "link",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "weaver",
+      "name": "Weaver",
+      "slug": "weaver",
+      "links": [
+        {
+          "regionId": "planes",
+          "placeSlug": "fabric-of-creation",
+          "role": "origin",
+          "basis": "infobox"
+        }
+      ]
+    },
+    {
+      "key": "jakiro",
+      "name": "Jakiro",
+      "slug": "jakiro",
+      "links": [
+        {
+          "regionId": "uncharted",
+          "role": "origin",
+          "basis": "ours",
+          "note": "в биографии нет мест (раса Pyrexae)"
+        }
+      ]
+    },
+    {
+      "key": "batrider",
+      "name": "Batrider",
+      "slug": "batrider",
+      "links": [
+        {
+          "regionId": "fellstrath",
+          "placeSlug": "yama-raskav-jungle",
+          "role": "origin",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "chen",
+      "name": "Chen",
+      "slug": "chen",
+      "links": [
+        {
+          "regionId": "hazhadal",
+          "placeSlug": "hazhadal-barrens",
+          "role": "origin",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "spectre",
+      "name": "Spectre",
+      "slug": "spectre",
+      "links": [
+        {
+          "regionId": "planes",
+          "role": "origin",
+          "basis": "infobox"
+        },
+        {
+          "regionId": "shadeshore",
+          "placeSlug": "ruelands",
+          "role": "link",
+          "basis": "page"
+        },
+        {
+          "regionId": "middle-kingdoms",
+          "placeSlug": "hidden-temple",
+          "role": "link",
+          "basis": "page"
+        }
+      ]
+    },
+    {
+      "key": "ancient_apparition",
+      "name": "Ancient Apparition",
+      "slug": "ancientapparition",
+      "links": [
+        {
+          "regionId": "planes",
+          "placeSlug": "the-void",
+          "role": "origin",
+          "basis": "infobox"
+        }
+      ]
+    },
+    {
+      "key": "doom_bringer",
+      "name": "Doom",
+      "slug": "doom",
+      "links": [
+        {
+          "regionId": "hells",
+          "placeSlug": "vashundol",
+          "role": "origin",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "ursa",
+      "name": "Ursa",
+      "slug": "ursa",
+      "links": [
+        {
+          "regionId": "tomokan",
+          "placeSlug": "tomokan",
+          "role": "home",
+          "basis": "infobox"
+        }
+      ]
+    },
+    {
+      "key": "spirit_breaker",
+      "name": "Spirit Breaker",
+      "slug": "spiritbreaker",
+      "links": [
+        {
+          "regionId": "planes",
+          "placeSlug": "elemental-plane",
+          "role": "origin",
+          "basis": "infobox"
+        },
+        {
+          "regionId": "underdark",
+          "placeSlug": "nether-reaches",
+          "role": "link",
+          "basis": "infobox"
+        },
+        {
+          "regionId": "heavens",
+          "placeSlug": "ultoria",
+          "role": "link",
+          "basis": "page"
+        }
+      ]
+    },
+    {
+      "key": "gyrocopter",
+      "name": "Gyrocopter",
+      "slug": "gyrocopter",
+      "links": [
+        {
+          "regionId": "tropic-isles",
+          "placeSlug": "ash-archipelago",
+          "role": "home",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "alchemist",
+      "name": "Alchemist",
+      "slug": "alchemist",
+      "links": [
+        {
+          "regionId": "uncharted",
+          "role": "origin",
+          "basis": "ours",
+          "note": "в биографии нет мест (семья Darkbrew)"
+        }
+      ]
+    },
+    {
+      "key": "invoker",
+      "name": "Invoker",
+      "slug": "invoker",
+      "links": [
+        {
+          "regionId": "middle-kingdoms",
+          "placeSlug": "ultimyr-academy",
+          "role": "link",
+          "basis": "page"
+        }
+      ]
+    },
+    {
+      "key": "silencer",
+      "name": "Silencer",
+      "slug": "silencer",
+      "links": [
+        {
+          "regionId": "hazhadal",
+          "placeSlug": "hazhadal-barrens",
+          "role": "origin",
+          "basis": "bio"
+        },
+        {
+          "regionId": "free-cities",
+          "placeSlug": "tyler-estate",
+          "role": "link",
+          "basis": "page"
+        }
+      ]
+    },
+    {
+      "key": "obsidian_destroyer",
+      "name": "Outworld Destroyer",
+      "slug": "outworlddestroyer",
+      "links": [
+        {
+          "regionId": "planes",
+          "placeSlug": "the-outworld",
+          "role": "origin",
+          "basis": "infobox"
+        }
+      ]
+    },
+    {
+      "key": "lycan",
+      "name": "Lycan",
+      "slug": "lycan",
+      "links": [
+        {
+          "regionId": "slom-elze",
+          "placeSlug": "slom",
+          "role": "origin",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "brewmaster",
+      "name": "Brewmaster",
+      "slug": "brewmaster",
+      "links": [
+        {
+          "regionId": "wailing-mountains",
+          "placeSlug": "ruined-city",
+          "role": "origin",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "shadow_demon",
+      "name": "Shadow Demon",
+      "slug": "shadowdemon",
+      "links": [
+        {
+          "regionId": "hells",
+          "placeSlug": "seven-hells",
+          "role": "origin",
+          "basis": "page"
+        }
+      ]
+    },
+    {
+      "key": "lone_druid",
+      "name": "Lone Druid",
+      "slug": "lonedruid",
+      "links": [
+        {
+          "regionId": "icewrack",
+          "placeSlug": "onyx-grove",
+          "role": "home",
+          "basis": "page"
+        }
+      ]
+    },
+    {
+      "key": "chaos_knight",
+      "name": "Chaos Knight",
+      "slug": "chaosknight",
+      "links": [
+        {
+          "regionId": "planes",
+          "placeSlug": "fundamental-plane",
+          "role": "origin",
+          "basis": "infobox"
+        }
+      ]
+    },
+    {
+      "key": "meepo",
+      "name": "Meepo",
+      "slug": "meepo",
+      "links": [
+        {
+          "regionId": "scintillant",
+          "placeSlug": "riftshadow-ruins",
+          "role": "origin",
+          "basis": "bio"
+        },
+        {
+          "regionId": "scintillant",
+          "placeSlug": "singers-gulch",
+          "role": "link",
+          "basis": "page"
+        }
+      ]
+    },
+    {
+      "key": "treant",
+      "name": "Treant Protector",
+      "slug": "treantprotector",
+      "links": [
+        {
+          "regionId": "western-forests",
+          "placeSlug": "vale-of-augury",
+          "role": "home",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "ogre_magi",
+      "name": "Ogre Magi",
+      "slug": "ogremagi",
+      "links": [
+        {
+          "regionId": "uncharted",
+          "role": "origin",
+          "basis": "ours",
+          "note": "в биографии нет мест"
+        }
+      ]
+    },
+    {
+      "key": "undying",
+      "name": "Undying",
+      "slug": "undying",
+      "links": [
+        {
+          "regionId": "uncharted",
+          "role": "origin",
+          "basis": "ours",
+          "note": "служит Мёртвому богу, чей легион разорил Turstarkuri; Liquipedia связывает с Seven Hells"
+        }
+      ]
+    },
+    {
+      "key": "rubick",
+      "name": "Rubick",
+      "slug": "rubick",
+      "links": [
+        {
+          "regionId": "uncharted",
+          "role": "origin",
+          "basis": "ours",
+          "note": "в биографии нет мест; Liquipedia связывает с Ultimyr Archives (слабая связь)"
+        }
+      ]
+    },
+    {
+      "key": "disruptor",
+      "name": "Disruptor",
+      "slug": "disruptor",
+      "links": [
+        {
+          "regionId": "druud",
+          "placeSlug": "druud",
+          "role": "origin",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "nyx_assassin",
+      "name": "Nyx Assassin",
+      "slug": "nyxassassin",
+      "links": [
+        {
+          "regionId": "middle-kingdoms",
+          "placeSlug": "hidden-hive",
+          "role": "home",
+          "basis": "infobox"
+        }
+      ]
+    },
+    {
+      "key": "naga_siren",
+      "name": "Naga Siren",
+      "slug": "nagasiren",
+      "links": [
+        {
+          "regionId": "the-deep",
+          "placeSlug": "crey",
+          "role": "home",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "keeper_of_the_light",
+      "name": "Keeper of the Light",
+      "slug": "keeperofthelight",
+      "links": [
+        {
+          "regionId": "planes",
+          "placeSlug": "fundamental-plane",
+          "role": "origin",
+          "basis": "bio"
+        },
+        {
+          "regionId": "planes",
+          "placeSlug": "lights-keep",
+          "role": "link",
+          "basis": "infobox"
+        }
+      ]
+    },
+    {
+      "key": "wisp",
+      "name": "Io",
+      "slug": "io",
+      "links": [
+        {
+          "regionId": "planes",
+          "placeSlug": "fundamental-plane",
+          "role": "origin",
+          "basis": "infobox"
+        }
+      ]
+    },
+    {
+      "key": "visage",
+      "name": "Visage",
+      "slug": "visage",
+      "links": [
+        {
+          "regionId": "hells",
+          "placeSlug": "narrow-maze",
+          "role": "home",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "slark",
+      "name": "Slark",
+      "slug": "slark",
+      "links": [
+        {
+          "regionId": "the-deep",
+          "placeSlug": "dark-reef",
+          "role": "origin",
+          "basis": "bio"
+        },
+        {
+          "regionId": "shadeshore",
+          "role": "home",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "medusa",
+      "name": "Medusa",
+      "slug": "medusa",
+      "links": [
+        {
+          "regionId": "fellstrath",
+          "placeSlug": "yama-raskav-jungle",
+          "role": "home",
+          "basis": "page"
+        }
+      ]
+    },
+    {
+      "key": "troll_warlord",
+      "name": "Troll Warlord",
+      "slug": "trollwarlord",
+      "links": [
+        {
+          "regionId": "hoven",
+          "placeSlug": "the-hoven",
+          "role": "home",
+          "basis": "infobox"
+        }
+      ]
+    },
+    {
+      "key": "centaur",
+      "name": "Centaur Warrunner",
+      "slug": "centaurwarrunner",
+      "links": [
+        {
+          "regionId": "druud",
+          "placeSlug": "druud",
+          "role": "origin",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "magnataur",
+      "name": "Magnus",
+      "slug": "magnus",
+      "links": [
+        {
+          "regionId": "wailing-mountains",
+          "placeSlug": "mount-joerlak",
+          "role": "origin",
+          "basis": "page"
+        }
+      ]
+    },
+    {
+      "key": "shredder",
+      "name": "Timbersaw",
+      "slug": "timbersaw",
+      "links": [
+        {
+          "regionId": "western-forests",
+          "placeSlug": "augury-bay",
+          "role": "origin",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "bristleback",
+      "name": "Bristleback",
+      "slug": "bristleback",
+      "links": [
+        {
+          "regionId": "slom-elze",
+          "placeSlug": "elze",
+          "role": "home",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "tusk",
+      "name": "Tusk",
+      "slug": "tusk",
+      "links": [
+        {
+          "regionId": "icewrack",
+          "placeSlug": "cobalt",
+          "role": "origin",
+          "basis": "bio"
+        },
+        {
+          "regionId": "icewrack",
+          "placeSlug": "wolfsden-tavern",
+          "role": "link",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "skywrath_mage",
+      "name": "Skywrath Mage",
+      "slug": "skywrathmage",
+      "links": [
+        {
+          "regionId": "heavens",
+          "placeSlug": "ghastly-eyrie",
+          "role": "origin",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "abaddon",
+      "name": "Abaddon",
+      "slug": "abaddon",
+      "links": [
+        {
+          "regionId": "middle-kingdoms",
+          "placeSlug": "font-of-avernus",
+          "role": "origin",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "elder_titan",
+      "name": "Elder Titan",
+      "slug": "eldertitan",
+      "links": [
+        {
+          "regionId": "planes",
+          "placeSlug": "primordial-plane",
+          "role": "origin",
+          "basis": "page"
+        }
+      ]
+    },
+    {
+      "key": "legion_commander",
+      "name": "Legion Commander",
+      "slug": "legioncommander",
+      "links": [
+        {
+          "regionId": "stonehall",
+          "placeSlug": "qine",
+          "role": "origin",
+          "basis": "infobox"
+        },
+        {
+          "regionId": "stonehall",
+          "placeSlug": "stonehall",
+          "role": "home",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "techies",
+      "name": "Techies",
+      "slug": "techies",
+      "links": [
+        {
+          "regionId": "radiant-lands",
+          "placeSlug": "dredgers-bight",
+          "role": "origin",
+          "basis": "bio"
+        },
+        {
+          "regionId": "shadeshore",
+          "placeSlug": "ruelands",
+          "role": "link",
+          "basis": "page"
+        }
+      ]
+    },
+    {
+      "key": "ember_spirit",
+      "name": "Ember Spirit",
+      "slug": "emberspirit",
+      "links": [
+        {
+          "regionId": "wailing-mountains",
+          "placeSlug": "fortress-of-flares",
+          "role": "home",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "earth_spirit",
+      "name": "Earth Spirit",
+      "slug": "earthspirit",
+      "links": [
+        {
+          "regionId": "wailing-mountains",
+          "placeSlug": "the-upland",
+          "role": "origin",
+          "basis": "infobox"
+        }
+      ]
+    },
+    {
+      "key": "abyssal_underlord",
+      "name": "Underlord",
+      "slug": "underlord",
+      "links": [
+        {
+          "regionId": "underdark",
+          "placeSlug": "aziyog",
+          "role": "home",
+          "basis": "bio"
+        },
+        {
+          "regionId": "stonehall",
+          "placeSlug": "stonehall",
+          "role": "link",
+          "basis": "page"
+        }
+      ]
+    },
+    {
+      "key": "terrorblade",
+      "name": "Terrorblade",
+      "slug": "terrorblade",
+      "links": [
+        {
+          "regionId": "hells",
+          "placeSlug": "foulfell",
+          "role": "origin",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "phoenix",
+      "name": "Phoenix",
+      "slug": "phoenix",
+      "links": [
+        {
+          "regionId": "heavens",
+          "placeSlug": "the-sun",
+          "role": "origin",
+          "basis": "ours"
+        }
+      ]
+    },
+    {
+      "key": "oracle",
+      "name": "Oracle",
+      "slug": "oracle",
+      "links": [
+        {
+          "regionId": "planes",
+          "placeSlug": "ivory-incubarium",
+          "role": "origin",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "winter_wyvern",
+      "name": "Winter Wyvern",
+      "slug": "winterwyvern",
+      "links": [
+        {
+          "regionId": "icewrack",
+          "placeSlug": "icewrack",
+          "role": "home",
+          "basis": "page"
+        }
+      ]
+    },
+    {
+      "key": "arc_warden",
+      "name": "Arc Warden",
+      "slug": "arcwarden",
+      "links": [
+        {
+          "regionId": "heavens",
+          "placeSlug": "mad-moon",
+          "role": "origin",
+          "basis": "page"
+        },
+        {
+          "regionId": "tomokan",
+          "placeSlug": "tomokan",
+          "role": "link",
+          "basis": "page"
+        }
+      ]
+    },
+    {
+      "key": "monkey_king",
+      "name": "Monkey King",
+      "slug": "monkeyking",
+      "links": [
+        {
+          "regionId": "free-cities",
+          "placeSlug": "white-spire",
+          "role": "home",
+          "basis": "infobox"
+        }
+      ]
+    },
+    {
+      "key": "dark_willow",
+      "name": "Dark Willow",
+      "slug": "darkwillow",
+      "links": [
+        {
+          "regionId": "free-cities",
+          "placeSlug": "revtel",
+          "role": "origin",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "pangolier",
+      "name": "Pangolier",
+      "slug": "pangolier",
+      "links": [
+        {
+          "regionId": "free-cities",
+          "placeSlug": "white-spire",
+          "role": "home",
+          "basis": "page"
+        },
+        {
+          "regionId": "scintillant",
+          "placeSlug": "qaldin",
+          "role": "link",
+          "basis": "page"
+        }
+      ]
+    },
+    {
+      "key": "grimstroke",
+      "name": "Grimstroke",
+      "slug": "grimstroke",
+      "links": [
+        {
+          "regionId": "fellstrath",
+          "placeSlug": "ashkavor",
+          "role": "origin",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "hoodwink",
+      "name": "Hoodwink",
+      "slug": "hoodwink",
+      "links": [
+        {
+          "regionId": "tomokan",
+          "placeSlug": "krimwohl",
+          "role": "origin",
+          "basis": "bio"
+        },
+        {
+          "regionId": "tomokan",
+          "placeSlug": "tomokan",
+          "role": "home",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "void_spirit",
+      "name": "Void Spirit",
+      "slug": "voidspirit",
+      "links": [
+        {
+          "regionId": "planes",
+          "placeSlug": "the-void",
+          "role": "origin",
+          "basis": "infobox"
+        },
+        {
+          "regionId": "middle-kingdoms",
+          "placeSlug": "hidden-temple",
+          "role": "link",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "snapfire",
+      "name": "Snapfire",
+      "slug": "snapfire",
+      "links": [
+        {
+          "regionId": "tomokan",
+          "placeSlug": "nanarak",
+          "role": "home",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "mars",
+      "name": "Mars",
+      "slug": "mars",
+      "links": [
+        {
+          "regionId": "heavens",
+          "placeSlug": "olympus",
+          "role": "origin",
+          "basis": "ours"
+        },
+        {
+          "regionId": "quoidge",
+          "placeSlug": "quoidge",
+          "role": "link",
+          "basis": "page"
+        }
+      ]
+    },
+    {
+      "key": "ringmaster",
+      "name": "Ringmaster",
+      "slug": "ringmaster",
+      "links": [
+        {
+          "regionId": "uncharted",
+          "role": "origin",
+          "basis": "ours",
+          "note": "в биографии нет мест; кандидат — руины цирка в Ozenja (догадка)"
+        }
+      ]
+    },
+    {
+      "key": "dawnbreaker",
+      "name": "Dawnbreaker",
+      "slug": "dawnbreaker",
+      "links": [
+        {
+          "regionId": "heavens",
+          "placeSlug": "the-sun",
+          "role": "origin",
+          "basis": "ours"
+        }
+      ]
+    },
+    {
+      "key": "marci",
+      "name": "Marci",
+      "slug": "marci",
+      "links": [
+        {
+          "regionId": "uncharted",
+          "role": "origin",
+          "basis": "ours",
+          "note": "места есть только в сериале «DOTA: Dragon's Blood» (Hauptstadt, Barrowhaven и др.) — по решению В5 места сериала на карту не добавляем"
+        }
+      ]
+    },
+    {
+      "key": "primal_beast",
+      "name": "Primal Beast",
+      "slug": "primalbeast",
+      "links": [
+        {
+          "regionId": "tomokan",
+          "placeSlug": "tomokan",
+          "role": "home",
+          "basis": "infobox"
+        }
+      ]
+    },
+    {
+      "key": "muerta",
+      "name": "Muerta",
+      "slug": "muerta",
+      "links": [
+        {
+          "regionId": "middle-kingdoms",
+          "placeSlug": "skirm",
+          "role": "origin",
+          "basis": "infobox"
+        }
+      ]
+    },
+    {
+      "key": "kez",
+      "name": "Kez",
+      "slug": "kez",
+      "links": [
+        {
+          "regionId": "heavens",
+          "placeSlug": "ghastly-eyrie",
+          "role": "origin",
+          "basis": "infobox"
+        },
+        {
+          "regionId": "icewrack",
+          "placeSlug": "icewrack",
+          "role": "home",
+          "basis": "bio"
+        }
+      ]
+    },
+    {
+      "key": "largo",
+      "name": "Largo",
+      "slug": "largo",
+      "links": [
+        {
+          "regionId": "fellstrath",
+          "placeSlug": "velumar",
+          "role": "origin",
+          "basis": "infobox"
+        }
+      ]
+    }
+  ]
+}

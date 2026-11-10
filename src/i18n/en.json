@@ -1,0 +1,16 @@
+{
+  "app.title": "Dota 2 World",
+  "intro.kicker": "Explore & discover",
+  "intro.title": "Dota 2 World",
+  "intro.start": "Begin exploring",
+  "disclaimer": "Non-commercial fan project. Not affiliated with or endorsed by Valve Corporation. Dota 2 and all related materials are trademarks and property of Valve Corporation.",
+  "lang.label": "Language",
+  "world.map": "World map",
+  "world.regions": "Regions",
+  "panel.places": "Places",
+  "panel.heroes": "Heroes",
+  "panel.capital": "capital",
+  "panel.backToWorld": "‹ World",
+  "panel.backTo": "‹ {name}",
+  "hero.newTab": "{name} — official page (opens in a new tab)"
+}

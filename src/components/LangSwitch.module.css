@@ -1,0 +1,9 @@
+.switch {
+  display: inline-flex;
+  gap: var(--space-1);
+}
+
+.switch button[aria-pressed='true'] {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
