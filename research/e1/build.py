@@ -1,7 +1,8 @@
 """Проверка и сборка исследования E1.
 
 Проверяет, что каждый герой из официального списка (heroes.json) привязан к месту
-или явно числится в `unplaced`, и что все места и регионы существуют.
+или региону (герои без места в лоре — к региону `uncharted` с пояснением),
+и что все места и регионы существуют.
 Затем генерирует таблицы в docs/research/E1-places.md (между маркерами).
 
 Запуск из корня репозитория:  python research/e1/build.py
@@ -30,7 +31,7 @@ def load(name):
 def validate(heroes, regions, places):
     errors = []
     official = {h["name"] for h in heroes["heroes"]}
-    placed, unplaced = set(places["heroes"]), set(places["unplaced"])
+    placed, unplaced = set(places["heroes"]), set(places.get("unplaced", {}))
     for name in sorted(official - placed - unplaced):
         errors.append(f"герой не распределён: {name}")
     for name in sorted((placed | unplaced) - official):
@@ -64,6 +65,8 @@ def validate(heroes, regions, places):
                 errors.append(f"{hero}: неизвестный регион {link['region']}")
             if ("place" in link) == ("region" in link):
                 errors.append(f"{hero}: нужно ровно одно из place/region")
+            if link.get("region") == "uncharted" and not link.get("note"):
+                errors.append(f"{hero}: у героя «Неизведанных земель» нужна заметка note")
     return errors, loc_region
 
 
@@ -90,9 +93,10 @@ def render(heroes, regions, places, loc_region):
 
     out = []
     total_locs = sum(len(r["locations"]) for r in regions["regions"])
+    uncharted = {h: l for h, links in places["heroes"].items() for l in links if l.get("region") == "uncharted"}
     out.append(f"Регионов: **{len(regions['regions'])}**, мест: **{total_locs}**, "
                f"героев привязано: **{len(places['heroes'])}** из {len(heroes['heroes'])}, "
-               f"без места: **{len(places['unplaced'])}**.\n")
+               f"из них в «Неизведанных землях»: **{len(uncharted)}**.\n")
 
     out.append("### Сводка по регионам\n")
     out.append("| Ярус | Регион | Сторона | Мест | Героев |")
@@ -109,6 +113,13 @@ def render(heroes, regions, places, loc_region):
             out.append(f"### {TIER[tier]}\n")
         out.append(f"#### {r['ru']} · {r['en']}\n")
         out.append(f"Сторона: **{SIDE[r['side']]}**. {r['geo']}\n")
+        if r["id"] == "uncharted":
+            out.append("| Герой | Почему здесь |")
+            out.append("|---|---|")
+            for hero, link in sorted(uncharted.items()):
+                out.append(f"| {hero} | {link['note']} |")
+            out.append("")
+            continue
         if r["id"] in by_region:
             out.append(f"Герои всего региона: {', '.join(by_region[r['id']])}\n")
         out.append("| Место | Расположение | Герои | Заметка |")
@@ -118,13 +129,6 @@ def render(heroes, regions, places, loc_region):
             out.append(f"| {name} | {PLACEMENT[l['placement']]} | "
                        f"{', '.join(by_place.get(l['name'], [])) or '—'} | {l.get('note', '')} |")
         out.append("")
-
-    out.append("### Герои без места\n")
-    out.append("| Герой | Почему |")
-    out.append("|---|---|")
-    for hero, why in sorted(places["unplaced"].items()):
-        out.append(f"| {hero} | {why} |")
-    out.append("")
 
     out.append("### Указатель: герой → места\n")
     out.append("| Герой | Места |")
@@ -149,8 +153,8 @@ def main():
     if errors:
         print("ОШИБКИ:\n" + "\n".join(f"  - {e}" for e in errors))
         sys.exit(1)
-    print(f"OK: {len(places['heroes'])} привязано + {len(places['unplaced'])} без места "
-          f"= {len(heroes['heroes'])} героев; {len(loc_region)} мест в {len(regions['regions'])} регионах")
+    print(f"OK: {len(places['heroes'])} из {len(heroes['heroes'])} героев привязаны; "
+          f"{len(loc_region)} мест в {len(regions['regions'])} регионах")
     if "--check" in sys.argv:
         return
     doc = DOC.read_text(encoding="utf-8")
