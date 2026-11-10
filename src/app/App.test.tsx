@@ -1,7 +1,11 @@
-﻿import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, it } from 'vitest';
+import { getPlace, getRegion, placeName, world } from '../data/world';
 import { dictionaries } from '../i18n';
 import { App } from './App';
+
+const icewrack = getRegion('icewrack')!;
+const glacier = getPlace('icewrack', 'blueheart-glacier')!;
 
 describe('App', () => {
   beforeEach(() => {
@@ -27,12 +31,16 @@ describe('App', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Начать' }));
     expect(window.location.hash).toBe('#/world');
 
-    const regions = screen.getByRole('navigation', { name: 'Регионы' });
-    expect(regions.querySelectorAll('button')).toHaveLength(26);
+    // Пока у региона нет геометрии в map/layout.json, он показан кнопкой в списке.
+    const listed = world.regions.filter((r) => !r.layout).length;
+    if (listed > 0) {
+      const nav = screen.getByRole('navigation', { name: 'Регионы' });
+      expect(nav.querySelectorAll('button')).toHaveLength(listed);
+    }
 
-    fireEvent.click(screen.getByRole('button', { name: 'Айсрак' }));
+    fireEvent.click(screen.getByRole('button', { name: icewrack.name.ru }));
     expect(window.location.hash).toBe('#/r/icewrack');
-    expect(screen.getByRole('heading', { level: 2, name: 'Айсрак' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: icewrack.name.ru })).toBeInTheDocument();
     const cm = screen.getByRole('link', { name: /Crystal Maiden/ });
     expect(cm).toHaveAttribute('href', 'https://www.dota2.com/hero/crystalmaiden?l=russian');
     expect(cm).toHaveAttribute('target', '_blank');
@@ -44,7 +52,7 @@ describe('App', () => {
   it('открывает место по адресу', () => {
     window.location.hash = '#/r/icewrack/blueheart-glacier';
     render(<App />);
-    expect(screen.getByRole('heading', { level: 2, name: 'Blueheart Glacier' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: '‹ Айсрак' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: placeName(glacier, 'ru') })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: `‹ ${icewrack.name.ru}` })).toBeInTheDocument();
   });
 });
