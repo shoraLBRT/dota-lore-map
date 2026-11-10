@@ -1,12 +1,13 @@
 import type { ReactNode } from 'react';
+import { PanelFrame } from '../../components/PanelFrame';
 import styles from './Panel.module.css';
 
-/** Правая панель регионов и мест. Оформление и сворачивание — E5/E12. */
+/** Правая панель регионов и мест. Сворачивание и выезд — E5. */
 export function Panel({ label, children }: { label: string; children: ReactNode }) {
   return (
-    <aside className={styles.panel} aria-label={label}>
+    <PanelFrame label={label} className={styles.panel}>
       {children}
-    </aside>
+    </PanelFrame>
   );
 }
 

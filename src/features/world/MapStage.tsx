@@ -71,7 +71,7 @@ export function MapStage({ regions, activeRegionId, activePlaceSlug, onSelectReg
                 const [lx, ly] = toStage(layout.label);
                 const isActive = r.id === activeRegionId;
                 return (
-                  <g key={r.id} className={isActive ? styles.active : undefined}>
+                  <g key={r.id} className={[styles[r.side], isActive && styles.active].filter(Boolean).join(' ')}>
                     <polygon
                       className={styles.region}
                       points={points(layout.polygon)}

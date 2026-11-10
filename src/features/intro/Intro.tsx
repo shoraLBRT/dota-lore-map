@@ -1,4 +1,5 @@
 import { useNavigation } from '../../app/navigation';
+import { Button } from '../../components/Button';
 import { Disclaimer } from '../../components/Disclaimer';
 import { LangSwitch } from '../../components/LangSwitch';
 import { useT } from '../../i18n';
@@ -16,9 +17,9 @@ export function Intro() {
       <main className={styles.center}>
         <p className={styles.kicker}>{t('intro.kicker')}</p>
         <h1 className={styles.title}>{t('intro.title')}</h1>
-        <button type="button" className={styles.start} onClick={() => open({ name: 'world' })}>
+        <Button className={styles.start} onClick={() => open({ name: 'world' })}>
           {t('intro.start')}
-        </button>
+        </Button>
       </main>
       <Disclaimer className={styles.footer} />
     </div>

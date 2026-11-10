@@ -29,15 +29,35 @@
   height: 100%;
 }
 
+/* Подсветка по стороне (SPEC §8.3, §7.1 A2). Подсветка поверх нарисованной карты — E4. */
+.radiant {
+  --side: var(--radiant);
+  --side-glow: var(--radiant-glow);
+}
+
+.dire {
+  --side: var(--dire);
+  --side-glow: var(--dire-glow);
+}
+
+.neutral {
+  --side: var(--neutral);
+  --side-glow: var(--neutral-glow);
+}
+
 .region {
   stroke: var(--border);
   stroke-width: 2;
   cursor: pointer;
+  transition:
+    stroke var(--dur-hover) var(--ease-out),
+    filter var(--dur-hover) var(--ease-out);
 }
 
 .region:hover,
 .region:focus-visible {
-  stroke: var(--text-1);
+  stroke: var(--side, var(--text-1));
+  filter: drop-shadow(0 0 8px var(--side-glow, transparent)) brightness(1.15);
   outline: none;
 }
 
@@ -48,6 +68,9 @@
 
 .label {
   fill: var(--text-1);
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: var(--tracking-display);
   font-size: 22px;
   text-transform: uppercase;
   pointer-events: none;
