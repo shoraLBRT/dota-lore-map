@@ -20,4 +20,5 @@
 
 ## Команды
 - `python research/e1/build.py` — проверить данные исследования и перегенерировать docs/research/E1-places.md.
+- `node map/check-layout.mjs` — проверить геометрию карты `map/layout.json`; `node map/render-schema.mjs` — перерисовать схему `docs/map/schema.svg`.
 - После E3: `npm run dev`, `npm run data`, `npm run check`.

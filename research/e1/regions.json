@@ -1,12 +1,13 @@
 {
   "_legend": {
     "tier": "upper = Верхний ярус, continent = материк и острова, abyss = Бездна",
-    "side": "radiant / dire — по официальной карте Source 1 (Land of the Radiant / Scorch of the Dire); neutral — места нет на этой карте",
+    "side": "radiant / dire / neutral — сторона региона; откуда она взята — в sideBasis",
+    "sideBasis": "s1map = по официальной карте Source 1 (Land of the Radiant — север, Scorch of the Dire — юг); position = по положению на схеме E2 (решение В10): центроид полигона в map/layout.json севернее y = 0.47 — radiant, южнее y = 0.53 — dire, между — экваториальный пояс, neutral; туманный остров uncharted — neutral; tier = ярус (Верхний ярус, Бездна) — всегда neutral",
     "placement": "lore = расположение следует из лора; s1map = место подписано на карте Source 1 в этой половине; ours = мы сами относим место к этому региону (в лоре расположение не указано)"
   },
   "regions": [
     {
-      "id": "heavens", "tier": "upper", "side": "neutral",
+      "id": "heavens", "tier": "upper", "side": "neutral", "sideBasis": "tier",
       "en": "The Heavens", "ru": "Небеса",
       "geo": "Небо над миром и небесные тела: столица скайрасов высоко над землёй, Безумная Луна (разрушена, её осколки — Radiant Ore и Direstone), Луна Селемены, Солнце.",
       "locations": [
@@ -19,7 +20,7 @@
       ]
     },
     {
-      "id": "planes", "tier": "upper", "side": "neutral",
+      "id": "planes", "tier": "upper", "side": "neutral", "sideBasis": "tier",
       "en": "The Seven Planes and the Void", "ru": "Семь планов и Пустота",
       "geo": "Иные планы бытия и измерения вне Terrene Plane (наш мир).",
       "locations": [
@@ -39,7 +40,7 @@
       ]
     },
     {
-      "id": "icewrack", "tier": "continent", "side": "radiant",
+      "id": "icewrack", "tier": "continent", "side": "radiant", "sideBasis": "s1map",
       "en": "Icewrack", "ru": "Айсрак",
       "geo": "Крайний север. Южнее горного хребта The Barrier, у Северного (Кипящего) моря. Единственный морской путь — порт Frostreach. На карте Source 1: «The cold northern realm of Ice» в половине Radiant.",
       "locations": [
@@ -58,7 +59,7 @@
       ]
     },
     {
-      "id": "radiant-lands", "tier": "continent", "side": "radiant",
+      "id": "radiant-lands", "tier": "continent", "side": "radiant", "sideBasis": "s1map",
       "en": "Land of the Radiant", "ru": "Земля Сияющих",
       "geo": "Название и состав — с карты Source 1: Peaceful Village of Pole, Violet Archives, Castle of the Fold, Home of the Keen Folk, Thousand Tarns.",
       "locations": [
@@ -73,7 +74,7 @@
       ]
     },
     {
-      "id": "nightsilver", "tier": "continent", "side": "radiant",
+      "id": "nightsilver", "tier": "continent", "side": "radiant", "sideBasis": "s1map",
       "en": "Nightsilver Woods", "ru": "Лес Найтсильвер",
       "geo": "Священный лес Селемены. Temple of Mene на карте Source 1 — в половине Radiant.",
       "locations": [
@@ -83,7 +84,7 @@
       ]
     },
     {
-      "id": "stonehall", "tier": "continent", "side": "neutral",
+      "id": "stonehall", "tier": "continent", "side": "radiant", "sideBasis": "position",
       "en": "Stonehall", "ru": "Стоунхолл",
       "geo": "Империя вокруг города Стоунхолл. Расположение городов относительно столицы известно точно (запад, юг, северо-восток и т. д.).",
       "locations": [
@@ -114,7 +115,7 @@
       ]
     },
     {
-      "id": "free-cities", "tier": "continent", "side": "neutral",
+      "id": "free-cities", "tier": "continent", "side": "radiant", "sideBasis": "position",
       "en": "The Free Cities", "ru": "Вольные города",
       "geo": "Города рядом со Стоунхоллом, но вне его власти: White Spire «сразу за пределами» Стоунхолла и Ревтела, севернее Hazhadal Barrens; Weeping Rose — соседний с White Spire город. Название региона — наше.",
       "locations": [
@@ -128,7 +129,7 @@
       ]
     },
     {
-      "id": "quoidge", "tier": "continent", "side": "neutral",
+      "id": "quoidge", "tier": "continent", "side": "neutral", "sideBasis": "position",
       "en": "Quoidge and the Fields of Carnage", "ru": "Квойдж и Поля Бойни",
       "geo": "Квойдж — к югу от Skywrath, в дне пути от Smoke Harbor, далеко к северу от Полей. Поля — к югу от Hazhadal Barrens и к северу от Друуда.",
       "locations": [
@@ -139,7 +140,7 @@
       ]
     },
     {
-      "id": "hazhadal", "tier": "continent", "side": "neutral",
+      "id": "hazhadal", "tier": "continent", "side": "neutral", "sideBasis": "position",
       "en": "Hazhadal Barrens", "ru": "Хазадальские пустоши",
       "geo": "К северу от Fields of Endless Carnage и к югу от места битвы Древних. Земля безбожных племён-изгоев.",
       "locations": [
@@ -148,7 +149,7 @@
       ]
     },
     {
-      "id": "druud", "tier": "continent", "side": "neutral",
+      "id": "druud", "tier": "continent", "side": "dire", "sideBasis": "position",
       "en": "Druud", "ru": "Друуд",
       "geo": "Плоскогорье (Red Deserts of Druud) к югу от Fields of Endless Carnage. Земля кланов кентавров.",
       "locations": [
@@ -157,7 +158,7 @@
       ]
     },
     {
-      "id": "scintillant", "tier": "continent", "side": "dire",
+      "id": "scintillant", "tier": "continent", "side": "dire", "sideBasis": "s1map",
       "en": "Scintillant Waste", "ru": "Сверкающая пустошь",
       "geo": "Экваториальные пустыни. Desert of Misrule — внутри или к западу от Scintillant Waste. На карте Source 1 Blazing Desert of Misrule и Riftshadow Ruins — в половине Dire.",
       "locations": [
@@ -173,7 +174,7 @@
       ]
     },
     {
-      "id": "wailing-mountains", "tier": "continent", "side": "dire",
+      "id": "wailing-mountains", "tier": "continent", "side": "dire", "sideBasis": "s1map",
       "en": "Wailing Mountains", "ru": "Стонущие горы",
       "geo": "На карте Source 1 в половине Dire: The Wailing Mountains, The Ruined City, The monasteries of Turstarkuri, The Mountain Joerlak, The Feral Road.",
       "locations": [
@@ -186,7 +187,7 @@
       ]
     },
     {
-      "id": "shadeshore", "tier": "continent", "side": "neutral",
+      "id": "shadeshore", "tier": "continent", "side": "dire", "sideBasis": "position",
       "en": "Shadeshore", "ru": "Тенистый берег",
       "geo": "Приморский край. Tidemarsh связывает Shadeshore, Wailing Mountains и Ruelands.",
       "locations": [
@@ -198,7 +199,7 @@
       ]
     },
     {
-      "id": "the-deep", "tier": "continent", "side": "dire",
+      "id": "the-deep", "tier": "continent", "side": "dire", "sideBasis": "s1map",
       "en": "The Deep", "ru": "Глубины",
       "geo": "Затонувшие города на дне океана под охраной слизеринов; ещё глубже — Infernal Hollow. На карте Source 1 «The Slithereen» — в половине Dire.",
       "locations": [
@@ -212,7 +213,7 @@
       ]
     },
     {
-      "id": "cladd", "tier": "continent", "side": "neutral",
+      "id": "cladd", "tier": "continent", "side": "radiant", "sideBasis": "position",
       "en": "Cladd and the Isles", "ru": "Кладд и острова",
       "geo": "Островное государство Кладд и окрестные острова и проливы.",
       "locations": [
@@ -225,7 +226,7 @@
       ]
     },
     {
-      "id": "tropic-isles", "tier": "continent", "side": "neutral",
+      "id": "tropic-isles", "tier": "continent", "side": "dire", "sideBasis": "position",
       "en": "Tropic Isles", "ru": "Тропические острова",
       "geo": "Острова в тропиках. Ash Archipelago — место отдыха кинов. Название региона — наше.",
       "locations": [
@@ -239,7 +240,7 @@
       ]
     },
     {
-      "id": "western-forests", "tier": "continent", "side": "neutral",
+      "id": "western-forests", "tier": "continent", "side": "radiant", "sideBasis": "position",
       "en": "Western Forests", "ru": "Западные леса",
       "geo": "На западе мира много лесов: Western Forests с деревней Zaru'Kina и высокие леса за Vale of Augury. Western Forests граничат с павшим королевством Слом.",
       "locations": [
@@ -252,7 +253,7 @@
       ]
     },
     {
-      "id": "slom-elze", "tier": "continent", "side": "neutral",
+      "id": "slom-elze", "tier": "continent", "side": "radiant", "sideBasis": "position",
       "en": "Slom and Elze", "ru": "Слом и Эльзе",
       "geo": "Два враждующих королевства-соседа, связанных дорогой с тавернами. Слом граничит с Western Forests.",
       "locations": [
@@ -262,7 +263,7 @@
       ]
     },
     {
-      "id": "hoven", "tier": "continent", "side": "neutral",
+      "id": "hoven", "tier": "continent", "side": "dire", "sideBasis": "position",
       "en": "The Hoven and Nishai", "ru": "Ховен и Нишай",
       "geo": "Огромный лес Ховен у подножия Bleeding Hills; с холмов стекает чёрная смола. Страница Bleeding Hills связывает их с Нишаем — краем землетрясений.",
       "locations": [
@@ -273,7 +274,7 @@
       ]
     },
     {
-      "id": "fellstrath", "tier": "continent", "side": "neutral",
+      "id": "fellstrath", "tier": "continent", "side": "dire", "sideBasis": "position",
       "en": "Fellstrath", "ru": "Феллстрат",
       "geo": "Тропические джунгли с муссонами и руинами Overgrown Empire, за горами у Ашкавора.",
       "locations": [
@@ -286,7 +287,7 @@
       ]
     },
     {
-      "id": "tomokan", "tier": "continent", "side": "neutral",
+      "id": "tomokan", "tier": "continent", "side": "dire", "sideBasis": "position",
       "en": "Tomo'kan and the Outlands", "ru": "Томо'кан и Окраины",
       "geo": "Туманный лес Томо'кан (Mistwood, Darkwood). К югу — королевство Кримвол в Окраинах. Окраины — всё, что за Dread Marsh, рядом с пустыней Nanarak. Сюда упали камни Неместиса.",
       "locations": [
@@ -299,7 +300,7 @@
       ]
     },
     {
-      "id": "empire-of-bone", "tier": "continent", "side": "neutral",
+      "id": "empire-of-bone", "tier": "continent", "side": "dire", "sideBasis": "position",
       "en": "Empire of Bone", "ru": "Империя Костей",
       "geo": "Владения Остариона: дворец, башни, мостовые и даже лес — из кости. Его армии разрушили Levinthal (Gleaming City).",
       "locations": [
@@ -309,7 +310,7 @@
       ]
     },
     {
-      "id": "middle-kingdoms", "tier": "continent", "side": "neutral",
+      "id": "middle-kingdoms", "tier": "continent", "side": "neutral", "sideBasis": "position",
       "en": "The Middle Kingdoms", "ru": "Срединные королевства",
       "geo": "Название и состав — наши. Здесь собраны королевства и места, расположение которых в лоре не указано. Регион можно разделить, когда будет готова схема карты (E2).",
       "locations": [
@@ -327,13 +328,13 @@
       ]
     },
     {
-      "id": "uncharted", "tier": "continent", "side": "neutral",
+      "id": "uncharted", "tier": "continent", "side": "neutral", "sideBasis": "position",
       "en": "The Uncharted Lands", "ru": "Неизведанные земли",
       "geo": "Остров в тумане у края карты — для героев, чья родина в лоре не названа (решение В1). Мест внутри нет: герои привязаны к региону целиком. Название и регион — наши.",
       "locations": []
     },
     {
-      "id": "underdark", "tier": "abyss", "side": "neutral",
+      "id": "underdark", "tier": "abyss", "side": "neutral", "sideBasis": "tier",
       "en": "The Underdark", "ru": "Подземье",
       "geo": "Физическое подземелье мира: город Азийог под магмой и корнями вулканов, Nether Reaches у тектонических плит, пещеры Emerald Abyss. Название региона — наше.",
       "locations": [
@@ -344,7 +345,7 @@
       ]
     },
     {
-      "id": "hells", "tier": "abyss", "side": "neutral",
+      "id": "hells", "tier": "abyss", "side": "neutral", "sideBasis": "tier",
       "en": "The Seven Hells and the Afterlife", "ru": "Семь Преисподних и загробье",
       "geo": "Семь слоёв ада, тюрьма Foulfell, путь мёртвых душ (Narrow Maze → Underscape) и загробный мир Nothl.",
       "locations": [
