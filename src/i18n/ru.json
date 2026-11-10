@@ -10,6 +10,7 @@
   "panel.places": "Места",
   "panel.heroes": "Герои",
   "panel.capital": "столица",
+  "panel.world": "Мир",
   "panel.backToWorld": "‹ Мир",
   "panel.backTo": "‹ {name}",
   "hero.newTab": "{name} — официальная страница (откроется в новой вкладке)"

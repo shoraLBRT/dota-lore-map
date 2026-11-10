@@ -4,6 +4,6 @@
 }
 
 .switch button[aria-pressed='true'] {
-  border-color: var(--color-accent);
-  color: var(--color-accent);
+  border-color: var(--accent);
+  color: var(--accent);
 }

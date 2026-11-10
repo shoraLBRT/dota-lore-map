@@ -1,5 +1,7 @@
 import { useNavigation } from '../../app/navigation';
 import { serializeRoute } from '../../app/router';
+import { DiamondButton } from '../../components/DiamondButton';
+import { Divider } from '../../components/Divider';
 import { HeroList } from '../../components/HeroList';
 import { Paragraphs } from '../../components/Paragraphs';
 import type { Region } from '../../data/types';
@@ -16,10 +18,12 @@ export function RegionPanel({ region }: { region: Region }) {
     <Panel label={name}>
       <h2>{name}</h2>
       {region.subtitle && <p className={panelStyles.subtitle}>{l(region.subtitle)}</p>}
+      <Divider />
       <HeroList heroes={heroesOfRegion(region.id)} />
       {region.description && <Paragraphs text={l(region.description)} />}
       {region.places.length > 0 && (
         <section>
+          <Divider />
           <h3>{t('panel.places')}</h3>
           <ul>
             {region.places.map((p) => (
@@ -38,9 +42,15 @@ export function RegionPanel({ region }: { region: Region }) {
           </ul>
         </section>
       )}
-      <button type="button" className={panelStyles.back} onClick={() => open({ name: 'world' })}>
-        {t('panel.backToWorld')}
-      </button>
+      <Divider />
+      <DiamondButton
+        icon="back"
+        label={t('panel.backToWorld')}
+        className={panelStyles.back}
+        onClick={() => open({ name: 'world' })}
+      >
+        {t('panel.world')}
+      </DiamondButton>
     </Panel>
   );
 }

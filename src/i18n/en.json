@@ -10,6 +10,7 @@
   "panel.places": "Places",
   "panel.heroes": "Heroes",
   "panel.capital": "capital",
+  "panel.world": "World",
   "panel.backToWorld": "‹ World",
   "panel.backTo": "‹ {name}",
   "hero.newTab": "{name} — official page (opens in a new tab)"

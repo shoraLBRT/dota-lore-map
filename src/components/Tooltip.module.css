@@ -1,0 +1,30 @@
+.wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.tip {
+  position: absolute;
+  bottom: calc(100% + var(--space-2));
+  left: 50%;
+  z-index: 10;
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--metal);
+  background: var(--bg-0);
+  box-shadow: var(--shadow-1);
+  color: var(--text-1);
+  font-size: 0.8rem;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, 8px);
+  transition:
+    opacity var(--dur-hover) var(--ease-out),
+    transform var(--dur-hover) var(--ease-out);
+}
+
+.wrap:hover .tip,
+.wrap:focus-within .tip {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}

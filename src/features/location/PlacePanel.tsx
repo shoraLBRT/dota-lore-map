@@ -1,4 +1,6 @@
 import { useNavigation } from '../../app/navigation';
+import { DiamondButton } from '../../components/DiamondButton';
+import { Divider } from '../../components/Divider';
 import { HeroList } from '../../components/HeroList';
 import { Paragraphs } from '../../components/Paragraphs';
 import type { Place, Region } from '../../data/types';
@@ -15,15 +17,18 @@ export function PlacePanel({ region, place }: { region: Region; place: Place }) 
     <Panel label={name}>
       <h2>{name}</h2>
       {place.text?.type && <p className={panelStyles.type}>{l(place.text.type)}</p>}
+      <Divider />
       <HeroList heroes={heroesOfPlace(region.id, place.slug)} />
       {place.text?.description && <Paragraphs text={l(place.text.description)} />}
-      <button
-        type="button"
+      <Divider />
+      <DiamondButton
+        icon="back"
+        label={t('panel.backTo', { name: l(region.name) })}
         className={panelStyles.back}
         onClick={() => open({ name: 'region', regionId: region.id })}
       >
-        {t('panel.backTo', { name: l(region.name) })}
-      </button>
+        {l(region.name)}
+      </DiamondButton>
     </Panel>
   );
 }

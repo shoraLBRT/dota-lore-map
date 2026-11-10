@@ -1,0 +1,73 @@
+/* Рамка — фон кнопки, заливка — ::before с отступом 1px; clip-path срезает углы у обоих. */
+.button {
+  --btn-frame: var(--metal);
+  --btn-fill: var(--bg-2);
+  position: relative;
+  isolation: isolate;
+  padding: var(--space-2) var(--space-5);
+  border: 0;
+  border-radius: 0;
+  background: var(--btn-frame);
+  color: var(--text-1);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+  cursor: pointer;
+  clip-path: polygon(
+    var(--cut) 0,
+    calc(100% - var(--cut)) 0,
+    100% var(--cut),
+    100% calc(100% - var(--cut)),
+    calc(100% - var(--cut)) 100%,
+    var(--cut) 100%,
+    0 calc(100% - var(--cut)),
+    0 var(--cut)
+  );
+  transition:
+    background-color var(--dur-hover) var(--ease-out),
+    color var(--dur-hover) var(--ease-out),
+    filter var(--dur-hover) var(--ease-out);
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  z-index: -1;
+  background: var(--btn-fill);
+  clip-path: inherit;
+}
+
+.button:hover,
+.button:focus-visible {
+  --btn-frame: var(--metal-bright);
+  filter: drop-shadow(var(--glow-metal));
+}
+
+.button:disabled {
+  cursor: default;
+  opacity: 0.5;
+  filter: none;
+}
+
+.primary {
+  --btn-fill: linear-gradient(180deg, var(--accent) 0%, var(--accent-dim) 100%);
+}
+
+.primary:hover,
+.primary:focus-visible {
+  --btn-fill: linear-gradient(180deg, var(--accent-bright) 0%, var(--accent) 100%);
+}
+
+.ghost {
+  --btn-fill: var(--bg-1);
+  color: var(--text-2);
+}
+
+.ghost:hover,
+.ghost:focus-visible {
+  --btn-fill: var(--bg-2);
+  color: var(--text-1);
+}

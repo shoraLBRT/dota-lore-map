@@ -1,25 +1,19 @@
 import type { Hero } from '../data/types';
-import { heroUrl } from '../data/world';
 import { useT } from '../i18n';
+import styles from './HeroList.module.css';
+import { HeroPortrait } from './HeroPortrait';
 
-/** Список героев со ссылками на официальные страницы (ARCHITECTURE A6). Пустой список не рисуется. */
+/** Портреты героев в ряд со ссылками на официальные страницы (ARCHITECTURE A6). Пустой список не рисуется. */
 export function HeroList({ heroes }: { heroes: Hero[] }) {
-  const { lang, t } = useT();
+  const { t } = useT();
   if (heroes.length === 0) return null;
   return (
     <section>
       <h3>{t('panel.heroes')}</h3>
-      <ul>
+      <ul className={styles.row}>
         {heroes.map((h) => (
           <li key={h.key}>
-            <a
-              href={heroUrl(h, lang)}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={t('hero.newTab', { name: h.name })}
-            >
-              {h.name}
-            </a>
+            <HeroPortrait hero={h} />
           </li>
         ))}
       </ul>

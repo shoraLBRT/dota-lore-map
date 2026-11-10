@@ -117,3 +117,13 @@ docs/               SPEC, ARCHITECTURE, PROJECT_STATE, исследования
 - GitHub Actions: на каждый PR — `npm ci && npm run check`; на push в `main` — сборка и деплой на GitHub Pages (`base: '/dota-lore-map/'`).
 - `npm run check` = `data` (сборка и валидация данных) + `typecheck` + `lint` + `test` + `build` + `python research/e1/build.py --check`.
 - Ничего не мержится с красным CI.
+
+## A8. Дизайн-система
+
+- Токены (SPEC §8.2) — только в `src/styles/tokens.css` на `:root`; компоненты берут значения через `var(--…)`, цвета в коде не пишем. Исключение — заливка биомов процедурной заглушки карты (`features/world/biomes.ts`), её заменит нарисованная карта E2/E4.
+- База (фон, типографика, фокус-кольцо `--accent`, скроллбары, `prefers-reduced-motion`) — `src/styles/global.css`. При reduced motion токены длительностей переопределяются: переходы камеры и интро — 200 мс, наведение и панель — мгновенно.
+- Шрифты (решение В6) — Google Fonts через `<link>` в `index.html`, `display=swap`, с запасными системными:
+  - `--font-display`: **Cormorant SC** — засечки с острыми клиновидными концами и настоящие капители с полной кириллицей ближе всех свободных шрифтов к заголовкам Valve (Trajan-подобным).
+  - `--font-body`: **Manrope** — гротеск с кириллицей, хорошо читается мелким кеглем на тёмном фоне.
+- Компоненты интерфейса — `src/components/` (CSS Modules): `Button` (primary/ghost, срезанные углы `clip-path`), `DiamondButton` (закрыть/свернуть/назад), `Divider` (линия с ромбами), `HeroPortrait` (портрет по A6, заглушка при ошибке), `PanelFrame` (рамка правой панели), `Tooltip`.
+- Подсветка регионов на карте — цвет стороны с прозрачностью (`--radiant-glow`, `--dire-glow`, `--neutral-glow`), SPEC §8.3.

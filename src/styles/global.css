@@ -1,3 +1,4 @@
+/* База дизайн-системы (ARCHITECTURE A8). Токены — tokens.css. */
 *,
 *::before,
 *::after {
@@ -7,38 +8,118 @@
 html,
 body {
   margin: 0;
-  background: var(--color-bg);
-  color: var(--color-text);
+  background: var(--bg-0);
+  color: var(--text-1);
   font-family: var(--font-body);
-  line-height: 1.5;
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: radial-gradient(ellipse at center, var(--bg-1) 0%, var(--bg-0) 75%) fixed;
+  min-height: 100vh;
 }
 
 h1,
 h2,
 h3 {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: var(--tracking-display);
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+h3 {
+  font-size: 1rem;
+  color: var(--metal-bright);
+}
+
+p {
+  margin: 0 0 var(--space-3);
 }
 
 a {
-  color: var(--color-text);
+  color: var(--text-1);
+  text-decoration-color: var(--metal);
+  text-underline-offset: 3px;
+  transition: color var(--dur-hover) var(--ease-out);
 }
 
+a:hover {
+  color: var(--accent-bright);
+}
+
+/* Нейтральная кнопка (LangSwitch, список регионов); оформленные — components/Button. */
 button {
   padding: var(--space-1) var(--space-3);
-  border: 1px solid var(--color-border);
-  border-radius: 2px;
-  background: var(--color-surface);
-  color: var(--color-text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-1);
+  background: var(--bg-2);
+  color: var(--text-1);
   font: inherit;
   cursor: pointer;
+  transition:
+    border-color var(--dur-hover) var(--ease-out),
+    color var(--dur-hover) var(--ease-out);
 }
 
 button:hover {
-  border-color: var(--color-accent);
+  border-color: var(--metal-bright);
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
+}
+
+::selection {
+  background: var(--accent-dim);
+  color: var(--text-1);
+}
+
+/* Скроллбары */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--metal) var(--bg-0);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-0);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--metal-dim);
+  border: 1px solid var(--metal);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--metal);
+}
+
+/* SPEC §7.1: при reduced motion переходы — короткий кроссфейд 200 мс, остальное мгновенно. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-hover: 0ms;
+    --dur-fade: 200ms;
+    --dur-panel: 0ms;
+    --dur-thread: 0ms;
+    --dur-place: 200ms;
+    --dur-camera: 200ms;
+    --dur-intro: 200ms;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
 }
