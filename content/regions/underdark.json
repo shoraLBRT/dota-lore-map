@@ -9,7 +9,7 @@
     "biome": { "ru": "Подземье", "en": "Underground" }
   },
   "description": {
-    "ru": "Под корнями вулканов и слоем магмы лежит другой мир — без неба и солнца. Обсидиановые своды, светящиеся пещеры и леса гигантских грибов тянутся до самых тектонических плит.\n\nЗдесь правит сила. Повелитель Врогрос собирает Абиссальную Орду в городе Азийог, чтобы однажды выйти на поверхность и потребовать себе земли наверху. Ещё глубже, в запечатанных Нижних пределах, миллионы лет живут ядовитые незердрейки.\n\nИз этих глубин вышли Андерлорд, Вайпер и Пагна — колдун, родившийся в Нижних пределах и выросший в храме Искусств Забвения.",
+    "ru": "Под корнями вулканов и слоем магмы лежит другой мир — без неба и солнца. Обсидиановые своды, светящиеся пещеры и леса гигантских грибов тянутся до самых тектонических плит.\n\nЗдесь правит сила. Врогрос (Underlord) собирает Абиссальную Орду в городе Азийог, чтобы однажды выйти на поверхность и потребовать себе земли наверху. Ещё глубже, в запечатанных Нижних пределах, миллионы лет живут ядовитые незердрейки.\n\nИз этих глубин вышли Underlord, Viper и Pugna — колдун, родившийся в Нижних пределах и выросший в храме Искусств Забвения.",
     "en": "Beneath the roots of volcanoes and the layer of magma lies another world, one without sky or sun. Obsidian vaults, glowing caverns and forests of giant fungi stretch all the way down to the tectonic plates.\n\nStrength rules here. Vrogros the Underlord gathers the Abyssal Horde in the city of Aziyog, waiting for the day it marches up to claim the lands above. Deeper still, in the sealed Nether Reaches, venomous netherdrakes have dwelt for millions of years.\n\nThe Underlord, Viper and Pugna all rose from these depths, Pugna born in the Nether Reaches and raised in a temple of the Arts of Oblivion."
   },
   "places": {
@@ -17,7 +17,7 @@
       "name": { "ru": "Азийог", "en": "Aziyog" },
       "type": { "ru": "Подземный город", "en": "Underground city" },
       "description": {
-        "ru": "Обсидиановый город в огромной пещере под магмой; стены его изрыты гротами, скреплёнными костями рабов. Здесь стоит Абиссальная Орда Андерлорда, и где-то в глубине, по слухам, есть проход в Нижние пределы.",
+        "ru": "Обсидиановый город в огромной пещере под магмой; стены его изрыты гротами, скреплёнными костями рабов. Здесь стоит Абиссальная Орда Врогроса, и где-то в глубине, по слухам, есть проход в Нижние пределы.",
         "en": "An obsidian city in a vast cavern below the magma, its walls honeycombed with grottoes mortared with the bones of slaves. The Underlord's Abyssal Horde is quartered here, and somewhere in its depths a passage is rumored to lead to the Nether Reaches."
       }
     },
@@ -25,7 +25,7 @@
       "name": { "ru": "Нижние пределы", "en": "Nether Reaches" },
       "type": { "ru": "Подземный мир", "en": "Subterranean realm" },
       "description": {
-        "ru": "Древний край у тектонических плит, со светящимися пещерами незердрейков. Сдвиг земной коры давно отрезал его от поверхности. Одни считают его местом, другие — духовным планом: изгнанные сюда становятся бесплотными. Родина Пагны и Вайпера.",
+        "ru": "Древний край у тектонических плит, со светящимися пещерами незердрейков. Сдвиг земной коры давно отрезал его от поверхности. Одни считают его местом, другие — духовным планом: изгнанные сюда становятся бесплотными. Родина Pugna и Viper.",
         "en": "An ancient realm near the tectonic plates, with luminous caverns where netherdrakes breed. Shifting plates sealed it off from the surface long ago. Some call it a place, others a spiritual plane, since those banished here turn ethereal. It is the birthplace of Pugna and Viper."
       }
     },
@@ -33,7 +33,7 @@
       "name": { "ru": "Изумрудная бездна", "en": "The Emerald Abyss" },
       "type": { "ru": "Пещеры", "en": "Caverns" },
       "description": {
-        "ru": "Пещеры зелёных кристаллов, жеод и висмута, густо заросшие грибами; в их водах живут бледные аксолотли, а среди камней стоят статуи неизвестного народа. Андерлорд бился здесь за власть над срединными глубинами и унёс отсюда изумрудный клинок.",
+        "ru": "Пещеры зелёных кристаллов, жеод и висмута, густо заросшие грибами; в их водах живут бледные аксолотли, а среди камней стоят статуи неизвестного народа. Underlord бился здесь за власть над срединными глубинами и унёс отсюда изумрудный клинок.",
         "en": "Caves of green crystal, geodes and bismuth, thick with fungi, where pale axolotls swim and statues of some unknown race stand among the stones. The Underlord fought here for mastery of the middle depths and carried off an emerald blade."
       }
     },

@@ -9,7 +9,7 @@
     "biome": { "ru": "Иные планы бытия", "en": "Other planes of existence" }
   },
   "description": {
-    "ru": "Наш мир — лишь один из планов бытия. Когда Древний Титан расколол изначальную гармонию, первосущности разлетелись по Семи планам, и родилось само время. Каждый план живёт по своим законам: где-то время видно, как карту, где-то из потерянных душ вырастают минералы.\n\nВсё это держится на Ткани творения, которую латают Ткачи, а за её краем лежит Пустота — ничто, существовавшее до всего и пронизывающее всё.\n\nОтсюда приходят самые странные герои: первосущности Ио, Хаос-рыцарь, Энигма и Хранитель Света, повелитель времени Тёмный Ужас, страж Внемирья, Дарк Сир, затерявшийся между мирами, и дух пустоты Инай.",
+    "ru": "Наш мир — лишь один из планов бытия. Когда Elder Titan расколол изначальную гармонию, первосущности разлетелись по Семи планам, и родилось само время. Каждый план живёт по своим законам: где-то время видно, как карту, где-то из потерянных душ вырастают минералы.\n\nВсё это держится на Ткани творения, которую латают Ткачи, а за её краем лежит Пустота — ничто, существовавшее до всего и пронизывающее всё.\n\nОтсюда приходят самые странные герои: первосущности Io, Chaos Knight, Enigma и Keeper of the Light, повелитель времени Faceless Void, страж Внемирья Outworld Destroyer, затерявшийся между мирами Dark Seer и дух пустоты Void Spirit.",
     "en": "Our world is only one plane of existence among many. When the Elder Titan broke the primordial harmony, the Fundamentals were flung across the Seven Planes and time itself was born. Each plane keeps its own laws: in one, time lies open like a map; in another, lost spirits slowly harden into ore.\n\nAll of it hangs on the Fabric of Creation, patched by the Weavers, and beyond its edges waits the Void, the nothing that came before everything and runs through it still.\n\nThe strangest heroes come from here: the Fundamentals Io, Chaos Knight, Enigma and the Keeper of the Light; Darkterror, master of time; the lone sentinel of the Outworld; the Dark Seer, lost between realities; and Inai, the Void Spirit."
   },
   "places": {
@@ -17,7 +17,7 @@
       "name": { "ru": "Предвечный мир", "en": "Fundamental Plane" },
       "type": { "ru": "План бытия", "en": "Plane of existence" },
       "description": {
-        "ru": "Один из Семи планов, обитель четырёх первосущностей — основ мироздания. Сюда они возвращаются после гибели. Это родина Ио, Хаос-рыцаря, Энигмы и Хранителя Света.",
+        "ru": "Один из Семи планов, обитель четырёх первосущностей — основ мироздания. Сюда они возвращаются после гибели. Это родина Io, Chaos Knight, Enigma и Keeper of the Light.",
         "en": "One of the Seven Planes and home of the four Fundamentals, the pillars of the universe, who return here when they fall. Io, Chaos Knight, Enigma and the Keeper of the Light all come from this realm."
       }
     },
@@ -25,7 +25,7 @@
       "name": { "ru": "Изначальный мир", "en": "Primordial Plane" },
       "type": { "ru": "План бытия", "en": "Plane of existence" },
       "description": {
-        "ru": "Один из Семи планов. О нём известно мало: по словам Древнего Титана, сюда, возможно, уходят существа после смерти.",
+        "ru": "Один из Семи планов. О нём известно мало: по словам Elder Titan, сюда, возможно, уходят существа после смерти.",
         "en": "One of the Seven Planes, and one of the least known. The Elder Titan hints that it may be where beings go after they die."
       }
     },
@@ -33,7 +33,7 @@
       "name": { "ru": "Стихийный мир", "en": "Elemental Plane" },
       "type": { "ru": "План бытия", "en": "Plane of existence" },
       "description": {
-        "ru": "Царство стихий и дом элементалей; наш материальный мир — лишь его тень. Его трение терзает тех, кто скользит между планами, а затерянные здесь духи со временем становятся рудой. Отсюда родом Баратрум, Дух Разрушитель.",
+        "ru": "Царство стихий и дом элементалей; наш материальный мир — лишь его тень. Его трение терзает тех, кто скользит между планами, а затерянные здесь духи со временем становятся рудой. Отсюда родом Баратрум (Spirit Breaker).",
         "en": "The realm of the elements and home of the elementals; our material world is only its shadow. Its friction grinds at anyone sliding between planes, and spirits lost here eventually turn to ore. Barathrum the Spirit Breaker hails from this place."
       }
     },
@@ -41,7 +41,7 @@
       "name": { "ru": "Астральный мир", "en": "Astral Plane" },
       "type": { "ru": "План бытия", "en": "Plane of existence" },
       "description": {
-        "ru": "Один из Семи планов, вмещающий бесчисленные измерения. Время здесь видно, как карту, и могущественные существа следят за его ходом. Отсюда Древний Титан призывает свой астральный дух, а Инай прорывается сквозь этот план, как сквозь ткань.",
+        "ru": "Один из Семи планов, вмещающий бесчисленные измерения. Время здесь видно, как карту, и могущественные существа следят за его ходом. Отсюда Elder Titan призывает свой астральный дух, а Инай (Void Spirit) прорывается сквозь этот план, как сквозь ткань.",
         "en": "One of the Seven Planes, holding countless dimensions. Here time can be read like a map, and mighty beings watch it unfold. The Elder Titan calls his Astral Spirit from this plane, and Inai tears through it as if through cloth."
       }
     },
@@ -49,7 +49,7 @@
       "name": { "ru": "Ткань творения", "en": "Fabric of Creation" },
       "type": { "ru": "Основа мироздания", "en": "Cosmic weave" },
       "description": {
-        "ru": "Полотно, на котором держатся наш мир и множество других; нити для него создал Ткацкий станок. Ткачи вроде Скитскурра штопают протёртые места и истребляют паразитов, способных сожрать целую вселенную. Там, где одно полотно сшито с другим, проходят швы между мирами.",
+        "ru": "Полотно, на котором держатся наш мир и множество других; нити для него создал Ткацкий станок. Ткачи вроде Скитскурра (Weaver) штопают протёртые места и истребляют паразитов, способных сожрать целую вселенную. Там, где одно полотно сшито с другим, проходят швы между мирами.",
         "en": "The weave that holds up our world and countless others, spun from threads made by the Loom. Weavers like Skitskurr mend its worn patches and hunt the pests that could devour a whole universe. Where one fabric is stitched to the next run the seams between worlds."
       }
     },
@@ -57,7 +57,7 @@
       "name": { "ru": "Класзурем", "en": "Claszureme" },
       "type": { "ru": "Мир вне времени", "en": "Realm outside time" },
       "description": {
-        "ru": "Бесконечные залы вне времени, названные в честь бога Класза. Пространство вокруг них смертельно холодно, а на краях добывают хронит — камень, неподвластный времени. Отсюда пришёл Тёмный Ужас, Войд; с этим миром связывают и Пака.",
+        "ru": "Бесконечные залы вне времени, названные в честь бога Класза. Пространство вокруг них смертельно холодно, а на краях добывают хронит — камень, неподвластный времени. Отсюда пришёл Дарктеррор (Faceless Void); с этим миром связывают и Puck.",
         "en": "Endless halls outside of time, named after the god Clasz. The space around them is bitterly cold, and chronite, a stone untouched by time, is found at its edges. Darkterror the Faceless Void came from here, and Puck is tied to it too."
       }
     },
@@ -65,7 +65,7 @@
       "name": { "ru": "Пустота", "en": "The Void" },
       "type": { "ru": "Изначальное ничто", "en": "Primordial nothingness" },
       "description": {
-        "ru": "Ничто, которое было до начала всего и молча наблюдало рождение мира. Оно темнее простого отсутствия света и есть в каждой вещи, как всё сущее есть в нём. С Пустотой связаны дух Инай, Древний Призрак Кальдр и Ночной Сталкер.",
+        "ru": "Ничто, которое было до начала всего и молча наблюдало рождение мира. Оно темнее простого отсутствия света и есть в каждой вещи, как всё сущее есть в нём. С Пустотой связаны Инай (Void Spirit), Кальдр (Ancient Apparition) и Night Stalker.",
         "en": "The nothing that existed before anything began and silently watched the world come into being. It is darker than the mere absence of light, and it dwells in every thing just as every thing dwells in it. Inai, Kaldr the Ancient Apparition and the Night Stalker are bound to it."
       }
     },
@@ -73,7 +73,7 @@
       "name": { "ru": "Внемирье", "en": "The Outworld" },
       "type": { "ru": "Мир на краю Бездны", "en": "World on the Rim of the Abyss" },
       "description": {
-        "ru": "Кристаллический мир, вечно повёрнутый лицом к Пустоте. Здесь растут деревья-кристаллы, а камни полны тайной силы. Последний из своего народа, Предвестник, несёт тут дозор в ожидании зла, о котором поёт музыка его разума.",
+        "ru": "Кристаллический мир, вечно повёрнутый лицом к Пустоте. Здесь растут деревья-кристаллы, а камни полны тайной силы. Последний из своего народа, Харбингер (Outworld Destroyer), несёт тут дозор в ожидании зла, о котором поёт музыка его разума.",
         "en": "A crystalline world forever tilted to face the Void. Augural crystal trees grow here, and its stones brim with arcane power. Harbinger, last of his kind, keeps watch from it, awaiting the evil foretold by the dark music in his mind."
       }
     },
@@ -81,7 +81,7 @@
       "name": { "ru": "Земля за Стеной", "en": "Land Behind the Wall" },
       "type": { "ru": "Иная реальность", "en": "Another reality" },
       "description": {
-        "ru": "Родной мир Иш'Кафеля, Дарк Сира, отделённый от нашего Стеной. О нём почти ничего не известно: Дарк Сир заплутал в лабиринте между стенами миров и так и не нашёл дороги домой.",
+        "ru": "Родной мир Иш'Кафеля (Dark Seer), отделённый от нашего Стеной. О нём почти ничего не известно: Dark Seer заплутал в лабиринте между стенами миров и так и не нашёл дороги домой.",
         "en": "The home reality of Ish'Kafel the Dark Seer, sealed off from ours by the Wall. Almost nothing is known of it: the Dark Seer strayed into the maze between the walls of worlds and never found his way back."
       }
     },
@@ -89,7 +89,7 @@
       "name": { "ru": "Костяной Инкубарий", "en": "Ivory Incubarium" },
       "type": { "ru": "Школа оракулов", "en": "School of oracles" },
       "description": {
-        "ru": "Древняя школа на вершинах полых пиков Хребта Фанатиков, в иной вселенной. Бледные Сивиллы растили здесь оракулов, которых затем выкупали советники Кимурри. Юный Нериф увидел во сне, как школу погребла лавина, — и через несколько часов сон сбылся.",
+        "ru": "Древняя школа на вершинах полых пиков Хребта Фанатиков, в иной вселенной. Бледные Сивиллы растили здесь оракулов, которых затем выкупали советники Кимурри. Юный Нериф (Oracle) увидел во сне, как школу погребла лавина, — и через несколько часов сон сбылся.",
         "en": "An ancient school atop the hollow peaks of Zealot's Range, in another universe. The Pallid Sybils raised oracles here, to be bought by the Cymurri advisors. Young Nerif dreamed of an avalanche burying it, and within hours the news proved him right."
       }
     },
@@ -97,7 +97,7 @@
       "name": { "ru": "Сердце природы", "en": "Heart of Nature" },
       "type": { "ru": "План бытия", "en": "Plane of existence" },
       "description": {
-        "ru": "Скрытая глубина мироздания, где сутью вещей оказываются мука и распад. Лешрак заглянул туда через призрачные кристаллы и навсегда изменился. По его словам, отсюда берёт начало всякая плоть.",
+        "ru": "Скрытая глубина мироздания, где сутью вещей оказываются мука и распад. Leshrac заглянул туда через призрачные кристаллы и навсегда изменился. По его словам, отсюда берёт начало всякая плоть.",
         "en": "The hidden core of creation, where the true nature of things is torment and decay. Leshrac glimpsed it through haunted crystals and was changed forever. He claims that every physical form begins here."
       }
     },
@@ -105,7 +105,7 @@
       "name": { "ru": "Твердыня Света", "en": "Light's Keep" },
       "type": { "ru": "Крепость", "en": "Stronghold" },
       "description": {
-        "ru": "Таинственная твердыня Эзалора, Хранителя Света. Отсюда он выезжает в свой благородный поход и сюда же возвращается, когда его свет гаснет, чтобы вновь разгореться. Больше о ней почти ничего не известно.",
+        "ru": "Таинственная твердыня Эзалора (Keeper of the Light). Отсюда он выезжает в свой благородный поход и сюда же возвращается, когда его свет гаснет, чтобы вновь разгореться. Больше о ней почти ничего не известно.",
         "en": "The mysterious keep of Ezalor, the Keeper of the Light. He rides out from it on his noble quest and returns whenever his light is snuffed out, to be kindled again. Beyond that, little is known."
       }
     },
@@ -113,7 +113,7 @@
       "name": { "ru": "Мир снов", "en": "The Dream" },
       "type": { "ru": "Царство сна", "en": "Realm of sleep" },
       "description": {
-        "ru": "Царство снов и кошмаров. Мы помещаем сюда родину Бейна — ужаса, рождённого страхом спящей богини. Как место в лоре игры оно почти не описано.",
+        "ru": "Царство снов и кошмаров. Мы помещаем сюда родину Bane — ужаса, рождённого страхом спящей богини. Как место в лоре игры оно почти не описано.",
         "en": "The realm of dreams and nightmares. We place here the birthplace of Bane, a terror born of a sleeping goddess's fear. The game's lore barely describes it as a place."
       }
     }

@@ -9,7 +9,7 @@
     "biome": { "ru": "Небо и светила", "en": "Sky and celestial bodies" }
   },
   "description": {
-    "ru": "Над облаками мир не кончается. Здесь, недосягаемые для бескрылых народов, парят крепости скайрасов, а ещё выше кружат светила, от которых зависит судьба всего, что лежит внизу.\n\nНебеса помнят Безумную Луну — тюрьму двух древних разумов, Радинтула и Дируулта. Когда она раскололась, её осколки дождём упали на землю, и с тех пор войны Сияющих и Тьмы ведутся за этот звёздный камень. Рядом всё так же светит Луна Селемены, богини, которой служат Мирана и Луна.\n\nОтсюда родом скайрас-маг Драгонус и свергнутая принцесса Шендельзаре, ставшая Мстительным Духом. С небесами связаны и боги-громовержцы, и дети звёзд — Феникс и Валора.",
+    "ru": "Над облаками мир не кончается. Здесь, недосягаемые для бескрылых народов, парят крепости скайрасов, а ещё выше кружат светила, от которых зависит судьба всего, что лежит внизу.\n\nНебеса помнят Безумную Луну — тюрьму двух древних разумов, Радинтула и Дируулта. Когда она раскололась, её осколки дождём упали на землю, и с тех пор войны Сияющих и Тьмы ведутся за этот звёздный камень. Рядом всё так же светит Луна Селемены, богини, которой служат Mirana и Luna.\n\nОтсюда родом скайрас Драгонус (Skywrath Mage) и свергнутая принцесса Шендельзаре, ставшая Vengeful Spirit. С небесами связаны и боги-громовержцы, и дети звёзд — Phoenix и Dawnbreaker.",
     "en": "The world does not end at the clouds. Above them, out of reach of anything without wings, drift the fortresses of the Skywrath, and higher still wheel the celestial bodies whose fate shapes everything below.\n\nThe heavens remember the Mad Moon, a prison built for two ancient minds, Radinthul and Diruulth. When it cracked apart, its shards rained down on the earth, and the Radiant and the Dire have fought over that starstone ever since. Beside the ruin still glows the moon of Selemene, the goddess served by Mirana and Luna.\n\nThis is the home of Dragonus the Skywrath Mage and of Shendelzare, the deposed princess who became the Vengeful Spirit. Thunder gods and the children of stars, Phoenix and Valora, are bound to these skies as well."
   },
   "places": {
@@ -25,7 +25,7 @@
       "name": { "ru": "Безумная Луна", "en": "Mad Moon" },
       "type": { "ru": "Разрушенная луна", "en": "Shattered moon" },
       "description": {
-        "ru": "Сияющая хрустальная сфера, в которую Зет, Арк Варден, заточил двух враждующих Древних. Борьба внутри, приливы и удар уснувшей Валоры расшатали её, пока она не разлетелась на куски, осыпав мир Сияющей рудой и Камнем Тьмы.",
+        "ru": "Сияющая хрустальная сфера, в которую Зет (Arc Warden) заточил двух враждующих Древних. Борьба внутри, приливы и удар уснувшей Валоры (Dawnbreaker) расшатали её, пока она не разлетелась на куски, осыпав мир Сияющей рудой и Камнем Тьмы.",
         "en": "A glowing crystal sphere in which Zet, the Arc Warden, sealed two warring Ancients. Their struggle within, tidal strain and the impact of the dormant Valora wore it down until it burst apart, showering the world with Radiant Ore and Direstone."
       }
     },
@@ -41,7 +41,7 @@
       "name": { "ru": "Солнце", "en": "The Sun" },
       "type": { "ru": "Светило", "en": "Star" },
       "description": {
-        "ru": "Первое солнце зажёг Хранитель Света, и от него пошёл род звёзд — Дети Света. Они выковали в солнечной кузне Валору, Вестницу Рассвета, а их далёкий потомок Феникс однажды снова разжёг эту кузню.",
+        "ru": "Первое солнце зажёг Keeper of the Light, и от него пошёл род звёзд — Дети Света. Они выковали в солнечной кузне Валору (Dawnbreaker), а их далёкий потомок Phoenix однажды снова разжёг эту кузню.",
         "en": "The first sun was lit by the Keeper of the Light, and from it descended a lineage of stars, the Children of Light. In their solar forge they shaped Valora the Dawnbreaker, and their distant heir Phoenix once rekindled that forge."
       }
     },
@@ -49,7 +49,7 @@
       "name": { "ru": "Олимп", "en": "Olympus" },
       "type": { "ru": "Обитель богов", "en": "Abode of the gods" },
       "description": {
-        "ru": "Небесный дом пантеона, к которому принадлежат Зевс и его сын Марс. Зевс изгнан оттуда и теперь живёт на горной вершине в смертном мире, а Марс мечтает опрокинуть отцовский пантеон. В лоре Олимп почти не описан.",
+        "ru": "Небесный дом пантеона, к которому принадлежат Zeus и его сын Mars. Zeus изгнан оттуда и теперь живёт на горной вершине в смертном мире, а Mars мечтает опрокинуть отцовский пантеон. В лоре Олимп почти не описан.",
         "en": "The celestial home of the pantheon that Zeus and his son Mars belong to. Zeus was cast out and now lives on a mountaintop in the mortal world, while Mars dreams of toppling his father's pantheon. The lore says little about the place itself."
       }
     },
@@ -57,7 +57,7 @@
       "name": { "ru": "Ультория", "en": "Ultoria" },
       "type": { "ru": "Небесное тело", "en": "Celestial body" },
       "description": {
-        "ru": "Далёкий мир со своими лунами, чей цикл длится целый год. Известно лишь, что там шла важная битва, куда хозяин послал Баратрума, Духа Разрушителя.",
+        "ru": "Далёкий мир со своими лунами, чей цикл длится целый год. Известно лишь, что там шла важная битва, куда хозяин послал Баратрума (Spirit Breaker).",
         "en": "A distant world with moons of its own, whose cycle takes a full year. All that is known is that a great battle was fought there, and Barathrum the Spirit Breaker was sent by his master to intervene."
       }
     }

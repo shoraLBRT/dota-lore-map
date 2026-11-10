@@ -9,7 +9,7 @@
     "biome": { "ru": "Адские бездны", "en": "Infernal depths" }
   },
   "description": {
-    "ru": "Семь слоёв вечной тьмы и мучений, разделённых перепонками, сквозь которые свободно проходит один лишь Дум. Он — владыка всех преисподних, за ним идут Повелитель Теней и, последним из Владык демонов, Невермор.\n\nНо ад — не только демоны. Каждую новую душу ждёт Узкий лабиринт: Разор гонит мёртвых по его тёмным, усеянным клинками ходам, и одни выходят к свету, другие — во тьму Андерскейпа. Где-то рядом лежит Мир Нотл, где свет и тьма поменялись местами.\n\nСюда ведут судьбы многих героев: беглеца из тюрьмы демонов Терроблейда, Визажа, жреца Даззла, Хускара, однажды вернувшегося к жизни, и Варлока, призывающего големов из Внешних преисподних.",
+    "ru": "Семь слоёв вечной тьмы и мучений, разделённых перепонками, сквозь которые свободно проходит один лишь Doom. Он — владыка всех преисподних, за ним идут Shadow Demon и, последним из Владык демонов, Невермор (Shadow Fiend).\n\nНо ад — не только демоны. Каждую новую душу ждёт Узкий лабиринт: Razor гонит мёртвых по его тёмным, усеянным клинками ходам, и одни выходят к свету, другие — во тьму Андерскейпа. Где-то рядом лежит Мир Нотл, где свет и тьма поменялись местами.\n\nСюда ведут судьбы многих героев: Terrorblade, сбежавшего из тюрьмы демонов, Visage, жреца Dazzle, Huskar, однажды вернувшегося к жизни, и Warlock, призывающего големов из Внешних преисподних.",
     "en": "Seven layers of endless darkness and torment, divided by membranes that only Doom may freely cross. He is sovereign of every hell; below him stand the Shadow Demon and, least of the Demon Lords, Nevermore.\n\nYet hell is more than demons. Every newly dead soul must walk the Narrow Maze, where Razor drives the dead through cold, blade-lined passages; some emerge into light, others into the dark of the Underscape. Close by lies the Nothl Realm, where light and darkness have traded places.\n\nMany heroes' stories run through here: Terrorblade, who broke out of the demons' own prison; Visage; the shadow priest Dazzle; Huskar, who once came back to the living; and Warlock, who summons golems from the Outer Hells."
   },
   "places": {
@@ -17,7 +17,7 @@
       "name": { "ru": "Семь Преисподних", "en": "Seven Hells" },
       "type": { "ru": "Царство демонов", "en": "Demon realm" },
       "description": {
-        "ru": "Семь слоёв вечной тьмы, где обитают демоны. Каждый слой отделён от соседнего перепонкой, и переходить между ними может только Дум. Чем глубже слой, тем страшнее кара; Невермор мечтает отнять у Дума седьмую преисподнюю.",
+        "ru": "Семь слоёв вечной тьмы, где обитают демоны. Каждый слой отделён от соседнего перепонкой, и переходить между ними может только Doom. Чем глубже слой, тем страшнее кара; Невермор мечтает отнять у Doom седьмую преисподнюю.",
         "en": "Seven layers of eternal dark, home to the demons. Each is sealed from the next by a membrane only Doom can pass. The deeper the layer, the crueler the punishment, and Nevermore schemes to take the seventh hell from Doom."
       }
     },
@@ -25,7 +25,7 @@
       "name": { "ru": "Вашундол", "en": "Vashundol" },
       "type": { "ru": "Адское царство", "en": "Infernal realm" },
       "description": {
-        "ru": "Царство, связанное с Думом и, вероятно, лежащее в одной из преисподних. О нём известно мало: там висит огромный стальной колокол, отзванивающий имена тех, кому суждено пасть.",
+        "ru": "Царство, связанное с Doom и, вероятно, лежащее в одной из преисподних. О нём известно мало: там висит огромный стальной колокол, отзванивающий имена тех, кому суждено пасть.",
         "en": "A realm tied to Doom, most likely somewhere within the Seven Hells. Little is known of it beyond its great steel bell, which tolls the names of those about to fall."
       }
     },
@@ -33,7 +33,7 @@
       "name": { "ru": "Абисм", "en": "Abysm" },
       "type": { "ru": "Бездна", "en": "Abyss" },
       "description": {
-        "ru": "Бездонная пропасть, дом Невермора, Владыки Теней. Собранные им души вечно кружат в её глубинах, куда ещё никто не решился заглянуть.",
+        "ru": "Бездонная пропасть, дом Невермора (Shadow Fiend). Собранные им души вечно кружат в её глубинах, куда ещё никто не решился заглянуть.",
         "en": "A bottomless chasm and the home of Nevermore, the Shadow Fiend. The souls he harvests swirl forever in its depths, which no one has ever dared to look into."
       }
     },
@@ -41,7 +41,7 @@
       "name": { "ru": "Колодец душ", "en": "Foulfell" },
       "type": { "ru": "Тюремный план", "en": "Prison plane" },
       "description": {
-        "ru": "Скрытое измерение, где демоны держат своих преступников, — ад для самого ада. Его фрактальные стены, как тёмные зеркала, множат отражения узников. Терроблейд научился повелевать своими отражениями и разбил стены вдребезги; их чёрные осколки до сих пор хранят запертых демонов.",
+        "ru": "Скрытое измерение, где демоны держат своих преступников, — ад для самого ада. Его фрактальные стены, как тёмные зеркала, множат отражения узников. Terrorblade научился повелевать своими отражениями и разбил стены вдребезги; их чёрные осколки до сих пор хранят запертых демонов.",
         "en": "A hidden dimension where demons lock away their own outlaws, a hell for hell itself. Its fractal walls act as dark mirrors, multiplying the prisoners' reflections. Terrorblade learned to command his and shattered the walls, and their black shards still hold demons captive."
       }
     },
@@ -49,7 +49,7 @@
       "name": { "ru": "Внешние преисподние", "en": "Outer Hells" },
       "type": { "ru": "Слой ада", "en": "Layer of hell" },
       "description": {
-        "ru": "Окраинный слой ада, полный стонов проклятых. Отсюда Варлок вызывает демонов-големов — низших бесов, которыми он, в отличие от истинных дьяволов, способен повелевать.",
+        "ru": "Окраинный слой ада, полный стонов проклятых. Отсюда Warlock вызывает демонов-големов — низших бесов, которыми он, в отличие от истинных дьяволов, способен повелевать.",
         "en": "An outlying layer of hell, loud with the wailing of the damned. From here Warlock calls up his golem demons, lesser fiends he can command, unlike the true devils of the deeper hells."
       }
     },
@@ -57,7 +57,7 @@
       "name": { "ru": "Узкий лабиринт", "en": "Narrow Maze" },
       "type": { "ru": "Путь мёртвых", "en": "Road of the dead" },
       "description": {
-        "ru": "Холодные извилистые ходы с лезвиями в стенах, через которые проходит каждая новая душа. Лабиринт сортирует мёртвых по уму и упорству; Разор и фамильяры Визажа следят за ним, а сопротивляющихся навсегда отправляют в межмирье. Всем здесь заправляет Двор Ристула.",
+        "ru": "Холодные извилистые ходы с лезвиями в стенах, через которые проходит каждая новая душа. Лабиринт сортирует мёртвых по уму и упорству; Razor и фамильяры Visage следят за ним, а сопротивляющихся навсегда отправляют в межмирье. Всем здесь заправляет Двор Ристула.",
         "en": "Cold, twisting, blade-lined passages that every new soul must travel. The maze sorts the dead by wit and persistence; Razor and Visage's familiars stand guard, and those who resist are cast into the herebetween forever. The Court of Ristul pulls the strings."
       }
     },
@@ -73,7 +73,7 @@
       "name": { "ru": "Мир Нотл", "en": "Nothl Realm" },
       "type": { "ru": "Призрачное измерение", "en": "Ethereal dimension" },
       "description": {
-        "ru": "Измерение, где всё вывернуто наизнанку: тьма здесь ослепительно сияет, а слабость оборачивается силой в мире живых. Путешествие сюда опасно — можно не вернуться или вернуться безумцем. Отсюда черпает силу Даззл, а Хускар вернулся отсюда к жизни.",
+        "ru": "Измерение, где всё вывернуто наизнанку: тьма здесь ослепительно сияет, а слабость оборачивается силой в мире живых. Путешествие сюда опасно — можно не вернуться или вернуться безумцем. Отсюда черпает силу Dazzle, а Huskar вернулся отсюда к жизни.",
         "en": "A dimension where everything is inverted: darkness shines blindingly, and whatever burdens you here becomes strength in the living world. The journey is perilous; travelers may never return, or come back mad. Dazzle draws his power from it, and Huskar came back from it to life."
       }
     }
