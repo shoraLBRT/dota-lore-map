@@ -1,0 +1,88 @@
+{
+  "id": "hoven",
+  "subtitle": {
+    "ru": "Смоляной лес и дрожащие горы",
+    "en": "Tar woods and trembling peaks"
+  },
+  "biome": "forest",
+  "ambient": {
+    "type": "embers",
+    "density": 0.3
+  },
+  "traits": {
+    "rule": {
+      "ru": "Король-маг",
+      "en": "Mage-king"
+    },
+    "magic": {
+      "ru": "Шаманы и маги",
+      "en": "Shamans and mages"
+    },
+    "biome": {
+      "ru": "Лес и смоляные холмы",
+      "en": "Forest and tar hills"
+    }
+  },
+  "description": {
+    "ru": "Ховен — лес шириной в тысячу лиг у подножия Кровоточащих холмов. С холмов веками стекает чёрная смола и собирается в лесу вязкими озёрами; хватит одной искры, чтобы они вспыхнули. Правит лесом милостивый король-маг Сутерекс.\n\nЭто край троллей: монгеры роют норы под корнями Ховена, а их холмовая родня живёт выше по склонам. Отсюда вышли Troll Warlord и Shadow Shaman, которых, впрочем, не назовёшь друзьями.\n\nКогда демон Мараксиформ поднялся из Шестой преисподней за этим лесом, его остановил лучник Clinkz. Умирающий демон поджёг смоляные озёра, и Clinkz сгорел заживо, но получил от Сутерекса бессмертие. Он до сих пор стережёт Ховен — пылающим скелетом.\n\nК востоку от холмов лежит Нишай, страна землетрясений и лавин. Там очнулся от каменного сна Earthshaker.",
+    "en": "The Hoven is a forest a thousand leagues wide at the foot of the Bleeding Hills. For centuries black tar has seeped down from the hills and pooled among its trees, and a single spark can set those pools ablaze. The forest is ruled by the kindly mage-king Sutherex.\n\nThis is troll country: monger trolls dig their warrens beneath the Hoven's roots, while their hill-dwelling kin live higher up the slopes. Troll Warlord and Shadow Shaman both come from here, though nobody would call them friends.\n\nWhen the demon Maraxiform rose from the Sixth Hell to claim the forest, the archer Clinkz drove him back. The dying demon set the tar pools alight and Clinkz burned alive, yet Sutherex rewarded him with eternal life. He still patrols the Hoven, a skeleton forever wreathed in flame.\n\nEast of the hills lies Nishai, a land of quakes and avalanches, where Earthshaker woke from his stone slumber."
+  },
+  "places": {
+    "The Hoven": {
+      "name": {
+        "ru": "Ховен",
+        "en": "The Hoven"
+      },
+      "type": {
+        "ru": "Лес",
+        "en": "Forest"
+      },
+      "description": {
+        "ru": "Огромный лес древних деревьев и смоляных озёр под властью короля-мага Сутерекса. Под землёй живут тролли-монгеры, среди них — Troll Warlord, а на страже стоит вечно горящий Clinkz.",
+        "en": "A vast forest of ancient trees and tar pools ruled by the mage-king Sutherex. Monger trolls such as Troll Warlord live in caverns below, and the ever-burning Clinkz stands guard above."
+      }
+    },
+    "Bleeding Hills": {
+      "name": {
+        "ru": "Кровоточащие холмы",
+        "en": "Bleeding Hills"
+      },
+      "type": {
+        "ru": "Холмы",
+        "en": "Hills"
+      },
+      "description": {
+        "ru": "Нагорье, из которого сочится густая чёрная смола. В её ямах лежат кости древних чудовищ. Здесь живут холмовые тролли, и здесь родился Shadow Shaman.",
+        "en": "Highlands that bleed thick black tar, its pits full of the bones of ancient beasts. Hill trolls make their home here, and Shadow Shaman was born among them."
+      }
+    },
+    "Nishai": {
+      "name": {
+        "ru": "Нишай",
+        "en": "Nishai"
+      },
+      "type": {
+        "ru": "Горный край",
+        "en": "Mountain land"
+      },
+      "description": {
+        "ru": "Горы, где каждый сезон приходят землетрясения и сходят лавины, а в запечатанных пещерах светятся лишь подземные твари. Тайный орден оружейников выковал здесь тотем для Earthshaker, а горгульи стали его друзьями.",
+        "en": "Mountains shaken by seasonal quakes and avalanches, with sealed caverns lit only by glowing creatures. A secret order of smiths forged a totem for Earthshaker here, and the local gargoyles count him as a friend."
+      }
+    },
+    "The Red Mountain": {
+      "name": {
+        "ru": "Красная гора",
+        "en": "The Red Mountain"
+      },
+      "type": {
+        "ru": "Гора",
+        "en": "Mountain"
+      },
+      "description": {
+        "ru": "Гору охраняет Earthshaker. Где она, точно неизвестно; скорее всего, в Нишае.",
+        "en": "A mountain under Earthshaker's protection. Its exact place is unknown, most likely somewhere in Nishai."
+      }
+    }
+  }
+}

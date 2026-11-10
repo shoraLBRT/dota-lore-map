@@ -1,0 +1,130 @@
+{
+  "id": "the-deep",
+  "subtitle": {
+    "ru": "Затонувшие города бездны",
+    "en": "Sunken cities of the abyss"
+  },
+  "biome": "sea",
+  "ambient": {
+    "type": "sparkles",
+    "density": 0.3
+  },
+  "traits": {
+    "rule": {
+      "ru": "Конклав Пучины",
+      "en": "Conclave of the Brine"
+    },
+    "magic": {
+      "ru": "Сковывают рунами",
+      "en": "Bound with runes"
+    },
+    "biome": {
+      "ru": "Океанское дно",
+      "en": "Ocean floor"
+    }
+  },
+  "description": {
+    "ru": "Под толщей океана лежат затонувшие города, их сокровищницы и тюрьмы. Это владения слизеринов, наг и мерантов, а порядок здесь держат Конклав Пучины и стража, верная своему долгу тысячелетиями.\n\nSlardar стережёт глубинные хранилища, Naga Siren когда-то отбила Крей у захватчиков, а Slark остаётся единственным, кто сумел сбежать из Тёмного рифа. Morphling, ожившая вода с упавшей кометы, считает эти глубины своим домом.\n\nЕщё ниже, за последними руинами, лежит Адская впадина. Оттуда демон Буки'вак Порченый расползается гнилью по всему дну.",
+    "en": "Beneath the weight of the ocean lie sunken cities with their vaults and prisons. This is the realm of slithereen, naga and meranths, kept in order by the Conclave of the Brine and guards who have held their posts for millennia.\n\nSlardar watches over the deep treasuries, Naga Siren once drove raiders out of Crey, and Slark is still the only prisoner ever to escape Dark Reef. Morphling, living water fallen from a comet, calls these depths home.\n\nFurther down, past the last ruins, opens the Infernal Hollow. From there the demon Buki'vak the Corrupted spreads his rot across the sea floor."
+  },
+  "places": {
+    "Dark Reef": {
+      "name": {
+        "ru": "Тёмный риф",
+        "en": "Dark Reef"
+      },
+      "type": {
+        "ru": "Тюрьма",
+        "en": "Prison"
+      },
+      "description": {
+        "ru": "Подводная тюрьма в глубокой впадине под металлической решёткой: тёмный лабиринт, угри-патрульные и ядовитые анемоны у выходов. Здесь держат худших обитателей моря. Сбежать отсюда удалось только одному узнику — Slark.",
+        "en": "An underwater prison sunk into a trench beneath a metal grid: a dark labyrinth, patrolling eels and stinging anemones at every exit. It holds the worst the sea has to offer. Slark is the only one who ever got out."
+      }
+    },
+    "Crey": {
+      "name": {
+        "ru": "Крей",
+        "en": "Crey"
+      },
+      "type": {
+        "ru": "Затонувший город",
+        "en": "Sunken city"
+      },
+      "description": {
+        "ru": "Затонувший город с гротами, где морские жители ставят на кровавые бои. Naga Siren отстояла его сокровища от армии левиантов, но из хранилищ пропала одна чаша, и за это её изгнали.",
+        "en": "A sunken city full of grottoes where sea folk bet on blood sports. Naga Siren defended its treasures from a levianth army, but one chalice went missing, and she was exiled until it is found."
+      }
+    },
+    "Deep Vault": {
+      "name": {
+        "ru": "Глубинное хранилище",
+        "en": "Deep Vault"
+      },
+      "type": {
+        "ru": "Сокровищница",
+        "en": "Treasury"
+      },
+      "description": {
+        "ru": "Бездонная сокровищница затонувших городов, её же зовут Затонувшей казной. Её стерегут Глубинные — слизерины с гребнями на спинах, среди них Slardar.",
+        "en": "The bottomless treasury of the sunken cities, also called the Sunken Treasury. It is guarded by the Deep Ones, crested slithereen sentinels, Slardar among them."
+      }
+    },
+    "Coral Breach": {
+      "name": {
+        "ru": "Коралловый разлом",
+        "en": "Coral Breach"
+      },
+      "type": {
+        "ru": "Каньон",
+        "en": "Canyon"
+      },
+      "description": {
+        "ru": "Подводный каньон, где тысячи лет лежали запечатанные сокровища.",
+        "en": "An ocean canyon where treasures lay sealed for thousands of years."
+      }
+    },
+    "Reef's Edge": {
+      "name": {
+        "ru": "Край рифа",
+        "en": "Reef's Edge"
+      },
+      "type": {
+        "ru": "Риф",
+        "en": "Reef"
+      },
+      "description": {
+        "ru": "Подводные заросли кораллов и ламинарий у стен Тёмного рифа. Рядом, судя по всему, стоит город наг, а статуи спрута намекают на культ морского бога Мелрауна.",
+        "en": "Coral and kelp gardens at the edge of Dark Reef. A naga settlement seems to sit nearby, and octopus-like statues hint at the worship of the sea god Maelrawn."
+      }
+    },
+    "Recluse Reef": {
+      "name": {
+        "ru": "Уединённый риф",
+        "en": "Recluse Reef"
+      },
+      "type": {
+        "ru": "Риф",
+        "en": "Reef"
+      },
+      "description": {
+        "ru": "Опасные воды с коварными течениями и острыми кораллами. Акулы и огромные моллюски здесь утаскивают на дно целые корабли. Tidehunter знает эти места.",
+        "en": "Treacherous waters of sharp coral and cruel currents, where sharks and giant barnacles can drag whole ships under. Tidehunter knows them well."
+      }
+    },
+    "Infernal Hollow": {
+      "name": {
+        "ru": "Адская впадина",
+        "en": "Infernal Hollow"
+      },
+      "type": {
+        "ru": "Впадина",
+        "en": "Abyssal hollow"
+      },
+      "description": {
+        "ru": "Провал далеко под затонувшими городами, логово демона Буки'вака Порченого. Lion спустился сюда, одолел демона и забрал его руку.",
+        "en": "A chasm far beneath the sunken cities and the lair of the demon Buki'vak the Corrupted. Lion descended here, defeated him and took his hand."
+      }
+    }
+  }
+}

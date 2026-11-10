@@ -1,0 +1,116 @@
+{
+  "id": "western-forests",
+  "subtitle": {
+    "ru": "Древние леса под грозами",
+    "en": "Ancient woods under storms"
+  },
+  "biome": "forest",
+  "ambient": {
+    "type": "leaves",
+    "density": 0.5
+  },
+  "traits": {
+    "rule": {
+      "ru": "Советы деревень",
+      "en": "Village councils"
+    },
+    "magic": {
+      "ru": "Почитают ветер",
+      "en": "Revere the wind"
+    },
+    "biome": {
+      "ru": "Древний лес",
+      "en": "Ancient forest"
+    }
+  },
+  "description": {
+    "ru": "Запад мира покрыт лесами. Над ними часто гремят грозы, а иные деревья так стары и высоки, что достают до дождевых туч. Люди живут здесь деревнями, почитают золотых соколов и духа ветра, а из великанских деревьев делают лучшие луки.\n\nВ одной такой деревне, Зару'Кине, родилась Windranger. Буря, что пришла в ночь её рождения, стёрла деревню с лица земли, а саму девочку унесла к приёмным родителям.\n\nЗа Долиной Предзнаменований, в горах с колдовской почвой, живут древни. Когда портовый город изобретателей показался им угрозой лесу, они пришли и снесли его; выживший Timbersaw с тех пор воюет с деревьями. В этих чащах бродит со своей стаей Lycan, а Nature's Prophet добывал в здешних рощах дерево и цветы для своих посохов.",
+    "en": "The west of the world is a sea of forest. Storms break over it often, and some trees are so old and tall they scrape the rainclouds. People live here in villages, honor gilded falcons and the spirit of the wind, and turn the giant trees into the finest bows anywhere.\n\nIn one such village, Zaru'Kina, Windranger was born. The storm that came on the night of her birth wiped the village away and carried the infant off to a foster home.\n\nBeyond the Vale of Augury, in mountains of eldritch soil, live the treants. When a port city of tinkerers came to look like a threat to the forest, they marched on it and tore it down; Timbersaw, one of the few survivors, has been at war with trees ever since. Lycan and his pack roam these woods, and Nature's Prophet has taken wood and blossoms from its groves for his staves."
+  },
+  "places": {
+    "Western Forests": {
+      "name": {
+        "ru": "Западные леса",
+        "en": "Western Forests"
+      },
+      "type": {
+        "ru": "Лес",
+        "en": "Forest"
+      },
+      "description": {
+        "ru": "Огромный лес у границ павшего Слома, где растут кровавые деревья и смертельно ядовитые солнечные лозы. Охотники выслеживают здесь редких зелёных ойолоэ.",
+        "en": "A vast forest bordering fallen Slom, home to ancient bloodwoods and deadly sun vines. Hunters stalk the rare green oyoloe beneath its canopy."
+      }
+    },
+    "Zaru'Kina": {
+      "name": {
+        "ru": "Зару'Кина",
+        "en": "Zaru'Kina"
+      },
+      "type": {
+        "ru": "Разрушенная деревня",
+        "en": "Ruined village"
+      },
+      "description": {
+        "ru": "Деревня, которой правил совет, а духовно вёл верховный жрец — дед Лиралей. Он настроил людей против ветропоклонников, и в ночь рождения внучки дух ветра стёр деревню бурей. Выжила одна Лиралей.",
+        "en": "A village led by a council and, in spirit, by a high priest, Lyralei's grandfather. He turned the people against the wind-worshippers, and on the night of his granddaughter's birth the wind spirit erased the village in a storm. Only Lyralei survived."
+      }
+    },
+    "Vale of Augury": {
+      "name": {
+        "ru": "Долина Предзнаменований",
+        "en": "Vale of Augury"
+      },
+      "type": {
+        "ru": "Долина",
+        "en": "Valley"
+      },
+      "description": {
+        "ru": "Долина на западе с портом на берегу. В горах за ней колдовская почва питает древней — хранителей леса.",
+        "en": "A western valley with a port on its shore. In the mountains beyond, eldritch soil feeds the treants who guard the forest."
+      }
+    },
+    "Augury Bay": {
+      "name": {
+        "ru": "Бухта Предзнаменований",
+        "en": "Augury Bay"
+      },
+      "type": {
+        "ru": "Разрушенный город",
+        "en": "Ruined city"
+      },
+      "description": {
+        "ru": "Портовый город изобретателей, вероятно кинов, с мастерскими и крепкими стенами. Стены не спасли: древни разрушили город, и среди немногих выживших был Timbersaw.",
+        "en": "A port city of inventors, probably Keen, with busy workshops and strong walls. The walls were not enough: the treants razed it, and Timbersaw was among the few who lived."
+      }
+    },
+    "Endless Copse": {
+      "name": {
+        "ru": "Бескрайняя роща",
+        "en": "Endless Copse"
+      },
+      "type": {
+        "ru": "Роща",
+        "en": "Grove"
+      },
+      "description": {
+        "ru": "Роща, у которой нет конца, — уже само название звучит как загадка. В её сердце растёт цветок Кандрал, который Nature's Prophet сорвал для своего посоха.",
+        "en": "A copse with no end, a riddle in its very name. At its heart grows the Candral-Flower, which Nature's Prophet plucked to bind to his staff."
+      }
+    },
+    "Manglewood Forest": {
+      "name": {
+        "ru": "Корявый лес",
+        "en": "Manglewood Forest"
+      },
+      "type": {
+        "ru": "Лес",
+        "en": "Forest"
+      },
+      "description": {
+        "ru": "О лесе с искорёженными деревьями известно мало. Nature's Prophet срезал здесь ветвь самого корявого дерева и сделал из неё зачарованный посох.",
+        "en": "Little is known of this forest of twisted trees. Nature's Prophet took a limb from its gnarliest tree and made it into an enchanted staff."
+      }
+    }
+  }
+}

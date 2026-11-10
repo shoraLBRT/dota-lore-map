@@ -1,0 +1,102 @@
+{
+  "id": "shadeshore",
+  "subtitle": {
+    "ru": "Берег хищных мангров",
+    "en": "Coast of hungry mangroves"
+  },
+  "biome": "swamp",
+  "ambient": {
+    "type": "fog",
+    "density": 0.45
+  },
+  "traits": {
+    "rule": {
+      "ru": "Нет власти",
+      "en": "No rule"
+    },
+    "magic": {
+      "ru": "Неизвестно",
+      "en": "Unknown"
+    },
+    "biome": {
+      "ru": "Топкое побережье",
+      "en": "Marshy coast"
+    }
+  },
+  "description": {
+    "ru": "Тенистый берег — сумрачная полоса между морем и сушей. О его пляжах известно мало, зато на юге растут мангры, которые охотятся на зазевавшихся путников. Дальше вглубь лежат приливные топи и выжженные войнами пустоши.\n\nСреди руин на берегу живут меранты, полулюди-полурыбы. Здесь вырос Sven, сын рыцаря Бдящих и мерантки, — и здесь он хочет быть похоронен. Неподалёку стоит твердыня ордена, казнившего его отца.\n\nПосле побега из Тёмного рифа в здешних хищных зарослях затаился Slark. Для беглеца лучшего укрытия не найти: сюда редко заходят по своей воле.",
+    "en": "Shadeshore is a dim strip where sea and land blur together. Little is told of its beaches, but in the south grow mangroves that feed on careless travelers. Further inland lie tidal marshes and wastelands scarred by old wars.\n\nMeranths, the fish-folk of the coast, dwell among the shoreline ruins. Sven grew up there, son of a Vigil Knight and a meranth mother, and it is where he wants his grave. Not far off stands the keep of the order that executed his father.\n\nAfter breaking out of Dark Reef, Slark went to ground in these carnivorous thickets. For a fugitive there is no better hideout: almost nobody comes here by choice."
+  },
+  "places": {
+    "Shadeshore Ruins": {
+      "name": {
+        "ru": "Руины Тенистого берега",
+        "en": "Shadeshore Ruins"
+      },
+      "type": {
+        "ru": "Руины",
+        "en": "Ruins"
+      },
+      "description": {
+        "ru": "Руины где-то на пляжах Тенистого берега, вероятно, населённые мерантами. Здесь прошло детство Sven, и сюда он завещал принести своё тело.",
+        "en": "Ruins somewhere along the Shadeshore beaches, likely home to meranths. Sven spent his childhood here and asks to be laid to rest here when he dies."
+      }
+    },
+    "Tidemarsh": {
+      "name": {
+        "ru": "Приливная топь",
+        "en": "Tidemarsh"
+      },
+      "type": {
+        "ru": "Топь",
+        "en": "Marsh"
+      },
+      "description": {
+        "ru": "Прибрежный край, где хищные анемоны притворяются деревьями, а петляющие тропы сами ведут путника к ним в пасть. Жители хижин на границе охотно подсказывают дорогу — именно туда. По ночам «лес» понемногу ползёт за свои пределы.",
+        "en": "A coastal maze where carnivorous anemones pass for trees and the winding paths lead travelers straight into their maws. The hut-dwellers on its edge are happy to point the way, right into it. At night the so-called forest quietly creeps past its borders."
+      }
+    },
+    "Ruelands": {
+      "name": {
+        "ru": "Земли Скорби",
+        "en": "Ruelands"
+      },
+      "type": {
+        "ru": "Пустошь",
+        "en": "Wasteland"
+      },
+      "description": {
+        "ru": "Песчаная каменистая земля, пропитанная кровью. По старым преданиям, три королевства разорились в войне за сокровища, которых под ней не оказалось. Здесь впервые явилась в этот мир Spectre, а летописица Гудкайнд встретила тут Techies.",
+        "en": "Sandy, rocky ground soaked in blood. Old tales say three kingdoms ruined themselves fighting for riches that turned out never to be there. Spectre first appeared in this world here, and the chronicler Goodkind found Techies on these sands."
+      }
+    },
+    "Vigil Keep": {
+      "name": {
+        "ru": "Твердыня Бдящих",
+        "en": "Vigil Keep"
+      },
+      "type": {
+        "ru": "Крепость",
+        "en": "Fortress"
+      },
+      "description": {
+        "ru": "Оплот рыцарей Бдения, где хранились реликвии ордена: Кодекс, Изгнанный клинок, Священный шлем и Святое пламя. Sven ворвался сюда, чтобы отомстить ордену за казнь отца, и унёс клинок с собой.",
+        "en": "Stronghold of the Vigil Knights and vault of their relics: the Codex, the Outcast Blade, the Sacred Helm and the Holy Flame. Sven stormed it to avenge his executed father and left with the blade."
+      }
+    },
+    "Inner Colonnade": {
+      "name": {
+        "ru": "Внутренняя колоннада",
+        "en": "Inner Colonnade"
+      },
+      "type": {
+        "ru": "Святилище",
+        "en": "Sanctum"
+      },
+      "description": {
+        "ru": "Святилище рыцарей Бдения, в Твердыне или рядом с ней. Здесь горит Святое пламя под охраной секты Пламенных стражей.",
+        "en": "The Vigil Knights' sanctum, inside or beside their keep. The Holy Flame burns here, watched over by the Flameguard sect."
+      }
+    }
+  }
+}
