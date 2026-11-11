@@ -165,6 +165,13 @@ describe('buildWorld', () => {
     expect(errors).toHaveLength(2);
   });
 
+  it('ошибка, если в английском тексте кириллица (забытый перевод)', () => {
+    const bad = content();
+    bad.data.description = { ru: 'Ледяной край', en: 'Ледяной край' };
+    const { errors } = buildWorld({ ...fixture(), contents: [bad] });
+    expect(errors).toEqual([expect.stringMatching(/description: в en кириллица/)]);
+  });
+
   it('moreLink: https-ссылка попадает в регион, другое — ошибка', () => {
     const good = content();
     good.data.moreLink = 'https://example.org/icewrack';
@@ -230,7 +237,7 @@ describe('buildWorld', () => {
       type: 'image',
       src: 'https://cdn.example.com/a.jpg',
       title: L('t'),
-      subtitle: L('Комикс'),
+      subtitle: { ru: 'Комикс', en: 'Comic' },
       description: L('d'),
       credit: 'Valve Corporation',
       sourceUrl: 'https://www.dota2.com/x',

@@ -59,9 +59,16 @@ const isNonEmptyString = (v) => typeof v === 'string' && v.trim() !== '';
 const isUnit = (v) => typeof v === 'number' && Number.isFinite(v) && v >= 0 && v <= 1;
 const isPoint = (v) => Array.isArray(v) && v.length === 2 && v.every(isUnit);
 
+const CYRILLIC = /[А-Яа-яЁё]/;
+
 function localized(value, where, errors) {
   if (!isObject(value) || !isNonEmptyString(value.ru) || !isNonEmptyString(value.en)) {
     errors.push(`${where}: нужен объект { ru, en } с непустыми строками`);
+    return undefined;
+  }
+  // Кириллица в английском тексте — почти наверняка забытый перевод (SPEC §12).
+  if (CYRILLIC.test(value.en)) {
+    errors.push(`${where}: в en кириллица — текст не переведён?`);
     return undefined;
   }
   return { ru: value.ru, en: value.en };
