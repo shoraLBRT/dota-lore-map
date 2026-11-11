@@ -131,8 +131,15 @@ export function MapStage({
     if (!viewport || !layer) return;
     const measure = () =>
       setView((v) => {
-        const next = { width: viewport.clientWidth, layerWidth: layer.offsetWidth, inset: cssPixels('--panel-inset') };
-        return next.width === v.width && next.layerWidth === v.layerWidth && next.inset === v.inset ? v : next;
+        const next: View = {
+          width: viewport.clientWidth,
+          height: viewport.clientHeight,
+          layerWidth: layer.offsetWidth,
+          layerHeight: layer.offsetHeight,
+          inset: cssPixels('--panel-inset'),
+        };
+        const same = (Object.keys(next) as (keyof View)[]).every((k) => next[k] === v[k]);
+        return same ? v : next;
       });
     measure();
     if (typeof ResizeObserver === 'undefined') return;
@@ -150,8 +157,9 @@ export function MapStage({
   const inset = panel && active ? view.inset : 0;
   const framed = useMemo(() => frameCamera(camera, { ...view, inset }), [camera, view, inset]);
   const target = cameraTransform(framed.camera, framed.offset);
-  /** Маркеры и их подписи — постоянного экранного размера, независимо от приближения. */
-  const markerScale = active?.layout ? 1 / frameCamera(active.layout.camera, { ...view, inset }).camera.zoom : 1;
+  /** Маркеры и подписи — в экранных пикселях, независимо от приближения и размера окна (1 единица SVG = 1 px). */
+  const regionZoom = active?.layout ? frameCamera(active.layout.camera, { ...view, inset }).camera.zoom : 1;
+  const markerScale = (view.layerWidth > 0 ? STAGE_WIDTH / view.layerWidth : 1) / regionZoom;
 
   // Анимация камеры (A3, A4). Пока она идёт, навигация занята: клики ставятся в очередь.
   const shownCamera = useRef<Camera>(camera);
@@ -361,9 +369,9 @@ export function MapStage({
                   );
                 })}
               </g>
-              {active && <RegionArt key={active.id} region={active} />}
+              {active && <RegionArt key={`art-${active.id}`} region={active} />}
               {active && (
-                <g key={active.id} className={styles.markers}>
+                <g key={`markers-${active.id}`} className={styles.markers}>
                   {spots.map(marker)}
                 </g>
               )}

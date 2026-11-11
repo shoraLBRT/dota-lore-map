@@ -30,26 +30,36 @@ export function cameraTransform(camera: Camera, offset = 0): string {
 
 /** Размеры кадра карты, px. Нули — ещё не измерено (или jsdom). */
 export interface View {
-  /** Ширина кадра (viewport). */
+  /** Размер кадра (viewport). */
   width: number;
-  /** Ширина слоя карты 16:10 без камеры. */
+  height: number;
+  /** Размер слоя карты 16:10 без камеры. */
   layerWidth: number;
+  layerHeight: number;
   /** Сколько px справа закрывает панель. */
   inset: number;
 }
 
-export const UNMEASURED: View = { width: 0, layerWidth: 0, inset: 0 };
+export const UNMEASURED: View = { width: 0, height: 0, layerWidth: 0, layerHeight: 0, inset: 0 };
 
 /**
  * Камера с учётом панели: рамка региона (1/zoom ширины мира) должна поместиться в свободную часть кадра,
  * поэтому zoom уменьшается в (ширина − панель) / ширина слоя раз; больше задуманного не приближаем.
- * Возвращает камеру и сдвиг центра для cameraTransform.
+ * Центр затем сдвигается к середине мира настолько, чтобы за краем картинки было как можно меньше пустоты;
+ * рамка региона при этом остаётся в кадре. Возвращает камеру и сдвиг центра для cameraTransform.
  */
 export function frameCamera(camera: Camera, view: View): { camera: Camera; offset: number } {
-  if (view.inset <= 0 || view.layerWidth <= 0) return { camera, offset: 0 };
+  if (view.inset <= 0 || view.layerWidth <= 0 || view.layerHeight <= 0) return { camera, offset: 0 };
   const free = Math.max(view.width - view.inset, view.layerWidth * 0.25);
-  const fit = Math.min(1, free / view.layerWidth);
-  return { camera: { ...camera, zoom: camera.zoom * fit }, offset: view.inset / 2 };
+  const zoom = camera.zoom * Math.min(1, free / view.layerWidth);
+  // Видимая часть мира (в долях) по осям.
+  const seenX = free / (view.layerWidth * zoom);
+  const seenY = Math.max(view.height, view.layerHeight) / (view.layerHeight * zoom);
+  const clamp = (c: number, seen: number) => (seen >= 1 ? 0.5 : Math.min(Math.max(c, seen / 2), 1 - seen / 2));
+  return {
+    camera: { x: clamp(camera.x, seenX), y: clamp(camera.y, seenY), zoom },
+    offset: view.inset / 2,
+  };
 }
 
 /** Камера места: лёгкий сдвиг от камеры региона к месту и небольшой дозум (A4). */
@@ -71,14 +81,23 @@ export function prefersReducedMotion(): boolean {
 
 /**
  * Плавно переводит слой карты из transform `from` в `target` (строки cameraTransform или текущая матрица).
- * Без поддержки WAAPI или при prefers-reduced-motion — мгновенно.
+ * При prefers-reduced-motion — без движения: кадр гаснет и проявляется уже на месте (SPEC §7.1: кроссфейд 200 мс,
+ * длительность берётся из токена). Без поддержки WAAPI или с нулевой длительностью — мгновенно.
  */
 export function animateCamera(el: HTMLElement, from: string, target: string, duration: number): Animation | null {
-  if (typeof el.animate !== 'function' || duration <= 0 || prefersReducedMotion()) {
+  if (typeof el.animate !== 'function' || duration <= 0) {
     el.style.transform = target;
     return null;
   }
-  const animation = el.animate([{ transform: from }, { transform: target }], {
+  const keyframes: Keyframe[] = prefersReducedMotion()
+    ? [
+        { transform: from, opacity: 1 },
+        { transform: from, opacity: 0, offset: 0.5 },
+        { transform: target, opacity: 0, offset: 0.5 },
+        { transform: target, opacity: 1 },
+      ]
+    : [{ transform: from }, { transform: target }];
+  const animation = el.animate(keyframes, {
     duration,
     easing: 'ease-in-out',
     fill: 'forwards',
