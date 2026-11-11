@@ -275,3 +275,128 @@
 .list button[aria-current='true'] {
   border-color: var(--accent);
 }
+
+/* Выбран герой (SPEC §6.5): его регионы и места подсвечены, остальные приглушены. */
+.region.muted {
+  filter: brightness(0.45) saturate(0.5);
+  transition: filter var(--dur-fade) var(--ease-out);
+}
+
+.label.muted {
+  opacity: 0.35;
+}
+
+.label.heroRegion {
+  filter: drop-shadow(0 0 8px var(--hl)) drop-shadow(0 0 2px var(--hl-glow));
+}
+
+/* Прозрачность маркера занята анимацией появления — приглушаем его части. */
+.mutedMarker .ring,
+.mutedMarker .dot,
+.mutedMarker .markerLabel {
+  opacity: 0.35;
+}
+
+.heroSpot .ring {
+  stroke: var(--accent-bright);
+  stroke-width: 3;
+  filter: drop-shadow(0 0 8px var(--marker-glow));
+}
+
+.heroSpot .markerLabel {
+  fill: var(--text-1);
+}
+
+/* Нити (SPEC §6.6, A5): прорисовка по stroke-dashoffset за --dur-thread, затем течение пунктира. */
+.threads {
+  pointer-events: none;
+  filter: drop-shadow(0 0 4px var(--hl)) drop-shadow(0 0 1px var(--hl-glow));
+}
+
+.thread {
+  fill: none;
+  stroke: var(--hl);
+  stroke-width: var(--w);
+  stroke-linecap: round;
+  stroke-dasharray: var(--len) var(--len);
+  stroke-dashoffset: var(--len);
+  animation:
+    thread-draw var(--dur-thread) var(--ease-out) forwards,
+    thread-flow 2.4s linear var(--dur-thread) infinite;
+}
+
+/* Вспышка на концах нити. */
+.flash {
+  fill: var(--hl-glow);
+  stroke: var(--hl);
+  stroke-width: 2;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: thread-flash calc(var(--dur-thread) + 300ms) var(--ease-out) both;
+}
+
+/* Нить ушла за край кадра (S2/S3): стрелка и название места, клик ведёт к нему. */
+.exit {
+  position: absolute;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  max-width: 14rem;
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--hl);
+  background: var(--bg-1);
+  color: var(--text-1);
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px var(--hl-glow);
+  animation: fade-in var(--dur-fade) var(--ease-out) var(--dur-camera) both;
+}
+
+.exit:hover,
+.exit:focus-visible {
+  background: var(--bg-2);
+}
+
+.exitArrow {
+  display: inline-block;
+  color: var(--hl);
+}
+
+@keyframes thread-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes thread-flow {
+  from {
+    stroke-dasharray: var(--dash) var(--dash);
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dasharray: var(--dash) var(--dash);
+    stroke-dashoffset: calc(var(--dash) * -2);
+  }
+}
+
+@keyframes thread-flash {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+
+  40% {
+    opacity: 1;
+    transform: scale(1.4);
+  }
+
+  100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+}

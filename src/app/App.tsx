@@ -20,16 +20,22 @@ function Screens() {
   const gallery = onIntro ? null : galleryOf(route);
   const galleryOpen = gallery !== null;
 
-  // Esc — на уровень вверх: место → регион → мир (SPEC §5.1). Открыта галерея — Esc закрывает только её.
+  // Esc — по порядку: галерея закрывается сама; выбран герой — снять выбор (SPEC §6.5);
+  // иначе на уровень вверх: место → регион → мир (SPEC §5.1).
+  const heroSelected = Boolean(route.hero);
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key !== 'Escape' || galleryOpen) return;
+      if (heroSelected) {
+        navigate({ screen });
+        return;
+      }
       const parent = parentScreen(screen);
       if (parent !== screen) open(parent);
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [screen, open, galleryOpen]);
+  }, [screen, open, navigate, galleryOpen, heroSelected]);
 
   const start = useCallback(() => {
     unlock(); // SPEC §5.2: «Начать» включает звуки, если пользователь их не выключил.

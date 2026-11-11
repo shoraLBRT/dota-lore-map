@@ -15,7 +15,7 @@
   "rail.label": "Navigation",
   "rail.home": "Back to the intro",
   "rail.world": "Whole world",
-  "rail.search": "Hero search — coming soon",
+  "rail.search": "Hero search",
   "rail.sound": "Sound",
   "rail.about": "About the project",
   "about.title": "About",
@@ -52,5 +52,11 @@
   "gallery.excerptNote": "This is a single page of the comic. Read the whole thing on the official Dota 2 site.",
   "gallery.readFull": "Read the full comic ↗",
   "gallery.source": "Source ↗",
-  "gallery.loadError": "The image failed to load."
+  "gallery.loadError": "The image failed to load.",
+  "search.label": "Hero search",
+  "search.placeholder": "Hero name: Pudge, CM, Rylai…",
+  "search.empty": "No heroes found",
+  "hero.selected": "Selected hero",
+  "hero.clear": "Clear hero selection",
+  "hero.places": "Hero's places"
 }

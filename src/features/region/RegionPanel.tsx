@@ -6,6 +6,7 @@ import type { Region } from '../../data/types';
 import { heroesOfRegion } from '../../data/world';
 import { useT } from '../../i18n';
 import { Breadcrumbs } from '../panel/Breadcrumbs';
+import { useHeroPreview } from '../search/preview';
 import { MediaCards } from '../panel/MediaCards';
 import { panelStyles } from '../panel/Panel';
 import { Traits } from '../panel/Traits';
@@ -20,12 +21,13 @@ export const REGION_HEROES = 12;
 export function RegionPanel({ region }: { region: Region }) {
   const { l, t } = useT();
   const { route, open, navigate } = useNavigation();
+  const preview = useHeroPreview();
 
   return (
     <>
       <h2>{l(region.name)}</h2>
       {region.subtitle && <p className={panelStyles.subtitle}>{l(region.subtitle)}</p>}
-      <HeroList heroes={heroesOfRegion(region.id)} max={REGION_HEROES} />
+      <HeroList heroes={heroesOfRegion(region.id)} max={REGION_HEROES} onPreview={preview} />
       <Divider />
       <Traits region={region} />
       {region.description && <Paragraphs text={l(region.description)} />}

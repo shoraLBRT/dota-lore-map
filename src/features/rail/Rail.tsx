@@ -25,7 +25,14 @@ function RailButton({ icon, label, className, ...rest }: RailButtonProps) {
 }
 
 /** Левая вертикальная панель (SPEC §6.1): логотип, глобус, поиск, язык; внизу звук и «О проекте». */
-export function Rail({ className }: { className?: string }) {
+interface Props {
+  className?: string;
+  /** Открыть поиск героя (SPEC §6.5). */
+  onSearch?: () => void;
+  searchOpen?: boolean;
+}
+
+export function Rail({ className, onSearch, searchOpen = false }: Props) {
   const { t } = useT();
   const { route, open } = useNavigation();
   const sound = useSound();
@@ -42,8 +49,7 @@ export function Rail({ className }: { className?: string }) {
           aria-current={screen === 'world' ? 'page' : undefined}
           onClick={() => open({ name: 'world' })}
         />
-        {/* Поиск героя — E7; пока кнопка-заглушка. */}
-        <RailButton icon="search" label={t('rail.search')} aria-disabled="true" />
+        <RailButton icon="search" label={t('rail.search')} aria-expanded={searchOpen} onClick={onSearch} />
         <LangSwitch className={styles.lang} />
       </div>
       <div className={styles.group}>

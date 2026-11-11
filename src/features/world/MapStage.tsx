@@ -14,6 +14,7 @@ import { cssDuration, cssPixels } from '../../app/motion';
 import type { Camera, Hero, Place, Point, Region } from '../../data/types';
 import { heroesOfPlace, heroesOfRegion, placeName } from '../../data/world';
 import { useT } from '../../i18n';
+import { spotName, type Spot } from '../search/search';
 import { preloadRegionArt } from './art';
 import { biomeColor } from './biomes';
 import {
@@ -34,6 +35,8 @@ import styles from './MapStage.module.css';
 import { PlaceTooltip } from './PlaceTooltip';
 import { RegionArt } from './RegionArt';
 import { RegionTooltip } from './RegionTooltip';
+import { Threads } from './Threads';
+import { arc, edgeExit, toScreen, visibleFrame } from './threadGeometry';
 
 interface Props {
   regions: Region[];
@@ -49,7 +52,17 @@ interface Props {
   heroesOf?: (regionId: string) => Hero[];
   /** Герои для подсказки места; по умолчанию — из данных мира. */
   heroesOfSpot?: (regionId: string, placeSlug: string) => Hero[];
+  /** Выбран герой (SPEC §6.5): его регионы и места подсвечены, остальные приглушены. */
+  focus?: Spot[];
+  /** Места, соединяемые нитями (SPEC §6.6); `threadsKey` перезапускает прорисовку. */
+  threads?: Spot[];
+  threadsKey?: string;
+  /** Клик по метке нити, ушедшей за край кадра. */
+  onSelectSpot?: (spot: Spot) => void;
 }
+
+/** Отступ меток «нить за краем» от края кадра, px. */
+const EXIT_MARGIN = 28;
 
 const toStage = ([x, y]: Point): [number, number] => [x * STAGE_WIDTH, y * STAGE_HEIGHT];
 const points = (polygon: Point[]) => polygon.map((p) => toStage(p).join(',')).join(' ');
@@ -92,6 +105,10 @@ export function MapStage({
   onCameraBusy = noop,
   heroesOf = heroesOfRegion,
   heroesOfSpot = heroesOfPlace,
+  focus,
+  threads,
+  threadsKey,
+  onSelectSpot,
 }: Props) {
   const { l, lang, t } = useT();
   const viewportRef = useRef<HTMLDivElement>(null);
@@ -123,6 +140,12 @@ export function MapStage({
     () => (active && spot ? heroesOfSpot(active.id, spot.slug) : []),
     [active, spot, heroesOfSpot],
   );
+
+  const focusRegions = useMemo(() => (focus ? new Set(focus.map((s) => s.regionId)) : null), [focus]);
+  const focusPlaces = useMemo(() => (focus ? new Set(focus.map((s) => s.key)) : null), [focus]);
+  /** Класс приглушения или подсветки при выбранном герое. */
+  const heroClass = (regionId: string) =>
+    focusRegions ? (focusRegions.has(regionId) ? styles.heroRegion : styles.muted) : undefined;
 
   // Кадр и панель: измеряем, чтобы камера региона не уходила под панель.
   useLayoutEffect(() => {
@@ -160,6 +183,32 @@ export function MapStage({
   /** Маркеры и подписи — в экранных пикселях, независимо от приближения и размера окна (1 единица SVG = 1 px). */
   const regionZoom = active?.layout ? frameCamera(active.layout.camera, { ...view, inset }).camera.zoom : 1;
   const markerScale = (view.layerWidth > 0 ? STAGE_WIDTH / view.layerWidth : 1) / regionZoom;
+  /** Нити — тоже в экранных px, но при любом приближении (в мире zoom 1). */
+  const threadScale = (view.layerWidth > 0 ? STAGE_WIDTH / view.layerWidth : 1) / framed.camera.zoom;
+
+  // S2/S3: нить к месту за краем кадра уходит туда со стрелкой и названием (SPEC §6.6).
+  const exits = useMemo(() => {
+    const placed = (threads ?? []).filter((s) => s.point);
+    if (!active || placed.length < 2 || view.width <= 0) return [];
+    const project = (p: Point) => toScreen(p, framed.camera, framed.offset, view);
+    const frame = visibleFrame(view, inset, EXIT_MARGIN);
+    const visible = (p: Point) => {
+      const [x, y] = project(p);
+      return x >= frame.left && x <= frame.right && y >= frame.top && y <= frame.bottom;
+    };
+    const out = new Map<string, { spot: Spot; x: number; y: number; angle: number }>();
+    for (let i = 1; i < placed.length; i++) {
+      const a = placed[i - 1]!;
+      const b = placed[i]!;
+      const aSeen = visible(a.point!);
+      const bSeen = visible(b.point!);
+      if (aSeen === bSeen) continue;
+      const exit = edgeExit(arc(a.point!, b.point!), aSeen, project, frame);
+      const target = aSeen ? b : a;
+      if (exit && !out.has(target.key)) out.set(target.key, { spot: target, ...exit });
+    }
+    return [...out.values()];
+  }, [threads, active, framed, view, inset]);
 
   // Анимация камеры (A3, A4). Пока она идёт, навигация занята: клики ставятся в очередь.
   const shownCamera = useRef<Camera>(camera);
@@ -242,7 +291,14 @@ export function MapStage({
     return (
       <g
         key={p.slug}
-        className={[styles.marker, p.capital && styles.capital, isActive && styles.current].filter(Boolean).join(' ')}
+        className={[
+          styles.marker,
+          p.capital && styles.capital,
+          isActive && styles.current,
+          focusPlaces && (focusPlaces.has(`${active!.id}/${p.slug}`) ? styles.heroSpot : styles.mutedMarker),
+        ]
+          .filter(Boolean)
+          .join(' ')}
         style={{ '--i': i } as CSSProperties}
         transform={`translate(${x} ${y}) scale(${markerScale.toFixed(4)})`}
         role="button"
@@ -306,7 +362,7 @@ export function MapStage({
                   return (
                     <polygon
                       key={r.id}
-                      className={styles.region}
+                      className={[styles.region, heroClass(r.id)].filter(Boolean).join(' ')}
                       points={points(r.layout!.polygon)}
                       fill={biomeColor(r.biome)}
                       role="button"
@@ -336,7 +392,7 @@ export function MapStage({
                     className={[
                       styles.tint,
                       styles[highlight(r)],
-                      r.id === shownId && styles.lit,
+                      (r.id === shownId || (inWorld && focusRegions?.has(r.id))) && styles.lit,
                       r.id === shownId && r.id === focusId && styles.focused,
                     ]
                       .filter(Boolean)
@@ -357,6 +413,7 @@ export function MapStage({
                         styles[highlight(r)],
                         r.tier !== 'continent' && styles.tierLabel,
                         r.id === shownId && styles.lit,
+                        inWorld && heroClass(r.id),
                       ]
                         .filter(Boolean)
                         .join(' ')}
@@ -375,9 +432,27 @@ export function MapStage({
                   {spots.map(marker)}
                 </g>
               )}
+              {threads && <Threads key={threadsKey} spots={threads} scale={threadScale} />}
             </svg>
           </div>
           <div className={styles.vignette} aria-hidden="true" />
+          {exits.map((e) => (
+            <button
+              key={`${threadsKey ?? ''}/${e.spot.key}`}
+              type="button"
+              className={[styles.exit, styles[e.spot.tone]].join(' ')}
+              style={{ left: `${e.x.toFixed(1)}px`, top: `${e.y.toFixed(1)}px` }}
+              onClick={(ev) => {
+                ev.stopPropagation();
+                onSelectSpot?.(e.spot);
+              }}
+            >
+              <span className={styles.exitArrow} style={{ transform: `rotate(${e.angle.toFixed(1)}deg)` }} aria-hidden="true">
+                ➜
+              </span>
+              {spotName(e.spot, lang)}
+            </button>
+          ))}
           <Clouds clouds={EDGE_CLOUDS} mode="drift" hidden={!inWorld} />
         </div>
       )}
