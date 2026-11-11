@@ -133,23 +133,134 @@
   filter: drop-shadow(0 0 8px var(--hl)) drop-shadow(0 0 2px var(--hl-glow));
 }
 
-.marker {
-  cursor: pointer;
-  fill: var(--text-1);
-  font-size: 12px;
+/* S2/S3 (SPEC §5.4): соседние регионы затемнены и не кликаются. */
+.dimmed {
+  pointer-events: none;
+  filter: brightness(0.4) saturate(0.6);
+  transition: filter var(--dur-camera) var(--ease-in-out);
 }
 
-.marker circle {
-  stroke: var(--accent);
+.zoomed .region {
+  cursor: default;
+}
+
+/* A3: названия регионов исчезают в первой трети перелёта и возвращаются в последней (SPEC §7.1). */
+.label {
+  opacity: 1;
+}
+
+.labels .label {
+  transition:
+    transform var(--dur-hover) var(--ease-out),
+    filter var(--dur-hover) var(--ease-out),
+    fill var(--dur-hover) var(--ease-out),
+    opacity calc(var(--dur-camera) / 3) var(--ease-out) calc(var(--dur-camera) * 2 / 3);
+}
+
+.zoomed .labels .label {
+  opacity: 0;
+  transition-delay: 0s;
+}
+
+/* Детальная картинка региона: кроссфейд после перелёта (A3, ARCHITECTURE A10). */
+.art {
+  pointer-events: none;
+  animation: fade-in var(--dur-fade) var(--ease-out) var(--dur-camera) both;
+}
+
+/* Маркеры мест (SPEC §6.3): точка в кольце, столица — звезда в кольце и подпись крупнее.
+   A3: появляются по очереди с шагом 40 мс в последней трети перелёта. */
+.marker {
+  cursor: pointer;
+  animation: marker-in var(--dur-hover) var(--ease-out) calc(var(--dur-camera) * 2 / 3 + var(--i, 0) * 40ms) both;
+}
+
+.hit {
+  fill: transparent;
+}
+
+.ring {
+  fill: var(--map-ink);
+  stroke: var(--metal-bright);
   stroke-width: 2;
+  transition:
+    stroke var(--dur-hover) var(--ease-out),
+    filter var(--dur-hover) var(--ease-out);
+}
+
+.dot {
+  fill: var(--accent-bright);
+}
+
+.capital .dot {
+  fill: var(--metal-bright);
+}
+
+.markerLabel {
+  fill: var(--text-2);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  paint-order: stroke;
+  stroke: var(--map-ink);
+  stroke-width: 3px;
+  pointer-events: none;
+  transition: fill var(--dur-hover) var(--ease-out);
+}
+
+.capital .markerLabel {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: var(--tracking-display);
+  fill: var(--text-1);
+}
+
+/* Наведение и фокус: кольцо светится, подпись ярче (SPEC §5.4, §7.2). */
+.marker:hover .ring,
+.marker:focus-visible .ring,
+.current .ring {
+  stroke: var(--accent-bright);
+  filter: drop-shadow(0 0 6px var(--marker-glow));
+}
+
+.marker:hover .markerLabel,
+.marker:focus-visible .markerLabel,
+.current .markerLabel {
+  fill: var(--text-1);
 }
 
 .marker:focus-visible {
   outline: none;
 }
 
-.marker:focus-visible circle {
-  stroke-width: 4;
+.marker:focus-visible .ring {
+  stroke-width: 3;
+}
+
+/* Активное место (S3) выделено (SPEC §5.5). */
+.current .ring {
+  stroke-width: 3;
+}
+
+@keyframes marker-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .list ul {

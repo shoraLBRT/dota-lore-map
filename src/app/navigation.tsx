@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useReducer, type ReactNode } from 'react';
+import { createContext, useCallback, useContext, useEffect, useLayoutEffect, useMemo, useReducer, useRef, type ReactNode } from 'react';
 import { parseHash, serializeRoute, type Route, type Screen } from './router';
 
 type Action = { type: 'sync'; route: Route };
@@ -12,33 +12,81 @@ interface Navigation {
   route: Route;
   /** Перейти на адрес целиком. */
   navigate: (route: Route) => void;
-  /** Сменить экран, сохранив выбранного героя (медиа закрывается). */
+  /**
+   * Сменить экран, сохранив выбранного героя (медиа закрывается).
+   * Пока идёт анимация камеры (`hold`), переход ставится в очередь: выполняется последний запрошенный (SPEC §7.1).
+   */
   open: (screen: Screen) => void;
+  /** Занять навигацию на время анимации камеры; возвращает «отпустить» (повторный вызов безопасен). */
+  hold: () => () => void;
 }
 
 const NavigationContext = createContext<Navigation | null>(null);
 
 export function NavigationProvider({ children }: { children: ReactNode }) {
   const [route, dispatch] = useReducer(reducer, undefined, () => parseHash(window.location.hash));
+  const routeRef = useRef(route);
+  useLayoutEffect(() => {
+    routeRef.current = route;
+  }, [route]);
+  const holds = useRef(0);
+  const pending = useRef<Screen | null>(null);
+  /** Hash, который поставили мы сами: его hashchange не считается внешним переходом. */
+  const ownHash = useRef<string | null>(null);
 
   useEffect(() => {
-    const onHashChange = () => dispatch({ type: 'sync', route: parseHash(window.location.hash) });
+    const onHashChange = () => {
+      const hash = window.location.hash;
+      // Переход извне (кнопка «назад» браузера, ручной адрес) важнее очереди.
+      if (hash !== ownHash.current) pending.current = null;
+      dispatch({ type: 'sync', route: parseHash(hash) });
+    };
     window.addEventListener('hashchange', onHashChange);
     return () => window.removeEventListener('hashchange', onHashChange);
   }, []);
 
   const navigate = useCallback((next: Route) => {
     const hash = serializeRoute(next);
+    ownHash.current = hash;
     if (window.location.hash !== hash) window.location.hash = hash;
     dispatch({ type: 'sync', route: next });
   }, []);
 
-  const open = useCallback(
-    (screen: Screen) => navigate(route.hero ? { screen, hero: route.hero } : { screen }),
-    [navigate, route.hero],
+  const go = useCallback(
+    (screen: Screen) => {
+      const hero = routeRef.current.hero;
+      navigate(hero ? { screen, hero } : { screen });
+    },
+    [navigate],
   );
 
-  const value = useMemo(() => ({ route, navigate, open }), [route, navigate, open]);
+  const open = useCallback(
+    (screen: Screen) => {
+      if (holds.current > 0) {
+        pending.current = screen;
+        return;
+      }
+      go(screen);
+    },
+    [go],
+  );
+
+  const hold = useCallback(() => {
+    holds.current += 1;
+    let released = false;
+    return () => {
+      if (released) return;
+      released = true;
+      holds.current -= 1;
+      const next = pending.current;
+      if (holds.current === 0 && next) {
+        pending.current = null;
+        go(next);
+      }
+    };
+  }, [go]);
+
+  const value = useMemo(() => ({ route, navigate, open, hold }), [route, navigate, open, hold]);
   return <NavigationContext.Provider value={value}>{children}</NavigationContext.Provider>;
 }
 

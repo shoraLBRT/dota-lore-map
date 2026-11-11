@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState, type RefObject } from 'react';
 import { createPortal } from 'react-dom';
 import { HeroPortrait } from '../../components/HeroPortrait';
 import type { Hero, Region } from '../../data/types';
@@ -44,13 +44,13 @@ interface Props {
   getAnchor: () => { x: number; y: number } | null;
 }
 
-/** Подсказка региона S1h (SPEC §6.2): название, подзаголовок, до 6 портретов и «+N». Портреты не кликаются. */
-export function RegionTooltip({ id, region, heroes, getAnchor }: Props) {
-  const { l, t } = useT();
-  const ref = useRef<HTMLDivElement>(null);
+/** Позиция подсказки-портала у якоря на карте; пересчитывается при смене ключа и размера окна. */
+export function useAnchoredPosition(
+  ref: RefObject<HTMLElement | null>,
+  getAnchor: () => { x: number; y: number } | null,
+  key: string,
+): { left: number; top: number } | null {
   const [pos, setPos] = useState<{ left: number; top: number } | null>(null);
-  const { shown, rest } = splitHeroes(heroes);
-
   useLayoutEffect(() => {
     const update = () => {
       const el = ref.current;
@@ -68,7 +68,36 @@ export function RegionTooltip({ id, region, heroes, getAnchor }: Props) {
     update();
     window.addEventListener('resize', update);
     return () => window.removeEventListener('resize', update);
-  }, [getAnchor, region.id]);
+  }, [ref, getAnchor, key]);
+  return pos;
+}
+
+/** Ряд портретов без ссылок и плашка «+N» (подсказки на карте). */
+export function TooltipHeroes({ heroes }: { heroes: Hero[] }) {
+  const { t } = useT();
+  const { shown, rest } = splitHeroes(heroes);
+  if (shown.length === 0) return null;
+  return (
+    <ul className={styles.heroes}>
+      {shown.map((h) => (
+        <li key={h.key}>
+          <HeroPortrait hero={h} link={false} className={styles.portrait} />
+        </li>
+      ))}
+      {rest > 0 && (
+        <li className={styles.more} aria-label={t('tooltip.more', { n: String(rest) })}>
+          +{rest}
+        </li>
+      )}
+    </ul>
+  );
+}
+
+/** Подсказка региона S1h (SPEC §6.2): название, подзаголовок, до 6 портретов и «+N». Портреты не кликаются. */
+export function RegionTooltip({ id, region, heroes, getAnchor }: Props) {
+  const { l } = useT();
+  const ref = useRef<HTMLDivElement>(null);
+  const pos = useAnchoredPosition(ref, getAnchor, region.id);
 
   return createPortal(
     <div
@@ -80,20 +109,7 @@ export function RegionTooltip({ id, region, heroes, getAnchor }: Props) {
     >
       <p className={styles.name}>{l(region.name)}</p>
       {region.subtitle && <p className={styles.subtitle}>{l(region.subtitle)}</p>}
-      {shown.length > 0 && (
-        <ul className={styles.heroes}>
-          {shown.map((h) => (
-            <li key={h.key}>
-              <HeroPortrait hero={h} link={false} className={styles.portrait} />
-            </li>
-          ))}
-          {rest > 0 && (
-            <li className={styles.more} aria-label={t('tooltip.more', { n: String(rest) })}>
-              +{rest}
-            </li>
-          )}
-        </ul>
-      )}
+      <TooltipHeroes heroes={heroes} />
     </div>,
     document.body,
   );

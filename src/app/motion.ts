@@ -10,3 +10,11 @@ export function cssDuration(token: string): number {
   if (!Number.isFinite(value)) return 0;
   return raw.endsWith('ms') ? value : raw.endsWith('s') ? value * 1000 : value;
 }
+
+/** Длина из токена в px (`--panel-inset: 492px`). Нет токена или не px — 0. */
+export function cssPixels(token: string): number {
+  if (typeof window === 'undefined') return 0;
+  const raw = window.getComputedStyle(document.documentElement).getPropertyValue(token).trim();
+  const value = parseFloat(raw);
+  return Number.isFinite(value) && raw.endsWith('px') ? value : 0;
+}
