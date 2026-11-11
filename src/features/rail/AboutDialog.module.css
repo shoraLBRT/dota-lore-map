@@ -1,0 +1,56 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: var(--space-4);
+  background: var(--veil);
+  animation: fade var(--dur-fade) var(--ease-out) both;
+}
+
+.dialog {
+  position: relative;
+  width: min(36rem, 100%);
+  max-height: calc(100vh - 2 * var(--space-4));
+  overflow-y: auto;
+  padding: var(--space-6) var(--space-6) var(--space-5);
+  border: 1px solid var(--metal);
+  background: var(--bg-1);
+  box-shadow: var(--shadow-2);
+  clip-path: polygon(
+    var(--cut) 0,
+    100% 0,
+    100% calc(100% - var(--cut)),
+    calc(100% - var(--cut)) 100%,
+    0 100%,
+    0 var(--cut)
+  );
+}
+
+.close {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+}
+
+.title {
+  margin: 0 0 var(--space-4);
+  font-size: 1.6rem;
+}
+
+.list {
+  margin: 0 0 var(--space-3);
+  padding-left: var(--space-5);
+}
+
+.disclaimer {
+  color: var(--text-2);
+  font-size: 0.8rem;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}

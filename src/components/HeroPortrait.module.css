@@ -37,3 +37,11 @@
   font-size: 1.4rem;
   font-weight: 700;
 }
+
+/* Портрет без ссылки (подсказка региона): не реагирует на наведение. */
+.still,
+.still:hover {
+  border-color: var(--metal);
+  box-shadow: var(--shadow-1);
+  transform: none;
+}

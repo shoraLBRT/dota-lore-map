@@ -13,5 +13,22 @@
   "panel.world": "World",
   "panel.backToWorld": "‹ World",
   "panel.backTo": "‹ {name}",
-  "hero.newTab": "{name} — official page (opens in a new tab)"
+  "hero.newTab": "{name} — official page (opens in a new tab)",
+  "intro.loading": "Loading the world…",
+  "rail.label": "Navigation",
+  "rail.home": "Back to the intro",
+  "rail.world": "Whole world",
+  "rail.search": "Hero search — coming soon",
+  "rail.sound": "Sound",
+  "rail.about": "About the project",
+  "about.title": "About",
+  "about.text": "An interactive map of the Dota 2 world: regions, places and the heroes tied to them. All lore texts are our own retelling.",
+  "about.sources": "Sources",
+  "about.source.official": "Official hero biographies and Valve materials — dota2.com",
+  "about.source.wikis": "Liquipedia and Dota 2 Wiki (Fandom) — for cross-checking and finding places",
+  "about.thanks": "Thanks",
+  "about.thanksText": "To the authors of Dota 2 fan world maps, including “The Map of the Ancient”: their work served as a reference for the world layout.",
+  "about.code": "Source code on GitHub",
+  "about.close": "Close",
+  "tooltip.more": "and {n} more"
 }
