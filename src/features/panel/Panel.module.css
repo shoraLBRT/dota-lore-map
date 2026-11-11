@@ -86,20 +86,3 @@
     opacity: 1;
   }
 }
-
-@media (max-width: 767px) {
-  .dock {
-    position: static;
-    width: auto;
-    margin: 0 var(--space-4) var(--space-4);
-    animation: none;
-  }
-
-  .collapsed {
-    transform: none;
-  }
-
-  .toggle {
-    display: none;
-  }
-}

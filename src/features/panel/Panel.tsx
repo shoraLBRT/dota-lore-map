@@ -1,8 +1,11 @@
 import { useEffect, useId, useRef, type ReactNode } from 'react';
+import { useMediaQuery } from '../../app/media';
 import { DiamondButton } from '../../components/DiamondButton';
 import { PanelFrame } from '../../components/PanelFrame';
 import { useT } from '../../i18n';
+import { MOBILE_QUERY } from '../world/camera';
 import styles from './Panel.module.css';
+import { Sheet } from './Sheet';
 
 interface Props {
   label: string;
@@ -22,11 +25,23 @@ export function Panel({ label, collapsed, onToggle, contentKey, children }: Prop
   const { t } = useT();
   const id = useId();
   const contentRef = useRef<HTMLDivElement>(null);
+  const mobile = useMediaQuery(MOBILE_QUERY);
 
   // Свёрнутая панель недоступна мыши и клавиатуре. React 18 не знает inert — свойство DOM напрямую.
   useEffect(() => {
     if (contentRef.current) contentRef.current.inert = collapsed;
-  }, [collapsed, contentKey]);
+  }, [collapsed, contentKey, mobile]);
+
+  // Телефон: нижняя шторка со своим «свернуть / развернуть» (SPEC §13); collapsed десктопа к ней не относится.
+  if (mobile) {
+    return (
+      <Sheet id={id} label={label} contentKey={contentKey}>
+        <div key={contentKey} className={styles.content}>
+          {children}
+        </div>
+      </Sheet>
+    );
+  }
 
   return (
     <div className={[styles.dock, collapsed && styles.collapsed].filter(Boolean).join(' ')} data-testid="panel-dock">

@@ -1,6 +1,8 @@
 .screen {
   display: flex;
   height: 100vh;
+  /* На телефоне 100vh выше видимой части из-за панели адреса браузера. */
+  height: 100dvh;
   overflow: hidden;
 }
 
@@ -44,6 +46,6 @@
   }
 
   .map {
-    flex: 1 0 60vh;
+    flex: 1 1 auto;
   }
 }

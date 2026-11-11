@@ -59,14 +59,14 @@ export function arc(from: Point, to: Point): Arc {
  * Нормированная точка мира → px в кадре карты при камере `camera` и сдвиге `offset` (cameraTransform):
  * слой 16:10 стоит по центру кадра (flex), transform-origin 0 0.
  */
-export function toScreen([x, y]: Point, camera: Camera, offset: number, view: View): XY {
+export function toScreen([x, y]: Point, camera: Camera, offset: number, view: View, offsetY = 0): XY {
   return [
     view.width / 2 + view.layerWidth * (x - camera.x) * camera.zoom - offset,
-    view.height / 2 + view.layerHeight * (y - camera.y) * camera.zoom,
+    view.height / 2 + view.layerHeight * (y - camera.y) * camera.zoom - offsetY,
   ];
 }
 
-/** Видимая часть кадра: слева от панели, с отступом `margin` px. */
+/** Видимая часть кадра: слева от панели и над шторкой, с отступом `margin` px. */
 export interface Frame {
   left: number;
   top: number;
@@ -74,8 +74,8 @@ export interface Frame {
   bottom: number;
 }
 
-export function visibleFrame(view: View, inset: number, margin: number): Frame {
-  return { left: margin, top: margin, right: view.width - inset - margin, bottom: view.height - margin };
+export function visibleFrame(view: View, inset: number, margin: number, insetBottom = 0): Frame {
+  return { left: margin, top: margin, right: view.width - inset - margin, bottom: view.height - insetBottom - margin };
 }
 
 const inside = ([x, y]: XY, f: Frame) => x >= f.left && x <= f.right && y >= f.top && y <= f.bottom;

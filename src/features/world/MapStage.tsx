@@ -27,10 +27,20 @@ import {
   placeCamera,
   STAGE_HEIGHT,
   STAGE_WIDTH,
+  MOBILE_QUERY,
+  SHEET_PEEK,
   UNMEASURED,
   WORLD_CAMERA,
   type View,
 } from './camera';
+
+function isMobile(): boolean {
+  try {
+    return window.matchMedia(MOBILE_QUERY).matches;
+  } catch {
+    return false;
+  }
+}
 import { EDGE_CLOUDS } from './cloudSets';
 import { Clouds } from './Clouds';
 import styles from './MapStage.module.css';
@@ -163,6 +173,8 @@ export function MapStage({
           layerWidth: layer.offsetWidth,
           layerHeight: layer.offsetHeight,
           inset: cssPixels('--panel-inset'),
+          // Шторка — доля высоты окна и прижата к его низу, как и кадр карты.
+          insetBottom: isMobile() ? Math.round(window.innerHeight * SHEET_PEEK) : 0,
         };
         const same = (Object.keys(next) as (keyof View)[]).every((k) => next[k] === v[k]);
         return same ? v : next;
@@ -181,10 +193,11 @@ export function MapStage({
   }, [active, activePlaceSlug]);
 
   const inset = panel && active ? view.inset : 0;
-  const framed = useMemo(() => frameCamera(camera, { ...view, inset }), [camera, view, inset]);
-  const target = cameraTransform(framed.camera, framed.offset);
+  const insetBottom = panel && active ? (view.insetBottom ?? 0) : 0;
+  const framed = useMemo(() => frameCamera(camera, { ...view, inset, insetBottom }), [camera, view, inset, insetBottom]);
+  const target = cameraTransform(framed.camera, framed.offset, framed.offsetY);
   /** Маркеры и подписи — в экранных пикселях, независимо от приближения и размера окна (1 единица SVG = 1 px). */
-  const regionZoom = active?.layout ? frameCamera(active.layout.camera, { ...view, inset }).camera.zoom : 1;
+  const regionZoom = active?.layout ? frameCamera(active.layout.camera, { ...view, inset, insetBottom }).camera.zoom : 1;
   const markerScale = (view.layerWidth > 0 ? STAGE_WIDTH / view.layerWidth : 1) / regionZoom;
   /** Нити — тоже в экранных px, но при любом приближении (в мире zoom 1). */
   const threadScale = (view.layerWidth > 0 ? STAGE_WIDTH / view.layerWidth : 1) / framed.camera.zoom;
@@ -193,8 +206,8 @@ export function MapStage({
   const exits = useMemo(() => {
     const placed = (threads ?? []).filter((s) => s.point);
     if (!active || placed.length < 2 || view.width <= 0) return [];
-    const project = (p: Point) => toScreen(p, framed.camera, framed.offset, view);
-    const frame = visibleFrame(view, inset, EXIT_MARGIN);
+    const project = (p: Point) => toScreen(p, framed.camera, framed.offset, view, framed.offsetY);
+    const frame = visibleFrame(view, inset, EXIT_MARGIN, insetBottom);
     const visible = (p: Point) => {
       const [x, y] = project(p);
       return x >= frame.left && x <= frame.right && y >= frame.top && y <= frame.bottom;
@@ -211,7 +224,7 @@ export function MapStage({
       if (exit && !out.has(target.key)) out.set(target.key, { spot: target, ...exit });
     }
     return [...out.values()];
-  }, [threads, active, framed, view, inset]);
+  }, [threads, active, framed, view, inset, insetBottom]);
 
   // Анимация камеры (A3, A4). Пока она идёт, навигация занята: клики ставятся в очередь.
   const shownCamera = useRef<Camera>(camera);
