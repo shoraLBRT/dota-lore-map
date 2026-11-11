@@ -16,7 +16,7 @@ interface Props {
 
 /** Блок «Медиа в регионе / в месте»: до 3 карточек. Без медиа блок не рисуется. */
 export function MediaCards({ title, items, onOpen }: Props) {
-  const { l } = useT();
+  const { l, lang } = useT();
   const media = resolveMedia(items);
   if (media.length === 0) return null;
   return (
@@ -24,7 +24,7 @@ export function MediaCards({ title, items, onOpen }: Props) {
       <h3>{title}</h3>
       <ul className={styles.media}>
         {media.slice(0, MAX_MEDIA).map((m) => {
-          const thumb = mediaThumb(m);
+          const thumb = mediaThumb(m, lang);
           return (
           <li key={m.id}>
             <button

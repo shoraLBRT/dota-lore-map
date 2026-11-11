@@ -83,7 +83,7 @@ export interface Media {
   id: string;
   type: MediaType;
   /** Картинка: https-ссылка на официальный источник или путь к ассету. Только у type = image. */
-  src?: string;
+  src?: string | Localized;
   /** Видео: id ролика YouTube, встраивается через youtube-nocookie.com. Только у type = youtube. */
   youtubeId?: string;
   title: Localized;
