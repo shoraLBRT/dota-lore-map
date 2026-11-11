@@ -309,6 +309,16 @@ describe('buildWorld', () => {
       expect(errors).toEqual([]);
     });
 
+    it('src на двух языках: { ru, en }; без одного из языков — ошибка', () => {
+      const both = { ...image(), src: { ru: 'https://cdn.example.com/ru.jpg', en: 'https://cdn.example.com/en.jpg' } };
+      const ok = buildWorld({ ...fixture(), contents: [withMedia(['ice-comic'])], media: { media: [both] } });
+      expect(ok.errors).toEqual([]);
+      expect(ok.world.media[0].src).toEqual(both.src);
+      const half = { ...image(), src: { en: 'https://cdn.example.com/en.jpg' } };
+      const bad = buildWorld({ ...fixture(), contents: [withMedia(['ice-comic'])], media: { media: [half] } });
+      expect(bad.errors.join(' ')).toMatch(/src/);
+    });
+
     it('предупреждение на медиа без привязки', () => {
       const { errors, warnings } = buildWorld({ ...fixture(), contents: [content()], media: { media: [image()] } });
       expect(errors).toEqual([]);

@@ -4,7 +4,7 @@
     {
       "id": "icewrack-new-neighbors",
       "type": "image",
-      "src": "https://cdn.steamstatic.com/apps/dota2/images/comics/newbloom2015/day2/en/01.jpg",
+      "src": { "ru": "https://cdn.steamstatic.com/apps/dota2/images/comics/newbloom2015/day2/ru/01.jpg", "en": "https://cdn.steamstatic.com/apps/dota2/images/comics/newbloom2015/day2/en/01.jpg" },
       "title": { "ru": "«Новые соседи»", "en": "The New Neighbors" },
       "subtitle": { "ru": "Комикс", "en": "Comic" },
       "description": {
@@ -17,7 +17,7 @@
     {
       "id": "frostreach-the-dragon",
       "type": "image",
-      "src": "https://cdn.steamstatic.com/apps/dota2/images/crownfall/act3_intro/english/003.webp",
+      "src": { "ru": "https://cdn.steamstatic.com/apps/dota2/images/crownfall/act3_intro/russian/003.webp", "en": "https://cdn.steamstatic.com/apps/dota2/images/crownfall/act3_intro/english/003.webp" },
       "title": { "ru": "«Дракон»", "en": "The Dragon" },
       "subtitle": { "ru": "Комикс", "en": "Comic" },
       "description": {
@@ -30,7 +30,7 @@
     {
       "id": "druud-hells-basin",
       "type": "image",
-      "src": "https://cdn.steamstatic.com/apps/dota2/images/crownfall/act2_intro/english/000.webp",
+      "src": { "ru": "https://cdn.steamstatic.com/apps/dota2/images/crownfall/act2_intro/russian/000.webp", "en": "https://cdn.steamstatic.com/apps/dota2/images/crownfall/act2_intro/english/000.webp" },
       "title": { "ru": "«Битва у Адской лощины»", "en": "The Battle of Hell's Basin" },
       "subtitle": { "ru": "Комикс", "en": "Comic" },
       "description": {
@@ -56,7 +56,7 @@
     {
       "id": "sundered-moon-comic",
       "type": "image",
-      "src": "https://cdn.steamstatic.com/apps/dota2/images/686/comic/en/001.png",
+      "src": { "ru": "https://cdn.steamstatic.com/apps/dota2/images/686/comic/ru/001.png", "en": "https://cdn.steamstatic.com/apps/dota2/images/686/comic/en/001.png" },
       "title": { "ru": "«Расколотая Луна»", "en": "The Sundered Moon" },
       "subtitle": { "ru": "Комикс", "en": "Comic" },
       "description": {
@@ -69,7 +69,7 @@
     {
       "id": "milltown-dark-carnival",
       "type": "image",
-      "src": "https://cdn.steamstatic.com/apps/dota2/images/comics/midnight_run/english/000.webp",
+      "src": { "ru": "https://cdn.steamstatic.com/apps/dota2/images/comics/midnight_run/russian/000.webp", "en": "https://cdn.steamstatic.com/apps/dota2/images/comics/midnight_run/english/000.webp" },
       "title": { "ru": "«Тёмный карнавал»", "en": "Dark Carnival" },
       "subtitle": { "ru": "Комикс", "en": "Comic" },
       "description": {
@@ -82,7 +82,7 @@
     {
       "id": "hells-ascension",
       "type": "image",
-      "src": "https://cdn.steamstatic.com/apps/dota2/images/comics/comic_eminenceofristul/en/001.png",
+      "src": { "ru": "https://cdn.steamstatic.com/apps/dota2/images/comics/comic_eminenceofristul/ru/001.png", "en": "https://cdn.steamstatic.com/apps/dota2/images/comics/comic_eminenceofristul/en/001.png" },
       "title": { "ru": "«Восхождение»", "en": "Ascension" },
       "subtitle": { "ru": "Комикс", "en": "Comic" },
       "description": {

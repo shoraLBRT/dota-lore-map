@@ -214,7 +214,12 @@ function buildMedia(media, errors) {
       errors.push(`${w}: нет ни src, ни youtubeId`);
     } else if (m.type === 'image') {
       if (m.youtubeId !== undefined) errors.push(`${w}: у картинки не должно быть youtubeId`);
-      if (!isMediaSrc(m.src)) errors.push(`${w}: src — https-ссылка или относительный путь (http:// нельзя)`);
+      // src — строка или { ru, en }, если у картинки есть версии на двух языках (страницы комиксов).
+      const srcs = m.src !== null && typeof m.src === 'object' ? [m.src.ru, m.src.en] : [m.src];
+      if (typeof m.src === 'object' && m.src !== null && Object.keys(m.src).some((k) => k !== 'ru' && k !== 'en')) {
+        errors.push(`${w}: src — в объекте только ключи ru и en`);
+      }
+      if (!srcs.every(isMediaSrc)) errors.push(`${w}: src — https-ссылка или относительный путь (http:// нельзя), строкой или { ru, en }`);
     } else if (m.type === 'youtube') {
       if (m.src !== undefined) errors.push(`${w}: у видео не должно быть src, только youtubeId`);
       if (!isNonEmptyString(m.youtubeId) || !YOUTUBE_ID.test(m.youtubeId)) errors.push(`${w}: youtubeId — 11 символов [A-Za-z0-9_-]`);

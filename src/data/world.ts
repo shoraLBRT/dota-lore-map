@@ -34,10 +34,16 @@ export function resolveMedia(ids: string[] | undefined): Media[] {
   });
 }
 
+/** Адрес картинки на языке интерфейса; у src строкой язык один. */
+export function mediaSrc(m: Media, lang: Lang): string | undefined {
+  if (m.src === undefined || typeof m.src === 'string') return m.src;
+  return m.src[lang];
+}
+
 /** Картинка карточки: сама картинка или превью ролика YouTube. */
-export function mediaThumb(m: Media): string | undefined {
+export function mediaThumb(m: Media, lang: Lang): string | undefined {
   if (m.type === 'youtube' && m.youtubeId) return `https://i.ytimg.com/vi/${m.youtubeId}/hqdefault.jpg`;
-  return m.src;
+  return mediaSrc(m, lang);
 }
 
 export function getHero(key: string): Hero | undefined {
