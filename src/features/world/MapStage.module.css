@@ -6,6 +6,7 @@
   min-height: 0;
 }
 
+/* Кадр карты: слой 16:10 вписывается в доступное место целиком (SPEC §5.3: карта целиком). */
 .viewport {
   position: relative;
   flex: 1 1 auto;
@@ -15,10 +16,11 @@
   align-items: center;
   justify-content: center;
   background: var(--sea);
+  container-type: size;
 }
 
 .layer {
-  width: min(100%, calc((100vh - 8rem) * 1.6));
+  width: min(100cqw, 160cqh);
   aspect-ratio: 16 / 10;
   transform-origin: 0 0;
 }
@@ -29,41 +31,76 @@
   height: 100%;
 }
 
-/* Подсветка по стороне (SPEC §8.3, §7.1 A2). Подсветка поверх нарисованной карты — E4. */
+/* Виньетка по краям кадра (SPEC §5.3). */
+.vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 55%, var(--vignette) 100%);
+}
+
+/* Цвет подсветки (SPEC §8.3, ARCHITECTURE A8): стороны и ярусы. */
 .radiant {
-  --side: var(--radiant);
-  --side-glow: var(--radiant-glow);
+  --hl: var(--radiant);
+  --hl-glow: var(--radiant-glow);
 }
 
 .dire {
-  --side: var(--dire);
-  --side-glow: var(--dire-glow);
+  --hl: var(--dire);
+  --hl-glow: var(--dire-glow);
 }
 
 .neutral {
-  --side: var(--neutral);
-  --side-glow: var(--neutral-glow);
+  --hl: var(--neutral);
+  --hl-glow: var(--neutral-glow);
+}
+
+.upper {
+  --hl: var(--upper);
+  --hl-glow: var(--upper-glow);
+}
+
+.abyss {
+  --hl: var(--abyss);
+  --hl-glow: var(--abyss-glow);
 }
 
 .region {
   stroke: var(--border);
   stroke-width: 2;
   cursor: pointer;
-  transition:
-    stroke var(--dur-hover) var(--ease-out),
-    filter var(--dur-hover) var(--ease-out);
 }
 
-.region:hover,
 .region:focus-visible {
-  stroke: var(--side, var(--text-1));
-  filter: drop-shadow(0 0 8px var(--side-glow, transparent)) brightness(1.15);
   outline: none;
-}
-
-.active .region {
   stroke: var(--accent);
   stroke-width: 3;
+}
+
+.active.region {
+  stroke: var(--accent);
+  stroke-width: 3;
+}
+
+/* S1h (SPEC §5.3, §7.1 A2): заливка цветом стороны и светлая граница проявляются за 200 мс. */
+.tint {
+  fill: var(--hl-glow);
+  stroke: var(--hl);
+  stroke-width: 3;
+  stroke-linejoin: round;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--dur-hover) var(--ease-out);
+}
+
+.tint.lit {
+  opacity: 1;
+  filter: drop-shadow(0 0 10px var(--hl-glow));
+}
+
+/* Фокус с клавиатуры — кольцо цвета акцента (SPEC §7.2). */
+.tint.focused {
+  stroke: var(--accent);
 }
 
 .label {
@@ -75,8 +112,25 @@
   text-transform: uppercase;
   pointer-events: none;
   paint-order: stroke;
-  stroke: rgb(0 0 0 / 0.6);
+  stroke: var(--map-ink);
   stroke-width: 3px;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition:
+    transform var(--dur-hover) var(--ease-out),
+    filter var(--dur-hover) var(--ease-out),
+    fill var(--dur-hover) var(--ease-out);
+}
+
+/* Ярус — как регион, но с особым свечением: небесным или огненным (SPEC §6.3). */
+.tierLabel {
+  fill: var(--hl);
+  filter: drop-shadow(0 0 6px var(--hl-glow));
+}
+
+.label.lit {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 8px var(--hl)) drop-shadow(0 0 2px var(--hl-glow));
 }
 
 .marker {

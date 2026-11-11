@@ -1,7 +1,35 @@
+/* S0 (SPEC §5.2) — слой поверх размытой карты мира; A1 (§7.1) — класс .leaving. */
 .intro {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  overflow: hidden;
+}
+
+.leaving {
+  pointer-events: none;
+}
+
+/* Затемнение и виньетка над картой. */
+.veil {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at center, transparent 20%, var(--vignette) 95%),
+    var(--veil);
+  transition: opacity calc(var(--dur-intro) * 0.6) var(--ease-out);
+}
+
+.leaving .veil {
+  opacity: 0;
+}
+
+.top,
+.center,
+.footer {
+  position: relative;
 }
 
 .top {
@@ -21,6 +49,25 @@
   text-align: center;
 }
 
+/* A1: интро-текст уходит вверх и исчезает в первой половине перехода. */
+.top,
+.center,
+.footer {
+  transition:
+    transform calc(var(--dur-intro) * 0.5) var(--ease-in-out),
+    opacity calc(var(--dur-intro) * 0.5) var(--ease-out);
+}
+
+.leaving .top,
+.leaving .center,
+.leaving .footer {
+  opacity: 0;
+}
+
+.leaving .center {
+  transform: translateY(-48px);
+}
+
 .kicker {
   margin: 0;
   color: var(--text-2);
@@ -30,14 +77,48 @@
 
 .title {
   margin: 0;
-  text-shadow: 0 2px 16px rgb(0 0 0 / 0.8);
+  text-shadow: 0 2px 16px var(--map-ink);
   font-size: clamp(2rem, 6vw, 4rem);
 }
 
+.divider {
+  width: min(22rem, 70vw);
+}
+
 .start {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
   margin-top: var(--space-4);
   padding: var(--space-3) var(--space-7);
   font-size: 1.25rem;
+}
+
+.start[aria-busy='true'] {
+  cursor: progress;
+}
+
+/* Индикатор загрузки: вращающееся металлическое кольцо. */
+.spinner {
+  width: 1em;
+  height: 1em;
+  border: 2px solid var(--metal-dim);
+  border-top-color: var(--metal-bright);
+  border-radius: var(--radius-round);
+  animation: spin 900ms linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.status {
+  min-height: 1.5em;
+  margin: 0;
+  color: var(--text-2);
+  font-size: 0.85rem;
 }
 
 .footer {
@@ -49,4 +130,15 @@
 
 .footer p {
   margin: var(--space-1) 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .leaving .center {
+    transform: none;
+  }
+
+  /* Спиннер без вращения: индикатор — само кольцо и текст статуса. */
+  .spinner {
+    animation: none;
+  }
 }

@@ -1,0 +1,81 @@
+/* Подсказка региона (SPEC §5.3 S1h, §6.2, §7.1 A2): появляется с задержкой ~80 мс, fade + сдвиг 8 px. */
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  max-width: min(22rem, calc(100vw - 16px));
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--metal);
+  background: var(--bg-1);
+  box-shadow: var(--shadow-2);
+  pointer-events: none;
+  clip-path: polygon(
+    var(--cut-sm) 0,
+    100% 0,
+    100% calc(100% - var(--cut-sm)),
+    calc(100% - var(--cut-sm)) 100%,
+    0 100%,
+    0 var(--cut-sm)
+  );
+  animation: appear var(--dur-hover) var(--ease-out) 80ms both;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--text-2);
+  font-size: 0.85rem;
+}
+
+.heroes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1);
+  margin: var(--space-3) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.heroes .portrait {
+  width: 48px;
+}
+
+.more {
+  display: grid;
+  place-items: center;
+  min-width: 2.25rem;
+  height: 27px;
+  padding: 0 var(--space-2);
+  border: 1px solid var(--metal);
+  background: var(--bg-2);
+  color: var(--metal-bright);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+/* SPEC §5.3: на тач-устройствах подсказки нет. */
+@media (hover: none) {
+  .tooltip {
+    display: none;
+  }
+}

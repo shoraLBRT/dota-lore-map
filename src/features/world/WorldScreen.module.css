@@ -1,38 +1,48 @@
 .screen {
   display: flex;
-  flex-direction: column;
   height: 100vh;
-}
-
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-3);
-  padding: var(--space-2) var(--space-4);
-  border-bottom: 1px solid var(--border);
-}
-
-.title {
-  margin: 0;
-  font-size: 1.25rem;
+  overflow: hidden;
 }
 
 .body {
   display: flex;
   flex: 1 1 auto;
+  min-width: 0;
   min-height: 0;
 }
 
 .map {
   flex: 1 1 auto;
   min-width: 0;
-  padding: var(--space-4);
-  overflow: auto;
+  min-height: 0;
+  /* A1: карта резко становится чёткой и слегка приближается — scale 1.08 → 1 (SPEC §7.1). */
+  transition:
+    scale var(--dur-intro) var(--ease-out),
+    filter calc(var(--dur-intro) * 0.35) var(--ease-out);
+}
+
+.rail {
+  transition: opacity var(--dur-fade) var(--ease-out) calc(var(--dur-intro) * 0.5);
+}
+
+/* Под интро (SPEC §5.2): размытая карта на фоне, панель скрыта. */
+.veiled .map {
+  scale: 1.08;
+  filter: blur(var(--map-blur)) brightness(0.8);
+}
+
+.veiled .rail {
+  opacity: 0;
+  transition: none;
 }
 
 @media (max-width: 767px) {
+  .screen,
   .body {
     flex-direction: column;
+  }
+
+  .map {
+    flex: 1 0 60vh;
   }
 }

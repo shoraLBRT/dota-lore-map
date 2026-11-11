@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react';
-import { partOffset, type Cloud } from './clouds';
+import { partOffset, type Cloud } from './cloudSets';
 import styles from './Clouds.module.css';
 
 interface Props {
