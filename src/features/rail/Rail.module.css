@@ -1,0 +1,106 @@
+/* Левая панель (SPEC §6.1): узкая вертикальная полоса во всю высоту экрана. */
+.rail {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: var(--rail-width);
+  padding: var(--space-3) 0;
+  border-right: 1px solid var(--border);
+  background: linear-gradient(180deg, var(--bg-1), var(--bg-0));
+  box-shadow: var(--shadow-1);
+  z-index: 20;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.button {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 1px solid transparent;
+  background: none;
+  color: var(--text-2);
+  transition:
+    color var(--dur-hover) var(--ease-out),
+    border-color var(--dur-hover) var(--ease-out),
+    box-shadow var(--dur-hover) var(--ease-out);
+}
+
+.button:hover,
+.button:focus-visible {
+  border-color: var(--metal);
+  color: var(--text-1);
+  box-shadow: var(--glow-metal);
+}
+
+.button[aria-current='page'],
+.button[aria-pressed='true'] {
+  color: var(--metal-bright);
+}
+
+.button[aria-disabled='true'] {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.button[aria-disabled='true']:hover {
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.logo {
+  margin-bottom: var(--space-2);
+  color: var(--accent-bright);
+}
+
+.logo:hover,
+.logo:focus-visible {
+  color: var(--accent-bright);
+  box-shadow: var(--glow-accent);
+}
+
+.lang {
+  flex-direction: column;
+  margin-top: var(--space-2);
+}
+
+.lang button {
+  width: 2.75rem;
+  padding: var(--space-1) 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+/* SPEC §13: на узких экранах панель — компактная полоса сверху. */
+@media (max-width: 767px) {
+  .rail {
+    flex-direction: row;
+    width: auto;
+    padding: 0 var(--space-3);
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .group,
+  .lang {
+    flex-direction: row;
+  }
+
+  .logo {
+    margin: 0 var(--space-2) 0 0;
+  }
+
+  .lang {
+    margin: 0 0 0 var(--space-2);
+  }
+}

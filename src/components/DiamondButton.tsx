@@ -1,9 +1,9 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
 import styles from './DiamondButton.module.css';
 
-export type DiamondIcon = 'close' | 'collapse' | 'back';
+export type DiamondIcon = 'close' | 'collapse' | 'expand' | 'back';
 
-const GLYPH: Record<DiamondIcon, string> = { close: '×', collapse: '›', back: '‹' };
+const GLYPH: Record<DiamondIcon, string> = { close: '×', collapse: '›', expand: '‹', back: '‹' };
 
 interface Props extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children'> {
   icon: DiamondIcon;

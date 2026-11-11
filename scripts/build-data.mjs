@@ -130,6 +130,10 @@ function buildContent(file, data, regionById, errors) {
     out.description = localized(data.description, `${where}: description`, errors);
   }
   if (data.media !== undefined) out.media = mediaRefs(data.media, `${where}: media`, errors);
+  if (data.moreLink !== undefined) {
+    if (typeof data.moreLink === 'string' && /^https:\/\/\S+$/.test(data.moreLink)) out.moreLink = data.moreLink;
+    else errors.push(`${where}: moreLink — нужна ссылка https://…`);
+  }
 
   out.places = new Map();
   if (data.places !== undefined) {
@@ -462,6 +466,7 @@ export function buildWorld({ heroes, regions, heroPlaces, heroAliases, contents 
       traits: c?.traits,
       description: c?.description,
       media: c?.media,
+      moreLink: c?.moreLink,
       layout: map?.regions.get(r.id),
       places: r.locations.map((l) =>
         compact({

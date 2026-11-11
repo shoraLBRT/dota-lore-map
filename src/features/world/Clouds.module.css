@@ -1,0 +1,97 @@
+/* Облака (SPEC §7.1 A1, A7; ARCHITECTURE A9). Положение — через --x/--y/--w из clouds.ts. */
+.clouds {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transition: opacity var(--dur-fade) var(--ease-out);
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.cloud {
+  position: absolute;
+  left: calc(var(--x) * 1%);
+  top: calc(var(--y) * 1%);
+  width: calc(var(--w) * 1%);
+  aspect-ratio: 2.4;
+  translate: -50% -50%;
+  background:
+    radial-gradient(closest-side, var(--cloud), transparent) 8% 62% / 46% 70% no-repeat,
+    radial-gradient(closest-side, var(--cloud), transparent) 42% 34% / 52% 92% no-repeat,
+    radial-gradient(closest-side, var(--cloud), transparent) 78% 54% / 46% 76% no-repeat,
+    radial-gradient(closest-side, var(--cloud-shade), transparent) 50% 82% / 92% 50% no-repeat;
+  filter: blur(10px);
+  opacity: var(--cloud-opacity);
+  will-change: transform;
+}
+
+/* Параллакс: ближний слой крупнее, плотнее и движется быстрее и дальше. */
+.layer1 {
+  --cloud-opacity: 0.35;
+  --drift: 1.5vw;
+  --drift-time: 84s;
+}
+
+.layer2 {
+  --cloud-opacity: 0.5;
+  --drift: 2.5vw;
+  --drift-time: 64s;
+}
+
+.layer3 {
+  --cloud-opacity: 0.65;
+  --drift: 4vw;
+  --drift-time: 48s;
+}
+
+/* Интро: пелена плотнее. */
+.veil .cloud {
+  --cloud-opacity: 0.85;
+  filter: blur(14px);
+  transition:
+    transform var(--dur-intro) var(--ease-out),
+    opacity var(--dur-intro) var(--ease-out);
+}
+
+.veil .layer1 {
+  --cloud-opacity: 0.6;
+}
+
+/* A1: облака разъезжаются к краям и тают; ближние уходят дальше. */
+.parting .cloud {
+  transform: translate(calc(var(--dx) * 1vw), calc(var(--dy) * 1vh));
+  opacity: 0;
+}
+
+/* A7: медленный дрейф по кругу ~60 с. */
+.drift .cloud {
+  animation: drift var(--drift-time) ease-in-out var(--phase) infinite alternate;
+}
+
+@keyframes drift {
+  from {
+    transform: translate(calc(var(--drift) * -1), 0);
+  }
+
+  50% {
+    transform: translate(0, calc(var(--drift) * 0.25));
+  }
+
+  to {
+    transform: translate(var(--drift), 0);
+  }
+}
+
+/* SPEC §7.1: при reduced motion дрейф выключен, A1 — только растворение. */
+@media (prefers-reduced-motion: reduce) {
+  .drift .cloud {
+    animation: none;
+  }
+
+  .parting .cloud {
+    transform: none;
+  }
+}

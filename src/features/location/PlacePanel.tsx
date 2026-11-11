@@ -1,34 +1,36 @@
 import { useNavigation } from '../../app/navigation';
-import { DiamondButton } from '../../components/DiamondButton';
 import { Divider } from '../../components/Divider';
 import { HeroList } from '../../components/HeroList';
 import { Paragraphs } from '../../components/Paragraphs';
 import type { Place, Region } from '../../data/types';
 import { heroesOfPlace, placeName } from '../../data/world';
 import { useT } from '../../i18n';
-import { Panel, panelStyles } from '../panel/Panel';
+import { Breadcrumbs } from '../panel/Breadcrumbs';
+import { MediaCards } from '../panel/MediaCards';
+import { panelStyles } from '../panel/Panel';
 
+/**
+ * Содержимое панели места S3 (SPEC §5.5): шапка-картинка (если есть арт), название, тип, герои,
+ * описание, медиа, крошки «‹ Регион». Место без арта и медиа — только текст и герои.
+ */
 export function PlacePanel({ region, place }: { region: Region; place: Place }) {
   const { l, lang, t } = useT();
-  const { open } = useNavigation();
-  const name = placeName(place, lang);
+  const { route, open, navigate } = useNavigation();
 
   return (
-    <Panel label={name}>
-      <h2>{name}</h2>
+    <>
+      {place.art && <img className={panelStyles.header} src={place.art} alt="" />}
+      <h2>{placeName(place, lang)}</h2>
       {place.text?.type && <p className={panelStyles.type}>{l(place.text.type)}</p>}
-      <Divider />
       <HeroList heroes={heroesOfPlace(region.id, place.slug)} />
       {place.text?.description && <Paragraphs text={l(place.text.description)} />}
+      <MediaCards
+        title={t('panel.placeMedia')}
+        items={place.media}
+        onOpen={(media) => navigate({ ...route, media })}
+      />
       <Divider />
-      <DiamondButton
-        icon="back"
-        label={t('panel.backTo', { name: l(region.name) })}
-        className={panelStyles.back}
-        onClick={() => open({ name: 'region', regionId: region.id })}
-      >
-        {l(region.name)}
-      </DiamondButton>
-    </Panel>
+      <Breadcrumbs text={l(region.name)} onClick={() => open({ name: 'region', regionId: region.id })} />
+    </>
   );
 }

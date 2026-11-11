@@ -165,6 +165,18 @@ describe('buildWorld', () => {
     expect(errors).toHaveLength(2);
   });
 
+  it('moreLink: https-ссылка попадает в регион, другое — ошибка', () => {
+    const good = content();
+    good.data.moreLink = 'https://example.org/icewrack';
+    const ok = buildWorld({ ...fixture(), contents: [good] });
+    expect(ok.errors).toEqual([]);
+    expect(ok.world.regions.find((r) => r.id === 'icewrack').moreLink).toBe('https://example.org/icewrack');
+
+    const bad = content();
+    bad.data.moreLink = 'javascript:alert(1)';
+    expect(buildWorld({ ...fixture(), contents: [bad] }).errors).toHaveLength(1);
+  });
+
   it('ошибка на неизвестный регион и место в layout', () => {
     const bad = layout();
     bad.regions.atlantis = bad.regions.icewrack;

@@ -1,0 +1,78 @@
+/* Блоки правой панели (SPEC §5.4, §5.5). */
+
+/* Характеристики 2×2 (SPEC §4.2). */
+.traits {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2);
+  margin: var(--space-4) 0;
+}
+
+.trait {
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--metal-dim);
+  background: var(--bg-2);
+}
+
+.trait dt {
+  color: var(--text-3);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+}
+
+.trait dd {
+  margin: var(--space-1) 0 0;
+  color: var(--text-1);
+}
+
+/* Медиа: до 3 карточек (картинка-фон, заголовок, тип). */
+.media {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  padding: var(--space-2);
+  border: 1px solid var(--metal);
+  background:
+    linear-gradient(180deg, transparent 35%, var(--bg-0)),
+    var(--thumb, linear-gradient(135deg, var(--bg-2), var(--bg-1))) center / cover;
+  color: var(--text-1);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color var(--dur-hover) var(--ease-out),
+    box-shadow var(--dur-hover) var(--ease-out);
+}
+
+.card:hover,
+.card:focus-visible {
+  border-color: var(--metal-bright);
+  box-shadow: var(--glow-metal);
+}
+
+.cardTitle {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.cardType {
+  color: var(--text-2);
+  font-size: 0.75rem;
+}
+
+/* Хлебные крошки внизу панели (SPEC §6.4). */
+.crumbs {
+  margin-top: var(--space-2);
+}

@@ -24,4 +24,15 @@ describe('HeroPortrait', () => {
     expect(container.querySelector('img')).toBeNull();
     expect(screen.getByTestId('hero-fallback')).toHaveTextContent('C');
   });
+
+  it('без ссылки — только картинка с именем в alt', () => {
+    render(
+      <I18nProvider initialLang="en">
+        <HeroPortrait hero={cm} link={false} />
+      </I18nProvider>,
+    );
+    expect(screen.queryByRole('link')).toBeNull();
+    expect(screen.queryByRole('tooltip')).toBeNull();
+    expect(screen.getByRole('img', { name: 'Crystal Maiden' })).toBeInTheDocument();
+  });
 });

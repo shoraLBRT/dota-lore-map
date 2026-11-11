@@ -1,11 +1,47 @@
-.panel {
-  flex: none;
-  width: min(100%, 460px);
-  max-height: 100%;
-  margin: var(--space-4) var(--space-4) var(--space-4) 0;
+/* Док панели поверх карты справа (SPEC §5.4: ширина ~440–480 px, прокручивается). */
+.dock {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  bottom: var(--space-4);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  width: min(var(--panel-width), calc(100% - 2 * var(--space-7)));
+  pointer-events: none;
+  transition: transform var(--dur-panel) var(--ease-out);
+  animation: panel-in var(--dur-panel) var(--ease-out);
 }
 
-.panel h2 {
+/* Свёрнута: уехала за правый край, кнопка-ромб остаётся на виду. Карта не двигается — панель её не толкает. */
+.collapsed {
+  transform: translateX(calc(100% + var(--space-4)));
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  max-height: 100%;
+}
+
+.panel {
+  pointer-events: auto;
+}
+
+.toggle {
+  position: absolute;
+  top: var(--space-4);
+  right: calc(100% + var(--space-2));
+  pointer-events: auto;
+}
+
+/* A4: содержимое панели — кроссфейд 250 мс при смене региона или места. */
+.content {
+  animation: content-in var(--dur-fade) var(--ease-out);
+}
+
+.content h2 {
   margin: 0 0 var(--space-1);
   font-size: 1.6rem;
 }
@@ -16,13 +52,54 @@
   color: var(--text-2);
 }
 
-.back {
+/* Шапка-картинка места с затуханием в фон (SPEC §5.5 п. 1). */
+.header {
+  display: block;
+  width: calc(100% + 2 * var(--space-5));
+  aspect-ratio: 16 / 7;
+  margin: calc(-1 * var(--space-5)) calc(-1 * var(--space-5)) var(--space-3);
+  object-fit: cover;
+  mask-image: linear-gradient(180deg, var(--bg-0) 55%, transparent);
+}
+
+.more {
+  display: inline-block;
   margin-top: var(--space-2);
 }
 
+@keyframes panel-in {
+  from {
+    transform: translateX(calc(100% + var(--space-4)));
+  }
+
+  to {
+    transform: none;
+  }
+}
+
+@keyframes content-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 @media (max-width: 767px) {
-  .panel {
+  .dock {
+    position: static;
     width: auto;
     margin: 0 var(--space-4) var(--space-4);
+    animation: none;
+  }
+
+  .collapsed {
+    transform: none;
+  }
+
+  .toggle {
+    display: none;
   }
 }

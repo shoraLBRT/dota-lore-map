@@ -37,6 +37,8 @@ export interface RegionLayout {
   polygon: Point[];
   label: Point;
   camera: Camera;
+  /** Детальная картинка региона (появится с артом E2; ARCHITECTURE A10). */
+  art?: string;
 }
 
 export interface Ambient {
@@ -70,6 +72,8 @@ export interface Place {
   /** id из World.media, ≤ 3 (SPEC §10). Нет медиа — поля нет. */
   media?: string[];
   pos?: Point;
+  /** Шапка-картинка панели места (SPEC §5.5 п. 1), появится с артом. */
+  art?: string;
 }
 
 export type MediaType = 'image' | 'youtube';
@@ -108,6 +112,8 @@ export interface Region {
   description?: Localized;
   /** id из World.media для региона в целом, ≤ 3 (SPEC §10). Нет медиа — поля нет. */
   media?: string[];
+  /** Ссылка «Подробнее ↗» на внешний источник (SPEC §5.4 п. 6), из content/regions. */
+  moreLink?: string;
   layout?: RegionLayout;
   places: Place[];
   /** Герои, привязанные к региону целиком (без конкретного места). */
