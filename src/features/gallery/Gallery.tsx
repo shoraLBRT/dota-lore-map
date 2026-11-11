@@ -143,7 +143,7 @@ export function Gallery({ items, index, onSelect, onClose }: Props) {
                 className={styles.image}
                 src={src}
                 alt={l(item.title)}
-                loading="lazy"
+                // Картинка галереи видна сразу — без lazy, иначе она грузится позже всего (LCP, SPEC §14).
                 decoding="async"
                 onError={() => setFailed(src)}
               />

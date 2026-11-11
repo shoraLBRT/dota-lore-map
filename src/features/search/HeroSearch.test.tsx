@@ -59,7 +59,7 @@ describe('поиск героя и нити', () => {
     expect(window.location.hash).toBe('#/r/icewrack/icewrack?hero=crystal_maiden');
     const plaque = badge()!;
     within(plaque).getByRole('heading', { name: 'Crystal Maiden' });
-    expect(within(plaque).getByRole('link', { name: /Crystal Maiden — официальная страница/ })).toHaveAttribute(
+    expect(within(plaque).getByRole('link', { name: /^dota2.com: Crystal Maiden, официальная страница/ })).toHaveAttribute(
       'href',
       'https://www.dota2.com/hero/crystalmaiden?l=russian',
     );

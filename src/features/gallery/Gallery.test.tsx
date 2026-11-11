@@ -72,7 +72,8 @@ describe('галерея S4 (SPEC §5.6)', () => {
     expect(within(dialog).getByText('© Valve Corporation')).toBeInTheDocument();
     const img = within(dialog).getByRole('img', { name: '«Комикс»' });
     expect(img).toHaveAttribute('src', 'https://cdn.example.com/ru/01.jpg');
-    expect(img).toHaveAttribute('loading', 'lazy');
+    // Видна сразу — грузится без lazy (LCP, SPEC §14).
+    expect(img).not.toHaveAttribute('loading');
   });
 
   it('не отрывок — просто «Источник ↗», без пометки про страницу', () => {

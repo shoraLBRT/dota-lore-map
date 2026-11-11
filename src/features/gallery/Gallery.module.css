@@ -59,11 +59,13 @@
   animation: grow var(--dur-fade) var(--ease-out) both;
 }
 
+/* Картинка сразу занимает всю ячейку (contain): размер известен до загрузки — кадр не прыгает (CLS, SPEC §14).
+   Тень — drop-shadow по самой картинке, а не по пустым полям ячейки. */
 .image {
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
-  box-shadow: var(--shadow-2);
+  filter: drop-shadow(var(--shadow-2));
 }
 
 .video {
@@ -213,5 +215,12 @@
   from {
     opacity: 0;
     transform: scale(0.96);
+  }
+}
+
+/* SPEC §14: при reduced motion — без сдвигов и масштаба: медиа проявляется без увеличения. */
+@media (prefers-reduced-motion: reduce) {
+  .media {
+    animation-name: fade;
   }
 }

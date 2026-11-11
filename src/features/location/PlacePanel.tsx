@@ -22,7 +22,9 @@ export function PlacePanel({ region, place }: { region: Region; place: Place }) 
   return (
     <>
       {place.art && <img className={panelStyles.header} src={place.art} alt="" />}
-      <h2>{placeName(place, lang)}</h2>
+      <h2 tabIndex={-1} data-panel-heading>
+        {placeName(place, lang)}
+      </h2>
       {place.text?.type && <p className={panelStyles.type}>{l(place.text.type)}</p>}
       <HeroList heroes={heroesOfPlace(region.id, place.slug)} onPreview={preview} />
       {place.text?.description && <Paragraphs text={l(place.text.description)} />}

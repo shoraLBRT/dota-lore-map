@@ -66,3 +66,11 @@
     transform: translateY(100%);
   }
 }
+
+/* SPEC §14: при reduced motion — без сдвигов и масштаба: шторка появляется и меняет высоту без выезда. */
+@media (prefers-reduced-motion: reduce) {
+  .sheet {
+    transition: none;
+    animation: none;
+  }
+}

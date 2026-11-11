@@ -88,3 +88,10 @@
     display: none;
   }
 }
+
+/* SPEC §14: при reduced motion — без сдвигов и масштаба: подсказка появляется на месте. */
+@media (prefers-reduced-motion: reduce) {
+  .tooltip {
+    animation: none;
+  }
+}

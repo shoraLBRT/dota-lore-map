@@ -53,10 +53,11 @@
   --cloud-shade: rgb(96 106 122 / 0.55);
   --map-blur: 6px;
 
-  /* Текст: тёплый светлый → приглушённый → служебный */
+  /* Текст: тёплый светлый → приглушённый → служебный.
+     Контраст WCAG AA (≥ 4.5:1) на всех фонах --bg-0…--bg-2 — проверяет src/styles/contrast.test.ts (SPEC §14). */
   --text-1: #e9e2d4;
   --text-2: #a59d8e;
-  --text-3: #6d675d;
+  --text-3: #958d7e;
 
   /* Шрифты (решение В6, ARCHITECTURE A8) */
   --font-display: 'Cormorant SC', 'Cormorant Garamond', Georgia, 'Times New Roman', serif;

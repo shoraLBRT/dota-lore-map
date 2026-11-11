@@ -49,3 +49,10 @@
     flex: 1 1 auto;
   }
 }
+
+/* SPEC §14: при reduced motion — без сдвигов и масштаба: A1 только снимает размытие, карта не приближается. */
+@media (prefers-reduced-motion: reduce) {
+  .veiled .map {
+    scale: none;
+  }
+}

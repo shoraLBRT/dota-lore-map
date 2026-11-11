@@ -78,10 +78,10 @@ describe('панель региона (SPEC §5.4)', () => {
     wrap(<RegionPanel region={getRegion('planes')!} />);
     const links = () => screen.getAllByRole('link', { name: /официальная страница/ });
     expect(links()).toHaveLength(REGION_HEROES);
-    expect(screen.getByRole('button', { name: `Показать всех героев (${all.length})` })).toHaveTextContent(
+    expect(screen.getByRole('button', { name: `+${all.length - REGION_HEROES}: показать всех героев (${all.length})` })).toHaveTextContent(
       `+${all.length - REGION_HEROES}`,
     );
-    fireEvent.click(screen.getByRole('button', { name: `Показать всех героев (${all.length})` }));
+    fireEvent.click(screen.getByRole('button', { name: `+${all.length - REGION_HEROES}: показать всех героев (${all.length})` }));
     expect(links()).toHaveLength(all.length);
   });
 });

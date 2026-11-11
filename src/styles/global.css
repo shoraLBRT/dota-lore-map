@@ -70,9 +70,15 @@ button:hover {
   border-color: var(--metal-bright);
 }
 
+/* Фокус с клавиатуры (SPEC §7.2, §14): яркий акцент — контраст ≥ 3:1 к любому фону интерфейса. */
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--accent-bright);
   outline-offset: 2px;
+}
+
+/* Заголовки панелей получают фокус программно после перехода (ARCHITECTURE A14) — без кольца. */
+[tabindex='-1']:focus {
+  outline: none;
 }
 
 /* Текст только для скринридеров. */

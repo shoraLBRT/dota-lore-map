@@ -3,7 +3,9 @@
   gap: var(--space-1);
 }
 
+/* Выбранный язык: светлый текст на тёмно-красном — контраст WCAG AA (красный текст на --bg-2 его не даёт). */
 .switch button[aria-pressed='true'] {
   border-color: var(--accent);
-  color: var(--accent);
+  background: var(--accent-dim);
+  color: var(--text-1);
 }

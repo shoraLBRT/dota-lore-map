@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigation } from '../../app/navigation';
 import { useSfx } from '../../app/sound';
-import { serializeRoute, type Screen } from '../../app/router';
+import { parseHash, serializeRoute, type Screen } from '../../app/router';
 import type { Hero } from '../../data/types';
 import { getHero, getPlace, getRegion, placeName, world } from '../../data/world';
 import { useT } from '../../i18n';
@@ -14,6 +14,7 @@ import { HeroBadge } from '../search/HeroBadge';
 import { HeroSearch } from '../search/HeroSearch';
 import { HeroPreviewProvider } from '../search/preview';
 import { heroScreen, heroSpots, spotScreen } from '../search/search';
+import { restoreFocus } from './focus';
 import { MapStage } from './MapStage';
 import styles from './WorldScreen.module.css';
 
@@ -41,6 +42,16 @@ export function WorldScreen({ screen, veiled = false }: Props) {
   // Свёрнутая панель снова раскрывается при смене региона или места: иначе клик по маркеру «ничего не делает».
   const [fold, setFold] = useState<{ key: string; collapsed: boolean }>({ key: screenKey, collapsed: false });
   const collapsed = fold.key === screenKey && fold.collapsed;
+
+  // Клавиатура (SPEC §14): если при переходе фокус пропал вместе с элементом, ставим его на заголовок
+  // панели или туда, откуда пришли (ARCHITECTURE A14). Экраны — по ключу адреса, а не по объекту.
+  const prevKey = useRef(screenKey);
+  useEffect(() => {
+    const prev = prevKey.current;
+    prevKey.current = screenKey;
+    if (veiled || !rootRef.current || prev === screenKey) return;
+    restoreFocus(rootRef.current, parseHash(prev).screen, parseHash(screenKey).screen);
+  }, [screenKey, veiled]);
 
   // Звук открытия панели (SPEC §7.4): из мира в регион или место; переходы внутри панели — без него.
   const sfx = useSfx();

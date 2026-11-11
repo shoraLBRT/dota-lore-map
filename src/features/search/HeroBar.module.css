@@ -166,3 +166,16 @@
     transform: translateY(-8px);
   }
 }
+
+/* SPEC §14: при reduced motion — без сдвигов и масштаба: плашка проявляется на месте. */
+@media (prefers-reduced-motion: reduce) {
+  .frame {
+    animation-name: fade-in;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
