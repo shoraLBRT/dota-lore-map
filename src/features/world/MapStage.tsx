@@ -11,9 +11,11 @@ import {
   type MouseEvent,
 } from 'react';
 import { cssDuration, cssPixels } from '../../app/motion';
+import { useSfx } from '../../app/sound';
 import type { Camera, Hero, Place, Point, Region } from '../../data/types';
 import { heroesOfPlace, heroesOfRegion, placeName } from '../../data/world';
 import { useT } from '../../i18n';
+import { AmbientCanvas } from '../atmosphere/AmbientCanvas';
 import { spotName, type Spot } from '../search/search';
 import { preloadRegionArt } from './art';
 import { biomeColor } from './biomes';
@@ -111,6 +113,7 @@ export function MapStage({
   onSelectSpot,
 }: Props) {
   const { l, lang, t } = useT();
+  const sfx = useSfx();
   const viewportRef = useRef<HTMLDivElement>(null);
   const layerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
@@ -273,6 +276,7 @@ export function MapStage({
 
   const enter = (r: Region) => {
     setHoverId(r.id);
+    sfx('hover');
     void preloadRegionArt(r);
   };
 
@@ -312,7 +316,11 @@ export function MapStage({
           select();
         }}
         onKeyDown={onActivate(select)}
-        onPointerEnter={(e) => e.pointerType !== 'touch' && setSpotHover(p.slug)}
+        onPointerEnter={(e) => {
+          if (e.pointerType === 'touch') return;
+          setSpotHover(p.slug);
+          sfx('hover');
+        }}
         onPointerLeave={() => setSpotHover((s) => (s === p.slug ? null : s))}
         onFocus={() => setSpotFocus(p.slug)}
         onBlur={() => setSpotFocus((s) => (s === p.slug ? null : s))}
@@ -435,6 +443,7 @@ export function MapStage({
               {threads && <Threads key={threadsKey} spots={threads} scale={threadScale} />}
             </svg>
           </div>
+          {active && <AmbientCanvas key={active.id} ambient={active.ambient} />}
           <div className={styles.vignette} aria-hidden="true" />
           {exits.map((e) => (
             <button

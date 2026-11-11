@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, useState, type KeyboardEvent, type TouchEvent } from 'react';
 import { createPortal } from 'react-dom';
 import buttonStyles from '../../components/Button.module.css';
+import { useSfx } from '../../app/sound';
 import { DiamondButton } from '../../components/DiamondButton';
 import { trapTab } from '../../components/focusTrap';
 import type { Media } from '../../data/types';
@@ -36,6 +37,7 @@ export function Gallery({ items, index, onSelect, onClose }: Props) {
   const frameRef = useRef<HTMLDivElement>(null);
   const touch = useRef<{ x: number; y: number } | null>(null);
   const [failed, setFailed] = useState<string | null>(null);
+  const sfx = useSfx();
 
   const item = items[index] ?? items[0]!;
   const many = items.length > 1;
@@ -50,6 +52,12 @@ export function Gallery({ items, index, onSelect, onClose }: Props) {
     stepRef.current = step;
     closeRef.current = onClose;
   });
+
+  // Звук открытия галереи (SPEC §7.4) — один раз, листание его не повторяет.
+  useEffect(() => {
+    sfx('gallery');
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- только при открытии
+  }, []);
 
   // Фокус в окно при открытии и обратно на карточку при закрытии (как у «О проекте»).
   useEffect(() => {

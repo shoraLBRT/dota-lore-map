@@ -38,6 +38,17 @@
   --vignette: rgb(6 7 10 / 0.9);
   --veil: rgb(11 13 17 / 0.45);
   --veil-strong: rgb(6 7 10 / 0.88);
+
+  /* Частицы регионов (SPEC §7.3) — цвета для canvas, прозрачность задаёт симуляция. */
+  --particle-snow: rgb(236 242 250);
+  --particle-ash: rgb(158 152 146);
+  --particle-ember: rgb(255 146 64);
+  --particle-fog: rgb(196 204 214 / 0.9);
+  --particle-rain: rgb(168 194 222);
+  --particle-spark: rgb(239 226 180);
+  --particle-star: rgb(228 234 255);
+  --particle-leaf: rgb(150 176 84);
+  --particle-sand: rgb(214 182 122);
   --cloud: rgb(206 212 222 / 0.9);
   --cloud-shade: rgb(96 106 122 / 0.55);
   --map-blur: 6px;
