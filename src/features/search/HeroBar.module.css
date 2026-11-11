@@ -1,0 +1,168 @@
+/* Верх карты (SPEC §6.5): поле поиска героя или плашка выбранного героя. */
+.bar {
+  position: absolute;
+  top: var(--space-4);
+  left: 50%;
+  z-index: 20;
+  width: min(26rem, calc(100% - 2 * var(--space-4)));
+  translate: calc(-50% - var(--bar-shift, 0px)) 0;
+}
+
+/* Справа панель: плашка — по центру свободной части карты. */
+.withPanel {
+  --bar-shift: calc(var(--panel-inset) / 2);
+}
+
+.frame {
+  border: 1px solid var(--metal);
+  background: var(--bg-1);
+  box-shadow: var(--shadow-2);
+  animation: drop var(--dur-fade) var(--ease-out) both;
+}
+
+.input {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border: 0;
+  background: transparent;
+  color: var(--text-1);
+  font: inherit;
+}
+
+.input::placeholder {
+  color: var(--text-3);
+}
+
+.input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.results {
+  max-height: min(24rem, 60vh);
+  margin: 0;
+  padding: var(--space-1) 0;
+  overflow-y: auto;
+  border-top: 1px solid var(--metal-dim);
+  list-style: none;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-1) var(--space-4);
+  cursor: pointer;
+}
+
+.option[aria-selected='true'] {
+  background: var(--bg-2);
+  box-shadow: inset 2px 0 0 var(--accent);
+}
+
+.optionPortrait {
+  width: 2.75rem;
+  flex: none;
+}
+
+.optionName {
+  font-weight: 700;
+}
+
+.optionAlias {
+  color: var(--text-3);
+  font-size: 0.85rem;
+}
+
+.empty {
+  padding: var(--space-2) var(--space-4);
+  color: var(--text-2);
+}
+
+.badge {
+  padding: var(--space-3) var(--space-4);
+}
+
+.badgeHead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.badgePortrait {
+  width: 3.5rem;
+  flex: none;
+}
+
+.badgeText {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.badgeName {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.badgeLink {
+  font-size: 0.85rem;
+}
+
+.places {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-3) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.place {
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--metal-dim);
+  border-left: 3px solid var(--hl, var(--metal));
+  background: var(--bg-2);
+  color: var(--text-1);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: border-color var(--dur-hover) var(--ease-out);
+}
+
+.place:hover,
+.place:focus-visible,
+.place[aria-current='true'] {
+  border-color: var(--hl, var(--metal-bright));
+}
+
+.radiant {
+  --hl: var(--radiant);
+}
+
+.dire {
+  --hl: var(--dire);
+}
+
+.neutral {
+  --hl: var(--neutral);
+}
+
+.upper {
+  --hl: var(--upper);
+}
+
+.abyss {
+  --hl: var(--abyss);
+}
+
+@media (max-width: 767px) {
+  .withPanel {
+    --bar-shift: 0px;
+  }
+}
+
+@keyframes drop {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}

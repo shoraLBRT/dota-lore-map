@@ -15,7 +15,7 @@
   "rail.label": "Навигация",
   "rail.home": "На заставку",
   "rail.world": "Весь мир",
-  "rail.search": "Поиск героя — скоро",
+  "rail.search": "Поиск героя",
   "rail.sound": "Звук",
   "rail.about": "О проекте",
   "about.title": "О проекте",
@@ -52,5 +52,11 @@
   "gallery.excerptNote": "Здесь показана одна страница комикса. Целиком он — на официальном сайте Dota 2.",
   "gallery.readFull": "Читать комикс целиком ↗",
   "gallery.source": "Источник ↗",
-  "gallery.loadError": "Картинка не загрузилась."
+  "gallery.loadError": "Картинка не загрузилась.",
+  "search.label": "Поиск героя",
+  "search.placeholder": "Имя героя: Pudge, Пудж, CM…",
+  "search.empty": "Никого не нашли",
+  "hero.selected": "Выбранный герой",
+  "hero.clear": "Снять выбор героя",
+  "hero.places": "Места героя"
 }

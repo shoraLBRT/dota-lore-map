@@ -25,7 +25,7 @@ describe('Rail — левая панель (SPEC §6.1)', () => {
     expect(buttons).toHaveLength(7);
     expect(buttons[0]).toHaveAccessibleName('На заставку');
     expect(buttons[1]).toHaveAccessibleName('Весь мир');
-    expect(buttons[2]).toHaveAccessibleName('Поиск героя — скоро');
+    expect(buttons[2]).toHaveAccessibleName('Поиск героя');
     expect(buttons[3]).toHaveAccessibleName('RU');
     expect(buttons[4]).toHaveAccessibleName('EN');
     expect(buttons[5]).toHaveAccessibleName('Звук');
@@ -42,13 +42,22 @@ describe('Rail — левая панель (SPEC §6.1)', () => {
     expect(window.location.hash).toBe('#/');
   });
 
-  it('поиск — заглушка: недоступна и ничего не делает', () => {
+  it('лупа открывает поиск героя', () => {
     window.location.hash = '#/world';
-    renderRail();
-    const search = screen.getByRole('button', { name: 'Поиск героя — скоро' });
-    expect(search).toHaveAttribute('aria-disabled', 'true');
+    let opened = 0;
+    render(
+      <I18nProvider initialLang="ru">
+        <SoundProvider>
+          <NavigationProvider>
+            <Rail onSearch={() => (opened += 1)} />
+          </NavigationProvider>
+        </SoundProvider>
+      </I18nProvider>,
+    );
+    const search = screen.getByRole('button', { name: 'Поиск героя' });
+    expect(search).toHaveAttribute('aria-expanded', 'false');
     fireEvent.click(search);
-    expect(window.location.hash).toBe('#/world');
+    expect(opened).toBe(1);
   });
 
   it('звук: переключатель с состоянием, выбор сохраняется', () => {
