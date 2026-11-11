@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { afterEach, describe, expect, it } from 'vitest';
-import { buildWorld, heroSlug, OUTPUT, placeSlug, readSources, run, serialize } from './build-data.mjs';
+import { buildWorld, heroSlug, normalizeAlias, OUTPUT, placeSlug, readSources, run, serialize } from './build-data.mjs';
 
 const REPO = fileURLToPath(new URL('..', import.meta.url));
 const SCRIPT = fileURLToPath(new URL('./build-data.mjs', import.meta.url));
@@ -184,6 +184,38 @@ describe('buildWorld', () => {
     expect(errors).toHaveLength(3);
   });
 
+  it('пробрасывает алиасы героев, без файла алиасов поля нет', () => {
+    const heroAliases = { aliases: { crystal_maiden: ['CM', 'Райлай', ' Rylai '], furion: ['Фурион'] } };
+    const { world, errors, warnings } = buildWorld({ ...fixture(), heroAliases });
+    expect(errors).toEqual([]);
+    expect(warnings).toEqual([]);
+    const byKey = Object.fromEntries(world.heroes.map((h) => [h.key, h]));
+    expect(byKey.crystal_maiden.aliases).toEqual(['CM', 'Райлай', 'Rylai']);
+    expect(byKey.furion.aliases).toEqual(['Фурион']);
+    expect(byKey.alchemist).not.toHaveProperty('aliases');
+    expect(buildWorld(fixture()).world.heroes[0]).not.toHaveProperty('aliases');
+  });
+
+  it('ошибка на неизвестного героя, пустой и повторный алиас; предупреждение на общий алиас', () => {
+    const heroAliases = {
+      aliases: {
+        nobody: ['X'],
+        crystal_maiden: ['CM', '', 'cm', 'crystal maiden', 'Общий'],
+        alchemist: ['общий'],
+        furion: 'NP',
+      },
+    };
+    const { errors, warnings } = buildWorld({ ...fixture(), heroAliases });
+    expect(errors).toHaveLength(5);
+    expect(errors.join('\n')).toMatch(/nobody/);
+    expect(warnings).toHaveLength(1);
+    expect(warnings[0]).toMatch(/crystal_maiden, alchemist/);
+  });
+
+  it('нормализует алиас для сравнения', () => {
+    expect(normalizeAlias('  Ёжик   Ёж ')).toBe('ежик еж');
+  });
+
   it('детерминирован: порядок ключей во входе не влияет на выход', () => {
     const a = serialize(buildWorld({ ...fixture(), contents: [content()], layout: layout() }).world);
     const c = content();
@@ -244,8 +276,10 @@ describe('данные репозитория', () => {
   it('собираются без ошибок и совпадают с закоммиченным world.generated.json', () => {
     const { sources, errors: readErrors } = readSources(REPO);
     expect(readErrors).toEqual([]);
-    const { world, errors } = buildWorld(sources);
+    const { world, errors, warnings } = buildWorld(sources);
     expect(errors).toEqual([]);
+    expect(warnings).toEqual([]);
+    expect(world.heroes.filter((h) => !h.aliases?.length).map((h) => h.key)).toEqual([]);
     const committed = readFileSync(join(REPO, OUTPUT), 'utf8').replace(/\r\n/g, '\n');
     expect(committed, 'запустите npm run data и закоммитьте результат').toBe(serialize(world));
   });

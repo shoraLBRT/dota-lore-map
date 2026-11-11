@@ -106,6 +106,8 @@ export interface Hero {
   name: string;
   /** Для https://www.dota2.com/hero/<slug>. */
   slug: string;
+  /** Алиасы для поиска (SPEC §6.5): кириллица, сокращения, прозвища, личные имена. Нет — поле отсутствует. */
+  aliases?: string[];
   links: HeroLink[];
 }
 

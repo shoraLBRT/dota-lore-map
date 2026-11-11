@@ -5,6 +5,7 @@
 //   node scripts/build-data.mjs --root DIR  взять файлы из другого корня (для тестов)
 //
 // Ошибка (exit 1) — ссылка на несуществующий регион, место или героя и неверный формат.
+// Предупреждение (без exit 1) — один алиас у нескольких героев.
 // Отсутствующий контент или позиция на карте — не ошибка.
 
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
@@ -38,6 +39,11 @@ export function placeSlug(name) {
 /** Имя героя → slug для dota2.com (ARCHITECTURE A6): "Nature's Prophet" → "naturesprophet". */
 export function heroSlug(name) {
   return name.toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
+/** Ключ сравнения алиасов: регистр, ё/е и лишние пробелы не важны (ARCHITECTURE A3). */
+export function normalizeAlias(s) {
+  return s.toLowerCase().replace(/ё/g, 'е').trim().replace(/\s+/g, ' ');
 }
 
 const isObject = (v) => typeof v === 'object' && v !== null && !Array.isArray(v);
@@ -207,12 +213,62 @@ function buildLayout(layout, regionById, placeRegion, errors) {
   return out;
 }
 
+function buildAliases(heroAliases, heroes, errors, warnings) {
+  const where = 'research/e1/hero-aliases.json';
+  const out = new Map();
+  if (heroAliases === undefined) return out;
+  if (!isObject(heroAliases) || !isObject(heroAliases.aliases)) {
+    errors.push(`${where}: ожидается { aliases: { <key>: [строки] } }`);
+    return out;
+  }
+  const nameByKey = new Map(heroes.heroes.map((h) => [h.key, h.name]));
+  const owners = new Map();
+  for (const [key, list] of Object.entries(heroAliases.aliases)) {
+    const w = `${where}: ${key}`;
+    if (!nameByKey.has(key)) {
+      errors.push(`${w}: героя нет в heroes.json`);
+      continue;
+    }
+    if (!Array.isArray(list)) {
+      errors.push(`${w}: ожидается список строк`);
+      continue;
+    }
+    const seen = new Set();
+    const items = [];
+    for (const a of list) {
+      if (!isNonEmptyString(a)) {
+        errors.push(`${w}: пустой алиас`);
+        continue;
+      }
+      const n = normalizeAlias(a);
+      if (seen.has(n)) {
+        errors.push(`${w}: алиас "${a}" повторяется`);
+        continue;
+      }
+      if (n === normalizeAlias(nameByKey.get(key))) {
+        errors.push(`${w}: алиас "${a}" совпадает с именем героя`);
+        continue;
+      }
+      seen.add(n);
+      items.push(a.trim());
+      if (!owners.has(n)) owners.set(n, []);
+      owners.get(n).push(key);
+    }
+    if (items.length > 0) out.set(key, items);
+  }
+  for (const [n, keys] of owners) {
+    if (keys.length > 1) warnings.push(`${where}: алиас "${n}" у нескольких героев: ${keys.join(', ')}`);
+  }
+  return out;
+}
+
 /**
  * Собирает мир из уже прочитанных исходников. Ничего не пишет на диск.
- * @returns {{ world: object, errors: string[] }}
+ * @returns {{ world: object, errors: string[], warnings: string[] }}
  */
-export function buildWorld({ heroes, regions, heroPlaces, contents = [], layout = null }) {
+export function buildWorld({ heroes, regions, heroPlaces, heroAliases, contents = [], layout = null }) {
   const errors = [];
+  const warnings = [];
 
   const regionById = new Map();
   const placeRegion = new Map();
@@ -279,12 +335,17 @@ export function buildWorld({ heroes, regions, heroPlaces, contents = [], layout 
     linksByKey.set(hero.key, out);
   }
 
-  const heroList = heroes.heroes.map((h) => ({
-    key: h.key,
-    name: h.name,
-    slug: heroSlug(h.name),
-    links: linksByKey.get(h.key) ?? [],
-  }));
+  const aliasesByKey = buildAliases(heroAliases, heroes, errors, warnings);
+
+  const heroList = heroes.heroes.map((h) =>
+    compact({
+      key: h.key,
+      name: h.name,
+      slug: heroSlug(h.name),
+      aliases: aliasesByKey.get(h.key),
+      links: linksByKey.get(h.key) ?? [],
+    }),
+  );
 
   const worldRegions = regions.regions.map((r) => {
     const c = contentById.get(r.id);
@@ -324,14 +385,14 @@ export function buildWorld({ heroes, regions, heroPlaces, contents = [], layout 
     regions: worldRegions,
     heroes: heroList,
   });
-  return { world, errors };
+  return { world, errors, warnings };
 }
 
 function readJson(path) {
   return JSON.parse(readFileSync(path, 'utf8'));
 }
 
-/** Читает исходники из корня репозитория. content/ и map/ необязательны. */
+/** Читает исходники из корня репозитория. content/, map/ и hero-aliases.json необязательны. */
 export function readSources(root) {
   const errors = [];
   const tryRead = (rel) => {
@@ -345,6 +406,8 @@ export function readSources(root) {
   const heroes = tryRead('research/e1/heroes.json');
   const regions = tryRead('research/e1/regions.json');
   const heroPlaces = tryRead('research/e1/hero-places.json');
+  const aliasesRel = 'research/e1/hero-aliases.json';
+  const heroAliases = existsSync(join(root, aliasesRel)) ? tryRead(aliasesRel) : undefined;
 
   const contents = [];
   const contentDir = join(root, 'content/regions');
@@ -356,7 +419,7 @@ export function readSources(root) {
     }
   }
   const layout = existsSync(join(root, 'map/layout.json')) ? (tryRead('map/layout.json') ?? null) : null;
-  return { sources: { heroes, regions, heroPlaces, contents, layout }, errors };
+  return { sources: { heroes, regions, heroPlaces, heroAliases, contents, layout }, errors };
 }
 
 export function serialize(world) {
@@ -372,13 +435,14 @@ export function run(root) {
   const out = join(root, OUTPUT);
   mkdirSync(dirname(out), { recursive: true });
   writeFileSync(out, serialize(result.world), 'utf8');
-  return { errors: [], out, world: result.world };
+  return { errors: [], warnings: result.warnings, out, world: result.world };
 }
 
 function main(argv) {
   const i = argv.indexOf('--root');
   const root = i >= 0 ? resolve(argv[i + 1]) : fileURLToPath(new URL('..', import.meta.url));
-  const { errors, world } = run(root);
+  const { errors, warnings = [], world } = run(root);
+  for (const w of warnings) console.warn(`build-data: предупреждение — ${w}`);
   if (errors.length > 0) {
     console.error(`build-data: ${errors.length} ошибок`);
     for (const e of errors) console.error(`  - ${e}`);
@@ -389,7 +453,7 @@ function main(argv) {
   const withLayout = world.regions.filter((r) => r.layout).length;
   console.log(
     `build-data: OK — ${world.regions.length} регионов (с текстом ${withText}, на карте ${withLayout}), ` +
-      `${places} мест, ${world.heroes.length} героев → ${OUTPUT}`,
+      `${places} мест, ${world.heroes.length} героев (с алиасами ${world.heroes.filter((h) => h.aliases).length}) → ${OUTPUT}`,
   );
 }
 
