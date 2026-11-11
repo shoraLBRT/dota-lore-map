@@ -1,6 +1,6 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, within } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import type { Region } from '../../data/types';
+import type { Hero, Region } from '../../data/types';
 import { I18nProvider } from '../../i18n';
 import { BIOME_COLORS } from './biomes';
 import { cameraTransform, placeCamera } from './camera';
@@ -28,7 +28,10 @@ const region = (id: string, withLayout: boolean): Region => ({
     : undefined,
 });
 
-function renderStage(regions: Region[], activeRegionId?: string) {
+const heroes = (n: number): Hero[] =>
+  Array.from({ length: n }, (_, i) => ({ key: `h${i}`, name: `Hero ${i}`, slug: `hero${i}`, links: [] }));
+
+function renderStage(regions: Region[], activeRegionId?: string, heroCount = 0) {
   const onSelectRegion = vi.fn();
   const onSelectPlace = vi.fn();
   render(
@@ -38,11 +41,57 @@ function renderStage(regions: Region[], activeRegionId?: string) {
         activeRegionId={activeRegionId}
         onSelectRegion={onSelectRegion}
         onSelectPlace={onSelectPlace}
+        heroesOf={() => heroes(heroCount)}
       />
     </I18nProvider>,
   );
   return { onSelectRegion, onSelectPlace };
 }
+
+const tint = (id: string) => document.querySelector(`[data-tint="${id}"]`)!;
+
+describe('MapStage — наведение на регион (S1h)', () => {
+  it('мышь: подсветка, подсказка с ≤ 6 портретами и «+N», уход мыши всё снимает', () => {
+    renderStage([region('a', true), region('b', true)], undefined, 8);
+    const polygon = screen.getByRole('button', { name: 'a en' });
+    expect(screen.queryByRole('tooltip')).toBeNull();
+
+    fireEvent.pointerEnter(polygon, { pointerType: 'mouse' });
+    const tip = screen.getByRole('tooltip');
+    expect(tip).toHaveTextContent('a en');
+    expect(within(tip).getAllByRole('img')).toHaveLength(6);
+    expect(tip).toHaveTextContent('+2');
+    expect(polygon).toHaveAttribute('aria-describedby', tip.id);
+    expect(tint('a').getAttribute('class')).toMatch(/lit/);
+    expect(tint('b').getAttribute('class')).not.toMatch(/lit/);
+
+    fireEvent.pointerLeave(polygon, { pointerType: 'mouse' });
+    expect(screen.queryByRole('tooltip')).toBeNull();
+    expect(tint('a').getAttribute('class')).not.toMatch(/lit/);
+  });
+
+  it('клавиатура: фокус = наведение', () => {
+    renderStage([region('a', true)]);
+    const polygon = screen.getByRole('button', { name: 'a en' });
+    fireEvent.focus(polygon);
+    expect(screen.getByRole('tooltip')).toHaveTextContent('a en');
+    expect(tint('a').getAttribute('class')).toMatch(/focused/);
+    fireEvent.blur(polygon);
+    expect(screen.queryByRole('tooltip')).toBeNull();
+  });
+
+  it('тач: подсказки нет (SPEC §5.3)', () => {
+    renderStage([region('a', true)]);
+    fireEvent.pointerEnter(screen.getByRole('button', { name: 'a en' }), { pointerType: 'touch' });
+    expect(screen.queryByRole('tooltip')).toBeNull();
+  });
+
+  it('в регионе (S2) подсказки нет', () => {
+    renderStage([region('a', true)], 'a');
+    fireEvent.focus(screen.getByRole('button', { name: 'a en' }));
+    expect(screen.queryByRole('tooltip')).toBeNull();
+  });
+});
 
 describe('MapStage', () => {
   it('рисует полигоны регионов с layout, остальные — списком', () => {

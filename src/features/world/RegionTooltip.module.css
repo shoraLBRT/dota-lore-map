@@ -2,7 +2,7 @@
 .tooltip {
   position: fixed;
   z-index: 50;
-  max-width: min(22rem, calc(100vw - 16px));
+  max-width: min(26rem, calc(100vw - 16px));
   padding: var(--space-3) var(--space-4);
   border: 1px solid var(--metal);
   background: var(--bg-1);
