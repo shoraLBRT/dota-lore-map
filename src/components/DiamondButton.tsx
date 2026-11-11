@@ -1,9 +1,9 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
 import styles from './DiamondButton.module.css';
 
-export type DiamondIcon = 'close' | 'collapse' | 'expand' | 'back';
+export type DiamondIcon = 'close' | 'collapse' | 'expand' | 'back' | 'prev' | 'next';
 
-const GLYPH: Record<DiamondIcon, string> = { close: '×', collapse: '›', expand: '‹', back: '‹' };
+const GLYPH: Record<DiamondIcon, string> = { close: '×', collapse: '›', expand: '‹', back: '‹', prev: '‹', next: '›' };
 
 interface Props extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children'> {
   icon: DiamondIcon;
@@ -13,7 +13,7 @@ interface Props extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children'
   children?: ReactNode;
 }
 
-/** Кнопка-ромб для «закрыть», «свернуть», «назад» (SPEC §8.5). */
+/** Кнопка-ромб для «закрыть», «свернуть», «назад», листания галереи (SPEC §8.5). */
 export function DiamondButton({ icon, label, children, className, type = 'button', ...rest }: Props) {
   return (
     <button type={type} className={[styles.button, className].filter(Boolean).join(' ')} aria-label={label} {...rest}>

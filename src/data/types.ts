@@ -86,6 +86,8 @@ export interface Media {
   src?: string | Localized;
   /** Видео: id ролика YouTube, встраивается через youtube-nocookie.com. Только у type = youtube. */
   youtubeId?: string;
+  /** Картинка — одна страница комикса; целиком он по sourceUrl (галерея показывает метку «отрывок»). */
+  excerpt?: boolean;
   title: Localized;
   /** Тип для подзаголовка: «Комикс», «Синематик», «Арт». */
   subtitle: Localized;

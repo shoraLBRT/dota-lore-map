@@ -42,5 +42,15 @@
   "traits.rule": "Rule",
   "traits.magic": "Magic",
   "traits.biome": "Environment",
-  "traits.unknown": "Unknown"
+  "traits.unknown": "Unknown",
+  "gallery.close": "Close gallery",
+  "gallery.prev": "Previous media",
+  "gallery.next": "Next media",
+  "gallery.fullscreen": "Full screen",
+  "gallery.position": "{n} of {total}",
+  "gallery.excerpt": "excerpt",
+  "gallery.excerptNote": "This is a single page of the comic. Read the whole thing on the official Dota 2 site.",
+  "gallery.readFull": "Read the full comic ↗",
+  "gallery.source": "Source ↗",
+  "gallery.loadError": "The image failed to load."
 }

@@ -10,8 +10,11 @@ function reducer(state: Route, action: Action): Route {
 
 interface Navigation {
   route: Route;
-  /** Перейти на адрес целиком. */
-  navigate: (route: Route) => void;
+  /**
+   * Перейти на адрес целиком. `replace` — без новой записи в истории браузера
+   * (листание галереи: «назад» закрывает её, а не перебирает страницы).
+   */
+  navigate: (route: Route, options?: { replace?: boolean }) => void;
   /**
    * Сменить экран, сохранив выбранного героя (медиа закрывается).
    * Пока идёт анимация камеры (`hold`), переход ставится в очередь: выполняется последний запрошенный (SPEC §7.1).
@@ -45,10 +48,14 @@ export function NavigationProvider({ children }: { children: ReactNode }) {
     return () => window.removeEventListener('hashchange', onHashChange);
   }, []);
 
-  const navigate = useCallback((next: Route) => {
+  const navigate = useCallback((next: Route, options?: { replace?: boolean }) => {
     const hash = serializeRoute(next);
     ownHash.current = hash;
-    if (window.location.hash !== hash) window.location.hash = hash;
+    if (window.location.hash !== hash) {
+      // replaceState не шлёт hashchange — состояние обновляет dispatch ниже.
+      if (options?.replace) window.history.replaceState(window.history.state, '', hash);
+      else window.location.hash = hash;
+    }
     dispatch({ type: 'sync', route: next });
   }, []);
 

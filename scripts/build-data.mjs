@@ -184,7 +184,7 @@ function mediaRefs(value, where, errors) {
   return value.length > 0 ? [...value] : undefined;
 }
 
-const MEDIA_KEYS = ['id', 'type', 'src', 'youtubeId', 'title', 'subtitle', 'description', 'credit', 'sourceUrl'];
+const MEDIA_KEYS = ['id', 'type', 'src', 'youtubeId', 'excerpt', 'title', 'subtitle', 'description', 'credit', 'sourceUrl'];
 
 /** content/media.json → Map id → медиа (формат — ARCHITECTURE A3). */
 function buildMedia(media, errors) {
@@ -224,6 +224,9 @@ function buildMedia(media, errors) {
       if (m.src !== undefined) errors.push(`${w}: у видео не должно быть src, только youtubeId`);
       if (!isNonEmptyString(m.youtubeId) || !YOUTUBE_ID.test(m.youtubeId)) errors.push(`${w}: youtubeId — 11 символов [A-Za-z0-9_-]`);
     }
+    // excerpt: в галерее одна страница комикса, целиком — по sourceUrl (решение владельца в #7).
+    if (m.excerpt !== undefined && m.excerpt !== true) errors.push(`${w}: excerpt — только true или поля нет`);
+    if (m.excerpt === true && m.type !== 'image') errors.push(`${w}: excerpt бывает только у картинки`);
     const title = localized(m.title, `${w}: title`, errors);
     const subtitle = localized(m.subtitle, `${w}: subtitle`, errors);
     const description = m.description !== undefined ? localized(m.description, `${w}: description`, errors) : undefined;
@@ -237,6 +240,7 @@ function buildMedia(media, errors) {
         type: m.type,
         src: m.src,
         youtubeId: m.youtubeId,
+        excerpt: m.excerpt,
         title,
         subtitle,
         description,

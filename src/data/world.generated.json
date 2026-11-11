@@ -10116,6 +10116,7 @@
         "ru": "https://cdn.steamstatic.com/apps/dota2/images/comics/newbloom2015/day2/ru/01.jpg",
         "en": "https://cdn.steamstatic.com/apps/dota2/images/comics/newbloom2015/day2/en/01.jpg"
       },
+      "excerpt": true,
       "title": {
         "ru": "«Новые соседи»",
         "en": "The New Neighbors"
@@ -10138,6 +10139,7 @@
         "ru": "https://cdn.steamstatic.com/apps/dota2/images/crownfall/act3_intro/russian/003.webp",
         "en": "https://cdn.steamstatic.com/apps/dota2/images/crownfall/act3_intro/english/003.webp"
       },
+      "excerpt": true,
       "title": {
         "ru": "«Дракон»",
         "en": "The Dragon"
@@ -10160,6 +10162,7 @@
         "ru": "https://cdn.steamstatic.com/apps/dota2/images/crownfall/act2_intro/russian/000.webp",
         "en": "https://cdn.steamstatic.com/apps/dota2/images/crownfall/act2_intro/english/000.webp"
       },
+      "excerpt": true,
       "title": {
         "ru": "«Битва у Адской лощины»",
         "en": "The Battle of Hell's Basin"
@@ -10179,6 +10182,7 @@
       "id": "valhessi-the-last-castle",
       "type": "image",
       "src": "https://cdn.steamstatic.com/apps/dota2/images/comics/comic_thelastcastle/en/02.jpg",
+      "excerpt": true,
       "title": {
         "ru": "«Последний замок»",
         "en": "The Last Castle"
@@ -10201,6 +10205,7 @@
         "ru": "https://cdn.steamstatic.com/apps/dota2/images/686/comic/ru/001.png",
         "en": "https://cdn.steamstatic.com/apps/dota2/images/686/comic/en/001.png"
       },
+      "excerpt": true,
       "title": {
         "ru": "«Расколотая Луна»",
         "en": "The Sundered Moon"
@@ -10223,6 +10228,7 @@
         "ru": "https://cdn.steamstatic.com/apps/dota2/images/comics/midnight_run/russian/000.webp",
         "en": "https://cdn.steamstatic.com/apps/dota2/images/comics/midnight_run/english/000.webp"
       },
+      "excerpt": true,
       "title": {
         "ru": "«Тёмный карнавал»",
         "en": "Dark Carnival"
@@ -10245,6 +10251,7 @@
         "ru": "https://cdn.steamstatic.com/apps/dota2/images/comics/comic_eminenceofristul/ru/001.png",
         "en": "https://cdn.steamstatic.com/apps/dota2/images/comics/comic_eminenceofristul/en/001.png"
       },
+      "excerpt": true,
       "title": {
         "ru": "«Восхождение»",
         "en": "Ascension"

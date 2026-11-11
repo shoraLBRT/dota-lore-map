@@ -46,6 +46,19 @@ export function mediaThumb(m: Media, lang: Lang): string | undefined {
   return mediaSrc(m, lang);
 }
 
+/** Страница источника на языке интерфейса: у dota2.com язык задаёт параметр `l` (как у героев, A6). */
+export function mediaSourceUrl(m: Media, lang: Lang): string {
+  let url: URL;
+  try {
+    url = new URL(m.sourceUrl);
+  } catch {
+    return m.sourceUrl;
+  }
+  if (url.hostname !== 'www.dota2.com' && url.hostname !== 'dota2.com') return m.sourceUrl;
+  url.searchParams.set('l', lang === 'ru' ? 'russian' : 'english');
+  return url.toString();
+}
+
 export function getHero(key: string): Hero | undefined {
   return heroByKey.get(key);
 }
