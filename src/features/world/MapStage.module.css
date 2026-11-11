@@ -73,7 +73,7 @@
 
 .region:focus-visible {
   outline: none;
-  stroke: var(--accent);
+  stroke: var(--accent-bright);
   stroke-width: 3;
 }
 
@@ -100,7 +100,7 @@
 
 /* Фокус с клавиатуры — кольцо цвета акцента (SPEC §7.2). */
 .tint.focused {
-  stroke: var(--accent);
+  stroke: var(--accent-bright);
 }
 
 .label {
@@ -398,5 +398,19 @@
   100% {
     opacity: 0.8;
     transform: scale(1);
+  }
+}
+
+/* SPEC §14: при reduced motion — без сдвигов и масштаба: нить сразу нарисована и не течёт, вспышки нет. */
+@media (prefers-reduced-motion: reduce) {
+  .thread {
+    stroke-dasharray: var(--dash) var(--dash);
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+
+  .flash {
+    opacity: 0.8;
+    animation: none;
   }
 }

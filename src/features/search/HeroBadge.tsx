@@ -34,7 +34,8 @@ export function HeroBadge({ hero, spots, onClear }: Props) {
             href={heroUrl(hero, lang)}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={t('hero.newTab', { name: hero.name })}
+            // Имя ссылки начинается с видимого текста (WCAG 2.5.3 «Label in Name»).
+            aria-label={t('hero.badgeLink', { name: hero.name })}
           >
             dota2.com ↗
           </a>

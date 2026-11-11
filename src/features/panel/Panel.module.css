@@ -86,3 +86,11 @@
     opacity: 1;
   }
 }
+
+/* SPEC §14: при reduced motion — без сдвигов и масштаба: панель появляется и сворачивается без выезда. */
+@media (prefers-reduced-motion: reduce) {
+  .dock {
+    transition: none;
+    animation: none;
+  }
+}

@@ -14,7 +14,7 @@
     "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.node.json",
     "lint": "eslint .",
     "test": "vitest run",
-    "check": "npm run data && npm run typecheck && npm run lint && npm run test && npm run build && node map/check-layout.mjs && python research/e1/build.py --check"
+    "check": "npm run data && npm run typecheck && npm run lint && npm run test && npm run build && node scripts/check-budget.mjs && node map/check-layout.mjs && python research/e1/build.py --check"
   },
   "dependencies": {
     "react": "^18.3.1",

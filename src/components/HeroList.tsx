@@ -40,7 +40,8 @@ export function HeroList({ heroes, max, onPreview }: Props) {
               type="button"
               className={styles.more}
               aria-expanded="false"
-              aria-label={t('panel.allHeroes', { n: String(heroes.length) })}
+              // Имя начинается с видимого «+N» (WCAG 2.5.3).
+              aria-label={t('panel.allHeroes', { rest: String(rest), n: String(heroes.length) })}
               onClick={() => setExpanded(true)}
             >
               +{rest}
