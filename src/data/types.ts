@@ -60,6 +60,20 @@ export interface PlaceText {
 
 export type Placement = 'lore' | 's1map' | 'ours';
 
+/**
+ * Карточка медиа в панели (SPEC §5.4 п. 7, §10). Данных пока нет — их добавят E1 (медиа) и E6 (галерея);
+ * панель уже показывает до 3 карточек, а без медиа блок скрыт.
+ */
+export interface MediaItem {
+  id: string;
+  type: 'image' | 'youtube';
+  title: Localized;
+  /** Тип: «Арт», «Синематик», «Комикс». */
+  subtitle?: Localized;
+  /** Картинка-фон карточки. */
+  thumb?: string;
+}
+
 export interface Place {
   /** Имя из research/e1/regions.json (английское, служит ключом). */
   name: string;
@@ -70,6 +84,9 @@ export interface Place {
   note?: string;
   text?: PlaceText;
   pos?: Point;
+  /** Шапка-картинка панели места (SPEC §5.5 п. 1), появится с артом. */
+  art?: string;
+  media?: MediaItem[];
 }
 
 export interface Region {
@@ -86,6 +103,9 @@ export interface Region {
   ambient?: Ambient;
   traits?: Traits;
   description?: Localized;
+  /** Ссылка «Подробнее ↗» на внешний источник (SPEC §5.4 п. 6), из content/regions. */
+  moreLink?: string;
+  media?: MediaItem[];
   layout?: RegionLayout;
   places: Place[];
   /** Герои, привязанные к региону целиком (без конкретного места). */

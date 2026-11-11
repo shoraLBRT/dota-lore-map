@@ -86,9 +86,13 @@ describe('MapStage — наведение на регион (S1h)', () => {
     expect(screen.queryByRole('tooltip')).toBeNull();
   });
 
-  it('в регионе (S2) подсказки нет', () => {
-    renderStage([region('a', true)], 'a');
-    fireEvent.focus(screen.getByRole('button', { name: 'a en' }));
+  it('в регионе (S2) регионы не кнопки, подсказки региона нет, соседи затемнены', () => {
+    renderStage([region('a', true), region('b', true)], 'a');
+    expect(screen.queryByRole('button', { name: 'a en' })).toBeNull();
+    expect(screen.queryByRole('button', { name: 'b en' })).toBeNull();
+    expect(document.querySelector('[data-region="b"]')!.getAttribute('class')).toMatch(/dimmed/);
+    expect(document.querySelector('[data-region="a"]')!.getAttribute('class')).not.toMatch(/dimmed/);
+    fireEvent.pointerEnter(document.querySelector('[data-region="a"]')!, { pointerType: 'mouse' });
     expect(screen.queryByRole('tooltip')).toBeNull();
   });
 });

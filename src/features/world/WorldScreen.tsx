@@ -1,9 +1,10 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigation } from '../../app/navigation';
-import type { Screen } from '../../app/router';
-import { getPlace, getRegion, world } from '../../data/world';
+import { serializeRoute, type Screen } from '../../app/router';
+import { getPlace, getRegion, placeName, world } from '../../data/world';
 import { useT } from '../../i18n';
 import { PlacePanel } from '../location/PlacePanel';
+import { Panel } from '../panel/Panel';
 import { Rail } from '../rail/Rail';
 import { RegionPanel } from '../region/RegionPanel';
 import { MapStage } from './MapStage';
@@ -17,8 +18,8 @@ interface Props {
 
 /** Экраны «Мир», «Регион», «Место»: левая панель, карта, правая панель. Неизвестный регион или место — уровень выше. */
 export function WorldScreen({ screen, veiled = false }: Props) {
-  const { t } = useT();
-  const { open } = useNavigation();
+  const { l, lang, t } = useT();
+  const { open, hold } = useNavigation();
   const rootRef = useRef<HTMLDivElement>(null);
 
   // React 18 не знает атрибут inert — ставим свойство DOM напрямую.
@@ -29,6 +30,10 @@ export function WorldScreen({ screen, veiled = false }: Props) {
   const regionId = screen.name === 'region' || screen.name === 'place' ? screen.regionId : undefined;
   const region = regionId ? getRegion(regionId) : undefined;
   const place = region && screen.name === 'place' ? getPlace(region.id, screen.placeSlug) : undefined;
+  const screenKey = serializeRoute({ screen });
+  // Свёрнутая панель снова раскрывается при смене региона или места: иначе клик по маркеру «ничего не делает».
+  const [fold, setFold] = useState<{ key: string; collapsed: boolean }>({ key: screenKey, collapsed: false });
+  const collapsed = fold.key === screenKey && fold.collapsed;
 
   return (
     <div
@@ -47,9 +52,20 @@ export function WorldScreen({ screen, veiled = false }: Props) {
             activePlaceSlug={place?.slug}
             onSelectRegion={(id) => open({ name: 'region', regionId: id })}
             onSelectPlace={(id, slug) => open({ name: 'place', regionId: id, placeSlug: slug })}
+            panel={Boolean(region)}
+            onCameraBusy={hold}
           />
         </main>
-        {region && (place ? <PlacePanel region={region} place={place} /> : <RegionPanel region={region} />)}
+        {region && (
+          <Panel
+            label={place ? placeName(place, lang) : l(region.name)}
+            collapsed={collapsed}
+            onToggle={() => setFold({ key: screenKey, collapsed: !collapsed })}
+            contentKey={screenKey}
+          >
+            {place ? <PlacePanel region={region} place={place} /> : <RegionPanel region={region} />}
+          </Panel>
+        )}
       </div>
     </div>
   );

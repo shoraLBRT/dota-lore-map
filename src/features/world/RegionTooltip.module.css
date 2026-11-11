@@ -73,6 +73,15 @@
   font-weight: 700;
 }
 
+/* Подсказка маркера места (SPEC §5.4): только портреты. */
+.small {
+  padding: var(--space-2);
+}
+
+.small .heroes {
+  margin: 0;
+}
+
 /* SPEC §5.3: на тач-устройствах подсказки нет. */
 @media (hover: none) {
   .tooltip {

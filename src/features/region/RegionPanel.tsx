@@ -1,56 +1,46 @@
 import { useNavigation } from '../../app/navigation';
-import { serializeRoute } from '../../app/router';
-import { DiamondButton } from '../../components/DiamondButton';
 import { Divider } from '../../components/Divider';
 import { HeroList } from '../../components/HeroList';
 import { Paragraphs } from '../../components/Paragraphs';
 import type { Region } from '../../data/types';
-import { heroesOfRegion, placeName } from '../../data/world';
+import { heroesOfRegion } from '../../data/world';
 import { useT } from '../../i18n';
-import { Panel, panelStyles } from '../panel/Panel';
+import { Breadcrumbs } from '../panel/Breadcrumbs';
+import { MediaCards } from '../panel/MediaCards';
+import { panelStyles } from '../panel/Panel';
+import { Traits } from '../panel/Traits';
 
+/** Сколько портретов видно в панели региона до «+N» (SPEC §5.4 п. 2). */
+export const REGION_HEROES = 12;
+
+/**
+ * Содержимое панели региона S2 (SPEC §5.4): название, подзаголовок, герои, разделитель,
+ * характеристики 2×2, описание, «Подробнее ↗», медиа, крошки «‹ Мир». Пустые блоки не рисуются.
+ */
 export function RegionPanel({ region }: { region: Region }) {
-  const { l, lang, t } = useT();
-  const { route, open } = useNavigation();
-  const name = l(region.name);
+  const { l, t } = useT();
+  const { route, open, navigate } = useNavigation();
 
   return (
-    <Panel label={name}>
-      <h2>{name}</h2>
+    <>
+      <h2>{l(region.name)}</h2>
       {region.subtitle && <p className={panelStyles.subtitle}>{l(region.subtitle)}</p>}
+      <HeroList heroes={heroesOfRegion(region.id)} max={REGION_HEROES} />
       <Divider />
-      <HeroList heroes={heroesOfRegion(region.id)} />
+      <Traits region={region} />
       {region.description && <Paragraphs text={l(region.description)} />}
-      {region.places.length > 0 && (
-        <section>
-          <Divider />
-          <h3>{t('panel.places')}</h3>
-          <ul>
-            {region.places.map((p) => (
-              <li key={p.slug}>
-                <a
-                  href={serializeRoute({
-                    screen: { name: 'place', regionId: region.id, placeSlug: p.slug },
-                    hero: route.hero,
-                  })}
-                >
-                  {placeName(p, lang)}
-                </a>
-                {p.capital && ` (${t('panel.capital')})`}
-              </li>
-            ))}
-          </ul>
-        </section>
+      {region.moreLink && (
+        <a className={panelStyles.more} href={region.moreLink} target="_blank" rel="noopener noreferrer">
+          {t('panel.more')}
+        </a>
       )}
+      <MediaCards
+        title={t('panel.regionMedia')}
+        items={region.media}
+        onOpen={(media) => navigate({ ...route, media })}
+      />
       <Divider />
-      <DiamondButton
-        icon="back"
-        label={t('panel.backToWorld')}
-        className={panelStyles.back}
-        onClick={() => open({ name: 'world' })}
-      >
-        {t('panel.world')}
-      </DiamondButton>
-    </Panel>
+      <Breadcrumbs text={t('panel.world')} onClick={() => open({ name: 'world' })} />
+    </>
   );
 }

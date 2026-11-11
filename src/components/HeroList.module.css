@@ -6,3 +6,28 @@
   padding: 0;
   list-style: none;
 }
+
+/* «+N» — раскрыть весь список; размером с портрет (72 × 40.5 px). */
+.more {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  aspect-ratio: 16 / 9;
+  padding: 0;
+  border: 1px solid var(--metal);
+  background: var(--bg-2);
+  color: var(--metal-bright);
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    border-color var(--dur-hover) var(--ease-out),
+    color var(--dur-hover) var(--ease-out),
+    box-shadow var(--dur-hover) var(--ease-out);
+}
+
+.more:hover,
+.more:focus-visible {
+  border-color: var(--metal-bright);
+  color: var(--text-1);
+  box-shadow: var(--glow-metal);
+}
