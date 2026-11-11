@@ -40,6 +40,9 @@ export interface View {
   inset: number;
 }
 
+/** Сколько пустоты (доля мира) допускается за краем картинки при кадрировании под панель. */
+const EDGE_MARGIN = 0.05;
+
 export const UNMEASURED: View = { width: 0, height: 0, layerWidth: 0, layerHeight: 0, inset: 0 };
 
 /**
@@ -55,7 +58,13 @@ export function frameCamera(camera: Camera, view: View): { camera: Camera; offse
   // Видимая часть мира (в долях) по осям.
   const seenX = free / (view.layerWidth * zoom);
   const seenY = Math.max(view.height, view.layerHeight) / (view.layerHeight * zoom);
-  const clamp = (c: number, seen: number) => (seen >= 1 ? 0.5 : Math.min(Math.max(c, seen / 2), 1 - seen / 2));
+  // Центр — как можно ближе к задуманному, но так, чтобы край мира не уходил вглубь кадра дальше чем на EDGE_MARGIN
+  // (небольшой запас нужен ярусам: их места у самого края картинки, подписи — над точками).
+  const clamp = (c: number, seen: number) => {
+    const lo = Math.min(seen / 2, 1 - seen / 2) - EDGE_MARGIN;
+    const hi = Math.max(seen / 2, 1 - seen / 2) + EDGE_MARGIN;
+    return Math.min(Math.max(c, lo), hi);
+  };
   return {
     camera: { x: clamp(camera.x, seenX), y: clamp(camera.y, seenY), zoom },
     offset: view.inset / 2,
