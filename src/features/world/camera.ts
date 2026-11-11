@@ -21,11 +21,12 @@ const round = (n: number) => Math.round(n * 1000) / 1000;
  * Transform, который ставит точку (x, y) в центр кадра с масштабом zoom.
  * `offset` (px) сдвигает центр влево — к середине части кадра, не закрытой панелью.
  */
-export function cameraTransform(camera: Camera, offset = 0): string {
+export function cameraTransform(camera: Camera, offset = 0, offsetY = 0): string {
   const tx = (0.5 - camera.x * camera.zoom) * 100;
   const ty = (0.5 - camera.y * camera.zoom) * 100;
   const x = offset > 0 ? `calc(${round(tx)}% - ${round(offset)}px)` : `${round(tx)}%`;
-  return `translate(${x}, ${round(ty)}%) scale(${round(camera.zoom)})`;
+  const y = offsetY > 0 ? `calc(${round(ty)}% - ${round(offsetY)}px)` : `${round(ty)}%`;
+  return `translate(${x}, ${y}) scale(${round(camera.zoom)})`;
 }
 
 /** Размеры кадра карты, px. Нули — ещё не измерено (или jsdom). */
@@ -38,7 +39,16 @@ export interface View {
   layerHeight: number;
   /** Сколько px справа закрывает панель. */
   inset: number;
+  /** Сколько px снизу закрывает шторка панели на телефоне (SPEC §13). */
+  insetBottom?: number;
 }
+
+/** Высота свёрнутой шторки — доля высоты кадра (SPEC §13: ~30 %). */
+export const SHEET_PEEK = 0.3;
+/** Высота развёрнутой шторки (SPEC §13: ~90 %). */
+export const SHEET_FULL = 0.9;
+/** Телефон: правая панель становится нижней шторкой (SPEC §13). */
+export const MOBILE_QUERY = '(max-width: 767px)';
 
 /** Сколько пустоты (доля мира) допускается за краем картинки при кадрировании под панель. */
 const EDGE_MARGIN = 0.05;
@@ -51,13 +61,16 @@ export const UNMEASURED: View = { width: 0, height: 0, layerWidth: 0, layerHeigh
  * Центр затем сдвигается к середине мира настолько, чтобы за краем картинки было как можно меньше пустоты;
  * рамка региона при этом остаётся в кадре. Возвращает камеру и сдвиг центра для cameraTransform.
  */
-export function frameCamera(camera: Camera, view: View): { camera: Camera; offset: number } {
-  if (view.inset <= 0 || view.layerWidth <= 0 || view.layerHeight <= 0) return { camera, offset: 0 };
-  const free = Math.max(view.width - view.inset, view.layerWidth * 0.25);
-  const zoom = camera.zoom * Math.min(1, free / view.layerWidth);
+export function frameCamera(camera: Camera, view: View): { camera: Camera; offset: number; offsetY?: number } {
+  const bottom = view.insetBottom ?? 0;
+  if ((view.inset <= 0 && bottom <= 0) || view.layerWidth <= 0 || view.layerHeight <= 0) return { camera, offset: 0 };
+  const free = view.inset > 0 ? Math.max(view.width - view.inset, view.layerWidth * 0.25) : view.width;
+  // Шторка снизу: рамка региона (1/zoom высоты мира) должна поместиться над ней.
+  const freeY = bottom > 0 ? Math.max(view.height - bottom, view.layerHeight * 0.25) : view.height;
+  const zoom = camera.zoom * Math.min(1, free / view.layerWidth, freeY / view.layerHeight);
   // Видимая часть мира (в долях) по осям.
   const seenX = free / (view.layerWidth * zoom);
-  const seenY = Math.max(view.height, view.layerHeight) / (view.layerHeight * zoom);
+  const seenY = Math.max(freeY, view.layerHeight) / (view.layerHeight * zoom);
   // Центр — как можно ближе к задуманному, но так, чтобы край мира не уходил вглубь кадра дальше чем на EDGE_MARGIN
   // (небольшой запас нужен ярусам: их места у самого края картинки, подписи — над точками).
   const clamp = (c: number, seen: number) => {
@@ -67,7 +80,8 @@ export function frameCamera(camera: Camera, view: View): { camera: Camera; offse
   };
   return {
     camera: { x: clamp(camera.x, seenX), y: clamp(camera.y, seenY), zoom },
-    offset: view.inset / 2,
+    offset: Math.max(view.inset, 0) / 2,
+    ...(bottom > 0 ? { offsetY: bottom / 2 } : {}),
   };
 }
 

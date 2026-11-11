@@ -213,6 +213,19 @@ describe('camera', () => {
     expect(edge.x).toBeGreaterThan(0.05);
     expect(edge.y).toBeGreaterThan(0.05);
   });
+  it('шторка снизу (телефон): центр выше на половину шторки; высокая рамка — zoom уменьшается до свободной высоты', () => {
+    const camera = { x: 0.5, y: 0.5, zoom: 2 };
+    // Телефон: слой 375×234, кадр 375×760, шторка 244 px — рамка помещается, zoom прежний.
+    const phone = { width: 375, height: 760, layerWidth: 375, layerHeight: 234, inset: 0, insetBottom: 244 };
+    const framed = frameCamera(camera, phone);
+    expect(framed.offset).toBe(0);
+    expect(framed.offsetY).toBe(122);
+    expect(framed.camera.zoom).toBe(2);
+    expect(cameraTransform(framed.camera, framed.offset, framed.offsetY)).toMatch(/^translate\(-?[\d.]+%, calc\(-?[\d.]+% - 122px\)\) scale\(2\)$/);
+    // Альбомная ориентация: свободной высоты меньше слоя — zoom уменьшается.
+    const landscape = { width: 760, height: 360, layerWidth: 576, layerHeight: 360, inset: 0, insetBottom: 108 };
+    expect(frameCamera(camera, landscape).camera.zoom).toBeCloseTo(2 * (252 / 360));
+  });
   it('камера места — между регионом и местом, чуть ближе', () => {
     const c = placeCamera({ x: 0.2, y: 0.2, zoom: 2 }, [0.4, 0.6]);
     expect(c.x).toBeCloseTo(0.3);
