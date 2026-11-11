@@ -1,0 +1,15 @@
+/* Частицы поверх карты (SPEC §7.3): не мешают кликам, проявляются после перелёта камеры (A3). */
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  animation: appear var(--dur-panel) var(--ease-out) var(--dur-camera) both;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+}

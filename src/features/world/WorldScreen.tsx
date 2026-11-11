@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigation } from '../../app/navigation';
+import { useSfx } from '../../app/sound';
 import { serializeRoute, type Screen } from '../../app/router';
 import type { Hero } from '../../data/types';
 import { getHero, getPlace, getRegion, placeName, world } from '../../data/world';
@@ -40,6 +41,13 @@ export function WorldScreen({ screen, veiled = false }: Props) {
   // Свёрнутая панель снова раскрывается при смене региона или места: иначе клик по маркеру «ничего не делает».
   const [fold, setFold] = useState<{ key: string; collapsed: boolean }>({ key: screenKey, collapsed: false });
   const collapsed = fold.key === screenKey && fold.collapsed;
+
+  // Звук открытия панели (SPEC §7.4): из мира в регион или место; переходы внутри панели — без него.
+  const sfx = useSfx();
+  const panelOpen = Boolean(region) && !veiled;
+  useEffect(() => {
+    if (panelOpen) sfx('panel');
+  }, [panelOpen, sfx]);
 
   // Поиск и выбранный герой (SPEC §6.5): `?hero=` в адресе, плашка сверху, приглушение, нити.
   const [searchOpen, setSearchOpen] = useState(false);
