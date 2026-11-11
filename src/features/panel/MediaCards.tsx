@@ -10,13 +10,13 @@ interface Props {
   title: string;
   /** id медиа из World.media (SPEC §10). */
   items: string[] | undefined;
-  /** Открыть галерею на элементе (S4, `?media=<id>`; сама галерея — E6). */
+  /** Открыть галерею на элементе (S4, `?media=<id>`). */
   onOpen: (mediaId: string) => void;
 }
 
 /** Блок «Медиа в регионе / в месте»: до 3 карточек. Без медиа блок не рисуется. */
 export function MediaCards({ title, items, onOpen }: Props) {
-  const { l, lang } = useT();
+  const { l, lang, t } = useT();
   const media = resolveMedia(items);
   if (media.length === 0) return null;
   return (
@@ -34,7 +34,10 @@ export function MediaCards({ title, items, onOpen }: Props) {
               onClick={() => onOpen(m.id)}
             >
               <span className={styles.cardTitle}>{l(m.title)}</span>
-              <span className={styles.cardType}>{l(m.subtitle)}</span>
+              <span className={styles.cardType}>
+                {l(m.subtitle)}
+                {m.excerpt && ` · ${t('gallery.excerpt')}`}
+              </span>
             </button>
           </li>
           );

@@ -319,6 +319,18 @@ describe('buildWorld', () => {
       expect(bad.errors.join(' ')).toMatch(/src/);
     });
 
+    it('excerpt: только true и только у картинки', () => {
+      const page = { ...image(), excerpt: true };
+      const ok = buildWorld({ ...fixture(), contents: [withMedia(['ice-comic'])], media: { media: [page] } });
+      expect(ok.errors).toEqual([]);
+      expect(ok.world.media[0].excerpt).toBe(true);
+      const plain = buildWorld({ ...fixture(), contents: [withMedia(['ice-comic'])], media: { media: [image()] } });
+      expect(plain.world.media[0]).not.toHaveProperty('excerpt');
+      const media = { media: [{ ...image('a'), excerpt: false }, { ...video, excerpt: true }] };
+      const bad = buildWorld({ ...fixture(), contents: [withMedia(['a'], [video.id])], media });
+      expect(bad.errors).toEqual([expect.stringMatching(/"a".*excerpt/), expect.stringMatching(/excerpt.*картинки/)]);
+    });
+
     it('предупреждение на медиа без привязки', () => {
       const { errors, warnings } = buildWorld({ ...fixture(), contents: [content()], media: { media: [image()] } });
       expect(errors).toEqual([]);

@@ -42,5 +42,15 @@
   "traits.rule": "Власть",
   "traits.magic": "Магия",
   "traits.biome": "Среда",
-  "traits.unknown": "Неизвестно"
+  "traits.unknown": "Неизвестно",
+  "gallery.close": "Закрыть галерею",
+  "gallery.prev": "Предыдущее медиа",
+  "gallery.next": "Следующее медиа",
+  "gallery.fullscreen": "Во весь экран",
+  "gallery.position": "{n} из {total}",
+  "gallery.excerpt": "отрывок",
+  "gallery.excerptNote": "Здесь показана одна страница комикса. Целиком он — на официальном сайте Dota 2.",
+  "gallery.readFull": "Читать комикс целиком ↗",
+  "gallery.source": "Источник ↗",
+  "gallery.loadError": "Картинка не загрузилась."
 }

@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { DiamondButton } from '../../components/DiamondButton';
 import { Disclaimer } from '../../components/Disclaimer';
 import { Divider } from '../../components/Divider';
+import { trapTab } from '../../components/focusTrap';
 import { useT, type MessageKey } from '../../i18n';
 import styles from './AboutDialog.module.css';
 
@@ -12,8 +13,6 @@ const SOURCES: { key: MessageKey; href: string }[] = [
 ];
 
 const REPO = 'https://github.com/shoraLBRT/dota-lore-map';
-
-const FOCUSABLE = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
 /** Окно «О проекте» (SPEC §6.1, §15): описание, источники, благодарности, дисклеймер. Esc и × закрывают. */
 export function AboutDialog({ onClose }: { onClose: () => void }) {
@@ -35,18 +34,7 @@ export function AboutDialog({ onClose }: { onClose: () => void }) {
       onClose();
       return;
     }
-    if (e.key !== 'Tab' || !dialogRef.current) return;
-    const items = Array.from(dialogRef.current.querySelectorAll<HTMLElement>(FOCUSABLE));
-    const first = items[0];
-    const last = items[items.length - 1];
-    if (!first || !last) return;
-    if (e.shiftKey && document.activeElement === first) {
-      e.preventDefault();
-      last.focus();
-    } else if (!e.shiftKey && document.activeElement === last) {
-      e.preventDefault();
-      first.focus();
-    }
+    trapTab(e, dialogRef.current);
   };
 
   return createPortal(
