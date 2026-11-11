@@ -5,8 +5,6 @@
 
 .tip {
   position: absolute;
-  bottom: calc(100% + var(--space-2));
-  left: 50%;
   z-index: 10;
   padding: var(--space-1) var(--space-3);
   border: 1px solid var(--metal);
@@ -17,14 +15,34 @@
   white-space: nowrap;
   pointer-events: none;
   opacity: 0;
-  transform: translate(-50%, 8px);
   transition:
     opacity var(--dur-hover) var(--ease-out),
     transform var(--dur-hover) var(--ease-out);
 }
 
+.top .tip {
+  bottom: calc(100% + var(--space-2));
+  left: 50%;
+  transform: translate(-50%, 8px);
+}
+
+.right .tip {
+  top: 50%;
+  left: calc(100% + var(--space-2));
+  transform: translate(-8px, -50%);
+}
+
 .wrap:hover .tip,
 .wrap:focus-within .tip {
   opacity: 1;
+}
+
+.top:hover .tip,
+.top:focus-within .tip {
   transform: translate(-50%, 0);
+}
+
+.right:hover .tip,
+.right:focus-within .tip {
+  transform: translate(0, -50%);
 }

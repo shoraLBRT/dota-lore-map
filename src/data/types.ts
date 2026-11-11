@@ -37,6 +37,8 @@ export interface RegionLayout {
   polygon: Point[];
   label: Point;
   camera: Camera;
+  /** Детальная картинка региона (появится с артом E2; ARCHITECTURE A10). */
+  art?: string;
 }
 
 export interface Ambient {
