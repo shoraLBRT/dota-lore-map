@@ -20,7 +20,7 @@
 
 ```
 research/e1/        исследование лора: heroes.json, regions.json, hero-places.json, build.py (источник правды о регионах, местах и героях)
-content/            тексты: content/regions/<regionId>.json (RU/EN описания, характеристики, тексты мест)
+content/            тексты: content/regions/<regionId>.json (RU/EN описания, характеристики, тексты мест); content/media.json (медиа галереи)
 map/                геометрия карты: map/layout.json (полигоны, позиции, камеры), арт в map/art/
 scripts/            build-data.mjs — собирает research + content + map в src/data/world.generated.json
 src/
@@ -55,16 +55,43 @@ docs/               SPEC, ARCHITECTURE, PROJECT_STATE, исследования
     "biome": { "ru": "...", "en": "..." }
   },
   "description": { "ru": "...", "en": "..." },
+  "media": ["icewrack-new-neighbors"],   // необязательно: id из content/media.json, ≤ 3
   "places": {
     "<Place name из research/e1/regions.json>": {
       "name": { "ru": "...", "en": "..." },
       "type": { "ru": "...", "en": "..." },
-      "description": { "ru": "...", "en": "..." }
+      "description": { "ru": "...", "en": "..." },
+      "media": ["frostreach-the-dragon"]   // необязательно, ≤ 3
     }
   }
 }
 ```
 Сторона (`side`) и название региона берутся из `research/e1/regions.json`.
+
+### Формат `content/media.json`
+Медиа галереи (SPEC §5.6, §10) — один файл на весь мир; регион и место ссылаются на медиа по `id` (поле `media` выше), поэтому одно медиа можно показать в нескольких местах.
+```jsonc
+{
+  "note": "...",
+  "media": [
+    {
+      "id": "frostreach-the-dragon",          // kebab-case, уникален
+      "type": "image",                        // image | youtube
+      "src": "https://cdn.steamstatic.com/...",   // только у image: https-ссылка или относительный путь к ассету
+      "youtubeId": "xxxxxxxxxxx",             // только у youtube: 11 символов, встраивание через youtube-nocookie.com
+      "title":       { "ru": "...", "en": "..." },
+      "subtitle":    { "ru": "Комикс", "en": "Comic" },   // тип: Комикс | Синематик | Арт | Трейлер
+      "description": { "ru": "...", "en": "..." },         // необязательно
+      "credit": "Valve Corporation",          // правообладатель (SPEC §15)
+      "sourceUrl": "https://www.dota2.com/..."   // страница источника, https
+    }
+  ]
+}
+```
+- Только официальные материалы Valve (SPEC §11.2): комиксы и страницы dota2.com, синематики и трейлеры с YouTube-канала Dota 2, официальный арт. Каждая ссылка проверяется вручную перед добавлением; сомнительное не добавляем. Тексты — свои слова.
+- Картинки в репозиторий не копируем: `src` — прямая ссылка на CDN Valve (как портреты в A6). Нет прямой официальной ссылки — медиа не добавляем.
+- Ошибка: неизвестный `id` в ссылке, больше 3 медиа у региона или места, повтор id, нет ни `src`, ни `youtubeId`, `src` у видео или `youtubeId` у картинки, `http://` в `src`/`sourceUrl`, нет `credit`, неполный перевод. Предупреждение: медиа ни к чему не привязано.
+- В `world.generated.json`: `World.media` (все медиа), `Region.media` и `Place.media` — списки id. Нет медиа — поля нет.
 
 ### Формат `research/e1/hero-aliases.json`
 Алиасы для поиска героя (SPEC §6.5) — отдельно от `heroes.json`, потому что тот повторяет официальный список Valve, а алиасы — наши словарные данные.

@@ -67,7 +67,29 @@ export interface Place {
   /** Заметка исследования (по-русски, для разработчиков). */
   note?: string;
   text?: PlaceText;
+  /** id из World.media, ≤ 3 (SPEC §10). Нет медиа — поля нет. */
+  media?: string[];
   pos?: Point;
+}
+
+export type MediaType = 'image' | 'youtube';
+
+/** Медиа для галереи (SPEC §5.6, §10); источник — content/media.json (ARCHITECTURE A3). */
+export interface Media {
+  id: string;
+  type: MediaType;
+  /** Картинка: https-ссылка на официальный источник или путь к ассету. Только у type = image. */
+  src?: string;
+  /** Видео: id ролика YouTube, встраивается через youtube-nocookie.com. Только у type = youtube. */
+  youtubeId?: string;
+  title: Localized;
+  /** Тип для подзаголовка: «Комикс», «Синематик», «Арт». */
+  subtitle: Localized;
+  description?: Localized;
+  /** Правообладатель (SPEC §15). */
+  credit: string;
+  /** Страница источника ↗. */
+  sourceUrl: string;
 }
 
 export interface Region {
@@ -84,6 +106,8 @@ export interface Region {
   ambient?: Ambient;
   traits?: Traits;
   description?: Localized;
+  /** id из World.media для региона в целом, ≤ 3 (SPEC §10). Нет медиа — поля нет. */
+  media?: string[];
   layout?: RegionLayout;
   places: Place[];
   /** Герои, привязанные к региону целиком (без конкретного места). */
@@ -116,4 +140,6 @@ export interface World {
   bands?: { upper: [number, number]; abyss: [number, number] };
   regions: Region[];
   heroes: Hero[];
+  /** Все медиа; регионы и места ссылаются на них по id. Нет медиа — поля нет. */
+  media?: Media[];
 }

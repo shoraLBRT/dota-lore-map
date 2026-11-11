@@ -12,6 +12,7 @@
     "ru": "Крайний север мира: замёрзшая равнина между хребтом Барьер и Кипящим морем. Сюда почти не ходят корабли — единственный морской путь лежит через Фростреч, самый северный порт на свете. Сквозь весь край течёт Ледник Голубого Сердца — источник всей магии холода.\n\nКогда-то здешние королевства стонали под властью колдуна Этреина, пока восставшие подданные не убили его и не сбросили в Чёрный омут; теперь он вернулся как Lich. Сегодня на севере живут суровые племена вроде Фростайронов, а в тавернах до сих пор пересказывают драки Tusk.\n\nВ Айсрак отправили маленькую Райлай, которая замораживала всё вокруг, — здесь она стала ученицей Ледяного Волшебника и стала Crystal Maiden. В изгнании здесь жил бескрылый скайрас Kez, а в северных сосновых лесах бродит Lone Druid.",
     "en": "The far north of the world: a frozen expanse between the Barrier mountains and the Boiling Sea. Few ships ever arrive; the only sea route runs through Frostreach, the northernmost port there is. Through the heart of the land flows the Blueheart Glacier, the wellspring of all frost magic.\n\nIts kingdoms once suffered under the sorcerer Ethreain until his own subjects rose up, killed him and sank him in the Black Pool; he has since returned as the Lich. Today the north belongs to hardy tribes like the Frostiron, and its taverns still retell Tusk's brawls.\n\nYoung Rylai, who froze everything around her, was sent to Icewrack and found a teacher in the Ice Wizard, becoming the Crystal Maiden. The flightless Skywrath Kez spent his exile here, and the Lone Druid roams the northern pines."
   },
+  "media": ["icewrack-new-neighbors"],
   "places": {
     "Icewrack": {
       "name": { "ru": "Айсрак", "en": "Icewrack" },
@@ -99,7 +100,8 @@
       "description": {
         "ru": "Самый северный порт мира и единственные морские ворота в Айсрак. Больше о нём ничего не известно.",
         "en": "The northernmost port in the world and the only gateway to Icewrack by sea. Nothing more is known about it."
-      }
+      },
+      "media": ["frostreach-the-dragon"]
     },
     "Onyx Grove": {
       "name": { "ru": "Ониксовая роща", "en": "Onyx Grove" },

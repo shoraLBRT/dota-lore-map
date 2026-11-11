@@ -51,7 +51,8 @@
       "description": {
         "ru": "Таверна Джулла в Белом Шпиле с контрабандной выпивкой и знаменитым коктейлем на основе чумного стража. Пускают сюда в основном героев — на входе могут попросить голову крипа, — а главный соперник заведения — магический бар «Кантрип».",
         "en": "Jull's tavern in White Spire, pouring bootleg liquor and a notorious cocktail brewed from plague wards. It caters mostly to heroes — a creep's head may be demanded at the door — and its chief rival is the mage-run Cantrip Mana Lounge and Bar."
-      }
+      },
+      "media": ["sundered-moon-comic"]
     },
     "Iron Fog": {
       "name": { "ru": "Железный Туман", "en": "Iron Fog" },

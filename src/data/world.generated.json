@@ -727,6 +727,9 @@
         "ru": "Крайний север мира: замёрзшая равнина между хребтом Барьер и Кипящим морем. Сюда почти не ходят корабли — единственный морской путь лежит через Фростреч, самый северный порт на свете. Сквозь весь край течёт Ледник Голубого Сердца — источник всей магии холода.\n\nКогда-то здешние королевства стонали под властью колдуна Этреина, пока восставшие подданные не убили его и не сбросили в Чёрный омут; теперь он вернулся как Lich. Сегодня на севере живут суровые племена вроде Фростайронов, а в тавернах до сих пор пересказывают драки Tusk.\n\nВ Айсрак отправили маленькую Райлай, которая замораживала всё вокруг, — здесь она стала ученицей Ледяного Волшебника и стала Crystal Maiden. В изгнании здесь жил бескрылый скайрас Kez, а в северных сосновых лесах бродит Lone Druid.",
         "en": "The far north of the world: a frozen expanse between the Barrier mountains and the Boiling Sea. Few ships ever arrive; the only sea route runs through Frostreach, the northernmost port there is. Through the heart of the land flows the Blueheart Glacier, the wellspring of all frost magic.\n\nIts kingdoms once suffered under the sorcerer Ethreain until his own subjects rose up, killed him and sank him in the Black Pool; he has since returned as the Lich. Today the north belongs to hardy tribes like the Frostiron, and its taverns still retell Tusk's brawls.\n\nYoung Rylai, who froze everything around her, was sent to Icewrack and found a teacher in the Ice Wizard, becoming the Crystal Maiden. The flightless Skywrath Kez spent his exile here, and the Lone Druid roams the northern pines."
       },
+      "media": [
+        "icewrack-new-neighbors"
+      ],
       "layout": {
         "polygon": [
           [
@@ -1101,6 +1104,9 @@
               "en": "The northernmost port in the world and the only gateway to Icewrack by sea. Nothing more is known about it."
             }
           },
+          "media": [
+            "frostreach-the-dragon"
+          ],
           "pos": [
             0.585,
             0.172
@@ -2045,6 +2051,9 @@
               "en": "A small workers' town west of the capital, on the river between Roseleaf and Tarrin. The river was diverted to water its fields, making it the region's biggest rye producer. It lives under Stonehall's protection, and when creatures from the Redfern Forest raided it, Tresdin came to investigate in person."
             }
           },
+          "media": [
+            "milltown-dark-carnival"
+          ],
           "pos": [
             0.408,
             0.388
@@ -2686,6 +2695,9 @@
               "en": "Jull's tavern in White Spire, pouring bootleg liquor and a notorious cocktail brewed from plague wards. It caters mostly to heroes — a creep's head may be demanded at the door — and its chief rival is the mage-run Cantrip Mana Lounge and Bar."
             }
           },
+          "media": [
+            "sundered-moon-comic"
+          ],
           "pos": [
             0.595,
             0.39
@@ -3167,6 +3179,9 @@
               "en": "A stronghold in the Hazhadal Barrens that Axe assaults in Valve's comic The Last Castle. Little else is known about it."
             }
           },
+          "media": [
+            "valhessi-the-last-castle"
+          ],
           "pos": [
             0.655,
             0.525
@@ -3212,6 +3227,9 @@
         "ru": "Высокое плато к югу от Полей Вечной Бойни — красные пустыни, продуваемые ветрами степи и бесконечные столовые горы. Это земля кланов кентавров. Чужакам они кажутся грубыми дикарями: у них нет ни письменности, ни музыки, ни устроенной веры. Но для кентавра бой и есть высшая форма мысли.\n\nНа плоскогорье живут и горные оглоди — последний осколок некогда великой цивилизации. Они ездят на страйдерах, роются в руинах городов предков и почитают погоду как божество: летние грозы приносят дождь, но оставляют за собой обугленные тела. С юга на их земли постоянно давят оседлые королевства.\n\nОтсюда родом двое героев. Centaur Warrunner стал непобедимым чемпионом арены Омекс и ушёл искать достойного противника по всему миру. Disruptor, юный мастер бурь, приспособил древнюю катушку, которая призывает молнию по его воле, и обратил её против южных захватчиков.",
         "en": "A high plateau south of the Fields of Endless Carnage — red deserts, wind-scoured steppe and endless tablelands. This is the country of the centaur clans. Outsiders take them for brutes: they have no writing, no formal music, no organised faith. To a centaur, though, combat is the purest form of thought.\n\nThe uplands are also home to the Oglodi, the last remnant of a once-great civilisation. They ride stryders, scavenge the ruins of their ancestors' cities and revere the weather itself — summer storms bring rain but leave charred bodies in their wake. Settled kingdoms to the south keep pressing on their land.\n\nTwo heroes hail from here. Centaur Warrunner became the undisputed champion of the Omexe arena, then rode off in search of an opponent worthy of him. Disruptor, a young stormcrafter, adapted an ancient coil that calls down lightning at will and turned it on the southern intruders."
       },
+      "media": [
+        "druud-hells-basin"
+      ],
       "layout": {
         "polygon": [
           [
@@ -7315,6 +7333,9 @@
         "ru": "Семь слоёв вечной тьмы и мучений, разделённых перепонками, сквозь которые свободно проходит один лишь Doom. Он — владыка всех преисподних, за ним идут Shadow Demon и, последним из Владык демонов, Невермор (Shadow Fiend).\n\nНо ад — не только демоны. Каждую новую душу ждёт Узкий лабиринт: Razor гонит мёртвых по его тёмным, усеянным клинками ходам, и одни выходят к свету, другие — во тьму Андерскейпа. Где-то рядом лежит Мир Нотл, где свет и тьма поменялись местами.\n\nСюда ведут судьбы многих героев: Terrorblade, сбежавшего из тюрьмы демонов, Visage, жреца Dazzle, Huskar, однажды вернувшегося к жизни, и Warlock, призывающего големов из Внешних преисподних.",
         "en": "Seven layers of endless darkness and torment, divided by membranes that only Doom may freely cross. He is sovereign of every hell; below him stand the Shadow Demon and, least of the Demon Lords, Nevermore.\n\nYet hell is more than demons. Every newly dead soul must walk the Narrow Maze, where Razor drives the dead through cold, blade-lined passages; some emerge into light, others into the dark of the Underscape. Close by lies the Nothl Realm, where light and darkness have traded places.\n\nMany heroes' stories run through here: Terrorblade, who broke out of the demons' own prison; Visage; the shadow priest Dazzle; Huskar, who once came back to the living; and Warlock, who summons golems from the Outer Hells."
       },
+      "media": [
+        "hells-ascension"
+      ],
       "layout": {
         "polygon": [
           [
@@ -10085,6 +10106,141 @@
           "basis": "infobox"
         }
       ]
+    }
+  ],
+  "media": [
+    {
+      "id": "icewrack-new-neighbors",
+      "type": "image",
+      "src": "https://cdn.steamstatic.com/apps/dota2/images/comics/newbloom2015/day2/en/01.jpg",
+      "title": {
+        "ru": "«Новые соседи»",
+        "en": "The New Neighbors"
+      },
+      "subtitle": {
+        "ru": "Комикс",
+        "en": "Comic"
+      },
+      "description": {
+        "ru": "Комикс Valve к фестивалю New Bloom 2015 года. Жители заснеженной деревни Айсрака побаиваются Райлай, хотя она давно их защищает, — а в ледник по соседству заселяется новая обитательница, Auroth (Winter Wyvern).",
+        "en": "Valve's comic for the 2015 New Bloom festival. The folk of a snowbound Icewrack village are wary of Rylai even though she has long protected them — and a new resident moves into the nearby glacier: Auroth, the Winter Wyvern."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/newbloom/part2"
+    },
+    {
+      "id": "frostreach-the-dragon",
+      "type": "image",
+      "src": "https://cdn.steamstatic.com/apps/dota2/images/crownfall/act3_intro/english/003.webp",
+      "title": {
+        "ru": "«Дракон»",
+        "en": "The Dragon"
+      },
+      "subtitle": {
+        "ru": "Комикс",
+        "en": "Comic"
+      },
+      "description": {
+        "ru": "Пролог третьего акта Crownfall (2024). Корабль неделями пробирается между айсбергами к Фростречу — самому северному порту мира и воротам в ледяную пустыню. В местном трактире Шен ищет проводника.",
+        "en": "Prologue to Crownfall Act III (2024). A ship spends weeks threading between icebergs to reach Frostreach, the world's northernmost port and gateway to the frozen waste. In a local tavern, Shen goes looking for a guide."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/crownfall/comic3"
+    },
+    {
+      "id": "druud-hells-basin",
+      "type": "image",
+      "src": "https://cdn.steamstatic.com/apps/dota2/images/crownfall/act2_intro/english/000.webp",
+      "title": {
+        "ru": "«Битва у Адской лощины»",
+        "en": "The Battle of Hell's Basin"
+      },
+      "subtitle": {
+        "ru": "Комикс",
+        "en": "Comic"
+      },
+      "description": {
+        "ru": "Пролог второго акта Crownfall (2024). Ночь над красными пустынями Друуда: вечно враждующие племена впервые встают под одно знамя Сорлы Хан, чтобы встретить Бездонную орду.",
+        "en": "Prologue to Crownfall Act II (2024). Night falls over the red deserts of Druud as its endlessly feuding tribes rally under Sorla Khan's single banner to face the Abyssal Horde."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/crownfall/comic2"
+    },
+    {
+      "id": "valhessi-the-last-castle",
+      "type": "image",
+      "src": "https://cdn.steamstatic.com/apps/dota2/images/comics/comic_thelastcastle/en/02.jpg",
+      "title": {
+        "ru": "«Последний замок»",
+        "en": "The Last Castle"
+      },
+      "subtitle": {
+        "ru": "Комикс",
+        "en": "Comic"
+      },
+      "description": {
+        "ru": "Комикс Valve 2015 года. Axe прорубается сквозь гарнизон крепости посреди Хазадальских пустошей — новой главе книги о его похождениях, которую пишет Гудкайнд, нужен громкий подвиг.",
+        "en": "Valve's 2015 comic. Axe hacks his way through the garrison of a fortress in the Hazhadal Barrens — the next chapter of Goodkind's book about his exploits needs a big feat."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/thelastcastle"
+    },
+    {
+      "id": "sundered-moon-comic",
+      "type": "image",
+      "src": "https://cdn.steamstatic.com/apps/dota2/images/686/comic/en/001.png",
+      "title": {
+        "ru": "«Расколотая Луна»",
+        "en": "The Sundered Moon"
+      },
+      "subtitle": {
+        "ru": "Комикс",
+        "en": "Comic"
+      },
+      "description": {
+        "ru": "Комикс к обновлению The Balance of Power (2015). В таверну для героев пускают только тех, кто докажет, что он герой; за одним из столов Zeus и Zet беседуют о том, как устроена вселенная.",
+        "en": "Comic for The Balance of Power update (2015). Only those who prove they are heroes get into this heroes' tavern; at one of its tables Zeus and Zet talk over how the universe came to be."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/balanceofpower"
+    },
+    {
+      "id": "milltown-dark-carnival",
+      "type": "image",
+      "src": "https://cdn.steamstatic.com/apps/dota2/images/comics/midnight_run/english/000.webp",
+      "title": {
+        "ru": "«Тёмный карнавал»",
+        "en": "Dark Carnival"
+      },
+      "subtitle": {
+        "ru": "Комикс",
+        "en": "Comic"
+      },
+      "description": {
+        "ru": "Комикс к событию Dark Carnival (2026). Миллтаун вырос из одной мельницы на речной излучине между Розолистом и Таррином и стал так богат рожью, что попал под защиту Стоунхолла. Сюда наведывается Hoodwink, а расследовать её набеги приезжает Legion Commander.",
+        "en": "Comic for the Dark Carnival event (2026). Milltown grew from a single mill on a river bend between Roseleaf and Tarrin into a rye-rich town under Stonehall's protection. Hoodwink comes raiding, and Legion Commander arrives to investigate."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/darkcarnivalcomic"
+    },
+    {
+      "id": "hells-ascension",
+      "type": "image",
+      "src": "https://cdn.steamstatic.com/apps/dota2/images/comics/comic_eminenceofristul/en/001.png",
+      "title": {
+        "ru": "«Восхождение»",
+        "en": "Ascension"
+      },
+      "subtitle": {
+        "ru": "Комикс",
+        "en": "Comic"
+      },
+      "description": {
+        "ru": "Комикс к аркане Queen of Pain «Eminence of Ristul» (2020). Канун Узкого лабиринта: при дворе Ристула Акаша — всего лишь сестра Б'Кора, и, видя, как растёт влияние брата в Бездне, она решается на сделку ради власти.",
+        "en": "Comic for the Queen of Pain arcana Eminence of Ristul (2020). On the eve of the Narrow Maze, Akasha is merely B'Kor's sister at the Court of Ristul; watching her brother's sway in the abyss grow, she resolves to bargain for power."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/eminenceofristul"
     }
   ]
 }

@@ -212,6 +212,98 @@ describe('buildWorld', () => {
     expect(warnings[0]).toMatch(/crystal_maiden, alchemist/);
   });
 
+  describe('медиа', () => {
+    const image = (id = 'ice-comic') => ({
+      id,
+      type: 'image',
+      src: 'https://cdn.example.com/a.jpg',
+      title: L('t'),
+      subtitle: L('Комикс'),
+      description: L('d'),
+      credit: 'Valve Corporation',
+      sourceUrl: 'https://www.dota2.com/x',
+    });
+    const video = { id: 'ice-video', type: 'youtube', youtubeId: 'abcDEF_12-x', title: L('v'), subtitle: L('s'), credit: 'Valve Corporation', sourceUrl: 'https://www.youtube.com/watch?v=abcDEF_12-x' };
+    const withMedia = (regionMedia, placeMedia) => {
+      const c = content();
+      if (regionMedia) c.data.media = regionMedia;
+      if (placeMedia) c.data.places['Blueheart Glacier'].media = placeMedia;
+      return c;
+    };
+
+    it('пробрасывает media.json и ссылки региона и места', () => {
+      const media = { media: [image(), video] };
+      const { world, errors, warnings } = buildWorld({ ...fixture(), contents: [withMedia(['ice-comic'], ['ice-video'])], media });
+      expect(errors).toEqual([]);
+      expect(warnings).toEqual([]);
+      expect(world.media).toEqual([image(), video]);
+      expect(world.regions[0].media).toEqual(['ice-comic']);
+      expect(world.regions[0].places[1].media).toEqual(['ice-video']);
+      expect(world.regions[0].places[1].text.name).toEqual(L('glacier'));
+      expect(world.regions[0].places[0]).not.toHaveProperty('media');
+    });
+
+    it('без media.json полей media нет', () => {
+      const { world } = buildWorld({ ...fixture(), contents: [content()] });
+      expect(world).not.toHaveProperty('media');
+      expect(world.regions[0]).not.toHaveProperty('media');
+    });
+
+    it('место только с медиа, без текста', () => {
+      const c = content();
+      c.data.places = { Icewrack: { media: ['ice-comic'] } };
+      const { world, errors } = buildWorld({ ...fixture(), contents: [c], media: { media: [image()] } });
+      expect(errors).toEqual([]);
+      expect(world.regions[0].places[0]).not.toHaveProperty('text');
+      expect(world.regions[0].places[0].media).toEqual(['ice-comic']);
+    });
+
+    it('ошибка на неизвестный id, больше 3 медиа и повтор в списке', () => {
+      const media = { media: [image('a'), image('b'), image('c'), image('d')] };
+      const { errors } = buildWorld({ ...fixture(), contents: [withMedia(['a', 'b', 'c', 'd'], ['nope', 'a', 'a'])], media });
+      const text = errors.join('\n');
+      expect(errors).toHaveLength(3);
+      expect(text).toMatch(/больше 3/);
+      expect(text).toMatch(/"nope"/);
+      expect(text).toMatch(/"a" повторяется/);
+    });
+
+    it('ошибка на медиа без src и youtubeId, http-ссылки и неверный youtubeId', () => {
+      const noSrc = { ...image('no-src'), src: undefined };
+      const httpSrc = { ...image('http-src'), src: 'http://cdn.example.com/a.jpg' };
+      const httpSource = { ...image('http-source'), sourceUrl: 'http://www.dota2.com/x' };
+      const badVideo = { ...video, id: 'bad-video', youtubeId: 'short' };
+      const mixed = { ...video, id: 'mixed', src: 'https://cdn.example.com/a.jpg' };
+      const noCredit = { ...image('no-credit'), credit: '' };
+      const media = { media: [noSrc, httpSrc, httpSource, badVideo, mixed, noCredit, image('Bad Id'), image('ok'), image('ok')] };
+      const refs = ['no-src', 'http-src', 'http-source'];
+      const { errors, world } = buildWorld({ ...fixture(), contents: [withMedia(refs)], media });
+      expect(errors).toHaveLength(8);
+      const text = errors.join('\n');
+      expect(text).toMatch(/no-src.*нет ни src, ни youtubeId/);
+      expect(text).toMatch(/http-src.*src/);
+      expect(text).toMatch(/http-source.*sourceUrl/);
+      expect(text).toMatch(/bad-video.*youtubeId/);
+      expect(text).toMatch(/mixed.*src/);
+      expect(text).toMatch(/no-credit.*credit/);
+      expect(text).toMatch(/kebab-case/);
+      expect(text).toMatch(/id повторяется/);
+      expect(world.media.map((m) => m.id)).toEqual(['ok']);
+    });
+
+    it('разрешает относительный путь к ассету в src', () => {
+      const media = { media: [{ ...image(), src: 'assets/media/ice.webp' }] };
+      const { errors } = buildWorld({ ...fixture(), contents: [withMedia(['ice-comic'])], media });
+      expect(errors).toEqual([]);
+    });
+
+    it('предупреждение на медиа без привязки', () => {
+      const { errors, warnings } = buildWorld({ ...fixture(), contents: [content()], media: { media: [image()] } });
+      expect(errors).toEqual([]);
+      expect(warnings).toEqual([expect.stringMatching(/ice-comic/)]);
+    });
+  });
+
   it('нормализует алиас для сравнения', () => {
     expect(normalizeAlias('  Ёжик   Ёж ')).toBe('ежик еж');
   });

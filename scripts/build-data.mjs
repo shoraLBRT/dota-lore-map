@@ -1,11 +1,11 @@
-// Сборка данных: research/e1 + content/regions + map/layout.json → src/data/world.generated.json.
+// Сборка данных: research/e1 + content/regions + content/media.json + map/layout.json → src/data/world.generated.json.
 // Формат входа и правила — docs/ARCHITECTURE.md §A3. Без зависимостей, Node 22.
 //
 //   node scripts/build-data.mjs            собрать и записать
 //   node scripts/build-data.mjs --root DIR  взять файлы из другого корня (для тестов)
 //
-// Ошибка (exit 1) — ссылка на несуществующий регион, место или героя и неверный формат.
-// Предупреждение (без exit 1) — один алиас у нескольких героев.
+// Ошибка (exit 1) — ссылка на несуществующий регион, место, героя или медиа и неверный формат.
+// Предупреждение (без exit 1) — один алиас у нескольких героев, медиа ни к чему не привязано.
 // Отсутствующий контент или позиция на карте — не ошибка.
 
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
@@ -22,6 +22,14 @@ export const BIOMES = [
 export const AMBIENTS = ['snow', 'ash', 'embers', 'fog', 'rain', 'sparkles', 'stars', 'leaves', 'sand', 'none'];
 export const TRAITS = ['rule', 'magic', 'biome'];
 const PLACE_TEXT = ['name', 'type', 'description'];
+const PLACE_KEYS = [...PLACE_TEXT, 'media'];
+export const MEDIA_TYPES = ['image', 'youtube'];
+export const MAX_MEDIA = 3;
+const MEDIA_ID = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+const YOUTUBE_ID = /^[A-Za-z0-9_-]{11}$/;
+const isHttps = (v) => typeof v === 'string' && /^https:\/\/[^\s/]+\.[^\s]+$/.test(v);
+/** src картинки: https-ссылка или относительный путь без схемы (ARCHITECTURE A3). */
+const isMediaSrc = (v) => isHttps(v) || (isNonEmptyString(v) && !/^[a-z][a-z0-9+.-]*:|^\/\//i.test(v) && !/\s/.test(v));
 const ROLES = ['origin', 'home', 'link'];
 const BASES = ['infobox', 'bio', 'page', 'ours'];
 
@@ -121,6 +129,7 @@ function buildContent(file, data, regionById, errors) {
   if (data.description !== undefined) {
     out.description = localized(data.description, `${where}: description`, errors);
   }
+  if (data.media !== undefined) out.media = mediaRefs(data.media, `${where}: media`, errors);
 
   out.places = new Map();
   if (data.places !== undefined) {
@@ -138,7 +147,7 @@ function buildContent(file, data, regionById, errors) {
           continue;
         }
         for (const key of Object.keys(text)) {
-          if (!PLACE_TEXT.includes(key)) errors.push(`${where}: places["${name}"] — неизвестный ключ "${key}"`);
+          if (!PLACE_KEYS.includes(key)) errors.push(`${where}: places["${name}"] — неизвестный ключ "${key}"`);
         }
         const t = compact(
           Object.fromEntries(
@@ -148,11 +157,86 @@ function buildContent(file, data, regionById, errors) {
             ]),
           ),
         );
-        if (Object.keys(t).length > 0) out.places.set(name, t);
+        const media = text.media !== undefined ? mediaRefs(text.media, `${where}: places["${name}"].media`, errors) : undefined;
+        if (Object.keys(t).length > 0 || media) out.places.set(name, { text: Object.keys(t).length > 0 ? t : undefined, media });
       }
     }
   }
   return out;
+}
+
+/** Список ссылок на медиа у региона или места: ≤ MAX_MEDIA разных id (SPEC §10). */
+function mediaRefs(value, where, errors) {
+  if (!Array.isArray(value) || !value.every(isNonEmptyString)) {
+    errors.push(`${where}: ожидается список id медиа`);
+    return undefined;
+  }
+  if (value.length > MAX_MEDIA) errors.push(`${where}: больше ${MAX_MEDIA} медиа (${value.length})`);
+  const seen = new Set();
+  for (const id of value) {
+    if (seen.has(id)) errors.push(`${where}: медиа "${id}" повторяется`);
+    seen.add(id);
+  }
+  return value.length > 0 ? [...value] : undefined;
+}
+
+const MEDIA_KEYS = ['id', 'type', 'src', 'youtubeId', 'title', 'subtitle', 'description', 'credit', 'sourceUrl'];
+
+/** content/media.json → Map id → медиа (формат — ARCHITECTURE A3). */
+function buildMedia(media, errors) {
+  const where = 'content/media.json';
+  const out = new Map();
+  const ids = new Set();
+  if (media === undefined) return { byId: out, ids };
+  if (!isObject(media) || !Array.isArray(media.media)) {
+    errors.push(`${where}: ожидается { media: [ ... ] }`);
+    return { byId: out, ids };
+  }
+  media.media.forEach((m, i) => {
+    const w = `${where}: media[${i}]${isObject(m) && isNonEmptyString(m.id) ? ` "${m.id}"` : ''}`;
+    if (!isObject(m)) {
+      errors.push(`${w}: ожидается объект`);
+      return;
+    }
+    const before = errors.length;
+    for (const key of Object.keys(m)) {
+      if (!MEDIA_KEYS.includes(key)) errors.push(`${w}: неизвестный ключ "${key}"`);
+    }
+    if (!isNonEmptyString(m.id) || !MEDIA_ID.test(m.id)) errors.push(`${w}: id — нужна строка в kebab-case`);
+    else if (ids.has(m.id)) errors.push(`${w}: id повторяется`);
+    else ids.add(m.id);
+    if (!MEDIA_TYPES.includes(m.type)) errors.push(`${w}: type — ${MEDIA_TYPES.join(' | ')}`);
+    if (m.src === undefined && m.youtubeId === undefined) {
+      errors.push(`${w}: нет ни src, ни youtubeId`);
+    } else if (m.type === 'image') {
+      if (m.youtubeId !== undefined) errors.push(`${w}: у картинки не должно быть youtubeId`);
+      if (!isMediaSrc(m.src)) errors.push(`${w}: src — https-ссылка или относительный путь (http:// нельзя)`);
+    } else if (m.type === 'youtube') {
+      if (m.src !== undefined) errors.push(`${w}: у видео не должно быть src, только youtubeId`);
+      if (!isNonEmptyString(m.youtubeId) || !YOUTUBE_ID.test(m.youtubeId)) errors.push(`${w}: youtubeId — 11 символов [A-Za-z0-9_-]`);
+    }
+    const title = localized(m.title, `${w}: title`, errors);
+    const subtitle = localized(m.subtitle, `${w}: subtitle`, errors);
+    const description = m.description !== undefined ? localized(m.description, `${w}: description`, errors) : undefined;
+    if (!isNonEmptyString(m.credit)) errors.push(`${w}: credit — нужен правообладатель (SPEC §15)`);
+    if (!isHttps(m.sourceUrl)) errors.push(`${w}: sourceUrl — нужна https-ссылка на источник (SPEC §15)`);
+    if (errors.length !== before) return;
+    out.set(
+      m.id,
+      compact({
+        id: m.id,
+        type: m.type,
+        src: m.src,
+        youtubeId: m.youtubeId,
+        title,
+        subtitle,
+        description,
+        credit: m.credit,
+        sourceUrl: m.sourceUrl,
+      }),
+    );
+  });
+  return { byId: out, ids };
 }
 
 function buildLayout(layout, regionById, placeRegion, errors) {
@@ -266,7 +350,7 @@ function buildAliases(heroAliases, heroes, errors, warnings) {
  * Собирает мир из уже прочитанных исходников. Ничего не пишет на диск.
  * @returns {{ world: object, errors: string[], warnings: string[] }}
  */
-export function buildWorld({ heroes, regions, heroPlaces, heroAliases, contents = [], layout = null }) {
+export function buildWorld({ heroes, regions, heroPlaces, heroAliases, contents = [], layout = null, media }) {
   const errors = [];
   const warnings = [];
 
@@ -295,6 +379,22 @@ export function buildWorld({ heroes, regions, heroPlaces, heroAliases, contents 
   }
 
   const map = layout ? buildLayout(layout, regionById, placeRegion, errors) : null;
+
+  const mediaInfo = buildMedia(media, errors);
+  const usedMedia = new Set();
+  const checkRefs = (refs, where) => {
+    for (const id of refs ?? []) {
+      if (!mediaInfo.ids.has(id)) errors.push(`${where}: неизвестное медиа "${id}"`);
+      usedMedia.add(id);
+    }
+  };
+  for (const c of contentById.values()) {
+    checkRefs(c.media, `content/regions/${c.id}.json: media`);
+    for (const [name, p] of c.places) checkRefs(p.media, `content/regions/${c.id}.json: places["${name}"].media`);
+  }
+  for (const id of mediaInfo.ids) {
+    if (!usedMedia.has(id)) warnings.push(`content/media.json: медиа "${id}" ни к чему не привязано`);
+  }
 
   const heroByName = new Map(heroes.heroes.map((h) => [h.name, h]));
   const linksByKey = new Map();
@@ -361,6 +461,7 @@ export function buildWorld({ heroes, regions, heroPlaces, heroAliases, contents 
       ambient: c?.ambient,
       traits: c?.traits,
       description: c?.description,
+      media: c?.media,
       layout: map?.regions.get(r.id),
       places: r.locations.map((l) =>
         compact({
@@ -369,7 +470,8 @@ export function buildWorld({ heroes, regions, heroPlaces, heroAliases, contents 
           capital: l.capital === true,
           placement: l.placement,
           note: l.note,
-          text: c?.places.get(l.name),
+          text: c?.places.get(l.name)?.text,
+          media: c?.places.get(l.name)?.media,
           pos: map?.places.get(l.name),
         }),
       ),
@@ -384,6 +486,7 @@ export function buildWorld({ heroes, regions, heroPlaces, heroAliases, contents 
     bands: map?.bands,
     regions: worldRegions,
     heroes: heroList,
+    media: mediaInfo.byId.size > 0 ? [...mediaInfo.byId.values()] : undefined,
   });
   return { world, errors, warnings };
 }
@@ -419,7 +522,8 @@ export function readSources(root) {
     }
   }
   const layout = existsSync(join(root, 'map/layout.json')) ? (tryRead('map/layout.json') ?? null) : null;
-  return { sources: { heroes, regions, heroPlaces, heroAliases, contents, layout }, errors };
+  const media = existsSync(join(root, 'content/media.json')) ? tryRead('content/media.json') : undefined;
+  return { sources: { heroes, regions, heroPlaces, heroAliases, contents, layout, media }, errors };
 }
 
 export function serialize(world) {
@@ -453,7 +557,8 @@ function main(argv) {
   const withLayout = world.regions.filter((r) => r.layout).length;
   console.log(
     `build-data: OK — ${world.regions.length} регионов (с текстом ${withText}, на карте ${withLayout}), ` +
-      `${places} мест, ${world.heroes.length} героев (с алиасами ${world.heroes.filter((h) => h.aliases).length}) → ${OUTPUT}`,
+      `${places} мест, ${world.heroes.length} героев (с алиасами ${world.heroes.filter((h) => h.aliases).length}), ` +
+      `${world.media?.length ?? 0} медиа → ${OUTPUT}`,
   );
 }
 
