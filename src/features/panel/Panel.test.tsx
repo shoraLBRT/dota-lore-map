@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { describe, expect, it } from 'vitest';
 import { NavigationProvider } from '../../app/navigation';
 import type { Place, Region } from '../../data/types';
-import { getRegion, heroesOfRegion } from '../../data/world';
+import { getRegion, heroesOfRegion, world } from '../../data/world';
 import { I18nProvider } from '../../i18n';
 import { PlacePanel } from '../location/PlacePanel';
 import { REGION_HEROES, RegionPanel } from '../region/RegionPanel';
@@ -19,13 +19,8 @@ const bare: Region = {
   regionHeroes: [],
 };
 
-const media = (n: number) =>
-  Array.from({ length: n }, (_, i) => ({
-    id: `m${i}`,
-    type: 'image' as const,
-    title: { ru: `Арт ${i}`, en: `Art ${i}` },
-    subtitle: { ru: 'Арт', en: 'Artwork' },
-  }));
+// Настоящие id из content/media.json; неизвестные id карточки пропускают.
+const media = (n: number) => (world.media ?? []).slice(0, n).map((m) => m.id);
 
 function wrap(node: React.ReactNode, lang: 'ru' | 'en' = 'ru') {
   return render(
@@ -73,7 +68,7 @@ describe('панель региона (SPEC §5.4)', () => {
     const cards = within(section).getAllByRole('button');
     expect(cards).toHaveLength(3);
     fireEvent.click(cards[1]!);
-    expect(window.location.hash).toBe('#/?media=m1');
+    expect(window.location.hash).toBe(`#/?media=${media(2)[1]}`);
   });
 
   it('«+N» раскрывает весь список героев', () => {

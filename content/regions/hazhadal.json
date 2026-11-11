@@ -27,7 +27,8 @@
       "description": {
         "ru": "Крепость в Хазадальских пустошах, на которую обрушился Axe в комиксе Valve «The Last Castle». Больше о ней почти ничего не известно.",
         "en": "A stronghold in the Hazhadal Barrens that Axe assaults in Valve's comic The Last Castle. Little else is known about it."
-      }
+      },
+      "media": ["valhessi-the-last-castle"]
     }
   }
 }

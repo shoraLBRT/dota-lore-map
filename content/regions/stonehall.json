@@ -75,7 +75,8 @@
       "description": {
         "ru": "Небольшой рабочий город к западу от столицы, на реке между Розолистом и Таррином. Реку отвели на поля, и Миллтаун стал главным поставщиком ржи в округе. Город под защитой Стоунхолла, и когда его разорили твари из Редфернского леса, разбираться приехала сама Трездин.",
         "en": "A small workers' town west of the capital, on the river between Roseleaf and Tarrin. The river was diverted to water its fields, making it the region's biggest rye producer. It lives under Stonehall's protection, and when creatures from the Redfern Forest raided it, Tresdin came to investigate in person."
-      }
+      },
+      "media": ["milltown-dark-carnival"]
     },
     "Ember (City)": {
       "name": { "ru": "Эмбер", "en": "Ember" },

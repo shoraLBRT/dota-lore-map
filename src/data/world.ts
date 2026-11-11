@@ -1,5 +1,5 @@
 import raw from './world.generated.json';
-import type { Hero, Lang, Localized, Place, Region, World } from './types';
+import type { Hero, Lang, Localized, Media, Place, Region, World } from './types';
 
 export const world = raw as unknown as World;
 
@@ -8,6 +8,7 @@ const placeByKey = new Map<string, Place>(
   world.regions.flatMap((r) => r.places.map((p) => [placeKey(r.id, p.slug), p] as const)),
 );
 const heroByKey = new Map<string, Hero>(world.heroes.map((h) => [h.key, h]));
+const mediaById = new Map<string, Media>((world.media ?? []).map((m) => [m.id, m]));
 
 function placeKey(regionId: string, slug: string): string {
   return `${regionId}/${slug}`;
@@ -19,6 +20,24 @@ export function getRegion(id: string): Region | undefined {
 
 export function getPlace(regionId: string, slug: string): Place | undefined {
   return placeByKey.get(placeKey(regionId, slug));
+}
+
+export function getMedia(id: string): Media | undefined {
+  return mediaById.get(id);
+}
+
+/** id медиа → записи из World.media; неизвестные id пропускаются. */
+export function resolveMedia(ids: string[] | undefined): Media[] {
+  return (ids ?? []).flatMap((id) => {
+    const m = mediaById.get(id);
+    return m ? [m] : [];
+  });
+}
+
+/** Картинка карточки: сама картинка или превью ролика YouTube. */
+export function mediaThumb(m: Media): string | undefined {
+  if (m.type === 'youtube' && m.youtubeId) return `https://i.ytimg.com/vi/${m.youtubeId}/hqdefault.jpg`;
+  return m.src;
 }
 
 export function getHero(key: string): Hero | undefined {

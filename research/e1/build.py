@@ -2,7 +2,7 @@
 
 Проверяет, что каждый герой из официального списка (heroes.json) привязан к месту
 или региону (герои без места в лоре — к региону `uncharted` с пояснением),
-и что все места и регионы существуют.
+и что все места и регионы существуют. Проверяет алиасы поиска (hero-aliases.json).
 Затем генерирует таблицы в docs/research/E1-places.md (между маркерами).
 
 Запуск из корня репозитория:  python research/e1/build.py
@@ -75,6 +75,42 @@ def validate(heroes, regions, places):
             if link.get("region") == "uncharted" and not link.get("note"):
                 errors.append(f"{hero}: у героя «Неизведанных земель» нужна заметка note")
     return errors, loc_region
+
+
+def norm_alias(s):
+    """Ключ сравнения алиасов: регистр, ё/е и лишние пробелы не важны (как в поиске)."""
+    return " ".join(s.lower().replace("ё", "е").split())
+
+
+def validate_aliases(heroes, aliases):
+    """Ошибки: неизвестный герой, не список, пустая строка, повтор внутри героя или совпадение с именем.
+    Предупреждение: один и тот же алиас у двух героев."""
+    errors, warnings = [], []
+    names = {h["key"]: h["name"] for h in heroes["heroes"]}
+    owners = {}
+    for key, items in aliases.get("aliases", {}).items():
+        if key not in names:
+            errors.append(f"алиасы: неизвестный герой {key}")
+            continue
+        if not isinstance(items, list):
+            errors.append(f"алиасы {key}: ожидается список строк")
+            continue
+        seen = set()
+        for a in items:
+            if not isinstance(a, str) or not a.strip():
+                errors.append(f"алиасы {key}: пустой алиас")
+                continue
+            n = norm_alias(a)
+            if n in seen:
+                errors.append(f"алиасы {key}: повтор «{a}»")
+            elif n == norm_alias(names[key]):
+                errors.append(f"алиасы {key}: «{a}» совпадает с именем героя")
+            seen.add(n)
+            owners.setdefault(n, set()).add(key)
+    for n, keys in sorted(owners.items()):
+        if len(keys) > 1:
+            warnings.append(f"алиас «{n}» у нескольких героев: {', '.join(sorted(keys))}")
+    return errors, warnings
 
 
 def hero_tag(hero, link):
@@ -157,11 +193,17 @@ def main():
     sys.stdout.reconfigure(encoding="utf-8")
     heroes, regions, places = load("heroes.json"), load("regions.json"), load("hero-places.json")
     errors, loc_region = validate(heroes, regions, places)
+    aliases = load("hero-aliases.json")
+    alias_errors, alias_warnings = validate_aliases(heroes, aliases)
+    errors += alias_errors
+    for w in alias_warnings:
+        print(f"ПРЕДУПРЕЖДЕНИЕ: {w}")
     if errors:
         print("ОШИБКИ:\n" + "\n".join(f"  - {e}" for e in errors))
         sys.exit(1)
     print(f"OK: {len(places['heroes'])} из {len(heroes['heroes'])} героев привязаны; "
-          f"{len(loc_region)} мест в {len(regions['regions'])} регионах")
+          f"{len(loc_region)} мест в {len(regions['regions'])} регионах; "
+          f"алиасы у {len(aliases['aliases'])} героев")
     if "--check" in sys.argv:
         return
     doc = DOC.read_text(encoding="utf-8")

@@ -60,20 +60,6 @@ export interface PlaceText {
 
 export type Placement = 'lore' | 's1map' | 'ours';
 
-/**
- * Карточка медиа в панели (SPEC §5.4 п. 7, §10). Данных пока нет — их добавят E1 (медиа) и E6 (галерея);
- * панель уже показывает до 3 карточек, а без медиа блок скрыт.
- */
-export interface MediaItem {
-  id: string;
-  type: 'image' | 'youtube';
-  title: Localized;
-  /** Тип: «Арт», «Синематик», «Комикс». */
-  subtitle?: Localized;
-  /** Картинка-фон карточки. */
-  thumb?: string;
-}
-
 export interface Place {
   /** Имя из research/e1/regions.json (английское, служит ключом). */
   name: string;
@@ -83,10 +69,31 @@ export interface Place {
   /** Заметка исследования (по-русски, для разработчиков). */
   note?: string;
   text?: PlaceText;
+  /** id из World.media, ≤ 3 (SPEC §10). Нет медиа — поля нет. */
+  media?: string[];
   pos?: Point;
   /** Шапка-картинка панели места (SPEC §5.5 п. 1), появится с артом. */
   art?: string;
-  media?: MediaItem[];
+}
+
+export type MediaType = 'image' | 'youtube';
+
+/** Медиа для галереи (SPEC §5.6, §10); источник — content/media.json (ARCHITECTURE A3). */
+export interface Media {
+  id: string;
+  type: MediaType;
+  /** Картинка: https-ссылка на официальный источник или путь к ассету. Только у type = image. */
+  src?: string;
+  /** Видео: id ролика YouTube, встраивается через youtube-nocookie.com. Только у type = youtube. */
+  youtubeId?: string;
+  title: Localized;
+  /** Тип для подзаголовка: «Комикс», «Синематик», «Арт». */
+  subtitle: Localized;
+  description?: Localized;
+  /** Правообладатель (SPEC §15). */
+  credit: string;
+  /** Страница источника ↗. */
+  sourceUrl: string;
 }
 
 export interface Region {
@@ -103,9 +110,10 @@ export interface Region {
   ambient?: Ambient;
   traits?: Traits;
   description?: Localized;
+  /** id из World.media для региона в целом, ≤ 3 (SPEC §10). Нет медиа — поля нет. */
+  media?: string[];
   /** Ссылка «Подробнее ↗» на внешний источник (SPEC §5.4 п. 6), из content/regions. */
   moreLink?: string;
-  media?: MediaItem[];
   layout?: RegionLayout;
   places: Place[];
   /** Герои, привязанные к региону целиком (без конкретного места). */
@@ -128,6 +136,8 @@ export interface Hero {
   name: string;
   /** Для https://www.dota2.com/hero/<slug>. */
   slug: string;
+  /** Алиасы для поиска (SPEC §6.5): кириллица, сокращения, прозвища, личные имена. Нет — поле отсутствует. */
+  aliases?: string[];
   links: HeroLink[];
 }
 
@@ -136,4 +146,6 @@ export interface World {
   bands?: { upper: [number, number]; abyss: [number, number] };
   regions: Region[];
   heroes: Hero[];
+  /** Все медиа; регионы и места ссылаются на них по id. Нет медиа — поля нет. */
+  media?: Media[];
 }

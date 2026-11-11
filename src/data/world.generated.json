@@ -727,6 +727,9 @@
         "ru": "Крайний север мира: замёрзшая равнина между хребтом Барьер и Кипящим морем. Сюда почти не ходят корабли — единственный морской путь лежит через Фростреч, самый северный порт на свете. Сквозь весь край течёт Ледник Голубого Сердца — источник всей магии холода.\n\nКогда-то здешние королевства стонали под властью колдуна Этреина, пока восставшие подданные не убили его и не сбросили в Чёрный омут; теперь он вернулся как Lich. Сегодня на севере живут суровые племена вроде Фростайронов, а в тавернах до сих пор пересказывают драки Tusk.\n\nВ Айсрак отправили маленькую Райлай, которая замораживала всё вокруг, — здесь она стала ученицей Ледяного Волшебника и стала Crystal Maiden. В изгнании здесь жил бескрылый скайрас Kez, а в северных сосновых лесах бродит Lone Druid.",
         "en": "The far north of the world: a frozen expanse between the Barrier mountains and the Boiling Sea. Few ships ever arrive; the only sea route runs through Frostreach, the northernmost port there is. Through the heart of the land flows the Blueheart Glacier, the wellspring of all frost magic.\n\nIts kingdoms once suffered under the sorcerer Ethreain until his own subjects rose up, killed him and sank him in the Black Pool; he has since returned as the Lich. Today the north belongs to hardy tribes like the Frostiron, and its taverns still retell Tusk's brawls.\n\nYoung Rylai, who froze everything around her, was sent to Icewrack and found a teacher in the Ice Wizard, becoming the Crystal Maiden. The flightless Skywrath Kez spent his exile here, and the Lone Druid roams the northern pines."
       },
+      "media": [
+        "icewrack-new-neighbors"
+      ],
       "layout": {
         "polygon": [
           [
@@ -1101,6 +1104,9 @@
               "en": "The northernmost port in the world and the only gateway to Icewrack by sea. Nothing more is known about it."
             }
           },
+          "media": [
+            "frostreach-the-dragon"
+          ],
           "pos": [
             0.585,
             0.172
@@ -2045,6 +2051,9 @@
               "en": "A small workers' town west of the capital, on the river between Roseleaf and Tarrin. The river was diverted to water its fields, making it the region's biggest rye producer. It lives under Stonehall's protection, and when creatures from the Redfern Forest raided it, Tresdin came to investigate in person."
             }
           },
+          "media": [
+            "milltown-dark-carnival"
+          ],
           "pos": [
             0.408,
             0.388
@@ -2686,6 +2695,9 @@
               "en": "Jull's tavern in White Spire, pouring bootleg liquor and a notorious cocktail brewed from plague wards. It caters mostly to heroes — a creep's head may be demanded at the door — and its chief rival is the mage-run Cantrip Mana Lounge and Bar."
             }
           },
+          "media": [
+            "sundered-moon-comic"
+          ],
           "pos": [
             0.595,
             0.39
@@ -3167,6 +3179,9 @@
               "en": "A stronghold in the Hazhadal Barrens that Axe assaults in Valve's comic The Last Castle. Little else is known about it."
             }
           },
+          "media": [
+            "valhessi-the-last-castle"
+          ],
           "pos": [
             0.655,
             0.525
@@ -3212,6 +3227,9 @@
         "ru": "Высокое плато к югу от Полей Вечной Бойни — красные пустыни, продуваемые ветрами степи и бесконечные столовые горы. Это земля кланов кентавров. Чужакам они кажутся грубыми дикарями: у них нет ни письменности, ни музыки, ни устроенной веры. Но для кентавра бой и есть высшая форма мысли.\n\nНа плоскогорье живут и горные оглоди — последний осколок некогда великой цивилизации. Они ездят на страйдерах, роются в руинах городов предков и почитают погоду как божество: летние грозы приносят дождь, но оставляют за собой обугленные тела. С юга на их земли постоянно давят оседлые королевства.\n\nОтсюда родом двое героев. Centaur Warrunner стал непобедимым чемпионом арены Омекс и ушёл искать достойного противника по всему миру. Disruptor, юный мастер бурь, приспособил древнюю катушку, которая призывает молнию по его воле, и обратил её против южных захватчиков.",
         "en": "A high plateau south of the Fields of Endless Carnage — red deserts, wind-scoured steppe and endless tablelands. This is the country of the centaur clans. Outsiders take them for brutes: they have no writing, no formal music, no organised faith. To a centaur, though, combat is the purest form of thought.\n\nThe uplands are also home to the Oglodi, the last remnant of a once-great civilisation. They ride stryders, scavenge the ruins of their ancestors' cities and revere the weather itself — summer storms bring rain but leave charred bodies in their wake. Settled kingdoms to the south keep pressing on their land.\n\nTwo heroes hail from here. Centaur Warrunner became the undisputed champion of the Omexe arena, then rode off in search of an opponent worthy of him. Disruptor, a young stormcrafter, adapted an ancient coil that calls down lightning at will and turned it on the southern intruders."
       },
+      "media": [
+        "druud-hells-basin"
+      ],
       "layout": {
         "polygon": [
           [
@@ -7315,6 +7333,9 @@
         "ru": "Семь слоёв вечной тьмы и мучений, разделённых перепонками, сквозь которые свободно проходит один лишь Doom. Он — владыка всех преисподних, за ним идут Shadow Demon и, последним из Владык демонов, Невермор (Shadow Fiend).\n\nНо ад — не только демоны. Каждую новую душу ждёт Узкий лабиринт: Razor гонит мёртвых по его тёмным, усеянным клинками ходам, и одни выходят к свету, другие — во тьму Андерскейпа. Где-то рядом лежит Мир Нотл, где свет и тьма поменялись местами.\n\nСюда ведут судьбы многих героев: Terrorblade, сбежавшего из тюрьмы демонов, Visage, жреца Dazzle, Huskar, однажды вернувшегося к жизни, и Warlock, призывающего големов из Внешних преисподних.",
         "en": "Seven layers of endless darkness and torment, divided by membranes that only Doom may freely cross. He is sovereign of every hell; below him stand the Shadow Demon and, least of the Demon Lords, Nevermore.\n\nYet hell is more than demons. Every newly dead soul must walk the Narrow Maze, where Razor drives the dead through cold, blade-lined passages; some emerge into light, others into the dark of the Underscape. Close by lies the Nothl Realm, where light and darkness have traded places.\n\nMany heroes' stories run through here: Terrorblade, who broke out of the demons' own prison; Visage; the shadow priest Dazzle; Huskar, who once came back to the living; and Warlock, who summons golems from the Outer Hells."
       },
+      "media": [
+        "hells-ascension"
+      ],
       "layout": {
         "polygon": [
           [
@@ -7582,6 +7603,14 @@
       "key": "antimage",
       "name": "Anti-Mage",
       "slug": "antimage",
+      "aliases": [
+        "Антимаг",
+        "Анти-Маг",
+        "AM",
+        "АМ",
+        "Magina",
+        "Магина"
+      ],
       "links": [
         {
           "regionId": "wailing-mountains",
@@ -7601,6 +7630,11 @@
       "key": "axe",
       "name": "Axe",
       "slug": "axe",
+      "aliases": [
+        "Акс",
+        "Mogul Khan",
+        "Могул Хан"
+      ],
       "links": [
         {
           "regionId": "radiant-lands",
@@ -7614,6 +7648,11 @@
       "key": "bane",
       "name": "Bane",
       "slug": "bane",
+      "aliases": [
+        "Бейн",
+        "Atropos",
+        "Атропос"
+      ],
       "links": [
         {
           "regionId": "planes",
@@ -7627,6 +7666,13 @@
       "key": "bloodseeker",
       "name": "Bloodseeker",
       "slug": "bloodseeker",
+      "aliases": [
+        "Бладсикер",
+        "Блад",
+        "BS",
+        "Strygwyr",
+        "Стригвир"
+      ],
       "links": [
         {
           "regionId": "fellstrath",
@@ -7640,6 +7686,15 @@
       "key": "crystal_maiden",
       "name": "Crystal Maiden",
       "slug": "crystalmaiden",
+      "aliases": [
+        "Кристал Мейден",
+        "CM",
+        "ЦМ",
+        "КМ",
+        "Rylai",
+        "Райлай",
+        "Рилай"
+      ],
       "links": [
         {
           "regionId": "icewrack",
@@ -7653,6 +7708,13 @@
       "key": "drow_ranger",
       "name": "Drow Ranger",
       "slug": "drowranger",
+      "aliases": [
+        "Дроу Рейнджер",
+        "Дроу",
+        "Drow",
+        "Traxex",
+        "Траксекс"
+      ],
       "links": [
         {
           "regionId": "icewrack",
@@ -7665,6 +7727,13 @@
       "key": "earthshaker",
       "name": "Earthshaker",
       "slug": "earthshaker",
+      "aliases": [
+        "Эртшейкер",
+        "Шейкер",
+        "ES",
+        "Raigor",
+        "Райгор"
+      ],
       "links": [
         {
           "regionId": "hoven",
@@ -7678,6 +7747,13 @@
       "key": "juggernaut",
       "name": "Juggernaut",
       "slug": "juggernaut",
+      "aliases": [
+        "Джаггернаут",
+        "Джагер",
+        "Jugg",
+        "Yurnero",
+        "Юрнеро"
+      ],
       "links": [
         {
           "regionId": "tropic-isles",
@@ -7691,6 +7767,10 @@
       "key": "mirana",
       "name": "Mirana",
       "slug": "mirana",
+      "aliases": [
+        "Мирана",
+        "POTM"
+      ],
       "links": [
         {
           "regionId": "nightsilver",
@@ -7710,6 +7790,11 @@
       "key": "morphling",
       "name": "Morphling",
       "slug": "morphling",
+      "aliases": [
+        "Морфлинг",
+        "Морф",
+        "Morph"
+      ],
       "links": [
         {
           "regionId": "the-deep",
@@ -7722,6 +7807,13 @@
       "key": "nevermore",
       "name": "Shadow Fiend",
       "slug": "shadowfiend",
+      "aliases": [
+        "Шадоу Финд",
+        "SF",
+        "СФ",
+        "Nevermore",
+        "Невермор"
+      ],
       "links": [
         {
           "regionId": "hells",
@@ -7735,6 +7827,12 @@
       "key": "phantom_lancer",
       "name": "Phantom Lancer",
       "slug": "phantomlancer",
+      "aliases": [
+        "Фантом Лансер",
+        "PL",
+        "ПЛ",
+        "Azwraith"
+      ],
       "links": [
         {
           "regionId": "radiant-lands",
@@ -7748,6 +7846,9 @@
       "key": "puck",
       "name": "Puck",
       "slug": "puck",
+      "aliases": [
+        "Пак"
+      ],
       "links": [
         {
           "regionId": "planes",
@@ -7767,6 +7868,11 @@
       "key": "pudge",
       "name": "Pudge",
       "slug": "pudge",
+      "aliases": [
+        "Пудж",
+        "Butcher",
+        "Мясник"
+      ],
       "links": [
         {
           "regionId": "quoidge",
@@ -7786,6 +7892,10 @@
       "key": "razor",
       "name": "Razor",
       "slug": "razor",
+      "aliases": [
+        "Разор",
+        "Рейзор"
+      ],
       "links": [
         {
           "regionId": "hells",
@@ -7805,6 +7915,14 @@
       "key": "sand_king",
       "name": "Sand King",
       "slug": "sandking",
+      "aliases": [
+        "Сэнд Кинг",
+        "Сенд Кинг",
+        "SK",
+        "СК",
+        "Crixalis",
+        "Криксалис"
+      ],
       "links": [
         {
           "regionId": "scintillant",
@@ -7824,6 +7942,13 @@
       "key": "storm_spirit",
       "name": "Storm Spirit",
       "slug": "stormspirit",
+      "aliases": [
+        "Шторм Спирит",
+        "Шторм",
+        "Storm",
+        "Raijin",
+        "Райджин"
+      ],
       "links": [
         {
           "regionId": "wailing-mountains",
@@ -7837,6 +7962,9 @@
       "key": "sven",
       "name": "Sven",
       "slug": "sven",
+      "aliases": [
+        "Свен"
+      ],
       "links": [
         {
           "regionId": "shadeshore",
@@ -7862,6 +7990,10 @@
       "key": "tiny",
       "name": "Tiny",
       "slug": "tiny",
+      "aliases": [
+        "Тини",
+        "Тайни"
+      ],
       "links": [
         {
           "regionId": "uncharted",
@@ -7875,6 +8007,13 @@
       "key": "vengefulspirit",
       "name": "Vengeful Spirit",
       "slug": "vengefulspirit",
+      "aliases": [
+        "Венджфул Спирит",
+        "Венга",
+        "Venge",
+        "VS",
+        "Shendelzare"
+      ],
       "links": [
         {
           "regionId": "heavens",
@@ -7888,6 +8027,15 @@
       "key": "windrunner",
       "name": "Windranger",
       "slug": "windranger",
+      "aliases": [
+        "Виндрейнджер",
+        "Виндраннер",
+        "Винда",
+        "WR",
+        "Windrunner",
+        "Lyralei",
+        "Лиралей"
+      ],
       "links": [
         {
           "regionId": "western-forests",
@@ -7901,6 +8049,9 @@
       "key": "zuus",
       "name": "Zeus",
       "slug": "zeus",
+      "aliases": [
+        "Зевс"
+      ],
       "links": [
         {
           "regionId": "heavens",
@@ -7914,6 +8065,11 @@
       "key": "kunkka",
       "name": "Kunkka",
       "slug": "kunkka",
+      "aliases": [
+        "Кунка",
+        "Admiral",
+        "Адмирал"
+      ],
       "links": [
         {
           "regionId": "cladd",
@@ -7927,6 +8083,9 @@
       "key": "lina",
       "name": "Lina",
       "slug": "lina",
+      "aliases": [
+        "Лина"
+      ],
       "links": [
         {
           "regionId": "scintillant",
@@ -7940,6 +8099,10 @@
       "key": "lion",
       "name": "Lion",
       "slug": "lion",
+      "aliases": [
+        "Лион",
+        "Лайон"
+      ],
       "links": [
         {
           "regionId": "free-cities",
@@ -7953,6 +8116,12 @@
       "key": "shadow_shaman",
       "name": "Shadow Shaman",
       "slug": "shadowshaman",
+      "aliases": [
+        "Шадоу Шаман",
+        "Шаман",
+        "Rhasta",
+        "Раста"
+      ],
       "links": [
         {
           "regionId": "hoven",
@@ -7966,6 +8135,9 @@
       "key": "slardar",
       "name": "Slardar",
       "slug": "slardar",
+      "aliases": [
+        "Слардар"
+      ],
       "links": [
         {
           "regionId": "the-deep",
@@ -7979,6 +8151,13 @@
       "key": "tidehunter",
       "name": "Tidehunter",
       "slug": "tidehunter",
+      "aliases": [
+        "Тайдхантер",
+        "Тайд",
+        "Tide",
+        "Leviathan",
+        "Левиафан"
+      ],
       "links": [
         {
           "regionId": "cladd",
@@ -7992,6 +8171,13 @@
       "key": "witch_doctor",
       "name": "Witch Doctor",
       "slug": "witchdoctor",
+      "aliases": [
+        "Вич Доктор",
+        "WD",
+        "ВД",
+        "Zharvakko",
+        "Жарвакко"
+      ],
       "links": [
         {
           "regionId": "uncharted",
@@ -8005,6 +8191,11 @@
       "key": "lich",
       "name": "Lich",
       "slug": "lich",
+      "aliases": [
+        "Лич",
+        "Ethreain",
+        "Этрейн"
+      ],
       "links": [
         {
           "regionId": "icewrack",
@@ -8018,6 +8209,11 @@
       "key": "riki",
       "name": "Riki",
       "slug": "riki",
+      "aliases": [
+        "Рики",
+        "Rikimaru",
+        "Рикимару"
+      ],
       "links": [
         {
           "regionId": "uncharted",
@@ -8031,6 +8227,9 @@
       "key": "enigma",
       "name": "Enigma",
       "slug": "enigma",
+      "aliases": [
+        "Энигма"
+      ],
       "links": [
         {
           "regionId": "planes",
@@ -8044,6 +8243,11 @@
       "key": "tinker",
       "name": "Tinker",
       "slug": "tinker",
+      "aliases": [
+        "Тинкер",
+        "Boush",
+        "Буш"
+      ],
       "links": [
         {
           "regionId": "radiant-lands",
@@ -8057,6 +8261,11 @@
       "key": "sniper",
       "name": "Sniper",
       "slug": "sniper",
+      "aliases": [
+        "Снайпер",
+        "Kardel",
+        "Кардел"
+      ],
       "links": [
         {
           "regionId": "radiant-lands",
@@ -8070,6 +8279,11 @@
       "key": "necrolyte",
       "name": "Necrophos",
       "slug": "necrophos",
+      "aliases": [
+        "Некрофос",
+        "Некролит",
+        "Necrolyte"
+      ],
       "links": [
         {
           "regionId": "quoidge",
@@ -8083,6 +8297,11 @@
       "key": "warlock",
       "name": "Warlock",
       "slug": "warlock",
+      "aliases": [
+        "Варлок",
+        "Demnok",
+        "Демнок"
+      ],
       "links": [
         {
           "regionId": "middle-kingdoms",
@@ -8102,6 +8321,13 @@
       "key": "beastmaster",
       "name": "Beastmaster",
       "slug": "beastmaster",
+      "aliases": [
+        "Бистмастер",
+        "BM",
+        "БМ",
+        "Karroch",
+        "Каррох"
+      ],
       "links": [
         {
           "regionId": "slom-elze",
@@ -8115,6 +8341,13 @@
       "key": "queenofpain",
       "name": "Queen of Pain",
       "slug": "queenofpain",
+      "aliases": [
+        "Квин оф Пейн",
+        "Квопа",
+        "QoP",
+        "Akasha",
+        "Акаша"
+      ],
       "links": [
         {
           "regionId": "slom-elze",
@@ -8134,6 +8367,11 @@
       "key": "venomancer",
       "name": "Venomancer",
       "slug": "venomancer",
+      "aliases": [
+        "Веномансер",
+        "Веник",
+        "Lesale"
+      ],
       "links": [
         {
           "regionId": "tropic-isles",
@@ -8147,6 +8385,13 @@
       "key": "faceless_void",
       "name": "Faceless Void",
       "slug": "facelessvoid",
+      "aliases": [
+        "Фейслесс Войд",
+        "Войд",
+        "Void",
+        "FV",
+        "Darkterror"
+      ],
       "links": [
         {
           "regionId": "planes",
@@ -8160,6 +8405,15 @@
       "key": "skeleton_king",
       "name": "Wraith King",
       "slug": "wraithking",
+      "aliases": [
+        "Врейт Кинг",
+        "WK",
+        "ВК",
+        "Skeleton King",
+        "Скелетон Кинг",
+        "Ostarion",
+        "Остарион"
+      ],
       "links": [
         {
           "regionId": "empire-of-bone",
@@ -8173,6 +8427,13 @@
       "key": "death_prophet",
       "name": "Death Prophet",
       "slug": "deathprophet",
+      "aliases": [
+        "Дез Профет",
+        "DP",
+        "ДП",
+        "Krobelus",
+        "Кробелус"
+      ],
       "links": [
         {
           "regionId": "uncharted",
@@ -8186,6 +8447,14 @@
       "key": "phantom_assassin",
       "name": "Phantom Assassin",
       "slug": "phantomassassin",
+      "aliases": [
+        "Фантом Ассассин",
+        "Фантомка",
+        "PA",
+        "ПА",
+        "Mortred",
+        "Мортред"
+      ],
       "links": [
         {
           "regionId": "stonehall",
@@ -8199,6 +8468,9 @@
       "key": "pugna",
       "name": "Pugna",
       "slug": "pugna",
+      "aliases": [
+        "Пугна"
+      ],
       "links": [
         {
           "regionId": "underdark",
@@ -8212,6 +8484,14 @@
       "key": "templar_assassin",
       "name": "Templar Assassin",
       "slug": "templarassassin",
+      "aliases": [
+        "Темплар Ассассин",
+        "Темпларка",
+        "TA",
+        "ТА",
+        "Lanaya",
+        "Ланая"
+      ],
       "links": [
         {
           "regionId": "middle-kingdoms",
@@ -8237,6 +8517,10 @@
       "key": "viper",
       "name": "Viper",
       "slug": "viper",
+      "aliases": [
+        "Вайпер",
+        "Випер"
+      ],
       "links": [
         {
           "regionId": "underdark",
@@ -8250,6 +8534,9 @@
       "key": "luna",
       "name": "Luna",
       "slug": "luna",
+      "aliases": [
+        "Луна"
+      ],
       "links": [
         {
           "regionId": "nightsilver",
@@ -8263,6 +8550,13 @@
       "key": "dragon_knight",
       "name": "Dragon Knight",
       "slug": "dragonknight",
+      "aliases": [
+        "Драгон Найт",
+        "DK",
+        "ДК",
+        "Davion",
+        "Давион"
+      ],
       "links": [
         {
           "regionId": "middle-kingdoms",
@@ -8276,6 +8570,10 @@
       "key": "dazzle",
       "name": "Dazzle",
       "slug": "dazzle",
+      "aliases": [
+        "Даззл",
+        "Дазл"
+      ],
       "links": [
         {
           "regionId": "hells",
@@ -8295,6 +8593,12 @@
       "key": "rattletrap",
       "name": "Clockwerk",
       "slug": "clockwerk",
+      "aliases": [
+        "Клокверк",
+        "Клок",
+        "Clock",
+        "Rattletrap"
+      ],
       "links": [
         {
           "regionId": "radiant-lands",
@@ -8308,6 +8612,9 @@
       "key": "leshrac",
       "name": "Leshrac",
       "slug": "leshrac",
+      "aliases": [
+        "Лешрак"
+      ],
       "links": [
         {
           "regionId": "planes",
@@ -8321,6 +8628,13 @@
       "key": "furion",
       "name": "Nature's Prophet",
       "slug": "naturesprophet",
+      "aliases": [
+        "Нейчерс Профет",
+        "Фурион",
+        "Furion",
+        "NP",
+        "НП"
+      ],
       "links": [
         {
           "regionId": "western-forests",
@@ -8334,6 +8648,11 @@
       "key": "life_stealer",
       "name": "Lifestealer",
       "slug": "lifestealer",
+      "aliases": [
+        "Лайфстилер",
+        "Naix",
+        "Найкс"
+      ],
       "links": [
         {
           "regionId": "middle-kingdoms",
@@ -8347,6 +8666,10 @@
       "key": "dark_seer",
       "name": "Dark Seer",
       "slug": "darkseer",
+      "aliases": [
+        "Дарк Сир",
+        "Ish'kafel"
+      ],
       "links": [
         {
           "regionId": "planes",
@@ -8360,6 +8683,10 @@
       "key": "clinkz",
       "name": "Clinkz",
       "slug": "clinkz",
+      "aliases": [
+        "Клинкз",
+        "Клинкс"
+      ],
       "links": [
         {
           "regionId": "hoven",
@@ -8379,6 +8706,11 @@
       "key": "omniknight",
       "name": "Omniknight",
       "slug": "omniknight",
+      "aliases": [
+        "Омникнайт",
+        "Омник",
+        "Purist"
+      ],
       "links": [
         {
           "regionId": "middle-kingdoms",
@@ -8392,6 +8724,11 @@
       "key": "enchantress",
       "name": "Enchantress",
       "slug": "enchantress",
+      "aliases": [
+        "Энчантресс",
+        "Энча",
+        "Aiushtha"
+      ],
       "links": [
         {
           "regionId": "uncharted",
@@ -8405,6 +8742,9 @@
       "key": "huskar",
       "name": "Huskar",
       "slug": "huskar",
+      "aliases": [
+        "Хускар"
+      ],
       "links": [
         {
           "regionId": "hells",
@@ -8418,6 +8758,12 @@
       "key": "night_stalker",
       "name": "Night Stalker",
       "slug": "nightstalker",
+      "aliases": [
+        "Найт Сталкер",
+        "NS",
+        "Balanar",
+        "Баланар"
+      ],
       "links": [
         {
           "regionId": "planes",
@@ -8431,6 +8777,11 @@
       "key": "broodmother",
       "name": "Broodmother",
       "slug": "broodmother",
+      "aliases": [
+        "Бруда",
+        "Brood",
+        "Black Arachnia"
+      ],
       "links": [
         {
           "regionId": "middle-kingdoms",
@@ -8444,6 +8795,13 @@
       "key": "bounty_hunter",
       "name": "Bounty Hunter",
       "slug": "bountyhunter",
+      "aliases": [
+        "Баунти Хантер",
+        "Баунти",
+        "BH",
+        "Gondar",
+        "Гондар"
+      ],
       "links": [
         {
           "regionId": "free-cities",
@@ -8463,6 +8821,10 @@
       "key": "weaver",
       "name": "Weaver",
       "slug": "weaver",
+      "aliases": [
+        "Вивер",
+        "Skitskurr"
+      ],
       "links": [
         {
           "regionId": "planes",
@@ -8476,6 +8838,9 @@
       "key": "jakiro",
       "name": "Jakiro",
       "slug": "jakiro",
+      "aliases": [
+        "Джакиро"
+      ],
       "links": [
         {
           "regionId": "uncharted",
@@ -8489,6 +8854,10 @@
       "key": "batrider",
       "name": "Batrider",
       "slug": "batrider",
+      "aliases": [
+        "Бэтрайдер",
+        "Батрайдер"
+      ],
       "links": [
         {
           "regionId": "fellstrath",
@@ -8502,6 +8871,9 @@
       "key": "chen",
       "name": "Chen",
       "slug": "chen",
+      "aliases": [
+        "Чен"
+      ],
       "links": [
         {
           "regionId": "hazhadal",
@@ -8515,6 +8887,12 @@
       "key": "spectre",
       "name": "Spectre",
       "slug": "spectre",
+      "aliases": [
+        "Спектра",
+        "Спектр",
+        "Mercurial",
+        "Меркуриал"
+      ],
       "links": [
         {
           "regionId": "planes",
@@ -8539,6 +8917,13 @@
       "key": "ancient_apparition",
       "name": "Ancient Apparition",
       "slug": "ancientapparition",
+      "aliases": [
+        "Эншент Апэришн",
+        "AA",
+        "АА",
+        "Kaldr",
+        "Калдр"
+      ],
       "links": [
         {
           "regionId": "planes",
@@ -8552,6 +8937,11 @@
       "key": "doom_bringer",
       "name": "Doom",
       "slug": "doom",
+      "aliases": [
+        "Дум",
+        "Lucifer",
+        "Люцифер"
+      ],
       "links": [
         {
           "regionId": "hells",
@@ -8565,6 +8955,11 @@
       "key": "ursa",
       "name": "Ursa",
       "slug": "ursa",
+      "aliases": [
+        "Урса",
+        "Ulfsaar",
+        "Ульфсаар"
+      ],
       "links": [
         {
           "regionId": "tomokan",
@@ -8578,6 +8973,13 @@
       "key": "spirit_breaker",
       "name": "Spirit Breaker",
       "slug": "spiritbreaker",
+      "aliases": [
+        "Спирит Брейкер",
+        "Бара",
+        "SB",
+        "Barathrum",
+        "Баратрум"
+      ],
       "links": [
         {
           "regionId": "planes",
@@ -8603,6 +9005,13 @@
       "key": "gyrocopter",
       "name": "Gyrocopter",
       "slug": "gyrocopter",
+      "aliases": [
+        "Гирокоптер",
+        "Гиро",
+        "Gyro",
+        "Aurel",
+        "Аурел"
+      ],
       "links": [
         {
           "regionId": "tropic-isles",
@@ -8616,6 +9025,12 @@
       "key": "alchemist",
       "name": "Alchemist",
       "slug": "alchemist",
+      "aliases": [
+        "Алхимик",
+        "Алхим",
+        "Razzil",
+        "Раззил"
+      ],
       "links": [
         {
           "regionId": "uncharted",
@@ -8629,6 +9044,12 @@
       "key": "invoker",
       "name": "Invoker",
       "slug": "invoker",
+      "aliases": [
+        "Инвокер",
+        "Инвок",
+        "Carl",
+        "Карл"
+      ],
       "links": [
         {
           "regionId": "middle-kingdoms",
@@ -8642,6 +9063,11 @@
       "key": "silencer",
       "name": "Silencer",
       "slug": "silencer",
+      "aliases": [
+        "Сайленсер",
+        "Nortrom",
+        "Нортром"
+      ],
       "links": [
         {
           "regionId": "hazhadal",
@@ -8661,6 +9087,13 @@
       "key": "obsidian_destroyer",
       "name": "Outworld Destroyer",
       "slug": "outworlddestroyer",
+      "aliases": [
+        "Аутворлд Дестроер",
+        "OD",
+        "ОД",
+        "Outworld Devourer",
+        "Harbinger"
+      ],
       "links": [
         {
           "regionId": "planes",
@@ -8674,6 +9107,10 @@
       "key": "lycan",
       "name": "Lycan",
       "slug": "lycan",
+      "aliases": [
+        "Ликан",
+        "Banehallow"
+      ],
       "links": [
         {
           "regionId": "slom-elze",
@@ -8687,6 +9124,12 @@
       "key": "brewmaster",
       "name": "Brewmaster",
       "slug": "brewmaster",
+      "aliases": [
+        "Брюмастер",
+        "Брю",
+        "Mangix",
+        "Мангикс"
+      ],
       "links": [
         {
           "regionId": "wailing-mountains",
@@ -8700,6 +9143,11 @@
       "key": "shadow_demon",
       "name": "Shadow Demon",
       "slug": "shadowdemon",
+      "aliases": [
+        "Шадоу Демон",
+        "SD",
+        "СД"
+      ],
       "links": [
         {
           "regionId": "hells",
@@ -8713,6 +9161,12 @@
       "key": "lone_druid",
       "name": "Lone Druid",
       "slug": "lonedruid",
+      "aliases": [
+        "Лон Друид",
+        "LD",
+        "ЛД",
+        "Sylla"
+      ],
       "links": [
         {
           "regionId": "icewrack",
@@ -8726,6 +9180,11 @@
       "key": "chaos_knight",
       "name": "Chaos Knight",
       "slug": "chaosknight",
+      "aliases": [
+        "Хаос Найт",
+        "CK",
+        "Nessaj"
+      ],
       "links": [
         {
           "regionId": "planes",
@@ -8739,6 +9198,10 @@
       "key": "meepo",
       "name": "Meepo",
       "slug": "meepo",
+      "aliases": [
+        "Мипо",
+        "Geomancer"
+      ],
       "links": [
         {
           "regionId": "scintillant",
@@ -8758,6 +9221,12 @@
       "key": "treant",
       "name": "Treant Protector",
       "slug": "treantprotector",
+      "aliases": [
+        "Тринт",
+        "Трент",
+        "Treant",
+        "Rooftrellen"
+      ],
       "links": [
         {
           "regionId": "western-forests",
@@ -8771,6 +9240,11 @@
       "key": "ogre_magi",
       "name": "Ogre Magi",
       "slug": "ogremagi",
+      "aliases": [
+        "Огр Маги",
+        "Огр",
+        "Ogre"
+      ],
       "links": [
         {
           "regionId": "uncharted",
@@ -8784,6 +9258,11 @@
       "key": "undying",
       "name": "Undying",
       "slug": "undying",
+      "aliases": [
+        "Андаинг",
+        "Dirge",
+        "Дирж"
+      ],
       "links": [
         {
           "regionId": "uncharted",
@@ -8797,6 +9276,9 @@
       "key": "rubick",
       "name": "Rubick",
       "slug": "rubick",
+      "aliases": [
+        "Рубик"
+      ],
       "links": [
         {
           "regionId": "uncharted",
@@ -8810,6 +9292,9 @@
       "key": "disruptor",
       "name": "Disruptor",
       "slug": "disruptor",
+      "aliases": [
+        "Дизраптор"
+      ],
       "links": [
         {
           "regionId": "druud",
@@ -8823,6 +9308,11 @@
       "key": "nyx_assassin",
       "name": "Nyx Assassin",
       "slug": "nyxassassin",
+      "aliases": [
+        "Никс Ассассин",
+        "Никс",
+        "Nyx"
+      ],
       "links": [
         {
           "regionId": "middle-kingdoms",
@@ -8836,6 +9326,12 @@
       "key": "naga_siren",
       "name": "Naga Siren",
       "slug": "nagasiren",
+      "aliases": [
+        "Нага Сирена",
+        "Нага",
+        "Naga",
+        "Slithice"
+      ],
       "links": [
         {
           "regionId": "the-deep",
@@ -8849,6 +9345,14 @@
       "key": "keeper_of_the_light",
       "name": "Keeper of the Light",
       "slug": "keeperofthelight",
+      "aliases": [
+        "Кипер оф зе Лайт",
+        "Кипер",
+        "KotL",
+        "Котл",
+        "Ezalor",
+        "Эзалор"
+      ],
       "links": [
         {
           "regionId": "planes",
@@ -8868,6 +9372,11 @@
       "key": "wisp",
       "name": "Io",
       "slug": "io",
+      "aliases": [
+        "Ио",
+        "Висп",
+        "Wisp"
+      ],
       "links": [
         {
           "regionId": "planes",
@@ -8881,6 +9390,9 @@
       "key": "visage",
       "name": "Visage",
       "slug": "visage",
+      "aliases": [
+        "Визаж"
+      ],
       "links": [
         {
           "regionId": "hells",
@@ -8894,6 +9406,9 @@
       "key": "slark",
       "name": "Slark",
       "slug": "slark",
+      "aliases": [
+        "Сларк"
+      ],
       "links": [
         {
           "regionId": "the-deep",
@@ -8912,6 +9427,10 @@
       "key": "medusa",
       "name": "Medusa",
       "slug": "medusa",
+      "aliases": [
+        "Медуза",
+        "Gorgon"
+      ],
       "links": [
         {
           "regionId": "fellstrath",
@@ -8925,6 +9444,12 @@
       "key": "troll_warlord",
       "name": "Troll Warlord",
       "slug": "trollwarlord",
+      "aliases": [
+        "Тролль Варлорд",
+        "Тролль",
+        "Troll",
+        "Jah'rakal"
+      ],
       "links": [
         {
           "regionId": "hoven",
@@ -8938,6 +9463,11 @@
       "key": "centaur",
       "name": "Centaur Warrunner",
       "slug": "centaurwarrunner",
+      "aliases": [
+        "Кентавр",
+        "Centaur",
+        "Bradwarden"
+      ],
       "links": [
         {
           "regionId": "druud",
@@ -8951,6 +9481,10 @@
       "key": "magnataur",
       "name": "Magnus",
       "slug": "magnus",
+      "aliases": [
+        "Магнус",
+        "Magnataur"
+      ],
       "links": [
         {
           "regionId": "wailing-mountains",
@@ -8964,6 +9498,12 @@
       "key": "shredder",
       "name": "Timbersaw",
       "slug": "timbersaw",
+      "aliases": [
+        "Тимберсо",
+        "Тимбер",
+        "Timber",
+        "Rizzrack"
+      ],
       "links": [
         {
           "regionId": "western-forests",
@@ -8977,6 +9517,14 @@
       "key": "bristleback",
       "name": "Bristleback",
       "slug": "bristleback",
+      "aliases": [
+        "Бристлбек",
+        "Брист",
+        "BB",
+        "ББ",
+        "Rigwarl",
+        "Ригварл"
+      ],
       "links": [
         {
           "regionId": "slom-elze",
@@ -8990,6 +9538,12 @@
       "key": "tusk",
       "name": "Tusk",
       "slug": "tusk",
+      "aliases": [
+        "Туск",
+        "Таск",
+        "Ymir",
+        "Имир"
+      ],
       "links": [
         {
           "regionId": "icewrack",
@@ -9009,6 +9563,12 @@
       "key": "skywrath_mage",
       "name": "Skywrath Mage",
       "slug": "skywrathmage",
+      "aliases": [
+        "Скайрэт Мейдж",
+        "Скайрэт",
+        "Dragonus",
+        "Драгонус"
+      ],
       "links": [
         {
           "regionId": "heavens",
@@ -9022,6 +9582,10 @@
       "key": "abaddon",
       "name": "Abaddon",
       "slug": "abaddon",
+      "aliases": [
+        "Абаддон",
+        "Аба"
+      ],
       "links": [
         {
           "regionId": "middle-kingdoms",
@@ -9035,6 +9599,11 @@
       "key": "elder_titan",
       "name": "Elder Titan",
       "slug": "eldertitan",
+      "aliases": [
+        "Элдер Титан",
+        "ET",
+        "ЭТ"
+      ],
       "links": [
         {
           "regionId": "planes",
@@ -9048,6 +9617,13 @@
       "key": "legion_commander",
       "name": "Legion Commander",
       "slug": "legioncommander",
+      "aliases": [
+        "Легион Коммандер",
+        "Легионка",
+        "LC",
+        "Tresdin",
+        "Трездин"
+      ],
       "links": [
         {
           "regionId": "stonehall",
@@ -9067,6 +9643,10 @@
       "key": "techies",
       "name": "Techies",
       "slug": "techies",
+      "aliases": [
+        "Течис",
+        "Техис"
+      ],
       "links": [
         {
           "regionId": "radiant-lands",
@@ -9086,6 +9666,13 @@
       "key": "ember_spirit",
       "name": "Ember Spirit",
       "slug": "emberspirit",
+      "aliases": [
+        "Эмбер Спирит",
+        "Эмбер",
+        "Ember",
+        "Xin",
+        "Ксин"
+      ],
       "links": [
         {
           "regionId": "wailing-mountains",
@@ -9099,6 +9686,11 @@
       "key": "earth_spirit",
       "name": "Earth Spirit",
       "slug": "earthspirit",
+      "aliases": [
+        "Эрт Спирит",
+        "Kaolin",
+        "Каолин"
+      ],
       "links": [
         {
           "regionId": "wailing-mountains",
@@ -9112,6 +9704,13 @@
       "key": "abyssal_underlord",
       "name": "Underlord",
       "slug": "underlord",
+      "aliases": [
+        "Андерлорд",
+        "Abyssal Underlord",
+        "Pit Lord",
+        "Vrogros",
+        "Врогрос"
+      ],
       "links": [
         {
           "regionId": "underdark",
@@ -9131,6 +9730,11 @@
       "key": "terrorblade",
       "name": "Terrorblade",
       "slug": "terrorblade",
+      "aliases": [
+        "Терроблейд",
+        "TB",
+        "ТБ"
+      ],
       "links": [
         {
           "regionId": "hells",
@@ -9144,6 +9748,9 @@
       "key": "phoenix",
       "name": "Phoenix",
       "slug": "phoenix",
+      "aliases": [
+        "Феникс"
+      ],
       "links": [
         {
           "regionId": "heavens",
@@ -9157,6 +9764,11 @@
       "key": "oracle",
       "name": "Oracle",
       "slug": "oracle",
+      "aliases": [
+        "Оракул",
+        "Nerif",
+        "Нериф"
+      ],
       "links": [
         {
           "regionId": "planes",
@@ -9170,6 +9782,13 @@
       "key": "winter_wyvern",
       "name": "Winter Wyvern",
       "slug": "winterwyvern",
+      "aliases": [
+        "Винтер Виверн",
+        "Виверна",
+        "WW",
+        "Auroth",
+        "Аурот"
+      ],
       "links": [
         {
           "regionId": "icewrack",
@@ -9183,6 +9802,12 @@
       "key": "arc_warden",
       "name": "Arc Warden",
       "slug": "arcwarden",
+      "aliases": [
+        "Арк Варден",
+        "Arc",
+        "Zet",
+        "Зет"
+      ],
       "links": [
         {
           "regionId": "heavens",
@@ -9202,6 +9827,13 @@
       "key": "monkey_king",
       "name": "Monkey King",
       "slug": "monkeyking",
+      "aliases": [
+        "Манки Кинг",
+        "MK",
+        "МК",
+        "Sun Wukong",
+        "Сунь Укун"
+      ],
       "links": [
         {
           "regionId": "free-cities",
@@ -9215,6 +9847,11 @@
       "key": "dark_willow",
       "name": "Dark Willow",
       "slug": "darkwillow",
+      "aliases": [
+        "Дарк Виллоу",
+        "Mireska",
+        "Миреска"
+      ],
       "links": [
         {
           "regionId": "free-cities",
@@ -9228,6 +9865,11 @@
       "key": "pangolier",
       "name": "Pangolier",
       "slug": "pangolier",
+      "aliases": [
+        "Панголиер",
+        "Панго",
+        "Donte"
+      ],
       "links": [
         {
           "regionId": "free-cities",
@@ -9247,6 +9889,9 @@
       "key": "grimstroke",
       "name": "Grimstroke",
       "slug": "grimstroke",
+      "aliases": [
+        "Гримстрок"
+      ],
       "links": [
         {
           "regionId": "fellstrath",
@@ -9260,6 +9905,9 @@
       "key": "hoodwink",
       "name": "Hoodwink",
       "slug": "hoodwink",
+      "aliases": [
+        "Худвинк"
+      ],
       "links": [
         {
           "regionId": "tomokan",
@@ -9279,6 +9927,11 @@
       "key": "void_spirit",
       "name": "Void Spirit",
       "slug": "voidspirit",
+      "aliases": [
+        "Войд Спирит",
+        "Inai",
+        "Инай"
+      ],
       "links": [
         {
           "regionId": "planes",
@@ -9298,6 +9951,11 @@
       "key": "snapfire",
       "name": "Snapfire",
       "slug": "snapfire",
+      "aliases": [
+        "Снэпфаер",
+        "Beatrix",
+        "Беатрикс"
+      ],
       "links": [
         {
           "regionId": "tomokan",
@@ -9311,6 +9969,9 @@
       "key": "mars",
       "name": "Mars",
       "slug": "mars",
+      "aliases": [
+        "Марс"
+      ],
       "links": [
         {
           "regionId": "heavens",
@@ -9330,6 +9991,9 @@
       "key": "ringmaster",
       "name": "Ringmaster",
       "slug": "ringmaster",
+      "aliases": [
+        "Рингмастер"
+      ],
       "links": [
         {
           "regionId": "uncharted",
@@ -9343,6 +10007,11 @@
       "key": "dawnbreaker",
       "name": "Dawnbreaker",
       "slug": "dawnbreaker",
+      "aliases": [
+        "Даунбрейкер",
+        "Valora",
+        "Валора"
+      ],
       "links": [
         {
           "regionId": "heavens",
@@ -9356,6 +10025,9 @@
       "key": "marci",
       "name": "Marci",
       "slug": "marci",
+      "aliases": [
+        "Марси"
+      ],
       "links": [
         {
           "regionId": "uncharted",
@@ -9369,6 +10041,9 @@
       "key": "primal_beast",
       "name": "Primal Beast",
       "slug": "primalbeast",
+      "aliases": [
+        "Праймал Бист"
+      ],
       "links": [
         {
           "regionId": "tomokan",
@@ -9382,6 +10057,9 @@
       "key": "muerta",
       "name": "Muerta",
       "slug": "muerta",
+      "aliases": [
+        "Муэрта"
+      ],
       "links": [
         {
           "regionId": "middle-kingdoms",
@@ -9395,6 +10073,9 @@
       "key": "kez",
       "name": "Kez",
       "slug": "kez",
+      "aliases": [
+        "Кез"
+      ],
       "links": [
         {
           "regionId": "heavens",
@@ -9414,6 +10095,9 @@
       "key": "largo",
       "name": "Largo",
       "slug": "largo",
+      "aliases": [
+        "Ларго"
+      ],
       "links": [
         {
           "regionId": "fellstrath",
@@ -9422,6 +10106,141 @@
           "basis": "infobox"
         }
       ]
+    }
+  ],
+  "media": [
+    {
+      "id": "icewrack-new-neighbors",
+      "type": "image",
+      "src": "https://cdn.steamstatic.com/apps/dota2/images/comics/newbloom2015/day2/en/01.jpg",
+      "title": {
+        "ru": "«Новые соседи»",
+        "en": "The New Neighbors"
+      },
+      "subtitle": {
+        "ru": "Комикс",
+        "en": "Comic"
+      },
+      "description": {
+        "ru": "Комикс Valve к фестивалю New Bloom 2015 года. Жители заснеженной деревни Айсрака побаиваются Райлай, хотя она давно их защищает, — а в ледник по соседству заселяется новая обитательница, Auroth (Winter Wyvern).",
+        "en": "Valve's comic for the 2015 New Bloom festival. The folk of a snowbound Icewrack village are wary of Rylai even though she has long protected them — and a new resident moves into the nearby glacier: Auroth, the Winter Wyvern."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/newbloom/part2"
+    },
+    {
+      "id": "frostreach-the-dragon",
+      "type": "image",
+      "src": "https://cdn.steamstatic.com/apps/dota2/images/crownfall/act3_intro/english/003.webp",
+      "title": {
+        "ru": "«Дракон»",
+        "en": "The Dragon"
+      },
+      "subtitle": {
+        "ru": "Комикс",
+        "en": "Comic"
+      },
+      "description": {
+        "ru": "Пролог третьего акта Crownfall (2024). Корабль неделями пробирается между айсбергами к Фростречу — самому северному порту мира и воротам в ледяную пустыню. В местном трактире Шен ищет проводника.",
+        "en": "Prologue to Crownfall Act III (2024). A ship spends weeks threading between icebergs to reach Frostreach, the world's northernmost port and gateway to the frozen waste. In a local tavern, Shen goes looking for a guide."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/crownfall/comic3"
+    },
+    {
+      "id": "druud-hells-basin",
+      "type": "image",
+      "src": "https://cdn.steamstatic.com/apps/dota2/images/crownfall/act2_intro/english/000.webp",
+      "title": {
+        "ru": "«Битва у Адской лощины»",
+        "en": "The Battle of Hell's Basin"
+      },
+      "subtitle": {
+        "ru": "Комикс",
+        "en": "Comic"
+      },
+      "description": {
+        "ru": "Пролог второго акта Crownfall (2024). Ночь над красными пустынями Друуда: вечно враждующие племена впервые встают под одно знамя Сорлы Хан, чтобы встретить Бездонную орду.",
+        "en": "Prologue to Crownfall Act II (2024). Night falls over the red deserts of Druud as its endlessly feuding tribes rally under Sorla Khan's single banner to face the Abyssal Horde."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/crownfall/comic2"
+    },
+    {
+      "id": "valhessi-the-last-castle",
+      "type": "image",
+      "src": "https://cdn.steamstatic.com/apps/dota2/images/comics/comic_thelastcastle/en/02.jpg",
+      "title": {
+        "ru": "«Последний замок»",
+        "en": "The Last Castle"
+      },
+      "subtitle": {
+        "ru": "Комикс",
+        "en": "Comic"
+      },
+      "description": {
+        "ru": "Комикс Valve 2015 года. Axe прорубается сквозь гарнизон крепости посреди Хазадальских пустошей — новой главе книги о его похождениях, которую пишет Гудкайнд, нужен громкий подвиг.",
+        "en": "Valve's 2015 comic. Axe hacks his way through the garrison of a fortress in the Hazhadal Barrens — the next chapter of Goodkind's book about his exploits needs a big feat."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/thelastcastle"
+    },
+    {
+      "id": "sundered-moon-comic",
+      "type": "image",
+      "src": "https://cdn.steamstatic.com/apps/dota2/images/686/comic/en/001.png",
+      "title": {
+        "ru": "«Расколотая Луна»",
+        "en": "The Sundered Moon"
+      },
+      "subtitle": {
+        "ru": "Комикс",
+        "en": "Comic"
+      },
+      "description": {
+        "ru": "Комикс к обновлению The Balance of Power (2015). В таверну для героев пускают только тех, кто докажет, что он герой; за одним из столов Zeus и Zet беседуют о том, как устроена вселенная.",
+        "en": "Comic for The Balance of Power update (2015). Only those who prove they are heroes get into this heroes' tavern; at one of its tables Zeus and Zet talk over how the universe came to be."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/balanceofpower"
+    },
+    {
+      "id": "milltown-dark-carnival",
+      "type": "image",
+      "src": "https://cdn.steamstatic.com/apps/dota2/images/comics/midnight_run/english/000.webp",
+      "title": {
+        "ru": "«Тёмный карнавал»",
+        "en": "Dark Carnival"
+      },
+      "subtitle": {
+        "ru": "Комикс",
+        "en": "Comic"
+      },
+      "description": {
+        "ru": "Комикс к событию Dark Carnival (2026). Миллтаун вырос из одной мельницы на речной излучине между Розолистом и Таррином и стал так богат рожью, что попал под защиту Стоунхолла. Сюда наведывается Hoodwink, а расследовать её набеги приезжает Legion Commander.",
+        "en": "Comic for the Dark Carnival event (2026). Milltown grew from a single mill on a river bend between Roseleaf and Tarrin into a rye-rich town under Stonehall's protection. Hoodwink comes raiding, and Legion Commander arrives to investigate."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/darkcarnivalcomic"
+    },
+    {
+      "id": "hells-ascension",
+      "type": "image",
+      "src": "https://cdn.steamstatic.com/apps/dota2/images/comics/comic_eminenceofristul/en/001.png",
+      "title": {
+        "ru": "«Восхождение»",
+        "en": "Ascension"
+      },
+      "subtitle": {
+        "ru": "Комикс",
+        "en": "Comic"
+      },
+      "description": {
+        "ru": "Комикс к аркане Queen of Pain «Eminence of Ristul» (2020). Канун Узкого лабиринта: при дворе Ристула Акаша — всего лишь сестра Б'Кора, и, видя, как растёт влияние брата в Бездне, она решается на сделку ради власти.",
+        "en": "Comic for the Queen of Pain arcana Eminence of Ristul (2020). On the eve of the Narrow Maze, Akasha is merely B'Kor's sister at the Court of Ristul; watching her brother's sway in the abyss grow, she resolves to bargain for power."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/eminenceofristul"
     }
   ]
 }
