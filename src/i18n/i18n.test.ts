@@ -11,6 +11,14 @@ describe('i18n', () => {
     for (const text of [...Object.values(ru), ...Object.values(en)]) expect(text.trim()).not.toBe('');
   });
 
+  it('у перевода те же переменные {…}, в английском словаре нет кириллицы', () => {
+    const vars = (s: string) => (s.match(/\{\w+\}/g) ?? []).sort();
+    for (const key of Object.keys(ru) as (keyof typeof ru)[]) {
+      expect(vars(en[key]), key).toEqual(vars(ru[key]));
+      expect(en[key], key).not.toMatch(/[А-Яа-яЁё]/);
+    }
+  });
+
   it('подставляет переменные', () => {
     expect(translate('ru', 'panel.backTo', { name: 'Айсрак' })).toBe('‹ Айсрак');
   });
