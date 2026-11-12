@@ -37,6 +37,12 @@
   list-style: none;
 }
 
+/* Одна-две карточки — шире: в трети панели картинка и подпись слишком мелкие (аудит E13). */
+.media[data-count='1'],
+.media[data-count='2'] {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .card {
   display: flex;
   flex-direction: column;
@@ -46,7 +52,7 @@
   padding: var(--space-2);
   border: 1px solid var(--metal);
   background:
-    linear-gradient(180deg, transparent 35%, var(--bg-0)),
+    linear-gradient(180deg, transparent 25%, var(--veil-strong) 70%, var(--bg-0)),
     var(--thumb, linear-gradient(135deg, var(--bg-2), var(--bg-1))) center / cover;
   color: var(--text-1);
   text-align: left;
@@ -65,6 +71,7 @@
 .cardTitle {
   font-size: 0.85rem;
   font-weight: 700;
+  text-shadow: var(--shadow-1);
 }
 
 .cardType {

@@ -37,6 +37,8 @@ export function Gallery({ items, index, onSelect, onClose }: Props) {
   const frameRef = useRef<HTMLDivElement>(null);
   const touch = useRef<{ x: number; y: number } | null>(null);
   const [failed, setFailed] = useState<string | null>(null);
+  // Картинка с CDN грузится заметно: пока её нет — индикатор, а не пустая ячейка (аудит E13).
+  const [loaded, setLoaded] = useState<string | null>(null);
   const sfx = useSfx();
 
   const item = items[index] ?? items[0]!;
@@ -139,14 +141,23 @@ export function Gallery({ items, index, onSelect, onClose }: Props) {
                 referrerPolicy="strict-origin-when-cross-origin"
               />
             ) : src && failed !== src ? (
-              <img
-                className={styles.image}
-                src={src}
-                alt={l(item.title)}
-                // Картинка галереи видна сразу — без lazy, иначе она грузится позже всего (LCP, SPEC §14).
-                decoding="async"
-                onError={() => setFailed(src)}
-              />
+              <>
+                {loaded !== src && (
+                  <p className={styles.loading} role="status">
+                    <span className={styles.spinner} aria-hidden="true" />
+                    {t('gallery.loading')}
+                  </p>
+                )}
+                <img
+                  className={styles.image}
+                  src={src}
+                  alt={l(item.title)}
+                  // Картинка галереи видна сразу — без lazy, иначе она грузится позже всего (LCP, SPEC §14).
+                  decoding="async"
+                  onLoad={() => setLoaded(src)}
+                  onError={() => setFailed(src)}
+                />
+              </>
             ) : (
               <p className={styles.fallback}>
                 {t('gallery.loadError')}{' '}

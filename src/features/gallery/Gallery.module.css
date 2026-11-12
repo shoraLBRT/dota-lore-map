@@ -205,6 +205,39 @@
   }
 }
 
+/* Пока картинка грузится: кольцо и подпись в центре ячейки, под картинкой (она их закроет, когда загрузится). */
+.media {
+  position: relative;
+}
+
+.loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  margin: 0;
+  color: var(--text-2);
+  font-size: 0.85rem;
+  pointer-events: none;
+}
+
+.spinner {
+  width: 1.25em;
+  height: 1.25em;
+  border: 2px solid var(--metal-dim);
+  border-top-color: var(--metal-bright);
+  border-radius: var(--radius-round);
+  animation: spin 900ms linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @keyframes fade {
   from {
     opacity: 0;
@@ -222,5 +255,10 @@
 @media (prefers-reduced-motion: reduce) {
   .media {
     animation-name: fade;
+  }
+
+  /* Спиннер без вращения: индикатор — само кольцо и подпись. */
+  .spinner {
+    animation: none;
   }
 }

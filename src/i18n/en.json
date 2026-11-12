@@ -54,6 +54,7 @@
   "gallery.readFull": "Read the full comic ↗",
   "gallery.source": "Source ↗",
   "gallery.loadError": "The image failed to load.",
+  "gallery.loading": "Loading the image…",
   "search.label": "Hero search",
   "search.placeholder": "Hero name: Pudge, CM, Rylai…",
   "search.empty": "No heroes found",

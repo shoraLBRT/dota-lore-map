@@ -43,6 +43,7 @@ function isMobile(): boolean {
 }
 import { EDGE_CLOUDS } from './cloudSets';
 import { Clouds } from './Clouds';
+import { clampLabelX, LABEL_GAP, placeMarkerLabels, splitLabel, type LabelSide, type MarkerLabel } from './labels';
 import styles from './MapStage.module.css';
 import { PlaceTooltip } from './PlaceTooltip';
 import { RegionArt } from './RegionArt';
@@ -75,6 +76,49 @@ interface Props {
 
 /** Отступ меток «нить за краем» от края кадра, px. */
 const EXIT_MARGIN = 28;
+
+/** Кегль подписей маркеров (MapStage.module.css: .markerLabel, .capital .markerLabel), px. */
+const MARKER_FONT = 13;
+const CAPITAL_FONT = 17;
+
+/**
+ * Ширины подписей на карте по `data-measure` (getComputedTextLength — в единицах своей системы координат,
+ * без учёта transform). Без измерений (jsdom) — пусто, подписи стоят как в данных.
+ */
+function measureTexts(root: Element | null): Record<string, number> {
+  const out: Record<string, number> = {};
+  root?.querySelectorAll<SVGTextContentElement>('[data-measure]').forEach((el) => {
+    if (typeof el.getComputedTextLength !== 'function') return;
+    const width = el.getComputedTextLength();
+    const key = el.getAttribute('data-measure')!;
+    if (width > 0) out[key] = Math.max(out[key] ?? 0, width);
+  });
+  return out;
+}
+
+const sameRecord = (a: Record<string, number>, b: Record<string, number>) => {
+  const keys = Object.keys(b);
+  return keys.length === Object.keys(a).length && keys.every((k) => Math.abs((a[k] ?? -1) - b[k]!) < 0.5);
+};
+
+/** Подпись маркера на стороне `side`: якорь и базовая линия (labels.ts: labelBox). */
+function markerLabelAttrs(
+  side: LabelSide,
+  ring: number,
+  size: number,
+): { x: number; y: number; textAnchor: 'start' | 'middle' | 'end' } {
+  const d = ring + LABEL_GAP;
+  switch (side) {
+    case 'bottom':
+      return { x: 0, y: d + 0.78 * size, textAnchor: 'middle' };
+    case 'right':
+      return { x: d, y: 0.28 * size, textAnchor: 'start' };
+    case 'left':
+      return { x: -d, y: 0.28 * size, textAnchor: 'end' };
+    default:
+      return { x: 0, y: -d - 0.22 * size, textAnchor: 'middle' };
+  }
+}
 
 const toStage = ([x, y]: Point): [number, number] => [x * STAGE_WIDTH, y * STAGE_HEIGHT];
 const points = (polygon: Point[]) => polygon.map((p) => toStage(p).join(',')).join(' ');
@@ -134,6 +178,10 @@ export function MapStage({
   const [spotHover, setSpotHover] = useState<string | null>(null);
   const [spotFocus, setSpotFocus] = useState<string | null>(null);
   const [view, setView] = useState<View>(UNMEASURED);
+  /** Камера летит: подсказки ждут посадки, иначе встают у якоря, посчитанного на старте (аудит E13). */
+  const [flying, setFlying] = useState(false);
+  const [widths, setWidths] = useState<Record<string, number>>({});
+  const [fontsTick, setFontsTick] = useState(0);
 
   const drawn = regions.filter((r) => r.layout);
   const listed = regions.filter((r) => !r.layout);
@@ -202,6 +250,43 @@ export function MapStage({
   /** Нити — тоже в экранных px, но при любом приближении (в мире zoom 1). */
   const threadScale = (view.layerWidth > 0 ? STAGE_WIDTH / view.layerWidth : 1) / framed.camera.zoom;
 
+  // Ширины подписей: при смене языка, региона и после загрузки шрифтов (подписи не выходят за край и не налезают).
+  useEffect(() => {
+    let alive = true;
+    void document.fonts?.ready.then(() => alive && setFontsTick((n) => n + 1));
+    return () => {
+      alive = false;
+    };
+  }, []);
+  const measureKey = `${lang}|${active?.id ?? ''}|${fontsTick}|${hasMap}`;
+  useLayoutEffect(() => {
+    const next = measureTexts(svgRef.current);
+    setWidths((prev) => (sameRecord(prev, next) ? prev : next));
+  }, [measureKey]);
+
+  // Подписи маркеров не налезают друг на друга: текущее место, столица и места героя ставятся первыми.
+  const sides = useMemo(() => {
+    const rank = (p: Place) =>
+      p.slug === activePlaceSlug ? 0 : p.capital ? 1 : focusPlaces?.has(`${active?.id}/${p.slug}`) ? 2 : 3;
+    const items: MarkerLabel[] = [...spots]
+      .sort((a, b) => rank(a) - rank(b))
+      .map((p) => {
+        const [x, y] = toStage(p.pos!);
+        const size = p.capital ? CAPITAL_FONT : MARKER_FONT;
+        return {
+          key: p.slug,
+          x: x / markerScale,
+          y: y / markerScale,
+          // Без измерений — оценка по числу знаков.
+          width: widths[`m:${p.slug}`] ?? placeName(p, lang).length * size * 0.6,
+          size,
+          ring: p.capital ? 11 : 9,
+          must: rank(p) < 2,
+        };
+      });
+    return placeMarkerLabels(items);
+  }, [spots, activePlaceSlug, focusPlaces, active, lang, widths, markerScale]);
+
   // S2/S3: нить к месту за краем кадра уходит туда со стрелкой и названием (SPEC §6.6).
   const exits = useMemo(() => {
     const placed = (threads ?? []).filter((s) => s.point);
@@ -235,6 +320,11 @@ export function MapStage({
   useLayoutEffect(() => {
     busy.current = onCameraBusy;
   }, [onCameraBusy]);
+  // Кадр на сейчас: окно могли повернуть или растянуть во время перелёта (аудит E13).
+  const latestTarget = useRef(target);
+  useLayoutEffect(() => {
+    latestTarget.current = target;
+  }, [target]);
 
   useLayoutEffect(() => {
     const el = layerRef.current;
@@ -259,11 +349,17 @@ export function MapStage({
     const animation = animateCamera(el, from, target, duration);
     if (!animation) return;
     running.current = animation;
+    setFlying(true);
     const release = busy.current();
     animation.finished
       .catch(() => undefined)
       .finally(() => {
-        if (running.current === animation) running.current = null;
+        if (running.current === animation) {
+          running.current = null;
+          setFlying(false);
+          // Посадка ставит кадр, посчитанный на старте; если окно с тех пор изменилось — берём свежий.
+          el.style.transform = latestTarget.current;
+        }
         release();
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps -- анимируем только смену кадра, не размер окна
@@ -305,6 +401,9 @@ export function MapStage({
     const isActive = p.slug === activePlaceSlug;
     const name = placeName(p, lang);
     const select = () => onSelectPlace(active!.id, p.slug);
+    const side = sides.get(p.slug) ?? 'top';
+    const ring = p.capital ? 11 : 9;
+    const label = markerLabelAttrs(side, ring, p.capital ? CAPITAL_FONT : MARKER_FONT);
     return (
       <g
         key={p.slug}
@@ -312,6 +411,7 @@ export function MapStage({
           styles.marker,
           p.capital && styles.capital,
           isActive && styles.current,
+          side === 'hidden' && styles.labelHidden,
           focusPlaces && (focusPlaces.has(`${active!.id}/${p.slug}`) ? styles.heroSpot : styles.mutedMarker),
         ]
           .filter(Boolean)
@@ -339,13 +439,20 @@ export function MapStage({
         onBlur={() => setSpotFocus((s) => (s === p.slug ? null : s))}
       >
         <circle className={styles.hit} r={18} />
-        <circle className={styles.ring} r={p.capital ? 11 : 9} />
+        <circle className={styles.ring} r={ring} />
         {p.capital ? (
           <polygon className={styles.dot} points={STAR} transform="scale(7)" />
         ) : (
           <circle className={styles.dot} r={4} />
         )}
-        <text className={styles.markerLabel} y={p.capital ? -17 : -15} textAnchor="middle">
+        <text
+          className={styles.markerLabel}
+          x={label.x}
+          y={label.y}
+          textAnchor={label.textAnchor}
+          data-measure={`m:${p.slug}`}
+          data-side={side}
+        >
           {name}
         </text>
       </g>
@@ -426,6 +533,11 @@ export function MapStage({
               <g aria-hidden="true" className={styles.labels}>
                 {drawn.map((r) => {
                   const [lx, ly] = toStage(r.layout!.label);
+                  // Длинные названия регионов — в две строки (ярусам, широким полосам, не нужно); подпись не выходит за край.
+                  const name = l(r.name);
+                  const lines = r.tier === 'continent' ? splitLabel(name) : [name];
+                  const width = widths[`r:${r.id}`];
+                  const x = width ? clampLabelX(lx, width) : lx;
                   return (
                     <text
                       key={r.id}
@@ -438,11 +550,19 @@ export function MapStage({
                       ]
                         .filter(Boolean)
                         .join(' ')}
-                      x={lx}
+                      x={x}
                       y={ly}
                       textAnchor="middle"
+                      data-label={r.id}
+                      data-measure={lines.length === 1 ? `r:${r.id}` : undefined}
                     >
-                      {l(r.name)}
+                      {lines.length === 1
+                        ? name
+                        : lines.map((line, i) => (
+                            <tspan key={i} x={x} dy={i === 0 ? '-0.45em' : '1.05em'} data-measure={`r:${r.id}`}>
+                              {line}
+                            </tspan>
+                          ))}
                     </text>
                   );
                 })}
@@ -478,8 +598,8 @@ export function MapStage({
           <Clouds clouds={EDGE_CLOUDS} mode="drift" hidden={!inWorld} />
         </div>
       )}
-      {shown && <RegionTooltip id={tooltipId} region={shown} heroes={shownHeroes} getAnchor={getAnchor} />}
-      {active && spot && (
+      {shown && !flying && <RegionTooltip id={tooltipId} region={shown} heroes={shownHeroes} getAnchor={getAnchor} />}
+      {active && spot && !flying && (
         <PlaceTooltip id={placeTipId} placeKey={`${active.id}/${spot.slug}`} heroes={spotHeroes} getAnchor={getSpotAnchor} />
       )}
       {listed.length > 0 && (

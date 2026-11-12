@@ -297,6 +297,19 @@
   opacity: 0.35;
 }
 
+/* Подписи не налезают друг на друга (аудит E13, labels.ts): лишняя прячется
+   и появляется при наведении, фокусе и у выбранного места. */
+.marker.labelHidden .markerLabel {
+  opacity: 0;
+  transition: opacity var(--dur-hover) var(--ease-out);
+}
+
+.marker.labelHidden:hover .markerLabel,
+.marker.labelHidden:focus-visible .markerLabel,
+.marker.labelHidden.current .markerLabel {
+  opacity: 1;
+}
+
 .heroSpot .ring {
   stroke: var(--accent-bright);
   stroke-width: 3;
@@ -311,6 +324,16 @@
 .threads {
   pointer-events: none;
   filter: drop-shadow(0 0 4px var(--hl)) drop-shadow(0 0 1px var(--hl-glow));
+}
+
+.threadCasing {
+  fill: none;
+  stroke: var(--map-ink);
+  stroke-width: calc(var(--w) * 2.4);
+  stroke-linecap: round;
+  stroke-dasharray: var(--len) var(--len);
+  stroke-dashoffset: var(--len);
+  animation: thread-draw var(--dur-thread) var(--ease-out) forwards;
 }
 
 .thread {
@@ -403,6 +426,11 @@
 
 /* SPEC §14: при reduced motion — без сдвигов и масштаба: нить сразу нарисована и не течёт, вспышки нет. */
 @media (prefers-reduced-motion: reduce) {
+  .threadCasing {
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+
   .thread {
     stroke-dasharray: var(--dash) var(--dash);
     stroke-dashoffset: 0;

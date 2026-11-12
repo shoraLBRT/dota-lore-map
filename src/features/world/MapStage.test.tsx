@@ -1,5 +1,5 @@
-import { fireEvent, render, screen, within } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import { act, fireEvent, render, screen, within } from '@testing-library/react';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { Hero, Region } from '../../data/types';
 import { I18nProvider } from '../../i18n';
 import { BIOME_COLORS } from './biomes';
@@ -187,6 +187,88 @@ describe('MapStage — маркеры мест (S2/S3, SPEC §5.4, §6.3)', () =
   it('без арта региона детальной картинки нет (ARCHITECTURE A10)', () => {
     renderStage([withPlaces()], 'a');
     expect(screen.queryByTestId('region-art')).toBeNull();
+  });
+});
+
+describe('MapStage — подписи и подсказки (аудит E13)', () => {
+  it('длинное название региона — в две строки, ярус — одной', () => {
+    const long: Region = { ...region('a', true), name: { ru: 'Квойдж и Поля Бойни', en: 'Quoidge and the Fields of Carnage' } };
+    const tier: Region = { ...region('b', true), tier: 'abyss', name: { ru: 'Семь преисподних и Загробье', en: 'The Seven Hells and the Afterlife' } };
+    renderStage([long, tier]);
+    const lines = (id: string) => [...document.querySelectorAll(`[data-label="${id}"] tspan`)].map((t) => t.textContent);
+    expect(lines('a')).toEqual(['Quoidge and the', 'Fields of Carnage']);
+    expect(lines('b')).toEqual([]);
+    expect(document.querySelector('[data-label="b"]')!.textContent).toBe('The Seven Hells and the Afterlife');
+  });
+
+  it('у столицы подпись есть всегда; у тесно стоящих маркеров лишние подписи прячутся до наведения', () => {
+    const crowded: Region = {
+      ...region('a', true),
+      places: [
+        { name: 'Capital', slug: 'cap', capital: true, placement: 'lore', pos: [0.2, 0.2] },
+        { name: 'North', slug: 'n', capital: false, placement: 'lore', pos: [0.2, 0.198] },
+        { name: 'South', slug: 's', capital: false, placement: 'lore', pos: [0.2, 0.202] },
+        { name: 'East', slug: 'e', capital: false, placement: 'lore', pos: [0.202, 0.2] },
+        { name: 'West', slug: 'w', capital: false, placement: 'lore', pos: [0.198, 0.2] },
+      ],
+    };
+    renderStage([crowded], 'a');
+    const side = (slug: string) => document.querySelector(`[data-place="${slug}"] text`)!.getAttribute('data-side');
+    expect(side('cap')).not.toBe('hidden');
+    const hidden = ['n', 's', 'e', 'w'].filter((slug) => side(slug) === 'hidden');
+    expect(hidden.length).toBeGreaterThan(0);
+    for (const slug of hidden) {
+      expect(document.querySelector(`[data-place="${slug}"]`)!.getAttribute('class')).toMatch(/labelHidden/);
+    }
+  });
+
+  describe('подсказка региона ждёт посадки камеры', () => {
+    let finish: (() => void)[] = [];
+    const original = Element.prototype.animate;
+
+    beforeEach(() => {
+      finish = [];
+      Element.prototype.animate = vi.fn(function () {
+        let resolve!: () => void;
+        const finished = new Promise<void>((res) => {
+          resolve = res;
+        });
+        finish.push(() => resolve());
+        return { finished, cancel: () => undefined } as unknown as Animation;
+      });
+    });
+
+    afterEach(() => {
+      Element.prototype.animate = original;
+    });
+
+    it('регион → мир: фокус на полигоне, подсказка появляется только после перелёта', async () => {
+      const props = {
+        regions: [region('a', true), region('b', true)],
+        onSelectRegion: vi.fn(),
+        onSelectPlace: vi.fn(),
+        heroesOf: () => heroes(2),
+      };
+      const { rerender } = render(
+        <I18nProvider initialLang="en">
+          <MapStage {...props} activeRegionId="a" />
+        </I18nProvider>,
+      );
+      rerender(
+        <I18nProvider initialLang="en">
+          <MapStage {...props} />
+        </I18nProvider>,
+      );
+      expect(Element.prototype.animate).toHaveBeenCalledTimes(1);
+      fireEvent.focus(screen.getByRole('button', { name: 'a en' }));
+      expect(screen.queryByRole('tooltip')).toBeNull();
+
+      await act(async () => {
+        finish.shift()?.();
+        await new Promise((r) => setTimeout(r, 0));
+      });
+      expect(screen.getByRole('tooltip')).toHaveTextContent('a en');
+    });
   });
 });
 
