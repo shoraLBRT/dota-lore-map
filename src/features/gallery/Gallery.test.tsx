@@ -139,6 +139,13 @@ describe('галерея S4 (SPEC §5.6)', () => {
     expect(onClose).toHaveBeenCalledTimes(3);
   });
 
+  it('пока картинка грузится — индикатор загрузки; загрузилась — индикатора нет (аудит E13)', () => {
+    show(1);
+    expect(screen.getByRole('status')).toHaveTextContent('Загружаем картинку…');
+    fireEvent.load(screen.getByRole('img'));
+    expect(screen.queryByRole('status')).toBeNull();
+  });
+
   it('картинка не загрузилась — сообщение и ссылка на источник', () => {
     show(1);
     fireEvent.error(screen.getByRole('img'));

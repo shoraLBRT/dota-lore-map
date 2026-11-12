@@ -54,6 +54,7 @@
   "gallery.readFull": "Читать комикс целиком ↗",
   "gallery.source": "Источник ↗",
   "gallery.loadError": "Картинка не загрузилась.",
+  "gallery.loading": "Загружаем картинку…",
   "search.label": "Поиск героя",
   "search.placeholder": "Имя героя: Pudge, Пудж, CM…",
   "search.empty": "Никого не нашли",
