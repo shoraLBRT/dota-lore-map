@@ -2,10 +2,13 @@
 .hint {
   position: absolute;
   bottom: var(--space-5);
-  left: 50%;
+  /* По центру без translate: с left: 50% ширина строки ограничилась бы половиной кадра. */
+  right: 0;
+  left: 0;
   z-index: 5;
+  width: fit-content;
   max-width: calc(100% - 2 * var(--space-4));
-  margin: 0;
+  margin: 0 auto;
   padding: var(--space-2) var(--space-4);
   border: 1px solid var(--border);
   background: var(--veil-strong);
@@ -13,7 +16,6 @@
   font-size: 0.9rem;
   text-align: center;
   pointer-events: none;
-  translate: -50% 0;
   /* Появляется, когда облака A1 уже разошлись. */
   animation: appear var(--dur-fade) var(--ease-out) var(--dur-intro) both;
 }
