@@ -43,7 +43,7 @@ function isMobile(): boolean {
 }
 import { EDGE_CLOUDS } from './cloudSets';
 import { Clouds } from './Clouds';
-import { clampLabelX, LABEL_GAP, placeMarkerLabels, splitLabel, type LabelSide, type MarkerLabel } from './labels';
+import { clampLabelX, LABEL_GAP, placeMarkerLabels, splitLabel, type Box, type LabelSide, type MarkerLabel } from './labels';
 import styles from './MapStage.module.css';
 import { PlaceTooltip } from './PlaceTooltip';
 import { RegionArt } from './RegionArt';
@@ -73,6 +73,9 @@ interface Props {
   /** Клик по метке нити, ушедшей за край кадра. */
   onSelectSpot?: (spot: Spot) => void;
 }
+
+/** Отступ подписей маркеров от края видимой части кадра, px. */
+const LABEL_MARGIN = 4;
 
 /** Отступ меток «нить за краем» от края кадра, px. */
 const EXIT_MARGIN = 28;
@@ -284,8 +287,16 @@ export function MapStage({
           must: rank(p) < 2,
         };
       });
-    return placeMarkerLabels(items);
-  }, [spots, activePlaceSlug, focusPlaces, active, lang, widths, markerScale]);
+    // Видимая часть кадра (левее панели, выше шторки) в единицах маркеров: подписи не уходят за край (аудит E13).
+    let bounds: Box | undefined;
+    if (view.width > 0 && active) {
+      const frame = visibleFrame(view, inset, LABEL_MARGIN, insetBottom);
+      const [ox, oy] = toScreen([0, 0], framed.camera, framed.offset, view, framed.offsetY);
+      const k = regionZoom / framed.camera.zoom;
+      bounds = { left: (frame.left - ox) * k, right: (frame.right - ox) * k, top: (frame.top - oy) * k, bottom: (frame.bottom - oy) * k };
+    }
+    return placeMarkerLabels(items, bounds);
+  }, [spots, activePlaceSlug, focusPlaces, active, lang, widths, markerScale, view, inset, insetBottom, framed, regionZoom]);
 
   // S2/S3: нить к месту за краем кадра уходит туда со стрелкой и названием (SPEC §6.6).
   const exits = useMemo(() => {

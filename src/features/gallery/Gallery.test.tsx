@@ -112,9 +112,9 @@ describe('галерея S4 (SPEC §5.6)', () => {
     expect(onSelect).not.toHaveBeenCalled();
   });
 
-  it('один элемент: стрелок нет, клавиши не листают', () => {
+  it('один элемент: ни счётчика, ни стрелок, клавиши не листают', () => {
     const { onSelect } = show(0, [art]);
-    expect(screen.getByText('01 / 01')).toBeInTheDocument();
+    expect(screen.queryByText('01 / 01')).toBeNull();
     expect(screen.queryByRole('button', { name: 'Следующее медиа' })).toBeNull();
     fireEvent.keyDown(window, { key: 'ArrowRight' });
     expect(onSelect).not.toHaveBeenCalled();

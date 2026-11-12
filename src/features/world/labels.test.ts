@@ -46,6 +46,16 @@ describe('placeMarkerLabels — подписи маркеров не налез�
     expect([...sides.values()]).toEqual(['top', 'top', 'top']);
   });
 
+  it('у края кадра подпись не выходит за него: ищет другую сторону, нет — прячется', () => {
+    const bounds = { left: -100, right: 100, top: -100, bottom: 100 };
+    // У верхнего края — снизу; у левого края, где и сверху, и снизу вылезает — справа.
+    expect(placeMarkerLabels([m('a', 0, -80)], bounds).get('a')).toBe('bottom');
+    expect(placeMarkerLabels([m('b', -90, 0)], bounds).get('b')).toBe('right');
+    // Маркер за краем — без подписи; без bounds — как раньше.
+    expect(placeMarkerLabels([m('c', 300, 0)], bounds).get('c')).toBe('hidden');
+    expect(placeMarkerLabels([m('c', 300, 0)]).get('c')).toBe('top');
+  });
+
   it('соседу сверху тесно — следующая сторона: снизу, справа, слева', () => {
     // b прямо над a: подпись a сверху налезла бы на кольцо b.
     const sides = placeMarkerLabels([m('b', 0, -30), m('a', 0, 0)]);

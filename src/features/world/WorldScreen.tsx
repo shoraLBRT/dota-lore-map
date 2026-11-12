@@ -16,6 +16,7 @@ import { HeroPreviewProvider } from '../search/preview';
 import { heroScreen, heroSpots, spotScreen } from '../search/search';
 import { restoreFocus } from './focus';
 import { MapStage } from './MapStage';
+import { useWorldHint, WorldHint } from './WorldHint';
 import styles from './WorldScreen.module.css';
 
 interface Props {
@@ -73,6 +74,19 @@ export function WorldScreen({ screen, veiled = false }: Props) {
   const threads = showPreview ? previewSpots : spots && spots.length > 1 ? spots : undefined;
   const threadsKey = showPreview ? `preview/${previewHero!.key}` : hero?.key;
 
+  // Подсказка «выберите регион» при первом входе: гаснет от первого наведения, фокуса или нажатия на регион,
+  // а также если пользователь уже ушёл из мира (тап на телефоне сразу открывает регион).
+  const hint = useWorldHint();
+  const { dismiss: dismissHint } = hint;
+  const inRegion = Boolean(region) && !veiled;
+  useEffect(() => {
+    if (inRegion) dismissHint();
+  }, [inRegion, dismissHint]);
+  const onMapEvent = (e: { target: EventTarget }) => {
+    if (e.target instanceof Element && e.target.closest('[data-region]')) dismissHint();
+  };
+  const showHint = !veiled && screen.name === 'world' && !searchOpen && !hero;
+
   const pick = (h: Hero) => {
     setSearchOpen(false);
     navigate({ screen: heroScreen(h), hero: h.key });
@@ -89,7 +103,7 @@ export function WorldScreen({ screen, veiled = false }: Props) {
       <h1 className="visually-hidden">{t('app.title')}</h1>
       <Rail className={styles.rail} onSearch={() => setSearchOpen(true)} searchOpen={searchOpen} />
       <div className={styles.body}>
-        <main className={styles.map}>
+        <main className={styles.map} onPointerOver={onMapEvent} onFocus={onMapEvent} onPointerDown={onMapEvent}>
           <MapStage
             regions={world.regions}
             activeRegionId={region?.id}
@@ -104,6 +118,7 @@ export function WorldScreen({ screen, veiled = false }: Props) {
             onSelectSpot={(s) => open(spotScreen(s))}
           />
         </main>
+        {showHint && <WorldHint state={hint.state} />}
         {!veiled && (searchOpen || (hero && spots)) && (
           <div className={[barStyles.bar, region && !collapsed && barStyles.withPanel].filter(Boolean).join(' ')}>
             {searchOpen ? (

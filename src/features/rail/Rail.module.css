@@ -98,18 +98,31 @@
     gap: var(--space-1);
   }
 
-  /* 7 кнопок и переключатель языка помещаются в 320 px. */
+  /* Кнопки 44×44 px (рекомендация платформ): 7 штук с отступами — 352 px, помещаются от 360 px (аудит E13, #40). */
+  .button,
+  .lang button {
+    height: 2.75rem;
+  }
+
+  .logo {
+    margin: 0 var(--space-1) 0 0;
+  }
+
+  .lang {
+    margin: 0 0 0 var(--space-1);
+  }
+}
+
+/* Уже 360 px (320 px — iPhone SE 1-го поколения): 44 px не помещаются, кнопки 40×40 (выше WCAG 2.5.8 AA — 24 px)
+   и поля полосы меньше — так все 7 кнопок в кадре (ARCHITECTURE A13). */
+@media (max-width: 359px) {
+  .rail {
+    padding: 0 var(--space-1);
+  }
+
   .button,
   .lang button {
     width: 2.5rem;
     height: 2.5rem;
-  }
-
-  .logo {
-    margin: 0 var(--space-2) 0 0;
-  }
-
-  .lang {
-    margin: 0 0 0 var(--space-2);
   }
 }
