@@ -3,7 +3,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { Hero, Region } from '../../data/types';
 import { I18nProvider } from '../../i18n';
 import { BIOME_COLORS } from './biomes';
-import { cameraTransform, frameCamera, placeCamera, UNMEASURED } from './camera';
+import { cameraTransform, frameCamera, placeCamera, UNMEASURED, worldListLayout } from './camera';
 import { MapStage } from './MapStage';
 
 const region = (id: string, withLayout: boolean): Region => ({
@@ -126,6 +126,64 @@ describe('MapStage', () => {
     expect(onSelectPlace).toHaveBeenCalledWith('a', 'spot');
     const layer = document.querySelector('svg')!.parentElement!;
     expect(layer.style.transform).toBe(cameraTransform({ x: 0.2, y: 0.2, zoom: 3 }));
+  });
+});
+
+describe('MapStage — список регионов на телефоне (#39)', () => {
+  function renderWithList(activeRegionId?: string, focus?: { key: string; regionId: string; tone: 'neutral' }[]) {
+    const onSelectRegion = vi.fn();
+    render(
+      <I18nProvider initialLang="en">
+        <MapStage
+          regions={[region('a', true), region('b', true)]}
+          activeRegionId={activeRegionId}
+          onSelectRegion={onSelectRegion}
+          onSelectPlace={vi.fn()}
+          heroesOf={(id) => heroes(id === 'a' ? 1 : 3)}
+          focus={focus}
+          regionList
+        />
+      </I18nProvider>,
+    );
+    return { onSelectRegion };
+  }
+  const item = (name: RegExp) => within(screen.getByTestId('region-list')).getByRole('button', { name });
+
+  it('в мире — список под картой; нажатие открывает регион, как тап по карте', () => {
+    const { onSelectRegion } = renderWithList();
+    expect(item(/a en/)).toHaveTextContent('1 hero');
+    expect(item(/b en/)).toHaveTextContent('3 heroes');
+    fireEvent.click(item(/b en/));
+    expect(onSelectRegion).toHaveBeenCalledWith('b');
+  });
+
+  it('фокус и наведение на пункт подсвечивают регион на карте без подсказки', () => {
+    renderWithList();
+    fireEvent.focus(item(/a en/));
+    expect(tint('a').getAttribute('class')).toMatch(/lit/);
+    expect(document.querySelector('[data-label="a"]')!.getAttribute('class')).toMatch(/lit/);
+    expect(tint('b').getAttribute('class')).not.toMatch(/lit/);
+    expect(screen.queryByRole('tooltip')).toBeNull();
+    fireEvent.blur(item(/a en/));
+    expect(tint('a').getAttribute('class')).not.toMatch(/lit/);
+    fireEvent.pointerEnter(item(/b en/), { pointerType: 'mouse' });
+    expect(tint('b').getAttribute('class')).toMatch(/lit/);
+  });
+
+  it('в регионе (S2) списка нет — только шторка', () => {
+    renderWithList('a');
+    expect(screen.queryByTestId('region-list')).toBeNull();
+  });
+
+  it('выбран герой: его регион отмечен и в списке', () => {
+    renderWithList(undefined, [{ key: 'b', regionId: 'b', tone: 'neutral' }]);
+    expect(item(/b en/).className).toMatch(/heroRegion/);
+    expect(item(/a en/).className).toMatch(/muted/);
+  });
+
+  it('без regionList (компьютер, планшет) списка нет', () => {
+    renderStage([region('a', true)]);
+    expect(screen.queryByTestId('region-list')).toBeNull();
   });
 });
 
@@ -307,6 +365,31 @@ describe('camera', () => {
     // Альбомная ориентация: свободной высоты меньше слоя — zoom уменьшается.
     const landscape = { width: 760, height: 360, layerWidth: 576, layerHeight: 360, inset: 0, insetBottom: 108 };
     expect(frameCamera(camera, landscape).camera.zoom).toBeCloseTo(2 * (252 / 360));
+  });
+  it('отрицательный сдвиг по вертикали — вниз', () => {
+    expect(cameraTransform({ x: 0.5, y: 0.5, zoom: 1 }, 0, -40)).toBe('translate(0%, calc(0% + 40px)) scale(1)');
+  });
+  it('мир со списком регионов (#39): телефон — карта у верха, список под ней; боком — карта слева, список справа', () => {
+    // 375×812: кадр под полосой 375×760, слой 375×234.
+    const portrait = { width: 375, height: 760, layerWidth: 375, layerHeight: 234, inset: 0 };
+    const p = worldListLayout(portrait);
+    expect(p.offset).toBe(0);
+    expect(p.offsetY).toBe(263);
+    expect(p.map).toEqual({ top: 0, left: 0, width: 375, height: 234 });
+    expect(p.list).toEqual({ top: 234, left: 0, width: 375, height: 526 });
+    // Плашка героя сверху: карта встаёт под неё, сдвиг меньше.
+    const withBar = worldListLayout(portrait, 150);
+    expect(withBar.offsetY).toBe(113);
+    expect(withBar.list).toEqual({ top: 384, left: 0, width: 375, height: 376 });
+    // Плашка выше свободного места — карта у низа кадра, список пустой.
+    expect(worldListLayout(portrait, 900).list.height).toBe(0);
+    // 667×375 боком: кадр 667×323, слой 517×323.
+    const landscape = worldListLayout({ width: 667, height: 323, layerWidth: 517, layerHeight: 323, inset: 0 });
+    expect(landscape.offset).toBe(75);
+    expect(landscape.offsetY).toBe(0);
+    expect(landscape.list).toEqual({ top: 0, left: 517, width: 150, height: 323 });
+    // Без измерений — без сдвига.
+    expect(worldListLayout(UNMEASURED)).toMatchObject({ offset: 0, offsetY: 0 });
   });
   it('камера места — между регионом и местом, чуть ближе', () => {
     const c = placeCamera({ x: 0.2, y: 0.2, zoom: 2 }, [0.4, 0.6]);

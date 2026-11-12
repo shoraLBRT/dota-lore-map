@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useMediaQuery } from '../../app/media';
 import { useNavigation } from '../../app/navigation';
 import { useSfx } from '../../app/sound';
 import { parseHash, serializeRoute, type Screen } from '../../app/router';
@@ -14,10 +15,14 @@ import { HeroBadge } from '../search/HeroBadge';
 import { HeroSearch } from '../search/HeroSearch';
 import { HeroPreviewProvider } from '../search/preview';
 import { heroScreen, heroSpots, spotScreen } from '../search/search';
+import { MOBILE_QUERY } from './camera';
 import { restoreFocus } from './focus';
 import { MapStage } from './MapStage';
 import { useWorldHint, WorldHint } from './WorldHint';
 import styles from './WorldScreen.module.css';
+
+/** Зазор между плашкой героя и картой со списком регионов на телефоне, px. */
+const BAR_GAP = 8;
 
 interface Props {
   screen: Screen;
@@ -85,7 +90,27 @@ export function WorldScreen({ screen, veiled = false }: Props) {
   const onMapEvent = (e: { target: EventTarget }) => {
     if (e.target instanceof Element && e.target.closest('[data-region]')) dismissHint();
   };
-  const showHint = !veiled && screen.name === 'world' && !searchOpen && !hero;
+  // Телефон (#39): в мире под картой список регионов — он сам и есть подсказка, строка внизу кадра не нужна.
+  const mobile = useMediaQuery(MOBILE_QUERY);
+  const showHint = !veiled && screen.name === 'world' && !searchOpen && !hero && !mobile;
+
+  // Плашка героя сверху кадра: на телефоне карта со списком встаёт под неё, а не под плашку.
+  const [barBottom, setBarBottom] = useState(0);
+  const barObserver = useRef<ResizeObserver | null>(null);
+  const barRef = useCallback((el: HTMLDivElement | null) => {
+    barObserver.current?.disconnect();
+    barObserver.current = null;
+    if (!el) {
+      setBarBottom(0);
+      return;
+    }
+    const measure = () => setBarBottom(el.offsetTop + el.offsetHeight);
+    measure();
+    if (typeof ResizeObserver === 'undefined') return;
+    barObserver.current = new ResizeObserver(measure);
+    barObserver.current.observe(el);
+  }, []);
+  const topInset = mobile && hero && !searchOpen && barBottom > 0 ? barBottom + BAR_GAP : 0;
 
   const pick = (h: Hero) => {
     setSearchOpen(false);
@@ -116,11 +141,13 @@ export function WorldScreen({ screen, veiled = false }: Props) {
             threads={threads}
             threadsKey={threadsKey}
             onSelectSpot={(s) => open(spotScreen(s))}
+            regionList={mobile}
+            topInset={topInset}
           />
         </main>
         {showHint && <WorldHint state={hint.state} />}
         {!veiled && (searchOpen || (hero && spots)) && (
-          <div className={[barStyles.bar, region && !collapsed && barStyles.withPanel].filter(Boolean).join(' ')}>
+          <div ref={barRef} className={[barStyles.bar, region && !collapsed && barStyles.withPanel].filter(Boolean).join(' ')}>
             {searchOpen ? (
               <HeroSearch onPick={pick} onClose={() => setSearchOpen(false)} />
             ) : (

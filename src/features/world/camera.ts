@@ -19,13 +19,15 @@ const round = (n: number) => Math.round(n * 1000) / 1000;
 
 /**
  * Transform, который ставит точку (x, y) в центр кадра с масштабом zoom.
- * `offset` (px) сдвигает центр влево — к середине части кадра, не закрытой панелью.
+ * `offset` (px) сдвигает центр влево — к середине части кадра, не закрытой панелью;
+ * `offsetY` (px) — вверх (шторка, список регионов на телефоне), отрицательный — вниз.
  */
 export function cameraTransform(camera: Camera, offset = 0, offsetY = 0): string {
   const tx = (0.5 - camera.x * camera.zoom) * 100;
   const ty = (0.5 - camera.y * camera.zoom) * 100;
   const x = offset > 0 ? `calc(${round(tx)}% - ${round(offset)}px)` : `${round(tx)}%`;
-  const y = offsetY > 0 ? `calc(${round(ty)}% - ${round(offsetY)}px)` : `${round(ty)}%`;
+  const dy = round(offsetY);
+  const y = dy !== 0 ? `calc(${round(ty)}% ${dy > 0 ? '-' : '+'} ${Math.abs(dy)}px)` : `${round(ty)}%`;
   return `translate(${x}, ${y}) scale(${round(camera.zoom)})`;
 }
 
@@ -82,6 +84,46 @@ export function frameCamera(camera: Camera, view: View): { camera: Camera; offse
     camera: { x: clamp(camera.x, seenX), y: clamp(camera.y, seenY), zoom },
     offset: Math.max(view.inset, 0) / 2,
     ...(bottom > 0 ? { offsetY: bottom / 2 } : {}),
+  };
+}
+
+/** Прямоугольник в px внутри кадра карты. */
+export interface Rect {
+  top: number;
+  left: number;
+  width: number;
+  height: number;
+}
+
+/**
+ * Мир на телефоне со списком регионов (#39, SPEC §13): карта целиком прижимается к верху кадра
+ * (ниже `top` — плашки героя), а список занимает пустое место под ней. Если кадр шире, чем нужно карте
+ * (телефон боком), карта прижимается влево, список — справа. Возвращает сдвиг камеры мира для cameraTransform,
+ * рамку карты и рамку списка. Без измерений (jsdom) — без сдвига, список на весь кадр.
+ */
+export function worldListLayout(view: View, top = 0): { offset: number; offsetY: number; map: Rect; list: Rect } {
+  const { width, height, layerWidth, layerHeight } = view;
+  if (width <= 0 || height <= 0 || layerWidth <= 0 || layerHeight <= 0) {
+    const box = { top: 0, left: 0, width, height };
+    return { offset: 0, offsetY: 0, map: box, list: box };
+  }
+  const freeX = width - layerWidth;
+  const freeY = height - layerHeight;
+  if (freeX > freeY) {
+    // Слой по центру кадра: сдвиг на половину свободной ширины ставит его к левому краю.
+    return {
+      offset: freeX / 2,
+      offsetY: 0,
+      map: { top: freeY / 2, left: 0, width: layerWidth, height: layerHeight },
+      list: { top: 0, left: layerWidth, width: freeX, height },
+    };
+  }
+  const mapTop = Math.min(Math.max(top, 0), freeY);
+  return {
+    offset: 0,
+    offsetY: freeY / 2 - mapTop,
+    map: { top: mapTop, left: freeX / 2, width: layerWidth, height: layerHeight },
+    list: { top: mapTop + layerHeight, left: 0, width, height: height - mapTop - layerHeight },
   };
 }
 
