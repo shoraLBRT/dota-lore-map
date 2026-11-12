@@ -326,6 +326,16 @@
   filter: drop-shadow(0 0 4px var(--hl)) drop-shadow(0 0 1px var(--hl-glow));
 }
 
+.threadCasing {
+  fill: none;
+  stroke: var(--map-ink);
+  stroke-width: calc(var(--w) * 2.4);
+  stroke-linecap: round;
+  stroke-dasharray: var(--len) var(--len);
+  stroke-dashoffset: var(--len);
+  animation: thread-draw var(--dur-thread) var(--ease-out) forwards;
+}
+
 .thread {
   fill: none;
   stroke: var(--hl);
@@ -416,6 +426,11 @@
 
 /* SPEC §14: при reduced motion — без сдвигов и масштаба: нить сразу нарисована и не течёт, вспышки нет. */
 @media (prefers-reduced-motion: reduce) {
+  .threadCasing {
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+
   .thread {
     stroke-dasharray: var(--dash) var(--dash);
     stroke-dashoffset: 0;

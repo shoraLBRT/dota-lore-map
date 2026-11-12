@@ -10,7 +10,7 @@ const openSearch = () => {
   return screen.getByRole('combobox', { name: 'Поиск героя' });
 };
 const badge = () => screen.queryByRole('region', { name: 'Выбранный герой' });
-const threads = () => document.querySelectorAll('[data-testid="threads"] path');
+const threads = () => document.querySelectorAll('[data-testid="threads"] path[data-thread]');
 
 describe('поиск героя и нити', () => {
   beforeEach(() => {

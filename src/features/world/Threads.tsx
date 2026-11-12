@@ -24,20 +24,20 @@ export function Threads({ spots, scale }: Props) {
   const k = scale.toFixed(4);
   return (
     <g className={[styles.threads, styles[placed[0]!.tone]].join(' ')} aria-hidden="true" data-testid="threads">
-      {arcs.map((a, i) => (
-        <path
-          key={i}
-          className={styles.thread}
-          d={a.d}
-          style={
-            {
-              '--len': a.length.toFixed(1),
-              '--dash': (7 * scale).toFixed(2),
-              '--w': (2.2 * scale).toFixed(2),
-            } as CSSProperties
-          }
-        />
-      ))}
+      {arcs.map((a, i) => {
+        const style = {
+          '--len': a.length.toFixed(1),
+          '--dash': (7 * scale).toFixed(2),
+          '--w': (2.2 * scale).toFixed(2),
+        } as CSSProperties;
+        // Тёмная подложка под пунктиром: нить того же цвета, что и подсветка регионов героя, иначе теряется (аудит E13).
+        return (
+          <g key={i}>
+            <path className={styles.threadCasing} d={a.d} style={style} />
+            <path className={styles.thread} d={a.d} style={style} data-thread="" />
+          </g>
+        );
+      })}
       {placed.map((s) => {
         const [x, y] = STAGE(s.point);
         return (
