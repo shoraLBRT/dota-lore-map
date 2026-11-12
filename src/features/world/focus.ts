@@ -14,14 +14,30 @@ export function focusLost(active: Element | null): boolean {
   return !active.hasAttribute('tabindex') && !active.matches(NATIVE_FOCUSABLE);
 }
 
+/** Откуда открыли регион: с карты или из списка регионов под картой на телефоне (#39). */
+export interface FocusOrigin {
+  /** Регион открыт пунктом списка: вверх в мир — на этот пункт, а не на полигон. */
+  listRegionId?: string | null;
+}
+
 /**
  * Куда поставить фокус после перехода `prev` → `next`:
- * вверх (место → регион, регион → мир) — на маркер места или полигон региона, откуда пришли;
+ * вверх (место → регион, регион → мир) — на маркер места или регион, откуда пришли
+ * (полигон; пункт списка регионов, если регион открыли из него и список на экране);
  * вниз и вбок — на заголовок правой панели (скринридер прочитает, куда попали, Tab ведёт по панели).
  */
-export function focusTarget(root: ParentNode, prev: Screen, next: Screen): HTMLElement | SVGElement | null {
+export function focusTarget(
+  root: ParentNode,
+  prev: Screen,
+  next: Screen,
+  origin: FocusOrigin = {},
+): HTMLElement | SVGElement | null {
   if (next.name === 'world' || next.name === 'intro') {
     if (prev.name !== 'region' && prev.name !== 'place') return null;
+    if (origin.listRegionId === prev.regionId) {
+      const item = root.querySelector<HTMLElement>(`[data-list-region="${prev.regionId}"]`);
+      if (item) return item;
+    }
     return root.querySelector<SVGElement>(`[data-region="${prev.regionId}"][tabindex]`);
   }
   if (next.name === 'region' && prev.name === 'place' && prev.regionId === next.regionId) {
@@ -32,7 +48,16 @@ export function focusTarget(root: ParentNode, prev: Screen, next: Screen): HTMLE
 }
 
 /** Переносит фокус после перехода, только если он потерян: фокус, который пользователь держит, не трогаем. */
-export function restoreFocus(root: HTMLElement, prev: Screen, next: Screen): void {
+export function restoreFocus(root: HTMLElement, prev: Screen, next: Screen, origin: FocusOrigin = {}): void {
   if (!focusLost(root.ownerDocument.activeElement)) return;
-  focusTarget(root, prev, next)?.focus({ preventScroll: true });
+  const target = focusTarget(root, prev, next, origin);
+  target?.focus({ preventScroll: true });
+  // Пункт списка прокручиваем только внутри самого списка: focus() со скроллом сдвинул бы и кадр карты (overflow: hidden).
+  const list = target?.closest<HTMLElement>('[data-region-list]');
+  if (target instanceof HTMLElement && list) {
+    const top = target.offsetTop;
+    if (top < list.scrollTop || top + target.offsetHeight > list.scrollTop + list.clientHeight) {
+      list.scrollTop = Math.max(0, top - (list.clientHeight - target.offsetHeight) / 2);
+    }
+  }
 }

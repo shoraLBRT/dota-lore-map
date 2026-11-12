@@ -31,6 +31,8 @@ import {
   SHEET_PEEK,
   UNMEASURED,
   WORLD_CAMERA,
+  worldListLayout,
+  type Rect,
   type View,
 } from './camera';
 
@@ -47,6 +49,7 @@ import { clampLabelX, LABEL_GAP, placeMarkerLabels, splitLabel, type Box, type L
 import styles from './MapStage.module.css';
 import { PlaceTooltip } from './PlaceTooltip';
 import { RegionArt } from './RegionArt';
+import { RegionList } from './RegionList';
 import { RegionTooltip } from './RegionTooltip';
 import { Threads } from './Threads';
 import { arc, edgeExit, toScreen, visibleFrame } from './threadGeometry';
@@ -55,7 +58,8 @@ interface Props {
   regions: Region[];
   activeRegionId?: string;
   activePlaceSlug?: string;
-  onSelectRegion: (regionId: string) => void;
+  /** `source` — откуда открыли: полигон на карте или пункт списка регионов (фокус при возврате, A14). */
+  onSelectRegion: (regionId: string, source?: 'map' | 'list') => void;
   onSelectPlace: (regionId: string, placeSlug: string) => void;
   /** Справа кадр закрыт панелью: камера региона и места кадрирует свободную часть (ARCHITECTURE A4). */
   panel?: boolean;
@@ -72,6 +76,10 @@ interface Props {
   threadsKey?: string;
   /** Клик по метке нити, ушедшей за край кадра. */
   onSelectSpot?: (spot: Spot) => void;
+  /** Телефон (#39, SPEC §13): в мире карта прижата к верху, под ней — список регионов. */
+  regionList?: boolean;
+  /** Сколько px сверху кадра занято (плашка героя): карта со списком встаёт ниже. */
+  topInset?: number;
 }
 
 /** Отступ подписей маркеров от края видимой части кадра, px. */
@@ -148,6 +156,8 @@ function onActivate(action: () => void) {
 
 const noop = () => () => {};
 
+const rectStyle = (r: Rect): CSSProperties => ({ top: r.top, left: r.left, width: r.width, height: r.height });
+
 /**
  * Слой карты (ARCHITECTURE A4): SVG в координатах 1600×1000 под камерой.
  * Мир (S1): наведение и фокус подсвечивают регион и показывают подсказку (S1h).
@@ -168,6 +178,8 @@ export function MapStage({
   threads,
   threadsKey,
   onSelectSpot,
+  regionList = false,
+  topInset = 0,
 }: Props) {
   const { l, lang, t } = useT();
   const sfx = useSfx();
@@ -180,6 +192,8 @@ export function MapStage({
   const [focusId, setFocusId] = useState<string | null>(null);
   const [spotHover, setSpotHover] = useState<string | null>(null);
   const [spotFocus, setSpotFocus] = useState<string | null>(null);
+  /** Пункт списка регионов под наведением или фокусом: регион подсвечен на карте, без подсказки. */
+  const [listId, setListId] = useState<string | null>(null);
   const [view, setView] = useState<View>(UNMEASURED);
   /** Камера летит: подсказки ждут посадки, иначе встают у якоря, посчитанного на старте (аудит E13). */
   const [flying, setFlying] = useState(false);
@@ -194,6 +208,7 @@ export function MapStage({
   // S1h только в мире; наведение мышью важнее фокуса.
   const inWorld = !active;
   const shownId = inWorld ? (hoverId ?? focusId) : null;
+  const litId = inWorld ? listId : null;
   const shown = useMemo(() => regions.find((r) => r.id === shownId && r.layout), [regions, shownId]);
   const shownHeroes = useMemo(() => (shown ? heroesOf(shown.id) : []), [shown, heroesOf]);
 
@@ -246,7 +261,14 @@ export function MapStage({
   const inset = panel && active ? view.inset : 0;
   const insetBottom = panel && active ? (view.insetBottom ?? 0) : 0;
   const framed = useMemo(() => frameCamera(camera, { ...view, inset, insetBottom }), [camera, view, inset, insetBottom]);
-  const target = cameraTransform(framed.camera, framed.offset, framed.offsetY);
+  // Мир со списком регионов: карта прижата к верху (или влево, если телефон боком), список — в пустом месте.
+  const listLayout = useMemo(
+    () => (regionList && inWorld && hasMap ? worldListLayout(view, topInset) : null),
+    [regionList, inWorld, hasMap, view, topInset],
+  );
+  const target = listLayout
+    ? cameraTransform(WORLD_CAMERA, listLayout.offset, listLayout.offsetY)
+    : cameraTransform(framed.camera, framed.offset, framed.offsetY);
   /** Маркеры и подписи — в экранных пикселях, независимо от приближения и размера окна (1 единица SVG = 1 px). */
   const regionZoom = active?.layout ? frameCamera(active.layout.camera, { ...view, inset, insetBottom }).camera.zoom : 1;
   const markerScale = (view.layerWidth > 0 ? STAGE_WIDTH / view.layerWidth : 1) / regionZoom;
@@ -509,8 +531,8 @@ export function MapStage({
                       aria-label={l(r.name)}
                       aria-describedby={r.id === shownId ? tooltipId : undefined}
                       data-region={r.id}
-                      onClick={() => onSelectRegion(r.id)}
-                      onKeyDown={onActivate(() => onSelectRegion(r.id))}
+                      onClick={() => onSelectRegion(r.id, 'map')}
+                      onKeyDown={onActivate(() => onSelectRegion(r.id, 'map'))}
                       // SPEC §5.3: на тач-устройствах подсказки нет, тап сразу открывает регион.
                       onPointerEnter={(e) => e.pointerType !== 'touch' && enter(r)}
                       onPointerLeave={() => setHoverId((id) => (id === r.id ? null : id))}
@@ -531,7 +553,7 @@ export function MapStage({
                     className={[
                       styles.tint,
                       styles[highlight(r)],
-                      (r.id === shownId || (inWorld && focusRegions?.has(r.id))) && styles.lit,
+                      (r.id === shownId || r.id === litId || (inWorld && focusRegions?.has(r.id))) && styles.lit,
                       r.id === shownId && r.id === focusId && styles.focused,
                     ]
                       .filter(Boolean)
@@ -556,7 +578,7 @@ export function MapStage({
                         styles.label,
                         styles[highlight(r)],
                         r.tier !== 'continent' && styles.tierLabel,
-                        r.id === shownId && styles.lit,
+                        (r.id === shownId || r.id === litId) && styles.lit,
                         inWorld && heroClass(r.id),
                       ]
                         .filter(Boolean)
@@ -588,7 +610,7 @@ export function MapStage({
             </svg>
           </div>
           {active && <AmbientCanvas key={active.id} ambient={active.ambient} />}
-          <div className={styles.vignette} aria-hidden="true" />
+          <div className={styles.vignette} style={listLayout ? rectStyle(listLayout.map) : undefined} aria-hidden="true" />
           {exits.map((e) => (
             <button
               key={`${threadsKey ?? ''}/${e.spot.key}`}
@@ -606,7 +628,25 @@ export function MapStage({
               {spotName(e.spot, lang)}
             </button>
           ))}
-          <Clouds clouds={EDGE_CLOUDS} mode="drift" hidden={!inWorld} />
+          <div className={styles.cloudBox} style={listLayout ? rectStyle(listLayout.map) : undefined}>
+            <Clouds clouds={EDGE_CLOUDS} mode="drift" hidden={!inWorld} />
+          </div>
+          {listLayout && (
+            <RegionList
+              regions={drawn}
+              onSelect={(id) => onSelectRegion(id, 'list')}
+              onHighlight={(id) => {
+                setListId(id);
+                if (!id) return;
+                const r = drawn.find((d) => d.id === id);
+                if (r) void preloadRegionArt(r);
+              }}
+              heroCountOf={(id) => heroesOf(id).length}
+              focus={focusRegions}
+              waiting={flying}
+              style={rectStyle(listLayout.list)}
+            />
+          )}
         </div>
       )}
       {shown && !flying && <RegionTooltip id={tooltipId} region={shown} heroes={shownHeroes} getAnchor={getAnchor} />}

@@ -31,6 +31,14 @@
   height: 100%;
 }
 
+/* Облака дрейфуют по краям кадра; на телефоне со списком регионов — по краям карты (inline style). */
+.cloudBox {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
 /* Виньетка по краям кадра (SPEC §5.3). */
 .vignette {
   position: absolute;

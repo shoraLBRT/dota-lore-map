@@ -1,0 +1,174 @@
+/* Список регионов под картой мира на телефоне (#39, SPEC §13). Положение — inline style из worldListLayout. */
+.list {
+  position: absolute;
+  z-index: 2;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: var(--space-3) var(--space-4) var(--space-5);
+  border-top: 1px solid var(--metal-dim);
+  background: var(--bg-0);
+  container-type: inline-size;
+  transition: opacity var(--dur-fade) var(--ease-out);
+}
+
+/* Камера летит в мир: список проявляется после посадки и пока не нажимается. */
+.waiting {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.title {
+  margin: 0 0 var(--space-2);
+  color: var(--metal-bright);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+}
+
+.group + .group {
+  margin-top: var(--space-3);
+}
+
+.groupTitle {
+  margin: 0 0 var(--space-1);
+  padding-left: var(--space-2);
+  border-left: 3px solid var(--hl);
+  color: var(--text-2);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+  gap: var(--space-1) var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Пункт — кнопка во всю ширину: цель нажатия ≥ 44 px (рекомендация платформ). */
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  min-height: 2.75rem;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--metal-dim);
+  background: var(--bg-1);
+  color: var(--text-1);
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+  transition:
+    border-color var(--dur-hover) var(--ease-out),
+    background-color var(--dur-hover) var(--ease-out),
+    opacity var(--dur-hover) var(--ease-out);
+}
+
+.item:hover,
+.item:focus-visible {
+  border-color: var(--hl);
+  background: var(--bg-2);
+}
+
+/* Цвет стороны или яруса — как подсветка региона на карте (SPEC §8.3). */
+.swatch {
+  flex: none;
+  width: 0.75rem;
+  height: 0.75rem;
+  border: 1px solid var(--hl);
+  background: var(--hl-glow);
+  rotate: 45deg;
+}
+
+.name {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.count {
+  flex: none;
+  color: var(--text-3);
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+/* Узкий список справа от карты (телефон боком): число героев — под названием. */
+@container (max-width: 16rem) {
+  .title,
+  .groupTitle,
+  .items {
+    margin-inline: calc(-1 * var(--space-2));
+  }
+
+  .item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0 var(--space-2);
+    padding-inline: var(--space-2);
+  }
+
+  .swatch {
+    grid-row: span 2;
+  }
+
+  .count {
+    grid-column: 2;
+  }
+}
+
+/* Выбран герой (SPEC §6.5): его регионы отмечены, остальные приглушены. */
+.heroRegion {
+  border-color: var(--hl);
+  box-shadow: inset 3px 0 0 var(--hl);
+}
+
+.heroRegion .swatch {
+  background: var(--hl);
+}
+
+.muted {
+  opacity: 0.5;
+}
+
+.muted:hover,
+.muted:focus-visible {
+  opacity: 1;
+}
+
+.radiant {
+  --hl: var(--radiant);
+  --hl-glow: var(--radiant-glow);
+}
+
+.dire {
+  --hl: var(--dire);
+  --hl-glow: var(--dire-glow);
+}
+
+.neutral {
+  --hl: var(--neutral);
+  --hl-glow: var(--neutral-glow);
+}
+
+.upper {
+  --hl: var(--upper);
+  --hl-glow: var(--upper-glow);
+}
+
+.abyss {
+  --hl: var(--abyss);
+  --hl-glow: var(--abyss-glow);
+}
+
