@@ -22,7 +22,7 @@ export function MediaCards({ title, items, onOpen }: Props) {
   return (
     <section>
       <h3>{title}</h3>
-      <ul className={styles.media}>
+      <ul className={styles.media} data-count={Math.min(media.length, MAX_MEDIA)}>
         {media.slice(0, MAX_MEDIA).map((m) => {
           const thumb = mediaThumb(m, lang);
           return (

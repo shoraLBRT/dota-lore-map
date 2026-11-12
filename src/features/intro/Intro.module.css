@@ -122,10 +122,12 @@
 }
 
 .footer {
-  padding: var(--space-3) var(--space-4);
+  padding: var(--space-6) var(--space-4) var(--space-3);
   font-size: 0.8rem;
   color: var(--text-2);
   text-align: center;
+  /* Дисклеймер лежит на облаках пелены: без подложки светлые облака съедают текст (аудит E13). */
+  background: linear-gradient(180deg, transparent, var(--veil-strong) var(--space-6));
 }
 
 .footer p {

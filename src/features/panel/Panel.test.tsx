@@ -67,6 +67,8 @@ describe('панель региона (SPEC §5.4)', () => {
     const section = screen.getByRole('heading', { name: 'Медиа в регионе' }).closest('section')!;
     const cards = within(section).getAllByRole('button');
     expect(cards).toHaveLength(3);
+    // Сетка знает, сколько карточек: одна-две — шире (аудит E13).
+    expect(section.querySelector('ul')).toHaveAttribute('data-count', '3');
     fireEvent.click(cards[1]!);
     expect(window.location.hash).toBe(`#/?media=${media(2)[1]}`);
   });

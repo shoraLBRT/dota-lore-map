@@ -297,6 +297,19 @@
   opacity: 0.35;
 }
 
+/* Подписи не налезают друг на друга (аудит E13, labels.ts): лишняя прячется
+   и появляется при наведении, фокусе и у выбранного места. */
+.marker.labelHidden .markerLabel {
+  opacity: 0;
+  transition: opacity var(--dur-hover) var(--ease-out);
+}
+
+.marker.labelHidden:hover .markerLabel,
+.marker.labelHidden:focus-visible .markerLabel,
+.marker.labelHidden.current .markerLabel {
+  opacity: 1;
+}
+
 .heroSpot .ring {
   stroke: var(--accent-bright);
   stroke-width: 3;
