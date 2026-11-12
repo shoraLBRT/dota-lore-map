@@ -1,7 +1,7 @@
 import { act, fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { App } from '../../app/App';
-import { getRegion } from '../../data/world';
+import { getPlace, getRegion, placeName } from '../../data/world';
 import { MOBILE_QUERY } from './camera';
 
 // Мир на телефоне (#39): список регионов под картой ведёт туда же, куда тап по карте.
@@ -47,6 +47,37 @@ describe('список регионов на телефоне', () => {
     fireEvent.keyDown(window, { key: 'Escape' });
     expect(window.location.hash).toBe('#/world');
     expect(list()).not.toBeNull();
+  });
+
+  it('клавиатура: регион открыт из списка → Esc из места и региона → фокус на тот же пункт списка', () => {
+    window.location.hash = '#/world';
+    render(<App />);
+    const item = () => list()!.querySelector<HTMLElement>('[data-list-region="icewrack"]')!;
+    act(() => item().focus());
+    fireEvent.click(item());
+    expect(window.location.hash).toBe('#/r/icewrack');
+    expect(document.activeElement).toBe(screen.getByRole('heading', { level: 2, name: icewrack.name.ru }));
+
+    // Вглубь, в место, и обратно по Esc: место → регион → мир.
+    fireEvent.keyDown(screen.getByRole('button', { name: placeName(getPlace('icewrack', 'cobalt')!, 'ru') }), { key: 'Enter' });
+    expect(window.location.hash).toBe('#/r/icewrack/cobalt');
+    fireEvent.keyDown(window, { key: 'Escape' });
+    act(() => (document.activeElement as HTMLElement).blur());
+    fireEvent.keyDown(window, { key: 'Escape' });
+    expect(window.location.hash).toBe('#/world');
+    expect(document.activeElement).toBe(item());
+  });
+
+  it('открыт тапом по карте — назад в мир фокус на полигон, как на компьютере', () => {
+    window.location.hash = '#/world';
+    render(<App />);
+    const polygon = () => document.querySelector<SVGElement>('[data-region="icewrack"]')!;
+    act(() => polygon().focus());
+    fireEvent.keyDown(polygon(), { key: 'Enter' });
+    expect(window.location.hash).toBe('#/r/icewrack');
+    fireEvent.keyDown(window, { key: 'Escape' });
+    expect(window.location.hash).toBe('#/world');
+    expect(document.activeElement).toBe(polygon());
   });
 
   it('пункт списка и тап по карте ведут на один и тот же адрес', () => {

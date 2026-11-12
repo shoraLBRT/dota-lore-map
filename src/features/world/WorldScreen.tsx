@@ -51,12 +51,16 @@ export function WorldScreen({ screen, veiled = false }: Props) {
 
   // Клавиатура (SPEC §14): если при переходе фокус пропал вместе с элементом, ставим его на заголовок
   // панели или туда, откуда пришли (ARCHITECTURE A14). Экраны — по ключу адреса, а не по объекту.
+  // Регион открыт из списка под картой (телефон, #39): назад в мир — фокус на тот же пункт списка.
+  const listOrigin = useRef<string | null>(null);
   const prevKey = useRef(screenKey);
   useEffect(() => {
     const prev = prevKey.current;
     prevKey.current = screenKey;
     if (veiled || !rootRef.current || prev === screenKey) return;
-    restoreFocus(rootRef.current, parseHash(prev).screen, parseHash(screenKey).screen);
+    restoreFocus(rootRef.current, parseHash(prev).screen, parseHash(screenKey).screen, {
+      listRegionId: listOrigin.current,
+    });
   }, [screenKey, veiled]);
 
   // Звук открытия панели (SPEC §7.4): из мира в регион или место; переходы внутри панели — без него.
@@ -133,7 +137,11 @@ export function WorldScreen({ screen, veiled = false }: Props) {
             regions={world.regions}
             activeRegionId={region?.id}
             activePlaceSlug={place?.slug}
-            onSelectRegion={(id) => open({ name: 'region', regionId: id })}
+            onSelectRegion={(id, source) => {
+              // Клик по пустому месту карты в месте (S3 → S2) источника не передаёт — origin не трогаем.
+              if (source) listOrigin.current = source === 'list' ? id : null;
+              open({ name: 'region', regionId: id });
+            }}
             onSelectPlace={(id, slug) => open({ name: 'place', regionId: id, placeSlug: slug })}
             panel={Boolean(region)}
             onCameraBusy={hold}

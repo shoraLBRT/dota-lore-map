@@ -38,6 +38,24 @@ describe('focusLost', () => {
     expect(focusTarget(document, region, place)).toBe(document.querySelector('h2'));
     expect(focusTarget(document, { name: 'intro' }, world)).toBeNull();
   });
+
+  it('регион открыт из списка регионов (телефон, #39): вверх в мир — на пункт списка; нет списка — на полигон', () => {
+    document.body.innerHTML = `
+      <svg><polygon data-region="icewrack" tabindex="0"></polygon><polygon data-region="druud" tabindex="0"></polygon></svg>
+      <nav data-region-list><button data-list-region="icewrack">Icewrack</button><button data-list-region="druud">Druud</button></nav>`;
+    const world = { name: 'world' } as const;
+    const region = { name: 'region', regionId: 'icewrack' } as const;
+    const place = { name: 'place', regionId: 'icewrack', placeSlug: 'cobalt' } as const;
+    const item = document.querySelector('[data-list-region="icewrack"]');
+    const polygon = document.querySelector('[data-region="icewrack"]');
+    expect(focusTarget(document, region, world, { listRegionId: 'icewrack' })).toBe(item);
+    expect(focusTarget(document, place, world, { listRegionId: 'icewrack' })).toBe(item);
+    // Открыт с карты или другой регион из списка — на полигон.
+    expect(focusTarget(document, region, world)).toBe(polygon);
+    expect(focusTarget(document, region, world, { listRegionId: 'druud' })).toBe(polygon);
+    document.querySelector('nav')!.remove();
+    expect(focusTarget(document, region, world, { listRegionId: 'icewrack' })).toBe(polygon);
+  });
 });
 
 describe('клавиатура на карте', () => {

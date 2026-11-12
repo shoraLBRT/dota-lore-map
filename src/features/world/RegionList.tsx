@@ -63,6 +63,7 @@ export function RegionList({ regions, onSelect, onHighlight, heroCountOf, focus,
       style={style}
       aria-labelledby={titleId}
       data-testid="region-list"
+      data-region-list
     >
       <h2 id={titleId} className={styles.title}>
         {t('world.regions')}

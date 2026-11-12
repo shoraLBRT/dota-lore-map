@@ -58,7 +58,8 @@ interface Props {
   regions: Region[];
   activeRegionId?: string;
   activePlaceSlug?: string;
-  onSelectRegion: (regionId: string) => void;
+  /** `source` — откуда открыли: полигон на карте или пункт списка регионов (фокус при возврате, A14). */
+  onSelectRegion: (regionId: string, source?: 'map' | 'list') => void;
   onSelectPlace: (regionId: string, placeSlug: string) => void;
   /** Справа кадр закрыт панелью: камера региона и места кадрирует свободную часть (ARCHITECTURE A4). */
   panel?: boolean;
@@ -530,8 +531,8 @@ export function MapStage({
                       aria-label={l(r.name)}
                       aria-describedby={r.id === shownId ? tooltipId : undefined}
                       data-region={r.id}
-                      onClick={() => onSelectRegion(r.id)}
-                      onKeyDown={onActivate(() => onSelectRegion(r.id))}
+                      onClick={() => onSelectRegion(r.id, 'map')}
+                      onKeyDown={onActivate(() => onSelectRegion(r.id, 'map'))}
                       // SPEC §5.3: на тач-устройствах подсказки нет, тап сразу открывает регион.
                       onPointerEnter={(e) => e.pointerType !== 'touch' && enter(r)}
                       onPointerLeave={() => setHoverId((id) => (id === r.id ? null : id))}
@@ -633,7 +634,7 @@ export function MapStage({
           {listLayout && (
             <RegionList
               regions={drawn}
-              onSelect={onSelectRegion}
+              onSelect={(id) => onSelectRegion(id, 'list')}
               onHighlight={(id) => {
                 setListId(id);
                 if (!id) return;

@@ -110,7 +110,7 @@ describe('MapStage', () => {
 
     fireEvent.click(polygon);
     fireEvent.keyDown(screen.getByRole('button', { name: 'b en' }), { key: 'Enter' });
-    expect(onSelectRegion).toHaveBeenCalledWith('a');
+    expect(onSelectRegion).toHaveBeenCalledWith('a', 'map');
   });
 
   it('без layout у всех регионов — только список кнопок', () => {
@@ -154,7 +154,7 @@ describe('MapStage — список регионов на телефоне (#39)
     expect(item(/a en/)).toHaveTextContent('1 hero');
     expect(item(/b en/)).toHaveTextContent('3 heroes');
     fireEvent.click(item(/b en/));
-    expect(onSelectRegion).toHaveBeenCalledWith('b');
+    expect(onSelectRegion).toHaveBeenCalledWith('b', 'list');
   });
 
   it('фокус и наведение на пункт подсвечивают регион на карте без подсказки', () => {
