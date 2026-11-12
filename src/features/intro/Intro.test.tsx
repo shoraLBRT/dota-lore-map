@@ -31,6 +31,8 @@ describe('Intro (S0) и переход A1', () => {
     expect(start).toBeDisabled();
     expect(start).toHaveAttribute('aria-busy', 'true');
     expect(screen.getByRole('status')).toHaveTextContent('Загружаем мир…');
+    // Строка-пояснение под названием (аудит E13).
+    expect(screen.getByText('Интерактивная карта мест и героев лора')).toBeInTheDocument();
 
     await loaded();
     expect(start).toBeEnabled();

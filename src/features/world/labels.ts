@@ -49,7 +49,7 @@ export interface MarkerLabel {
   must?: boolean;
 }
 
-interface Box {
+export interface Box {
   left: number;
   right: number;
   top: number;
@@ -93,8 +93,9 @@ const shift = (b: Box, x: number, y: number): Box => ({
  * Жадная расстановка подписей маркеров: по порядку `items` (важные — первыми) каждая подпись
  * встаёт на первую свободную сторону — сверху, снизу, справа, слева. Мешают ей уже поставленные подписи
  * и кольца всех маркеров. Нет места — `hidden`, а обязательная подпись (`must`) — сверху.
+ * `bounds` — видимая часть кадра в тех же единицах: подпись, вылезающая за неё, ищет другую сторону.
  */
-export function placeMarkerLabels(items: MarkerLabel[]): Map<string, LabelSide> {
+export function placeMarkerLabels(items: MarkerLabel[], bounds?: Box): Map<string, LabelSide> {
   const rings: Box[] = items.map((m) => ({ left: m.x - m.ring, right: m.x + m.ring, top: m.y - m.ring, bottom: m.y + m.ring }));
   const placed: Box[] = [];
   const result = new Map<string, LabelSide>();
@@ -102,6 +103,7 @@ export function placeMarkerLabels(items: MarkerLabel[]): Map<string, LabelSide> 
     let side: LabelSide = 'hidden';
     for (const s of SIDES) {
       const box = shift(labelBox(s, m), m.x, m.y);
+      if (bounds && (box.left < bounds.left || box.right > bounds.right || box.top < bounds.top || box.bottom > bounds.bottom)) continue;
       if (placed.some((p) => overlap(p, box))) continue;
       if (rings.some((r, j) => items[j] !== m && overlap(r, box))) continue;
       side = s;

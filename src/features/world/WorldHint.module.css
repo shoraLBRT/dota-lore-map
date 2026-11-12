@@ -1,0 +1,47 @@
+/* Подсказка мира при первом входе (аудит E13): ненавязчивая строка внизу кадра. */
+.hint {
+  position: absolute;
+  bottom: var(--space-5);
+  /* По центру без translate: с left: 50% ширина строки ограничилась бы половиной кадра. */
+  right: 0;
+  left: 0;
+  z-index: 5;
+  width: fit-content;
+  max-width: calc(100% - 2 * var(--space-4));
+  margin: 0 auto;
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--border);
+  background: var(--veil-strong);
+  color: var(--text-1);
+  font-size: 0.9rem;
+  text-align: center;
+  pointer-events: none;
+  /* Появляется, когда облака A1 уже разошлись. */
+  animation: appear var(--dur-fade) var(--ease-out) var(--dur-intro) both;
+}
+
+.leaving {
+  animation: vanish var(--dur-fade) var(--ease-out) both;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes vanish {
+  to {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hint {
+    animation: none;
+  }
+
+  .leaving {
+    opacity: 0;
+  }
+}

@@ -181,9 +181,12 @@ export function Gallery({ items, index, onSelect, onClose }: Props) {
         </div>
 
         <aside className={styles.info}>
-          <p className={styles.counter} aria-label={t('gallery.position', { n: String(index + 1), total: String(items.length) })}>
-            {counter(index, items.length)}
-          </p>
+          {/* «01 / 01» ничего не сообщает — при одном медиа счётчика нет (аудит E13, SPEC §8.6). */}
+          {items.length > 1 && (
+            <p className={styles.counter} aria-label={t('gallery.position', { n: String(index + 1), total: String(items.length) })}>
+              {counter(index, items.length)}
+            </p>
+          )}
           <h2 id={titleId} className={styles.title}>
             {l(item.title)}
           </h2>

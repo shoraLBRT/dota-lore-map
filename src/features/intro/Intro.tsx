@@ -42,6 +42,7 @@ export function Intro({ leaving, onStart, onLeft }: Props) {
       <main className={styles.center}>
         <p className={styles.kicker}>{t('intro.kicker')}</p>
         <h1 className={styles.title}>{t('intro.title')}</h1>
+        <p className={styles.tagline}>{t('intro.tagline')}</p>
         <Divider className={styles.divider} />
         <Button
           className={styles.start}
