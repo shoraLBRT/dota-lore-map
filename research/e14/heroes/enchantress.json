@@ -1,0 +1,57 @@
+{
+  "hero": "enchantress",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Nightsilver Woods",
+      "event": "visit",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Enchantress/Lore",
+      "note": "Лес Найтсильвер стоит в поле places инфобокса лор-страницы; что она там делала, не сказано. В биографии — только то, что она странствует по лесам во всех краях.",
+      "doubt": "Поле инфобокса без ссылки на источник и без события; записано как «бывала», а не как родина или дом."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "hoodwink",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Enchantress/Lore",
+      "note": "Hoodwink — её племянница: в инфобоксе (поле family) по репликам Hoodwink, которая зовёт её тётушкой."
+    },
+    {
+      "hero": "ursa",
+      "type": "ally",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Enchantress/Lore",
+      "note": "Ursa стоит в поле heroes инфобокса; по его реплике он к ней тепло относится."
+    },
+    {
+      "hero": "pangolier",
+      "type": "ally",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Enchantress/Lore",
+      "note": "В разделе отношений лор-страницы: когда-то действовали заодно (по реплике Pangolier)."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Enchantress выглядит мягким лесным существом, но хорошо понимает, почему природа страдает от войн и повседневной вырубки. Она бродит по свету, помогает лесным созданиям и разносит их истории дальше, веря, что добрый настрой способен вернуть миру зелень. Её тёплая, открытая натура остаётся главной чертой образа.",
+      "en": "Enchantress seems like a gentle woodland creature, yet she grasps far better than she lets on why nature suffers under war and everyday logging. She roams widely, befriends forest folk, and carries their stories to other places, trusting that a kind outlook can help the world grow green again. Her warm, open nature is the core of her character."
+    }
+  },
+  "unconfirmed": [
+    "Родина Enchantress не названа ни в биографии, ни на Liquipedia.",
+    "Расы Fae, Trolls и Centaurs в инфобоксе к ней в тексте не привязаны — не использованы.",
+    "Terrorblade в инфобоксе среди связанных героев, но связь — шутливая реплика («лучший друг»); Lone Druid — подколка в озвучке. Не записаны."
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "hero": "rubick",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "region": "uncharted",
+      "event": "origin",
+      "source": "ours",
+      "note": "В биографиях dota2.com и на лор-странице Liquipedia нет места рождения, учёбы или жизни героя; поле places инфобокса пусто. Родину не угадываем."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "pudge",
+      "type": "rival",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Rubick/Lore",
+      "note": "Раздел отношений на лор-странице: соперничество в давнем состязании; Pudge считает Rubick странноватым, но в целом приятным."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Rubick — дуэлянт и учёный среди колдунов, который ради титула Великого мага устранил соперников. Он перехватывает чужую магию: копирует заклинания противников и обращает их против владельцев. Сын Агханима, он живёт в тени отцовской славы.",
+      "en": "Rubick is a duelist and scholar among sorcerers who rose to the rank of Grand Magus by eliminating his rivals. He copies enemy spells and turns their own arts back on them. The son of Aghanim, he lives in the shadow of his father's fame."
+    }
+  },
+  "unconfirmed": [
+    "Место родины героя и места, где он жил или учился, в доступных источниках не названо.",
+    "Скрытый Совет (Hidden Council), которому Rubick подал прошение о посвящении, упомянут без указания места.",
+    "Отец героя, Агханим (Aghanim), указан как персонаж без места; на карте не отмечен."
+  ]
+}

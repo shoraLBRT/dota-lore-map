@@ -1,0 +1,24 @@
+{
+  "hero": "ogre_magi",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "region": "uncharted",
+      "event": "origin",
+      "source": "ours",
+      "note": "Ни в биографии, ни на лор-странице Liquipedia не назван ни регион, ни место, где родился и вырос Ogre Magi. Инфобокс с полем places пуст. Род огров записан без привязки к земле, поэтому связь оставлена в неизведанных землях."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Ogre Magi — двухголовый огр, родившийся в семье обычных, очень недалёких сородичей. Вторая голова делает его заметно сообразительнее остального рода, а покровительство богини удачи приносит ему череду невероятных везений. Ему поручили приглядывать за стаей огненных птиц, и одна из них стала его скакуном.",
+      "en": "Ogre Magi is a two-headed ogre born into a clan of notoriously slow-witted kin. His second head makes him far sharper than the rest of his people, while a goddess of fortune keeps him unusually lucky. He was assigned to watch over a flock of fire birds, and one of them became his mount."
+    }
+  },
+  "unconfirmed": [
+    "Место рождения и родина рода огров не названы ни в одном источнике: связь с регионом не подтверждена.",
+    "Инфобокс Liquipedia (поле places) пуст. Firelarks и Goddess of Luck упомянуты как существа и божество, не как места, поэтому на карту не добавлены.",
+    "Раздел Liquipedia с репликами союзников и врагов (Techies, Treant Protector, Monkey King и др.) содержит только строки озвучки, а не описанные отношения. Связи героев по ним не записаны.",
+    "Родители Ogre Magi упомянуты в инфобоксе Liquipedia, но они не являются героями и в relations не вносятся."
+  ]
+}

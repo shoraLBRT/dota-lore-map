@@ -1,0 +1,25 @@
+{
+  "hero": "ringmaster",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "region": "uncharted",
+      "event": "origin",
+      "source": "ours",
+      "note": "ни в биографии, ни в лоре на Liquipedia место не названо: история идёт в безымянных городках и в цирке Осберта Кеттла"
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Ringmaster — механический автомат, который раньше звался Марионетто и принадлежал бродячему фокуснику Осберту Кеттлу. Ведьма оживила его, и он расправился со своим создателем, забрал себе цирк и стал Колиостро Кеттлом: садистом, который ловит публику, тащит её на представление и заставляет смотреть. Он гордится своей механической природой и презирает всё, что кажется ему ненастоящим.",
+      "en": "Ringmaster is a mechanical automaton that was once called Marionetto and belonged to a struggling traveling showman, Osbert Kettle. A witch brought it to life, and it killed its creator, took over his circus and became Cogliostro Kettle: a sadist who hunts for crowds, drags them to his show and forces them to watch. He is proud of his mechanical nature and despises anything he considers fake."
+    }
+  },
+  "unconfirmed": [
+    "Вебкомикс «The Puppet» (dota2.com/ringmastercomic) — главный источник о происхождении, но в media.json его нет, поэтому как comic:<id> его не записать. Я опирался на пересказ этой истории на Liquipedia и сам комикс не читал.",
+    "Страница Dark Carnival/Story на Liquipedia, на которую ссылается лор, в кэше не сохранена: проверить, есть ли там названия мест, не удалось.",
+    "Место «руины цирка в Ozenja» из E1 не подтверждено: ни биография, ни лор на Liquipedia Ozenja не называют. В links оно не записано.",
+    "Родину Осберта Кеттла и его передвижного цирка лор не называет; текущего дома Ringmaster тоже нет.",
+    "Осберт Кеттл, Лоренцо Кеттл, брат Cogliacci, Ведьма и Aghanim — персонажи, которых нет в heroes.json как героев, поэтому в relations они не записаны."
+  ]
+}

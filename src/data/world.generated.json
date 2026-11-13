@@ -7080,13 +7080,10 @@
       },
       "places": [],
       "regionHeroes": [
-        "tiny",
         "witch_doctor",
         "riki",
         "death_prophet",
-        "enchantress",
         "jakiro",
-        "alchemist",
         "ogre_magi",
         "undying",
         "rubick",
@@ -8001,12 +7998,22 @@
       ],
       "links": [
         {
-          "regionId": "uncharted",
+          "regionId": "icewrack",
+          "placeSlug": "azura",
           "event": "origin",
-          "source": "ours",
-          "note": "в биографии нет мест"
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Tiny/Lore",
+          "note": "Лор-страница приводит описание набора Majesty of the Colossus: предки одобенов в краю Азуры сделали каменных стражей гробниц, и в камне одного из них была своя жизнь — так появился Tiny.",
+          "doubt": "Это текст косметического набора, а не биографии; в биографии Tiny сам не знает, откуда он. «Азуранский край» описания считаем местом Azura на схеме."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Tiny — каменный великан, который начинался как обломок камня и до сих пор не знает, откуда он взялся. Версии о его происхождении расходятся: осколок голема, отломок скульптуры или часть пророческого изваяния. Он бродит по миру в поисках родичей и с каждым шагом становится крупнее.",
+          "en": "Tiny is a stone giant who began as a loose fragment of rock and still has no clear idea where he came from. Several guesses point in different directions: a chipped piece of a golem, a shard from a carved statue, or part of a prophetic idol. He wanders from place to place looking for kin, and grows larger with every mile."
+        }
+      }
     },
     {
       "key": "vengefulspirit",
@@ -8228,9 +8235,26 @@
           "regionId": "uncharted",
           "event": "origin",
           "source": "ours",
-          "note": "в биографии нет мест (Tahlin не описан как место)"
+          "note": "Родина Riki в биографии не названа: сказано только, что он из династии Tahlin и что его народ предали в ночь гибели царского рода. Liquipedia упоминает безымянную родину с пряностями, но это реплика другого героя, не название места. Поэтому на схеме — Неизведанные земли; кандидата в места нет."
         }
-      ]
+      ],
+      "relations": [
+        {
+          "hero": "dark_willow",
+          "type": "ally",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Riki/Lore",
+          "note": "Dark Willow (Миреска) вместе с Riki была связана с Jasper Circle; по её репликам они потом пошли разными путями.",
+          "doubt": "Бывшие соратники: сейчас их пути разошлись, в источнике нет ни дружбы, ни вражды."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Riki — средний сын правящей династии Tahlin, который с детства оттачивал умение оставаться незаметным, пока старшие и младшие братья получали внимание. Когда царский род истребили, он единственный выбрался из дворца, и теперь работает наёмным убийцей. Он всё ещё хочет расквитаться с теми, кто лишил его семьи и наследства.",
+          "en": "Riki was the middle son of the Tahlin dynasty, overlooked between his brothers and naturally gifted at staying unseen. He alone escaped when his royal house was slaughtered, and he now works as a freelance assassin. He still hopes to take revenge on those who destroyed his family and stripped him of his claim to the throne."
+        }
+      }
     },
     {
       "key": "enigma",
@@ -8451,9 +8475,18 @@
           "regionId": "uncharted",
           "event": "origin",
           "source": "ours",
-          "note": "в биографии нет мест"
+          "note": "Ни биография, ни лор-страница Liquipedia не называют места, где Кробелус родилась или жила; загробный мир описан только общими словами."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Кробелус — предсказательница, которая при жизни гадала богатым клиентам о том, что ждёт за порогом смерти. Заглянув в собственную судьбу, она стала возвращаться из могилы снова и снова: каждое воскрешение приносит ей тени умерших и всё более бледную, призрачную кровь. Теперь она сама ищет смерть, надеясь, что однажды та окончательно её заберёт.",
+          "en": "Krobelus once sold glimpses of the afterlife to the rich. When she turned that gaze on her own fate, she kept coming back from the grave, each return leaving her thinner, ghostlier and trailing the spirits of the dead. Now she seeks death out, hoping it will finally keep her."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/death_prophet.png"
+        ]
+      }
     },
     {
       "key": "phantom_assassin",
@@ -8751,12 +8784,48 @@
       ],
       "links": [
         {
-          "regionId": "uncharted",
-          "event": "origin",
-          "source": "ours",
-          "note": "в биографии нет мест; по образу — лесные земли"
+          "regionId": "nightsilver",
+          "placeSlug": "nightsilver-woods",
+          "event": "visit",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Enchantress/Lore",
+          "note": "Лес Найтсильвер стоит в поле places инфобокса лор-страницы; что она там делала, не сказано. В биографии — только то, что она странствует по лесам во всех краях.",
+          "doubt": "Поле инфобокса без ссылки на источник и без события; записано как «бывала», а не как родина или дом."
         }
-      ]
+      ],
+      "relations": [
+        {
+          "hero": "hoodwink",
+          "type": "family",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Enchantress/Lore",
+          "note": "Hoodwink — её племянница: в инфобоксе (поле family) по репликам Hoodwink, которая зовёт её тётушкой."
+        },
+        {
+          "hero": "ursa",
+          "type": "ally",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Enchantress/Lore",
+          "note": "Ursa стоит в поле heroes инфобокса; по его реплике он к ней тепло относится."
+        },
+        {
+          "hero": "pangolier",
+          "type": "ally",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Enchantress/Lore",
+          "note": "В разделе отношений лор-страницы: когда-то действовали заодно (по реплике Pangolier)."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Enchantress выглядит мягким лесным существом, но хорошо понимает, почему природа страдает от войн и повседневной вырубки. Она бродит по свету, помогает лесным созданиям и разносит их истории дальше, веря, что добрый настрой способен вернуть миру зелень. Её тёплая, открытая натура остаётся главной чертой образа.",
+          "en": "Enchantress seems like a gentle woodland creature, yet she grasps far better than she lets on why nature suffers under war and everyday logging. She roams widely, befriends forest folk, and carries their stories to other places, trusting that a kind outlook can help the world grow green again. Her warm, open nature is the core of her character."
+        }
+      }
     },
     {
       "key": "huskar",
@@ -8870,9 +8939,26 @@
           "regionId": "uncharted",
           "event": "origin",
           "source": "ours",
-          "note": "в биографии нет мест (раса Pyrexae)"
+          "note": "в биографиях мест нет; в инфобоксе лор-страницы названы Grosche и The Riverwarren, но их нет в regions.json, см. candidates"
         }
-      ]
+      ],
+      "relations": [
+        {
+          "hero": "winter_wyvern",
+          "type": "family",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Jakiro/Lore",
+          "note": "Winter Wyvern враждебна к нему: в её репликах — сожаление, что не убила его ещё в гнезде.",
+          "doubt": "Родство описано двояко: в реплике Jakiro она «кузина», а в тексте лор-страницы Liquipedia — его мать (по чешуе правой головы). Поэтому общий тип — родня."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Jakiro — двуглавый дракон рода Pyrexae: одна голова несёт лёд, другая огонь, а тело одно на двоих. Сородичи считают его уродом и порой охотятся на него, но он сам охраняет прибрежные скалы от захватчиков. Однажды он спустился к подземному народу и помог ему в трудный час.",
+          "en": "Jakiro is a two-headed dragon of the Pyrexae kind, with one head wielding frost and the other flame on a single body. Kinfolk regard this freak as an aberration and sometimes hunt him, yet he defends his seaside cliffs from raiders. He once descended to an underground people and aided them in their hour of need."
+        }
+      }
     },
     {
       "key": "batrider",
@@ -9065,12 +9151,20 @@
       ],
       "links": [
         {
-          "regionId": "uncharted",
+          "regionId": "radiant-lands",
+          "placeSlug": "home-of-the-keen-folk",
           "event": "origin",
           "source": "ours",
-          "note": "в биографии нет мест (семья Darkbrew)"
+          "note": "Liquipedia (инфобокс лор-страницы, поле race) называет Раззила кином; родина народа кинов на схеме — Home of the Keen Folk. Само место в биографии не названо: там только безымянный город с тюрьмой и лес вокруг.",
+          "doubt": "Связь по народу, а не по тексту о самом герое; в репликах других героев он «малый кин» (smallkeen) — возможно, отдельная ветвь народа."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Alchemist — это двое: алхимик Раззил Даркбрю и его громадный напарник-огр. Раззил взялся превратить целую гору в золото, с треском провалился и оказался в темнице, но выбрался, опоив сокамерника-огра собственным зельем. Теперь они вместе ищут редкие ингредиенты, нередко добывая их из павших врагов.",
+          "en": "Alchemist is a duo: the alchemist Razzil Darkbrew and his huge ogre partner. Razzil tried to turn a mountain into gold, failed spectacularly and ended up in prison, then escaped by feeding a potion he had brewed to his ogre cellmate. Since then the pair has been hunting rare ingredients, sometimes harvesting them from fallen foes."
+        }
+      }
     },
     {
       "key": "invoker",
@@ -9289,9 +9383,15 @@
           "regionId": "uncharted",
           "event": "origin",
           "source": "ours",
-          "note": "в биографии нет мест"
+          "note": "Ни в биографии, ни на лор-странице Liquipedia не назван ни регион, ни место, где родился и вырос Ogre Magi. Инфобокс с полем places пуст. Род огров записан без привязки к земле, поэтому связь оставлена в неизведанных землях."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Ogre Magi — двухголовый огр, родившийся в семье обычных, очень недалёких сородичей. Вторая голова делает его заметно сообразительнее остального рода, а покровительство богини удачи приносит ему череду невероятных везений. Ему поручили приглядывать за стаей огненных птиц, и одна из них стала его скакуном.",
+          "en": "Ogre Magi is a two-headed ogre born into a clan of notoriously slow-witted kin. His second head makes him far sharper than the rest of his people, while a goddess of fortune keeps him unusually lucky. He was assigned to watch over a flock of fire birds, and one of them became his mount."
+        }
+      }
     },
     {
       "key": "undying",
@@ -9323,9 +9423,25 @@
           "regionId": "uncharted",
           "event": "origin",
           "source": "ours",
-          "note": "в биографии нет мест; Liquipedia связывает с Ultimyr Archives (слабая связь)"
+          "note": "В биографиях dota2.com и на лор-странице Liquipedia нет места рождения, учёбы или жизни героя; поле places инфобокса пусто. Родину не угадываем."
         }
-      ]
+      ],
+      "relations": [
+        {
+          "hero": "pudge",
+          "type": "rival",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Rubick/Lore",
+          "note": "Раздел отношений на лор-странице: соперничество в давнем состязании; Pudge считает Rubick странноватым, но в целом приятным."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Rubick — дуэлянт и учёный среди колдунов, который ради титула Великого мага устранил соперников. Он перехватывает чужую магию: копирует заклинания противников и обращает их против владельцев. Сын Агханима, он живёт в тени отцовской славы.",
+          "en": "Rubick is a duelist and scholar among sorcerers who rose to the rank of Grand Magus by eliminating his rivals. He copies enemy spells and turns their own arts back on them. The son of Aghanim, he lives in the shadow of his father's fame."
+        }
+      }
     },
     {
       "key": "disruptor",
@@ -10057,9 +10173,15 @@
           "regionId": "uncharted",
           "event": "origin",
           "source": "ours",
-          "note": "в биографии нет мест; кандидат — руины цирка в Ozenja (догадка)"
+          "note": "ни в биографии, ни в лоре на Liquipedia место не названо: история идёт в безымянных городках и в цирке Осберта Кеттла"
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Ringmaster — механический автомат, который раньше звался Марионетто и принадлежал бродячему фокуснику Осберту Кеттлу. Ведьма оживила его, и он расправился со своим создателем, забрал себе цирк и стал Колиостро Кеттлом: садистом, который ловит публику, тащит её на представление и заставляет смотреть. Он гордится своей механической природой и презирает всё, что кажется ему ненастоящим.",
+          "en": "Ringmaster is a mechanical automaton that was once called Marionetto and belonged to a struggling traveling showman, Osbert Kettle. A witch brought it to life, and it killed its creator, took over his circus and became Cogliostro Kettle: a sadist who hunts for crowds, drags them to his show and forces them to watch. He is proud of his mechanical nature and despises anything he considers fake."
+        }
+      }
     },
     {
       "key": "dawnbreaker",
@@ -10091,9 +10213,27 @@
           "regionId": "uncharted",
           "event": "origin",
           "source": "ours",
-          "note": "места есть только в сериале «DOTA: Dragon's Blood» (Hauptstadt, Barrowhaven и др.) — по решению В5 места сериала на карту не добавляем"
+          "note": "родина не названа ни в биографии, ни в игровом лоре; места из инфобокса Liquipedia (Hauptstadt, Barrowhaven и др.) взяты из сериала «DOTA: Dragon's Blood» — по решению В5 на карту и в кандидаты не добавляем"
         }
-      ]
+      ],
+      "relations": [
+        {
+          "hero": "mirana",
+          "type": "ally",
+          "source": "bio",
+          "note": "По биографии Marci почти всегда путешествует с принцессой Mirana, их дружбу окружают тайны; Hero Atlas (через Liquipedia) называет Mirana её подопечной.",
+          "doubt": "Liquipedia называет Marci служанкой Mirana, но это по сериалу «DOTA: Dragon's Blood» (В5 — только медиа); в игровом лоре — дружба и охрана."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Происхождение Marci почти неизвестно. Чаще всего она идёт рядом с Mirana, а связь между ними держится на тайнах, о которых обе молчат. Союзникам она надёжный и прямой защитник, а врагам преграда, которую невозможно обойти, если они угрожают тем, кого она считает своими. Скромное телосложение обманчиво: удары наполнены огромной силой.",
+          "en": "Marci's background is largely a mystery. She usually accompanies Mirana, and the bond between them rests on private matters neither chooses to disclose. Allies find her a loyal and blunt protector, while enemies meet an immovable barrier against anyone she counts as a friend. Her small frame is deceptive, since her blows carry tremendous force."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/marci.png"
+        ]
+      }
     },
     {
       "key": "primal_beast",

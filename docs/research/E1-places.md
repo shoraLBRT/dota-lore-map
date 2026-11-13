@@ -71,7 +71,7 @@
 ## 5. Регионы, места и герои
 
 <!-- GENERATED:BEGIN -->
-Регионов: **26**, мест: **172**, героев привязано: **127** из 127, из них в «Неизведанных землях»: **12**.
+Регионов: **26**, мест: **172**, героев привязано: **127** из 127, из них в «Неизведанных землях»: **9**.
 
 ### Сводка по регионам
 
@@ -79,9 +79,9 @@
 |---|---|---|---|---|
 | Верхний ярус | Небеса (The Heavens) | нейтрально (ярус) | 6 | 9 |
 | Верхний ярус | Семь планов и Пустота (The Seven Planes and the Void) | нейтрально (ярус) | 13 | 18 |
-| Материк и острова | Айсрак (Icewrack) | Radiant (карта S1) | 12 | 7 |
-| Материк и острова | Земля Сияющих (Land of the Radiant) | Radiant (карта S1) | 8 | 7 |
-| Материк и острова | Лес Найтсильвер (Nightsilver Woods) | Radiant (карта S1) | 3 | 2 |
+| Материк и острова | Айсрак (Icewrack) | Radiant (карта S1) | 12 | 8 |
+| Материк и острова | Земля Сияющих (Land of the Radiant) | Radiant (карта S1) | 8 | 8 |
+| Материк и острова | Лес Найтсильвер (Nightsilver Woods) | Radiant (карта S1) | 3 | 3 |
 | Материк и острова | Стоунхолл (Stonehall) | Radiant (по схеме E2) | 24 | 3 |
 | Материк и острова | Вольные города (The Free Cities) | Radiant (по схеме E2) | 7 | 8 |
 | Материк и острова | Квойдж и Поля Бойни (Quoidge and the Fields of Carnage) | нейтрально (по схеме E2) | 4 | 3 |
@@ -100,7 +100,7 @@
 | Материк и острова | Томо'кан и Окраины (Tomo'kan and the Outlands) | Dire (по схеме E2) | 6 | 6 |
 | Материк и острова | Империя Костей (Empire of Bone) | Dire (по схеме E2) | 3 | 1 |
 | Материк и острова | Срединные королевства (The Middle Kingdoms) | нейтрально (по схеме E2) | 11 | 13 |
-| Материк и острова | Неизведанные земли (The Uncharted Lands) | нейтрально (по схеме E2) | 0 | 12 |
+| Материк и острова | Неизведанные земли (The Uncharted Lands) | нейтрально (по схеме E2) | 0 | 9 |
 | Бездна | Подземье (The Underdark) | нейтрально (ярус) | 4 | 4 |
 | Бездна | Семь Преисподних и загробье (The Seven Hells and the Afterlife) | нейтрально (ярус) | 8 | 9 |
 
@@ -156,7 +156,7 @@
 | Blueheart Glacier | лор | — |  |
 | Black Pool | лор | Lich (живёт) |  |
 | Cobalt | лор | Tusk |  |
-| Azura | лор | — |  |
+| Azura | лор | Tiny |  |
 | White Fields | лор | — |  |
 | Wolfsden Tavern | лор | Tusk (связь) |  |
 | Njord's Hearth | лор | — |  |
@@ -174,7 +174,7 @@
 | Violet Archives | карта S1 | Templar Assassin (связь) |  |
 | Violet Plateau | лор | Tinker (живёт) | архивы находятся в нём или рядом |
 | Castle of the Fold | карта S1 | — |  |
-| Home of the Keen Folk | карта S1 | Clockwerk |  |
+| Home of the Keen Folk | карта S1 | Alchemist*, Clockwerk |  |
 | Knollen | наше | Sniper | горные долины кинов |
 | Dredger's Bight | наше | Techies | родина Techies (кины); страницы на Liquipedia нет |
 | Thousand Tarns | карта S1 | Axe |  |
@@ -185,7 +185,7 @@
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
-| ★ Nightsilver Woods | лор | Luna (живёт), Mirana (живёт) |  |
+| ★ Nightsilver Woods | лор | Enchantress (бывал), Luna (живёт), Mirana (живёт) |  |
 | Temple of Mene | карта S1 | — |  |
 | Shrine of Selemene | лор | — |  |
 
@@ -443,16 +443,13 @@
 
 | Герой | Почему здесь |
 |---|---|
-| Alchemist | в биографии нет мест (семья Darkbrew) |
-| Death Prophet | в биографии нет мест |
-| Enchantress | в биографии нет мест; по образу — лесные земли |
-| Jakiro | в биографии нет мест (раса Pyrexae) |
-| Marci | места есть только в сериале «DOTA: Dragon's Blood» (Hauptstadt, Barrowhaven и др.) — по решению В5 места сериала на карту не добавляем |
-| Ogre Magi | в биографии нет мест |
-| Riki | в биографии нет мест (Tahlin не описан как место) |
-| Ringmaster | в биографии нет мест; кандидат — руины цирка в Ozenja (догадка) |
-| Rubick | в биографии нет мест; Liquipedia связывает с Ultimyr Archives (слабая связь) |
-| Tiny | в биографии нет мест |
+| Death Prophet | Ни биография, ни лор-страница Liquipedia не называют места, где Кробелус родилась или жила; загробный мир описан только общими словами. |
+| Jakiro | в биографиях мест нет; в инфобоксе лор-страницы названы Grosche и The Riverwarren, но их нет в regions.json, см. candidates |
+| Marci | родина не названа ни в биографии, ни в игровом лоре; места из инфобокса Liquipedia (Hauptstadt, Barrowhaven и др.) взяты из сериала «DOTA: Dragon's Blood» — по решению В5 на карту и в кандидаты не добавляем |
+| Ogre Magi | Ни в биографии, ни на лор-странице Liquipedia не назван ни регион, ни место, где родился и вырос Ogre Magi. Инфобокс с полем places пуст. Род огров записан без привязки к земле, поэтому связь оставлена в неизведанных землях. |
+| Riki | Родина Riki в биографии не названа: сказано только, что он из династии Tahlin и что его народ предали в ночь гибели царского рода. Liquipedia упоминает безымянную родину с пряностями, но это реплика другого героя, не название места. Поэтому на схеме — Неизведанные земли; кандидата в места нет. |
+| Ringmaster | ни в биографии, ни в лоре на Liquipedia место не названо: история идёт в безымянных городках и в цирке Осберта Кеттла |
+| Rubick | В биографиях dota2.com и на лор-странице Liquipedia нет места рождения, учёбы или жизни героя; поле places инфобокса пусто. Родину не угадываем. |
 | Undying | служит Мёртвому богу, чей легион разорил Turstarkuri; Liquipedia связывает с Seven Hells |
 | Witch Doctor | в биографии нет мест |
 
@@ -489,7 +486,7 @@
 | Герой | Места |
 |---|---|
 | Abaddon | Font of Avernus (Срединные королевства) |
-| Alchemist | весь регион «Неизведанные земли»* |
+| Alchemist | Home of the Keen Folk (Земля Сияющих)* |
 | Ancient Apparition | The Void (Семь планов и Пустота) |
 | Anti-Mage | Turstarkuri (Стонущие горы); Tyler Estate (Вольные города) (связь) |
 | Arc Warden | Mad Moon (Небеса)†; Tomo'kan (Томо'кан и Окраины) (связь)† |
@@ -521,7 +518,7 @@
 | Earthshaker | Nishai (Ховен и Нишай) |
 | Elder Titan | Primordial Plane (Семь планов и Пустота)† |
 | Ember Spirit | Fortress of Flares (Стонущие горы) (живёт) |
-| Enchantress | весь регион «Неизведанные земли»* |
+| Enchantress | Nightsilver Woods (Лес Найтсильвер) (бывал) |
 | Enigma | Fundamental Plane (Семь планов и Пустота) |
 | Faceless Void | Claszureme (Семь планов и Пустота) |
 | Grimstroke | Ashkavor (Феллстрат) |
@@ -596,7 +593,7 @@
 | Tidehunter | Sunken Isles (Кладд и острова) |
 | Timbersaw | Augury Bay (Западные леса) |
 | Tinker | Violet Plateau (Земля Сияющих) (живёт) |
-| Tiny | весь регион «Неизведанные земли»* |
+| Tiny | Azura (Айсрак) |
 | Treant Protector | Vale of Augury (Западные леса) (живёт) |
 | Troll Warlord | The Hoven (Ховен и Нишай) (живёт) |
 | Tusk | Cobalt (Айсрак); Wolfsden Tavern (Айсрак) (связь) |
