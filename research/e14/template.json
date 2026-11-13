@@ -1,0 +1,51 @@
+{
+  "hero": "<key из research/e1/heroes.json, совпадает с именем файла>",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "place": "<имя места из research/e1/regions.json — точно как там>",
+      "event": "origin",
+      "source": "bio",
+      "note": "<необязательно: пояснение своими словами, по-русски>"
+    },
+    {
+      "region": "<id региона из research/e1/regions.json — если места внутри региона нет>",
+      "event": "journey",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/<Герой>/Lore",
+      "doubt": "<необязательно: что под сомнением и почему>"
+    }
+  ],
+  "path": [
+    { "place": "<первая остановка — из links>" },
+    { "region": "<следующая остановка — из links>" }
+  ],
+  "relations": [
+    {
+      "hero": "<key другого героя>",
+      "type": "enemy",
+      "place": "<необязательно: место из regions.json, где связь проявилась>",
+      "source": "bio",
+      "note": "<необязательно>",
+      "doubt": "<необязательно>"
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "<2–3 предложения своими словами, ≤ 500 знаков>",
+      "en": "<the same in English, own words, ≤ 500 characters>"
+    },
+    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/<key>.png"]
+  },
+  "candidates": [
+    {
+      "name": "<место из лора, которого нет на схеме>",
+      "region": "<предполагаемый регион — id из regions.json>",
+      "event": "origin",
+      "source": "bio",
+      "note": "<почему этот регион>"
+    }
+  ],
+  "unconfirmed": ["<что не удалось подтвердить источником>"]
+}

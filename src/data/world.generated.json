@@ -7615,14 +7615,15 @@
         {
           "regionId": "wailing-mountains",
           "placeSlug": "turstarkuri",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         },
         {
           "regionId": "free-cities",
           "placeSlug": "tyler-estate",
-          "role": "link",
-          "basis": "infobox"
+          "event": "link",
+          "source": "liquipedia",
+          "via": "infobox"
         }
       ]
     },
@@ -7639,8 +7640,8 @@
         {
           "regionId": "radiant-lands",
           "placeSlug": "thousand-tarns",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         }
       ]
     },
@@ -7657,8 +7658,8 @@
         {
           "regionId": "planes",
           "placeSlug": "the-dream",
-          "role": "origin",
-          "basis": "ours"
+          "event": "origin",
+          "source": "ours"
         }
       ]
     },
@@ -7677,8 +7678,8 @@
         {
           "regionId": "fellstrath",
           "placeSlug": "xhacatocatl",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         }
       ]
     },
@@ -7699,8 +7700,9 @@
         {
           "regionId": "icewrack",
           "placeSlug": "icewrack",
-          "role": "home",
-          "basis": "infobox"
+          "event": "home",
+          "source": "liquipedia",
+          "via": "infobox"
         }
       ]
     },
@@ -7718,8 +7720,8 @@
       "links": [
         {
           "regionId": "icewrack",
-          "role": "origin",
-          "basis": "ours"
+          "event": "origin",
+          "source": "ours"
         }
       ]
     },
@@ -7738,8 +7740,8 @@
         {
           "regionId": "hoven",
           "placeSlug": "nishai",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         }
       ]
     },
@@ -7758,8 +7760,8 @@
         {
           "regionId": "tropic-isles",
           "placeSlug": "isle-of-masks",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         }
       ]
     },
@@ -7775,14 +7777,14 @@
         {
           "regionId": "nightsilver",
           "placeSlug": "nightsilver-woods",
-          "role": "home",
-          "basis": "bio"
+          "event": "home",
+          "source": "bio"
         },
         {
           "regionId": "middle-kingdoms",
           "placeSlug": "solar-throne",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         }
       ]
     },
@@ -7798,8 +7800,8 @@
       "links": [
         {
           "regionId": "the-deep",
-          "role": "home",
-          "basis": "bio"
+          "event": "home",
+          "source": "bio"
         }
       ]
     },
@@ -7818,8 +7820,8 @@
         {
           "regionId": "hells",
           "placeSlug": "abysm",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         }
       ]
     },
@@ -7837,8 +7839,8 @@
         {
           "regionId": "radiant-lands",
           "placeSlug": "pole",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         }
       ]
     },
@@ -7853,14 +7855,16 @@
         {
           "regionId": "planes",
           "placeSlug": "claszureme",
-          "role": "origin",
-          "basis": "page"
+          "event": "origin",
+          "source": "liquipedia",
+          "via": "place"
         },
         {
           "regionId": "tomokan",
           "placeSlug": "tomokan",
-          "role": "link",
-          "basis": "page"
+          "event": "link",
+          "source": "liquipedia",
+          "via": "place"
         }
       ]
     },
@@ -7877,14 +7881,14 @@
         {
           "regionId": "quoidge",
           "placeSlug": "fields-of-endless-carnage",
-          "role": "home",
-          "basis": "bio"
+          "event": "home",
+          "source": "bio"
         },
         {
           "regionId": "quoidge",
           "placeSlug": "quoidge",
-          "role": "link",
-          "basis": "bio"
+          "event": "link",
+          "source": "bio"
         }
       ]
     },
@@ -7900,14 +7904,14 @@
         {
           "regionId": "hells",
           "placeSlug": "narrow-maze",
-          "role": "home",
-          "basis": "bio"
+          "event": "home",
+          "source": "bio"
         },
         {
           "regionId": "hells",
           "placeSlug": "underscape",
-          "role": "link",
-          "basis": "bio"
+          "event": "link",
+          "source": "bio"
         }
       ]
     },
@@ -7927,14 +7931,14 @@
         {
           "regionId": "scintillant",
           "placeSlug": "scintillant-waste",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         },
         {
           "regionId": "scintillant",
           "placeSlug": "qaldin",
-          "role": "link",
-          "basis": "bio"
+          "event": "link",
+          "source": "bio"
         }
       ]
     },
@@ -7953,8 +7957,8 @@
         {
           "regionId": "wailing-mountains",
           "placeSlug": "ruined-city",
-          "role": "home",
-          "basis": "bio"
+          "event": "home",
+          "source": "bio"
         }
       ]
     },
@@ -7969,20 +7973,21 @@
         {
           "regionId": "shadeshore",
           "placeSlug": "shadeshore-ruins",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         },
         {
           "regionId": "shadeshore",
           "placeSlug": "vigil-keep",
-          "role": "link",
-          "basis": "bio"
+          "event": "link",
+          "source": "bio"
         },
         {
           "regionId": "wailing-mountains",
           "placeSlug": "feral-road",
-          "role": "link",
-          "basis": "page"
+          "event": "link",
+          "source": "liquipedia",
+          "via": "place"
         }
       ]
     },
@@ -7997,8 +8002,8 @@
       "links": [
         {
           "regionId": "uncharted",
-          "role": "origin",
-          "basis": "ours",
+          "event": "origin",
+          "source": "ours",
           "note": "в биографии нет мест"
         }
       ]
@@ -8018,8 +8023,8 @@
         {
           "regionId": "heavens",
           "placeSlug": "ghastly-eyrie",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         }
       ]
     },
@@ -8040,8 +8045,9 @@
         {
           "regionId": "western-forests",
           "placeSlug": "zarukina",
-          "role": "origin",
-          "basis": "infobox"
+          "event": "origin",
+          "source": "liquipedia",
+          "via": "infobox"
         }
       ]
     },
@@ -8056,8 +8062,9 @@
         {
           "regionId": "heavens",
           "placeSlug": "olympus",
-          "role": "origin",
-          "basis": "infobox"
+          "event": "origin",
+          "source": "liquipedia",
+          "via": "infobox"
         }
       ]
     },
@@ -8074,8 +8081,8 @@
         {
           "regionId": "cladd",
           "placeSlug": "cladd",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         }
       ]
     },
@@ -8090,8 +8097,8 @@
         {
           "regionId": "scintillant",
           "placeSlug": "desert-of-misrule",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         }
       ]
     },
@@ -8107,8 +8114,9 @@
         {
           "regionId": "free-cities",
           "placeSlug": "weeping-rose",
-          "role": "origin",
-          "basis": "infobox"
+          "event": "origin",
+          "source": "liquipedia",
+          "via": "infobox"
         }
       ]
     },
@@ -8126,8 +8134,8 @@
         {
           "regionId": "hoven",
           "placeSlug": "bleeding-hills",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         }
       ]
     },
@@ -8142,8 +8150,9 @@
         {
           "regionId": "the-deep",
           "placeSlug": "deep-vault",
-          "role": "home",
-          "basis": "infobox"
+          "event": "home",
+          "source": "liquipedia",
+          "via": "infobox"
         }
       ]
     },
@@ -8162,8 +8171,8 @@
         {
           "regionId": "cladd",
           "placeSlug": "sunken-isles",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         }
       ]
     },
@@ -8181,8 +8190,8 @@
       "links": [
         {
           "regionId": "uncharted",
-          "role": "origin",
-          "basis": "ours",
+          "event": "origin",
+          "source": "ours",
           "note": "в биографии нет мест"
         }
       ]
@@ -8200,8 +8209,8 @@
         {
           "regionId": "icewrack",
           "placeSlug": "black-pool",
-          "role": "home",
-          "basis": "bio"
+          "event": "home",
+          "source": "bio"
         }
       ]
     },
@@ -8217,8 +8226,8 @@
       "links": [
         {
           "regionId": "uncharted",
-          "role": "origin",
-          "basis": "ours",
+          "event": "origin",
+          "source": "ours",
           "note": "в биографии нет мест (Tahlin не описан как место)"
         }
       ]
@@ -8234,8 +8243,9 @@
         {
           "regionId": "planes",
           "placeSlug": "fundamental-plane",
-          "role": "origin",
-          "basis": "infobox"
+          "event": "origin",
+          "source": "liquipedia",
+          "via": "infobox"
         }
       ]
     },
@@ -8252,8 +8262,8 @@
         {
           "regionId": "radiant-lands",
           "placeSlug": "violet-plateau",
-          "role": "home",
-          "basis": "bio"
+          "event": "home",
+          "source": "bio"
         }
       ]
     },
@@ -8270,8 +8280,8 @@
         {
           "regionId": "radiant-lands",
           "placeSlug": "knollen",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         }
       ]
     },
@@ -8288,8 +8298,8 @@
         {
           "regionId": "quoidge",
           "placeSlug": "cathedral-of-rumusque",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         }
       ]
     },
@@ -8306,14 +8316,14 @@
         {
           "regionId": "middle-kingdoms",
           "placeSlug": "ultimyr-academy",
-          "role": "home",
-          "basis": "bio"
+          "event": "home",
+          "source": "bio"
         },
         {
           "regionId": "hells",
           "placeSlug": "outer-hells",
-          "role": "link",
-          "basis": "bio"
+          "event": "link",
+          "source": "bio"
         }
       ]
     },
@@ -8332,8 +8342,8 @@
         {
           "regionId": "slom-elze",
           "placeSlug": "slom",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         }
       ]
     },
@@ -8352,14 +8362,15 @@
         {
           "regionId": "slom-elze",
           "placeSlug": "elze",
-          "role": "link",
-          "basis": "bio"
+          "event": "link",
+          "source": "bio"
         },
         {
           "regionId": "free-cities",
           "placeSlug": "weeping-rose",
-          "role": "link",
-          "basis": "page"
+          "event": "link",
+          "source": "liquipedia",
+          "via": "place"
         }
       ]
     },
@@ -8376,8 +8387,8 @@
         {
           "regionId": "tropic-isles",
           "placeSlug": "acid-jungles",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         }
       ]
     },
@@ -8396,8 +8407,8 @@
         {
           "regionId": "planes",
           "placeSlug": "claszureme",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         }
       ]
     },
@@ -8418,8 +8429,9 @@
         {
           "regionId": "empire-of-bone",
           "placeSlug": "throne-of-bone",
-          "role": "home",
-          "basis": "infobox"
+          "event": "home",
+          "source": "liquipedia",
+          "via": "infobox"
         }
       ]
     },
@@ -8437,8 +8449,8 @@
       "links": [
         {
           "regionId": "uncharted",
-          "role": "origin",
-          "basis": "ours",
+          "event": "origin",
+          "source": "ours",
           "note": "в биографии нет мест"
         }
       ]
@@ -8459,8 +8471,9 @@
         {
           "regionId": "stonehall",
           "placeSlug": "tares",
-          "role": "origin",
-          "basis": "infobox"
+          "event": "origin",
+          "source": "liquipedia",
+          "via": "infobox"
         }
       ]
     },
@@ -8475,8 +8488,8 @@
         {
           "regionId": "underdark",
           "placeSlug": "nether-reaches",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         }
       ]
     },
@@ -8496,20 +8509,21 @@
         {
           "regionId": "middle-kingdoms",
           "placeSlug": "hidden-temple",
-          "role": "home",
-          "basis": "bio"
+          "event": "home",
+          "source": "bio"
         },
         {
           "regionId": "radiant-lands",
           "placeSlug": "violet-archives",
-          "role": "link",
-          "basis": "bio"
+          "event": "link",
+          "source": "bio"
         },
         {
           "regionId": "scintillant",
           "placeSlug": "halgalreh",
-          "role": "link",
-          "basis": "page"
+          "event": "link",
+          "source": "liquipedia",
+          "via": "place"
         }
       ]
     },
@@ -8525,8 +8539,8 @@
         {
           "regionId": "underdark",
           "placeSlug": "nether-reaches",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         }
       ]
     },
@@ -8541,8 +8555,8 @@
         {
           "regionId": "nightsilver",
           "placeSlug": "nightsilver-woods",
-          "role": "home",
-          "basis": "bio"
+          "event": "home",
+          "source": "bio"
         }
       ]
     },
@@ -8561,8 +8575,9 @@
         {
           "regionId": "middle-kingdoms",
           "placeSlug": "candoness",
-          "role": "home",
-          "basis": "page"
+          "event": "home",
+          "source": "liquipedia",
+          "via": "place"
         }
       ]
     },
@@ -8578,14 +8593,15 @@
         {
           "regionId": "hells",
           "placeSlug": "nothl-realm",
-          "role": "link",
-          "basis": "bio"
+          "event": "link",
+          "source": "bio"
         },
         {
           "regionId": "fellstrath",
           "placeSlug": "fellstrath",
-          "role": "home",
-          "basis": "page"
+          "event": "home",
+          "source": "liquipedia",
+          "via": "place"
         }
       ]
     },
@@ -8603,8 +8619,8 @@
         {
           "regionId": "radiant-lands",
           "placeSlug": "home-of-the-keen-folk",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         }
       ]
     },
@@ -8619,8 +8635,9 @@
         {
           "regionId": "planes",
           "placeSlug": "heart-of-nature",
-          "role": "origin",
-          "basis": "infobox"
+          "event": "origin",
+          "source": "liquipedia",
+          "via": "infobox"
         }
       ]
     },
@@ -8639,8 +8656,9 @@
         {
           "regionId": "western-forests",
           "placeSlug": "endless-copse",
-          "role": "home",
-          "basis": "page"
+          "event": "home",
+          "source": "liquipedia",
+          "via": "place"
         }
       ]
     },
@@ -8657,8 +8675,8 @@
         {
           "regionId": "middle-kingdoms",
           "placeSlug": "devarque",
-          "role": "link",
-          "basis": "bio"
+          "event": "link",
+          "source": "bio"
         }
       ]
     },
@@ -8674,8 +8692,9 @@
         {
           "regionId": "planes",
           "placeSlug": "land-behind-the-wall",
-          "role": "origin",
-          "basis": "infobox"
+          "event": "origin",
+          "source": "liquipedia",
+          "via": "infobox"
         }
       ]
     },
@@ -8691,14 +8710,15 @@
         {
           "regionId": "hoven",
           "placeSlug": "the-hoven",
-          "role": "origin",
-          "basis": "infobox"
+          "event": "origin",
+          "source": "liquipedia",
+          "via": "infobox"
         },
         {
           "regionId": "hoven",
           "placeSlug": "bleeding-hills",
-          "role": "link",
-          "basis": "bio"
+          "event": "link",
+          "source": "bio"
         }
       ]
     },
@@ -8715,8 +8735,8 @@
         {
           "regionId": "middle-kingdoms",
           "placeSlug": "emauracus",
-          "role": "home",
-          "basis": "bio"
+          "event": "home",
+          "source": "bio"
         }
       ]
     },
@@ -8732,8 +8752,8 @@
       "links": [
         {
           "regionId": "uncharted",
-          "role": "origin",
-          "basis": "ours",
+          "event": "origin",
+          "source": "ours",
           "note": "в биографии нет мест; по образу — лесные земли"
         }
       ]
@@ -8749,8 +8769,8 @@
         {
           "regionId": "hells",
           "placeSlug": "nothl-realm",
-          "role": "link",
-          "basis": "bio"
+          "event": "link",
+          "source": "bio"
         }
       ]
     },
@@ -8768,8 +8788,9 @@
         {
           "regionId": "planes",
           "placeSlug": "the-void",
-          "role": "origin",
-          "basis": "page"
+          "event": "origin",
+          "source": "liquipedia",
+          "via": "place"
         }
       ]
     },
@@ -8786,8 +8807,9 @@
         {
           "regionId": "middle-kingdoms",
           "placeSlug": "mount-pyrotheos",
-          "role": "home",
-          "basis": "infobox"
+          "event": "home",
+          "source": "liquipedia",
+          "via": "infobox"
         }
       ]
     },
@@ -8806,14 +8828,15 @@
         {
           "regionId": "free-cities",
           "placeSlug": "white-spire",
-          "role": "home",
-          "basis": "page"
+          "event": "home",
+          "source": "liquipedia",
+          "via": "place"
         },
         {
           "regionId": "free-cities",
           "placeSlug": "highseat",
-          "role": "link",
-          "basis": "bio"
+          "event": "link",
+          "source": "bio"
         }
       ]
     },
@@ -8829,8 +8852,9 @@
         {
           "regionId": "planes",
           "placeSlug": "fabric-of-creation",
-          "role": "origin",
-          "basis": "infobox"
+          "event": "origin",
+          "source": "liquipedia",
+          "via": "infobox"
         }
       ]
     },
@@ -8844,8 +8868,8 @@
       "links": [
         {
           "regionId": "uncharted",
-          "role": "origin",
-          "basis": "ours",
+          "event": "origin",
+          "source": "ours",
           "note": "в биографии нет мест (раса Pyrexae)"
         }
       ]
@@ -8862,8 +8886,8 @@
         {
           "regionId": "fellstrath",
           "placeSlug": "yama-raskav-jungle",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         }
       ]
     },
@@ -8878,8 +8902,8 @@
         {
           "regionId": "hazhadal",
           "placeSlug": "hazhadal-barrens",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         }
       ]
     },
@@ -8896,20 +8920,23 @@
       "links": [
         {
           "regionId": "planes",
-          "role": "origin",
-          "basis": "infobox"
+          "event": "origin",
+          "source": "liquipedia",
+          "via": "infobox"
         },
         {
           "regionId": "shadeshore",
           "placeSlug": "ruelands",
-          "role": "link",
-          "basis": "page"
+          "event": "link",
+          "source": "liquipedia",
+          "via": "place"
         },
         {
           "regionId": "middle-kingdoms",
           "placeSlug": "hidden-temple",
-          "role": "link",
-          "basis": "page"
+          "event": "link",
+          "source": "liquipedia",
+          "via": "place"
         }
       ]
     },
@@ -8928,8 +8955,9 @@
         {
           "regionId": "planes",
           "placeSlug": "the-void",
-          "role": "origin",
-          "basis": "infobox"
+          "event": "origin",
+          "source": "liquipedia",
+          "via": "infobox"
         }
       ]
     },
@@ -8946,8 +8974,8 @@
         {
           "regionId": "hells",
           "placeSlug": "vashundol",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         }
       ]
     },
@@ -8964,8 +8992,9 @@
         {
           "regionId": "tomokan",
           "placeSlug": "tomokan",
-          "role": "home",
-          "basis": "infobox"
+          "event": "home",
+          "source": "liquipedia",
+          "via": "infobox"
         }
       ]
     },
@@ -8984,20 +9013,23 @@
         {
           "regionId": "planes",
           "placeSlug": "elemental-plane",
-          "role": "origin",
-          "basis": "infobox"
+          "event": "origin",
+          "source": "liquipedia",
+          "via": "infobox"
         },
         {
           "regionId": "underdark",
           "placeSlug": "nether-reaches",
-          "role": "link",
-          "basis": "infobox"
+          "event": "link",
+          "source": "liquipedia",
+          "via": "infobox"
         },
         {
           "regionId": "heavens",
           "placeSlug": "ultoria",
-          "role": "link",
-          "basis": "page"
+          "event": "link",
+          "source": "liquipedia",
+          "via": "place"
         }
       ]
     },
@@ -9016,8 +9048,8 @@
         {
           "regionId": "tropic-isles",
           "placeSlug": "ash-archipelago",
-          "role": "home",
-          "basis": "bio"
+          "event": "home",
+          "source": "bio"
         }
       ]
     },
@@ -9034,8 +9066,8 @@
       "links": [
         {
           "regionId": "uncharted",
-          "role": "origin",
-          "basis": "ours",
+          "event": "origin",
+          "source": "ours",
           "note": "в биографии нет мест (семья Darkbrew)"
         }
       ]
@@ -9054,8 +9086,9 @@
         {
           "regionId": "middle-kingdoms",
           "placeSlug": "ultimyr-academy",
-          "role": "link",
-          "basis": "page"
+          "event": "link",
+          "source": "liquipedia",
+          "via": "place"
         }
       ]
     },
@@ -9072,14 +9105,15 @@
         {
           "regionId": "hazhadal",
           "placeSlug": "hazhadal-barrens",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         },
         {
           "regionId": "free-cities",
           "placeSlug": "tyler-estate",
-          "role": "link",
-          "basis": "page"
+          "event": "link",
+          "source": "liquipedia",
+          "via": "place"
         }
       ]
     },
@@ -9098,8 +9132,9 @@
         {
           "regionId": "planes",
           "placeSlug": "the-outworld",
-          "role": "origin",
-          "basis": "infobox"
+          "event": "origin",
+          "source": "liquipedia",
+          "via": "infobox"
         }
       ]
     },
@@ -9115,8 +9150,8 @@
         {
           "regionId": "slom-elze",
           "placeSlug": "slom",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         }
       ]
     },
@@ -9134,8 +9169,8 @@
         {
           "regionId": "wailing-mountains",
           "placeSlug": "ruined-city",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         }
       ]
     },
@@ -9152,8 +9187,9 @@
         {
           "regionId": "hells",
           "placeSlug": "seven-hells",
-          "role": "origin",
-          "basis": "page"
+          "event": "origin",
+          "source": "liquipedia",
+          "via": "place"
         }
       ]
     },
@@ -9171,8 +9207,9 @@
         {
           "regionId": "icewrack",
           "placeSlug": "onyx-grove",
-          "role": "home",
-          "basis": "page"
+          "event": "home",
+          "source": "liquipedia",
+          "via": "place"
         }
       ]
     },
@@ -9189,8 +9226,9 @@
         {
           "regionId": "planes",
           "placeSlug": "fundamental-plane",
-          "role": "origin",
-          "basis": "infobox"
+          "event": "origin",
+          "source": "liquipedia",
+          "via": "infobox"
         }
       ]
     },
@@ -9206,14 +9244,15 @@
         {
           "regionId": "scintillant",
           "placeSlug": "riftshadow-ruins",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         },
         {
           "regionId": "scintillant",
           "placeSlug": "singers-gulch",
-          "role": "link",
-          "basis": "page"
+          "event": "link",
+          "source": "liquipedia",
+          "via": "place"
         }
       ]
     },
@@ -9231,8 +9270,8 @@
         {
           "regionId": "western-forests",
           "placeSlug": "vale-of-augury",
-          "role": "home",
-          "basis": "bio"
+          "event": "home",
+          "source": "bio"
         }
       ]
     },
@@ -9248,8 +9287,8 @@
       "links": [
         {
           "regionId": "uncharted",
-          "role": "origin",
-          "basis": "ours",
+          "event": "origin",
+          "source": "ours",
           "note": "в биографии нет мест"
         }
       ]
@@ -9266,8 +9305,8 @@
       "links": [
         {
           "regionId": "uncharted",
-          "role": "origin",
-          "basis": "ours",
+          "event": "origin",
+          "source": "ours",
           "note": "служит Мёртвому богу, чей легион разорил Turstarkuri; Liquipedia связывает с Seven Hells"
         }
       ]
@@ -9282,8 +9321,8 @@
       "links": [
         {
           "regionId": "uncharted",
-          "role": "origin",
-          "basis": "ours",
+          "event": "origin",
+          "source": "ours",
           "note": "в биографии нет мест; Liquipedia связывает с Ultimyr Archives (слабая связь)"
         }
       ]
@@ -9299,8 +9338,8 @@
         {
           "regionId": "druud",
           "placeSlug": "druud",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         }
       ]
     },
@@ -9317,8 +9356,9 @@
         {
           "regionId": "middle-kingdoms",
           "placeSlug": "hidden-hive",
-          "role": "home",
-          "basis": "infobox"
+          "event": "home",
+          "source": "liquipedia",
+          "via": "infobox"
         }
       ]
     },
@@ -9336,8 +9376,8 @@
         {
           "regionId": "the-deep",
           "placeSlug": "crey",
-          "role": "home",
-          "basis": "bio"
+          "event": "home",
+          "source": "bio"
         }
       ]
     },
@@ -9357,14 +9397,15 @@
         {
           "regionId": "planes",
           "placeSlug": "fundamental-plane",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         },
         {
           "regionId": "planes",
           "placeSlug": "lights-keep",
-          "role": "link",
-          "basis": "infobox"
+          "event": "link",
+          "source": "liquipedia",
+          "via": "infobox"
         }
       ]
     },
@@ -9381,8 +9422,9 @@
         {
           "regionId": "planes",
           "placeSlug": "fundamental-plane",
-          "role": "origin",
-          "basis": "infobox"
+          "event": "origin",
+          "source": "liquipedia",
+          "via": "infobox"
         }
       ]
     },
@@ -9397,8 +9439,8 @@
         {
           "regionId": "hells",
           "placeSlug": "narrow-maze",
-          "role": "home",
-          "basis": "bio"
+          "event": "home",
+          "source": "bio"
         }
       ]
     },
@@ -9413,13 +9455,13 @@
         {
           "regionId": "the-deep",
           "placeSlug": "dark-reef",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         },
         {
           "regionId": "shadeshore",
-          "role": "home",
-          "basis": "bio"
+          "event": "home",
+          "source": "bio"
         }
       ]
     },
@@ -9435,8 +9477,9 @@
         {
           "regionId": "fellstrath",
           "placeSlug": "yama-raskav-jungle",
-          "role": "home",
-          "basis": "page"
+          "event": "home",
+          "source": "liquipedia",
+          "via": "place"
         }
       ]
     },
@@ -9454,8 +9497,9 @@
         {
           "regionId": "hoven",
           "placeSlug": "the-hoven",
-          "role": "home",
-          "basis": "infobox"
+          "event": "home",
+          "source": "liquipedia",
+          "via": "infobox"
         }
       ]
     },
@@ -9472,8 +9516,8 @@
         {
           "regionId": "druud",
           "placeSlug": "druud",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         }
       ]
     },
@@ -9489,8 +9533,9 @@
         {
           "regionId": "wailing-mountains",
           "placeSlug": "mount-joerlak",
-          "role": "origin",
-          "basis": "page"
+          "event": "origin",
+          "source": "liquipedia",
+          "via": "place"
         }
       ]
     },
@@ -9508,8 +9553,8 @@
         {
           "regionId": "western-forests",
           "placeSlug": "augury-bay",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         }
       ]
     },
@@ -9529,8 +9574,8 @@
         {
           "regionId": "slom-elze",
           "placeSlug": "elze",
-          "role": "home",
-          "basis": "bio"
+          "event": "home",
+          "source": "bio"
         }
       ]
     },
@@ -9548,14 +9593,14 @@
         {
           "regionId": "icewrack",
           "placeSlug": "cobalt",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         },
         {
           "regionId": "icewrack",
           "placeSlug": "wolfsden-tavern",
-          "role": "link",
-          "basis": "bio"
+          "event": "link",
+          "source": "bio"
         }
       ]
     },
@@ -9573,8 +9618,8 @@
         {
           "regionId": "heavens",
           "placeSlug": "ghastly-eyrie",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         }
       ]
     },
@@ -9590,8 +9635,8 @@
         {
           "regionId": "middle-kingdoms",
           "placeSlug": "font-of-avernus",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         }
       ]
     },
@@ -9608,8 +9653,9 @@
         {
           "regionId": "planes",
           "placeSlug": "primordial-plane",
-          "role": "origin",
-          "basis": "page"
+          "event": "origin",
+          "source": "liquipedia",
+          "via": "place"
         }
       ]
     },
@@ -9628,14 +9674,15 @@
         {
           "regionId": "stonehall",
           "placeSlug": "qine",
-          "role": "origin",
-          "basis": "infobox"
+          "event": "origin",
+          "source": "liquipedia",
+          "via": "infobox"
         },
         {
           "regionId": "stonehall",
           "placeSlug": "stonehall",
-          "role": "home",
-          "basis": "bio"
+          "event": "home",
+          "source": "bio"
         }
       ]
     },
@@ -9651,14 +9698,15 @@
         {
           "regionId": "radiant-lands",
           "placeSlug": "dredgers-bight",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         },
         {
           "regionId": "shadeshore",
           "placeSlug": "ruelands",
-          "role": "link",
-          "basis": "page"
+          "event": "link",
+          "source": "liquipedia",
+          "via": "place"
         }
       ]
     },
@@ -9677,8 +9725,8 @@
         {
           "regionId": "wailing-mountains",
           "placeSlug": "fortress-of-flares",
-          "role": "home",
-          "basis": "bio"
+          "event": "home",
+          "source": "bio"
         }
       ]
     },
@@ -9695,8 +9743,9 @@
         {
           "regionId": "wailing-mountains",
           "placeSlug": "the-upland",
-          "role": "origin",
-          "basis": "infobox"
+          "event": "origin",
+          "source": "liquipedia",
+          "via": "infobox"
         }
       ]
     },
@@ -9715,14 +9764,15 @@
         {
           "regionId": "underdark",
           "placeSlug": "aziyog",
-          "role": "home",
-          "basis": "bio"
+          "event": "home",
+          "source": "bio"
         },
         {
           "regionId": "stonehall",
           "placeSlug": "stonehall",
-          "role": "link",
-          "basis": "page"
+          "event": "link",
+          "source": "liquipedia",
+          "via": "place"
         }
       ]
     },
@@ -9739,8 +9789,8 @@
         {
           "regionId": "hells",
           "placeSlug": "foulfell",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         }
       ]
     },
@@ -9755,8 +9805,8 @@
         {
           "regionId": "heavens",
           "placeSlug": "the-sun",
-          "role": "origin",
-          "basis": "ours"
+          "event": "origin",
+          "source": "ours"
         }
       ]
     },
@@ -9773,8 +9823,8 @@
         {
           "regionId": "planes",
           "placeSlug": "ivory-incubarium",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         }
       ]
     },
@@ -9793,8 +9843,9 @@
         {
           "regionId": "icewrack",
           "placeSlug": "icewrack",
-          "role": "home",
-          "basis": "page"
+          "event": "home",
+          "source": "liquipedia",
+          "via": "place"
         }
       ]
     },
@@ -9812,14 +9863,16 @@
         {
           "regionId": "heavens",
           "placeSlug": "mad-moon",
-          "role": "origin",
-          "basis": "page"
+          "event": "origin",
+          "source": "liquipedia",
+          "via": "place"
         },
         {
           "regionId": "tomokan",
           "placeSlug": "tomokan",
-          "role": "link",
-          "basis": "page"
+          "event": "link",
+          "source": "liquipedia",
+          "via": "place"
         }
       ]
     },
@@ -9838,8 +9891,9 @@
         {
           "regionId": "free-cities",
           "placeSlug": "white-spire",
-          "role": "home",
-          "basis": "infobox"
+          "event": "home",
+          "source": "liquipedia",
+          "via": "infobox"
         }
       ]
     },
@@ -9856,8 +9910,8 @@
         {
           "regionId": "free-cities",
           "placeSlug": "revtel",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         }
       ]
     },
@@ -9874,14 +9928,16 @@
         {
           "regionId": "free-cities",
           "placeSlug": "white-spire",
-          "role": "home",
-          "basis": "page"
+          "event": "home",
+          "source": "liquipedia",
+          "via": "place"
         },
         {
           "regionId": "scintillant",
           "placeSlug": "qaldin",
-          "role": "link",
-          "basis": "page"
+          "event": "link",
+          "source": "liquipedia",
+          "via": "place"
         }
       ]
     },
@@ -9896,8 +9952,8 @@
         {
           "regionId": "fellstrath",
           "placeSlug": "ashkavor",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         }
       ]
     },
@@ -9912,14 +9968,14 @@
         {
           "regionId": "tomokan",
           "placeSlug": "krimwohl",
-          "role": "origin",
-          "basis": "bio"
+          "event": "origin",
+          "source": "bio"
         },
         {
           "regionId": "tomokan",
           "placeSlug": "tomokan",
-          "role": "home",
-          "basis": "bio"
+          "event": "home",
+          "source": "bio"
         }
       ]
     },
@@ -9936,14 +9992,15 @@
         {
           "regionId": "planes",
           "placeSlug": "the-void",
-          "role": "origin",
-          "basis": "infobox"
+          "event": "origin",
+          "source": "liquipedia",
+          "via": "infobox"
         },
         {
           "regionId": "middle-kingdoms",
           "placeSlug": "hidden-temple",
-          "role": "link",
-          "basis": "bio"
+          "event": "link",
+          "source": "bio"
         }
       ]
     },
@@ -9960,8 +10017,8 @@
         {
           "regionId": "tomokan",
           "placeSlug": "nanarak",
-          "role": "home",
-          "basis": "bio"
+          "event": "home",
+          "source": "bio"
         }
       ]
     },
@@ -9976,14 +10033,15 @@
         {
           "regionId": "heavens",
           "placeSlug": "olympus",
-          "role": "origin",
-          "basis": "ours"
+          "event": "origin",
+          "source": "ours"
         },
         {
           "regionId": "quoidge",
           "placeSlug": "quoidge",
-          "role": "link",
-          "basis": "page"
+          "event": "link",
+          "source": "liquipedia",
+          "via": "place"
         }
       ]
     },
@@ -9997,8 +10055,8 @@
       "links": [
         {
           "regionId": "uncharted",
-          "role": "origin",
-          "basis": "ours",
+          "event": "origin",
+          "source": "ours",
           "note": "в биографии нет мест; кандидат — руины цирка в Ozenja (догадка)"
         }
       ]
@@ -10016,8 +10074,8 @@
         {
           "regionId": "heavens",
           "placeSlug": "the-sun",
-          "role": "origin",
-          "basis": "ours"
+          "event": "origin",
+          "source": "ours"
         }
       ]
     },
@@ -10031,8 +10089,8 @@
       "links": [
         {
           "regionId": "uncharted",
-          "role": "origin",
-          "basis": "ours",
+          "event": "origin",
+          "source": "ours",
           "note": "места есть только в сериале «DOTA: Dragon's Blood» (Hauptstadt, Barrowhaven и др.) — по решению В5 места сериала на карту не добавляем"
         }
       ]
@@ -10048,8 +10106,9 @@
         {
           "regionId": "tomokan",
           "placeSlug": "tomokan",
-          "role": "home",
-          "basis": "infobox"
+          "event": "home",
+          "source": "liquipedia",
+          "via": "infobox"
         }
       ]
     },
@@ -10064,8 +10123,9 @@
         {
           "regionId": "middle-kingdoms",
           "placeSlug": "skirm",
-          "role": "origin",
-          "basis": "infobox"
+          "event": "origin",
+          "source": "liquipedia",
+          "via": "infobox"
         }
       ]
     },
@@ -10080,14 +10140,15 @@
         {
           "regionId": "heavens",
           "placeSlug": "ghastly-eyrie",
-          "role": "origin",
-          "basis": "infobox"
+          "event": "origin",
+          "source": "liquipedia",
+          "via": "infobox"
         },
         {
           "regionId": "icewrack",
           "placeSlug": "icewrack",
-          "role": "home",
-          "basis": "bio"
+          "event": "home",
+          "source": "bio"
         }
       ]
     },
@@ -10102,8 +10163,9 @@
         {
           "regionId": "fellstrath",
           "placeSlug": "velumar",
-          "role": "origin",
-          "basis": "infobox"
+          "event": "origin",
+          "source": "liquipedia",
+          "via": "infobox"
         }
       ]
     }

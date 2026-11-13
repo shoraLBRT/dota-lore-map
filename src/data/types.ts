@@ -122,15 +122,69 @@ export interface Region {
   regionHeroes: string[];
 }
 
-export type HeroRole = 'origin' | 'home' | 'link';
-export type HeroBasis = 'infobox' | 'bio' | 'page' | 'ours';
+/** Тип события связи герой–место (модель связей E14, ARCHITECTURE A3). `link` — из E1, тип не уточнён. */
+export type HeroEvent =
+  | 'origin'
+  | 'home'
+  | 'journey'
+  | 'battle'
+  | 'service'
+  | 'exile'
+  | 'death'
+  | 'visit'
+  | 'mention'
+  | 'link';
 
-export interface HeroLink {
+/** Откуда запись: официальная биография, Liquipedia, официальный комикс (`comic:<id медиа>`) или наше решение. */
+export type HeroSource = 'bio' | 'liquipedia' | 'ours' | `comic:${string}`;
+/** Где на Liquipedia: инфобокс лор-страницы героя, текст лор-страницы, страница места. */
+export type LiquipediaVia = 'infobox' | 'lore' | 'place';
+
+/** Источник записи модели связей. */
+export interface Sourced {
+  source: HeroSource;
+  /** Только у `source: 'liquipedia'`. */
+  via?: LiquipediaVia;
+  url?: string;
+  /** Заметка исследования (по-русски, для разработчиков). */
+  note?: string;
+  /** Что под сомнением и почему (по-русски); нет поля — запись подтверждена источником. */
+  doubt?: string;
+}
+
+/** Место героя: конкретное место или регион целиком. */
+export interface SpotRef {
   regionId: string;
   placeSlug?: string;
-  role: HeroRole;
-  basis: HeroBasis;
-  note?: string;
+}
+
+export interface HeroLink extends SpotRef, Sourced {
+  event: HeroEvent;
+}
+
+/** Кем другой герой приходится этому. */
+export type RelationType =
+  | 'ally'
+  | 'enemy'
+  | 'rival'
+  | 'family'
+  | 'love'
+  | 'mentor'
+  | 'student'
+  | 'master'
+  | 'servant';
+
+export interface HeroRelation extends Partial<SpotRef>, Sourced {
+  /** key другого героя. */
+  hero: string;
+  type: RelationType;
+}
+
+export interface HeroProfile {
+  /** Короткое описание своими словами (E15). */
+  summary?: Localized;
+  /** Официальные арты Valve по ссылке (A6). */
+  art?: string[];
 }
 
 export interface Hero {
@@ -140,7 +194,12 @@ export interface Hero {
   slug: string;
   /** Алиасы для поиска (SPEC §6.5): кириллица, сокращения, прозвища, личные имена. Нет — поле отсутствует. */
   aliases?: string[];
+  /** Места героя по порядку (по нему идут места в плашке и нити, A11). */
   links: HeroLink[];
+  /** Путь героя: остановки по порядку, стрелка — от остановки к следующей. Каждая остановка есть в links. */
+  path?: SpotRef[];
+  relations?: HeroRelation[];
+  profile?: HeroProfile;
 }
 
 export interface World {
