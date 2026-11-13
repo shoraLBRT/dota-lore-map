@@ -1,0 +1,60 @@
+{
+  "hero": "jakiro",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "region": "uncharted",
+      "event": "origin",
+      "source": "ours",
+      "note": "в биографиях мест нет; в инфобоксе лор-страницы названы Grosche и The Riverwarren, но их нет в regions.json, см. candidates"
+    }
+  ],
+  "relations": [
+    {
+      "hero": "winter_wyvern",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Jakiro/Lore",
+      "doubt": "Родство описано двояко: в реплике Jakiro она «кузина», а в тексте лор-страницы Liquipedia — его мать (по чешуе правой головы). Поэтому общий тип — родня.",
+      "note": "Winter Wyvern враждебна к нему: в её репликах — сожаление, что не убила его ещё в гнезде."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Jakiro — двуглавый дракон рода Pyrexae: одна голова несёт лёд, другая огонь, а тело одно на двоих. Сородичи считают его уродом и порой охотятся на него, но он сам охраняет прибрежные скалы от захватчиков. Однажды он спустился к подземному народу и помог ему в трудный час.",
+      "en": "Jakiro is a two-headed dragon of the Pyrexae kind, with one head wielding frost and the other flame on a single body. Kinfolk regard this freak as an aberration and sometimes hunt him, yet he defends his seaside cliffs from raiders. He once descended to an underground people and aided them in their hour of need."
+    }
+  },
+  "candidates": [
+    {
+      "name": "Grosche",
+      "region": "uncharted",
+      "event": "home",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Jakiro/Lore",
+      "note": "Скалы у моря, которые охраняет Jakiro: по описанию предмета Pyrexaec Floe он отбил там набег воинов-слизеринов. Регион не назван; по соседству с морем слизеринов можно искать у The Deep или Cladd — решает владелец (#59)."
+    },
+    {
+      "name": "The Riverwarren",
+      "region": "uncharted",
+      "event": "service",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Jakiro/Lore",
+      "note": "Подземные пещеры, чей народ Jakiro однажды защитил (описание предмета Pyrexaec Flux); там до сих пор празднуют День костров. Регион не назван — решает владелец (#59)."
+    }
+  ],
+  "unconfirmed": [
+    "место рождения и родина в биографиях не названы; вики-запись о родине опирается только на инфобокс",
+    "логово дракона на скалах Grosche в вики описано как вероятное, не подтверждённое место жизни",
+    "пещеры The Riverwarren в лоре не привязаны к конкретному региону схемы",
+    "отец Jakiro неизвестен, в источниках упомянута только мать"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "hero": "tiny",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Azura",
+      "event": "origin",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Tiny/Lore",
+      "note": "Лор-страница приводит описание набора Majesty of the Colossus: предки одобенов в краю Азуры сделали каменных стражей гробниц, и в камне одного из них была своя жизнь — так появился Tiny.",
+      "doubt": "Это текст косметического набора, а не биографии; в биографии Tiny сам не знает, откуда он. «Азуранский край» описания считаем местом Azura на схеме."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Tiny — каменный великан, который начинался как обломок камня и до сих пор не знает, откуда он взялся. Версии о его происхождении расходятся: осколок голема, отломок скульптуры или часть пророческого изваяния. Он бродит по миру в поисках родичей и с каждым шагом становится крупнее.",
+      "en": "Tiny is a stone giant who began as a loose fragment of rock and still has no clear idea where he came from. Several guesses point in different directions: a chipped piece of a golem, a shard from a carved statue, or part of a prophetic idol. He wanders from place to place looking for kin, and grows larger with every mile."
+    }
+  },
+  "candidates": [
+    {
+      "name": "Vuurcrag Mountains",
+      "region": "uncharted",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Tiny/Lore",
+      "note": "Единственное место в инфобоксе лор-страницы, в regions.json его нет. Регион по источникам не установлен, поэтому стоит временный uncharted. Владельцу #59 нужно решить, есть ли горы на схеме и где они"
+    }
+  ],
+  "unconfirmed": [
+    "Версии из биографии (осколок голема, обломок из мастерской скульптора, кусок Оракульского лика Гартоса) — догадки самого Tiny, не подтверждены.",
+    "Vuurcrag Mountains (инфобокс, поле places): регион и что там делал Tiny, не сказано — только кандидат.",
+    "Реплики Earth Spirit, Elder Titan и Enchantress о Tiny — отдельные строки озвучки, связи не записаны."
+  ]
+}

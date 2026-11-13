@@ -1,0 +1,40 @@
+{
+  "hero": "riki",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "region": "uncharted",
+      "event": "origin",
+      "source": "ours",
+      "note": "Родина Riki в биографии не названа: сказано только, что он из династии Tahlin и что его народ предали в ночь гибели царского рода. Liquipedia упоминает безымянную родину с пряностями, но это реплика другого героя, не название места. Поэтому на схеме — Неизведанные земли; кандидата в места нет."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "dark_willow",
+      "type": "ally",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Riki/Lore",
+      "note": "Dark Willow (Миреска) вместе с Riki была связана с Jasper Circle; по её репликам они потом пошли разными путями.",
+      "doubt": "Бывшие соратники: сейчас их пути разошлись, в источнике нет ни дружбы, ни вражды."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Riki — средний сын правящей династии Tahlin, который с детства оттачивал умение оставаться незаметным, пока старшие и младшие братья получали внимание. Когда царский род истребили, он единственный выбрался из дворца, и теперь работает наёмным убийцей. Он всё ещё хочет расквитаться с теми, кто лишил его семьи и наследства.",
+      "en": "Riki was the middle son of the Tahlin dynasty, overlooked between his brothers and naturally gifted at staying unseen. He alone escaped when his royal house was slaughtered, and he now works as a freelance assassin. He still hopes to take revenge on those who destroyed his family and stripped him of his claim to the throne."
+    }
+  },
+  "unconfirmed": [
+    "Принадлежность к Bladebreaker Order: Liquipedia пишет «возможно» (may be), подтверждения нет.",
+    "Джаспер-серкл (Jasper Circle) — организация, а не место; на схему не вносится.",
+    "Lorlin Lasan — персонаж Jasper Circle, не герой, поэтому в связях не указан.",
+    "Комиксов с Riki в content/media.json нет, поэтому источник comic не использован."
+  ]
+}

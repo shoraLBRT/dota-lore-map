@@ -1,0 +1,43 @@
+{
+  "hero": "marci",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "region": "uncharted",
+      "event": "origin",
+      "source": "ours",
+      "note": "родина не названа ни в биографии, ни в игровом лоре; места из инфобокса Liquipedia (Hauptstadt, Barrowhaven и др.) взяты из сериала «DOTA: Dragon's Blood» — по решению В5 на карту и в кандидаты не добавляем"
+    }
+  ],
+  "relations": [
+    {
+      "hero": "mirana",
+      "type": "ally",
+      "source": "bio",
+      "note": "По биографии Marci почти всегда путешествует с принцессой Mirana, их дружбу окружают тайны; Hero Atlas (через Liquipedia) называет Mirana её подопечной.",
+      "doubt": "Liquipedia называет Marci служанкой Mirana, но это по сериалу «DOTA: Dragon's Blood» (В5 — только медиа); в игровом лоре — дружба и охрана."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Происхождение Marci почти неизвестно. Чаще всего она идёт рядом с Mirana, а связь между ними держится на тайнах, о которых обе молчат. Союзникам она надёжный и прямой защитник, а врагам преграда, которую невозможно обойти, если они угрожают тем, кого она считает своими. Скромное телосложение обманчиво: удары наполнены огромной силой.",
+      "en": "Marci's background is largely a mystery. She usually accompanies Mirana, and the bond between them rests on private matters neither chooses to disclose. Allies find her a loyal and blunt protector, while enemies meet an immovable barrier against anyone she counts as a friend. Her small frame is deceptive, since her blows carry tremendous force."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/marci.png"
+    ]
+  },
+  "candidates": [],
+  "unconfirmed": [
+    "Места из инфобокса Liquipedia (Barrowhaven, Coedwig, Dragon Knights' Redoubt, Hauptstadt, Invoker's Tower, Magpie's Roost) относятся к сериалу «DOTA: Dragon's Blood»; по В5 они не записаны ни в links, ни в candidates.",
+    "Nightsilver Woods и Temple of Mene есть на схеме, но в инфобоксе ссылаются на версию из сериала, а игровой лор не связывает с ними Marci; связь не записана.",
+    "Helio Imperium указан в инфобоксе без привязки к месту на схеме; трон этой империи уже есть в данных (Solar Throne), соответствие не подтверждено, не записано.",
+    "Гибель Marci от руки Kashurra и служба при Mirana в сериале «DOTA: Dragon's Blood» не записаны по В5 (сериал).",
+    "Liquipedia упоминает Wei в связи с Marci (через реплики Mirana), но ключа Wei в heroes.json нет; связь не записана."
+  ]
+}

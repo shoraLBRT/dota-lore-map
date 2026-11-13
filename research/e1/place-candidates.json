@@ -1,4 +1,35 @@
 {
   "note": "Кандидаты в места: место из лора, которого нет на схеме мира (map/layout.json). На карту в партиях E14 не добавляются — решение в #59. Формат — docs/ARCHITECTURE.md §A3.",
-  "candidates": []
+  "candidates": [
+    {
+      "name": "Grosche",
+      "hero": "jakiro",
+      "region": "uncharted",
+      "event": "home",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Jakiro/Lore",
+      "note": "Скалы у моря, которые охраняет Jakiro: по описанию предмета Pyrexaec Floe он отбил там набег воинов-слизеринов. Регион не назван; по соседству с морем слизеринов можно искать у The Deep или Cladd — решает владелец (#59)."
+    },
+    {
+      "name": "The Riverwarren",
+      "hero": "jakiro",
+      "region": "uncharted",
+      "event": "service",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Jakiro/Lore",
+      "note": "Подземные пещеры, чей народ Jakiro однажды защитил (описание предмета Pyrexaec Flux); там до сих пор празднуют День костров. Регион не назван — решает владелец (#59)."
+    },
+    {
+      "name": "Vuurcrag Mountains",
+      "hero": "tiny",
+      "region": "uncharted",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Tiny/Lore",
+      "note": "Единственное место в инфобоксе лор-страницы, в regions.json его нет. Регион по источникам не установлен, поэтому стоит временный uncharted. Владельцу #59 нужно решить, есть ли горы на схеме и где они"
+    }
+  ]
 }

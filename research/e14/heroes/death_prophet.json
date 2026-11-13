@@ -1,0 +1,35 @@
+{
+  "hero": "death_prophet",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "region": "uncharted",
+      "event": "origin",
+      "source": "ours",
+      "note": "Ни биография, ни лор-страница Liquipedia не называют места, где Кробелус родилась или жила; загробный мир описан только общими словами."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Кробелус — предсказательница, которая при жизни гадала богатым клиентам о том, что ждёт за порогом смерти. Заглянув в собственную судьбу, она стала возвращаться из могилы снова и снова: каждое воскрешение приносит ей тени умерших и всё более бледную, призрачную кровь. Теперь она сама ищет смерть, надеясь, что однажды та окончательно её заберёт.",
+      "en": "Krobelus once sold glimpses of the afterlife to the rich. When she turned that gaze on her own fate, she kept coming back from the grave, each return leaving her thinner, ghostlier and trailing the spirits of the dead. Now she seeks death out, hoping it will finally keep her."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/death_prophet.png"
+    ]
+  },
+  "unconfirmed": [
+    "Место рождения и детства Кробелус в биографии и лоре не названо.",
+    "Загробный мир, куда уходит её дух и где обитают сумеречные создания, назван только общими словами; конкретного места и региона нет, поэтому на карту и в кандидаты не добавлено.",
+    "Наставница «Смертельная невеста» (Death's Bride) упоминается только в описаниях предметов; её место и судьба не известны.",
+    "Утверждение героя, что он видел поле битвы Древних во сне, — реплика, а не место действия; в регионы не привязано.",
+    "Комикса с этим героем в content/media.json нет.",
+    "Outlands (Tomo'kan): Liquipedia лишь предполагает по описанию набора «Witch of the Outlands», что Кробелус могла быть этой ведьмой или знать её; это догадка по косметике, связь не записана.",
+    "Связи с героями (Shadow Shaman, Wraith King, Undying и др.) держатся только на отдельных репликах озвучки — не записаны."
+  ]
+}

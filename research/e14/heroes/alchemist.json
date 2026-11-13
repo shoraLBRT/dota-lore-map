@@ -1,0 +1,29 @@
+{
+  "hero": "alchemist",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Home of the Keen Folk",
+      "event": "origin",
+      "source": "ours",
+      "note": "Liquipedia (инфобокс лор-страницы, поле race) называет Раззила кином; родина народа кинов на схеме — Home of the Keen Folk. Само место в биографии не названо: там только безымянный город с тюрьмой и лес вокруг.",
+      "doubt": "Связь по народу, а не по тексту о самом герое; в репликах других героев он «малый кин» (smallkeen) — возможно, отдельная ветвь народа."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Alchemist — это двое: алхимик Раззил Даркбрю и его громадный напарник-огр. Раззил взялся превратить целую гору в золото, с треском провалился и оказался в темнице, но выбрался, опоив сокамерника-огра собственным зельем. Теперь они вместе ищут редкие ингредиенты, нередко добывая их из павших врагов.",
+      "en": "Alchemist is a duo: the alchemist Razzil Darkbrew and his huge ogre partner. Razzil tried to turn a mountain into gold, failed spectacularly and ended up in prison, then escaped by feeding a potion he had brewed to his ogre cellmate. Since then the pair has been hunting rare ingredients, sometimes harvesting them from fallen foes."
+    }
+  },
+  "unconfirmed": [
+    "Город с тюрьмой, где сидел Раззил, и лес вокруг него в источниках не названы — к месту на схеме их не привязать.",
+    "Родина Раззила прямо не названа; привязка к земле кинов — наше решение по его народу (см. doubt).",
+    "Поля places и origins в инфобоксе Liquipedia пусты."
+  ]
+}
