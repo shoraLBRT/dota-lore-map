@@ -1,0 +1,74 @@
+{
+  "hero": "lone_druid",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore"
+  ],
+  "links": [
+    {
+      "place": "Onyx Grove",
+      "event": "home",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Lone_Druid/Lore",
+      "note": "Среди мест, где изгнанник переждал долгие века, — тёмная роща на северной границе хвойного леса. Он подстроил под неё свою форму и остался там надолго, став медведем-чудищем среди местных созданий. Поле places инфобокса подтверждает то же место.",
+      "doubt": "Текст описывает, как он там обжился, но не называет эту рощу домом прямо. Событие «home» взято из текущих данных E1."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "beastmaster",
+      "type": "ally",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Lone_Druid/Lore",
+      "note": "Лор-страница называет обоих хранителями природы, которые союзники.",
+      "doubt": "В том же абзаце сказано, что их владения в лесу расходятся и они борются за власть; тип записан по первой фразе."
+    },
+    {
+      "hero": "elder_titan",
+      "type": "ally",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Lone_Druid/Lore",
+      "note": "Лор-страница называет Elder Titan союзником в группе природных героев и отмечает, что оба стремятся починить мир."
+    },
+    {
+      "hero": "lycan",
+      "type": "rival",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Lone_Druid/Lore",
+      "note": "В разделе соперничества Lycan назван Бейнхэллоу: они соперничают из-за разного понимания того, кто из зверей сильнее, хотя и могут считать друг друга родственными по оборотничеству."
+    },
+    {
+      "hero": "sven",
+      "type": "ally",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Lone_Druid/Lore",
+      "note": "Sven находит в Силле родственную душу, одиночку, с которым ему почётно сражаться плечом к плечу."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Lone Druid, он же Силла, — последний хранитель Семени из павшего Клана Медведя. Тысячелетиями он бродит по диким землям в облике человека или медведя, ни во что не ставит деньги и ждёт часа, когда жизнь придётся сеять заново. Терпеливый и спокойный с временем, он резок с теми, кто встаёт на пути его миссии.",
+      "en": "Lone Druid, known as Sylla, is the last keeper of the Seed from the vanished Bear Clan. For millennia he has roamed the wild in exile, shifting between a man's shape and a bear's, and he cares little for coin. He waits patiently for the day life must be sown anew, and he turns hard on anyone who stands in the way of his mission."
+    }
+  },
+  "unconfirmed": [
+    "Родина клана Медведя (руины, в которых он бродит) в тексте не названа, поэтому места происхождения на схеме нет.",
+    "Puck и Shadow Shaman стоят в поле heroes инфобокса, но тип связи в тексте не описан: Puck — знакомство по слухам, у Shadow Shaman речь о его отце.",
+    "Hoodwink: в тексте есть загадочное взаимодействие, но без понятного типа отношений; её реплики — озвучка.",
+    "Dazzle: в тексте сказано, что Силла критикует его за тёмную силу. Это мягче вражды, связь не записана.",
+    "Реплики озвучки о Witch Doctor, Outworld Destroyer, Death Prophet, Pangolier, Monkey King, Dark Willow, Tidehunter — не основание для связи.",
+    "Dragon Hold: упомянут в реплике Davion (Dragon Knight), куда тот хочет отвезти медведя. Место из реплики и из аниме, поэтому не записано.",
+    "Dragon Clan, Serpent Clan, Atniw, Great Wheel, Xahryx, Nuranu: фракции, понятия и персонажи без места на схеме.",
+    "Nothl Realm: он лишь осуждает тёмную силу этого царства в репликах о Dazzle — сам там не был; связь не записана.",
+    "Dragon Knight: по лор-странице Силла принимает его за члена Драконьего клана и рад ему — это не вражда; тип связи не назван, не записан.",
+    "Enchantress: лор-страница называет их союзниками по его репликам; в партии 01 эта же пара отклонена как подколка озвучки (файл enchantress) — для согласованности не записана.",
+    "Nature's Prophet: текст говорит только, что Силла не потерпит помех своей миссии; Earth Spirit: только реплика о Spirit Bear; Ursa: давняя дружба и упрёк за убитого медведя, без ясного типа. Не записаны.",
+    "The Earth (поле places) — весь мир, а не место на схеме; кандидатом не записана."
+  ]
+}

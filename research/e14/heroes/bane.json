@@ -1,0 +1,32 @@
+{
+  "hero": "bane",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "The Dream",
+      "event": "origin",
+      "source": "ours",
+      "note": "Bane родился из ночных кошмаров богини Никташи и вырвался из её сна. Сон как место в источниках не назван, поэтому берём наше место «The Dream» из planes: это ближайшее по смыслу к её дремоте.",
+      "doubt": "Ни биография, ни лор-страница не называют место рождения. Связь держится на образе рождения из сна богини, а не на тексте о месте; пока оставляем как наше решение."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Bane — элементаль страха, рождённый из ночных кошмаров богини Никташи: он вырвался из её тревожного сна и соткал туманное тело из её тёмной крови. Он усыпляет врагов и затягивает их в кошмар, а его шёпот выдаёт самые тайные страхи тех, кто его слышит. Каждый герой, встретивший его, вспоминает, что темноты стоит бояться.",
+      "en": "Bane is a fear elemental born from the nightmares of the goddess Nyctasha. Breaking free of her restless sleep, he shaped a misty body out of her dark ichor and now lures foes into dread and slumber. His whispers expose the secrets people fear most, and every hero who meets him is reminded to be wary of the dark."
+    }
+  },
+  "unconfirmed": [
+    "Биография и лор-страница Liquipedia не называют ни одного места, где Bane бывал или жил; в candidates ничего не добавлено.",
+    "Поля places, heroes и family в инфобоксе лор-страницы пусты. Связи с другими героями есть только в репликах озвучки (Tusk, Grimstroke, Pangolier, Dark Willow, Monkey King, Naga Siren, Omniknight, Abaddon, Oracle и др.) — не записаны.",
+    "Iron Fog упоминается в реплике Dark Willow («что они делают с людьми в Iron Fog»). Это строка озвучки, поэтому место не записано ни как link, ни как candidate.",
+    "Nyctasha — божество (поле gods), а не герой и не место; в файл героя не вносится.",
+    "Связь с Greek Moirai (Atropos) и отсылки Tactics Ogre в тривиа — внелорные пояснения к имени и механикам, не основание для мест или связей.",
+    "Для Bane нет официального комикса в content/media.json."
+  ]
+}

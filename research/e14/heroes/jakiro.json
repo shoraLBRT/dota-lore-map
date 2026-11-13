@@ -23,6 +23,15 @@
       "url": "https://liquipedia.net/dota2/Jakiro/Lore",
       "doubt": "Родство описано двояко: в реплике Jakiro она «кузина», а в тексте лор-страницы Liquipedia — его мать (по чешуе правой головы). Поэтому общий тип — родня.",
       "note": "Winter Wyvern враждебна к нему: в её репликах — сожаление, что не убила его ещё в гнезде."
+    },
+    {
+      "hero": "dragon_knight",
+      "type": "rival",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Dragon_Knight/Lore",
+      "note": "Взаимная запись к файлу dragon_knight: Jakiro стоит в поле heroes инфобокса Dragon Knight, а лор-страница описывает их презрительное соперничество — Jakiro считает Давиона полукровкой.",
+      "doubt": "На лор-странице Jakiro этой связи нет; описание соперничества опирается на реплики обоих героев."
     }
   ],
   "profile": {

@@ -1,0 +1,96 @@
+{
+  "hero": "dawnbreaker",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "The Sun",
+      "event": "origin",
+      "source": "ours",
+      "note": "Её создатели, Дети Сияния, названы потомками первого солнца Хранителя; саму Валора выковали из сердца молодой звезды. «Солнце» на схеме — наша привязка к её народу.",
+      "doubt": "В лоре звезда, из которой её сделали, не называется Солнцем; место выбрано по народу, а не по самой звезде."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "keeper_of_the_light",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Dawnbreaker/Lore",
+      "note": "По инфобоксу — её прадед, создатель предков Детей Сияния. В лоре она упрекает его за то, что он оставил потомков угасать."
+    },
+    {
+      "hero": "phoenix",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Dawnbreaker/Lore",
+      "note": "Дальний родственник по инфобоксу: в Phoenix живёт отголосок искры Детей. Его свет вернул её к жизни, и она благодарна. Фраза о нём как о её хозяине — гипотеза («будь я ещё связана»), поэтому не записана как связь хозяина."
+    },
+    {
+      "hero": "mars",
+      "type": "love",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Dawnbreaker/Lore",
+      "note": "Когда-то была его возлюбленной, тогда он звался Ares. Вместе они свергли Continuum в многовековой кампании, потом расстались.",
+      "doubt": "Связь в прошлом: после общей войны они расстались, о причинах не сказано."
+    },
+    {
+      "hero": "wisp",
+      "type": "enemy",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Dawnbreaker/Lore",
+      "note": "Io (wisp) погасила искру её и её создателей после провала миссии; сначала Валора хотела отомстить.",
+      "doubt": "Позже она перестала держать на Io злобу, поэтому тип «враг» относится к прошлому."
+    },
+    {
+      "hero": "chaos_knight",
+      "type": "enemy",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Dawnbreaker/Lore",
+      "note": "По лору — главный враг её создателей: их план предполагал связать хаос, который преследовал их предка. Chaos Knight стоит и в инфобоксе героев."
+    },
+    {
+      "hero": "night_stalker",
+      "type": "enemy",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Dawnbreaker/Lore",
+      "note": "В задачу Детей входило истребить порождения первородной ночи. Из первых ночных созданий уцелел Баланар, он же Night Stalker.",
+      "doubt": "Враждой названа цель её создателей — истребить созданий ночи вообще; личной встречи Валора и Баланар в тексте нет."
+    },
+    {
+      "hero": "arc_warden",
+      "type": "enemy",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Arc_Warden/Lore",
+      "note": "Лор-страница Arc Warden: Валора уважает Зета, но держится другой стороны и хочет освободить его от долга, убив; её падение, возможно, помогло Древним вырваться из луны. Взаимная запись к файлу arc_warden.",
+      "doubt": "Сюжет вражды на лор-странице Arc Warden собран по репликам; в инфобоксе Dawnbreaker Зета нет."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Валора, она же Dawnbreaker, служит Детям Сияния как оружие: её выковали из звёздного вещества и оживили дыханием создателей. После их гибели она долго дрейфовала в пустоте, пока свет молодой звезды не вернул ей часть сил. Теперь она снова бьётся с хаосом своим молотом Brightmaul и продолжает помнить приказы, которым когда-то подчинялась.",
+      "en": "Valora, called the Dawnbreaker, served the Children of Light as their weapon, shaped from stellar matter and given life by her makers' breath. After their downfall she drifted through the void for ages, until a young star's glow restored part of her strength. She now fights chaos again with her hammer, the Brightmaul, and still carries the memory of the orders she once obeyed."
+    }
+  },
+  "unconfirmed": [
+    "Родина Валора прямо не названа ни в биографии, ни на Liquipedia: создатели — Дети Сияния, но место их мира не указано. Запись The Sun остаётся нашим решением по народу.",
+    "Древняя кузница энергии (Solar Forge, косметический набор) лежит «где-то в глубинах космоса» под красными песками. Место не названо, поэтому не записано; слабая догадка по названию набора не использована.",
+    "Финальная миссия — захват силы Io (Fundamental). Где это происходило, в тексте не сказано, поэтому Fundamental Plane не привязан.",
+    "Morphling (поле heroes инфобокса): связь идёт через хозяев — хозяин Morphling и её создатели почти договорились помочь с пропавшим элементалем, но дело заглохло. Прямой связи героев нет, не записана.",
+    "Enigma: лор говорит, что она его знает, но тип связи не назван — не записана.",
+    "Намёки лора на знакомство с Void Spirit, Lina и её богиней, Outworld Destroyer, Weaver и Claszureme — не связи, не записаны. Реплики Hoodwink и Snapfire при встрече и гибели — озвучка, не записаны.",
+    "Мир, куда она упала, и красная пустошь с кузницей в биографии не названы. Догадка «Tomo'kan — потому что туда упали камни Неместиса» (черновик исследователя) снята: лор этого не говорит.",
+    "The Earth из монолога пробуждения — весь мир, а не место на схеме; кандидатом не записана."
+  ]
+}
