@@ -49,12 +49,14 @@ function fixture() {
     },
     heroPlaces: {
       heroes: {
-        'Crystal Maiden': [
-          { place: 'Blueheart Glacier', role: 'origin', basis: 'bio' },
-          { region: 'icewrack', role: 'link', basis: 'ours', note: 'сестра' },
-        ],
-        "Nature's Prophet": [{ place: "Tomo'kan", role: 'home', basis: 'page' }],
-        Alchemist: [{ region: 'uncharted', role: 'origin', basis: 'ours', note: 'нет мест' }],
+        'Crystal Maiden': {
+          links: [
+            { place: 'Blueheart Glacier', event: 'origin', source: 'bio' },
+            { region: 'icewrack', event: 'link', source: 'ours', note: 'сестра' },
+          ],
+        },
+        "Nature's Prophet": { links: [{ place: "Tomo'kan", event: 'home', source: 'liquipedia', via: 'place' }] },
+        Alchemist: { links: [{ region: 'uncharted', event: 'origin', source: 'ours', note: 'нет мест' }] },
       },
     },
   };
@@ -125,8 +127,8 @@ describe('buildWorld', () => {
       name: 'Crystal Maiden',
       slug: 'crystalmaiden',
       links: [
-        { regionId: 'icewrack', placeSlug: 'blueheart-glacier', role: 'origin', basis: 'bio' },
-        { regionId: 'icewrack', role: 'link', basis: 'ours', note: 'сестра' },
+        { regionId: 'icewrack', placeSlug: 'blueheart-glacier', event: 'origin', source: 'bio' },
+        { regionId: 'icewrack', event: 'link', source: 'ours', note: 'сестра' },
       ],
     });
     expect(world.heroes.map((h) => h.key)).toEqual(['crystal_maiden', 'furion', 'alchemist']);
@@ -194,13 +196,168 @@ describe('buildWorld', () => {
 
   it('ошибка на неизвестного героя, место и регион в hero-places', () => {
     const f = fixture();
-    f.heroPlaces.heroes['Nobody'] = [{ region: 'icewrack', role: 'origin', basis: 'ours' }];
-    f.heroPlaces.heroes['Alchemist'] = [
-      { place: 'Nowhere', role: 'origin', basis: 'ours' },
-      { region: 'atlantis', role: 'origin', basis: 'ours' },
-    ];
+    f.heroPlaces.heroes['Nobody'] = { links: [{ region: 'icewrack', event: 'origin', source: 'ours' }] };
+    f.heroPlaces.heroes['Alchemist'] = {
+      links: [
+        { place: 'Nowhere', event: 'origin', source: 'ours' },
+        { region: 'atlantis', event: 'origin', source: 'ours' },
+      ],
+    };
     const { errors } = buildWorld(f);
     expect(errors).toHaveLength(3);
+  });
+
+  it('модель связей E14: путь, связи героев и профиль попадают в мир (A3)', () => {
+    const f = fixture();
+    f.heroPlaces.heroes['Crystal Maiden'] = {
+      links: [
+        { place: 'Blueheart Glacier', event: 'origin', source: 'bio' },
+        {
+          place: 'Icewrack',
+          event: 'exile',
+          source: 'liquipedia',
+          via: 'lore',
+          url: 'https://liquipedia.net/dota2/Crystal_Maiden/Lore',
+          doubt: 'изгнание — по пересказу',
+        },
+      ],
+      path: [{ place: 'Blueheart Glacier' }, { place: 'Icewrack' }],
+      relations: [{ hero: 'furion', type: 'mentor', place: "Tomo'kan", source: 'ours' }],
+      profile: {
+        summary: L('cm'),
+        art: ['https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/crystal_maiden.png'],
+      },
+    };
+    f.heroPlaces.heroes["Nature's Prophet"].relations = [{ hero: 'crystal_maiden', type: 'student', source: 'ours' }];
+    const { world, errors } = buildWorld(f);
+    expect(errors).toEqual([]);
+    const cm = world.heroes.find((h) => h.key === 'crystal_maiden');
+    expect(cm.links[1]).toEqual({
+      regionId: 'icewrack',
+      placeSlug: 'icewrack',
+      event: 'exile',
+      source: 'liquipedia',
+      via: 'lore',
+      url: 'https://liquipedia.net/dota2/Crystal_Maiden/Lore',
+      doubt: 'изгнание — по пересказу',
+    });
+    expect(cm.path).toEqual([
+      { regionId: 'icewrack', placeSlug: 'blueheart-glacier' },
+      { regionId: 'icewrack', placeSlug: 'icewrack' },
+    ]);
+    expect(cm.relations).toEqual([
+      { hero: 'furion', type: 'mentor', regionId: 'tomokan', placeSlug: 'tomokan', source: 'ours' },
+    ]);
+    expect(cm.profile.summary).toEqual(L('cm'));
+    expect(world.heroes.find((h) => h.key === 'furion').relations[0]).toEqual({
+      hero: 'crystal_maiden',
+      type: 'student',
+      source: 'ours',
+    });
+    const alchemist = world.heroes.find((h) => h.key === 'alchemist');
+    for (const key of ['path', 'relations', 'profile']) expect(alchemist).not.toHaveProperty(key);
+  });
+
+  it('источник comic:<id> ссылается на медиа', () => {
+    const f = fixture();
+    f.heroPlaces.heroes.Alchemist.links.push({ place: 'Icewrack', event: 'visit', source: 'comic:ice-comic' });
+    const media = {
+      media: [
+        {
+          id: 'ice-comic',
+          type: 'image',
+          src: 'https://cdn.steamstatic.com/x.jpg',
+          title: L('t'),
+          subtitle: L('s'),
+          credit: 'Valve Corporation',
+          sourceUrl: 'https://www.dota2.com/comics/x',
+        },
+      ],
+    };
+    expect(buildWorld({ ...f, media }).errors).toEqual([]);
+    f.heroPlaces.heroes.Alchemist.links[1].source = 'comic:nope';
+    expect(buildWorld({ ...f, media }).errors).toEqual([
+      'research/e1/hero-places.json: Alchemist: links[1]: неизвестное медиа "comic:nope"',
+    ]);
+  });
+
+  it('ловит ошибки модели связей (A3)', () => {
+    const cases = [
+      [{ links: [{ place: 'Icewrack', event: 'moved', source: 'bio' }] }, 'event'],
+      [{ links: [{ place: 'Icewrack', event: 'home', source: 'fandom' }] }, 'source'],
+      [{ links: [{ place: 'Icewrack', event: 'home', source: 'bio', via: 'infobox' }] }, 'via'],
+      [{ links: [{ place: 'Icewrack', event: 'home', source: 'liquipedia', url: 'https://example.com/x' }] }, 'url Liquipedia'],
+      [{ links: [{ place: 'Icewrack', event: 'home', source: 'bio', url: 'http://dota2.com' }] }, 'https'],
+      [{ links: [{ place: 'Icewrack', event: 'home', source: 'bio', role: 'origin' }] }, 'неизвестный ключ "role"'],
+      [{ links: [{ place: 'Icewrack', event: 'home', source: 'bio', doubt: ' ' }] }, 'doubt'],
+      [
+        {
+          links: [
+            { place: 'Icewrack', event: 'home', source: 'bio' },
+            { place: 'Icewrack', event: 'battle', source: 'bio' },
+          ],
+        },
+        'одно место',
+      ],
+      [{ links: [] }, 'пустой список'],
+      [[{ place: 'Icewrack', role: 'origin', basis: 'bio' }], 'ожидается объект'],
+      [{ links: [{ place: 'Icewrack', event: 'home', source: 'bio' }], path: [{ place: 'Icewrack' }] }, 'path'],
+      [
+        {
+          links: [{ place: 'Icewrack', event: 'home', source: 'bio' }],
+          path: [{ place: 'Icewrack' }, { place: 'Blueheart Glacier' }],
+        },
+        'нет в links',
+      ],
+      [
+        {
+          links: [{ place: 'Icewrack', event: 'home', source: 'bio' }],
+          relations: [{ hero: 'Nature\'s Prophet', type: 'ally', source: 'bio' }],
+        },
+        'нужен key',
+      ],
+      [
+        {
+          links: [{ place: 'Icewrack', event: 'home', source: 'bio' }],
+          relations: [{ hero: 'furion', type: 'friend', source: 'bio' }],
+        },
+        'type',
+      ],
+      [
+        {
+          links: [
+            { place: 'Icewrack', event: 'home', source: 'bio' },
+            { place: 'Blueheart Glacier', event: 'mention', source: 'bio' },
+          ],
+          path: [{ place: 'Icewrack' }, { place: 'Blueheart Glacier' }],
+        },
+        'только упомянуто',
+      ],
+      [{ links: [{ place: 'Icewrack', event: 'home', source: 'bio' }], profile: { summary: { ru: 'Да', en: 'Да' } } }, 'кириллица'],
+      [
+        { links: [{ place: 'Icewrack', event: 'home', source: 'bio' }], profile: { summary: { ru: 'я'.repeat(501), en: 'x' } } },
+        'длиннее',
+      ],
+      [
+        { links: [{ place: 'Icewrack', event: 'home', source: 'bio' }], profile: { art: ['https://dota2.fandom.com/x.png'] } },
+        'Valve',
+      ],
+    ];
+    for (const [entry, message] of cases) {
+      const f = fixture();
+      f.heroPlaces.heroes.Alchemist = entry;
+      const { errors } = buildWorld(f);
+      expect(errors.join('\n'), message).toContain(message);
+    }
+  });
+
+  it('два героя не могут быть наставниками друг друга', () => {
+    const f = fixture();
+    f.heroPlaces.heroes.Alchemist.relations = [{ hero: 'furion', type: 'mentor', source: 'ours' }];
+    f.heroPlaces.heroes["Nature's Prophet"].relations = [{ hero: 'alchemist', type: 'mentor', source: 'ours' }];
+    expect(buildWorld(f).errors).toEqual([
+      'research/e1/hero-places.json: alchemist и furion оба называют друг друга mentor — у одного должно быть student',
+    ]);
   });
 
   it('пробрасывает алиасы героев, без файла алиасов поля нет', () => {

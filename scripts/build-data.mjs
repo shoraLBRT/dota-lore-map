@@ -30,8 +30,29 @@ const YOUTUBE_ID = /^[A-Za-z0-9_-]{11}$/;
 const isHttps = (v) => typeof v === 'string' && /^https:\/\/[^\s/]+\.[^\s]+$/.test(v);
 /** src картинки: https-ссылка или относительный путь без схемы (ARCHITECTURE A3). */
 const isMediaSrc = (v) => isHttps(v) || (isNonEmptyString(v) && !/^[a-z][a-z0-9+.-]*:|^\/\//i.test(v) && !/\s/.test(v));
-const ROLES = ['origin', 'home', 'link'];
-const BASES = ['infobox', 'bio', 'page', 'ours'];
+// Модель связей героя (E14, ARCHITECTURE A3). Те же правила проверяет research/e1/build.py.
+export const EVENTS = ['origin', 'home', 'journey', 'battle', 'service', 'exile', 'death', 'visit', 'mention', 'link'];
+/** Кем другой герой приходится этому → обратный тип. */
+export const RELATIONS = {
+  ally: 'ally',
+  enemy: 'enemy',
+  rival: 'rival',
+  family: 'family',
+  love: 'love',
+  mentor: 'student',
+  student: 'mentor',
+  master: 'servant',
+  servant: 'master',
+};
+const SOURCES = ['bio', 'liquipedia', 'ours'];
+const VIA = ['infobox', 'lore', 'place'];
+const LINK_KEYS = ['place', 'region', 'event', 'source', 'via', 'url', 'note', 'doubt'];
+const RELATION_KEYS = ['hero', 'type', 'place', 'region', 'source', 'via', 'url', 'note', 'doubt'];
+const ENTRY_KEYS = ['links', 'path', 'relations', 'profile'];
+export const SUMMARY_MAX = 500;
+/** Арты профиля — только официальные ссылки Valve (A6). */
+const VALVE_ART = /^https:\/\/(www\.dota2\.com|([a-z0-9-]+\.)*steamstatic\.com|steamcdn-a\.akamaihd\.net)\/\S+$/;
+const LIQUIPEDIA_URL = /^https:\/\/liquipedia\.net\/dota2\/\S+$/;
 
 /** Имя места → slug в kebab-case (ARCHITECTURE A5): "Tomo'kan" → "tomokan". */
 export function placeSlug(name) {
@@ -317,6 +338,222 @@ function buildLayout(layout, regionById, placeRegion, errors) {
   return out;
 }
 
+/** Неизвестные ключи объекта — ошибка (ловит опечатки в данных исследования). */
+function unknownKeys(obj, allowed, where, errors) {
+  for (const key of Object.keys(obj)) if (!allowed.includes(key)) errors.push(`${where}: неизвестный ключ "${key}"`);
+}
+
+/** source / via / url / note / doubt записи модели связей (A3). Ошибка — undefined. */
+function sourceOf(rec, where, mediaIds, errors) {
+  const before = errors.length;
+  const { source, via, url } = rec;
+  if (typeof source === 'string' && source.startsWith('comic:')) {
+    if (!mediaIds.has(source.slice(6))) errors.push(`${where}: неизвестное медиа "${source}"`);
+  } else if (!SOURCES.includes(source)) {
+    errors.push(`${where}: source — bio | liquipedia | comic:<id> | ours`);
+  }
+  if (via !== undefined && (source !== 'liquipedia' || !VIA.includes(via))) {
+    errors.push(`${where}: via (${VIA.join(' | ')}) — только у source liquipedia`);
+  }
+  if (url !== undefined) {
+    if (!isHttps(url)) errors.push(`${where}: url — нужна https-ссылка`);
+    else if (source === 'liquipedia' && !LIQUIPEDIA_URL.test(url)) {
+      errors.push(`${where}: url Liquipedia — https://liquipedia.net/dota2/…`);
+    }
+  }
+  for (const key of ['note', 'doubt']) {
+    if (rec[key] !== undefined && !isNonEmptyString(rec[key])) errors.push(`${where}: ${key} — непустая строка`);
+  }
+  return errors.length === before ? compact({ source, via, url, note: rec.note, doubt: rec.doubt }) : undefined;
+}
+
+/**
+ * { place } | { region } → { regionId, placeSlug? }. Ошибка — undefined.
+ * optional — у связи героев места может не быть (тогда null).
+ */
+function spotOf(rec, where, { regionById, placeRegion }, errors, optional = false) {
+  const hasPlace = rec.place !== undefined;
+  const hasRegion = rec.region !== undefined;
+  if ((hasPlace && hasRegion) || (!optional && !hasPlace && !hasRegion)) {
+    errors.push(`${where}: нужно ровно одно из place/region`);
+    return undefined;
+  }
+  if (hasPlace) {
+    const regionId = placeRegion.get(rec.place);
+    if (!regionId) {
+      errors.push(`${where}: неизвестное место "${rec.place}"`);
+      return undefined;
+    }
+    return { regionId, placeSlug: placeSlug(rec.place) };
+  }
+  if (hasRegion) {
+    if (!regionById.has(rec.region)) {
+      errors.push(`${where}: неизвестный регион "${rec.region}"`);
+      return undefined;
+    }
+    return { regionId: rec.region };
+  }
+  return null;
+}
+
+const spotKey = (s) => (s.placeSlug ? `${s.regionId}/${s.placeSlug}` : s.regionId);
+
+function buildLinks(entry, where, refs, errors) {
+  const links = [];
+  /** spotKey → event: путь идёт только по местам из links. */
+  const spots = new Map();
+  (Array.isArray(entry.links) ? entry.links : []).forEach((link, i) => {
+    const w = `${where}: links[${i}]`;
+    if (!isObject(link)) {
+      errors.push(`${w}: ожидается объект`);
+      return;
+    }
+    unknownKeys(link, LINK_KEYS, w, errors);
+    const eventOk = EVENTS.includes(link.event);
+    if (!eventOk) errors.push(`${w}: event — ${EVENTS.join(' | ')}`);
+    const src = sourceOf(link, w, refs.mediaIds, errors);
+    const spot = spotOf(link, w, refs, errors);
+    if (link.region === 'uncharted' && !link.note) errors.push(`${w}: у героя «Неизведанных земель» нужна заметка note`);
+    if (!spot || !src || !eventOk) return;
+    if (spots.has(spotKey(spot))) {
+      errors.push(`${w}: место уже есть в links — одно место, одна связь`);
+      return;
+    }
+    spots.set(spotKey(spot), link.event);
+    links.push(compact({ ...spot, event: link.event, ...src }));
+  });
+  return { links, spots };
+}
+
+function buildPath(entry, where, refs, spots, errors) {
+  if (entry.path === undefined) return undefined;
+  if (!Array.isArray(entry.path) || entry.path.length < 2) {
+    errors.push(`${where}: path — список из 2 и больше остановок`);
+    return undefined;
+  }
+  const path = [];
+  entry.path.forEach((stop, i) => {
+    const w = `${where}: path[${i}]`;
+    if (!isObject(stop)) {
+      errors.push(`${w}: ожидается объект`);
+      return;
+    }
+    unknownKeys(stop, ['place', 'region'], w, errors);
+    const spot = spotOf(stop, w, refs, errors);
+    if (!spot) return;
+    if (!spots.has(spotKey(spot))) errors.push(`${w}: остановки нет в links героя`);
+    else if (spots.get(spotKey(spot)) === 'mention') errors.push(`${w}: место только упомянуто (mention) — в путь не входит`);
+    const prev = path[path.length - 1];
+    if (prev && spotKey(prev) === spotKey(spot)) errors.push(`${w}: остановка повторяет предыдущую`);
+    path.push(compact(spot));
+  });
+  return path;
+}
+
+function buildRelations(entry, where, refs, heroKeys, errors) {
+  if (entry.relations === undefined) return undefined;
+  if (!Array.isArray(entry.relations)) {
+    errors.push(`${where}: relations — список`);
+    return undefined;
+  }
+  const relations = [];
+  const seen = new Set();
+  entry.relations.forEach((rel, i) => {
+    const w = `${where}: relations[${i}]`;
+    if (!isObject(rel)) {
+      errors.push(`${w}: ожидается объект`);
+      return;
+    }
+    unknownKeys(rel, RELATION_KEYS, w, errors);
+    const heroOk = heroKeys.has(rel.hero);
+    const typeOk = typeof rel.type === 'string' && Object.hasOwn(RELATIONS, rel.type);
+    if (!heroOk) errors.push(`${w}: неизвестный герой "${rel.hero}" (нужен key из heroes.json)`);
+    if (!typeOk) errors.push(`${w}: type — ${Object.keys(RELATIONS).join(' | ')}`);
+    if (seen.has(`${rel.hero}/${rel.type}`)) errors.push(`${w}: связь ${rel.hero} / ${rel.type} повторяется`);
+    seen.add(`${rel.hero}/${rel.type}`);
+    const src = sourceOf(rel, w, refs.mediaIds, errors);
+    const spot = spotOf(rel, w, refs, errors, true);
+    if (!src || spot === undefined || !heroOk || !typeOk) return;
+    relations.push(compact({ hero: rel.hero, type: rel.type, ...(spot ?? {}), ...src }));
+  });
+  return relations.length > 0 ? relations : undefined;
+}
+
+function buildProfile(entry, where, errors) {
+  const p = entry.profile;
+  if (p === undefined) return undefined;
+  if (!isObject(p)) {
+    errors.push(`${where}: profile — ожидается объект`);
+    return undefined;
+  }
+  unknownKeys(p, ['summary', 'art'], `${where}: profile`, errors);
+  const summary = p.summary !== undefined ? localized(p.summary, `${where}: profile.summary`, errors) : undefined;
+  for (const lang of ['ru', 'en']) {
+    if (summary && summary[lang].length > SUMMARY_MAX) {
+      errors.push(`${where}: profile.summary.${lang} длиннее ${SUMMARY_MAX} знаков — нужно короткое описание`);
+    }
+  }
+  let art;
+  if (p.art !== undefined) {
+    if (!Array.isArray(p.art) || p.art.length === 0) errors.push(`${where}: profile.art — непустой список ссылок`);
+    else if (!p.art.every((a) => typeof a === 'string' && VALVE_ART.test(a))) {
+      errors.push(`${where}: profile.art — только официальные ссылки Valve (A6)`);
+    } else if (new Set(p.art).size !== p.art.length) errors.push(`${where}: profile.art — ссылка повторяется`);
+    else art = [...p.art];
+  }
+  const out = compact({ summary, art });
+  return Object.keys(out).length > 0 ? out : undefined;
+}
+
+/**
+ * research/e1/hero-places.json → Map key → { links, path?, relations?, profile? } (модель связей, A3).
+ * Порядок links сохраняется: по нему идут места героя и нити (A11).
+ */
+function buildHeroes(heroPlaces, heroes, refs, errors) {
+  const file = 'research/e1/hero-places.json';
+  const out = new Map();
+  if (!isObject(heroPlaces) || !isObject(heroPlaces.heroes)) {
+    errors.push(`${file}: ожидается { heroes: { <имя героя>: { links, ... } } }`);
+    return out;
+  }
+  const heroByName = new Map(heroes.heroes.map((h) => [h.name, h]));
+  const heroKeys = new Set(heroes.heroes.map((h) => h.key));
+  for (const [name, entry] of Object.entries(heroPlaces.heroes)) {
+    const hero = heroByName.get(name);
+    const where = `${file}: ${name}`;
+    if (!hero) {
+      errors.push(`${where}: героя нет в heroes.json`);
+      continue;
+    }
+    if (!isObject(entry)) {
+      errors.push(`${where}: ожидается объект { links, path?, relations?, profile? }`);
+      continue;
+    }
+    unknownKeys(entry, ENTRY_KEYS, where, errors);
+    if (!Array.isArray(entry.links) || entry.links.length === 0) errors.push(`${where}: пустой список мест links`);
+    const { links, spots } = buildLinks(entry, where, refs, errors);
+    out.set(
+      hero.key,
+      compact({
+        links,
+        path: buildPath(entry, where, refs, spots, errors),
+        relations: buildRelations(entry, where, refs, heroKeys, errors),
+        profile: buildProfile(entry, where, errors),
+      }),
+    );
+  }
+  // Два героя не могут быть наставниками (хозяевами) друг друга.
+  for (const [a, model] of out) {
+    for (const rel of model.relations ?? []) {
+      const back = out.get(rel.hero)?.relations ?? [];
+      if (a < rel.hero && RELATIONS[rel.type] !== rel.type && back.some((r) => r.hero === a && r.type === rel.type)) {
+        errors.push(`${file}: ${a} и ${rel.hero} оба называют друг друга ${rel.type} — у одного должно быть ${RELATIONS[rel.type]}`);
+      }
+    }
+  }
+  return out;
+}
+
 function buildAliases(heroAliases, heroes, errors, warnings) {
   const where = 'research/e1/hero-aliases.json';
   const out = new Map();
@@ -416,44 +653,7 @@ export function buildWorld({ heroes, regions, heroPlaces, heroAliases, contents 
     if (!usedMedia.has(id)) warnings.push(`content/media.json: медиа "${id}" ни к чему не привязано`);
   }
 
-  const heroByName = new Map(heroes.heroes.map((h) => [h.name, h]));
-  const linksByKey = new Map();
-  for (const [name, links] of Object.entries(heroPlaces.heroes)) {
-    const hero = heroByName.get(name);
-    const where = `research/e1/hero-places.json: ${name}`;
-    if (!hero) {
-      errors.push(`${where}: героя нет в heroes.json`);
-      continue;
-    }
-    const out = [];
-    for (const link of links) {
-      if (!ROLES.includes(link.role) || !BASES.includes(link.basis)) {
-        errors.push(`${where}: неверный role/basis`);
-        continue;
-      }
-      let regionId;
-      let slug;
-      if (link.place !== undefined && link.region === undefined) {
-        regionId = placeRegion.get(link.place);
-        if (!regionId) {
-          errors.push(`${where}: неизвестное место "${link.place}"`);
-          continue;
-        }
-        slug = placeSlug(link.place);
-      } else if (link.region !== undefined && link.place === undefined) {
-        if (!regionById.has(link.region)) {
-          errors.push(`${where}: неизвестный регион "${link.region}"`);
-          continue;
-        }
-        regionId = link.region;
-      } else {
-        errors.push(`${where}: нужно ровно одно из place/region`);
-        continue;
-      }
-      out.push(compact({ regionId, placeSlug: slug, role: link.role, basis: link.basis, note: link.note }));
-    }
-    linksByKey.set(hero.key, out);
-  }
+  const heroModel = buildHeroes(heroPlaces, heroes, { regionById, placeRegion, mediaIds: mediaInfo.ids }, errors);
 
   const aliasesByKey = buildAliases(heroAliases, heroes, errors, warnings);
 
@@ -463,7 +663,10 @@ export function buildWorld({ heroes, regions, heroPlaces, heroAliases, contents 
       name: h.name,
       slug: heroSlug(h.name),
       aliases: aliasesByKey.get(h.key),
-      links: linksByKey.get(h.key) ?? [],
+      links: heroModel.get(h.key)?.links ?? [],
+      path: heroModel.get(h.key)?.path,
+      relations: heroModel.get(h.key)?.relations,
+      profile: heroModel.get(h.key)?.profile,
     }),
   );
 

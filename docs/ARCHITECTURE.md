@@ -19,7 +19,8 @@
 ## A2. Структура репозитория
 
 ```
-research/e1/        исследование лора: heroes.json, regions.json, hero-places.json, build.py (источник правды о регионах, местах и героях)
+research/e1/        исследование лора: heroes.json, regions.json, hero-places.json (модель связей), place-candidates.json, build.py (источник правды о регионах, местах и героях)
+research/e14/       сверка лора героев: fetch.py (кэш источников, не коммитится), heroes/<key>.json, check.py, инструкция README.md
 content/            тексты: content/regions/<regionId>.json (RU/EN описания, характеристики, тексты мест); content/media.json (медиа галереи)
 map/                геометрия карты: map/layout.json (полигоны, позиции, камеры), арт в map/art/
 scripts/            build-data.mjs — собирает research + content + map в src/data/world.generated.json
@@ -112,6 +113,72 @@ docs/               SPEC, ARCHITECTURE, PROJECT_STATE, исследования
 - Ошибка: неизвестный ключ героя, пустая строка, повтор внутри героя, совпадение с именем героя. Предупреждение: один алиас у нескольких героев. Проверяют и `build-data.mjs`, и `build.py`.
 - В `world.generated.json` — поле `Hero.aliases` (нет алиасов — поля нет).
 
+### Формат `research/e1/hero-places.json` — модель связей (E14, #45)
+Где герой бывал и что там делал, его путь и связи с другими героями. Герой — по имени из `heroes.json`; другие герои в связях — по `key`.
+```jsonc
+{
+  "_legend": { ... },
+  "heroes": {
+    "<имя героя>": {
+      "links": [                                   // ≥ 1; места по хронологии — по этому порядку идут места героя и нити (A11)
+        {
+          "place": "Turstarkuri",                  // имя места из regions.json — или "region": "<id>" (регион целиком); ровно одно
+          "event": "origin",                       // тип события, см. ниже
+          "source": "liquipedia",                  // bio | liquipedia | comic:<id медиа> | ours
+          "via": "infobox",                        // только у liquipedia: infobox | lore | place
+          "url": "https://liquipedia.net/dota2/…", // необязательно; https, у liquipedia — liquipedia.net/dota2/
+          "note": "…",                             // необязательно, по-русски; обязательно у region "uncharted"
+          "doubt": "…"                             // необязательно: что под сомнением и почему
+        }
+      ],
+      "path": [{ "place": "Turstarkuri" }, { "place": "Tyler Estate" }],   // необязательно, ≥ 2 остановок
+      "relations": [{ "hero": "invoker", "type": "enemy", "place": "…", "source": "bio" }],   // необязательно
+      "profile": {                                 // необязательно, для профиля героя (E15)
+        "summary": { "ru": "…", "en": "…" },       // ≤ 500 знаков на язык, своими словами
+        "art": ["https://cdn.cloudflare.steamstatic.com/…"]   // только официальные ссылки Valve (A6)
+      }
+    }
+  }
+}
+```
+- **Типы события** (`event`) и когда какой:
+
+  | `event` | Значение |
+  |---|---|
+  | `origin` | родина: родился, вырос, отсюда его народ или род; у пришельцев — родной план |
+  | `home` | живёт или базируется сейчас |
+  | `journey` | путь или переезд: пришёл сюда из другого места |
+  | `battle` | сражение или нападение: бился, напал, разорил, осаждал |
+  | `service` | служба: служил, правил, охранял, состоял в ордене, учился |
+  | `exile` | изгнание или заточение: изгнан отсюда или заточён здесь |
+  | `death` | гибель или перерождение: погиб, убит, превращён, воскрес |
+  | `visit` | бывал, без важного события |
+  | `mention` | место только упомянуто рядом с героем (предмет, реплика, слух), сам он там не был |
+  | `link` | связь из E1 без уточнения типа (бывший `role: link`); остаётся, пока героя не прошла партия E14, в файлах героев E14 запрещён |
+
+- **Одно место — одна связь.** Несколько событий в одном месте — берётся главное по порядку `origin` → `home` → `exile` → `battle` → `death` → `service` → `journey` → `visit` → `mention`, остальное — в `note`. Нет мест в лоре — `region: "uncharted"` с `note` (В1).
+- **Источник** у каждой записи (`links`, `relations`, кандидаты): `bio` — официальная биография dota2.com; `liquipedia` — Liquipedia, `via` уточняет где: `infobox` (поле инфобокса лор-страницы `<Герой>/Lore`), `lore` (текст лор-страницы), `place` (герой лишь упомянут на странице места — самая слабая связь, в таблицах E1 — `†`); `comic:<id>` — официальный комикс из `content/media.json`; `ours` — наше решение, прямо в лоре не сказано (`*`). Тексты — своими словами, без цитат.
+- **Путь** (`path`) — остановки `{ place }` / `{ region }` в хронологическом порядке; стрелка — от остановки к следующей, значок — `event` связи с местом, куда ведёт стрелка. Каждая остановка — место из `links` героя, не `mention`; одинаковые остановки подряд нельзя, вернуться можно. Нет перемещения — нет поля.
+- **Связи героев** (`relations`): `hero` — key другого героя, `type` — кем **тот** приходится **этому**: `ally`, `enemy`, `rival`, `family`, `love` (симметричные), `mentor` ↔ `student`, `master` ↔ `servant` (парные). `place`/`region` — где связь проявилась, необязательно. Пара `hero` + `type` не повторяется; два героя не могут быть оба `mentor` (или `master`) друг другу — ошибка.
+- **Миграция E1 → E14** (без потерь, таблицы `docs/research/E1-places.md` не изменились): `role` → `event` (`origin`, `home`, `link`); `basis: bio` → `source: bio`; `infobox` → `liquipedia` + `via: infobox`; `page` → `liquipedia` + `via: place`; `ours` → `ours`.
+- **Ошибка** (`build-data.mjs` и `build.py`): неизвестный ключ в записи, неизвестное место, регион, герой или медиа, не ровно одно из `place`/`region`, повтор места в `links`, неверный `event`/`source`/`via`/`type`, `via` не у Liquipedia, не-https `url`, остановка пути не из `links` или `mention`, путь из одной остановки, `summary` без перевода, с кириллицей в `en` или длиннее 500 знаков, арт не с хоста Valve (`www.dota2.com`, `*.steamstatic.com`, `steamcdn-a.akamaihd.net`).
+- В `world.generated.json` — `Hero.links` (`{ regionId, placeSlug?, event, source, via?, url?, note?, doubt? }`), `Hero.path` (`{ regionId, placeSlug? }[]`), `Hero.relations` (`{ hero, type, regionId?, placeSlug?, source, … }`), `Hero.profile`; нет данных — поля нет. Интерфейс пока использует только места и их порядок (A11); стрелки и значки событий — #67, профиль — E15.
+
+### Формат `research/e1/place-candidates.json`
+Места из лора, которых нет на схеме мира. В партиях E14 на карту не добавляются — решение в #59. В приложение не попадают, поэтому проверяет их только `build.py`.
+```jsonc
+{ "note": "...", "candidates": [
+  { "name": "Arktura", "hero": "witch_doctor", "region": "<предполагаемый регион>", "event": "origin",
+    "source": "bio", "url": "…", "note": "почему этот регион", "doubt": "…" }
+] }
+```
+Ошибка: название совпадает с местом на схеме (регистр и лишние пробелы не важны) — значит, это связь `links`; неизвестный регион или герой; нет героя; `event: link`; у `liquipedia` нет `url`; пара `name` + `hero` повторяется.
+
+### Исследование героев E14 (`research/e14/`)
+- `fetch.py <key> …` — кэш источников в `research/e14/cache/<key>/` (в `.gitignore`, не коммитится): биография dota2.com RU/EN (`datafeed/herodata`, поле `bio_loc`) и вики-текст `<Герой>/Lore` и `<Герой>` одним запросом к API Liquipedia (`action=query`, не `parse`). Строго по очереди, пауза 2,5 с между любыми запросами, User-Agent проекта (CLAUDE.md), без потоков.
+- `heroes/<key>.json` — результат исследователя по `template.json`, инструкция — `README.md`. Та же модель, что в `hero-places.json`, плюс `hero`, `read` (что прочитано, минимум обе биографии), `candidates` (без `hero`), `unconfirmed`. Строже: `event: link` запрещён, у `liquipedia` нужна `url`, у `ours` — `note`, `profile.summary` обязателен; тексты исследователя (`summary`, `note`, `doubt`, `unconfirmed`) не повторяют источник из кэша 8 словами подряд.
+- `check.py [<key> …]` — машинная проверка файлов; `check.py --merge <key> …` — проверить и заменить запись героя в `hero-places.json` и его кандидатов в `place-candidates.json` (ничего не пишет, если после слияния есть ошибки). Тесты — `test_e14.py` (в `npm run check`).
+
 ### Формат `map/layout.json`
 Координаты нормированы: `x, y ∈ [0, 1]` относительно картинки мира с соотношением сторон **16:10** (`aspect: 1.6`).
 ```jsonc
@@ -192,7 +259,7 @@ SPEC §7.1: анимация камеры не прерывается клика
 ## A7. Деплой и проверки
 
 - GitHub Actions: на каждый PR — `npm ci && npm run check`; на push в `main` — сборка и деплой на GitHub Pages (`base: '/dota-lore-map/'`).
-- `npm run check` = `data` (сборка и валидация данных) + `typecheck` + `lint` + `test` + `build` + `scripts/check-budget.mjs` (бюджет загрузки, A14) + `map/check-layout.mjs` + `python research/e1/build.py --check`.
+- `npm run check` = `data` (сборка и валидация данных) + `typecheck` + `lint` + `test` + `build` + `scripts/check-budget.mjs` (бюджет загрузки, A14) + `map/check-layout.mjs` + `python research/e1/build.py --check` + `python research/e14/test_e14.py` (тесты модели связей и скриптов E14).
 - Ничего не мержится с красным CI.
 
 ## A8. Дизайн-система
