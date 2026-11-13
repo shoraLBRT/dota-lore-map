@@ -1,0 +1,104 @@
+{
+  "hero": "arc_warden",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Mad Moon",
+      "event": "service",
+      "source": "bio",
+      "note": "По биографии Зет сам заключил двух враждующих братьев в светящуюся сферу-луну и много эпох сторожил её, пока темница не раскололась.",
+      "doubt": "В E1 Mad Moon стояла как родина (по странице места). Родиной луна не была: Зет — осколок первородного разума, а луна — место его службы."
+    },
+    {
+      "place": "Sundered Moon",
+      "event": "visit",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Arc_Warden/Lore",
+      "note": "В баре на Sundered Moon Зет привлёк Zeus к своей войне против Древних и вернул ему часть силы. Событие не боевое и не служебное, поэтому «визит»."
+    },
+    {
+      "place": "Druud",
+      "event": "visit",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Arc_Warden/Lore",
+      "note": "Зет прибыл к месту падения кометы Anzua в горах Druud и вошёл внутрь вместе с Драгонус; место, где он был, — горы Druud, а не конкретное поселение."
+    },
+    {
+      "place": "Tomo'kan",
+      "event": "battle",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Arc_Warden/Lore",
+      "note": "В Tomo'kan Зет искал место падения метеора Nemestice и схватился с Hoodwink; в конце концов он забрал силу метеора, а осколки наделили её частью его мощи.",
+      "doubt": "Эпизод описан по сюжету трейлера Nemestice, а не по биографии. Событие «бой» выбрано потому, что противостояние главное в эпизоде."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "zuus",
+      "type": "ally",
+      "place": "Sundered Moon",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Arc_Warden/Lore",
+      "note": "Zeus стоит в поле heroes инфобокса; в тексте лора Зет переманил его в союзники и вернул часть силы. Zeus пошёл на это ради собственного возвращения к власти."
+    },
+    {
+      "hero": "skywrath_mage",
+      "type": "ally",
+      "place": "Druud",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Arc_Warden/Lore",
+      "note": "Skywrath Mage (Драгонус) стоит в поле heroes инфобокса. Вместе они пошли к месту падения кометы в горах Druud.",
+      "doubt": "Скорее совместный поход, чем союз: Зет сначала гнал Драгонус прочь и сам предупреждал его об опасности."
+    },
+    {
+      "hero": "dawnbreaker",
+      "type": "enemy",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Arc_Warden/Lore",
+      "note": "Dawnbreaker стоит в поле heroes инфобокса. В лоре она стоит по другую сторону войны Древних и хочет, чтобы Зет погиб, хотя и уважает его.",
+      "doubt": "Уважение и враждебность в тексте сочетаются; записана вражда, потому что её действия направлены против Зета."
+    },
+    {
+      "hero": "hoodwink",
+      "type": "enemy",
+      "place": "Tomo'kan",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Arc_Warden/Lore",
+      "note": "В разделе врагов лора: Hoodwink не выносит появления Зета в своём лесу и сражается с ним в Tomo'kan."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Зет, он же Arc Warden, — осколок первородного разума, который после раскола мироздания стал стражем и карателем: он держит древних братьев Radiant и Dire в узде и готов стереть всё, если их война выйдет из-под контроля. Тело Зета разорвано на множество сознаний, поэтому он говорит о себе в третьем лице и посылает свои копии в бой.",
+      "en": "Zet, better known as Arc Warden, is a fragment of the primordial mind that became a jailer and enforcer when the cosmos broke apart. He keeps the two ancient brothers Radiant and Dire in check and would destroy everything if their war spirals out of control. His shattered self is split among many minds, so he speaks of himself in the third person and sends copies into battle."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/arc_warden.png"
+    ]
+  },
+  "unconfirmed": [
+    "Radiant и Dire (Древние, братья Зета) стоят в инфобоксе как родня, но героями из heroes.json не являются: связь не записана.",
+    "Primordial Harmony — понятие всеобщего единства, а не место на схеме: не записано.",
+    "The Earth — весь мир: Зет прибыл на эту планету, но это не область на схеме, поэтому не записано.",
+    "Phoenix — Зет лишь узнал его свет издалека; знакомство без связи.",
+    "Fundamentals (Chaos Knight, Enigma, Keeper of the Light, Io): Зет принимает их помощь в бою, но отдельной связи в лоре нет; Io в heroes.json отсутствует.",
+    "Ogre Magi: мысль Зета о разделении сознания его голов — рассуждение о чужой судьбе, не связь.",
+    "Реплики озвучки (Grimstroke, Dark Willow, Abaddon, Anti-Mage, Centaur Warrunner, Kez и другие) — не основание для связей.",
+    "Раздел лора «DOTA: Dragon's Blood» в кэше не открыт; мест из сериала и медиа-версий не записано.",
+    "Earthshaker: в разделе союзников лор-страницы, но вся связь держится на двух репликах Earthshaker с вопросами о космосе (правило партии 01) — не записана.",
+    "Elder Titan: лор-страница выводит из реплик и возможный союз, и вражду; героя нет в поле heroes инфобокса — не записан.",
+    "Anzua — комета, а не место; место её падения — горы Druud, они уже в связях. Кандидатом не записана."
+  ]
+}

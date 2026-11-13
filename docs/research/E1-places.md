@@ -78,15 +78,15 @@
 | Ярус | Регион | Сторона | Мест | Героев |
 |---|---|---|---|---|
 | Верхний ярус | Небеса (The Heavens) | нейтрально (ярус) | 6 | 9 |
-| Верхний ярус | Семь планов и Пустота (The Seven Planes and the Void) | нейтрально (ярус) | 13 | 18 |
+| Верхний ярус | Семь планов и Пустота (The Seven Planes and the Void) | нейтрально (ярус) | 13 | 19 |
 | Материк и острова | Айсрак (Icewrack) | Radiant (карта S1) | 12 | 8 |
 | Материк и острова | Земля Сияющих (Land of the Radiant) | Radiant (карта S1) | 8 | 8 |
 | Материк и острова | Лес Найтсильвер (Nightsilver Woods) | Radiant (карта S1) | 3 | 3 |
 | Материк и острова | Стоунхолл (Stonehall) | Radiant (по схеме E2) | 24 | 3 |
-| Материк и острова | Вольные города (The Free Cities) | Radiant (по схеме E2) | 7 | 8 |
+| Материк и острова | Вольные города (The Free Cities) | Radiant (по схеме E2) | 7 | 10 |
 | Материк и острова | Квойдж и Поля Бойни (Quoidge and the Fields of Carnage) | нейтрально (по схеме E2) | 4 | 3 |
 | Материк и острова | Хазадальские пустоши (Hazhadal Barrens) | нейтрально (по схеме E2) | 2 | 2 |
-| Материк и острова | Друуд (Druud) | Dire (по схеме E2) | 2 | 2 |
+| Материк и острова | Друуд (Druud) | Dire (по схеме E2) | 2 | 3 |
 | Материк и острова | Сверкающая пустошь (Scintillant Waste) | Dire (карта S1) | 9 | 5 |
 | Материк и острова | Стонущие горы (Wailing Mountains) | Dire (карта S1) | 6 | 7 |
 | Материк и острова | Тенистый берег (Shadeshore) | Dire (по схеме E2) | 5 | 4 |
@@ -113,7 +113,7 @@
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
 | ★ Ghastly Eyrie | лор | Kez, Skywrath Mage, Vengeful Spirit | столица расы скайрасов, «среди облаков и звёзд» |
-| Mad Moon | лор | Arc Warden† |  |
+| Mad Moon | лор | Arc Warden (служба) |  |
 | Selemene's Moon | лор | — | вместе с Demon Star |
 | The Sun | лор | Dawnbreaker*, Phoenix* | Children of Light и солнечная кузня (страницы на Liquipedia нет) |
 | Olympus | наше | Mars*, Zeus | небесная обитель Зевса; страницы на Liquipedia нет |
@@ -123,14 +123,14 @@
 
 Сторона: **нейтрально** (ярус). Иные планы бытия и измерения вне Terrene Plane (наш мир).
 
-Герои всего региона: Spectre
+Герои всего региона: Elder Titan, Spectre
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
 | Fundamental Plane | лор | Chaos Knight, Enigma, Io, Keeper of the Light |  |
-| Primordial Plane | лор | Elder Titan† |  |
-| Elemental Plane | лор | Spirit Breaker |  |
-| Astral Plane | лор | — |  |
+| Primordial Plane | лор | — |  |
+| Elemental Plane | лор | Dragon Knight (упоминание), Spirit Breaker |  |
+| Astral Plane | лор | Elder Titan (бывал) |  |
 | Fabric of Creation | лор | Weaver |  |
 | Claszureme | лор | Faceless Void, Puck† | мир вне времени |
 | The Void | лор | Ancient Apparition, Night Stalker†, Void Spirit |  |
@@ -147,7 +147,7 @@
 
 Сторона: **Radiant** (карта S1). Крайний север. Южнее горного хребта The Barrier, у Северного (Кипящего) моря. Единственный морской путь — порт Frostreach. На карте Source 1: «The cold northern realm of Ice» в половине Radiant.
 
-Герои всего региона: Drow Ranger*
+Герои всего региона: Drow Ranger
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
@@ -162,7 +162,7 @@
 | Njord's Hearth | лор | — |  |
 | Boiling Sea | лор | — |  |
 | Frostreach | лор | — | самый северный порт мира; страницы на Liquipedia нет |
-| Onyx Grove | лор | Lone Druid (живёт)† | в северных сосновых лесах |
+| Onyx Grove | лор | Lone Druid (живёт) | в северных сосновых лесах |
 
 #### Земля Сияющих · Land of the Radiant
 
@@ -230,7 +230,7 @@
 | Revtel | лор | Dark Willow |  |
 | Weeping Rose | лор | Lion, Queen of Pain (связь)† |  |
 | Tyler Estate | лор | Anti-Mage (связь), Silencer (связь)† | в Weeping Rose |
-| Sundered Moon | лор | — | таверна в White Spire |
+| Sundered Moon | лор | Arc Warden (бывал), Drow Ranger (бывал) | таверна в White Spire |
 | Iron Fog | наше | — |  |
 | Highseat | наше | Bounty Hunter (связь) |  |
 
@@ -260,7 +260,7 @@
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
-| ★ Druud | лор | Centaur Warrunner, Disruptor |  |
+| ★ Druud | лор | Arc Warden (бывал), Centaur Warrunner, Disruptor |  |
 | Omexe | лор | — |  |
 
 #### Сверкающая пустошь · Scintillant Waste
@@ -402,7 +402,7 @@
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
-| ★ Tomo'kan | лор | Arc Warden (связь)†, Hoodwink (живёт), Primal Beast (живёт), Puck (связь)†, Ursa (живёт) |  |
+| ★ Tomo'kan | лор | Arc Warden (сражение), Hoodwink (живёт), Primal Beast (живёт), Puck (связь)†, Ursa (живёт) |  |
 | Krimwohl | лор | Hoodwink |  |
 | Outlands | лор | — |  |
 | Nanarak | лор | Snapfire (живёт) |  |
@@ -425,10 +425,10 @@
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
-| Candoness | наше | Dragon Knight (живёт)† |  |
+| Candoness | наше | Dragon Knight (сражение) |  |
 | Devarque | наше | Lifestealer (связь) |  |
 | Yoskreth | наше | — |  |
-| Ultimyr Academy | наше | Invoker (связь)†, Warlock (живёт) |  |
+| Ultimyr Academy | наше | Invoker (сражение), Warlock (живёт) |  |
 | Emauracus | наше | Omniknight (живёт) |  |
 | Font of Avernus | наше | Abaddon |  |
 | Hidden Temple | наше | Spectre (связь)†, Templar Assassin (живёт), Void Spirit (связь) |  |
@@ -450,8 +450,8 @@
 | Riki | Родина Riki в биографии не названа: сказано только, что он из династии Tahlin и что его народ предали в ночь гибели царского рода. Liquipedia упоминает безымянную родину с пряностями, но это реплика другого героя, не название места. Поэтому на схеме — Неизведанные земли; кандидата в места нет. |
 | Ringmaster | ни в биографии, ни в лоре на Liquipedia место не названо: история идёт в безымянных городках и в цирке Осберта Кеттла |
 | Rubick | В биографиях dota2.com и на лор-странице Liquipedia нет места рождения, учёбы или жизни героя; поле places инфобокса пусто. Родину не угадываем. |
-| Undying | служит Мёртвому богу, чей легион разорил Turstarkuri; Liquipedia связывает с Seven Hells |
-| Witch Doctor | в биографии нет мест |
+| Undying | В биографии и на лор-странице нет ни одного названного места: родина и прежнее имя героя остались неизвестны. Яма Мёртвого бога — не место из regions.json, поэтому записан uncharted. |
+| Witch Doctor | По официальной биографии колдун несколько жизней копил знания в горах острова Arktura. На схеме такого острова нет — он записан кандидатом; пока герой в Неизведанных землях. |
 
 ### Бездна
 
@@ -489,7 +489,7 @@
 | Alchemist | Home of the Keen Folk (Земля Сияющих)* |
 | Ancient Apparition | The Void (Семь планов и Пустота) |
 | Anti-Mage | Turstarkuri (Стонущие горы); Tyler Estate (Вольные города) (связь) |
-| Arc Warden | Mad Moon (Небеса)†; Tomo'kan (Томо'кан и Окраины) (связь)† |
+| Arc Warden | Mad Moon (Небеса) (служба); Sundered Moon (Вольные города) (бывал); Druud (Друуд) (бывал); Tomo'kan (Томо'кан и Окраины) (сражение) |
 | Axe | Thousand Tarns (Земля Сияющих) |
 | Bane | The Dream (Семь планов и Пустота)* |
 | Batrider | Yama Raskav Jungle (Феллстрат) |
@@ -512,11 +512,11 @@
 | Death Prophet | весь регион «Неизведанные земли»* |
 | Disruptor | Druud (Друуд) |
 | Doom | Vashundol (Семь Преисподних и загробье) |
-| Dragon Knight | Candoness (Срединные королевства) (живёт)† |
-| Drow Ranger | весь регион «Айсрак»* |
+| Dragon Knight | Candoness (Срединные королевства) (сражение); Elemental Plane (Семь планов и Пустота) (упоминание) |
+| Drow Ranger | весь регион «Айсрак»; Sundered Moon (Вольные города) (бывал) |
 | Earth Spirit | The Upland (Стонущие горы) |
 | Earthshaker | Nishai (Ховен и Нишай) |
-| Elder Titan | Primordial Plane (Семь планов и Пустота)† |
+| Elder Titan | весь регион «Семь планов и Пустота»; Astral Plane (Семь планов и Пустота) (бывал) |
 | Ember Spirit | Fortress of Flares (Стонущие горы) (живёт) |
 | Enchantress | Nightsilver Woods (Лес Найтсильвер) (бывал) |
 | Enigma | Fundamental Plane (Семь планов и Пустота) |
@@ -525,7 +525,7 @@
 | Gyrocopter | Ash Archipelago (Тропические острова) (живёт) |
 | Hoodwink | Krimwohl (Томо'кан и Окраины); Tomo'kan (Томо'кан и Окраины) (живёт) |
 | Huskar | Nothl Realm (Семь Преисподних и загробье) (связь) |
-| Invoker | Ultimyr Academy (Срединные королевства) (связь)† |
+| Invoker | Ultimyr Academy (Срединные королевства) (сражение) |
 | Io | Fundamental Plane (Семь планов и Пустота) |
 | Jakiro | весь регион «Неизведанные земли»* |
 | Juggernaut | Isle of Masks (Тропические острова) |
@@ -539,7 +539,7 @@
 | Lifestealer | Devarque (Срединные королевства) (связь) |
 | Lina | Desert of Misrule (Сверкающая пустошь) |
 | Lion | Weeping Rose (Вольные города) |
-| Lone Druid | Onyx Grove (Айсрак) (живёт)† |
+| Lone Druid | Onyx Grove (Айсрак) (живёт) |
 | Luna | Nightsilver Woods (Лес Найтсильвер) (живёт) |
 | Lycan | Slom (Слом и Эльзе) |
 | Magnus | Mount Joerlak (Стонущие горы)† |

@@ -1,0 +1,43 @@
+{
+  "hero": "undying",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "region": "uncharted",
+      "event": "origin",
+      "source": "ours",
+      "note": "В биографии и на лор-странице нет ни одного названного места: родина и прежнее имя героя остались неизвестны. Яма Мёртвого бога — не место из regions.json, поэтому записан uncharted."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "dark_willow",
+      "type": "rival",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Undying/Lore",
+      "note": "Dark Willow стоит в поле heroes инфобокса. Лор-страница говорит, что Миреска забрала погребальные вещи, которые были положены вместе с Undying, и не возвращает их; реплика Dark Willow это подтверждает.",
+      "doubt": "В инфобоксе тип связи не указан: «соперник» выбран по сюжету кражи. Отождествление Миреска с Dark Willow опирается на ссылку вики и на реплику, а не на прямое указание в тексте."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Undying, или Дирдж, — глашатай Мёртвого бога: бывший воин, чей разум растворился в бесконечном погребальном хоре. Он раз за разом поднимается из смерти и поднимает павших против живых. Имя и родина, которые были у него до перерождения, так и остаются неизвестными.",
+      "en": "Undying, also called Dirge, is the herald of the Dead God: a former warrior whose mind dissolved into an endless funeral chant. He keeps rising from death again and again, raising the fallen against the living. The name and homeland he had before his transformation remain unknown."
+    }
+  },
+  "unconfirmed": [
+    "Народ и доспехи, которые герой помнит, в тексте не названы — родину по ним определить нельзя.",
+    "Яма Мёртвого бога и бездна, куда героя бросили, упомянуты без названия места — ни в regions.json, ни как кандидат не записаны.",
+    "Вики-страница указывает, что доспехи относятся к бывшей нации героя, но ни одна нация не названа.",
+    "Реплики Anti-Mage, Death Prophet, Earth Spirit, Legion Commander, Terrorblade, Visage, Wraith King, Monkey King, Kunkka, Underlord, Axe, Lifestealer и других героев — отдельные строки озвучки, связи не записаны.",
+    "Ссылки на Left 4 Dead, Army of Darkness, Monty Python и Warcraft III в трактовках озвучки и тривии — не лор, в данные не переносились.",
+    "Комиксов с Undying в content/media.json нет, поэтому источник comic:<id> не использовался.",
+    "Заметка E1 о Turstarkuri: монастырь разорил легион Мёртвого бога (это биография Anti-Mage), но сам Undying там не упомянут. Seven Hells на лор-странице Undying не названы. Обе связи не записаны."
+  ]
+}

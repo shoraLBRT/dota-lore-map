@@ -1,0 +1,39 @@
+{
+  "hero": "invoker",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Ultimyr Academy",
+      "event": "battle",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Invoker/Lore",
+      "note": "Карла ребёнком приняли в академию, он учился там и блистал, а уходя, оставил её в руинах — директор хотел держать его взаперти. По порядку событий главное — разрушение; учёба (служба) описана здесь же.",
+      "doubt": "Название академии есть только в основной линии лор-страницы и в поле places; биография dota2.com мест не называет."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Invoker — Карл, древний маг, который держит заклинания в памяти, а не в книгах, и может мгновенно призвать широкий набор чар. В юности он был вундеркиндом академии, которую позже оставил в руинах. Теперь он проводит бесконечно долгую жизнь, забавляясь собой и наблюдая за закатом мира, и о собственных способностях думает очень высоко.",
+      "en": "Invoker, known as Carl, is an ancient mage who keeps his spells in memory rather than in books, letting him cast a wide arsenal almost instantly. As a child prodigy he studied at a long-established academy and later left it in ruins. Now he passes his endless years entertaining himself while watching the world wind down, and he thinks very highly of his own gifts."
+    }
+  },
+  "unconfirmed": [
+    "Биография Valve не называет ни одного места: ни академии, ни родины. Всё место держится на Liquipedia.",
+    "Места из аниме Dragon's Blood (башня героя, Foulfell, где он отбывает заключение, храм из той же линии) не записаны: по правилам E14 их не используем.",
+    "Персонаж Filomena (дочь из Dragon's Blood) в инфобоксе — не герой Dota 2 из heroes.json и связан с аниме; не записан.",
+    "Корумитские монахи (фракция Korumite в инфобоксе, знание их заклинаний по лору Void Spirit) и Burning Cabal — фракции, а не места на схеме; не записаны.",
+    "Warlock (поле heroes): знакомство через предка Demnok, которого младший Карл якобы знает; тип связи не ясен, не записан.",
+    "Puck (поле heroes): говорит, что помнит Карла из давних времён, тип связи не ясен, не записан.",
+    "Mirana: имя Carl в её репликах — игра слов, а не сюжет лора; не записана.",
+    "Templar Assassin, Spectre, Juggernaut, Void Spirit, Dawnbreaker, Monkey King, Zeus и другие — только реплики озвучки или отсылки без связи; не записаны.",
+    "Rubick, Puck, Undying, Queen of Pain: в поле heroes и в разделе «знакомые» лор-страницы — знают его давно или по настоящему имени, но союза или вражды текст не описывает. Не записаны.",
+    "Axe и Anti-Mage: раздел врагов держится на одной сплетне в реплике Dark Willow (правило партии 01) — не записаны.",
+    "White Waste из реплики к Ice Wall — по Liquipedia, вероятно, другое имя ледяных пустошей Icewrack; это реплика, а не событие героя. Не записано."
+  ]
+}

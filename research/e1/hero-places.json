@@ -64,17 +64,85 @@
       "links": [
         {
           "place": "Mad Moon",
-          "event": "origin",
+          "event": "service",
+          "source": "bio",
+          "note": "По биографии Зет сам заключил двух враждующих братьев в светящуюся сферу-луну и много эпох сторожил её, пока темница не раскололась.",
+          "doubt": "В E1 Mad Moon стояла как родина (по странице места). Родиной луна не была: Зет — осколок первородного разума, а луна — место его службы."
+        },
+        {
+          "place": "Sundered Moon",
+          "event": "visit",
           "source": "liquipedia",
-          "via": "place"
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Arc_Warden/Lore",
+          "note": "В баре на Sundered Moon Зет привлёк Zeus к своей войне против Древних и вернул ему часть силы. Событие не боевое и не служебное, поэтому «визит»."
+        },
+        {
+          "place": "Druud",
+          "event": "visit",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Arc_Warden/Lore",
+          "note": "Зет прибыл к месту падения кометы Anzua в горах Druud и вошёл внутрь вместе с Драгонус; место, где он был, — горы Druud, а не конкретное поселение."
         },
         {
           "place": "Tomo'kan",
-          "event": "link",
+          "event": "battle",
           "source": "liquipedia",
-          "via": "place"
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Arc_Warden/Lore",
+          "note": "В Tomo'kan Зет искал место падения метеора Nemestice и схватился с Hoodwink; в конце концов он забрал силу метеора, а осколки наделили её частью его мощи.",
+          "doubt": "Эпизод описан по сюжету трейлера Nemestice, а не по биографии. Событие «бой» выбрано потому, что противостояние главное в эпизоде."
         }
-      ]
+      ],
+      "relations": [
+        {
+          "hero": "zuus",
+          "type": "ally",
+          "place": "Sundered Moon",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Arc_Warden/Lore",
+          "note": "Zeus стоит в поле heroes инфобокса; в тексте лора Зет переманил его в союзники и вернул часть силы. Zeus пошёл на это ради собственного возвращения к власти."
+        },
+        {
+          "hero": "skywrath_mage",
+          "type": "ally",
+          "place": "Druud",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Arc_Warden/Lore",
+          "note": "Skywrath Mage (Драгонус) стоит в поле heroes инфобокса. Вместе они пошли к месту падения кометы в горах Druud.",
+          "doubt": "Скорее совместный поход, чем союз: Зет сначала гнал Драгонус прочь и сам предупреждал его об опасности."
+        },
+        {
+          "hero": "dawnbreaker",
+          "type": "enemy",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Arc_Warden/Lore",
+          "note": "Dawnbreaker стоит в поле heroes инфобокса. В лоре она стоит по другую сторону войны Древних и хочет, чтобы Зет погиб, хотя и уважает его.",
+          "doubt": "Уважение и враждебность в тексте сочетаются; записана вражда, потому что её действия направлены против Зета."
+        },
+        {
+          "hero": "hoodwink",
+          "type": "enemy",
+          "place": "Tomo'kan",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Arc_Warden/Lore",
+          "note": "В разделе врагов лора: Hoodwink не выносит появления Зета в своём лесу и сражается с ним в Tomo'kan."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Зет, он же Arc Warden, — осколок первородного разума, который после раскола мироздания стал стражем и карателем: он держит древних братьев Radiant и Dire в узде и готов стереть всё, если их война выйдет из-под контроля. Тело Зета разорвано на множество сознаний, поэтому он говорит о себе в третьем лице и посылает свои копии в бой.",
+          "en": "Zet, better known as Arc Warden, is a fragment of the primordial mind that became a jailer and enforcer when the cosmos broke apart. He keeps the two ancient brothers Radiant and Dire in check and would destroy everything if their war spirals out of control. His shattered self is split among many minds, so he speaks of himself in the third person and sends copies into battle."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/arc_warden.png"
+        ]
+      }
     },
     "Axe": {
       "links": [
@@ -90,9 +158,17 @@
         {
           "place": "The Dream",
           "event": "origin",
-          "source": "ours"
+          "source": "ours",
+          "note": "Bane родился из ночных кошмаров богини Никташи и вырвался из её сна. Сон как место в источниках не назван, поэтому берём наше место «The Dream» из planes: это ближайшее по смыслу к её дремоте.",
+          "doubt": "Ни биография, ни лор-страница не называют место рождения. Связь держится на образе рождения из сна богини, а не на тексте о месте; пока оставляем как наше решение."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Bane — элементаль страха, рождённый из ночных кошмаров богини Никташи: он вырвался из её тревожного сна и соткал туманное тело из её тёмной крови. Он усыпляет врагов и затягивает их в кошмар, а его шёпот выдаёт самые тайные страхи тех, кто его слышит. Каждый герой, встретивший его, вспоминает, что темноты стоит бояться.",
+          "en": "Bane is a fear elemental born from the nightmares of the goddess Nyctasha. Breaking free of her restless sleep, he shaped a misty body out of her dark ichor and now lures foes into dread and slumber. His whispers expose the secrets people fear most, and every hero who meets him is reminded to be wary of the dark."
+        }
+      }
     },
     "Batrider": {
       "links": [
@@ -250,9 +326,79 @@
         {
           "place": "The Sun",
           "event": "origin",
-          "source": "ours"
+          "source": "ours",
+          "note": "Её создатели, Дети Сияния, названы потомками первого солнца Хранителя; саму Валора выковали из сердца молодой звезды. «Солнце» на схеме — наша привязка к её народу.",
+          "doubt": "В лоре звезда, из которой её сделали, не называется Солнцем; место выбрано по народу, а не по самой звезде."
         }
-      ]
+      ],
+      "relations": [
+        {
+          "hero": "keeper_of_the_light",
+          "type": "family",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Dawnbreaker/Lore",
+          "note": "По инфобоксу — её прадед, создатель предков Детей Сияния. В лоре она упрекает его за то, что он оставил потомков угасать."
+        },
+        {
+          "hero": "phoenix",
+          "type": "family",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Dawnbreaker/Lore",
+          "note": "Дальний родственник по инфобоксу: в Phoenix живёт отголосок искры Детей. Его свет вернул её к жизни, и она благодарна. Фраза о нём как о её хозяине — гипотеза («будь я ещё связана»), поэтому не записана как связь хозяина."
+        },
+        {
+          "hero": "mars",
+          "type": "love",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Dawnbreaker/Lore",
+          "note": "Когда-то была его возлюбленной, тогда он звался Ares. Вместе они свергли Continuum в многовековой кампании, потом расстались.",
+          "doubt": "Связь в прошлом: после общей войны они расстались, о причинах не сказано."
+        },
+        {
+          "hero": "wisp",
+          "type": "enemy",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Dawnbreaker/Lore",
+          "note": "Io (wisp) погасила искру её и её создателей после провала миссии; сначала Валора хотела отомстить.",
+          "doubt": "Позже она перестала держать на Io злобу, поэтому тип «враг» относится к прошлому."
+        },
+        {
+          "hero": "chaos_knight",
+          "type": "enemy",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Dawnbreaker/Lore",
+          "note": "По лору — главный враг её создателей: их план предполагал связать хаос, который преследовал их предка. Chaos Knight стоит и в инфобоксе героев."
+        },
+        {
+          "hero": "night_stalker",
+          "type": "enemy",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Dawnbreaker/Lore",
+          "note": "В задачу Детей входило истребить порождения первородной ночи. Из первых ночных созданий уцелел Баланар, он же Night Stalker.",
+          "doubt": "Враждой названа цель её создателей — истребить созданий ночи вообще; личной встречи Валора и Баланар в тексте нет."
+        },
+        {
+          "hero": "arc_warden",
+          "type": "enemy",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Arc_Warden/Lore",
+          "note": "Лор-страница Arc Warden: Валора уважает Зета, но держится другой стороны и хочет освободить его от долга, убив; её падение, возможно, помогло Древним вырваться из луны. Взаимная запись к файлу arc_warden.",
+          "doubt": "Сюжет вражды на лор-странице Arc Warden собран по репликам; в инфобоксе Dawnbreaker Зета нет."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Валора, она же Dawnbreaker, служит Детям Сияния как оружие: её выковали из звёздного вещества и оживили дыханием создателей. После их гибели она долго дрейфовала в пустоте, пока свет молодой звезды не вернул ей часть сил. Теперь она снова бьётся с хаосом своим молотом Brightmaul и продолжает помнить приказы, которым когда-то подчинялась.",
+          "en": "Valora, called the Dawnbreaker, served the Children of Light as their weapon, shaped from stellar matter and given life by her makers' breath. After their downfall she drifted through the void for ages, until a young star's glow restored part of her strength. She now fights chaos again with her hammer, the Brightmaul, and still carries the memory of the orders she once obeyed."
+        }
+      }
     },
     "Dazzle": {
       "links": [
@@ -310,20 +456,112 @@
       "links": [
         {
           "place": "Candoness",
-          "event": "home",
+          "event": "battle",
           "source": "liquipedia",
-          "via": "place"
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Dragon_Knight/Lore",
+          "note": "По лор-странице Давион по призыву правительницы Candoness устроил засаду на Time-Dragon Ульдорак, который годами обирал королевство; после победы его наградили снаряжением. Службу королеве и награду тоже видно, но главное событие здесь — бой.",
+          "doubt": "История с Ульдорак рассказана в описаниях предметов набора, а не в биографии; точное место засады не названо, связь — с королевством."
+        },
+        {
+          "place": "Elemental Plane",
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Dragon_Knight/Lore",
+          "note": "Elemental Plane стоит в поле places инфобокса. В описании способности Draconic Divide сказано, что жар его решимости на миг соединяет стихийный и земной планы; сам Давион туда не ходил.",
+          "doubt": "Связь идёт через название способности, а не через путешествие или событие; возможно, план упомянут лишь как образ."
         }
-      ]
+      ],
+      "relations": [
+        {
+          "hero": "jakiro",
+          "type": "rival",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Dragon_Knight/Lore",
+          "note": "В разделе отношений лор-страницы описано презрительное соперничество: Jakiro считает Давиона полукровкой. Jakiro также стоит в поле heroes инфобокса.",
+          "doubt": "Соперничество описано в тексте раздела, но опирается на реплики Jakiro; отдельного события нет."
+        },
+        {
+          "hero": "sven",
+          "type": "rival",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Dragon_Knight/Lore",
+          "note": "В разделе рыцарских соперников лор-страницы Sven не признаёт Давиона настоящим рыцарем из-за драконьей природы, а тот считает себя лучшим рыцарем из двух.",
+          "doubt": "Описание построено на репликах Sven и Dragon Knight; конкретного события в тексте нет, связь записана по разделу."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Давион, известный как Dragon Knight, долго охотился на древнего дракона Слайрака, а в итоге получил от него часть силы и знаний после неожиданного поворота. Кровь дракона дала рыцарю драконью мощь, долголетие и две ипостаси, которые могут пробуждаться по очереди. Он ценит честь в бою и уважает павших врагов.",
+          "en": "Davion, known as the Dragon Knight, spent years hunting the ancient Eldwurm Slyrak, only to be bound to him after a merciful choice went wrong. The fusion of blood gave the knight a dragon's might, wisdom and an unaging body, along with two selves that take turns waking. He values honor in battle and treats fallen foes with respect."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/dragon_knight.png"
+        ]
+      }
     },
     "Drow Ranger": {
       "links": [
         {
           "region": "icewrack",
           "event": "origin",
-          "source": "ours"
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Drow_Ranger/Lore",
+          "note": "В поле origins инфобокса лор-страницы записан «лес на севере». Сам лес по имени не назван; на схеме север — Айсрак, поэтому связь только на уровне региона. Лор говорит о северных дроу, которые куют снаряжение из руды ущелья.",
+          "doubt": "Инфобокс ссылается на биографию, но в нашей версии биографии ни севера, ни леса нет (источник противоречит кэшу биографии). Регион выведен из слова «север» и из лора про северных дроу; место внутри региона не выбрано."
+        },
+        {
+          "place": "Sundered Moon",
+          "event": "visit",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Drow_Ranger/Lore",
+          "note": "Лор-страница говорит, что во время событий The Sundered Moon Траксекс сидит за одним столом со Slark, Axe и Гудкайнд. Место названо таверной для героев (описание комикса в media.json); по regions.json оно в Вольных городах.",
+          "doubt": "Лор упоминает только события комикса, без точной сцены. Комикс sundered-moon-comic в media.json мы не читали, поэтому источником указана Liquipedia, а не комикс."
         }
-      ]
+      ],
+      "relations": [
+        {
+          "hero": "windrunner",
+          "type": "rival",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Drow_Ranger/Lore",
+          "note": "Windranger стоит в поле heroes инфобокса; лор-страница называет Лиралей (это имя Windranger) главной соперницей Траксекс.",
+          "doubt": "Соперничество известно по репликам Monkey King, пересказывающим их взаимные колкости; общего события нет."
+        },
+        {
+          "hero": "pudge",
+          "type": "ally",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Drow_Ranger/Lore",
+          "note": "Pudge стоит в поле heroes инфобокса; лор говорит, что у Траксекс «может быть особая связь» с Pudge и Slark.",
+          "doubt": "Тип не назван ни в инфобоксе, ни в тексте; ally выбран как самый нейтральный. Подсказки из реплики Dark Willow и из мультфильма — не основание, их учли только как общий фон."
+        },
+        {
+          "hero": "slark",
+          "type": "ally",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Drow_Ranger/Lore",
+          "note": "Slark стоит в поле heroes инфобокса; тот же «возможный» особый союз, что и с Pudge.",
+          "doubt": "Тип не назван; ally выбран условно, как и для Pudge."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Траксекс, известная как Drow Ranger, не родилась дроу: после нападения разбойников на караван её родителей тихий народ нашёл спрятавшуюся девочку и приютил. Она выросла ловкой и скрытной, но чувствовала себя чужой и ушла жить в лес в одиночку. Путники рассказывают о ней как о почти призрачной охотнице, чьи ледяные стрелы находят сердца врагов.",
+          "en": "Traxex, better known as the Drow Ranger, was not born a drow: after bandits attacked her parents' caravan, the quiet drow found a small girl hiding among the wreckage and took her in. She grew up quick and secretive, felt out of place, and eventually withdrew into the forest to live alone. Travelers speak of her as an almost ghostly huntress whose frost arrows find their mark."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/drow_ranger.png"
+        ]
+      }
     },
     "Earth Spirit": {
       "links": [
@@ -347,12 +585,77 @@
     "Elder Titan": {
       "links": [
         {
-          "place": "Primordial Plane",
+          "region": "planes",
           "event": "origin",
           "source": "liquipedia",
-          "via": "place"
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Elder_Titan/Lore",
+          "note": "В поле origins инфобокса лор-страницы стоят Семь планов. Сам он существует сразу на всех планах; конкретный план, где он родился, в тексте не назван.",
+          "doubt": "Регион целиком, а не место: план родины не назван, поэтому связь привязана к региону «Семь планов и Пустота»."
+        },
+        {
+          "place": "Astral Plane",
+          "event": "visit",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Elder_Titan/Lore",
+          "note": "Астральный план стоит в поле places инфобокса. Связь с ним — через его призрачную часть (способность Astral Spirit); событий и срока там не указано.",
+          "doubt": "Поле инфобокса без события и без текста о пребывании; записано как «бывал», а не как дом или родина."
         }
-      ]
+      ],
+      "relations": [
+        {
+          "hero": "chaos_knight",
+          "type": "family",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Elder_Titan/Lore",
+          "note": "Chaos Knight стоит в полях family и heroes инфобокса как старейший из Фундаменталов — сил, которые возникли, когда молот Титана расколол единство.",
+          "doubt": "Отдельного типа «создатель — создание» в модели нет; взят family как ближайший."
+        },
+        {
+          "hero": "wisp",
+          "type": "family",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Elder_Titan/Lore",
+          "note": "Io стоит в полях family и heroes инфобокса как творение (creation).",
+          "doubt": "Отдельного типа «создатель — создание» в модели нет; взят family как ближайший."
+        },
+        {
+          "hero": "keeper_of_the_light",
+          "type": "family",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Elder_Titan/Lore",
+          "note": "Keeper of the Light стоит в полях family и heroes инфобокса как творение (creation).",
+          "doubt": "Отдельного типа «создатель — создание» в модели нет; взят family как ближайший."
+        },
+        {
+          "hero": "enigma",
+          "type": "family",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Elder_Titan/Lore",
+          "note": "Enigma стоит в полях family и heroes инфобокса как творение (creation).",
+          "doubt": "Отдельного типа «создатель — создание» в модели нет; взят family как ближайший."
+        },
+        {
+          "hero": "lone_druid",
+          "type": "ally",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Elder_Titan/Lore",
+          "note": "Лор-страница отмечает его глубокое уважение к Lone Druid; на странице Lone Druid они в разделе союзников — оба стремятся исцелить мир. Взаимная запись к файлу lone_druid.",
+          "doubt": "Совместных событий нет, связь описана по репликам и сходству целей."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Elder Titan, Worldsmith, один из древних Титанов и мастер творения, чьё честолюбие однажды сломало то, что уже нельзя было починить. Теперь он обитает в расколотом мире, осколке собственной души, и без конца ищет способ всё собрать заново. Его образ сочетает тоску по утраченному единству с упрямой надеждой всё исправить.",
+          "en": "Elder Titan, the Worldsmith, is one of the ancient Titans and a master of creation whose ambition once broke something that could not be mended. Now he lingers in a fractured realm, a piece of his own splintered soul, and endlessly searches for a way to reassemble it. His character mixes regret over lost unity with a stubborn hope that he can still set things right."
+        }
+      }
     },
     "Ember Spirit": {
       "links": [
@@ -472,11 +775,20 @@
       "links": [
         {
           "place": "Ultimyr Academy",
-          "event": "link",
+          "event": "battle",
           "source": "liquipedia",
-          "via": "place"
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Invoker/Lore",
+          "note": "Карла ребёнком приняли в академию, он учился там и блистал, а уходя, оставил её в руинах — директор хотел держать его взаперти. По порядку событий главное — разрушение; учёба (служба) описана здесь же.",
+          "doubt": "Название академии есть только в основной линии лор-страницы и в поле places; биография dota2.com мест не называет."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Invoker — Карл, древний маг, который держит заклинания в памяти, а не в книгах, и может мгновенно призвать широкий набор чар. В юности он был вундеркиндом академии, которую позже оставил в руинах. Теперь он проводит бесконечно долгую жизнь, забавляясь собой и наблюдая за закатом мира, и о собственных способностях думает очень высоко.",
+          "en": "Invoker, known as Carl, is an ancient mage who keeps his spells in memory rather than in books, letting him cast a wide arsenal almost instantly. As a child prodigy he studied at a long-established academy and later left it in ruins. Now he passes his endless years entertaining himself while watching the world wind down, and he thinks very highly of his own gifts."
+        }
+      }
     },
     "Io": {
       "links": [
@@ -506,6 +818,15 @@
           "url": "https://liquipedia.net/dota2/Jakiro/Lore",
           "doubt": "Родство описано двояко: в реплике Jakiro она «кузина», а в тексте лор-страницы Liquipedia — его мать (по чешуе правой головы). Поэтому общий тип — родня.",
           "note": "Winter Wyvern враждебна к нему: в её репликах — сожаление, что не убила его ещё в гнезде."
+        },
+        {
+          "hero": "dragon_knight",
+          "type": "rival",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Dragon_Knight/Lore",
+          "note": "Взаимная запись к файлу dragon_knight: Jakiro стоит в поле heroes инфобокса Dragon Knight, а лор-страница описывает их презрительное соперничество — Jakiro считает Давиона полукровкой.",
+          "doubt": "На лор-странице Jakiro этой связи нет; описание соперничества опирается на реплики обоих героев."
         }
       ],
       "profile": {
@@ -641,9 +962,53 @@
           "place": "Onyx Grove",
           "event": "home",
           "source": "liquipedia",
-          "via": "place"
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Lone_Druid/Lore",
+          "note": "Среди мест, где изгнанник переждал долгие века, — тёмная роща на северной границе хвойного леса. Он подстроил под неё свою форму и остался там надолго, став медведем-чудищем среди местных созданий. Поле places инфобокса подтверждает то же место.",
+          "doubt": "Текст описывает, как он там обжился, но не называет эту рощу домом прямо. Событие «home» взято из текущих данных E1."
         }
-      ]
+      ],
+      "relations": [
+        {
+          "hero": "beastmaster",
+          "type": "ally",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Lone_Druid/Lore",
+          "note": "Лор-страница называет обоих хранителями природы, которые союзники.",
+          "doubt": "В том же абзаце сказано, что их владения в лесу расходятся и они борются за власть; тип записан по первой фразе."
+        },
+        {
+          "hero": "elder_titan",
+          "type": "ally",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Lone_Druid/Lore",
+          "note": "Лор-страница называет Elder Titan союзником в группе природных героев и отмечает, что оба стремятся починить мир."
+        },
+        {
+          "hero": "lycan",
+          "type": "rival",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Lone_Druid/Lore",
+          "note": "В разделе соперничества Lycan назван Бейнхэллоу: они соперничают из-за разного понимания того, кто из зверей сильнее, хотя и могут считать друг друга родственными по оборотничеству."
+        },
+        {
+          "hero": "sven",
+          "type": "ally",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Lone_Druid/Lore",
+          "note": "Sven находит в Силле родственную душу, одиночку, с которым ему почётно сражаться плечом к плечу."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Lone Druid, он же Силла, — последний хранитель Семени из павшего Клана Медведя. Тысячелетиями он бродит по диким землям в облике человека или медведя, ни во что не ставит деньги и ждёт часа, когда жизнь придётся сеять заново. Терпеливый и спокойный с временем, он резок с теми, кто встаёт на пути его миссии.",
+          "en": "Lone Druid, known as Sylla, is the last keeper of the Seed from the vanished Bear Clan. For millennia he has roamed the wild in exile, shifting between a man's shape and a bear's, and he cares little for coin. He waits patiently for the day life must be sown anew, and he turns hard on anyone who stands in the way of his mission."
+        }
+      }
     },
     "Luna": {
       "links": [
@@ -1392,9 +1757,26 @@
           "region": "uncharted",
           "event": "origin",
           "source": "ours",
-          "note": "служит Мёртвому богу, чей легион разорил Turstarkuri; Liquipedia связывает с Seven Hells"
+          "note": "В биографии и на лор-странице нет ни одного названного места: родина и прежнее имя героя остались неизвестны. Яма Мёртвого бога — не место из regions.json, поэтому записан uncharted."
         }
-      ]
+      ],
+      "relations": [
+        {
+          "hero": "dark_willow",
+          "type": "rival",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Undying/Lore",
+          "note": "Dark Willow стоит в поле heroes инфобокса. Лор-страница говорит, что Миреска забрала погребальные вещи, которые были положены вместе с Undying, и не возвращает их; реплика Dark Willow это подтверждает.",
+          "doubt": "В инфобоксе тип связи не указан: «соперник» выбран по сюжету кражи. Отождествление Миреска с Dark Willow опирается на ссылку вики и на реплику, а не на прямое указание в тексте."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Undying, или Дирдж, — глашатай Мёртвого бога: бывший воин, чей разум растворился в бесконечном погребальном хоре. Он раз за разом поднимается из смерти и поднимает павших против живых. Имя и родина, которые были у него до перерождения, так и остаются неизвестными.",
+          "en": "Undying, also called Dirge, is the herald of the Dead God: a former warrior whose mind dissolved into an endless funeral chant. He keeps rising from death again and again, raising the fallen against the living. The name and homeland he had before his transformation remain unknown."
+        }
+      }
     },
     "Ursa": {
       "links": [
@@ -1507,9 +1889,16 @@
           "region": "uncharted",
           "event": "origin",
           "source": "ours",
-          "note": "в биографии нет мест"
+          "note": "По официальной биографии колдун несколько жизней копил знания в горах острова Arktura. На схеме такого острова нет — он записан кандидатом; пока герой в Неизведанных землях.",
+          "doubt": "Биография говорит, где он учился магии, а не где родился; «родина» — наше толкование. На Liquipedia тот же остров назван Prefectura (старая редакция той же биографии)."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Witch Doctor, по имени Жарвакко, — тролль-колдун, который ковыляет по полю боя в поисках слабого места, где его ритуалы принесут больше всего пользы или вреда. Его арсенал — амулеты, проклятия и заклинания, а знания он копил не одну жизнь. Одним он помогает исцелением, другим приносит порчу, и заранее не понять, кем он окажется для каждого.",
+          "en": "Witch Doctor, known as Zharvakko, is a troll sorcerer who lurches across battlefields hunting for the spot where his rituals will do the most good or the most harm. His toolkit of charms, curses and incantations was built up over many lifetimes of study. Allies gain from his healing while foes suffer his hexes, so he is hard to pin down as friend or foe."
+        }
+      }
     },
     "Wraith King": {
       "links": [

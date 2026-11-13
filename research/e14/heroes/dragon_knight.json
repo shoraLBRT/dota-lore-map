@@ -1,0 +1,67 @@
+{
+  "hero": "dragon_knight",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Candoness",
+      "event": "battle",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Dragon_Knight/Lore",
+      "note": "По лор-странице Давион по призыву правительницы Candoness устроил засаду на Time-Dragon Ульдорак, который годами обирал королевство; после победы его наградили снаряжением. Службу королеве и награду тоже видно, но главное событие здесь — бой.",
+      "doubt": "История с Ульдорак рассказана в описаниях предметов набора, а не в биографии; точное место засады не названо, связь — с королевством."
+    },
+    {
+      "place": "Elemental Plane",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Dragon_Knight/Lore",
+      "note": "Elemental Plane стоит в поле places инфобокса. В описании способности Draconic Divide сказано, что жар его решимости на миг соединяет стихийный и земной планы; сам Давион туда не ходил.",
+      "doubt": "Связь идёт через название способности, а не через путешествие или событие; возможно, план упомянут лишь как образ."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "jakiro",
+      "type": "rival",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Dragon_Knight/Lore",
+      "note": "В разделе отношений лор-страницы описано презрительное соперничество: Jakiro считает Давиона полукровкой. Jakiro также стоит в поле heroes инфобокса.",
+      "doubt": "Соперничество описано в тексте раздела, но опирается на реплики Jakiro; отдельного события нет."
+    },
+    {
+      "hero": "sven",
+      "type": "rival",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Dragon_Knight/Lore",
+      "note": "В разделе рыцарских соперников лор-страницы Sven не признаёт Давиона настоящим рыцарем из-за драконьей природы, а тот считает себя лучшим рыцарем из двух.",
+      "doubt": "Описание построено на репликах Sven и Dragon Knight; конкретного события в тексте нет, связь записана по разделу."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Давион, известный как Dragon Knight, долго охотился на древнего дракона Слайрака, а в итоге получил от него часть силы и знаний после неожиданного поворота. Кровь дракона дала рыцарю драконью мощь, долголетие и две ипостаси, которые могут пробуждаться по очереди. Он ценит честь в бою и уважает павших врагов.",
+      "en": "Davion, known as the Dragon Knight, spent years hunting the ancient Eldwurm Slyrak, only to be bound to him after a merciful choice went wrong. The fusion of blood gave the knight a dragon's might, wisdom and an unaging body, along with two selves that take turns waking. He values honor in battle and treats fallen foes with respect."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/dragon_knight.png"
+    ]
+  },
+  "unconfirmed": [
+    "Родина Давиона не названа ни в биографии, ни на Liquipedia, поэтому origin на карте не записан.",
+    "Орден Scaled Knights of Uthorian: Давион, по-видимому, его член (герб на снаряжении и в лагере), но место Uthorian в тексте не описано и не привязано к региону.",
+    "Puck, Lich и Winter Wyvern стоят в поле heroes инфобокса, но тип связи в лоре не назван; сцены Puck и Lich взяты из Dota Underlords, а Winter Wyvern — из реплик. Не записаны.",
+    "Поля family инфобокса: Bram и Kaden (наставник-оруженосец и возможный отец) — персонажи аниме DOTA: Dragon's Blood, по правилам партии не записаны.",
+    "Всё, что говорится о Давионе в аниме (сирота, версия из сериала, места сериала), не записано ни как связь, ни как кандидат.",
+    "Lina, Ursa, Omniknight, Chaos Knight, Pangolier, Monkey King, Terrorblade, Lone Druid, Void Spirit, Snapfire, Bristleback, Vengeful Spirit, Skywrath Mage, Hoodwink, Mars, Pudge, Dark Willow, Dawnbreaker, Ember Spirit, Gyrocopter, Batrider и другие — реплики озвучки, связи не записаны.",
+    "Slyrak, Ульдорак, Vyxia, Anessix и Crimson Wyvern — персонажи-драконы, не герои; Eldwurms, Dragon Clan и Blood Route — фракции и понятия, не места. Не записаны."
+  ]
+}

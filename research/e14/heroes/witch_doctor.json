@@ -1,0 +1,41 @@
+{
+  "hero": "witch_doctor",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "region": "uncharted",
+      "event": "origin",
+      "source": "ours",
+      "note": "По официальной биографии колдун несколько жизней копил знания в горах острова Arktura. На схеме такого острова нет — он записан кандидатом; пока герой в Неизведанных землях.",
+      "doubt": "Биография говорит, где он учился магии, а не где родился; «родина» — наше толкование. На Liquipedia тот же остров назван Prefectura (старая редакция той же биографии)."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Witch Doctor, по имени Жарвакко, — тролль-колдун, который ковыляет по полю боя в поисках слабого места, где его ритуалы принесут больше всего пользы или вреда. Его арсенал — амулеты, проклятия и заклинания, а знания он копил не одну жизнь. Одним он помогает исцелением, другим приносит порчу, и заранее не понять, кем он окажется для каждого.",
+      "en": "Witch Doctor, known as Zharvakko, is a troll sorcerer who lurches across battlefields hunting for the spot where his rituals will do the most good or the most harm. His toolkit of charms, curses and incantations was built up over many lifetimes of study. Allies gain from his healing while foes suffer his hexes, so he is hard to pin down as friend or foe."
+    }
+  },
+  "candidates": [
+    {
+      "name": "Arktura",
+      "region": "uncharted",
+      "event": "origin",
+      "source": "bio",
+      "note": "Островные горы, где Жарвакко учился колдовству. В старой редакции биографии, которую хранит Liquipedia (и в поле places инфобокса), остров назван Prefectura — это одно и то же место под двумя именами. Регион не назван; по смыслу это остров, но какой — решает владелец (#59)."
+    }
+  ],
+  "unconfirmed": [
+    "Prefectura (Liquipedia) и Arktura (текущая биография dota2.com) — два имени одного острова; в кандидаты записано одно место под именем из официальной биографии.",
+    "Инфобокс лор-страницы не содержит героев в полях heroes и family, связей героев из него не записано. Bonkers и Awaleb — персонажи, не герои.",
+    "Реплики в озвучке (Axe, Monkey King, Chen, Dazzle, Huskar, Juggernaut, Lion, Lone Druid, Rubick, Shadow Shaman, Visage) — отдельные строки, связи по ним не записаны.",
+    "Реплика Oracle в разделе «Others» о предсказанной смерти — тоже только строка озвучки, связь не записана.",
+    "Фракция Conclave of the Brine и традиции (Alchemy, Voodoo, Haruspicy) в инфобоксе — не места, в файл не включены.",
+    "Путь (path) не заполнен: в источниках нет перемещений героя."
+  ]
+}

@@ -2,6 +2,34 @@
   "note": "Кандидаты в места: место из лора, которого нет на схеме мира (map/layout.json). На карту в партиях E14 не добавляются — решение в #59. Формат — docs/ARCHITECTURE.md §A3.",
   "candidates": [
     {
+      "name": "Vuurcrag Mountains",
+      "hero": "tiny",
+      "region": "uncharted",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Tiny/Lore",
+      "note": "Единственное место в инфобоксе лор-страницы, в regions.json его нет. Регион по источникам не установлен, поэтому стоит временный uncharted. Владельцу #59 нужно решить, есть ли горы на схеме и где они"
+    },
+    {
+      "name": "Arktura",
+      "hero": "witch_doctor",
+      "region": "uncharted",
+      "event": "origin",
+      "source": "bio",
+      "note": "Островные горы, где Жарвакко учился колдовству. В старой редакции биографии, которую хранит Liquipedia (и в поле places инфобокса), остров назван Prefectura — это одно и то же место под двумя именами. Регион не назван; по смыслу это остров, но какой — решает владелец (#59)."
+    },
+    {
+      "name": "Wyrmforge",
+      "hero": "elder_titan",
+      "region": "uncharted",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Elder_Titan/Lore",
+      "note": "Стоит в поле places инфобокса: Elder Titan хранит у себя обломок этой кузницы среди собранных реликвий. Сам он там не бывал по тексту; регион не назван — решает владелец (#59)."
+    },
+    {
       "name": "Grosche",
       "hero": "jakiro",
       "region": "uncharted",
@@ -20,16 +48,6 @@
       "via": "lore",
       "url": "https://liquipedia.net/dota2/Jakiro/Lore",
       "note": "Подземные пещеры, чей народ Jakiro однажды защитил (описание предмета Pyrexaec Flux); там до сих пор празднуют День костров. Регион не назван — решает владелец (#59)."
-    },
-    {
-      "name": "Vuurcrag Mountains",
-      "hero": "tiny",
-      "region": "uncharted",
-      "event": "mention",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Tiny/Lore",
-      "note": "Единственное место в инфобоксе лор-страницы, в regions.json его нет. Регион по источникам не установлен, поэтому стоит временный uncharted. Владельцу #59 нужно решить, есть ли горы на схеме и где они"
     }
   ]
 }

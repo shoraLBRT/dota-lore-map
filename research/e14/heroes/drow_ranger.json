@@ -1,0 +1,78 @@
+{
+  "hero": "drow_ranger",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "region": "icewrack",
+      "event": "origin",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Drow_Ranger/Lore",
+      "note": "В поле origins инфобокса лор-страницы записан «лес на севере». Сам лес по имени не назван; на схеме север — Айсрак, поэтому связь только на уровне региона. Лор говорит о северных дроу, которые куют снаряжение из руды ущелья.",
+      "doubt": "Инфобокс ссылается на биографию, но в нашей версии биографии ни севера, ни леса нет (источник противоречит кэшу биографии). Регион выведен из слова «север» и из лора про северных дроу; место внутри региона не выбрано."
+    },
+    {
+      "place": "Sundered Moon",
+      "event": "visit",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Drow_Ranger/Lore",
+      "note": "Лор-страница говорит, что во время событий The Sundered Moon Траксекс сидит за одним столом со Slark, Axe и Гудкайнд. Место названо таверной для героев (описание комикса в media.json); по regions.json оно в Вольных городах.",
+      "doubt": "Лор упоминает только события комикса, без точной сцены. Комикс sundered-moon-comic в media.json мы не читали, поэтому источником указана Liquipedia, а не комикс."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "windrunner",
+      "type": "rival",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Drow_Ranger/Lore",
+      "note": "Windranger стоит в поле heroes инфобокса; лор-страница называет Лиралей (это имя Windranger) главной соперницей Траксекс.",
+      "doubt": "Соперничество известно по репликам Monkey King, пересказывающим их взаимные колкости; общего события нет."
+    },
+    {
+      "hero": "pudge",
+      "type": "ally",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Drow_Ranger/Lore",
+      "note": "Pudge стоит в поле heroes инфобокса; лор говорит, что у Траксекс «может быть особая связь» с Pudge и Slark.",
+      "doubt": "Тип не назван ни в инфобоксе, ни в тексте; ally выбран как самый нейтральный. Подсказки из реплики Dark Willow и из мультфильма — не основание, их учли только как общий фон."
+    },
+    {
+      "hero": "slark",
+      "type": "ally",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Drow_Ranger/Lore",
+      "note": "Slark стоит в поле heroes инфобокса; тот же «возможный» особый союз, что и с Pudge.",
+      "doubt": "Тип не назван; ally выбран условно, как и для Pudge."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Траксекс, известная как Drow Ranger, не родилась дроу: после нападения разбойников на караван её родителей тихий народ нашёл спрятавшуюся девочку и приютил. Она выросла ловкой и скрытной, но чувствовала себя чужой и ушла жить в лес в одиночку. Путники рассказывают о ней как о почти призрачной охотнице, чьи ледяные стрелы находят сердца врагов.",
+      "en": "Traxex, better known as the Drow Ranger, was not born a drow: after bandits attacked her parents' caravan, the quiet drow found a small girl hiding among the wreckage and took her in. She grew up quick and secretive, felt out of place, and eventually withdrew into the forest to live alone. Travelers speak of her as an almost ghostly huntress whose frost arrows find their mark."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/drow_ranger.png"
+    ]
+  },
+  "unconfirmed": [
+    "Родина по биографии не названа; «лес на севере» из инфобокса не подтверждён биографией — см. doubt к origin.",
+    "Возможно, Траксекс бывала на севере, в Icewrack или The Barrier, где встретила белого волка-духа (Bow of the Howling Wind). Лор говорит «возможно», поэтому отдельная связь с The Barrier не записана.",
+    "Приёмные мать, дядя и тётя из инфобокса — не герои нашего списка, связи с ними не записаны.",
+    "Раса Human (assumed) и Drow, виды Shadowcats и Bloodroot Tree, фракции Boreal Watch, Sylvan Guard, Kha-Ren — не места; на карту не добавлены.",
+    "Blueheart Glacier упомянут в описании колчана как источник талой воды. Это предмет, а не событие героя, поэтому не записан.",
+    "Сова-дух, которому, по лору, поклоняется Траксекс, — не место и не герой, не записан.",
+    "Реплики озвучки (Bounty Hunter, Mirana, Silencer, Lina, Ursa, Clinkz, Sniper, Zeus, Monkey King и др.) — подколки и приветствия без записи в инфобоксе или тексте; связи не записаны.",
+    "Цитата из Artifact про туман Аверна (Abaddon) — упоминание места без событий героя; не записано.",
+    "Подземье: по описанию лука из Bloodroot Tree Траксекс спускалась под землю к сородичам-дроу, но ни места, ни региона текст не называет. Привязка к underdark была бы нашей догадкой — не записана."
+  ]
+}

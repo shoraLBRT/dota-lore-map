@@ -1,0 +1,103 @@
+{
+  "hero": "elder_titan",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "region": "planes",
+      "event": "origin",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Elder_Titan/Lore",
+      "note": "В поле origins инфобокса лор-страницы стоят Семь планов. Сам он существует сразу на всех планах; конкретный план, где он родился, в тексте не назван.",
+      "doubt": "Регион целиком, а не место: план родины не назван, поэтому связь привязана к региону «Семь планов и Пустота»."
+    },
+    {
+      "place": "Astral Plane",
+      "event": "visit",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Elder_Titan/Lore",
+      "note": "Астральный план стоит в поле places инфобокса. Связь с ним — через его призрачную часть (способность Astral Spirit); событий и срока там не указано.",
+      "doubt": "Поле инфобокса без события и без текста о пребывании; записано как «бывал», а не как дом или родина."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "chaos_knight",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Elder_Titan/Lore",
+      "note": "Chaos Knight стоит в полях family и heroes инфобокса как старейший из Фундаменталов — сил, которые возникли, когда молот Титана расколол единство.",
+      "doubt": "Отдельного типа «создатель — создание» в модели нет; взят family как ближайший."
+    },
+    {
+      "hero": "wisp",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Elder_Titan/Lore",
+      "note": "Io стоит в полях family и heroes инфобокса как творение (creation).",
+      "doubt": "Отдельного типа «создатель — создание» в модели нет; взят family как ближайший."
+    },
+    {
+      "hero": "keeper_of_the_light",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Elder_Titan/Lore",
+      "note": "Keeper of the Light стоит в полях family и heroes инфобокса как творение (creation).",
+      "doubt": "Отдельного типа «создатель — создание» в модели нет; взят family как ближайший."
+    },
+    {
+      "hero": "enigma",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Elder_Titan/Lore",
+      "note": "Enigma стоит в полях family и heroes инфобокса как творение (creation).",
+      "doubt": "Отдельного типа «создатель — создание» в модели нет; взят family как ближайший."
+    },
+    {
+      "hero": "lone_druid",
+      "type": "ally",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Elder_Titan/Lore",
+      "note": "Лор-страница отмечает его глубокое уважение к Lone Druid; на странице Lone Druid они в разделе союзников — оба стремятся исцелить мир. Взаимная запись к файлу lone_druid.",
+      "doubt": "Совместных событий нет, связь описана по репликам и сходству целей."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Elder Titan, Worldsmith, один из древних Титанов и мастер творения, чьё честолюбие однажды сломало то, что уже нельзя было починить. Теперь он обитает в расколотом мире, осколке собственной души, и без конца ищет способ всё собрать заново. Его образ сочетает тоску по утраченному единству с упрямой надеждой всё исправить.",
+      "en": "Elder Titan, the Worldsmith, is one of the ancient Titans and a master of creation whose ambition once broke something that could not be mended. Now he lingers in a fractured realm, a piece of his own splintered soul, and endlessly searches for a way to reassemble it. His character mixes regret over lost unity with a stubborn hope that he can still set things right."
+    }
+  },
+  "candidates": [
+    {
+      "name": "Wyrmforge",
+      "region": "uncharted",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Elder_Titan/Lore",
+      "note": "Стоит в поле places инфобокса: Elder Titan хранит у себя обломок этой кузницы среди собранных реликвий. Сам он там не бывал по тексту; регион не назван — решает владелец (#59)."
+    }
+  ],
+  "unconfirmed": [
+    "Изломанный мир, в котором он обитает по биографии, нигде не назван. Текущая запись E1 «Primordial Plane» (origin, источник — страница места на Liquipedia) не подтверждена: страницы места нет ни в кэше, ни в meta.json, поэтому via: place здесь не записан.",
+    "Скрытый план, из которого он призывает свою призрачную форму (описание способности на главной странице героя), не назван — не записан.",
+    "Реплики союзников и врагов (Hoodwink, Mars, Pangolier, Legion Commander, Monkey King, Void Spirit, Wraith King и другие) — отдельные строки озвучки, связи не записаны по правилу партии 01.",
+    "Места из аниме DOTA: Dragon's Blood (The Thunder, Eldwurms) не записаны и не добавлены в кандидаты.",
+    "Комикса с этим героем в content/media.json нет — comic:<id> не использован.",
+    "Primordial Harmony (поле places) — состояние единства до Раскола, а не место; кандидатом не записано.",
+    "Treant Protector и Earthshaker: по лор-странице он знал их в прошлом, но тип связи не назван и опирается на реплики — не записаны.",
+    "Arc Warden: на его лор-странице из реплик выведены и союз, и вражда с Elder Titan — связь не записана ни с одной стороны."
+  ]
+}
