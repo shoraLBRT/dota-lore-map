@@ -14,6 +14,8 @@ interface Props {
   onToggle: () => void;
   /** Смена ключа — кроссфейд содержимого (A4, 250 мс). */
   contentKey: string;
+  /** Крошка «назад» в шапке, над прокруткой (SPEC §6.4). */
+  back?: ReactNode;
   children: ReactNode;
 }
 
@@ -21,7 +23,7 @@ interface Props {
  * Правая панель регионов и мест: лежит поверх карты, выезжает справа (A3, 400 мс),
  * сворачивается кнопкой-ромбом на левом краю без смещения карты (SPEC §5.4).
  */
-export function Panel({ label, collapsed, onToggle, contentKey, children }: Props) {
+export function Panel({ label, collapsed, onToggle, contentKey, back, children }: Props) {
   const { t } = useT();
   const id = useId();
   const contentRef = useRef<HTMLDivElement>(null);
@@ -32,10 +34,17 @@ export function Panel({ label, collapsed, onToggle, contentKey, children }: Prop
     if (contentRef.current) contentRef.current.inert = collapsed;
   }, [collapsed, contentKey, mobile]);
 
+  // Шапка меняется вместе с экраном: старая кнопка уходит, фокус возвращается туда, откуда пришли (§14).
+  const header = back && (
+    <div key={contentKey} className={styles.content}>
+      {back}
+    </div>
+  );
+
   // Телефон: нижняя шторка со своим «свернуть / развернуть» (SPEC §13); collapsed десктопа к ней не относится.
   if (mobile) {
     return (
-      <Sheet id={id} label={label} contentKey={contentKey}>
+      <Sheet id={id} label={label} contentKey={contentKey} header={header}>
         <div key={contentKey} className={styles.content}>
           {children}
         </div>
@@ -54,7 +63,7 @@ export function Panel({ label, collapsed, onToggle, contentKey, children }: Prop
         onClick={onToggle}
       />
       <div ref={contentRef} className={styles.body} aria-hidden={collapsed ? 'true' : undefined}>
-        <PanelFrame id={id} label={label} className={styles.panel}>
+        <PanelFrame id={id} label={label} className={styles.panel} header={header}>
           <div key={contentKey} className={styles.content}>
             {children}
           </div>

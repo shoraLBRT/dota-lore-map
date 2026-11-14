@@ -103,4 +103,14 @@ describe('клавиатура на карте', () => {
     expect(window.location.hash).toBe('#/world');
     expect(document.activeElement).toBe(screen.getByRole('button', { name: icewrack.name.ru }));
   });
+
+  it('крошка «‹ Регион» в шапке меняется вместе с экраном — фокус уходит на маркер места, откуда пришли', () => {
+    window.location.hash = '#/r/icewrack/cobalt';
+    render(<App />);
+    const back = screen.getByRole('button', { name: `‹ ${icewrack.name.ru}` });
+    act(() => back.focus());
+    fireEvent.click(back);
+    expect(window.location.hash).toBe('#/r/icewrack');
+    expect(document.activeElement).toBe(screen.getByRole('button', { name: placeName(cobalt, 'ru') }));
+  });
 });

@@ -47,6 +47,18 @@ describe('нижняя шторка', () => {
     expect(sheet()).toHaveAttribute('data-state', 'peek');
   });
 
+  it('крошка «назад» — вверху шторки, под ручкой, видна и в свёрнутой', () => {
+    window.location.hash = '#/r/icewrack';
+    render(<App />);
+    const panel = screen.getByRole('complementary', { name: getRegion('icewrack')!.name.ru });
+    const head = panel.firstElementChild as HTMLElement;
+    expect(head.querySelector('nav')).not.toBeNull();
+    expect(screen.getByRole('button', { name: '‹ Мир' }).closest('nav')!.parentElement!.parentElement).toBe(head);
+    // Порядок в шторке: ручка, затем «назад».
+    const buttons = Array.from(sheet().querySelectorAll('button')).map((b) => b.getAttribute('aria-label'));
+    expect(buttons.slice(0, 2)).toEqual(['Развернуть панель', '‹ Мир']);
+  });
+
   it('переход к месту — шторка снова свёрнута, карта видна', () => {
     window.location.hash = '#/r/icewrack';
     render(<App />);

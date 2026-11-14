@@ -1,22 +1,20 @@
 import { useNavigation } from '../../app/navigation';
-import { Divider } from '../../components/Divider';
 import { HeroList } from '../../components/HeroList';
 import { Paragraphs } from '../../components/Paragraphs';
 import type { Place, Region } from '../../data/types';
 import { heroesOfPlace, placeName } from '../../data/world';
 import { useT } from '../../i18n';
-import { Breadcrumbs } from '../panel/Breadcrumbs';
 import { useHeroPreview } from '../search/preview';
 import { MediaCards } from '../panel/MediaCards';
 import { panelStyles } from '../panel/Panel';
 
 /**
  * Содержимое панели места S3 (SPEC §5.5): шапка-картинка (если есть арт), название, тип, герои,
- * описание, медиа, крошки «‹ Регион». Место без арта и медиа — только текст и герои.
+ * описание, медиа. Крошка «‹ Регион» — в шапке панели (Breadcrumbs). Место без арта и медиа — только текст и герои.
  */
 export function PlacePanel({ region, place }: { region: Region; place: Place }) {
   const { l, lang, t } = useT();
-  const { route, open, navigate } = useNavigation();
+  const { route, navigate } = useNavigation();
   const preview = useHeroPreview();
 
   return (
@@ -33,8 +31,6 @@ export function PlacePanel({ region, place }: { region: Region; place: Place }) 
         items={place.media}
         onOpen={(media) => navigate({ ...route, media })}
       />
-      <Divider />
-      <Breadcrumbs text={l(region.name)} onClick={() => open({ name: 'region', regionId: region.id })} />
     </>
   );
 }
