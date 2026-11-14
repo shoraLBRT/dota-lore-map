@@ -147,6 +147,13 @@ describe('поиск героя и нити', () => {
     expect(threads()).toHaveLength(1);
     expect(pulse('dredgers-bight')).not.toBeNull();
     expect(pulse('pole')).toBeNull();
+    // Из поиска фокус ушёл на портрет: поиск закрылся, а герой портрета остался на карте.
+    const input = openSearch();
+    fireEvent.change(input, { target: { value: 'techies' } });
+    fireEvent.blur(input, { relatedTarget: pl });
+    fireEvent.focus(pl);
+    expect(screen.queryByRole('combobox')).toBeNull();
+    expect(pulse('pole')).not.toBeNull();
   });
 
   it('в мире текущий вариант поиска подсвечивает регионы героя (#66)', () => {

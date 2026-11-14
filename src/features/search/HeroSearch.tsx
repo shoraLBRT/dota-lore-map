@@ -29,8 +29,6 @@ export function HeroSearch({ onPick, onClose, onPreview }: Props) {
   useEffect(() => {
     onPreview?.(shown ?? null);
   }, [shown, onPreview]);
-  // Поиск закрыли — героя под курсором больше нет.
-  useEffect(() => () => onPreview?.(null), [onPreview]);
 
   const onKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
