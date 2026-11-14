@@ -118,6 +118,57 @@ describe('поиск героя и нити', () => {
     expect(threads()).toHaveLength(0);
   });
 
+  it('наведение на героя всегда показывает его на карте (#66): маркер пульсирует — мышь, фокус, тап', () => {
+    window.location.hash = '#/r/radiant-lands';
+    render(<App />);
+    const pulse = (slug: string) => document.querySelector(`[data-place="${slug}"] [data-pulse]`);
+    const portrait = (name: string) =>
+      screen.getByRole('link', { name: new RegExp(`^${name} — официальная страница`) }).closest('li')!;
+    // Phantom Lancer — одно место, нитей нет, но маркер отмечен.
+    const pl = portrait('Phantom Lancer');
+    fireEvent.pointerEnter(pl, { pointerType: 'mouse' });
+    expect(pulse('pole')).not.toBeNull();
+    expect(document.querySelector('[data-place="pole"]')!.getAttribute('class')).toMatch(/previewed/);
+    expect(threads()).toHaveLength(0);
+    fireEvent.pointerLeave(pl, { pointerType: 'mouse' });
+    expect(pulse('pole')).toBeNull();
+    fireEvent.focus(pl);
+    expect(pulse('pole')).not.toBeNull();
+    fireEvent.blur(pl);
+    expect(pulse('pole')).toBeNull();
+    // Тап: палец ушёл — герой остаётся на карте до ухода фокуса.
+    fireEvent.pointerEnter(pl, { pointerType: 'touch' });
+    fireEvent.pointerLeave(pl, { pointerType: 'touch' });
+    expect(pulse('pole')).not.toBeNull();
+    fireEvent.blur(pl);
+    expect(pulse('pole')).toBeNull();
+    // Techies — несколько мест: и нить, и маркер своего места.
+    fireEvent.pointerEnter(portrait('Techies'), { pointerType: 'mouse' });
+    expect(threads()).toHaveLength(1);
+    expect(pulse('dredgers-bight')).not.toBeNull();
+    expect(pulse('pole')).toBeNull();
+    // Из поиска фокус ушёл на портрет: поиск закрылся, а герой портрета остался на карте.
+    const input = openSearch();
+    fireEvent.change(input, { target: { value: 'techies' } });
+    fireEvent.blur(input, { relatedTarget: pl });
+    fireEvent.focus(pl);
+    expect(screen.queryByRole('combobox')).toBeNull();
+    expect(pulse('pole')).not.toBeNull();
+  });
+
+  it('в мире текущий вариант поиска подсвечивает регионы героя (#66)', () => {
+    window.location.hash = '#/world';
+    render(<App />);
+    const lit = (id: string) => document.querySelector(`[data-tint="${id}"]`)!.getAttribute('class');
+    const input = openSearch();
+    fireEvent.change(input, { target: { value: 'techies' } });
+    expect(lit('radiant-lands')).toMatch(/lit/);
+    expect(lit('shadeshore')).toMatch(/lit/);
+    expect(lit('icewrack')).not.toMatch(/lit/);
+    fireEvent.keyDown(input, { key: 'Escape' });
+    expect(lit('radiant-lands')).not.toMatch(/lit/);
+  });
+
   it('неизвестный герой в адресе — ни плашки, ни нитей', () => {
     window.location.hash = '#/world?hero=nobody';
     render(<App />);

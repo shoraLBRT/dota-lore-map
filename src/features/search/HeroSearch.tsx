@@ -1,4 +1,4 @@
-import { useId, useMemo, useState, type FocusEvent, type KeyboardEvent } from 'react';
+import { useEffect, useId, useMemo, useState, type FocusEvent, type KeyboardEvent } from 'react';
 import { HeroPortrait } from '../../components/HeroPortrait';
 import type { Hero } from '../../data/types';
 import { useT } from '../../i18n';
@@ -8,13 +8,15 @@ import { searchHeroes } from './search';
 interface Props {
   onPick: (hero: Hero) => void;
   onClose: () => void;
+  /** Текущий вариант (стрелки, курсор) — экран показывает героя на карте (SPEC §6.6, #66); null — вариантов нет. */
+  onPreview?: (hero: Hero | null) => void;
 }
 
 /**
  * Поле поиска героя с автодополнением (SPEC §6.5): имена, ключи и алиасы на RU/EN.
  * ↑ / ↓ — выбор варианта, Enter — выбрать, Esc или уход фокуса — закрыть.
  */
-export function HeroSearch({ onPick, onClose }: Props) {
+export function HeroSearch({ onPick, onClose, onPreview }: Props) {
   const { t } = useT();
   const listId = useId();
   const optionId = useId();
@@ -23,6 +25,10 @@ export function HeroSearch({ onPick, onClose }: Props) {
   const results = useMemo(() => searchHeroes(query), [query]);
   const open = query.trim() !== '';
   const current = Math.min(active, Math.max(results.length - 1, 0));
+  const shown = open ? results[current]?.hero : undefined;
+  useEffect(() => {
+    onPreview?.(shown ?? null);
+  }, [shown, onPreview]);
 
   const onKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {

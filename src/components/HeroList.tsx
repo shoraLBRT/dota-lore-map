@@ -8,7 +8,7 @@ interface Props {
   heroes: Hero[];
   /** Сколько портретов видно сразу; остальные — за плашкой «+N», она раскрывает весь список (SPEC §5.4). */
   max?: number;
-  /** Курсор или фокус на портрете (null — ушёл): экран рисует нити героя (SPEC §6.6). */
+  /** Курсор, фокус или тап на портрете (null — ушёл): экран показывает героя на карте и нити (SPEC §6.6). */
   onPreview?: (hero: Hero | null) => void;
 }
 
@@ -27,7 +27,8 @@ export function HeroList({ heroes, max, onPreview }: Props) {
           <li
             key={h.key}
             onPointerEnter={onPreview && (() => onPreview(h))}
-            onPointerLeave={onPreview && (() => onPreview(null))}
+            // Тап (#66): палец ушёл — герой остаётся на карте до другого портрета, ухода фокуса или смены экрана.
+            onPointerLeave={onPreview && ((e) => e.pointerType !== 'touch' && onPreview(null))}
             onFocus={onPreview && (() => onPreview(h))}
             onBlur={onPreview && (() => onPreview(null))}
           >

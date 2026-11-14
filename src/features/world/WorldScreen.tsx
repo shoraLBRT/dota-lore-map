@@ -75,9 +75,12 @@ export function WorldScreen({ screen, veiled = false }: Props) {
   const [searchOpen, setSearchOpen] = useState(false);
   const hero = route.hero ? getHero(route.hero) : undefined;
   const spots = useMemo(() => (hero ? heroSpots(hero) : undefined), [hero]);
-  // Нити по наведению на портрет в панели (SPEC §6.6) живут, пока не сменился экран.
+  // Герой под наведением или фокусом — портрет в панели или вариант поиска (SPEC §6.6, #66): нити, если мест
+  // несколько, и всегда — где он на карте. Живёт, пока не сменился экран.
   const [preview, setPreview] = useState<{ key: string; hero: Hero } | null>(null);
-  const previewHero = preview?.key === screenKey ? preview.hero : null;
+  // Вариант поиска — отдельно: закрытый поиск не должен снимать портрет, на который ушёл фокус.
+  const [searchPreview, setSearchPreview] = useState<Hero | null>(null);
+  const previewHero = searchOpen && searchPreview ? searchPreview : preview?.key === screenKey ? preview.hero : null;
   const previewSpots = useMemo(() => (previewHero ? heroSpots(previewHero) : undefined), [previewHero]);
   const onPreview = useCallback((h: Hero | null) => setPreview(h ? { key: screenKey, hero: h } : null), [screenKey]);
   const showPreview = previewSpots !== undefined && previewSpots.length > 1;
@@ -149,6 +152,7 @@ export function WorldScreen({ screen, veiled = false }: Props) {
             focus={spots}
             threads={threads}
             threadsKey={threadsKey}
+            preview={previewSpots}
             onSelectSpot={(s) => open(spotScreen(s))}
             regionList={mobile}
             topInset={topInset}
@@ -159,7 +163,7 @@ export function WorldScreen({ screen, veiled = false }: Props) {
         {!veiled && (searchOpen || (hero && spots)) && (
           <div ref={barRef} className={[barStyles.bar, region && !collapsed && barStyles.withPanel].filter(Boolean).join(' ')}>
             {searchOpen ? (
-              <HeroSearch onPick={pick} onClose={() => setSearchOpen(false)} />
+              <HeroSearch onPick={pick} onClose={() => setSearchOpen(false)} onPreview={setSearchPreview} />
             ) : (
               hero && spots && <HeroBadge hero={hero} spots={spots} onClear={clearHero} />
             )}

@@ -104,3 +104,20 @@ export function edgeExit(
   }
   return null;
 }
+
+/**
+ * Где место за кадром без нити (#66): луч из центра видимой части кадра к точке `to` (px) — последняя точка
+ * в кадре и угол наружу (градусы, 0 — вправо). Точка в кадре — null.
+ */
+export function rayExit(to: XY, frame: Frame): { x: number; y: number; angle: number } | null {
+  if (inside(to, frame)) return null;
+  const cx = (frame.left + frame.right) / 2;
+  const cy = (frame.top + frame.bottom) / 2;
+  const dx = to[0] - cx;
+  const dy = to[1] - cy;
+  // Доля пути до ближайшей стороны кадра по каждой оси.
+  const tx = dx > 0 ? (frame.right - cx) / dx : dx < 0 ? (frame.left - cx) / dx : Infinity;
+  const ty = dy > 0 ? (frame.bottom - cy) / dy : dy < 0 ? (frame.top - cy) / dy : Infinity;
+  const t = Math.min(tx, ty, 1);
+  return { x: cx + dx * t, y: cy + dy * t, angle: (Math.atan2(dy, dx) * 180) / Math.PI };
+}
