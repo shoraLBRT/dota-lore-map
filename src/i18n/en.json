@@ -40,6 +40,7 @@
   "about.close": "Close",
   "tooltip.more": "and {n} more",
   "tooltip.pick": "Click a hero to show them on the map",
+  "media.badge": "Media: {kinds}",
   "panel.collapse": "Collapse panel",
   "panel.expand": "Expand panel",
   "panel.breadcrumbs": "Level navigation",

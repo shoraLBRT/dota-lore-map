@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { HeroPortrait } from '../../components/HeroPortrait';
 import type { Hero, Region } from '../../data/types';
 import { useT } from '../../i18n';
+import { mediaKinds, type MediaBadge } from './mediaBadge';
 import styles from './RegionTooltip.module.css';
 
 /** Сколько портретов в подсказке региона (SPEC §5.3, §6.2). */
@@ -57,6 +58,10 @@ interface Props {
   onKeyDown?: (e: KeyboardEvent<HTMLDivElement>) => void;
   /** Фокус ушёл из подсказки наружу. */
   onFocusOut?: () => void;
+  /** Медиа региона и его мест (#69): значок-кнопка рядом с названием. */
+  media?: MediaBadge | null;
+  /** Нажат значок медиа: открыть галерею. Без него значка нет. */
+  onOpenMedia?: (badge: MediaBadge) => void;
 }
 
 /**
@@ -111,7 +116,7 @@ export function TooltipHeroes({ heroes, onPick, expanded = false, onExpand, onNa
   const { shown, rest } = splitHeroes(heroes, expanded ? heroes.length : TOOLTIP_HEROES);
   if (shown.length === 0) return null;
   return (
-    <ul className={styles.heroes}>
+    <ul className={styles.heroes} data-heroes="">
       {shown.map((h) => (
         <li
           key={h.key}
@@ -161,8 +166,10 @@ export function RegionTooltip({
   onPointerLeave,
   onKeyDown,
   onFocusOut,
+  media,
+  onOpenMedia,
 }: Props) {
-  const { l, t } = useT();
+  const { l, lang, t } = useT();
   const ownRef = useRef<HTMLDivElement>(null);
   const ref = tipRef ?? ownRef;
   const nameId = `${id}-name`;
@@ -176,14 +183,17 @@ export function RegionTooltip({
   const expanded = expandedId === region.id;
   const [named, setNamed] = useState<Hero | null>(null);
   const pos = useAnchoredPosition(ref, getAnchor, region.id, expanded ? region.id : '');
-  const interactive = Boolean(onPick) && heroes.length > 0;
+  const pickable = Boolean(onPick) && heroes.length > 0;
+  const badge = onOpenMedia && media ? media : null;
+  const interactive = pickable || badge !== null;
+  const kinds = badge ? mediaKinds(badge.media, lang) : '';
 
   // «+N» нажат с клавиатуры: кнопка пропала — фокус на первый раскрытый портрет.
   const focusRevealed = useRef(false);
   useLayoutEffect(() => {
     if (!expanded || !focusRevealed.current) return;
     focusRevealed.current = false;
-    ref.current?.querySelectorAll<HTMLElement>('button')[TOOLTIP_HEROES]?.focus();
+    ref.current?.querySelectorAll<HTMLElement>('[data-heroes] button')[TOOLTIP_HEROES]?.focus();
   }, [expanded, ref]);
 
   return createPortal(
@@ -203,30 +213,54 @@ export function RegionTooltip({
         if (!e.currentTarget.contains(e.relatedTarget as Node | null)) onFocusOut?.();
       }}
     >
-      <p id={nameId} className={styles.name}>
-        {l(region.name)}
-      </p>
+      <div className={styles.head}>
+        <p id={nameId} className={styles.name}>
+          {l(region.name)}
+        </p>
+        {badge && (
+          <button
+            type="button"
+            className={styles.media}
+            // Имя содержит видимый вид медиа (WCAG 2.5.3): «Есть медиа: комикс».
+            aria-label={t('media.badge', { kinds })}
+            onClick={() => onOpenMedia!(badge)}
+          >
+            <MediaIcon className={styles.mediaIcon} />
+            <span aria-hidden="true">{kinds}</span>
+          </button>
+        )}
+      </div>
       {region.subtitle && <p className={styles.subtitle}>{l(region.subtitle)}</p>}
       <TooltipHeroes
         heroes={heroes}
-        onPick={interactive ? onPick : undefined}
+        onPick={pickable ? onPick : undefined}
         expanded={expanded}
         onExpand={
-          interactive
+          pickable
             ? () => {
                 focusRevealed.current = ref.current?.contains(document.activeElement) ?? false;
                 setExpandedId(region.id);
               }
             : undefined
         }
-        onName={interactive ? setNamed : undefined}
+        onName={pickable ? setNamed : undefined}
       />
-      {interactive && (
+      {pickable && (
         <p className={styles.caption} aria-hidden="true">
           {named && heroes.includes(named) ? named.name : t('tooltip.pick')}
         </p>
       )}
     </div>,
     document.body,
+  );
+}
+
+/** Значок медиа (#69): страница комикса с панелями. Тот же рисунок — у маркера места на карте. */
+export function MediaIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+      <rect x="2" y="2" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="1.6" />
+      <path d="M2 8h12M8 8v6" fill="none" stroke="currentColor" strokeWidth="1.6" />
+    </svg>
   );
 }

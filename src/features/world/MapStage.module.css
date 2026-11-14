@@ -246,6 +246,39 @@
   stroke-width: 3;
 }
 
+/* Значок медиа у маркера (#69, SPEC §6.3): квадратик-страница в верхнем правом углу кольца,
+   появляется вместе с маркером. Этот угол маркера отдан значку медиа. */
+.mediaBadge {
+  cursor: pointer;
+  animation: marker-in var(--dur-hover) var(--ease-out) calc(var(--dur-camera) * 2 / 3 + var(--i, 0) * 40ms) both;
+}
+
+.badgeFrame {
+  fill: var(--map-ink);
+  stroke: var(--metal-bright);
+  stroke-width: 1.5;
+  transition:
+    stroke var(--dur-hover) var(--ease-out),
+    filter var(--dur-hover) var(--ease-out);
+}
+
+.badgeLines {
+  fill: none;
+  stroke: var(--metal-bright);
+  stroke-width: 1.2;
+}
+
+.mediaBadge:hover .badgeFrame,
+.mediaBadge:focus-visible .badgeFrame {
+  stroke: var(--accent-bright);
+  stroke-width: 2;
+  filter: drop-shadow(0 0 4px var(--marker-glow));
+}
+
+.mediaBadge:focus-visible {
+  outline: none;
+}
+
 /* Активное место (S3) выделено (SPEC §5.5). */
 .current .ring {
   stroke-width: 3;
@@ -301,7 +334,9 @@
 /* Прозрачность маркера занята анимацией появления — приглушаем его части. */
 .mutedMarker .ring,
 .mutedMarker .dot,
-.mutedMarker .markerLabel {
+.mutedMarker .markerLabel,
+.mutedMarker .badgeFrame,
+.mutedMarker .badgeLines {
   opacity: 0.35;
 }
 

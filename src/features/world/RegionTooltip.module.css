@@ -127,3 +127,45 @@ button.more:focus-visible {
     animation: none;
   }
 }
+
+/* Название и значок медиа (#69) в одну строку. */
+.head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* Значок медиа (#69): маленькая кнопка «вид медиа» — открывает галерею. */
+.media {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: 24px;
+  margin-left: auto;
+  padding: 0 var(--space-2);
+  border: 1px solid var(--metal);
+  border-radius: 0;
+  background: var(--bg-2);
+  color: var(--metal-bright);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: lowercase;
+  cursor: pointer;
+  transition:
+    border-color var(--dur-hover) var(--ease-out),
+    color var(--dur-hover) var(--ease-out),
+    box-shadow var(--dur-hover) var(--ease-out);
+}
+
+.media:hover,
+.media:focus-visible {
+  border-color: var(--metal-bright);
+  color: var(--text-1);
+  box-shadow: var(--glow-metal);
+}
+
+.mediaIcon {
+  width: 14px;
+  height: 14px;
+}
