@@ -52,12 +52,13 @@
   color: var(--text-2);
 }
 
-/* Шапка-картинка места с затуханием в фон (SPEC §5.5 п. 1). */
+/* Шапка-картинка места с затуханием в фон (SPEC §5.5 п. 1). Встаёт вплотную под крошку «назад»:
+   над прокруткой рамки у панели всегда шапка, отступ прокрутки сверху — --space-2 (PanelFrame .underHead). */
 .header {
   display: block;
   width: calc(100% + 2 * var(--space-5));
   aspect-ratio: 16 / 7;
-  margin: calc(-1 * var(--space-5)) calc(-1 * var(--space-5)) var(--space-3);
+  margin: calc(-1 * var(--space-2)) calc(-1 * var(--space-5)) var(--space-3);
   object-fit: cover;
   mask-image: linear-gradient(180deg, var(--bg-0) 55%, transparent);
 }
