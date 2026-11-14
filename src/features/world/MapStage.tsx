@@ -1,4 +1,5 @@
 import {
+  Fragment,
   useCallback,
   useEffect,
   useId,
@@ -58,6 +59,7 @@ import {
   type MarkerLabel,
 } from './labels';
 import styles from './MapStage.module.css';
+import { placeMediaBadge, regionMediaBadge, mediaKinds, type MediaBadge } from './mediaBadge';
 import { PlaceTooltip } from './PlaceTooltip';
 import { RegionArt } from './RegionArt';
 import { RegionList } from './RegionList';
@@ -94,6 +96,8 @@ interface Props {
   onPickHero?: (hero: Hero) => void;
   /** Клик по метке нити, ушедшей за край кадра. */
   onSelectSpot?: (spot: Spot) => void;
+  /** Нажат значок медиа у маркера места или в подсказке региона (#69): открыть галерею. Без него значков нет. */
+  onOpenMedia?: (regionId: string, open: MediaBadge['open']) => void;
   /** Телефон (#39, SPEC §13): в мире карта прижата к верху, под ней — список регионов. */
   regionList?: boolean;
   /** Сколько px сверху кадра занято (плашка героя): карта со списком встаёт ниже. */
@@ -224,6 +228,7 @@ export function MapStage({
   preview,
   onPickHero,
   onSelectSpot,
+  onOpenMedia,
   regionList = false,
   topInset = 0,
   coverTop = 0,
@@ -265,6 +270,7 @@ export function MapStage({
   const litId = inWorld ? listId : null;
   const shown = useMemo(() => regions.find((r) => r.id === shownId && r.layout), [regions, shownId]);
   const shownHeroes = useMemo(() => (shown ? heroesOf(shown.id) : []), [shown, heroesOf]);
+  const shownMedia = useMemo(() => (shown && onOpenMedia ? regionMediaBadge(shown) : null), [shown, onOpenMedia]);
 
   const spots = useMemo(() => active?.places.filter((p) => p.pos) ?? [], [active]);
   const spotId = active ? (spotHover ?? spotFocus) : null;
@@ -571,9 +577,12 @@ export function MapStage({
     const ring = p.capital ? 11 : 9;
     const label = markerLabelAttrs(side, ring, p.capital ? CAPITAL_FONT : MARKER_FONT);
     const previewed = previewPlaces?.has(`${active!.id}/${p.slug}`) ?? false;
+    const muted = focusPlaces && !focusPlaces.has(`${active!.id}/${p.slug}`);
+    const media = onOpenMedia ? placeMediaBadge(p) : null;
+    const transform = `translate(${x} ${y}) scale(${markerScale.toFixed(4)})`;
     return (
+      <Fragment key={p.slug}>
       <g
-        key={p.slug}
         className={[
           styles.marker,
           p.capital && styles.capital,
@@ -585,7 +594,7 @@ export function MapStage({
           .filter(Boolean)
           .join(' ')}
         style={{ '--i': i } as CSSProperties}
-        transform={`translate(${x} ${y}) scale(${markerScale.toFixed(4)})`}
+        transform={transform}
         role="button"
         tabIndex={0}
         aria-label={name}
@@ -625,6 +634,31 @@ export function MapStage({
           {name}
         </text>
       </g>
+      {media && (
+        // Значок медиа (#69, SPEC §6.3) — отдельная кнопка сразу за маркером (Tab: место → его медиа),
+        // в верхнем правом углу кольца: между кольцом и рамками подписей сверху и справа (labels.ts).
+        <g
+          className={[styles.mediaBadge, muted && styles.mutedMarker].filter(Boolean).join(' ')}
+          style={{ '--i': i } as CSSProperties}
+          transform={transform}
+          role="button"
+          tabIndex={0}
+          aria-label={t('media.badge', { kinds: mediaKinds(media.media, lang) })}
+          data-media-badge={p.slug}
+          onClick={(e) => {
+            e.stopPropagation();
+            onOpenMedia!(active!.id, media.open);
+          }}
+          onKeyDown={onActivate(() => onOpenMedia!(active!.id, media.open))}
+        >
+          <g transform={`translate(${(ring * 0.75).toFixed(2)} ${(-ring * 0.75).toFixed(2)})`}>
+            <circle className={styles.hit} r={6.5} />
+            <rect className={styles.badgeFrame} x={-5} y={-5} width={10} height={10} />
+            <path className={styles.badgeLines} d="M-5 0h10M0 0v5" />
+          </g>
+        </g>
+      )}
+      </Fragment>
     );
   };
 
@@ -823,6 +857,8 @@ export function MapStage({
           onPointerLeave={() => leave(null)}
           onKeyDown={onTipKeyDown}
           onFocusOut={() => setTipFocusId(null)}
+          media={shownMedia}
+          onOpenMedia={onOpenMedia && ((b) => onOpenMedia(shown.id, b.open))}
         />
       )}
       {active && spot && !flying && (

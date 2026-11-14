@@ -40,6 +40,7 @@
   "about.close": "Закрыть",
   "tooltip.more": "и ещё {n}",
   "tooltip.pick": "Нажмите на героя — он появится на карте",
+  "media.badge": "Есть медиа: {kinds}",
   "panel.collapse": "Свернуть панель",
   "panel.expand": "Развернуть панель",
   "panel.breadcrumbs": "Навигация по уровням",

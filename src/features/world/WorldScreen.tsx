@@ -132,6 +132,16 @@ export function WorldScreen({ screen, veiled = false }: Props) {
     navigate({ screen: route.screen, hero: h.key });
   };
 
+  // Значок медиа на карте (#69): галерея на экране, которому медиа принадлежит, — места или региона (A5);
+  // герой остаётся выбранным, как при открытии из панели.
+  const openMedia = (regionId: string, target: { mediaId: string; placeSlug?: string }) => {
+    setSearchOpen(false);
+    const next: Screen = target.placeSlug
+      ? { name: 'place', regionId, placeSlug: target.placeSlug }
+      : { name: 'region', regionId };
+    navigate(route.hero ? { screen: next, hero: route.hero, media: target.mediaId } : { screen: next, media: target.mediaId });
+  };
+
   return (
     <div
       ref={rootRef}
@@ -161,6 +171,7 @@ export function WorldScreen({ screen, veiled = false }: Props) {
             preview={previewSpots}
             onPickHero={pickHere}
             onSelectSpot={(s) => open(spotScreen(s))}
+            onOpenMedia={openMedia}
             regionList={mobile}
             topInset={topInset}
             coverTop={barBottom}
