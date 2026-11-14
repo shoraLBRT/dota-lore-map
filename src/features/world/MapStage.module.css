@@ -328,6 +328,46 @@
   fill: var(--text-1);
 }
 
+/* Герой под наведением (#66): его маркеры светятся, от кольца расходится пульс. */
+.previewed .ring {
+  opacity: 1;
+  stroke: var(--accent-bright);
+  stroke-width: 3;
+  filter: drop-shadow(0 0 8px var(--marker-glow));
+}
+
+.previewed .dot {
+  opacity: 1;
+}
+
+.previewed .markerLabel,
+.marker.labelHidden.previewed .markerLabel {
+  fill: var(--text-1);
+  opacity: 1;
+}
+
+.pulse {
+  fill: none;
+  stroke: var(--accent-bright);
+  stroke-width: 2;
+  pointer-events: none;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: marker-pulse 1.4s var(--ease-out) infinite;
+}
+
+@keyframes marker-pulse {
+  from {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+
+  to {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
 /* Нити (SPEC §6.6, A5): прорисовка по stroke-dashoffset за --dur-thread, затем течение пунктира. */
 .threads {
   pointer-events: none;
@@ -470,5 +510,10 @@
   .flash {
     opacity: 0.8;
     animation: none;
+  }
+
+  /* Герой под наведением (#66): без пульса, только подсветка маркера. */
+  .pulse {
+    display: none;
   }
 }

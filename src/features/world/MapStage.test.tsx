@@ -197,6 +197,45 @@ describe('MapStage — маркеры мест (S2/S3, SPEC §5.4, §6.3)', () =
     ],
   });
 
+  it('герой под наведением (#66): его маркер пульсирует, место за кадром — метка у края, клик ведёт туда', () => {
+    const names = ['clientWidth', 'clientHeight', 'offsetWidth', 'offsetHeight'];
+    const saved = names.map((name) => Object.getOwnPropertyDescriptor(HTMLElement.prototype, name));
+    const size = (name: string, value: number) =>
+      Object.defineProperty(HTMLElement.prototype, name, { configurable: true, get: () => value });
+    size('clientWidth', 1000);
+    size('clientHeight', 600);
+    size('offsetWidth', 960);
+    size('offsetHeight', 600);
+    try {
+      const onSelectSpot = vi.fn();
+      const far = { key: 'icewrack', regionId: 'icewrack', point: [0.9, 0.9] as [number, number], tone: 'neutral' as const };
+      render(
+        <I18nProvider initialLang="en">
+          <MapStage
+            regions={[region('a', true)]}
+            activeRegionId="a"
+            onSelectRegion={vi.fn()}
+            onSelectPlace={vi.fn()}
+            onSelectSpot={onSelectSpot}
+            preview={[{ key: 'a/spot', regionId: 'a', placeSlug: 'spot', point: [0.2, 0.2], tone: 'neutral' }, far]}
+          />
+        </I18nProvider>,
+      );
+      expect(document.querySelector('[data-place="spot"] [data-pulse]')).not.toBeNull();
+      // Нитей нет (они — от WorldScreen), а метка у края есть только у места за кадром.
+      const exits = screen.getAllByRole('button', { name: /Icewrack/ });
+      expect(exits).toHaveLength(1);
+      fireEvent.click(exits[0]!);
+      expect(onSelectSpot).toHaveBeenCalledWith(far);
+    } finally {
+      names.forEach((name, i) => {
+        const d = saved[i];
+        if (d) Object.defineProperty(HTMLElement.prototype, name, d);
+        else Reflect.deleteProperty(HTMLElement.prototype, name);
+      });
+    }
+  });
+
   it('маркер — точка в кольце, столица — звезда; место без позиции не рисуется', () => {
     renderStage([withPlaces()], 'a');
     expect(screen.getByRole('button', { name: 'Spot' }).querySelector('polygon')).toBeNull();

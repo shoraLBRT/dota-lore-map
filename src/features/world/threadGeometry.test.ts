@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { View } from './camera';
-import { arc, edgeExit, toScreen, visibleFrame } from './threadGeometry';
+import { arc, edgeExit, rayExit, toScreen, visibleFrame } from './threadGeometry';
 
 const view: View = { width: 1000, height: 600, layerWidth: 960, layerHeight: 600, inset: 0 };
 
@@ -38,5 +38,18 @@ describe('нити: геометрия (SPEC §6.6)', () => {
     expect(back.x).toBeGreaterThan(540);
     expect(edgeExit(arc([0.3, 0.5], [0.4, 0.5]), true, project, frame)).toBeNull();
     expect(edgeExit(arc([0.95, 0.5], [0.9, 0.5]), true, project, frame)).toBeNull();
+  });
+  it('место за кадром без нити (#66): точка на краю кадра по лучу из центра, угол наружу; в кадре — null', () => {
+    const frame = { left: 0, top: 0, right: 600, bottom: 400 };
+    expect(rayExit([300, 200], frame)).toBeNull();
+    expect(rayExit([900, 200], frame)).toEqual({ x: 600, y: 200, angle: 0 });
+    const down = rayExit([300, 1000], frame)!;
+    expect(down.x).toBeCloseTo(300);
+    expect(down.y).toBeCloseTo(400);
+    expect(down.angle).toBeCloseTo(90);
+    const corner = rayExit([-300, -200], frame)!;
+    expect(corner.x).toBeCloseTo(0);
+    expect(corner.y).toBeCloseTo(0);
+    expect(corner.angle).toBeCloseTo(-146.3, 1);
   });
 });

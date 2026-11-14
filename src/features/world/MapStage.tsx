@@ -62,7 +62,7 @@ import { RegionArt } from './RegionArt';
 import { RegionList } from './RegionList';
 import { RegionTooltip } from './RegionTooltip';
 import { Threads } from './Threads';
-import { arc, edgeExit, toScreen, visibleFrame } from './threadGeometry';
+import { arc, edgeExit, rayExit, toScreen, visibleFrame } from './threadGeometry';
 
 interface Props {
   regions: Region[];
@@ -84,6 +84,11 @@ interface Props {
   /** Места, соединяемые нитями (SPEC §6.6); `threadsKey` перезапускает прорисовку. */
   threads?: Spot[];
   threadsKey?: string;
+  /**
+   * Герой под наведением или фокусом (портрет в панели, вариант поиска; SPEC §6.6, #66): в мире подсвечены
+   * его регионы, в регионе и месте — пульсируют его маркеры, места за кадром получают метку у края.
+   */
+  preview?: Spot[];
   /** Клик по метке нити, ушедшей за край кадра. */
   onSelectSpot?: (spot: Spot) => void;
   /** Телефон (#39, SPEC §13): в мире карта прижата к верху, под ней — список регионов. */
@@ -210,6 +215,7 @@ export function MapStage({
   focus,
   threads,
   threadsKey,
+  preview,
   onSelectSpot,
   regionList = false,
   topInset = 0,
@@ -256,6 +262,8 @@ export function MapStage({
 
   const focusRegions = useMemo(() => (focus ? new Set(focus.map((s) => s.regionId)) : null), [focus]);
   const focusPlaces = useMemo(() => (focus ? new Set(focus.map((s) => s.key)) : null), [focus]);
+  const previewRegions = useMemo(() => (preview ? new Set(preview.map((s) => s.regionId)) : null), [preview]);
+  const previewPlaces = useMemo(() => (preview ? new Set(preview.map((s) => s.key)) : null), [preview]);
   /** Класс приглушения или подсветки при выбранном герое. */
   const heroClass = (regionId: string) =>
     focusRegions ? (focusRegions.has(regionId) ? styles.heroRegion : styles.muted) : undefined;
@@ -357,7 +365,7 @@ export function MapStage({
   // S2/S3: нить к месту за краем кадра уходит туда со стрелкой и названием (SPEC §6.6).
   const exits = useMemo(() => {
     const placed = (threads ?? []).filter((s) => s.point);
-    if (!active || placed.length < 2 || view.width <= 0) return [];
+    if (!active || view.width <= 0 || (placed.length < 2 && !preview?.length)) return [];
     const project = (p: Point) => toScreen(p, framed.camera, framed.offset, view, framed.offsetY);
     const frame = visibleFrame(view, inset, EXIT_MARGIN, insetBottom);
     const visible = (p: Point) => {
@@ -375,6 +383,13 @@ export function MapStage({
       const target = aSeen ? b : a;
       if (exit && !out.has(target.key)) out.set(target.key, { spot: target, ...exit });
     }
+    // Герой под наведением (#66): его место за кадром без нити к нему — метка по лучу из центра кадра.
+    // Сам открытый регион (связь без места) меткой не отмечается.
+    for (const s of preview ?? []) {
+      if (!s.point || out.has(s.key) || (!s.placeSlug && s.regionId === active.id)) continue;
+      const exit = rayExit(project(s.point), frame);
+      if (exit) out.set(s.key, { spot: s, ...exit });
+    }
     return [...out.values()].map((e) => {
       // Место в другом регионе — второй строкой регион (#64): «Мрачное Гнездовье / Небеса».
       // Регион не повторяется, если место называется так же («Друуд» в Друуде).
@@ -382,7 +397,7 @@ export function MapStage({
       const other = e.spot.placeSlug && e.spot.regionId !== active.id ? getRegion(e.spot.regionId)?.name[lang] : undefined;
       return { ...e, name, region: other && other !== name ? other : undefined };
     });
-  }, [threads, active, framed, view, inset, insetBottom, lang]);
+  }, [threads, preview, active, framed, view, inset, insetBottom, lang]);
 
   // Метки «нить за краем» — целиком в видимой части кадра и не друг на друге (#64). Размеры — измеренные.
   const [exitSizes, setExitSizes] = useState<Record<string, number>>({});
@@ -496,6 +511,7 @@ export function MapStage({
     const side = sides.get(p.slug) ?? 'top';
     const ring = p.capital ? 11 : 9;
     const label = markerLabelAttrs(side, ring, p.capital ? CAPITAL_FONT : MARKER_FONT);
+    const previewed = previewPlaces?.has(`${active!.id}/${p.slug}`) ?? false;
     return (
       <g
         key={p.slug}
@@ -505,6 +521,7 @@ export function MapStage({
           isActive && styles.current,
           side === 'hidden' && styles.labelHidden,
           focusPlaces && (focusPlaces.has(`${active!.id}/${p.slug}`) ? styles.heroSpot : styles.mutedMarker),
+          previewed && styles.previewed,
         ]
           .filter(Boolean)
           .join(' ')}
@@ -531,6 +548,7 @@ export function MapStage({
         onBlur={() => setSpotFocus((s) => (s === p.slug ? null : s))}
       >
         <circle className={styles.hit} r={18} />
+        {previewed && <circle className={styles.pulse} r={ring} data-pulse="" />}
         <circle className={styles.ring} r={ring} />
         {p.capital ? (
           <polygon className={styles.dot} points={STAR} transform="scale(7)" />
@@ -612,7 +630,8 @@ export function MapStage({
                     className={[
                       styles.tint,
                       styles[highlight(r)],
-                      (r.id === shownId || r.id === litId || (inWorld && focusRegions?.has(r.id))) && styles.lit,
+                      (r.id === shownId || r.id === litId || (inWorld && (focusRegions?.has(r.id) || previewRegions?.has(r.id)))) &&
+                        styles.lit,
                       r.id === shownId && r.id === focusId && styles.focused,
                     ]
                       .filter(Boolean)
@@ -637,7 +656,7 @@ export function MapStage({
                         styles.label,
                         styles[highlight(r)],
                         r.tier !== 'continent' && styles.tierLabel,
-                        (r.id === shownId || r.id === litId) && styles.lit,
+                        (r.id === shownId || r.id === litId || (inWorld && previewRegions?.has(r.id))) && styles.lit,
                         inWorld && heroClass(r.id),
                       ]
                         .filter(Boolean)
