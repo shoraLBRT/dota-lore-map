@@ -366,7 +366,10 @@
   animation: thread-flash calc(var(--dur-thread) + 300ms) var(--ease-out) both;
 }
 
-/* Нить ушла за край кадра (S2/S3): стрелка и название места, клик ведёт к нему. */
+/*
+ * Нить ушла за край кадра (S2/S3): стрелка, место и (если другой) регион, клик ведёт к месту.
+ * left/top — левый верхний угол метки, его считает placeEdgeLabels (#64): метка целиком в видимой части кадра.
+ */
 .exit {
   position: absolute;
   z-index: 1;
@@ -380,11 +383,30 @@
   color: var(--text-1);
   font-size: 0.8rem;
   font-weight: 600;
+  line-height: 1.25;
+  text-align: left;
   white-space: nowrap;
   cursor: pointer;
-  transform: translate(-50%, -50%);
   box-shadow: 0 0 10px var(--hl-glow);
   animation: fade-in var(--dur-fade) var(--ease-out) var(--dur-camera) both;
+}
+
+.exitText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.exitName,
+.exitRegion {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.exitRegion {
+  color: var(--text-2);
+  font-size: 0.7rem;
+  font-weight: 400;
 }
 
 .exit:hover,

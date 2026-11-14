@@ -118,3 +118,55 @@ export function placeMarkerLabels(items: MarkerLabel[], bounds?: Box): Map<strin
   }
   return result;
 }
+
+/** Метка «нить за краем» (SPEC §6.6): точка, где нить уходит из кадра, и размер метки, px. */
+export interface EdgeLabel {
+  key: string;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+
+/** Просвет между метками «нить за краем», px. */
+export const EDGE_GAP = 4;
+/** Сколько шагов в сторону метка ищет свободное место, прежде чем встать поверх соседки. */
+const EDGE_TRIES = 6;
+
+/** Отрезок длиной `size` с центром как можно ближе к `c`, целиком внутри [min, max]; не влезает — от `min`. */
+const clampSpan = (c: number, size: number, min: number, max: number) =>
+  size >= max - min ? min : Math.min(Math.max(c - size / 2, min), max - size);
+
+/**
+ * Расстановка меток «нить за краем» (#64): каждая — по центру своей точки, но целиком внутри `frame`
+ * (видимая часть кадра: правее левой полосы, левее панели, выше шторки). Мешают ей уже поставленные метки
+ * (по порядку `items`): тогда она отходит на шаг в высоту метки вверх или вниз, затем на шаг в ширину
+ * вправо или влево — до `EDGE_TRIES` шагов. Места нет нигде — встаёт как без соседок.
+ * Возвращает левый верхний угол каждой метки в px кадра.
+ */
+export function placeEdgeLabels(items: EdgeLabel[], frame: Box): Map<string, { left: number; top: number }> {
+  const placed: Box[] = [];
+  const result = new Map<string, { left: number; top: number }>();
+  for (const m of items) {
+    // Шаги отсчитываются от уже прижатой к кадру метки: иначе у края шаг «съедается» прижатием.
+    const cx = clampSpan(m.x, m.width, frame.left, frame.right) + m.width / 2;
+    const cy = clampSpan(m.y, m.height, frame.top, frame.bottom) + m.height / 2;
+    const at = (dx: number, dy: number): Box => {
+      const left = clampSpan(cx + dx, m.width, frame.left, frame.right);
+      const top = clampSpan(cy + dy, m.height, frame.top, frame.bottom);
+      return { left, top, right: left + m.width, bottom: top + m.height };
+    };
+    const free = (b: Box) =>
+      !placed.some((p) => b.left < p.right + EDGE_GAP && p.left < b.right + EDGE_GAP && b.top < p.bottom + EDGE_GAP && p.top < b.bottom + EDGE_GAP);
+    const stepY = m.height + EDGE_GAP;
+    const stepX = m.width + EDGE_GAP;
+    const candidates = [at(0, 0)];
+    for (let k = 1; k <= EDGE_TRIES; k++) {
+      candidates.push(at(0, k * stepY), at(0, -k * stepY), at(k * stepX, 0), at(-k * stepX, 0));
+    }
+    const box = candidates.find(free) ?? candidates[0]!;
+    placed.push(box);
+    result.set(m.key, { left: box.left, top: box.top });
+  }
+  return result;
+}

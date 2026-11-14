@@ -152,6 +152,7 @@ export function WorldScreen({ screen, veiled = false }: Props) {
             onSelectSpot={(s) => open(spotScreen(s))}
             regionList={mobile}
             topInset={topInset}
+            coverTop={barBottom}
           />
         </main>
         {showHint && <WorldHint state={hint.state} />}

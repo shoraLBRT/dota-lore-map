@@ -13,7 +13,7 @@ import {
 import { cssDuration, cssPixels } from '../../app/motion';
 import { useSfx } from '../../app/sound';
 import type { Camera, Hero, Place, Point, Region } from '../../data/types';
-import { heroesOfPlace, heroesOfRegion, placeName } from '../../data/world';
+import { getRegion, heroesOfPlace, heroesOfRegion, placeName } from '../../data/world';
 import { useT } from '../../i18n';
 import { AmbientCanvas } from '../atmosphere/AmbientCanvas';
 import { spotName, type Spot } from '../search/search';
@@ -45,7 +45,17 @@ function isMobile(): boolean {
 }
 import { EDGE_CLOUDS } from './cloudSets';
 import { Clouds } from './Clouds';
-import { clampLabelX, LABEL_GAP, placeMarkerLabels, splitLabel, type Box, type LabelSide, type MarkerLabel } from './labels';
+import {
+  clampLabelX,
+  LABEL_GAP,
+  placeEdgeLabels,
+  placeMarkerLabels,
+  splitLabel,
+  type Box,
+  type EdgeLabel,
+  type LabelSide,
+  type MarkerLabel,
+} from './labels';
 import styles from './MapStage.module.css';
 import { PlaceTooltip } from './PlaceTooltip';
 import { RegionArt } from './RegionArt';
@@ -80,6 +90,8 @@ interface Props {
   regionList?: boolean;
   /** Сколько px сверху кадра занято (плашка героя): карта со списком встаёт ниже. */
   topInset?: number;
+  /** Низ плашки героя или поиска над кадром, px от его верха (0 — плашки нет): метки «нить за краем» — ниже (#64). */
+  coverTop?: number;
 }
 
 /** Отступ подписей маркеров от края видимой части кадра, px. */
@@ -87,6 +99,15 @@ const LABEL_MARGIN = 4;
 
 /** Отступ меток «нить за краем» от края кадра, px. */
 const EXIT_MARGIN = 28;
+
+/** Отступ самих меток «нить за краем» от края видимой части кадра, px (#64). */
+const EXIT_LABEL_MARGIN = 8;
+
+/** Размер метки «нить за краем» без измерений (jsdom): кегль 0.8rem, стрелка, отступы, одна или две строки. */
+function estimateExit(name: string, region: string | undefined): [number, number] {
+  const chars = Math.max(name.length, region?.length ?? 0);
+  return [Math.min(chars * 7.5 + 40, 224), region ? 44 : 28];
+}
 
 /** Кегль подписей маркеров (MapStage.module.css: .markerLabel, .capital .markerLabel), px. */
 const MARKER_FONT = 13;
@@ -103,6 +124,18 @@ function measureTexts(root: Element | null): Record<string, number> {
     const width = el.getComputedTextLength();
     const key = el.getAttribute('data-measure')!;
     if (width > 0) out[key] = Math.max(out[key] ?? 0, width);
+  });
+  return out;
+}
+
+/** Ширины (`w:key`) и высоты (`h:key`) элементов, px. Без измерений (jsdom, offsetWidth 0) — пусто. */
+function measureBoxes(els: Map<string, HTMLElement>): Record<string, number> {
+  const out: Record<string, number> = {};
+  els.forEach((el, key) => {
+    if (el.offsetWidth > 0) {
+      out[`w:${key}`] = el.offsetWidth;
+      out[`h:${key}`] = el.offsetHeight;
+    }
   });
   return out;
 }
@@ -180,6 +213,7 @@ export function MapStage({
   onSelectSpot,
   regionList = false,
   topInset = 0,
+  coverTop = 0,
 }: Props) {
   const { l, lang, t } = useT();
   const sfx = useSfx();
@@ -341,8 +375,33 @@ export function MapStage({
       const target = aSeen ? b : a;
       if (exit && !out.has(target.key)) out.set(target.key, { spot: target, ...exit });
     }
-    return [...out.values()];
-  }, [threads, active, framed, view, inset, insetBottom]);
+    return [...out.values()].map((e) => {
+      // Место в другом регионе — второй строкой регион (#64): «Мрачное Гнездовье / Небеса».
+      // Регион не повторяется, если место называется так же («Друуд» в Друуде).
+      const name = spotName(e.spot, lang);
+      const other = e.spot.placeSlug && e.spot.regionId !== active.id ? getRegion(e.spot.regionId)?.name[lang] : undefined;
+      return { ...e, name, region: other && other !== name ? other : undefined };
+    });
+  }, [threads, active, framed, view, inset, insetBottom, lang]);
+
+  // Метки «нить за краем» — целиком в видимой части кадра и не друг на друге (#64). Размеры — измеренные.
+  const [exitSizes, setExitSizes] = useState<Record<string, number>>({});
+  const exitRefs = useRef(new Map<string, HTMLButtonElement>());
+  const exitsKey = `${lang}|${fontsTick}|${exits.map((e) => e.spot.key).join(',')}`;
+  useLayoutEffect(() => {
+    const next = measureBoxes(exitRefs.current);
+    setExitSizes((prev) => (sameRecord(prev, next) ? prev : next));
+  }, [exitsKey]);
+  const exitAt = useMemo(() => {
+    const items: EdgeLabel[] = exits.map((e) => {
+      const [w, h] = estimateExit(e.name, e.region);
+      return { key: e.spot.key, x: e.x, y: e.y, width: exitSizes[`w:${e.spot.key}`] ?? w, height: exitSizes[`h:${e.spot.key}`] ?? h };
+    });
+    const frame = visibleFrame(view, inset, EXIT_LABEL_MARGIN, insetBottom);
+    // Плашка героя или поиск сверху кадра (z-index выше меток): метки встают под неё.
+    if (coverTop > 0) frame.top = Math.max(frame.top, coverTop + EXIT_LABEL_MARGIN);
+    return placeEdgeLabels(items, frame);
+  }, [exits, exitSizes, view, inset, insetBottom, coverTop]);
 
   // Анимация камеры (A3, A4). Пока она идёт, навигация занята: клики ставятся в очередь.
   const shownCamera = useRef<Camera>(camera);
@@ -611,23 +670,33 @@ export function MapStage({
           </div>
           {active && <AmbientCanvas key={active.id} ambient={active.ambient} />}
           <div className={styles.vignette} style={listLayout ? rectStyle(listLayout.map) : undefined} aria-hidden="true" />
-          {exits.map((e) => (
-            <button
-              key={`${threadsKey ?? ''}/${e.spot.key}`}
-              type="button"
-              className={[styles.exit, styles[e.spot.tone]].join(' ')}
-              style={{ left: `${e.x.toFixed(1)}px`, top: `${e.y.toFixed(1)}px` }}
-              onClick={(ev) => {
-                ev.stopPropagation();
-                onSelectSpot?.(e.spot);
-              }}
-            >
-              <span className={styles.exitArrow} style={{ transform: `rotate(${e.angle.toFixed(1)}deg)` }} aria-hidden="true">
-                ➜
-              </span>
-              {spotName(e.spot, lang)}
-            </button>
-          ))}
+          {exits.map((e) => {
+            const at = exitAt.get(e.spot.key);
+            return (
+              <button
+                key={`${threadsKey ?? ''}/${e.spot.key}`}
+                ref={(el) => {
+                  if (el) exitRefs.current.set(e.spot.key, el);
+                  else exitRefs.current.delete(e.spot.key);
+                }}
+                type="button"
+                className={[styles.exit, styles[e.spot.tone]].join(' ')}
+                style={at ? { left: `${at.left.toFixed(1)}px`, top: `${at.top.toFixed(1)}px` } : undefined}
+                onClick={(ev) => {
+                  ev.stopPropagation();
+                  onSelectSpot?.(e.spot);
+                }}
+              >
+                <span className={styles.exitArrow} style={{ transform: `rotate(${e.angle.toFixed(1)}deg)` }} aria-hidden="true">
+                  ➜
+                </span>
+                <span className={styles.exitText}>
+                  <span className={styles.exitName}>{e.name}</span>
+                  {e.region && <span className={styles.exitRegion}>{e.region}</span>}
+                </span>
+              </button>
+            );
+          })}
           <div className={styles.cloudBox} style={listLayout ? rectStyle(listLayout.map) : undefined}>
             <Clouds clouds={EDGE_CLOUDS} mode="drift" hidden={!inWorld} />
           </div>
