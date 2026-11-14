@@ -125,6 +125,12 @@ export function WorldScreen({ screen, veiled = false }: Props) {
     navigate({ screen: heroScreen(h), hero: h.key });
   };
   const clearHero = () => navigate({ screen: route.screen });
+  // Портрет в подсказке региона (#65): герой выбран, как из поиска, но камера остаётся в мире.
+  // С профилем героя (E15, #61) здесь откроется он.
+  const pickHere = (h: Hero) => {
+    setSearchOpen(false);
+    navigate({ screen: route.screen, hero: h.key });
+  };
 
   return (
     <div
@@ -153,6 +159,7 @@ export function WorldScreen({ screen, veiled = false }: Props) {
             threads={threads}
             threadsKey={threadsKey}
             preview={previewSpots}
+            onPickHero={pickHere}
             onSelectSpot={(s) => open(spotScreen(s))}
             regionList={mobile}
             topInset={topInset}

@@ -39,6 +39,7 @@
   "about.code": "Исходный код на GitHub",
   "about.close": "Закрыть",
   "tooltip.more": "и ещё {n}",
+  "tooltip.pick": "Нажмите на героя — он появится на карте",
   "panel.collapse": "Свернуть панель",
   "panel.expand": "Развернуть панель",
   "panel.breadcrumbs": "Навигация по уровням",
