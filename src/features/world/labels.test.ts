@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { clampLabelX, labelBox, placeMarkerLabels, splitLabel, type MarkerLabel } from './labels';
+import { clampLabelX, EDGE_GAP, labelBox, placeEdgeLabels, placeMarkerLabels, splitLabel, type EdgeLabel, type MarkerLabel } from './labels';
 
 describe('splitLabel — длинные названия регионов в две строки', () => {
   it('короткое и без пробела — одной строкой', () => {
@@ -81,5 +81,51 @@ describe('placeMarkerLabels — подписи маркеров не налез�
       const touchesRing = b.left < 9 && b.right > -9 && b.top < 9 && b.bottom > -9;
       expect(touchesRing, side).toBe(false);
     }
+  });
+});
+
+const e = (key: string, x: number, y: number, width = 160, height = 40): EdgeLabel => ({ key, x, y, width, height });
+/** Кадр 1440×900 без левой полосы и панели (492 px) — как на ноутбуке. */
+const FRAME = { left: 8, top: 8, right: 1440 - 64 - 492 - 8, bottom: 900 - 8 };
+
+describe('placeEdgeLabels — метки «нить за краем» в видимой части кадра (#64)', () => {
+  it('просторно — по центру своей точки', () => {
+    expect(placeEdgeLabels([e('a', 400, 300)], FRAME).get('a')).toEqual({ left: 320, top: 280 });
+  });
+
+  it('у края — целиком внутри кадра: не уходит под левую полосу, под панель и под шторку', () => {
+    const at = placeEdgeLabels([e('l', 28, 300), e('r', FRAME.right - 20, 500), e('b', 400, 880)], FRAME);
+    expect(at.get('l')).toEqual({ left: 8, top: 280 });
+    expect(at.get('r')).toEqual({ left: FRAME.right - 160, top: 480 });
+    expect(at.get('b')).toEqual({ left: 320, top: FRAME.bottom - 40 });
+  });
+
+  it('метка шире кадра — от его левого края', () => {
+    const narrow = { left: 8, top: 8, right: 108, bottom: 500 };
+    expect(placeEdgeLabels([e('w', 50, 200)], narrow).get('w')).toEqual({ left: 8, top: 180 });
+  });
+
+  it('метки не налезают друг на друга: следующая отходит вниз или вверх', () => {
+    const items = [e('a', 28, 300), e('b', 28, 310), e('c', 28, 305)];
+    const at = placeEdgeLabels(items, FRAME);
+    const boxes = items.map((m) => ({ ...at.get(m.key)!, w: m.width, h: m.height }));
+    for (let i = 0; i < boxes.length; i++) {
+      for (let j = i + 1; j < boxes.length; j++) {
+        const [p, q] = [boxes[i]!, boxes[j]!];
+        const apart =
+          p.left + p.w + EDGE_GAP <= q.left || q.left + q.w + EDGE_GAP <= p.left || p.top + p.h + EDGE_GAP <= q.top || q.top + q.h + EDGE_GAP <= p.top;
+        expect(apart, `${i}/${j}`).toBe(true);
+      }
+      expect(boxes[i]!.left).toBeGreaterThanOrEqual(FRAME.left);
+    }
+    expect(at.get('a')).toEqual({ left: 8, top: 280 });
+    // b у своей точки налезла бы на a — на шаг в высоту метки ниже.
+    expect(at.get('b')!.top).toBe(290 + 40 + EDGE_GAP);
+  });
+
+  it('в углу, где вниз нельзя, — отходит вверх', () => {
+    const at = placeEdgeLabels([e('a', 28, 880), e('b', 28, 880)], FRAME);
+    expect(at.get('a')!.top).toBe(FRAME.bottom - 40);
+    expect(at.get('b')!.top).toBe(FRAME.bottom - 40 - 40 - EDGE_GAP);
   });
 });
