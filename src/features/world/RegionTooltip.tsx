@@ -166,8 +166,13 @@ export function RegionTooltip({
   const ownRef = useRef<HTMLDivElement>(null);
   const ref = tipRef ?? ownRef;
   const nameId = `${id}-name`;
-  // «+N» раскрыт у этого региона; другой регион — снова свёрнуто.
+  // «+N» раскрыт у этого региона; подсказка перешла на другой регион — снова свёрнуто, и при возврате тоже.
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [prevRegion, setPrevRegion] = useState(region.id);
+  if (prevRegion !== region.id) {
+    setPrevRegion(region.id);
+    setExpandedId(null);
+  }
   const expanded = expandedId === region.id;
   const [named, setNamed] = useState<Hero | null>(null);
   const pos = useAnchoredPosition(ref, getAnchor, region.id, expanded ? region.id : '');

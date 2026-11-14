@@ -2,6 +2,8 @@
 .tooltip {
   position: fixed;
   z-index: 50;
+  /* Ширина — по содержимому, а не по месту справа от left: иначе у правого края она сжимается и замер врёт. */
+  width: max-content;
   max-width: min(26rem, calc(100vw - 16px));
   padding: var(--space-3) var(--space-4);
   border: 1px solid var(--metal);

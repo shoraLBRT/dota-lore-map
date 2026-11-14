@@ -501,6 +501,11 @@ describe('MapStage — подсказка региона с героями (#65)
     fireEvent.click(within(tip()!).getByRole('button', { name: 'Hero 7' }));
     expect(onPickHero).toHaveBeenLastCalledWith(expect.objectContaining({ key: 'h7' }));
 
+    // Подсказка ушла на другой регион и вернулась — снова свёрнуто.
+    fireEvent.pointerEnter(screen.getByRole('button', { name: 'b en' }), { pointerType: 'mouse' });
+    fireEvent.pointerEnter(polygon, { pointerType: 'mouse' });
+    expect(within(tip()!).getAllByRole('button')).toHaveLength(7);
+
     fireEvent.click(polygon);
     expect(onSelectRegion).toHaveBeenCalledWith('a', 'map');
   });
