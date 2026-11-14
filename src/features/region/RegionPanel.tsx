@@ -5,7 +5,6 @@ import { Paragraphs } from '../../components/Paragraphs';
 import type { Region } from '../../data/types';
 import { heroesOfRegion } from '../../data/world';
 import { useT } from '../../i18n';
-import { Breadcrumbs } from '../panel/Breadcrumbs';
 import { useHeroPreview } from '../search/preview';
 import { MediaCards } from '../panel/MediaCards';
 import { panelStyles } from '../panel/Panel';
@@ -16,11 +15,11 @@ export const REGION_HEROES = 12;
 
 /**
  * Содержимое панели региона S2 (SPEC §5.4): название, подзаголовок, герои, разделитель,
- * характеристики 2×2, описание, «Подробнее ↗», медиа, крошки «‹ Мир». Пустые блоки не рисуются.
+ * характеристики 2×2, описание, «Подробнее ↗», медиа. Крошка «‹ Мир» — в шапке панели (Breadcrumbs). Пустые блоки не рисуются.
  */
 export function RegionPanel({ region }: { region: Region }) {
   const { l, t } = useT();
-  const { route, open, navigate } = useNavigation();
+  const { route, navigate } = useNavigation();
   const preview = useHeroPreview();
 
   return (
@@ -43,8 +42,6 @@ export function RegionPanel({ region }: { region: Region }) {
         items={region.media}
         onOpen={(media) => navigate({ ...route, media })}
       />
-      <Divider />
-      <Breadcrumbs text={t('panel.world')} onClick={() => open({ name: 'world' })} />
     </>
   );
 }

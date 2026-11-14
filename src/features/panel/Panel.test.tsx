@@ -7,6 +7,7 @@ import { getRegion, heroesOfRegion, world } from '../../data/world';
 import { I18nProvider } from '../../i18n';
 import { PlacePanel } from '../location/PlacePanel';
 import { REGION_HEROES, RegionPanel } from '../region/RegionPanel';
+import { Breadcrumbs } from './Breadcrumbs';
 import { Panel } from './Panel';
 
 const bare: Region = {
@@ -31,7 +32,7 @@ function wrap(node: React.ReactNode, lang: 'ru' | 'en' = 'ru') {
 }
 
 describe('панель региона (SPEC §5.4)', () => {
-  it('реальный регион: заголовок, подзаголовок, герои, характеристики 2×2, описание, крошки «‹ Мир»', () => {
+  it('реальный регион: заголовок, подзаголовок, герои, характеристики 2×2, описание', () => {
     const icewrack = getRegion('icewrack')!;
     wrap(<RegionPanel region={icewrack} />);
     expect(screen.getByRole('heading', { level: 2, name: icewrack.name.ru })).toBeInTheDocument();
@@ -41,11 +42,8 @@ describe('панель региона (SPEC §5.4)', () => {
     const terms = screen.getAllByRole('term').map((el) => el.textContent);
     expect(terms).toEqual(['Сторона', 'Власть', 'Магия', 'Среда']);
     expect(screen.getByText(icewrack.traits!.rule!.ru)).toBeInTheDocument();
-
-    const crumbs = screen.getByRole('navigation', { name: 'Навигация по уровням' });
-    within(crumbs).getByRole('button', { name: '‹ Мир' });
-    fireEvent.click(within(crumbs).getByRole('button'));
-    expect(window.location.hash).toBe('#/world');
+    // Крошка «назад» — в шапке панели, а не в содержимом (SPEC §6.4).
+    expect(screen.queryByRole('navigation')).toBeNull();
   });
 
   it('пустые блоки не показываются; характеристик нет — «Неизвестно», сторона известна всегда', () => {
@@ -91,13 +89,12 @@ describe('панель региона (SPEC §5.4)', () => {
 describe('панель места (SPEC §5.5)', () => {
   const place: Place = { name: 'Nowhere', slug: 'nowhere', capital: false, placement: 'ours' };
 
-  it('место без текста, арта и медиа — только название и крошки, без пустых блоков и заглушек', () => {
+  it('место без текста, арта и медиа — только название, без пустых блоков и заглушек', () => {
     wrap(<PlacePanel region={bare} place={place} />);
     expect(screen.getByRole('heading', { level: 2, name: 'Nowhere' })).toBeInTheDocument();
     expect(screen.queryByRole('img')).toBeNull();
     expect(screen.queryByRole('heading', { level: 3 })).toBeNull();
-    fireEvent.click(screen.getByRole('button', { name: '‹ Пустошь' }));
-    expect(window.location.hash).toBe('#/r/nowhere-land');
+    expect(screen.queryByRole('button')).toBeNull();
   });
 
   it('место с текстом, шапкой и медиа', () => {
@@ -117,7 +114,6 @@ describe('панель места (SPEC §5.5)', () => {
     expect(screen.getByText('Text.')).toBeInTheDocument();
     expect(document.querySelector('img[src="/art.webp"]')).not.toBeNull();
     expect(screen.getByRole('heading', { name: 'Media in this place' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: '‹ Waste' })).toBeInTheDocument();
   });
 });
 
@@ -148,5 +144,37 @@ describe('сворачивание панели (SPEC §5.4)', () => {
     fireEvent.click(expand);
     expect(screen.getByRole('button', { name: 'Внутри' })).toBeInTheDocument();
     expect(screen.getByTestId('panel-dock').className).not.toMatch(/collapsed/);
+  });
+});
+
+describe('крошка «назад» в шапке панели (SPEC §6.4)', () => {
+  const place: Place = { name: 'Nowhere', slug: 'nowhere', capital: false, placement: 'ours' };
+
+  it('регион: «‹ Мир» ведёт в мир; место: «‹ Регион» ведёт в регион; RU и EN', () => {
+    const { unmount } = wrap(<Breadcrumbs region={bare} />);
+    const crumbs = screen.getByRole('navigation', { name: 'Навигация по уровням' });
+    fireEvent.click(within(crumbs).getByRole('button', { name: '‹ Мир' }));
+    expect(window.location.hash).toBe('#/world');
+    unmount();
+
+    wrap(<Breadcrumbs region={bare} place={place} />, 'en');
+    fireEvent.click(screen.getByRole('button', { name: '‹ Waste' }));
+    expect(window.location.hash).toBe('#/r/nowhere-land');
+  });
+
+  it('шапка стоит над прокруткой: до кнопки не надо листать, рядом — «Свернуть»', () => {
+    wrap(
+      <Panel label="Пустошь" collapsed={false} onToggle={() => {}} contentKey="k" back={<Breadcrumbs region={bare} />}>
+        <p>Длинный текст</p>
+      </Panel>,
+    );
+    const panel = screen.getByRole('complementary', { name: 'Пустошь' });
+    const [head, scroller] = Array.from(panel.children) as HTMLElement[];
+    expect(within(head!).getByRole('button', { name: '‹ Мир' })).toBeInTheDocument();
+    expect(within(scroller!).queryByRole('button', { name: '‹ Мир' })).toBeNull();
+    expect(within(scroller!).getByText('Длинный текст')).toBeInTheDocument();
+    // Порядок фокуса: «Свернуть» → «‹ Мир» → содержимое.
+    const buttons = screen.getAllByRole('button').map((b) => b.getAttribute('aria-label'));
+    expect(buttons).toEqual(['Свернуть панель', '‹ Мир']);
   });
 });

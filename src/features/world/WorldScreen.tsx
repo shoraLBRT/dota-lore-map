@@ -7,6 +7,7 @@ import type { Hero } from '../../data/types';
 import { getHero, getPlace, getRegion, placeName, world } from '../../data/world';
 import { useT } from '../../i18n';
 import { PlacePanel } from '../location/PlacePanel';
+import { Breadcrumbs } from '../panel/Breadcrumbs';
 import { Panel } from '../panel/Panel';
 import { Rail } from '../rail/Rail';
 import { RegionPanel } from '../region/RegionPanel';
@@ -169,6 +170,7 @@ export function WorldScreen({ screen, veiled = false }: Props) {
             collapsed={collapsed}
             onToggle={() => setFold({ key: screenKey, collapsed: !collapsed })}
             contentKey={screenKey}
+            back={<Breadcrumbs region={region} place={place} />}
           >
             <HeroPreviewProvider value={onPreview}>
               {place ? <PlacePanel region={region} place={place} /> : <RegionPanel region={region} />}

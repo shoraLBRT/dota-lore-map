@@ -11,6 +11,7 @@ interface Props {
   id: string;
   label: string;
   contentKey: string;
+  header?: ReactNode;
   children: ReactNode;
 }
 
@@ -19,7 +20,7 @@ interface Props {
  * Ручка: тап переключает, «потянуть» меняет высоту, отпустили — шторка встаёт в ближайшее положение.
  * Новый регион или место — снова свёрнута, чтобы была видна карта.
  */
-export function Sheet({ id, label, contentKey, children }: Props) {
+export function Sheet({ id, label, contentKey, header, children }: Props) {
   const { t } = useT();
   const [state, setState] = useState<{ key: string; full: boolean }>({ key: contentKey, full: false });
   const full = state.key === contentKey && state.full;
@@ -30,8 +31,8 @@ export function Sheet({ id, label, contentKey, children }: Props) {
 
   // Свёрнутая шторка прокручивается к началу: после разворота текст снова сверху.
   useEffect(() => {
-    // Прокручивается внутренний блок рамки.
-    if (!full) document.getElementById(id)?.firstElementChild?.scrollTo?.({ top: 0 });
+    // Прокручивается внутренний блок рамки — последний: над ним может стоять шапка.
+    if (!full) document.getElementById(id)?.lastElementChild?.scrollTo?.({ top: 0 });
   }, [full, id]);
 
   const set = (next: boolean) => setState({ key: contentKey, full: next });
@@ -92,7 +93,7 @@ export function Sheet({ id, label, contentKey, children }: Props) {
       >
         <span className={styles.grip} aria-hidden="true" />
       </button>
-      <PanelFrame id={id} label={label} className={styles.frame}>
+      <PanelFrame id={id} label={label} className={styles.frame} header={header}>
         {children}
       </PanelFrame>
     </div>

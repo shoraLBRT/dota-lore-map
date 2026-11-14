@@ -16,3 +16,16 @@
   background: linear-gradient(180deg, var(--bg-2) 0%, var(--bg-1) 30%, var(--bg-1) 100%);
   clip-path: inherit;
 }
+
+/* Шапка над прокруткой (крошка «назад»): срезанный угол — у неё, прокрутка под ней уже без среза. */
+.head {
+  flex: none;
+  padding: var(--space-3) var(--space-5) var(--space-2);
+  background: var(--bg-2);
+  clip-path: inherit;
+}
+
+.underHead {
+  padding-top: var(--space-2);
+  clip-path: none;
+}
