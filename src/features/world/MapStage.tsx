@@ -18,6 +18,7 @@ import { useT } from '../../i18n';
 import { AmbientCanvas } from '../atmosphere/AmbientCanvas';
 import { spotName, type Spot } from '../search/search';
 import { preloadRegionArt } from './art';
+import { focusAfter } from './focus';
 import { biomeColor } from './biomes';
 import {
   animateCamera,
@@ -89,6 +90,8 @@ interface Props {
    * его регионы, в регионе и месте — пульсируют его маркеры, места за кадром получают метку у края.
    */
   preview?: Spot[];
+  /** Нажат портрет в подсказке региона (#65): выбрать героя, не уходя из мира. Без него портреты не кликаются. */
+  onPickHero?: (hero: Hero) => void;
   /** Клик по метке нити, ушедшей за край кадра. */
   onSelectSpot?: (spot: Spot) => void;
   /** Телефон (#39, SPEC §13): в мире карта прижата к верху, под ней — список регионов. */
@@ -194,6 +197,9 @@ function onActivate(action: () => void) {
 
 const noop = () => () => {};
 
+/** Задержка закрытия подсказки региона: успеть перевести мышь с региона на подсказку и обратно (#65), мс. */
+export const TOOLTIP_CLOSE_DELAY = 200;
+
 const rectStyle = (r: Rect): CSSProperties => ({ top: r.top, left: r.left, width: r.width, height: r.height });
 
 /**
@@ -216,6 +222,7 @@ export function MapStage({
   threads,
   threadsKey,
   preview,
+  onPickHero,
   onSelectSpot,
   regionList = false,
   topInset = 0,
@@ -230,6 +237,12 @@ export function MapStage({
   const placeTipId = useId();
   const [hoverId, setHoverId] = useState<string | null>(null);
   const [focusId, setFocusId] = useState<string | null>(null);
+  // Подсказка региона (#65): мышь на ней держит её открытой, фокус в ней (с клавиатуры) — тоже;
+  // Esc закрывает её до ухода с региона.
+  const tipRef = useRef<HTMLDivElement>(null);
+  const [tipFocusId, setTipFocusId] = useState<string | null>(null);
+  const [dismissedId, setDismissedId] = useState<string | null>(null);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const [spotHover, setSpotHover] = useState<string | null>(null);
   const [spotFocus, setSpotFocus] = useState<string | null>(null);
   /** Пункт списка регионов под наведением или фокусом: регион подсвечен на карте, без подсказки. */
@@ -245,9 +258,10 @@ export function MapStage({
   const active = regions.find((r) => r.id === activeRegionId && r.layout);
   const hasMap = drawn.length > 0;
 
-  // S1h только в мире; наведение мышью важнее фокуса.
+  // S1h только в мире; фокус в подсказке важнее мыши (иначе фокус пропадёт вместе с ней), мышь — фокуса на регионе.
   const inWorld = !active;
-  const shownId = inWorld ? (hoverId ?? focusId) : null;
+  const wantedId = inWorld ? (tipFocusId ?? hoverId ?? focusId) : null;
+  const shownId = wantedId === dismissedId ? null : wantedId;
   const litId = inWorld ? listId : null;
   const shown = useMemo(() => regions.find((r) => r.id === shownId && r.layout), [regions, shownId]);
   const shownHeroes = useMemo(() => (shown ? heroesOf(shown.id) : []), [shown, heroesOf]);
@@ -490,7 +504,52 @@ export function MapStage({
     return { x: rect.left + x * rect.width, y: rect.top + y * rect.height };
   }, [spot]);
 
+  const cancelClose = () => clearTimeout(closeTimer.current);
+  // Уход мыши с региона или подсказки: закрыть с задержкой, если она не вернулась на регион или подсказку.
+  const leave = (id: string | null) => {
+    cancelClose();
+    closeTimer.current = setTimeout(() => setHoverId((h) => (id === null || h === id ? null : h)), TOOLTIP_CLOSE_DELAY);
+  };
+  useEffect(() => cancelClose, []);
+
+  const regionButton = (id: string) => svgRef.current?.querySelector<SVGElement>(`[role="button"][data-region="${id}"]`);
+  /** Tab с региона: фокус на первую кнопку подсказки. false — заходить некуда. */
+  const enterTip = (id: string) => {
+    const first = tipRef.current?.querySelector<HTMLElement>('button');
+    if (!first) return false;
+    setTipFocusId(id);
+    first.focus();
+    return true;
+  };
+  const onTipKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    const id = shownId;
+    const polygon = id ? regionButton(id) : null;
+    if (!polygon) return;
+    if (e.key === 'Escape') {
+      // Esc закрывает подсказку, а не снимает героя и не уводит на уровень вверх (App).
+      e.preventDefault();
+      e.stopPropagation();
+      setDismissedId(id);
+      setTipFocusId(null);
+      polygon.focus();
+      return;
+    }
+    if (e.key !== 'Tab') return;
+    const buttons = Array.from(e.currentTarget.querySelectorAll<HTMLElement>('button'));
+    if (e.shiftKey && e.target === buttons[0]) {
+      e.preventDefault();
+      setTipFocusId(null);
+      polygon.focus();
+    } else if (!e.shiftKey && e.target === buttons[buttons.length - 1]) {
+      e.preventDefault();
+      setTipFocusId(null);
+      focusAfter(polygon, e.currentTarget);
+    }
+  };
+
   const enter = (r: Region) => {
+    cancelClose();
+    setDismissedId((d) => (d === r.id ? null : d));
     setHoverId(r.id);
     sfx('hover');
     void preloadRegionArt(r);
@@ -609,15 +668,30 @@ export function MapStage({
                       aria-describedby={r.id === shownId ? tooltipId : undefined}
                       data-region={r.id}
                       onClick={() => onSelectRegion(r.id, 'map')}
-                      onKeyDown={onActivate(() => onSelectRegion(r.id, 'map'))}
+                      onKeyDown={(e) => {
+                        // #65: Tab с региона — в его подсказку, Esc — закрыть её.
+                        if (r.id === shownId && e.key === 'Tab' && !e.shiftKey && enterTip(r.id)) {
+                          e.preventDefault();
+                          return;
+                        }
+                        if (r.id === shownId && e.key === 'Escape') {
+                          e.stopPropagation();
+                          setDismissedId(r.id);
+                          return;
+                        }
+                        onActivate(() => onSelectRegion(r.id, 'map'))(e);
+                      }}
                       // SPEC §5.3: на тач-устройствах подсказки нет, тап сразу открывает регион.
                       onPointerEnter={(e) => e.pointerType !== 'touch' && enter(r)}
-                      onPointerLeave={() => setHoverId((id) => (id === r.id ? null : id))}
+                      onPointerLeave={(e) => e.pointerType !== 'touch' && leave(r.id)}
                       onFocus={() => {
                         setFocusId(r.id);
                         void preloadRegionArt(r);
                       }}
-                      onBlur={() => setFocusId((id) => (id === r.id ? null : id))}
+                      onBlur={() => {
+                        setFocusId((id) => (id === r.id ? null : id));
+                        setDismissedId((d) => (d === r.id ? null : d));
+                      }}
                     />
                   );
                 })}
@@ -737,7 +811,20 @@ export function MapStage({
           )}
         </div>
       )}
-      {shown && !flying && <RegionTooltip id={tooltipId} region={shown} heroes={shownHeroes} getAnchor={getAnchor} />}
+      {shown && !flying && (
+        <RegionTooltip
+          id={tooltipId}
+          region={shown}
+          heroes={shownHeroes}
+          getAnchor={getAnchor}
+          tipRef={tipRef}
+          onPick={onPickHero}
+          onPointerEnter={cancelClose}
+          onPointerLeave={() => leave(null)}
+          onKeyDown={onTipKeyDown}
+          onFocusOut={() => setTipFocusId(null)}
+        />
+      )}
       {active && spot && !flying && (
         <PlaceTooltip id={placeTipId} placeKey={`${active.id}/${spot.slug}`} heroes={spotHeroes} getAnchor={getSpotAnchor} />
       )}

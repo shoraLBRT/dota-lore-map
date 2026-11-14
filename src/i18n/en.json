@@ -39,6 +39,7 @@
   "about.code": "Source code on GitHub",
   "about.close": "Close",
   "tooltip.more": "and {n} more",
+  "tooltip.pick": "Click a hero to show them on the map",
   "panel.collapse": "Collapse panel",
   "panel.expand": "Expand panel",
   "panel.breadcrumbs": "Level navigation",

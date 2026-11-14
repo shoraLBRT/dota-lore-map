@@ -2,12 +2,16 @@
 .tooltip {
   position: fixed;
   z-index: 50;
+  /* Ширина — по содержимому, а не по месту справа от left: иначе у правого края она сжимается и замер врёт. */
+  width: max-content;
   max-width: min(26rem, calc(100vw - 16px));
   padding: var(--space-3) var(--space-4);
   border: 1px solid var(--metal);
   background: var(--bg-1);
   box-shadow: var(--shadow-2);
   pointer-events: none;
+  overflow-y: auto;
+  max-height: calc(100vh - 16px);
   clip-path: polygon(
     var(--cut-sm) 0,
     100% 0,
@@ -71,6 +75,34 @@
   color: var(--metal-bright);
   font-size: 0.8rem;
   font-weight: 700;
+}
+
+/* Подсказка региона с портретами-кнопками (#65): в неё можно зайти мышью. */
+.interactive {
+  pointer-events: auto;
+}
+
+button.more {
+  border-radius: 0;
+  cursor: pointer;
+  transition:
+    border-color var(--dur-hover) var(--ease-out),
+    color var(--dur-hover) var(--ease-out),
+    box-shadow var(--dur-hover) var(--ease-out);
+}
+
+button.more:hover,
+button.more:focus-visible {
+  border-color: var(--metal-bright);
+  color: var(--text-1);
+  box-shadow: var(--glow-metal);
+}
+
+/* Подпись под портретами: имя героя под курсором, иначе — что делает нажатие. */
+.caption {
+  margin: var(--space-2) 0 0;
+  color: var(--text-2);
+  font-size: 0.8rem;
 }
 
 /* Подсказка маркера места (SPEC §5.4): только портреты. */
