@@ -32,6 +32,26 @@ const isHttps = (v) => typeof v === 'string' && /^https:\/\/[^\s/]+\.[^\s]+$/.te
 const isMediaSrc = (v) => isHttps(v) || (isNonEmptyString(v) && !/^[a-z][a-z0-9+.-]*:|^\/\//i.test(v) && !/\s/.test(v));
 // Модель связей героя (E14, ARCHITECTURE A3). Те же правила проверяет research/e1/build.py.
 export const EVENTS = ['origin', 'home', 'journey', 'battle', 'service', 'exile', 'death', 'visit', 'mention', 'link'];
+/**
+ * События, при которых место — не остановка пути героя: `mention` — герой там не был, `link` — тип из E1 не уточнён.
+ * Тот же список — OFF_PATH в src/features/search/threads.ts (нити, A11); совпадение проверяет тест.
+ */
+export const OFF_PATH_EVENTS = ['mention', 'link'];
+/** Значимость места на карте (SPEC §6.3, ARCHITECTURE A3, #68): событие, неуточнённая связь E1, второстепенное. */
+export const SIGNIFICANCE = ['event', 'link', 'minor'];
+
+/**
+ * Значимость места — из данных, без ручной разметки (ARCHITECTURE A3, #68):
+ * `event` — у героя тут событие пути (любое, кроме mention и link), место — остановка его `path`,
+ * или тут происходит действие медиа места; `link` — только связи E1 без уточнения (или столица без событий);
+ * `minor` — только упоминания или героев нет.
+ * @param {{ events: Iterable<string>, onPath?: boolean, media?: unknown[], capital?: boolean }} place
+ */
+export function placeSignificance({ events, onPath = false, media, capital = false }) {
+  const list = [...events];
+  if (onPath || (media?.length ?? 0) > 0 || list.some((e) => !OFF_PATH_EVENTS.includes(e))) return 'event';
+  return capital || list.includes('link') ? 'link' : 'minor';
+}
 /** Кем другой герой приходится этому → обратный тип. */
 export const RELATIONS = {
   ally: 'ally',
@@ -670,6 +690,19 @@ export function buildWorld({ heroes, regions, heroPlaces, heroAliases, contents 
     }),
   );
 
+  // События героев по местам и остановки путей — для значимости места.
+  const spotEvents = new Map();
+  const pathSpots = new Set();
+  for (const h of heroList) {
+    for (const link of h.links) {
+      if (link.placeSlug === undefined) continue;
+      const k = `${link.regionId}/${link.placeSlug}`;
+      if (!spotEvents.has(k)) spotEvents.set(k, new Set());
+      spotEvents.get(k).add(link.event);
+    }
+    for (const stop of h.path ?? []) if (stop.placeSlug !== undefined) pathSpots.add(`${stop.regionId}/${stop.placeSlug}`);
+  }
+
   const worldRegions = regions.regions.map((r) => {
     const c = contentById.get(r.id);
     return compact({
@@ -687,18 +720,27 @@ export function buildWorld({ heroes, regions, heroPlaces, heroAliases, contents 
       media: c?.media,
       moreLink: c?.moreLink,
       layout: map?.regions.get(r.id),
-      places: r.locations.map((l) =>
-        compact({
+      places: r.locations.map((l) => {
+        const slug = placeSlug(l.name);
+        const k = `${r.id}/${slug}`;
+        const media = c?.places.get(l.name)?.media;
+        return compact({
           name: l.name,
-          slug: placeSlug(l.name),
+          slug,
           capital: l.capital === true,
           placement: l.placement,
+          significance: placeSignificance({
+            events: spotEvents.get(k) ?? [],
+            onPath: pathSpots.has(k),
+            media,
+            capital: l.capital === true,
+          }),
           note: l.note,
           text: c?.places.get(l.name)?.text,
-          media: c?.places.get(l.name)?.media,
+          media,
           pos: map?.places.get(l.name),
-        }),
-      ),
+        });
+      }),
       regionHeroes: heroList
         .filter((h) => h.links.some((link) => link.regionId === r.id && link.placeSlug === undefined))
         .map((h) => h.key),

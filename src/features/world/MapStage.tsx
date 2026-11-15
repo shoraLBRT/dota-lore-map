@@ -13,7 +13,7 @@ import {
 } from 'react';
 import { cssDuration, cssPixels } from '../../app/motion';
 import { useSfx } from '../../app/sound';
-import type { Camera, Hero, Place, Point, Region } from '../../data/types';
+import type { Camera, Hero, Place, Point, Region, Significance } from '../../data/types';
 import { getRegion, heroesOfPlace, heroesOfRegion, placeName } from '../../data/world';
 import { useT } from '../../i18n';
 import { AmbientCanvas } from '../atmosphere/AmbientCanvas';
@@ -123,9 +123,18 @@ function estimateExit(name: string, region: string | undefined): [number, number
   return [Math.min(chars * 7.5 + 40, 224), region ? 44 : 28];
 }
 
-/** Кегль подписей маркеров (MapStage.module.css: .markerLabel, .capital .markerLabel), px. */
+/** Кегль подписей маркеров (MapStage.module.css: .markerLabel, .capital .markerLabel, .minor .markerLabel), px. */
 const MARKER_FONT = 13;
 const CAPITAL_FONT = 17;
+const MINOR_FONT = 12;
+
+/** Значимость места (#68, SPEC §6.3); нет поля — обычный маркер. */
+const significance = (p: Place): Significance => p.significance ?? 'link';
+/** Радиус кольца маркера, px: столица, место, второстепенное место (меньше). */
+const ringOf = (p: Place) => (p.capital ? 11 : significance(p) === 'minor' ? 7 : 9);
+const fontOf = (p: Place) => (p.capital ? CAPITAL_FONT : significance(p) === 'minor' ? MINOR_FONT : MARKER_FONT);
+/** Порядок подписей после текущего места, столицы и мест героя: события, связи E1, второстепенные (labels.ts). */
+const SIGNIFICANCE_RANK: Record<Significance, number> = { event: 3, link: 4, minor: 5 };
 /** Кегль названия региона на карте, единицы сцены (.label в MapStage.module.css). */
 const REGION_FONT = 22;
 
@@ -358,12 +367,18 @@ export function MapStage({
   // Подписи маркеров не налезают друг на друга: текущее место, столица и места героя ставятся первыми.
   const labelItems = useMemo(() => {
     const rank = (p: Place) =>
-      p.slug === activePlaceSlug ? 0 : p.capital ? 1 : focusPlaces?.has(`${active?.id}/${p.slug}`) ? 2 : 3;
+      p.slug === activePlaceSlug
+        ? 0
+        : p.capital
+          ? 1
+          : focusPlaces?.has(`${active?.id}/${p.slug}`)
+            ? 2
+            : SIGNIFICANCE_RANK[significance(p)];
     const items: MarkerLabel[] = [...spots]
       .sort((a, b) => rank(a) - rank(b))
       .map((p) => {
         const [x, y] = toStage(p.pos!);
-        const size = p.capital ? CAPITAL_FONT : MARKER_FONT;
+        const size = fontOf(p);
         return {
           key: p.slug,
           x: x / markerScale,
@@ -371,7 +386,7 @@ export function MapStage({
           // Без измерений — оценка по числу знаков.
           width: widths[`m:${p.slug}`] ?? placeName(p, lang).length * size * 0.6,
           size,
-          ring: p.capital ? 11 : 9,
+          ring: ringOf(p),
           must: rank(p) < 2,
         };
       });
@@ -619,8 +634,9 @@ export function MapStage({
     const name = placeName(p, lang);
     const select = () => onSelectPlace(active!.id, p.slug);
     const side = sides.get(p.slug) ?? 'top';
-    const ring = p.capital ? 11 : 9;
-    const label = markerLabelAttrs(side, ring, p.capital ? CAPITAL_FONT : MARKER_FONT);
+    const ring = ringOf(p);
+    const sig = significance(p);
+    const label = markerLabelAttrs(side, ring, fontOf(p));
     const previewed = previewPlaces?.has(`${active!.id}/${p.slug}`) ?? false;
     const muted = focusPlaces && !focusPlaces.has(`${active!.id}/${p.slug}`);
     const media = onOpenMedia ? placeMediaBadge(p) : null;
@@ -631,6 +647,8 @@ export function MapStage({
         className={[
           styles.marker,
           p.capital && styles.capital,
+          sig === 'event' && styles.event,
+          sig === 'minor' && styles.minor,
           isActive && styles.current,
           side === 'hidden' && styles.labelHidden,
           focusPlaces && (focusPlaces.has(`${active!.id}/${p.slug}`) ? styles.heroSpot : styles.mutedMarker),
@@ -646,6 +664,7 @@ export function MapStage({
         aria-current={isActive ? 'true' : undefined}
         aria-describedby={p.slug === spotId && spotHeroes.length > 0 ? placeTipId : undefined}
         data-place={p.slug}
+        data-significance={sig}
         onClick={(e) => {
           e.stopPropagation();
           select();
@@ -666,7 +685,7 @@ export function MapStage({
         {p.capital ? (
           <polygon className={styles.dot} points={STAR} transform="scale(7)" />
         ) : (
-          <circle className={styles.dot} r={4} />
+          <circle className={styles.dot} r={sig === 'minor' ? 3 : 4} />
         )}
         <text
           className={styles.markerLabel}

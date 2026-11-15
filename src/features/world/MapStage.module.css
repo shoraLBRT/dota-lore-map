@@ -224,6 +224,34 @@
   fill: var(--text-1);
 }
 
+/* Значимость мест (#68, SPEC §6.3): место события ярче, второстепенное (только упоминание или героев нет)
+   меньше и тусклее — цветом, а не прозрачностью: кольцо --marker-minor ≥ 3:1 к фонам (WCAG 1.4.11),
+   подпись --text-3 ≥ 4.5:1. Место со связью E1 без уточнения — обычный маркер. Наведение, фокус, выбор
+   и подсветка героя ниже перекрывают эти цвета. */
+.event .ring {
+  stroke: var(--marker-event);
+  stroke-width: 2.5;
+}
+
+.event .markerLabel {
+  fill: var(--text-1);
+}
+
+.minor .ring {
+  stroke: var(--marker-minor);
+  stroke-width: 1.5;
+}
+
+.minor .dot {
+  fill: var(--marker-minor);
+}
+
+.minor .markerLabel {
+  fill: var(--text-3);
+  font-size: 12px;
+  font-weight: 500;
+}
+
 /* Наведение и фокус: кольцо светится, подпись ярче (SPEC §5.4, §7.2). */
 .marker:hover .ring,
 .marker:focus-visible .ring,

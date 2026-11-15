@@ -21,8 +21,11 @@ export interface HeroThreads {
   tone: Tone;
 }
 
-/** События, при которых герой сам не был в месте или тип не уточнён: такие места — не остановки пути. */
-const OFF_PATH: ReadonlySet<HeroEvent> = new Set<HeroEvent>(['mention', 'link']);
+/**
+ * События, при которых герой сам не был в месте или тип не уточнён: такие места — не остановки пути.
+ * Тот же список — OFF_PATH_EVENTS в scripts/build-data.mjs (значимость мест, #68); совпадение проверяет тест.
+ */
+export const OFF_PATH: ReadonlySet<HeroEvent> = new Set<HeroEvent>(['mention', 'link']);
 
 const refKey = (r: { regionId: string; placeSlug?: string }) => (r.placeSlug ? `${r.regionId}/${r.placeSlug}` : r.regionId);
 

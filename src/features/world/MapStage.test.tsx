@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen, within } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { Hero, Region } from '../../data/types';
 import { I18nProvider } from '../../i18n';
@@ -322,6 +322,38 @@ describe('MapStage — подписи и подсказки (аудит E13)', (
     for (const slug of hidden) {
       expect(document.querySelector(`[data-place="${slug}"]`)!.getAttribute('class')).toMatch(/labelHidden/);
     }
+  });
+
+  it('значимость (#68): место события ярче, второстепенное меньше; подпись события ставится раньше', () => {
+    const at = (slug: string, pos: [number, number], significance?: 'event' | 'link' | 'minor') => ({
+      name: slug.toUpperCase(),
+      slug,
+      capital: false,
+      placement: 'lore' as const,
+      pos,
+      ...(significance && { significance }),
+    });
+    renderStage([{ ...region('a', true), places: [at('ev', [0.1, 0.1], 'event'), at('ln', [0.15, 0.1], 'link'), at('mi', [0.2, 0.1], 'minor'), at('old', [0.25, 0.1])] }], 'a');
+    const marker = (slug: string) => document.querySelector(`[data-place="${slug}"]`)!;
+    const ring = (slug: string) => marker(slug).querySelector('circle:not([r="18"])')!.getAttribute('r');
+    expect(marker('ev').getAttribute('data-significance')).toBe('event');
+    expect(marker('ev').getAttribute('class')).toMatch(/event/);
+    expect(marker('mi').getAttribute('class')).toMatch(/minor/);
+    expect(marker('ln').getAttribute('class')).not.toMatch(/event|minor/);
+    // Нет поля — как связь E1: обычный маркер.
+    expect(marker('old').getAttribute('data-significance')).toBe('link');
+    expect([ring('ev'), ring('ln'), ring('mi')]).toEqual(['9', '9', '7']);
+    // Второстепенное место не убираем — оно на карте и кликается.
+    expect(screen.getByRole('button', { name: 'MI' })).toBeInTheDocument();
+    cleanup();
+
+    // Тесно (пять мест в одной точке — сторон для подписей четыре): места со связью E1 идут в данных первыми,
+    // но подпись места события встаёт раньше них, прячется последняя из них.
+    const crowd = ['m1', 'm2', 'm3', 'm4'].map((slug) => at(slug, [0.2, 0.2], 'link'));
+    renderStage([{ ...region('a', true), places: [...crowd, at('ev', [0.2, 0.2], 'event')] }], 'a');
+    const side = (slug: string) => document.querySelector(`[data-place="${slug}"] text`)!.getAttribute('data-side');
+    expect(side('ev')).toBe('top');
+    expect(side('m4')).toBe('hidden');
   });
 
   describe('подсказка региона ждёт посадки камеры', () => {
