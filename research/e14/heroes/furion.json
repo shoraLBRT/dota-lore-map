@@ -1,0 +1,123 @@
+{
+  "hero": "furion",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "region": "western-forests",
+      "event": "origin",
+      "source": "ours",
+      "note": "Биография не называет место рождения: он вырастает из семени богини лесов на её земле. Ближайший по лору регион с лесами Веродиции — Западные леса, где лежат два его места из инфобокса.",
+      "doubt": "Родина по самой биографии не названа; регион выбран по соседству с Manglewood Forest и Endless Copse, а не по прямому тексту."
+    },
+    {
+      "place": "Manglewood Forest",
+      "event": "visit",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Nature's_Prophet/Lore",
+      "note": "Он срезал ветку с самого старого дерева в лесу и сделал из неё посох. Важного события здесь нет."
+    },
+    {
+      "place": "Endless Copse",
+      "event": "visit",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Nature's_Prophet/Lore",
+      "note": "Цветок Candral, которым обвит его посох, сорван в сердце этой рощи. Сам он там не задерживался."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "earth_spirit",
+      "type": "ally",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Nature's_Prophet/Lore",
+      "note": "В разделе Allies Earth Spirit назван тем, кто собирает героев-защитников природы, и Furion числится в их числе.",
+      "doubt": "Тип «союзник» выведен из прозы раздела; прямых реплик, которые его подтверждают, в биографии нет, а реплики Kaolin не считаются основанием."
+    },
+    {
+      "hero": "lone_druid",
+      "type": "ally",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Nature's_Prophet/Lore",
+      "note": "Лор-страница называет Lone Druid хранителем природы, который в хороших отношениях с Furion.",
+      "doubt": "Формулировка опирается на то, как ведёт себя герой в озвучке; в самом тексте прямое слово «союзник» не употреблено."
+    },
+    {
+      "hero": "earthshaker",
+      "type": "ally",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Nature's_Prophet/Lore",
+      "note": "Лор-страница описывает добрые отношения Earthshaker и Furion, в том числе уважение к нему после гибели.",
+      "doubt": "Текст пересказывает реплики Planetfall; тип «союзник» выведен из прозы, а не из инфобокса."
+    },
+    {
+      "hero": "drow_ranger",
+      "type": "rival",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Nature's_Prophet/Lore",
+      "note": "Оба считают лес своим владением, и Drow Ranger иногда думает, что избрана лесом вместо него.",
+      "doubt": "Соперничество выведено из прозы раздела Friendships and rivalries; часть утверждений основана на репликах."
+    },
+    {
+      "hero": "venomancer",
+      "type": "enemy",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Nature's_Prophet/Lore",
+      "note": "Лор-страница пишет, что Furion не терпит Venomancer и его Plague Ward в своём лесу, считая их болезнью природы.",
+      "doubt": "Прямой текст лор-страницы опирается на реплики Dota Underlords."
+    },
+    {
+      "hero": "shredder",
+      "type": "enemy",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Nature's_Prophet/Lore",
+      "note": "Лор-страница называет Timbersaw тем, на кого Furion направляет свою вражду.",
+      "doubt": "Вражда выведена из прозы, которая пересказывает реплики Dota Underlords."
+    },
+    {
+      "hero": "tinker",
+      "type": "enemy",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Nature's_Prophet/Lore",
+      "note": "Лор-страница называет Tinker в числе тех, на кого Furion направляет вражду против Keen.",
+      "doubt": "Вражда выведена из прозы, которая пересказывает реплики Dota Underlords."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Nature's Prophet вырос из последнего семени богини лесов Веродиции и унаследовал от неё дар предвидения. Он охраняет дикую природу и её обитателей: мягок с теми, кто живёт в гармонии с лесом, и жесток к тем, кто несёт в него разрушение. Странствуя по глухим чащам, он призывает деревья и древесных существ туда, где нужна его защита.",
+      "en": "Nature's Prophet grew from the last seed of Verodicia, the goddess of the woods, and inherited her gift of foresight. He guards wild places and their creatures, gentle with those who live in harmony with the forest and merciless toward anyone who would ravage it. Roaming the deep wilderness, he calls up trees and treants wherever his protection is needed."
+    }
+  },
+  "candidates": [
+    {
+      "name": "Drowned Forest",
+      "region": "uncharted",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Nature's_Prophet/Lore",
+      "note": "Оттуда родом шрумлинги, которых Furion призывает. Места на схеме нет, и регион по тексту не определить."
+    }
+  ],
+  "unconfirmed": [
+    "Биография не называет ни одного места по имени; его места взяты из инфобокса и текста лор-страницы.",
+    "Dark grey place, где он бывал в промежутках между смертями: текст не называет место; возможный Underscape только предположение лор-страницы, связь не записана.",
+    "Nature из инфобокса (places) — понятие, а не место на схеме; не записано.",
+    "Terrene Plane (material plane) — символика руны Laguz, а не место, где бывал герой; не записано.",
+    "Treant Protector: вместе названы «гордостью Веродиции», а реплики называют его младшим братом; тип родства в тексте не назван, связь не записана.",
+    "Windranger: сожаление после его гибели — только реплика озвучки, связь не записана.",
+    "Hoodwink: он предлагал ей вступить в свою группу, она отказала — тип отношений в тексте не назван, связь не записана.",
+    "Ursa: только реплика озвучки, связь не записана.",
+    "Enchantress: упомянут среди хранителей, которых собирает Earth Spirit, и в сравнении с древесными существами; прямой связи с Furion нет, не записано.",
+    "Virga Truebark, Castor Twin-Tusks, Al-Fusha, Enno, Father Mushroom — персонажи без ключа в heroes.json или без известной роли, связи не записаны."
+  ]
+}

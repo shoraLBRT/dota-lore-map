@@ -1,0 +1,119 @@
+{
+  "hero": "pangolier",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Revtel",
+      "event": "visit",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Pangolier/Lore",
+      "note": "Лор-текст говорит, что странствия доводили героя до Revtel. Там же он давно знаком с Mireska (Dark Willow)."
+    },
+    {
+      "place": "Qaldin",
+      "event": "visit",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Pangolier/Lore",
+      "note": "Среди дальних путешествий героя по лор-тексту: до Qaldin он тоже добирался. Подробностей нет."
+    },
+    {
+      "place": "White Spire",
+      "event": "visit",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Pangolier/Lore",
+      "note": "В свободное время он часто бывает на ипподроме White Spire."
+    },
+    {
+      "place": "Icewrack",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Pangolier/Lore",
+      "note": "Упомянут как родина любимого герою белого вина. Бывал ли он там, в тексте не сказано."
+    },
+    {
+      "place": "Weeping Rose",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Pangolier/Lore",
+      "doubt": "Лор-страница только предполагает, что здесь могли проходить попойки героя с Dragon Knight; это догадка, а не сказанное в источнике."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "enchantress",
+      "type": "ally",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Pangolier/Lore",
+      "note": "В тексте сказано, что герой работал вместе с Aiushtha и Ursa. Aiushtha не ключ героя; соответствие с Enchantress — по реплике «Enchantress…» в том же абзаце.",
+      "doubt": "Имя Aiushtha в тексте не сопоставлено с Enchantress напрямую; обратная запись уже есть в enchantress.json."
+    },
+    {
+      "hero": "ursa",
+      "type": "ally",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Pangolier/Lore",
+      "note": "Герой работал вместе с Ursa в прошлом (текст лор-страницы)."
+    },
+    {
+      "hero": "dragon_knight",
+      "type": "ally",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Pangolier/Lore",
+      "doubt": "В тексте «старый друг и собутыльник» (Davion). В списке типов дружбы нет; ally — ближайший тип, в данных это приблизительно."
+    },
+    {
+      "hero": "bristleback",
+      "type": "rival",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Pangolier/Lore",
+      "note": "Rigwarl назван одним из самых ненавистных соперников героя; тип rival прямо из текста.",
+      "doubt": "В лор-тексте Rigwarl не назван Bristleback. Соответствие — по инфобоксу (Bristleback в списке героев) и по теме «иглы/щетина» (квиллы срезаны в бою)."
+    },
+    {
+      "hero": "leshrac",
+      "type": "enemy",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Pangolier/Lore",
+      "note": "Текст называет Leshrac одним из самых ненавистных врагов героя: из-за давнего поступка с женщиной из его жизни."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Донте Панлин — фехтовальщик из ордена «Ниванские франты», который ищет опасность и честные вызовы: сражается с тиранами и чудовищами и не выносит жестокости. Остроумный и обаятельный, он любит вино, романтику и яркий стиль, но верен товарищам по ордену и не признаёт власть королей.",
+      "en": "Donté Panlin is a swordsman of the Nivan Gallants who seeks out peril and fair challenges, taking on tyrants and monsters while refusing cruelty. Witty and charming, he enjoys wine, romance and flashy style, yet stays loyal to his fellow order members and shows little respect for crowned authority."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/pangolier.png"
+    ]
+  },
+  "candidates": [],
+  "unconfirmed": [
+    "В биографии (RU и EN) мест нет: только орден Nivan Gallants (фракция, на схему не добавлена). Родина героя не названа ни в биографии, ни на Liquipedia — связи «origin» не записано.",
+    "Etienne Swiftguard — наставник героя (текст лора), но это персонаж, а не герой с ключом; в relations не записан.",
+    "Dark Willow (Mireska): герой давно знает её и опекает, но тип отношений в источниках не назван; знакомство и реплики не основание для связи.",
+    "Lion: в тексте сказано только, что герой предупредил его о последствиях будущей встречи; тип связи не назван.",
+    "Monkey King: в тексте перечислены схватки, включая Sun Wukong, но это не тип связи (поединок), не записано.",
+    "Medusa: в тексте герой обещал помочь с поиском её похищенных сестёр; тип не назван, не записано.",
+    "Disruptor: извинение за то, что его спутали с Oglodi, — основано на реплике; не записано.",
+    "Rotund'jere: в тексте назван врагом героя, но имя не сопоставлено с ключом героя (по реплике — Necrophos); реплика не основание, не записано.",
+    "Yurnero и Lanaya: герой посредничает между ними (текст), но тип отношений герой–герой не назван; реплики не основание.",
+    "Lina и Rylai: герой уговорил Lina помириться с Rylai — связи самого героя с ними в тексте нет, не записано.",
+    "Bounty Hunter, Broodmother: есть только в списке связанных героев инфобокса, тип в тексте не назван — не записано.",
+    "Места Desert of Misrule (Lanaya) и Marrowfell Hunters (фракция) упомянуты только в репликах и вне списка связей героя; в links не записаны."
+  ]
+}

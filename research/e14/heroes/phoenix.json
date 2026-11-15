@@ -1,0 +1,71 @@
+{
+  "hero": "phoenix",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "place": "The Sun",
+      "event": "origin",
+      "source": "ours",
+      "note": "Phoenix родился из сверхновых первого солнца Хранителя, поэтому относим его к солнечной родине; на схеме это место «The Sun».",
+      "doubt": "Биография не называет место рождения. Привязка к «The Sun» выбрана по родству с первым солнцем, как у Dawnbreaker."
+    },
+    {
+      "place": "Scintillant Waste",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Phoenix/Lore",
+      "note": "Место названо в инфобоксе. Его шлем, по описанию на странице героя, упал у края пустыни, но сам Phoenix там не бывал."
+    },
+    {
+      "place": "Violet Archives",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Phoenix/Lore",
+      "note": "Место названо в инфобоксе. Досье о Phoenix хранится в архивах, но сам он там не был."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "keeper_of_the_light",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Phoenix/Lore",
+      "note": "По инфобоксу — далёкий предок (great-great grandfather), создатель первого солнца, от которого происходят Дети Сияния."
+    },
+    {
+      "hero": "dawnbreaker",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Phoenix/Lore",
+      "note": "По инфобоксу — дальняя родня. Совпадает с записью в файле dawnbreaker.json."
+    },
+    {
+      "hero": "dawnbreaker",
+      "type": "ally",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Phoenix/Lore",
+      "note": "В разделе Allies: Phoenix пролетел мимо солнечной кузни и вернул искру Dawnbreaker к жизни.",
+      "doubt": "Тип «союзник» выведен из раздела Allies и описания спасения, а не из прямой формулировки о союзе."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Phoenix — молодая звезда, рождённая из сверхновых первого солнца Хранителя и выброшенная в космос. Из любопытства она приняла облик огненной птицы, чтобы нести свет тем, кому он нужен, и искать свою судьбу. Её свет вернул к жизни Dawnbreaker.",
+      "en": "Phoenix is a young star born from the supernova cycle of the Keeper's first sun and cast into the cosmos. Driven by curiosity, it took the form of a fiery bird to bring light to those who need it and to seek its own destiny. Its light also brought Dawnbreaker back to life."
+    }
+  },
+  "unconfirmed": [
+    "Snapfire: инфобокс (поле heroes) называет её, но тип связи не указан. Обмен реликвией (Solar Gyre) — сделка, не подходящий тип связи, поэтому связь не записана.",
+    "Arc Warden, Crystal Maiden, Dark Willow, Largo, Faceless Void, Enigma, Pangolier и другие: реплики озвучки и раздел Acquaintances — не основание для связи (решения партий 01 и 02).",
+    "Jakiro: «сын Winter Wyvern, отец — Phoenix» — личное мнение сценариста Valve в письме, не лор. Связь не записана.",
+    "Trivia-список Liquipedia (Invoker, Lina, Ancient Apparition, Elder Titan, Enigma, Alchemist, Skywrath Mage, Terrorblade, Underlord): авторские догадки о параллелях, не лор.",
+    "Clasz: одна реплика Faceless Void о том, что свет Phoenix может сдержать Clasz. Место и связь не подтверждены.",
+    "Маршрут Phoenix по миру и остановки не названы в биографии, поэтому path не записан.",
+    "Solar Forge (кузня, где была Dawnbreaker): в источниках нет точного места на схеме, поэтому привязка идёт через «The Sun» по её файлу."
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "hero": "shadow_demon",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "place": "Seven Hells",
+      "event": "origin",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Shadow_Demon/Lore",
+      "note": "Инфобокс лор-страницы называет Seven Hells местом героя; по расе он демон, и родной план демонов здесь.",
+      "doubt": "Инфобокс не говорит прямо, что Shadow Demon родом именно оттуда. Биография описывает демонов вообще и не называет ни одного места."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "nevermore",
+      "type": "servant",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Shadow_Demon/Lore",
+      "note": "Shadow Fiend служит Shadow Demon из-за долга душ и называет его хозяином. В инфобоксе это поле family с пометкой debtor."
+    },
+    {
+      "hero": "doom_bringer",
+      "type": "enemy",
+      "source": "bio",
+      "note": "Doom и Shadow Fiend ненадолго объединились, чтобы разрушить культ Shadow Demon. Союз был временным и направлен против него.",
+      "doubt": "В биографии нет слова «враг». Тип выведен из того, что союз был против культа Shadow Demon."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Shadow Demon — демон тени, который давно поглядывает на материальный мир как на путь к власти над всеми реальностями. Сначала он обрёл последователей среди слабых колдунов и постепенно подчинил целые культы, стирая в людях их личность. Когда Doom и Shadow Fiend разгромили его культ, от него осталась крошечная искра тени, из которой он снова собрал себя.",
+      "en": "Shadow Demon is a shadow entity that has long eyed the material world as a route to dominion over every reality. He first won followers among minor sorcerers and slowly bent whole cults to his will, hollowing out their identities. When Doom and Shadow Fiend tore his cult apart, only a faint spark of shadow survived, and from it he has been rebuilding himself."
+    },
+    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/shadow_demon.png"]
+  },
+  "unconfirmed": [
+    "Реплики озвучки Shadow Fiend, Doom, Terrorblade, Monkey King, Legion Commander, Spectre, Kunkka, Underlord, Oracle и Dark Willow о Shadow Demon — отдельные строки, связи по ним не записаны.",
+    "Материальный мир («this world», «material plane») — общее место без точки на схеме, не записан.",
+    "Ozkavosh — язык демонов, Umbral Pact, Order of the Umbral Mist и Court of Ristul — пакт, орден и двор, не места, в links не вошли.",
+    "Смертные последователи, которых он считал слугами, — их роль в культе, а не связь героев."
+  ]
+}
