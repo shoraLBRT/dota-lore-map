@@ -5,7 +5,19 @@ import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { afterEach, describe, expect, it } from 'vitest';
-import { buildWorld, heroSlug, normalizeAlias, OUTPUT, placeSlug, readSources, run, serialize } from './build-data.mjs';
+import {
+  buildWorld,
+  heroSlug,
+  normalizeAlias,
+  OFF_PATH_EVENTS,
+  OUTPUT,
+  placeSignificance,
+  placeSlug,
+  readSources,
+  run,
+  serialize,
+} from './build-data.mjs';
+import { OFF_PATH } from '../src/features/search/threads.ts';
 
 const REPO = fileURLToPath(new URL('..', import.meta.url));
 const SCRIPT = fileURLToPath(new URL('./build-data.mjs', import.meta.url));
@@ -113,10 +125,46 @@ describe('buildWorld', () => {
       slug: 'blueheart-glacier',
       capital: false,
       placement: 'lore',
+      significance: 'event',
       note: 'заметка',
     });
     expect(ice.regionHeroes).toEqual(['crystal_maiden']);
     expect(world.regions[1].places[0].slug).toBe('tomokan');
+  });
+
+  it('значимость места — из событий героев, пути и медиа (A3, #68)', () => {
+    const sig = (events, extra = {}) => placeSignificance({ events, ...extra });
+    for (const e of ['origin', 'home', 'journey', 'battle', 'service', 'exile', 'death', 'visit']) expect(sig([e])).toBe('event');
+    expect(sig(['mention', 'home'])).toBe('event');
+    expect(sig(['link', 'mention'])).toBe('link');
+    expect(sig(['link'])).toBe('link');
+    expect(sig(['mention'])).toBe('minor');
+    expect(sig([])).toBe('minor');
+    // Остановка пути героя и действие медиа — событие, даже если связь — только упоминание.
+    expect(sig(['mention'], { onPath: true })).toBe('event');
+    expect(sig([], { media: ['comic-x'] })).toBe('event');
+    expect(sig([], { media: [] })).toBe('minor');
+    // Значимость и нити (A11) делят места на «событие» и «прочее» одинаково.
+    expect([...OFF_PATH].sort()).toEqual([...OFF_PATH_EVENTS].sort());
+    // Столицу не приглушаем.
+    expect(sig([], { capital: true })).toBe('link');
+
+    const f = fixture();
+    f.regions.regions[0].locations.push({ name: 'Frost Cave', placement: 'ours' }, { name: 'Old Hut', placement: 'ours' });
+    f.heroPlaces.heroes['Crystal Maiden'].links.push(
+      { place: 'Frost Cave', event: 'mention', source: 'bio' },
+      { place: "Tomo'kan", event: 'link', source: 'ours' },
+    );
+    const { world, errors } = buildWorld(f);
+    expect(errors).toEqual([]);
+    const by = Object.fromEntries(world.regions.flatMap((r) => r.places.map((p) => [p.slug, p.significance])));
+    expect(by).toEqual({
+      icewrack: 'link',
+      'blueheart-glacier': 'event',
+      'frost-cave': 'minor',
+      'old-hut': 'minor',
+      tomokan: 'event',
+    });
   });
 
   it('разворачивает связи героев в regionId + placeSlug', () => {

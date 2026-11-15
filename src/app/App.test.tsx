@@ -41,9 +41,8 @@ describe('App', () => {
     fireEvent.click(screen.getByRole('button', { name: icewrack.name.ru }));
     expect(window.location.hash).toBe('#/r/icewrack');
     expect(screen.getByRole('heading', { level: 2, name: icewrack.name.ru })).toBeInTheDocument();
-    const cm = screen.getByRole('link', { name: /Crystal Maiden/ });
-    expect(cm).toHaveAttribute('href', 'https://www.dota2.com/hero/crystalmaiden?l=russian');
-    expect(cm).toHaveAttribute('target', '_blank');
+    // Портрет героя в панели открывает его профиль (E15, SPEC §6.8).
+    expect(screen.getByRole('button', { name: /^Crystal Maiden: открыть профиль/ })).toBeInTheDocument();
 
     fireEvent.keyDown(window, { key: 'Escape' });
     expect(window.location.hash).toBe('#/world');

@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { NavigationProvider } from '../../app/navigation';
 import { SoundProvider } from '../../app/sound';
 import { dictionaries, I18nProvider } from '../../i18n';
+import { FeedbackProvider } from '../feedback/FeedbackProvider';
 import { Rail } from './Rail';
 
 function renderRail() {
@@ -10,7 +11,9 @@ function renderRail() {
     <I18nProvider initialLang="ru">
       <SoundProvider>
         <NavigationProvider>
-          <Rail />
+          <FeedbackProvider>
+            <Rail />
+          </FeedbackProvider>
         </NavigationProvider>
       </SoundProvider>
     </I18nProvider>,
@@ -19,17 +22,18 @@ function renderRail() {
 }
 
 describe('Rail — левая панель (SPEC §6.1)', () => {
-  it('сверху вниз: логотип, глобус, поиск, язык, звук, «О проекте»', () => {
+  it('сверху вниз: логотип, глобус, поиск, язык, обратная связь, звук, «О проекте»', () => {
     const rail = renderRail();
     const buttons = within(rail).getAllByRole('button');
-    expect(buttons).toHaveLength(7);
+    expect(buttons).toHaveLength(8);
     expect(buttons[0]).toHaveAccessibleName('На заставку');
     expect(buttons[1]).toHaveAccessibleName('Весь мир');
     expect(buttons[2]).toHaveAccessibleName('Поиск героя');
     expect(buttons[3]).toHaveAccessibleName('RU');
     expect(buttons[4]).toHaveAccessibleName('EN');
-    expect(buttons[5]).toHaveAccessibleName('Звук');
-    expect(buttons[6]).toHaveAccessibleName('О проекте');
+    expect(buttons[5]).toHaveAccessibleName('Обратная связь');
+    expect(buttons[6]).toHaveAccessibleName('Звук');
+    expect(buttons[7]).toHaveAccessibleName('О проекте');
   });
 
   it('логотип ведёт на интро, глобус — в мир', () => {
@@ -49,7 +53,9 @@ describe('Rail — левая панель (SPEC §6.1)', () => {
       <I18nProvider initialLang="ru">
         <SoundProvider>
           <NavigationProvider>
-            <Rail onSearch={() => (opened += 1)} />
+            <FeedbackProvider>
+              <Rail onSearch={() => (opened += 1)} />
+            </FeedbackProvider>
           </NavigationProvider>
         </SoundProvider>
       </I18nProvider>,

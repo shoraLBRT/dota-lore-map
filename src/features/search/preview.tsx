@@ -10,3 +10,13 @@ export const HeroPreviewProvider = PreviewContext.Provider;
 export function useHeroPreview(): (hero: Hero | null) => void {
   return useContext(PreviewContext);
 }
+
+// Профиль героя (E15, SPEC §6.8): нажатие на портрет в панели открывает его. Без провайдера портрет — ссылка на dota2.com.
+const PickContext = createContext<((hero: Hero) => void) | undefined>(undefined);
+
+export const HeroPickProvider = PickContext.Provider;
+
+/** Открыть профиль героя, не двигая камеру; undefined — открывать некому (портрет остаётся ссылкой). */
+export function useHeroPick(): ((hero: Hero) => void) | undefined {
+  return useContext(PickContext);
+}

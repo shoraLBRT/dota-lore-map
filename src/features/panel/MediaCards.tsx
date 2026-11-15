@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react';
+import type { Media } from '../../data/types';
 import { mediaThumb, resolveMedia } from '../../data/world';
 import { useT } from '../../i18n';
 import styles from './Blocks.module.css';
@@ -9,15 +10,17 @@ export const MAX_MEDIA = 3;
 interface Props {
   title: string;
   /** id медиа из World.media (SPEC §10). */
-  items: string[] | undefined;
+  items?: string[] | undefined;
+  /** Готовые медиа вместо id (арты профиля героя, E15). */
+  media?: Media[];
   /** Открыть галерею на элементе (S4, `?media=<id>`). */
   onOpen: (mediaId: string) => void;
 }
 
 /** Блок «Медиа в регионе / в месте»: до 3 карточек. Без медиа блок не рисуется. */
-export function MediaCards({ title, items, onOpen }: Props) {
+export function MediaCards({ title, items, media: given, onOpen }: Props) {
   const { l, lang, t } = useT();
-  const media = resolveMedia(items);
+  const media = given ?? resolveMedia(items);
   if (media.length === 0) return null;
   return (
     <section>

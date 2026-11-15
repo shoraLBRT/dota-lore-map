@@ -1,0 +1,215 @@
+/* Окно обратной связи (SPEC §6.9): в углу у кнопки, без затемнения — карта под ним остаётся видна. */
+.window {
+  position: fixed;
+  bottom: var(--space-4);
+  left: calc(var(--rail-width) + var(--space-3));
+  /* Верхний слой: из галереи окно открывает «Нашли ошибку?» (#74) — оно поверх неё. «О проекте» и галерею
+     одновременно с окном не открыть: клик по ним — клик вне окна. */
+  z-index: 120;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: min(24rem, calc(100vw - var(--rail-width) - 2 * var(--space-3)));
+  max-height: calc(100dvh - 2 * var(--space-4));
+  overflow-y: auto;
+  padding: var(--space-5) var(--space-5) var(--space-4);
+  border: 1px solid var(--metal);
+  background: var(--bg-1);
+  box-shadow: var(--shadow-2);
+  font-size: 0.9rem;
+  clip-path: polygon(
+    var(--cut) 0,
+    100% 0,
+    100% calc(100% - var(--cut)),
+    calc(100% - var(--cut)) 100%,
+    0 100%,
+    0 var(--cut)
+  );
+  animation: appear var(--dur-fade) var(--ease-out) both;
+}
+
+.window:focus {
+  outline: none;
+}
+
+.close {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+}
+
+.title {
+  margin: 0;
+  padding-right: var(--space-6);
+  font-size: 1.35rem;
+}
+
+.subject {
+  margin: 0;
+  color: var(--text-2);
+}
+
+.subject strong {
+  color: var(--text-1);
+  font-weight: 600;
+}
+
+/* Вид отзыва о блоке: три кнопки-переключателя в ряд. */
+.kinds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-2);
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.kinds legend {
+  width: 100%;
+  margin-bottom: var(--space-1);
+  padding: 0;
+}
+
+.kind {
+  position: relative;
+  display: inline-flex;
+}
+
+.kind input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.kind span {
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--metal-dim);
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+.kind input:checked + span {
+  border-color: var(--accent-bright);
+  background: var(--bg-2);
+  color: var(--text-1);
+}
+
+.kind input:focus-visible + span {
+  outline: 2px solid var(--accent-bright);
+  outline-offset: 1px;
+}
+
+.text p {
+  margin: 0 0 var(--space-1);
+  color: var(--text-2);
+  line-height: 1.45;
+}
+
+.label {
+  margin-top: var(--space-1);
+  color: var(--text-1);
+  font-weight: 600;
+}
+
+.field {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 7.5rem;
+  padding: var(--space-2);
+  border: 1px solid var(--metal);
+  border-radius: 0;
+  background: var(--bg-0);
+  color: var(--text-1);
+  font: inherit;
+  line-height: 1.45;
+  resize: vertical;
+}
+
+.field::placeholder {
+  color: var(--text-3);
+}
+
+.field:focus-visible {
+  outline: 2px solid var(--accent-bright);
+  outline-offset: 1px;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.count {
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.send {
+  display: inline-block;
+  min-height: 2.75rem;
+  box-sizing: border-box;
+  line-height: 1.75rem;
+  text-decoration: none;
+}
+
+.note {
+  margin: 0;
+  color: var(--text-2);
+  line-height: 1.45;
+}
+
+.note:empty {
+  display: none;
+}
+
+/* SPEC §13: на телефоне кнопка в полосе сверху — окно под полосой, во всю ширину с полями. */
+@media (max-width: 767px) {
+  .window {
+    top: calc(var(--rail-height) + var(--space-2));
+    right: var(--space-2);
+    bottom: auto;
+    left: var(--space-2);
+    width: auto;
+    max-height: calc(100dvh - var(--rail-height) - 2 * var(--space-2));
+    padding: var(--space-4);
+  }
+
+  .kind span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    box-sizing: border-box;
+  }
+
+  /* Цель касания 44×44 px, как у кнопок полосы (ARCHITECTURE A13). */
+  .close {
+    top: var(--space-1);
+    right: var(--space-1);
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .window {
+    animation-name: fade;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}

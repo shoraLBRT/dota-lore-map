@@ -1,0 +1,44 @@
+/* «Нашли ошибку?» в конце блока (SPEC §6.9): мелкий текст, не спорит с содержимым. */
+.line {
+  margin: var(--space-5) 0 0;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.link {
+  display: inline;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-3);
+  font: inherit;
+  text-align: left;
+  text-decoration: underline;
+  text-decoration-color: var(--metal-dim);
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+}
+
+.link:hover {
+  color: var(--text-2);
+  text-decoration-color: currentColor;
+}
+
+.link:focus-visible {
+  outline: 2px solid var(--accent-bright);
+  outline-offset: 2px;
+  color: var(--text-1);
+}
+
+/* Телефон: строка в конце шторки, цель касания — 44 px в высоту (ARCHITECTURE A13). */
+@media (max-width: 767px) {
+  .line {
+    margin-top: var(--space-3);
+  }
+
+  .link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+  }
+}

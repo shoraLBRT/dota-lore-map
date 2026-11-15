@@ -5,7 +5,9 @@ import { Paragraphs } from '../../components/Paragraphs';
 import type { Region } from '../../data/types';
 import { heroesOfRegion } from '../../data/world';
 import { useT } from '../../i18n';
-import { useHeroPreview } from '../search/preview';
+import { FeedbackLink } from '../feedback/FeedbackLink';
+import { regionBlock } from '../feedback/context';
+import { useHeroPick, useHeroPreview } from '../search/preview';
 import { MediaCards } from '../panel/MediaCards';
 import { panelStyles } from '../panel/Panel';
 import { Traits } from '../panel/Traits';
@@ -15,12 +17,13 @@ export const REGION_HEROES = 12;
 
 /**
  * Содержимое панели региона S2 (SPEC §5.4): название, подзаголовок, герои, разделитель,
- * характеристики 2×2, описание, «Подробнее ↗», медиа. Крошка «‹ Мир» — в шапке панели (Breadcrumbs). Пустые блоки не рисуются.
+ * характеристики 2×2, описание, «Подробнее ↗», медиа, строка «Нашли ошибку?» (§6.9). Крошка «‹ Мир» — в шапке панели (Breadcrumbs). Пустые блоки не рисуются.
  */
 export function RegionPanel({ region }: { region: Region }) {
   const { l, t } = useT();
   const { route, navigate } = useNavigation();
   const preview = useHeroPreview();
+  const pick = useHeroPick();
 
   return (
     <>
@@ -28,7 +31,7 @@ export function RegionPanel({ region }: { region: Region }) {
         {l(region.name)}
       </h2>
       {region.subtitle && <p className={panelStyles.subtitle}>{l(region.subtitle)}</p>}
-      <HeroList heroes={heroesOfRegion(region.id)} max={REGION_HEROES} onPreview={preview} />
+      <HeroList heroes={heroesOfRegion(region.id)} max={REGION_HEROES} onPreview={preview} onPick={pick} />
       <Divider />
       <Traits region={region} />
       {region.description && <Paragraphs text={l(region.description)} />}
@@ -42,6 +45,7 @@ export function RegionPanel({ region }: { region: Region }) {
         items={region.media}
         onOpen={(media) => navigate({ ...route, media })}
       />
+      <FeedbackLink block={regionBlock(region)} />
     </>
   );
 }

@@ -60,12 +60,21 @@ export interface PlaceText {
 
 export type Placement = 'lore' | 's1map' | 'ours';
 
+/**
+ * Значимость места на карте (SPEC §6.3, ARCHITECTURE A3, #68), считает build-data:
+ * `event` — тут событие героя или действие медиа (маркер ярче), `link` — только связь E1 без уточнения
+ * (обычный маркер), `minor` — только упоминание или героев нет (маркер меньше и тусклее).
+ */
+export type Significance = 'event' | 'link' | 'minor';
+
 export interface Place {
   /** Имя из research/e1/regions.json (английское, служит ключом). */
   name: string;
   slug: string;
   capital: boolean;
   placement: Placement;
+  /** Нет поля — как `link` (обычный маркер). */
+  significance?: Significance;
   /** Заметка исследования (по-русски, для разработчиков). */
   note?: string;
   text?: PlaceText;

@@ -1,4 +1,5 @@
 import {
+  Fragment,
   useCallback,
   useEffect,
   useId,
@@ -12,12 +13,14 @@ import {
 } from 'react';
 import { cssDuration, cssPixels } from '../../app/motion';
 import { useSfx } from '../../app/sound';
-import type { Camera, Hero, Place, Point, Region } from '../../data/types';
+import type { Camera, Hero, Place, Point, Region, Significance } from '../../data/types';
 import { getRegion, heroesOfPlace, heroesOfRegion, placeName } from '../../data/world';
 import { useT } from '../../i18n';
 import { AmbientCanvas } from '../atmosphere/AmbientCanvas';
 import { spotName, type Spot } from '../search/search';
+import type { HeroThreads } from '../search/threads';
 import { preloadRegionArt } from './art';
+import { focusAfter } from './focus';
 import { biomeColor } from './biomes';
 import {
   animateCamera,
@@ -49,6 +52,7 @@ import {
   clampLabelX,
   LABEL_GAP,
   placeEdgeLabels,
+  labelBox,
   placeMarkerLabels,
   splitLabel,
   type Box,
@@ -57,6 +61,7 @@ import {
   type MarkerLabel,
 } from './labels';
 import styles from './MapStage.module.css';
+import { placeMediaBadge, regionMediaBadge, mediaKinds, type MediaBadge } from './mediaBadge';
 import { PlaceTooltip } from './PlaceTooltip';
 import { RegionArt } from './RegionArt';
 import { RegionList } from './RegionList';
@@ -81,16 +86,20 @@ interface Props {
   heroesOfSpot?: (regionId: string, placeSlug: string) => Hero[];
   /** Выбран герой (SPEC §6.5): его регионы и места подсвечены, остальные приглушены. */
   focus?: Spot[];
-  /** Места, соединяемые нитями (SPEC §6.6); `threadsKey` перезапускает прорисовку. */
-  threads?: Spot[];
+  /** Нити героя (SPEC §6.6, #67): шаги пути и прочие связи; `threadsKey` перезапускает прорисовку. */
+  threads?: HeroThreads;
   threadsKey?: string;
   /**
    * Герой под наведением или фокусом (портрет в панели, вариант поиска; SPEC §6.6, #66): в мире подсвечены
    * его регионы, в регионе и месте — пульсируют его маркеры, места за кадром получают метку у края.
    */
   preview?: Spot[];
+  /** Нажат портрет в подсказке региона (#65): выбрать героя, не уходя из мира. Без него портреты не кликаются. */
+  onPickHero?: (hero: Hero) => void;
   /** Клик по метке нити, ушедшей за край кадра. */
   onSelectSpot?: (spot: Spot) => void;
+  /** Нажат значок медиа у маркера места или в подсказке региона (#69): открыть галерею. Без него значков нет. */
+  onOpenMedia?: (regionId: string, open: MediaBadge['open']) => void;
   /** Телефон (#39, SPEC §13): в мире карта прижата к верху, под ней — список регионов. */
   regionList?: boolean;
   /** Сколько px сверху кадра занято (плашка героя): карта со списком встаёт ниже. */
@@ -114,9 +123,20 @@ function estimateExit(name: string, region: string | undefined): [number, number
   return [Math.min(chars * 7.5 + 40, 224), region ? 44 : 28];
 }
 
-/** Кегль подписей маркеров (MapStage.module.css: .markerLabel, .capital .markerLabel), px. */
+/** Кегль подписей маркеров (MapStage.module.css: .markerLabel, .capital .markerLabel, .minor .markerLabel), px. */
 const MARKER_FONT = 13;
 const CAPITAL_FONT = 17;
+const MINOR_FONT = 12;
+
+/** Значимость места (#68, SPEC §6.3); нет поля — обычный маркер. */
+const significance = (p: Place): Significance => p.significance ?? 'link';
+/** Радиус кольца маркера, px: столица, место, второстепенное место (меньше). */
+const ringOf = (p: Place) => (p.capital ? 11 : significance(p) === 'minor' ? 7 : 9);
+const fontOf = (p: Place) => (p.capital ? CAPITAL_FONT : significance(p) === 'minor' ? MINOR_FONT : MARKER_FONT);
+/** Порядок подписей после текущего места, столицы и мест героя: события, связи E1, второстепенные (labels.ts). */
+const SIGNIFICANCE_RANK: Record<Significance, number> = { event: 3, link: 4, minor: 5 };
+/** Кегль названия региона на карте, единицы сцены (.label в MapStage.module.css). */
+const REGION_FONT = 22;
 
 /**
  * Ширины подписей на карте по `data-measure` (getComputedTextLength — в единицах своей системы координат,
@@ -194,6 +214,9 @@ function onActivate(action: () => void) {
 
 const noop = () => () => {};
 
+/** Задержка закрытия подсказки региона: успеть перевести мышь с региона на подсказку и обратно (#65), мс. */
+export const TOOLTIP_CLOSE_DELAY = 200;
+
 const rectStyle = (r: Rect): CSSProperties => ({ top: r.top, left: r.left, width: r.width, height: r.height });
 
 /**
@@ -216,7 +239,9 @@ export function MapStage({
   threads,
   threadsKey,
   preview,
+  onPickHero,
   onSelectSpot,
+  onOpenMedia,
   regionList = false,
   topInset = 0,
   coverTop = 0,
@@ -230,6 +255,12 @@ export function MapStage({
   const placeTipId = useId();
   const [hoverId, setHoverId] = useState<string | null>(null);
   const [focusId, setFocusId] = useState<string | null>(null);
+  // Подсказка региона (#65): мышь на ней держит её открытой, фокус в ней (с клавиатуры) — тоже;
+  // Esc закрывает её до ухода с региона.
+  const tipRef = useRef<HTMLDivElement>(null);
+  const [tipFocusId, setTipFocusId] = useState<string | null>(null);
+  const [dismissedId, setDismissedId] = useState<string | null>(null);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const [spotHover, setSpotHover] = useState<string | null>(null);
   const [spotFocus, setSpotFocus] = useState<string | null>(null);
   /** Пункт списка регионов под наведением или фокусом: регион подсвечен на карте, без подсказки. */
@@ -245,12 +276,14 @@ export function MapStage({
   const active = regions.find((r) => r.id === activeRegionId && r.layout);
   const hasMap = drawn.length > 0;
 
-  // S1h только в мире; наведение мышью важнее фокуса.
+  // S1h только в мире; фокус в подсказке важнее мыши (иначе фокус пропадёт вместе с ней), мышь — фокуса на регионе.
   const inWorld = !active;
-  const shownId = inWorld ? (hoverId ?? focusId) : null;
+  const wantedId = inWorld ? (tipFocusId ?? hoverId ?? focusId) : null;
+  const shownId = wantedId === dismissedId ? null : wantedId;
   const litId = inWorld ? listId : null;
   const shown = useMemo(() => regions.find((r) => r.id === shownId && r.layout), [regions, shownId]);
   const shownHeroes = useMemo(() => (shown ? heroesOf(shown.id) : []), [shown, heroesOf]);
+  const shownMedia = useMemo(() => (shown && onOpenMedia ? regionMediaBadge(shown) : null), [shown, onOpenMedia]);
 
   const spots = useMemo(() => active?.places.filter((p) => p.pos) ?? [], [active]);
   const spotId = active ? (spotHover ?? spotFocus) : null;
@@ -301,6 +334,8 @@ export function MapStage({
   }, [active, activePlaceSlug]);
 
   const inset = panel && active ? view.inset : 0;
+  /** Панель закрывает кадр справа и в мире (профиль героя, E15): камера мира не двигается, но значки нитей не встают под неё. */
+  const cover = panel ? view.inset : 0;
   const insetBottom = panel && active ? (view.insetBottom ?? 0) : 0;
   const framed = useMemo(() => frameCamera(camera, { ...view, inset, insetBottom }), [camera, view, inset, insetBottom]);
   // Мир со списком регионов: карта прижата к верху (или влево, если телефон боком), список — в пустом месте.
@@ -332,14 +367,20 @@ export function MapStage({
   }, [measureKey]);
 
   // Подписи маркеров не налезают друг на друга: текущее место, столица и места героя ставятся первыми.
-  const sides = useMemo(() => {
+  const labelItems = useMemo(() => {
     const rank = (p: Place) =>
-      p.slug === activePlaceSlug ? 0 : p.capital ? 1 : focusPlaces?.has(`${active?.id}/${p.slug}`) ? 2 : 3;
+      p.slug === activePlaceSlug
+        ? 0
+        : p.capital
+          ? 1
+          : focusPlaces?.has(`${active?.id}/${p.slug}`)
+            ? 2
+            : SIGNIFICANCE_RANK[significance(p)];
     const items: MarkerLabel[] = [...spots]
       .sort((a, b) => rank(a) - rank(b))
       .map((p) => {
         const [x, y] = toStage(p.pos!);
-        const size = p.capital ? CAPITAL_FONT : MARKER_FONT;
+        const size = fontOf(p);
         return {
           key: p.slug,
           x: x / markerScale,
@@ -347,10 +388,13 @@ export function MapStage({
           // Без измерений — оценка по числу знаков.
           width: widths[`m:${p.slug}`] ?? placeName(p, lang).length * size * 0.6,
           size,
-          ring: p.capital ? 11 : 9,
+          ring: ringOf(p),
           must: rank(p) < 2,
         };
       });
+    return items;
+  }, [spots, activePlaceSlug, focusPlaces, active, lang, widths, markerScale]);
+  const sides = useMemo(() => {
     // Видимая часть кадра (левее панели, выше шторки) в единицах маркеров: подписи не уходят за край (аудит E13).
     let bounds: Box | undefined;
     if (view.width > 0 && active) {
@@ -359,13 +403,53 @@ export function MapStage({
       const k = regionZoom / framed.camera.zoom;
       bounds = { left: (frame.left - ox) * k, right: (frame.right - ox) * k, top: (frame.top - oy) * k, bottom: (frame.bottom - oy) * k };
     }
-    return placeMarkerLabels(items, bounds);
-  }, [spots, activePlaceSlug, focusPlaces, active, lang, widths, markerScale, view, inset, insetBottom, framed, regionZoom]);
+    return placeMarkerLabels(labelItems, bounds);
+  }, [labelItems, active, view, inset, insetBottom, framed, regionZoom]);
+
+  // Значки событий на нитях (#67) не встают на подписи: в мире — названия регионов, в регионе — кольца и подписи маркеров.
+  // Рамки — в координатах сцены.
+  const threadObstacles = useMemo<Box[]>(() => {
+    if (!threads) return [];
+    if (active) {
+      const k = markerScale;
+      const scaled = (b: Box, x: number, y: number): Box => ({
+        left: (b.left + x) * k,
+        right: (b.right + x) * k,
+        top: (b.top + y) * k,
+        bottom: (b.bottom + y) * k,
+      });
+      return labelItems.flatMap((m) => {
+        const ring = scaled({ left: -m.ring, right: m.ring, top: -m.ring, bottom: m.ring }, m.x, m.y);
+        const side = sides.get(m.key);
+        return side && side !== 'hidden' ? [ring, scaled(labelBox(side, m), m.x, m.y)] : [ring];
+      });
+    }
+    return drawn.map((r) => {
+      const [lx, ly] = toStage(r.layout!.label);
+      const name = l(r.name);
+      const lines = r.tier === 'continent' ? splitLabel(name).length : 1;
+      const width = widths[`r:${r.id}`] ?? (lines === 1 ? name.length : Math.ceil(name.length / 2)) * REGION_FONT * 0.7;
+      const x = widths[`r:${r.id}`] ? clampLabelX(lx, width) : lx;
+      // Одна строка — по базовой линии; две — первая на 0.45em выше, вторая на 1.05em ниже неё (см. разметку подписи).
+      const top = ly - (lines === 1 ? 0.8 : 1.25) * REGION_FONT;
+      const bottom = ly + (lines === 1 ? 0.2 : 0.8) * REGION_FONT;
+      return { left: x - width / 2, right: x + width / 2, top, bottom };
+    });
+  }, [threads, active, labelItems, sides, markerScale, drawn, widths, l]);
+  // Видимая часть кадра в координатах сцены (левее панели, выше шторки, ниже плашки героя): значки — только в ней.
+  const threadClip = useMemo<Box | undefined>(() => {
+    if (!threads || view.width <= 0 || listLayout) return undefined;
+    const frame = visibleFrame(view, cover, EXIT_LABEL_MARGIN, insetBottom);
+    if (coverTop > 0) frame.top = Math.max(frame.top, coverTop + EXIT_LABEL_MARGIN);
+    const [ox, oy] = toScreen([0, 0], framed.camera, framed.offset, view, framed.offsetY);
+    const k = threadScale;
+    return { left: (frame.left - ox) * k, right: (frame.right - ox) * k, top: (frame.top - oy) * k, bottom: (frame.bottom - oy) * k };
+  }, [threads, view, cover, insetBottom, coverTop, framed, threadScale, listLayout]);
 
   // S2/S3: нить к месту за краем кадра уходит туда со стрелкой и названием (SPEC §6.6).
   const exits = useMemo(() => {
-    const placed = (threads ?? []).filter((s) => s.point);
-    if (!active || view.width <= 0 || (placed.length < 2 && !preview?.length)) return [];
+    const steps = threads?.steps ?? [];
+    if (!active || view.width <= 0 || (steps.length === 0 && !preview?.length)) return [];
     const project = (p: Point) => toScreen(p, framed.camera, framed.offset, view, framed.offsetY);
     const frame = visibleFrame(view, inset, EXIT_MARGIN, insetBottom);
     const visible = (p: Point) => {
@@ -373,9 +457,7 @@ export function MapStage({
       return x >= frame.left && x <= frame.right && y >= frame.top && y <= frame.bottom;
     };
     const out = new Map<string, { spot: Spot; x: number; y: number; angle: number }>();
-    for (let i = 1; i < placed.length; i++) {
-      const a = placed[i - 1]!;
-      const b = placed[i]!;
+    for (const { from: a, to: b } of steps) {
       const aSeen = visible(a.point!);
       const bSeen = visible(b.point!);
       if (aSeen === bSeen) continue;
@@ -490,7 +572,52 @@ export function MapStage({
     return { x: rect.left + x * rect.width, y: rect.top + y * rect.height };
   }, [spot]);
 
+  const cancelClose = () => clearTimeout(closeTimer.current);
+  // Уход мыши с региона или подсказки: закрыть с задержкой, если она не вернулась на регион или подсказку.
+  const leave = (id: string | null) => {
+    cancelClose();
+    closeTimer.current = setTimeout(() => setHoverId((h) => (id === null || h === id ? null : h)), TOOLTIP_CLOSE_DELAY);
+  };
+  useEffect(() => cancelClose, []);
+
+  const regionButton = (id: string) => svgRef.current?.querySelector<SVGElement>(`[role="button"][data-region="${id}"]`);
+  /** Tab с региона: фокус на первую кнопку подсказки. false — заходить некуда. */
+  const enterTip = (id: string) => {
+    const first = tipRef.current?.querySelector<HTMLElement>('button');
+    if (!first) return false;
+    setTipFocusId(id);
+    first.focus();
+    return true;
+  };
+  const onTipKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    const id = shownId;
+    const polygon = id ? regionButton(id) : null;
+    if (!polygon) return;
+    if (e.key === 'Escape') {
+      // Esc закрывает подсказку, а не снимает героя и не уводит на уровень вверх (App).
+      e.preventDefault();
+      e.stopPropagation();
+      setDismissedId(id);
+      setTipFocusId(null);
+      polygon.focus();
+      return;
+    }
+    if (e.key !== 'Tab') return;
+    const buttons = Array.from(e.currentTarget.querySelectorAll<HTMLElement>('button'));
+    if (e.shiftKey && e.target === buttons[0]) {
+      e.preventDefault();
+      setTipFocusId(null);
+      polygon.focus();
+    } else if (!e.shiftKey && e.target === buttons[buttons.length - 1]) {
+      e.preventDefault();
+      setTipFocusId(null);
+      focusAfter(polygon, e.currentTarget);
+    }
+  };
+
   const enter = (r: Region) => {
+    cancelClose();
+    setDismissedId((d) => (d === r.id ? null : d));
     setHoverId(r.id);
     sfx('hover');
     void preloadRegionArt(r);
@@ -509,15 +636,21 @@ export function MapStage({
     const name = placeName(p, lang);
     const select = () => onSelectPlace(active!.id, p.slug);
     const side = sides.get(p.slug) ?? 'top';
-    const ring = p.capital ? 11 : 9;
-    const label = markerLabelAttrs(side, ring, p.capital ? CAPITAL_FONT : MARKER_FONT);
+    const ring = ringOf(p);
+    const sig = significance(p);
+    const label = markerLabelAttrs(side, ring, fontOf(p));
     const previewed = previewPlaces?.has(`${active!.id}/${p.slug}`) ?? false;
+    const muted = focusPlaces && !focusPlaces.has(`${active!.id}/${p.slug}`);
+    const media = onOpenMedia ? placeMediaBadge(p) : null;
+    const transform = `translate(${x} ${y}) scale(${markerScale.toFixed(4)})`;
     return (
+      <Fragment key={p.slug}>
       <g
-        key={p.slug}
         className={[
           styles.marker,
           p.capital && styles.capital,
+          sig === 'event' && styles.event,
+          sig === 'minor' && styles.minor,
           isActive && styles.current,
           side === 'hidden' && styles.labelHidden,
           focusPlaces && (focusPlaces.has(`${active!.id}/${p.slug}`) ? styles.heroSpot : styles.mutedMarker),
@@ -526,13 +659,14 @@ export function MapStage({
           .filter(Boolean)
           .join(' ')}
         style={{ '--i': i } as CSSProperties}
-        transform={`translate(${x} ${y}) scale(${markerScale.toFixed(4)})`}
+        transform={transform}
         role="button"
         tabIndex={0}
         aria-label={name}
         aria-current={isActive ? 'true' : undefined}
         aria-describedby={p.slug === spotId && spotHeroes.length > 0 ? placeTipId : undefined}
         data-place={p.slug}
+        data-significance={sig}
         onClick={(e) => {
           e.stopPropagation();
           select();
@@ -553,7 +687,7 @@ export function MapStage({
         {p.capital ? (
           <polygon className={styles.dot} points={STAR} transform="scale(7)" />
         ) : (
-          <circle className={styles.dot} r={4} />
+          <circle className={styles.dot} r={sig === 'minor' ? 3 : 4} />
         )}
         <text
           className={styles.markerLabel}
@@ -566,6 +700,31 @@ export function MapStage({
           {name}
         </text>
       </g>
+      {media && (
+        // Значок медиа (#69, SPEC §6.3) — отдельная кнопка сразу за маркером (Tab: место → его медиа),
+        // в верхнем правом углу кольца: между кольцом и рамками подписей сверху и справа (labels.ts).
+        <g
+          className={[styles.mediaBadge, muted && styles.mutedMarker].filter(Boolean).join(' ')}
+          style={{ '--i': i } as CSSProperties}
+          transform={transform}
+          role="button"
+          tabIndex={0}
+          aria-label={t('media.badge', { kinds: mediaKinds(media.media, lang) })}
+          data-media-badge={p.slug}
+          onClick={(e) => {
+            e.stopPropagation();
+            onOpenMedia!(active!.id, media.open);
+          }}
+          onKeyDown={onActivate(() => onOpenMedia!(active!.id, media.open))}
+        >
+          <g transform={`translate(${(ring * 0.75).toFixed(2)} ${(-ring * 0.75).toFixed(2)})`}>
+            <circle className={styles.hit} r={6.5} />
+            <rect className={styles.badgeFrame} x={-5} y={-5} width={10} height={10} />
+            <path className={styles.badgeLines} d="M-5 0h10M0 0v5" />
+          </g>
+        </g>
+      )}
+      </Fragment>
     );
   };
 
@@ -609,15 +768,30 @@ export function MapStage({
                       aria-describedby={r.id === shownId ? tooltipId : undefined}
                       data-region={r.id}
                       onClick={() => onSelectRegion(r.id, 'map')}
-                      onKeyDown={onActivate(() => onSelectRegion(r.id, 'map'))}
+                      onKeyDown={(e) => {
+                        // #65: Tab с региона — в его подсказку, Esc — закрыть её.
+                        if (r.id === shownId && e.key === 'Tab' && !e.shiftKey && enterTip(r.id)) {
+                          e.preventDefault();
+                          return;
+                        }
+                        if (r.id === shownId && e.key === 'Escape') {
+                          e.stopPropagation();
+                          setDismissedId(r.id);
+                          return;
+                        }
+                        onActivate(() => onSelectRegion(r.id, 'map'))(e);
+                      }}
                       // SPEC §5.3: на тач-устройствах подсказки нет, тап сразу открывает регион.
                       onPointerEnter={(e) => e.pointerType !== 'touch' && enter(r)}
-                      onPointerLeave={() => setHoverId((id) => (id === r.id ? null : id))}
+                      onPointerLeave={(e) => e.pointerType !== 'touch' && leave(r.id)}
                       onFocus={() => {
                         setFocusId(r.id);
                         void preloadRegionArt(r);
                       }}
-                      onBlur={() => setFocusId((id) => (id === r.id ? null : id))}
+                      onBlur={() => {
+                        setFocusId((id) => (id === r.id ? null : id));
+                        setDismissedId((d) => (d === r.id ? null : d));
+                      }}
                     />
                   );
                 })}
@@ -684,7 +858,7 @@ export function MapStage({
                   {spots.map(marker)}
                 </g>
               )}
-              {threads && <Threads key={threadsKey} spots={threads} scale={threadScale} />}
+              {threads && <Threads key={threadsKey} threads={threads} scale={threadScale} obstacles={threadObstacles} clip={threadClip} />}
             </svg>
           </div>
           {active && <AmbientCanvas key={active.id} ambient={active.ambient} />}
@@ -737,7 +911,22 @@ export function MapStage({
           )}
         </div>
       )}
-      {shown && !flying && <RegionTooltip id={tooltipId} region={shown} heroes={shownHeroes} getAnchor={getAnchor} />}
+      {shown && !flying && (
+        <RegionTooltip
+          id={tooltipId}
+          region={shown}
+          heroes={shownHeroes}
+          getAnchor={getAnchor}
+          tipRef={tipRef}
+          onPick={onPickHero}
+          onPointerEnter={cancelClose}
+          onPointerLeave={() => leave(null)}
+          onKeyDown={onTipKeyDown}
+          onFocusOut={() => setTipFocusId(null)}
+          media={shownMedia}
+          onOpenMedia={onOpenMedia && ((b) => onOpenMedia(shown.id, b.open))}
+        />
+      )}
       {active && spot && !flying && (
         <PlaceTooltip id={placeTipId} placeKey={`${active.id}/${spot.slug}`} heroes={spotHeroes} getAnchor={getSpotAnchor} />
       )}

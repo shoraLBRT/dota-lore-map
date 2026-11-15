@@ -61,3 +61,20 @@ export function restoreFocus(root: HTMLElement, prev: Screen, next: Screen, orig
     }
   }
 }
+
+/**
+ * Tab с последнего элемента подсказки региона (#65): подсказка — портал в конце документа, поэтому фокус
+ * ставим на следующий по порядку Tab элемент после полигона, будто подсказка стояла сразу за ним.
+ * Элементы внутри `skip` пропускаются; не нашлось — фокус возвращается на `from`.
+ */
+export function focusAfter(from: HTMLElement | SVGElement, skip?: Element | null): void {
+  const doc = from.ownerDocument;
+  const all = Array.from(doc.querySelectorAll<HTMLElement | SVGElement>(`${NATIVE_FOCUSABLE}, [tabindex]`)).filter(
+    (el) => el.tabIndex >= 0 && !el.closest('[inert]') && !skip?.contains(el),
+  );
+  for (const el of all.slice(all.indexOf(from) + 1)) {
+    el.focus();
+    if (doc.activeElement === el) return;
+  }
+  from.focus();
+}

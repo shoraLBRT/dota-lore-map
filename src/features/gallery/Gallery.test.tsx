@@ -3,7 +3,9 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { App } from '../../app/App';
 import type { Lang, Media } from '../../data/types';
 import { getMedia, mediaSourceUrl } from '../../data/world';
+import { NavigationProvider } from '../../app/navigation';
 import { I18nProvider } from '../../i18n';
+import { FeedbackProvider } from '../feedback/FeedbackProvider';
 import { Gallery, SWIPE_MIN } from './Gallery';
 import { counter, galleryOf } from './items';
 
@@ -45,13 +47,17 @@ function show(index: number, list: Media[] = items, lang: Lang = 'ru') {
   const onClose = vi.fn();
   const view = render(
     <I18nProvider initialLang={lang}>
-      <Gallery items={list} index={index} onSelect={onSelect} onClose={onClose} />
+      <FeedbackProvider>
+        <Gallery items={list} index={index} onSelect={onSelect} onClose={onClose} />
+      </FeedbackProvider>
     </I18nProvider>,
   );
   const rerender = (i: number) =>
     view.rerender(
       <I18nProvider initialLang={lang}>
-        <Gallery items={list} index={i} onSelect={onSelect} onClose={onClose} />
+        <FeedbackProvider>
+          <Gallery items={list} index={i} onSelect={onSelect} onClose={onClose} />
+        </FeedbackProvider>
       </I18nProvider>,
     );
   return { onSelect, onClose, rerender };
@@ -159,13 +165,16 @@ describe('галерея S4 (SPEC §5.6)', () => {
     opener.focus();
     const view = render(
       <I18nProvider initialLang="ru">
-        <Gallery items={items} index={0} onSelect={() => undefined} onClose={() => undefined} />
+        <FeedbackProvider>
+          <Gallery items={items} index={0} onSelect={() => undefined} onClose={() => undefined} />
+        </FeedbackProvider>
       </I18nProvider>,
     );
     const close = screen.getByRole('button', { name: 'Закрыть галерею' });
     expect(close).toHaveFocus();
     fireEvent.keyDown(close, { key: 'Tab', shiftKey: true });
-    expect(screen.getByRole('link', { name: 'Читать комикс целиком ↗' })).toHaveFocus();
+    // Последний элемент окна — «Нашли ошибку?» (#74).
+    expect(screen.getByRole('button', { name: 'Нашли ошибку или знаете больше? Расскажите' })).toHaveFocus();
     view.unmount();
     expect(opener).toHaveFocus();
     opener.remove();
@@ -259,5 +268,31 @@ describe('галерея в приложении', () => {
     window.location.hash = '#/?media=hells-ascension';
     render(<App />);
     expect(screen.queryByRole('dialog')).toBeNull();
+  });
+
+  it('«Нашли ошибку?» (#74): окно поверх галереи забирает клавиши — стрелки не листают, Esc галерею не закрывает', () => {
+    const onSelect = vi.fn();
+    const onClose = vi.fn();
+    render(
+      <I18nProvider initialLang="ru">
+        <NavigationProvider>
+          <FeedbackProvider>
+            <Gallery items={items} index={0} onSelect={onSelect} onClose={onClose} />
+          </FeedbackProvider>
+        </NavigationProvider>
+      </I18nProvider>,
+    );
+    fireEvent.click(screen.getByRole('button', { name: 'Нашли ошибку или знаете больше? Расскажите' }));
+    const win = screen.getByRole('dialog', { name: 'Обратная связь' });
+    expect(win).toHaveTextContent(`Медиа: ${comic.title.ru}`);
+    fireEvent.keyDown(window, { key: 'ArrowRight' });
+    fireEvent.keyDown(within(win).getByRole('textbox'), { key: 'ArrowLeft' });
+    expect(onSelect).not.toHaveBeenCalled();
+    fireEvent.keyDown(within(win).getByRole('textbox'), { key: 'Escape' });
+    expect(screen.queryByRole('dialog', { name: 'Обратная связь' })).toBeNull();
+    expect(onClose).not.toHaveBeenCalled();
+    // Окно закрыто — клавиши снова у галереи.
+    fireEvent.keyDown(window, { key: 'ArrowRight' });
+    expect(onSelect).toHaveBeenCalledWith(art.id);
   });
 });

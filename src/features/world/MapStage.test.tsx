@@ -1,10 +1,10 @@
-import { act, fireEvent, render, screen, within } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { Hero, Region } from '../../data/types';
 import { I18nProvider } from '../../i18n';
 import { BIOME_COLORS } from './biomes';
 import { cameraTransform, frameCamera, placeCamera, UNMEASURED, worldListLayout } from './camera';
-import { MapStage } from './MapStage';
+import { MapStage, TOOLTIP_CLOSE_DELAY } from './MapStage';
 
 const region = (id: string, withLayout: boolean): Region => ({
   id,
@@ -54,6 +54,7 @@ const tint = (id: string) => document.querySelector(`[data-tint="${id}"]`)!;
 
 describe('MapStage — наведение на регион (S1h)', () => {
   it('мышь: подсветка, подсказка с ≤ 6 портретами и «+N», уход мыши всё снимает', () => {
+    vi.useFakeTimers();
     renderStage([region('a', true), region('b', true)], undefined, 8);
     const polygon = screen.getByRole('button', { name: 'a en' });
     expect(screen.queryByRole('tooltip')).toBeNull();
@@ -67,9 +68,13 @@ describe('MapStage — наведение на регион (S1h)', () => {
     expect(tint('a').getAttribute('class')).toMatch(/lit/);
     expect(tint('b').getAttribute('class')).not.toMatch(/lit/);
 
+    // Подсказка закрывается с задержкой (#65): успеть перевести на неё мышь.
     fireEvent.pointerLeave(polygon, { pointerType: 'mouse' });
+    expect(screen.getByRole('tooltip')).toBeInTheDocument();
+    act(() => vi.advanceTimersByTime(TOOLTIP_CLOSE_DELAY));
     expect(screen.queryByRole('tooltip')).toBeNull();
     expect(tint('a').getAttribute('class')).not.toMatch(/lit/);
+    vi.useRealTimers();
   });
 
   it('клавиатура: фокус = наведение', () => {
@@ -130,7 +135,7 @@ describe('MapStage', () => {
 });
 
 describe('MapStage — список регионов на телефоне (#39)', () => {
-  function renderWithList(activeRegionId?: string, focus?: { key: string; regionId: string; tone: 'neutral' }[]) {
+  function renderWithList(activeRegionId?: string, focus?: { key: string; regionId: string; tone: 'neutral'; event: 'origin' }[]) {
     const onSelectRegion = vi.fn();
     render(
       <I18nProvider initialLang="en">
@@ -176,7 +181,7 @@ describe('MapStage — список регионов на телефоне (#39)
   });
 
   it('выбран герой: его регион отмечен и в списке', () => {
-    renderWithList(undefined, [{ key: 'b', regionId: 'b', tone: 'neutral' }]);
+    renderWithList(undefined, [{ key: 'b', regionId: 'b', tone: 'neutral', event: 'origin' }]);
     expect(item(/b en/).className).toMatch(/heroRegion/);
     expect(item(/a en/).className).toMatch(/muted/);
   });
@@ -208,7 +213,7 @@ describe('MapStage — маркеры мест (S2/S3, SPEC §5.4, §6.3)', () =
     size('offsetHeight', 600);
     try {
       const onSelectSpot = vi.fn();
-      const far = { key: 'icewrack', regionId: 'icewrack', point: [0.9, 0.9] as [number, number], tone: 'neutral' as const };
+      const far = { key: 'icewrack', regionId: 'icewrack', point: [0.9, 0.9] as [number, number], tone: 'neutral' as const, event: 'origin' as const };
       render(
         <I18nProvider initialLang="en">
           <MapStage
@@ -217,7 +222,7 @@ describe('MapStage — маркеры мест (S2/S3, SPEC §5.4, §6.3)', () =
             onSelectRegion={vi.fn()}
             onSelectPlace={vi.fn()}
             onSelectSpot={onSelectSpot}
-            preview={[{ key: 'a/spot', regionId: 'a', placeSlug: 'spot', point: [0.2, 0.2], tone: 'neutral' }, far]}
+            preview={[{ key: 'a/spot', regionId: 'a', placeSlug: 'spot', point: [0.2, 0.2], tone: 'neutral', event: 'origin' }, far]}
           />
         </I18nProvider>,
       );
@@ -317,6 +322,38 @@ describe('MapStage — подписи и подсказки (аудит E13)', (
     for (const slug of hidden) {
       expect(document.querySelector(`[data-place="${slug}"]`)!.getAttribute('class')).toMatch(/labelHidden/);
     }
+  });
+
+  it('значимость (#68): место события ярче, второстепенное меньше; подпись события ставится раньше', () => {
+    const at = (slug: string, pos: [number, number], significance?: 'event' | 'link' | 'minor') => ({
+      name: slug.toUpperCase(),
+      slug,
+      capital: false,
+      placement: 'lore' as const,
+      pos,
+      ...(significance && { significance }),
+    });
+    renderStage([{ ...region('a', true), places: [at('ev', [0.1, 0.1], 'event'), at('ln', [0.15, 0.1], 'link'), at('mi', [0.2, 0.1], 'minor'), at('old', [0.25, 0.1])] }], 'a');
+    const marker = (slug: string) => document.querySelector(`[data-place="${slug}"]`)!;
+    const ring = (slug: string) => marker(slug).querySelector('circle:not([r="18"])')!.getAttribute('r');
+    expect(marker('ev').getAttribute('data-significance')).toBe('event');
+    expect(marker('ev').getAttribute('class')).toMatch(/event/);
+    expect(marker('mi').getAttribute('class')).toMatch(/minor/);
+    expect(marker('ln').getAttribute('class')).not.toMatch(/event|minor/);
+    // Нет поля — как связь E1: обычный маркер.
+    expect(marker('old').getAttribute('data-significance')).toBe('link');
+    expect([ring('ev'), ring('ln'), ring('mi')]).toEqual(['9', '9', '7']);
+    // Второстепенное место не убираем — оно на карте и кликается.
+    expect(screen.getByRole('button', { name: 'MI' })).toBeInTheDocument();
+    cleanup();
+
+    // Тесно (пять мест в одной точке — сторон для подписей четыре): места со связью E1 идут в данных первыми,
+    // но подпись места события встаёт раньше них, прячется последняя из них.
+    const crowd = ['m1', 'm2', 'm3', 'm4'].map((slug) => at(slug, [0.2, 0.2], 'link'));
+    renderStage([{ ...region('a', true), places: [...crowd, at('ev', [0.2, 0.2], 'event')] }], 'a');
+    const side = (slug: string) => document.querySelector(`[data-place="${slug}"] text`)!.getAttribute('data-side');
+    expect(side('ev')).toBe('top');
+    expect(side('m4')).toBe('hidden');
   });
 
   describe('подсказка региона ждёт посадки камеры', () => {
@@ -435,5 +472,142 @@ describe('camera', () => {
     expect(c.x).toBeCloseTo(0.3);
     expect(c.y).toBeCloseTo(0.4);
     expect(c.zoom).toBeCloseTo(2.3);
+  });
+});
+
+describe('MapStage — подсказка региона с героями (#65)', () => {
+  function renderPickable(count = 8) {
+    const onPickHero = vi.fn();
+    const onSelectRegion = vi.fn();
+    render(
+      <I18nProvider initialLang="en">
+        <button type="button">before</button>
+        <MapStage
+          regions={[region('a', true), region('b', true)]}
+          onSelectRegion={onSelectRegion}
+          onSelectPlace={vi.fn()}
+          heroesOf={(id) => (id === 'a' ? heroes(count) : [])}
+          onPickHero={onPickHero}
+        />
+      </I18nProvider>,
+    );
+    const polygon = screen.getByRole('button', { name: 'a en' });
+    return { onPickHero, onSelectRegion, polygon, tip: () => screen.queryByRole('group', { name: 'a en' }) };
+  }
+
+  afterEach(() => vi.useRealTimers());
+
+  it('мышь с региона на подсказку держит её открытой, уход с подсказки закрывает', () => {
+    vi.useFakeTimers();
+    const { polygon, tip } = renderPickable();
+    fireEvent.pointerEnter(polygon, { pointerType: 'mouse' });
+    fireEvent.pointerLeave(polygon, { pointerType: 'mouse' });
+    act(() => vi.advanceTimersByTime(TOOLTIP_CLOSE_DELAY / 2));
+    fireEvent.pointerEnter(tip()!);
+    act(() => vi.advanceTimersByTime(TOOLTIP_CLOSE_DELAY * 2));
+    expect(tip()).not.toBeNull();
+    expect(tint('a').getAttribute('class')).toMatch(/lit/);
+
+    fireEvent.pointerLeave(tip()!);
+    act(() => vi.advanceTimersByTime(TOOLTIP_CLOSE_DELAY));
+    expect(tip()).toBeNull();
+  });
+
+  it('портрет выбирает героя, «+N» раскрывает всех на месте, клик по региону открывает регион', () => {
+    const { onPickHero, onSelectRegion, polygon, tip } = renderPickable();
+    fireEvent.pointerEnter(polygon, { pointerType: 'mouse' });
+    expect(within(tip()!).getByText('Click a hero to show them on the map')).toBeInTheDocument();
+
+    const portrait = within(tip()!).getByRole('button', { name: 'Hero 2' });
+    fireEvent.pointerEnter(portrait.parentElement!);
+    expect(within(tip()!).getByText('Hero 2')).toBeInTheDocument();
+    fireEvent.click(portrait);
+    expect(onPickHero).toHaveBeenCalledWith(expect.objectContaining({ key: 'h2' }));
+    expect(onSelectRegion).not.toHaveBeenCalled();
+
+    const more = within(tip()!).getByRole('button', { name: '+2: show all heroes (8)' });
+    expect(more).toHaveAttribute('aria-expanded', 'false');
+    fireEvent.click(more);
+    expect(within(tip()!).getAllByRole('button')).toHaveLength(8);
+    expect(within(tip()!).queryByText('+2')).toBeNull();
+    fireEvent.click(within(tip()!).getByRole('button', { name: 'Hero 7' }));
+    expect(onPickHero).toHaveBeenLastCalledWith(expect.objectContaining({ key: 'h7' }));
+
+    // Подсказка ушла на другой регион и вернулась — снова свёрнуто.
+    fireEvent.pointerEnter(screen.getByRole('button', { name: 'b en' }), { pointerType: 'mouse' });
+    fireEvent.pointerEnter(polygon, { pointerType: 'mouse' });
+    expect(within(tip()!).getAllByRole('button')).toHaveLength(7);
+
+    fireEvent.click(polygon);
+    expect(onSelectRegion).toHaveBeenCalledWith('a', 'map');
+  });
+
+  it('без героев подсказка без кнопок: только название', () => {
+    render(
+      <I18nProvider initialLang="en">
+        <MapStage
+          regions={[region('b', true)]}
+          onSelectRegion={vi.fn()}
+          onSelectPlace={vi.fn()}
+          heroesOf={() => []}
+          onPickHero={vi.fn()}
+        />
+      </I18nProvider>,
+    );
+    fireEvent.focus(screen.getByRole('button', { name: 'b en' }));
+    expect(screen.getByRole('tooltip')).toHaveTextContent('b en');
+  });
+
+  it('клавиатура: Tab с региона — в подсказку, Shift+Tab — назад, Tab с последней — к следующему региону', () => {
+    const { polygon, tip } = renderPickable(3);
+    act(() => polygon.focus());
+    expect(tip()).not.toBeNull();
+    fireEvent.keyDown(polygon, { key: 'Tab' });
+    const buttons = within(tip()!).getAllByRole('button');
+    expect(buttons).toHaveLength(3);
+    expect(buttons[0]).toHaveFocus();
+
+    fireEvent.keyDown(buttons[0]!, { key: 'Tab', shiftKey: true });
+    expect(polygon).toHaveFocus();
+    expect(tip()).not.toBeNull();
+
+    fireEvent.keyDown(polygon, { key: 'Tab' });
+    act(() => within(tip()!).getAllByRole('button')[2]!.focus());
+    expect(tip()).not.toBeNull();
+    fireEvent.keyDown(within(tip()!).getAllByRole('button')[2]!, { key: 'Tab' });
+    expect(screen.getByRole('button', { name: 'b en' })).toHaveFocus();
+    expect(tip()).toBeNull();
+  });
+
+  it('клавиатура: «+N» ставит фокус на первый раскрытый портрет', () => {
+    const { polygon, tip } = renderPickable();
+    act(() => polygon.focus());
+    fireEvent.keyDown(polygon, { key: 'Tab' });
+    const more = within(tip()!).getByRole('button', { name: /^\+2/ });
+    act(() => more.focus());
+    fireEvent.click(more);
+    expect(within(tip()!).getByRole('button', { name: 'Hero 6' })).toHaveFocus();
+  });
+
+  it('Esc в подсказке закрывает её и возвращает фокус на регион, не доходя до окна', () => {
+    const onWindowKey = vi.fn();
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onWindowKey();
+    window.addEventListener('keydown', onKey);
+    const { polygon, tip } = renderPickable(3);
+    act(() => polygon.focus());
+    fireEvent.keyDown(polygon, { key: 'Tab' });
+    fireEvent.keyDown(within(tip()!).getAllByRole('button')[1]!, { key: 'Escape' });
+    expect(tip()).toBeNull();
+    expect(polygon).toHaveFocus();
+    expect(onWindowKey).not.toHaveBeenCalled();
+
+    // Снова на регион — подсказка снова есть; Esc на регионе тоже закрывает.
+    act(() => polygon.blur());
+    act(() => polygon.focus());
+    expect(tip()).not.toBeNull();
+    fireEvent.keyDown(polygon, { key: 'Escape' });
+    expect(tip()).toBeNull();
+    expect(onWindowKey).not.toHaveBeenCalled();
+    window.removeEventListener('keydown', onKey);
   });
 });

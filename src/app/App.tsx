@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { FeedbackProvider, useFeedback } from '../features/feedback/FeedbackProvider';
 import { Gallery } from '../features/gallery/Gallery';
 import { galleryOf } from '../features/gallery/items';
 import { Intro } from '../features/intro/Intro';
@@ -13,6 +14,7 @@ const WORLD: Screen = { name: 'world' };
 function Screens() {
   const { route, open, navigate } = useNavigation();
   const { unlock } = useSound();
+  const feedback = useFeedback();
   const { screen } = route;
   // A1 идёт уже на адресе #/world: интро остаётся поверх мира, пока облака не разъедутся.
   const [introLeaving, setIntroLeaving] = useState(false);
@@ -20,13 +22,24 @@ function Screens() {
   const gallery = onIntro ? null : galleryOf(route);
   const galleryOpen = gallery !== null;
 
-  // Esc — по порядку: галерея закрывается сама; выбран герой — снять выбор (SPEC §6.5);
-  // иначе на уровень вверх: место → регион → мир (SPEC §5.1).
-  const heroSelected = Boolean(route.hero);
+  // Esc — по порядку: окно обратной связи (обычно закрывается само; здесь — если фокус ушёл из окна, A16);
+  // галерея закрывается сама; открыт профиль — закрыть его, герой остаётся (SPEC §6.8);
+  // выбран герой — снять выбор (SPEC §6.5); иначе на уровень вверх: место → регион → мир (SPEC §5.1).
+  const hero = route.hero;
+  const profileOpen = Boolean(route.hero && route.profile);
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key !== 'Escape' || galleryOpen) return;
-      if (heroSelected) {
+      if (e.key !== 'Escape') return;
+      if (feedback.isOpen) {
+        feedback.close();
+        return;
+      }
+      if (galleryOpen) return;
+      if (hero && profileOpen) {
+        navigate({ screen, hero });
+        return;
+      }
+      if (hero) {
         navigate({ screen });
         return;
       }
@@ -35,7 +48,7 @@ function Screens() {
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [screen, open, navigate, galleryOpen, heroSelected]);
+  }, [screen, open, navigate, galleryOpen, hero, profileOpen, feedback]);
 
   const start = useCallback(() => {
     unlock(); // SPEC §5.2: «Начать» включает звуки, если пользователь их не выключил.
@@ -46,7 +59,8 @@ function Screens() {
   // Листание и закрытие галереи не добавляют записей в историю: «назад» браузера ведёт к прошлому экрану.
   const selectMedia = useCallback((media: string) => navigate({ ...route, media }, { replace: true }), [navigate, route]);
   const closeGallery = useCallback(
-    () => navigate(route.hero ? { screen: route.screen, hero: route.hero } : { screen: route.screen }, { replace: true }),
+    // Профиль и выбранный герой остаются: галерея открыта поверх них.
+    () => navigate({ ...route, media: undefined }, { replace: true }),
     [navigate, route],
   );
 
@@ -64,7 +78,9 @@ export function App() {
     <I18nProvider>
       <SoundProvider>
         <NavigationProvider>
-          <Screens />
+          <FeedbackProvider>
+            <Screens />
+          </FeedbackProvider>
         </NavigationProvider>
       </SoundProvider>
     </I18nProvider>

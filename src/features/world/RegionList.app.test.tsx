@@ -95,7 +95,8 @@ describe('список регионов на телефоне', () => {
     // Templar Assassin — места в нескольких регионах, камера остаётся в мире.
     window.location.hash = '#/world?hero=templar_assassin';
     render(<App />);
-    expect(screen.getByRole('heading', { name: 'Templar Assassin' })).toBeInTheDocument();
+    // Профиль закрыт — сверху чип героя.
+    expect(screen.getByRole('button', { name: /^Templar Assassin/ })).toBeInTheDocument();
     const marked = list()!.querySelectorAll('[class*="heroRegion"]');
     expect(marked.length).toBeGreaterThan(1);
     expect(list()!.querySelectorAll('[class*="muted"]').length).toBe(26 - marked.length);

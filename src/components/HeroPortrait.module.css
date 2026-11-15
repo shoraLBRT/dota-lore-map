@@ -45,3 +45,11 @@
   box-shadow: var(--shadow-1);
   transform: none;
 }
+
+/* Портрет-кнопка (подсказка региона, #65): вид как у ссылки, без оформления нейтральной кнопки. */
+.button {
+  padding: 0;
+  border-radius: 0;
+  color: inherit;
+  cursor: pointer;
+}

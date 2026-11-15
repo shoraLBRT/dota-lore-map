@@ -2,7 +2,7 @@ import { render, screen, within } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import type { Hero, Region } from '../../data/types';
 import { I18nProvider } from '../../i18n';
-import { placeTooltip, RegionTooltip, splitHeroes } from './RegionTooltip';
+import { clampTooltip, placeTooltip, RegionTooltip, splitHeroes } from './RegionTooltip';
 
 const heroes = (n: number): Hero[] =>
   Array.from({ length: n }, (_, i) => ({ key: `h${i}`, name: `Hero ${i}`, slug: `hero${i}`, links: [] }));
@@ -34,8 +34,9 @@ describe('RegionTooltip', () => {
     expect(tip).toHaveTextContent('Frozen land');
     expect(within(tip).getAllByRole('img')).toHaveLength(6);
     expect(within(tip).getByLabelText('and 3 more')).toHaveTextContent('+3');
-    // Портреты в подсказке не кликаются (SPEC §5.3).
+    // Без onPick портреты не кликаются и ссылок нет (SPEC §5.3, #65).
     expect(within(tip).queryByRole('link')).toBeNull();
+    expect(within(tip).queryByRole('button')).toBeNull();
   });
 
   it('6 и меньше героев — без «+N»', () => {
@@ -71,5 +72,18 @@ describe('placeTooltip', () => {
 
   it('у нижнего края — над якорем', () => {
     expect(placeTooltip({ x: 500, y: 560 }, tip, view).top).toBe(442);
+  });
+});
+
+describe('clampTooltip', () => {
+  const view = { width: 1000, height: 600 };
+
+  it('выросшая подсказка остаётся на месте, если помещается', () => {
+    expect(clampTooltip({ left: 100, top: 50 }, { width: 200, height: 300 }, view)).toEqual({ left: 100, top: 50 });
+  });
+
+  it('и только вдвигается внутрь окна', () => {
+    expect(clampTooltip({ left: 900, top: 400 }, { width: 200, height: 300 }, view)).toEqual({ left: 792, top: 292 });
+    expect(clampTooltip({ left: 100, top: 400 }, { width: 200, height: 900 }, view).top).toBe(8);
   });
 });

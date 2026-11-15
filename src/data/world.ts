@@ -94,6 +94,16 @@ export function heroPortrait(hero: Hero): string {
   return `https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/${hero.key}.png`;
 }
 
+/** Широкий портрет героя с CDN Valve (шапка профиля, A6). */
+export function heroCrop(hero: Hero): string {
+  return `https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/crops/${hero.key}.png`;
+}
+
+/** Рендер героя в полный рост с CDN Valve, как на странице героя dota2.com (A6): первый арт профиля. */
+export function heroRender(hero: Hero): string {
+  return `https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/${hero.key}.png`;
+}
+
 /** Название места на нужном языке; без контента — имя из исследования. */
 export function placeName(place: Place, lang: Lang): string {
   return place.text?.name?.[lang] ?? place.name;

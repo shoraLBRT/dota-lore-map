@@ -1,0 +1,222 @@
+/* Профиль героя (E15, SPEC §6.8): в правой панели и в шторке телефона. */
+
+/* Шапка — широкий портрет Valve с затуханием в фон, как шапка места (Panel.module.css .header). */
+.header {
+  display: block;
+  width: calc(100% + 2 * var(--space-5));
+  aspect-ratio: 16 / 9;
+  margin: calc(-1 * var(--space-2)) calc(-1 * var(--space-5)) var(--space-3);
+  object-fit: cover;
+  object-position: 50% 20%;
+  mask-image: linear-gradient(180deg, var(--bg-0) 60%, transparent);
+}
+
+.fallbackPortrait {
+  width: 6rem;
+  margin-bottom: var(--space-3);
+}
+
+.official {
+  display: inline-block;
+  margin-bottom: var(--space-2);
+  font-size: 0.9rem;
+}
+
+/* «Связан с»: портрет, имя, кем приходится. */
+.relations {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.relation {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  min-height: 44px;
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--metal-dim);
+  background: var(--bg-2);
+  color: var(--text-1);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color var(--dur-hover) var(--ease-out);
+}
+
+.relation:hover,
+.relation:focus-visible {
+  border-color: var(--metal-bright);
+}
+
+.relationPortrait {
+  width: 3rem;
+  flex: none;
+}
+
+.relationText,
+.placeText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.relationName,
+.placeName {
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.relationType,
+.placeMeta {
+  color: var(--text-2);
+  font-size: 0.85rem;
+}
+
+/* Места по порядку пути: цвет полосы — сторона или ярус места, значок — событие (как на нити, #67). */
+.places {
+  display: grid;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.place {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  min-height: 44px;
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--metal-dim);
+  border-left: 3px solid var(--hl, var(--metal));
+  background: var(--bg-2);
+  color: var(--text-1);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color var(--dur-hover) var(--ease-out);
+}
+
+.place:hover,
+.place:focus-visible,
+.place[aria-current='true'] {
+  border-color: var(--hl, var(--metal-bright));
+}
+
+/* Прочая связь (упоминание, тип не уточнён): пунктир вместо полосы — как пунктирная нить на карте. */
+.offPath {
+  border-left-style: dashed;
+}
+
+.placeIcon {
+  display: inline-flex;
+  width: 1.1rem;
+  height: 1.1rem;
+  flex: none;
+  color: var(--hl, var(--metal-bright));
+}
+
+.placeIcon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Легенда «как читать нити» (#67): свёрнута по умолчанию. */
+.legend {
+  margin-top: var(--space-3);
+  font-size: 0.85rem;
+}
+
+.legendToggle {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-2);
+  font: inherit;
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.legendToggle:hover,
+.legendToggle:focus-visible {
+  color: var(--text-1);
+}
+
+.legendList {
+  display: grid;
+  gap: var(--space-1);
+  margin: var(--space-2) 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--text-2);
+}
+
+.legendList[hidden] {
+  display: none;
+}
+
+.legendList li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.legendLine {
+  flex: none;
+  fill: none;
+  stroke: var(--metal-bright);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.legendArrow {
+  fill: var(--metal-bright);
+  stroke: none;
+}
+
+.legendIcon {
+  width: 1rem;
+  height: 1rem;
+  margin-inline: 6px;
+  flex: none;
+  color: var(--metal-bright);
+}
+
+.legendNote {
+  color: var(--text-3);
+}
+
+.radiant {
+  --hl: var(--radiant);
+}
+
+.dire {
+  --hl: var(--dire);
+}
+
+.neutral {
+  --hl: var(--neutral);
+}
+
+.upper {
+  --hl: var(--upper);
+}
+
+.abyss {
+  --hl: var(--abyss);
+}
+
+/* Телефон: в свёрнутой шторке (30 % высоты) под крошкой видны шапка и имя героя (SPEC §13). */
+@media (max-width: 767px) {
+  .header {
+    aspect-ratio: 4 / 1;
+    object-position: 50% 15%;
+  }
+}

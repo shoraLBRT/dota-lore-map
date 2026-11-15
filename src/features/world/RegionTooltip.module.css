@@ -2,12 +2,16 @@
 .tooltip {
   position: fixed;
   z-index: 50;
+  /* Ширина — по содержимому, а не по месту справа от left: иначе у правого края она сжимается и замер врёт. */
+  width: max-content;
   max-width: min(26rem, calc(100vw - 16px));
   padding: var(--space-3) var(--space-4);
   border: 1px solid var(--metal);
   background: var(--bg-1);
   box-shadow: var(--shadow-2);
   pointer-events: none;
+  overflow-y: auto;
+  max-height: calc(100vh - 16px);
   clip-path: polygon(
     var(--cut-sm) 0,
     100% 0,
@@ -73,6 +77,34 @@
   font-weight: 700;
 }
 
+/* Подсказка региона с портретами-кнопками (#65): в неё можно зайти мышью. */
+.interactive {
+  pointer-events: auto;
+}
+
+button.more {
+  border-radius: 0;
+  cursor: pointer;
+  transition:
+    border-color var(--dur-hover) var(--ease-out),
+    color var(--dur-hover) var(--ease-out),
+    box-shadow var(--dur-hover) var(--ease-out);
+}
+
+button.more:hover,
+button.more:focus-visible {
+  border-color: var(--metal-bright);
+  color: var(--text-1);
+  box-shadow: var(--glow-metal);
+}
+
+/* Подпись под портретами: имя героя под курсором, иначе — что делает нажатие. */
+.caption {
+  margin: var(--space-2) 0 0;
+  color: var(--text-2);
+  font-size: 0.8rem;
+}
+
 /* Подсказка маркера места (SPEC §5.4): только портреты. */
 .small {
   padding: var(--space-2);
@@ -94,4 +126,46 @@
   .tooltip {
     animation: none;
   }
+}
+
+/* Название и значок медиа (#69) в одну строку. */
+.head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* Значок медиа (#69): маленькая кнопка «вид медиа» — открывает галерею. */
+.media {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: 24px;
+  margin-left: auto;
+  padding: 0 var(--space-2);
+  border: 1px solid var(--metal);
+  border-radius: 0;
+  background: var(--bg-2);
+  color: var(--metal-bright);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: lowercase;
+  cursor: pointer;
+  transition:
+    border-color var(--dur-hover) var(--ease-out),
+    color var(--dur-hover) var(--ease-out),
+    box-shadow var(--dur-hover) var(--ease-out);
+}
+
+.media:hover,
+.media:focus-visible {
+  border-color: var(--metal-bright);
+  color: var(--text-1);
+  box-shadow: var(--glow-metal);
+}
+
+.mediaIcon {
+  width: 14px;
+  height: 14px;
 }
