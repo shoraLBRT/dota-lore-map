@@ -1,0 +1,63 @@
+{
+  "hero": "winter_wyvern",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero",
+    "comic:icewrack-new-neighbors"
+  ],
+  "links": [
+    {
+      "place": "Icewrack",
+      "event": "home",
+      "source": "comic:icewrack-new-neighbors",
+      "note": "В комиксе новым жителем становится Auroth: она поселяется в леднике по соседству с деревней. В Liquipedia помимо этого сказано, что она помогала Vengeful Spirit в Icewrack во время Crownfall. Комикс учтён по его описанию в content/media.json.",
+      "doubt": "Сам ледник в комиксе не назван, привязка к Icewrack идёт через деревню; точного места в источниках нет."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "vengefulspirit",
+      "type": "ally",
+      "place": "Icewrack",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Winter_Wyvern/Lore",
+      "note": "В тексте лор-страницы: помогла Vengeful Spirit в Icewrack во время событий Crownfall."
+    },
+    {
+      "hero": "jakiro",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Jakiro/Lore",
+      "note": "Обратная запись к jakiro.json: в инфобоксе лор-страницы Jakiro она его кузина (поле family).",
+      "doubt": "Сама она к Jakiro враждебна и жалеет, что не убила его до вылупления; о родстве говорит только сторона Jakiro."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Winter Wyvern, которую зовут Аурос, — дракониха из эльдвурмов, у которой вместо огня внутри копится лютый холод. Она давно собирается дописать древнюю сагу, но поиски книг и битвы с сильными врагами отнимают время, и своих стихов пока не получилось. Ей мало быть персонажем легенд: она хочет стать их творцом.",
+      "en": "Winter Wyvern, who goes by Auroth, is an Eldwurm dragon whose inner furnace is replaced by bitter cold. She keeps meaning to finish the old epic, but research trips for books and fights against powerful foes eat up her time, and she has not yet produced verse worth praise. Being a character in the legends is not enough for her; she wants to be the one writing them."
+    }
+  },
+  "candidates": [
+    {
+      "name": "Mt. Gorod",
+      "region": "icewrack",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Winter_Wyvern/Lore",
+      "note": "Лор-страница перечисляет Mt. Gorod в инфобоксе рядом с Icewrack, событие не описано. Регион предположительный: на схеме и в источниках не назван, решает владелец (#59)."
+    }
+  ],
+  "unconfirmed": [
+    "родина и место рождения не названы ни в биографиях, ни в инфобоксе, поэтому origin не записан",
+    "путь: биографии называют экспедиции за книгами и набеги на замки и библиотеки, но без конкретных мест; путь не записан",
+    "Axe, Crystal Maiden, Dragon Knight, Lich, Viper: в инфобоксе heroes без типа связи, в тексте лора отношений не описано; связи не записаны. Dragon Knight в файле jakiro.json стоит как rival, но в кэше Winter Wyvern это только реплика «I knew Slyrak», поэтому не основание",
+    "Weeping Rose: упомянута только в реплике Dark Willow, на сюжетную связь с героем не указывает; не записана",
+    "реплики озвучки (Spectre, Legion Commander, Monkey King, Terrorblade, Pangolier, Snapfire, Grimstroke, Mars и другие) и раздел «знакомые» не использованы для связей; цитата из Artifact не относится к Dota и не записана"
+  ]
+}

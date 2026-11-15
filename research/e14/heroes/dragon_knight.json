@@ -44,6 +44,15 @@
       "url": "https://liquipedia.net/dota2/Dragon_Knight/Lore",
       "note": "В разделе рыцарских соперников лор-страницы Sven не признаёт Давиона настоящим рыцарем из-за драконьей природы, а тот считает себя лучшим рыцарем из двух.",
       "doubt": "Описание построено на репликах Sven и Dragon Knight; конкретного события в тексте нет, связь записана по разделу."
+    },
+    {
+      "hero": "pangolier",
+      "type": "ally",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Pangolier/Lore",
+      "note": "Обратная запись к pangolier.json (партия 03): по лор-странице Pangolier он старый друг и собутыльник Давиона.",
+      "doubt": "Дружба, а не боевой союз; ally — ближайший тип. На странице Dragon Knight Pangolier есть только в репликах."
     }
   ],
   "profile": {

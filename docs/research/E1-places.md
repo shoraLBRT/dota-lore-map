@@ -71,23 +71,23 @@
 ## 5. Регионы, места и герои
 
 <!-- GENERATED:BEGIN -->
-Регионов: **26**, мест: **172**, героев привязано: **127** из 127, из них в «Неизведанных землях»: **9**.
+Регионов: **26**, мест: **172**, героев привязано: **127** из 127, из них в «Неизведанных землях»: **10**.
 
 ### Сводка по регионам
 
 | Ярус | Регион | Сторона | Мест | Героев |
 |---|---|---|---|---|
-| Верхний ярус | Небеса (The Heavens) | нейтрально (ярус) | 6 | 9 |
-| Верхний ярус | Семь планов и Пустота (The Seven Planes and the Void) | нейтрально (ярус) | 13 | 19 |
-| Материк и острова | Айсрак (Icewrack) | Radiant (карта S1) | 12 | 8 |
-| Материк и острова | Земля Сияющих (Land of the Radiant) | Radiant (карта S1) | 8 | 8 |
+| Верхний ярус | Небеса (The Heavens) | нейтрально (ярус) | 6 | 10 |
+| Верхний ярус | Семь планов и Пустота (The Seven Planes and the Void) | нейтрально (ярус) | 13 | 18 |
+| Материк и острова | Айсрак (Icewrack) | Radiant (карта S1) | 12 | 9 |
+| Материк и острова | Земля Сияющих (Land of the Radiant) | Radiant (карта S1) | 8 | 9 |
 | Материк и острова | Лес Найтсильвер (Nightsilver Woods) | Radiant (карта S1) | 3 | 3 |
-| Материк и острова | Стоунхолл (Stonehall) | Radiant (по схеме E2) | 24 | 3 |
+| Материк и острова | Стоунхолл (Stonehall) | Radiant (по схеме E2) | 24 | 4 |
 | Материк и острова | Вольные города (The Free Cities) | Radiant (по схеме E2) | 7 | 10 |
 | Материк и острова | Квойдж и Поля Бойни (Quoidge and the Fields of Carnage) | нейтрально (по схеме E2) | 4 | 3 |
 | Материк и острова | Хазадальские пустоши (Hazhadal Barrens) | нейтрально (по схеме E2) | 2 | 2 |
 | Материк и острова | Друуд (Druud) | Dire (по схеме E2) | 2 | 3 |
-| Материк и острова | Сверкающая пустошь (Scintillant Waste) | Dire (карта S1) | 9 | 5 |
+| Материк и острова | Сверкающая пустошь (Scintillant Waste) | Dire (карта S1) | 9 | 6 |
 | Материк и острова | Стонущие горы (Wailing Mountains) | Dire (карта S1) | 6 | 7 |
 | Материк и острова | Тенистый берег (Shadeshore) | Dire (по схеме E2) | 5 | 4 |
 | Материк и острова | Глубины (The Deep) | Dire (карта S1) | 7 | 4 |
@@ -97,10 +97,10 @@
 | Материк и острова | Слом и Эльзе (Slom and Elze) | Radiant (по схеме E2) | 3 | 4 |
 | Материк и острова | Ховен и Нишай (The Hoven and Nishai) | Dire (по схеме E2) | 4 | 4 |
 | Материк и острова | Феллстрат (Fellstrath) | Dire (по схеме E2) | 6 | 6 |
-| Материк и острова | Томо'кан и Окраины (Tomo'kan and the Outlands) | Dire (по схеме E2) | 6 | 6 |
+| Материк и острова | Томо'кан и Окраины (Tomo'kan and the Outlands) | Dire (по схеме E2) | 6 | 5 |
 | Материк и острова | Империя Костей (Empire of Bone) | Dire (по схеме E2) | 3 | 1 |
 | Материк и острова | Срединные королевства (The Middle Kingdoms) | нейтрально (по схеме E2) | 11 | 13 |
-| Материк и острова | Неизведанные земли (The Uncharted Lands) | нейтрально (по схеме E2) | 0 | 9 |
+| Материк и острова | Неизведанные земли (The Uncharted Lands) | нейтрально (по схеме E2) | 0 | 10 |
 | Бездна | Подземье (The Underdark) | нейтрально (ярус) | 4 | 4 |
 | Бездна | Семь Преисподних и загробье (The Seven Hells and the Afterlife) | нейтрально (ярус) | 8 | 9 |
 
@@ -110,20 +110,22 @@
 
 Сторона: **нейтрально** (ярус). Небо над миром и небесные тела: столица скайрасов высоко над землёй, Безумная Луна (разрушена, её осколки — Radiant Ore и Direstone), Луна Селемены, Солнце.
 
+Герои всего региона: Mars
+
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
 | ★ Ghastly Eyrie | лор | Kez, Skywrath Mage, Vengeful Spirit | столица расы скайрасов, «среди облаков и звёзд» |
 | Mad Moon | лор | Arc Warden (служба) |  |
-| Selemene's Moon | лор | — | вместе с Demon Star |
+| Selemene's Moon | лор | Night Stalker (упоминание) | вместе с Demon Star |
 | The Sun | лор | Dawnbreaker*, Phoenix* | Children of Light и солнечная кузня (страницы на Liquipedia нет) |
-| Olympus | наше | Mars*, Zeus | небесная обитель Зевса; страницы на Liquipedia нет |
+| Olympus | наше | Zeus | небесная обитель Зевса; страницы на Liquipedia нет |
 | Ultoria | лор | Spirit Breaker (связь)† | небесное тело со своими лунами |
 
 #### Семь планов и Пустота · The Seven Planes and the Void
 
 Сторона: **нейтрально** (ярус). Иные планы бытия и измерения вне Terrene Plane (наш мир).
 
-Герои всего региона: Elder Titan, Spectre
+Герои всего региона: Elder Titan, Puck, Spectre
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
@@ -132,8 +134,8 @@
 | Elemental Plane | лор | Dragon Knight (упоминание), Spirit Breaker |  |
 | Astral Plane | лор | Elder Titan (бывал) |  |
 | Fabric of Creation | лор | Weaver |  |
-| Claszureme | лор | Faceless Void, Puck† | мир вне времени |
-| The Void | лор | Ancient Apparition, Night Stalker†, Void Spirit |  |
+| Claszureme | лор | Faceless Void, Puck (бывал) | мир вне времени |
+| The Void | лор | Ancient Apparition, Void Spirit |  |
 | The Outworld | лор | Outworld Destroyer | «мир на краю Бездны», у границы Пустоты |
 | Land Behind the Wall | лор | Dark Seer | родная реальность Dark Seer; страницы на Liquipedia нет |
 | Ivory Incubarium | лор | Oracle | в другой вселенной |
@@ -151,7 +153,7 @@
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
-| ★ Icewrack | лор | Crystal Maiden (живёт), Kez (живёт), Winter Wyvern (живёт)† |  |
+| ★ Icewrack | лор | Crystal Maiden (живёт), Kez (живёт), Pangolier (упоминание), Winter Wyvern (живёт) |  |
 | The Barrier | лор | — |  |
 | Blueheart Glacier | лор | — |  |
 | Black Pool | лор | Lich (живёт) |  |
@@ -171,7 +173,7 @@
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
 | Pole | карта S1 | Phantom Lancer |  |
-| Violet Archives | карта S1 | Templar Assassin (связь) |  |
+| Violet Archives | карта S1 | Phoenix (упоминание), Templar Assassin (связь) |  |
 | Violet Plateau | лор | Tinker (живёт) | архивы находятся в нём или рядом |
 | Castle of the Fold | карта S1 | — |  |
 | Home of the Keen Folk | карта S1 | Alchemist*, Clockwerk |  |
@@ -195,11 +197,11 @@
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
-| ★ Stonehall | лор | Legion Commander (живёт), Underlord (связь)† |  |
+| ★ Stonehall | лор | Legion Commander (живёт), Magnus (упоминание), Underlord (связь)† |  |
 | Qine | лор | Legion Commander |  |
 | Quath | лор | — |  |
 | Tares | лор | Phantom Assassin | к югу от Стоунхолла |
-| Roseleaf | лор | — |  |
+| Roseleaf | лор | Magnus (сражение) |  |
 | Tarrin | лор | — | к юго-западу |
 | Sashire | лор | — | к югу |
 | Milltown | лор | — | к западу, на реке между Roseleaf и Tarrin |
@@ -226,8 +228,8 @@
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
-| ★ White Spire | лор | Bounty Hunter (живёт)†, Monkey King (живёт), Pangolier (живёт)† |  |
-| Revtel | лор | Dark Willow |  |
+| ★ White Spire | лор | Bounty Hunter (живёт)†, Monkey King (живёт), Pangolier (бывал) |  |
+| Revtel | лор | Dark Willow, Pangolier (бывал) |  |
 | Weeping Rose | лор | Lion, Queen of Pain (связь)† |  |
 | Tyler Estate | лор | Anti-Mage (связь), Silencer (связь)† | в Weeping Rose |
 | Sundered Moon | лор | Arc Warden (бывал), Drow Ranger (бывал) | таверна в White Spire |
@@ -240,7 +242,7 @@
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
-| ★ Quoidge | лор | Mars (связь)†, Pudge (связь) |  |
+| ★ Quoidge | лор | Mars (упоминание), Pudge (связь) |  |
 | Smoke Harbor | лор | — |  |
 | Fields of Endless Carnage | лор | Pudge (живёт) |  |
 | Cathedral of Rumusque | лор | Necrophos |  |
@@ -269,10 +271,10 @@
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
-| ★ Scintillant Waste | лор | Sand King |  |
+| ★ Scintillant Waste | лор | Phoenix (упоминание), Sand King |  |
 | Desert of Misrule | карта S1 | Lina |  |
 | Riftshadow Ruins | карта S1 | Meepo |  |
-| Qaldin | лор | Pangolier (связь)†, Sand King (связь) |  |
+| Qaldin | лор | Pangolier (бывал), Sand King (связь) |  |
 | El'Harath | лор | — |  |
 | The Barrens | лор | — |  |
 | Halgalreh | наше | Templar Assassin (связь)† | руины пустынной империи |
@@ -288,7 +290,7 @@
 | ★ Ruined City | карта S1 | Brewmaster, Storm Spirit (живёт) |  |
 | Fortress of Flares | лор | Ember Spirit (живёт) |  |
 | Turstarkuri | карта S1 | Anti-Mage |  |
-| Mount Joerlak | карта S1 | Magnus† |  |
+| Mount Joerlak | карта S1 | Magnus |  |
 | Feral Road | карта S1 | Sven (связь)† |  |
 | The Upland | наше | Earth Spirit | нагорье священного нефрита |
 
@@ -359,8 +361,8 @@
 | Zaru'Kina | лор | Windranger |  |
 | Vale of Augury | лор | Treant Protector (живёт) |  |
 | Augury Bay | лор | Timbersaw |  |
-| Endless Copse | наше | Nature's Prophet (живёт)† |  |
-| Manglewood Forest | наше | — |  |
+| Endless Copse | наше | Nature's Prophet (упоминание) |  |
+| Manglewood Forest | наше | Nature's Prophet (бывал) |  |
 
 #### Слом и Эльзе · Slom and Elze
 
@@ -392,7 +394,7 @@
 | ★ Fellstrath | лор | Dazzle (живёт)† |  |
 | Overgrown Empire | лор | — |  |
 | Ashkavor | лор | Grimstroke |  |
-| Yama Raskav Jungle | наше | Batrider, Medusa (живёт)† |  |
+| Yama Raskav Jungle | наше | Batrider, Medusa (упоминание) |  |
 | Xhacatocatl | наше | Bloodseeker | окутанные туманом горы |
 | Velu'Mar | наше | Largo | Murkroots of Velu'Mar, родина Largo; страницы на Liquipedia нет |
 
@@ -402,7 +404,7 @@
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
-| ★ Tomo'kan | лор | Arc Warden (сражение), Hoodwink (живёт), Primal Beast (живёт), Puck (связь)†, Ursa (живёт) |  |
+| ★ Tomo'kan | лор | Arc Warden (сражение), Hoodwink (живёт), Primal Beast (живёт), Ursa (живёт) |  |
 | Krimwohl | лор | Hoodwink |  |
 | Outlands | лор | — |  |
 | Nanarak | лор | Snapfire (живёт) |  |
@@ -446,6 +448,7 @@
 | Death Prophet | Ни биография, ни лор-страница Liquipedia не называют места, где Кробелус родилась или жила; загробный мир описан только общими словами. |
 | Jakiro | в биографиях мест нет; в инфобоксе лор-страницы названы Grosche и The Riverwarren, но их нет в regions.json, см. candidates |
 | Marci | родина не названа ни в биографии, ни в игровом лоре; места из инфобокса Liquipedia (Hauptstadt, Barrowhaven и др.) взяты из сериала «DOTA: Dragon's Blood» — по решению В5 на карту и в кандидаты не добавляем |
+| Medusa | Родина горгон: царство, куда напали незнакомцы в масках, в биографии не названо; на схеме такого места нет |
 | Ogre Magi | Ни в биографии, ни на лор-странице Liquipedia не назван ни регион, ни место, где родился и вырос Ogre Magi. Инфобокс с полем places пуст. Род огров записан без привязки к земле, поэтому связь оставлена в неизведанных землях. |
 | Riki | Родина Riki в биографии не названа: сказано только, что он из династии Tahlin и что его народ предали в ночь гибели царского рода. Liquipedia упоминает безымянную родину с пряностями, но это реплика другого героя, не название места. Поэтому на схеме — Неизведанные земли; кандидата в места нет. |
 | Ringmaster | ни в биографии, ни в лоре на Liquipedia место не названо: история идёт в безымянных городках и в цирке Осберта Кеттла |
@@ -472,7 +475,7 @@
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
-| ★ Seven Hells | лор | Shadow Demon† |  |
+| ★ Seven Hells | лор | Shadow Demon |  |
 | Vashundol | лор | Doom |  |
 | Abysm | лор | Shadow Fiend |  |
 | Foulfell | лор | Terrorblade |  |
@@ -542,30 +545,30 @@
 | Lone Druid | Onyx Grove (Айсрак) (живёт) |
 | Luna | Nightsilver Woods (Лес Найтсильвер) (живёт) |
 | Lycan | Slom (Слом и Эльзе) |
-| Magnus | Mount Joerlak (Стонущие горы)† |
+| Magnus | Mount Joerlak (Стонущие горы); Roseleaf (Стоунхолл) (сражение); Stonehall (Стоунхолл) (упоминание) |
 | Marci | весь регион «Неизведанные земли»* |
-| Mars | Olympus (Небеса)*; Quoidge (Квойдж и Поля Бойни) (связь)† |
-| Medusa | Yama Raskav Jungle (Феллстрат) (живёт)† |
+| Mars | весь регион «Небеса»; Quoidge (Квойдж и Поля Бойни) (упоминание) |
+| Medusa | весь регион «Неизведанные земли»; Yama Raskav Jungle (Феллстрат) (упоминание) |
 | Meepo | Riftshadow Ruins (Сверкающая пустошь); Singer's Gulch (Сверкающая пустошь) (связь)† |
 | Mirana | Nightsilver Woods (Лес Найтсильвер) (живёт); Solar Throne (Срединные королевства) |
 | Monkey King | White Spire (Вольные города) (живёт) |
 | Morphling | весь регион «Глубины» (живёт) |
 | Muerta | Skirm (Срединные королевства) |
 | Naga Siren | Crey (Глубины) (живёт) |
-| Nature's Prophet | Endless Copse (Западные леса) (живёт)† |
+| Nature's Prophet | Manglewood Forest (Западные леса) (бывал); Endless Copse (Западные леса) (упоминание) |
 | Necrophos | Cathedral of Rumusque (Квойдж и Поля Бойни) |
-| Night Stalker | The Void (Семь планов и Пустота)† |
+| Night Stalker | Selemene's Moon (Небеса) (упоминание) |
 | Nyx Assassin | Hidden Hive (Срединные королевства) (живёт) |
 | Ogre Magi | весь регион «Неизведанные земли»* |
 | Omniknight | Emauracus (Срединные королевства) (живёт) |
 | Oracle | Ivory Incubarium (Семь планов и Пустота) |
 | Outworld Destroyer | The Outworld (Семь планов и Пустота) |
-| Pangolier | White Spire (Вольные города) (живёт)†; Qaldin (Сверкающая пустошь) (связь)† |
+| Pangolier | Revtel (Вольные города) (бывал); Qaldin (Сверкающая пустошь) (бывал); White Spire (Вольные города) (бывал); Icewrack (Айсрак) (упоминание) |
 | Phantom Assassin | Tares (Стоунхолл) |
 | Phantom Lancer | Pole (Земля Сияющих) |
-| Phoenix | The Sun (Небеса)* |
+| Phoenix | The Sun (Небеса)*; Scintillant Waste (Сверкающая пустошь) (упоминание); Violet Archives (Земля Сияющих) (упоминание) |
 | Primal Beast | Tomo'kan (Томо'кан и Окраины) (живёт) |
-| Puck | Claszureme (Семь планов и Пустота)†; Tomo'kan (Томо'кан и Окраины) (связь)† |
+| Puck | весь регион «Семь планов и Пустота»; Claszureme (Семь планов и Пустота) (бывал) |
 | Pudge | Fields of Endless Carnage (Квойдж и Поля Бойни) (живёт); Quoidge (Квойдж и Поля Бойни) (связь) |
 | Pugna | Nether Reaches (Подземье) |
 | Queen of Pain | Elze (Слом и Эльзе) (связь); Weeping Rose (Вольные города) (связь)† |
@@ -574,7 +577,7 @@
 | Ringmaster | весь регион «Неизведанные земли»* |
 | Rubick | весь регион «Неизведанные земли»* |
 | Sand King | Scintillant Waste (Сверкающая пустошь); Qaldin (Сверкающая пустошь) (связь) |
-| Shadow Demon | Seven Hells (Семь Преисподних и загробье)† |
+| Shadow Demon | Seven Hells (Семь Преисподних и загробье) |
 | Shadow Fiend | Abysm (Семь Преисподних и загробье) |
 | Shadow Shaman | Bleeding Hills (Ховен и Нишай) |
 | Silencer | Hazhadal Barrens (Хазадальские пустоши); Tyler Estate (Вольные города) (связь)† |
@@ -608,7 +611,7 @@
 | Warlock | Ultimyr Academy (Срединные королевства) (живёт); Outer Hells (Семь Преисподних и загробье) (связь) |
 | Weaver | Fabric of Creation (Семь планов и Пустота) |
 | Windranger | Zaru'Kina (Западные леса) |
-| Winter Wyvern | Icewrack (Айсрак) (живёт)† |
+| Winter Wyvern | Icewrack (Айсрак) (живёт) |
 | Witch Doctor | весь регион «Неизведанные земли»* |
 | Wraith King | Throne of Bone (Империя Костей) (живёт) |
 | Zeus | Olympus (Небеса) |

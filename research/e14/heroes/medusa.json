@@ -1,0 +1,35 @@
+{
+  "hero": "medusa",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "region": "uncharted",
+      "event": "origin",
+      "source": "bio",
+      "note": "Родина горгон: царство, куда напали незнакомцы в масках, в биографии не названо; на схеме такого места нет"
+    },
+    {
+      "place": "Yama Raskav Jungle",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Medusa/Lore",
+      "note": "Герой здесь не бывал: в описании её лука упомянут вайпер из этих джунглей"
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Medusa — младшая из трёх горгон, дочерей морской богини, и единственная из сестёр, рождённая смертной. Когда неизвестные похитили сестёр, она выпросила у матери силу в обмен на красоту и поклялась вернуть их и отомстить. С тех пор её принцип: ценна только сила.",
+      "en": "Medusa is the youngest of three Gorgon sisters, daughters of a sea goddess, and the only one of them born mortal. After masked raiders abducted her sisters, she asked her mother for strength in exchange for her beauty, vowing to bring them back and avenge the wrong. Since then she has held that only power is worth having."
+    },
+    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/medusa.png"]
+  },
+  "unconfirmed": [
+    "Родина горгон: в биографии царство названо без имени, поэтому кандидатом на карту не вношу; регион остаётся uncharted, пока владелец не решит иначе.",
+    "Храм матери, куда Medusa бежала после похищения, не назван: в биографии только 'храм' богини, место не привязано.",
+    "Инфобокс (поле heroes) называет Zeus и Pangolier без указания типа связи; текст биографии и лора тип не задаёт, поэтому связи не записаны.",
+    "Реплики озвучки о Zeus (Monkey King: 'you and Zeus', 'Tell your brothers I said hello') и о Pangolier ('I will help you on your quest') — не основание для связи по партии 01 и 02.",
+    "Реплики Bristleback, Keeper of the Light, Oracle, Legion Commander, Underlord, Gyrocopter, Phantom Lancer, Queen of Pain, Terrorblade, Tiny и других — отдельные строки озвучки и 'знакомые', связи не записаны.",
+    "Остальные Liquipedia-предметы (Circlet of Forsaken Beauty, Bow of the Serpent) и страница Medusa/Lore упоминают только вещи, без новых мест кроме Yama Raskav Jungle."
+  ]
+}

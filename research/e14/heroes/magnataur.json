@@ -1,0 +1,63 @@
+{
+  "hero": "magnataur",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "place": "Mount Joerlak",
+      "event": "origin",
+      "source": "bio",
+      "note": "Родина героя: его пещера и род магнороков у горы Йорлак; в инфобоксе Liquipedia место тоже указано"
+    },
+    {
+      "place": "Roseleaf",
+      "event": "battle",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Magnus/Lore",
+      "doubt": "Текст лор-страницы: герой вступился за Vhoul в конфликте в лесу Roseleaf. Биография этого не говорит; тип «battle» выбран по смыслу, а не по прямой формулировке"
+    },
+    {
+      "place": "Stonehall",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Magnus/Lore",
+      "note": "Герой враждебен Bronze Legion из Stonehall, но сам там не назван бывающим"
+    }
+  ],
+  "path": [
+    { "place": "Mount Joerlak" },
+    { "place": "Roseleaf" }
+  ],
+  "relations": [
+    {
+      "hero": "treant",
+      "type": "ally",
+      "place": "Roseleaf",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Magnus/Lore",
+      "note": "Лор-страница: в конфликте в Roseleaf герой встал на сторону Vhoul и их защитников, включая Treant Protector; тот же герой указан в инфобоксе",
+      "doubt": "Формулировка опирается на карточку Artifact, пересказанную на лор-странице"
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Magnus — магнорог с горы Йорлак, чей рог ценится выше любого сплава; долгое время он отгонял охотников от своего рода. После извержения, погубившего половину сородичей, он оставил племя и поклялся покарать виновных, прежде чем вернуться к своим. Сейчас он ввязался в конфликт в Roseleaf на стороне слабых и враждует с Bronze Legion.",
+      "en": "Magnus is a magnoceros from Mount Joerlak whose horn is valued above any alloy, and for a long time he drove hunters away from his kin. After a volcanic eruption killed half of his people, he left them and swore to punish those responsible before rejoining them. He now takes sides in the conflict in Roseleaf on behalf of the weak and is hostile to the Bronze Legion."
+    },
+    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/magnataur.png"]
+  },
+  "candidates": [],
+  "unconfirmed": [
+    "Sven: указан в инфобоксе Liquipedia (поле heroes), но тип связи есть только в реплике озвучки Underlords («работать вместе»); не записан",
+    "Centaur Warrunner: лор говорит, что герой уважаем этим персонажем, но тип связи не назван, а текст сам отмечает противоречие; не записан",
+    "Реплики озвучки (Bloodseeker, Dark Willow, Razor, Spirit Breaker, Pangolier, Pudge, Ringmaster, Snapfire и др.): не основание связи по решению партии 01",
+    "Ilexa, Farvhan, Rix: персонажи лора, а не герои, ключа в heroes.json нет; Ilexa герой взял под защиту",
+    "Prowlers: народ, куда герой привёл Ilexa; это группа, а не место из regions.json, поэтому ни в links, ни в candidates не записан",
+    "Путь Mount Joerlak → Roseleaf: маршрут не описан; в путь включены два места из инфобокса и биографии (уход от рода)",
+    "Безымянное место на севере от горы, где выжившие встретили заставу: в источниках не названо",
+    "Судьба героя после извержения (погиб или вернулся к роду): биография оставляет версии открытыми; в links не отражено",
+    "Комиксов в content/media.json для героя нет"
+  ]
+}

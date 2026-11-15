@@ -1,0 +1,42 @@
+{
+  "hero": "night_stalker",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "place": "Selemene's Moon",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Night_Stalker/Lore",
+      "note": "Поле places инфобокса лор-страницы. В тексте о Луне Селемены сказано лишь косвенно (герой «любимец луны» только по репликам), поэтому тип — упоминание.",
+      "doubt": "Инфобокс называет место, но ни биография, ни лор-текст не говорят, что герой там бывал, родился или живёт."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "dawnbreaker",
+      "type": "enemy",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Night_Stalker/Lore",
+      "note": "Раздел Relationships лор-страницы: Night Stalker как создание ночи должен враждовать с Детьми Сияния и их созданиями, прямо назван Dawnbreaker. Взаимная запись уже есть в dawnbreaker.json.",
+      "doubt": "Вражда выведена из противостояния Детей Сияния и созданий ночи; личной встречи героев в тексте нет."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Баланар, он же Night Stalker, — древнее ночное существо, которое уцелело, когда на рассвете Первого дня погибли все порождения тьмы. Он выслеживает в темноте тех, кто ушёл от света и не послушал предостережений, и сам стал тем страшилищем, которым пугают детей. Тьма в его сердце поддерживает его и днём, хотя при свете он слабее.",
+      "en": "Balanar, known as Night Stalker, is an ancient creature of the night who alone survived the sunrise that ended his kind. He hunts in darkness for the careless who wandered off from the light, and he himself became the monster that frightens children. The darkness inside him keeps him going even by day, though he is weaker in the light."
+    }
+  },
+  "unconfirmed": [
+    "Родина: мир, где правила первобытная ночь, назван в биографии без конкретного места. Единственное место из источников — Луна Селемены, связь взята из инфобокса с пометкой mention.",
+    "Keeper of the Light и Void Spirit: стоят в поле heroes инфобокса лор-страницы, но тип связи нигде не назван. Keeper упомянут как создатель первого дня, однако враждебности или родства между ним и героем в тексте нет — не записано.",
+    "Реплики озвучки (Axe, Bane, Keeper of the Light, Luna, Lycan, Mirana, Monkey King, Mars, Queen of Pain, Snapfire, Ursa, Winter Wyvern, Terrorblade и другие) и раздел Allies meeting Night Stalker (Dark Willow, Pangolier, Void Spirit, Mars и др.) — отдельные строки, не основание для связей.",
+    "Нелюбовь героя к Mirana, Luna и Lycan за претензии на власть над ночью или луной: это реплики «killspecial» в разделе Personality, связи не записаны.",
+    "Order of Balanar, Order of Ra'hul, Children of Light, Creatures of Darkness — фракции и раса, не герои и не места; в связи не записаны.",
+    "Пленение цепями Ордена Ра'хула и разорение Ордена после побега: место не названо, поэтому не привязано.",
+    "Список мест лора — только Selemene's Moon; кандидатов на схему нет. Упоминания «тёмного леса» (Enchantress на карточке Artifact) и «освещённых путей» — общие, не именованные места.",
+    "Путь (path) не заполнен: перемещений героя в источниках нет."
+  ]
+}

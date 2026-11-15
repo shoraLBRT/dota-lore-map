@@ -1,0 +1,53 @@
+{
+  "hero": "puck",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "region": "planes",
+      "event": "origin",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Puck/Lore",
+      "doubt": "На лор-странице сказано, что Puck вылупился на ветке Undertree и пришёл из другого измерения. Undertree и измерение на схеме не отмечены; регион planes выбран по аналогии с Claszureme и решает владелец (кандидат Undertree)."
+    },
+    {
+      "place": "Claszureme",
+      "event": "visit",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Puck/Lore",
+      "doubt": "Инфобокс даёт только название места. Сам факт посещения взят из реплики озвучки («бывал в Claszureme»), поэтому тип visit, а не более сильный."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Puck — фейский дракончик, который ведёт себя как озорной ребёнок, но на деле древнее и чужеродное существо. Он вылупился на дереве Undertree и тысячелетиями сохраняет юный облик, поэтому его мотивы трудно понять. За играми может скрываться что-то гораздо более мрачное.",
+      "en": "Puck is a Faerie Dragon that acts like a mischievous child, yet it is an ancient, alien being from another dimension. It emerged on the Undertree and keeps its young form across millennia, which leaves its motives hard to read. Its playful surface might conceal a far more sinister agenda."
+    }
+  },
+  "candidates": [
+    {
+      "name": "Undertree",
+      "region": "planes",
+      "event": "origin",
+      "source": "liquipedia",
+      "url": "https://liquipedia.net/dota2/Puck/Lore",
+      "note": "Дерево, где вылупились все фейские дракончики, включая Puck. Не отмечено на схеме; регион предположительный, по аналогии с другим измерением."
+    }
+  ],
+  "unconfirmed": [
+    "Инфобокс лор-страницы перечисляет героев Io, Vengeful Spirit и Dark Willow, но тип связи не указан, а реплики Puck и Dark Willow не дают однозначного типа (rival, enemy и т. п.). Связи не записаны, пока не будет основания.",
+    "Раздел «Allies meeting Puck» (Lone Druid, Monkey King, Rubick, Silencer) и «Enemies killing Puck» (Alchemist, Bane, Enigma, Jakiro, Legion Commander, Leshrac, Lifestealer, Monkey King, Pudge, Silencer, Storm Spirit, Tidehunter, Vengeful Spirit, Viper) — только строки озвучки; по решению партии 01 связи по ним не записаны.",
+    "Реплика Oracle в разделе «Others» — строка озвучки, связь не записана.",
+    "Раздел Dota Underlords (Slyrak, Davion) относится к другой игре, не к Dota 2 лору; Slyrak и Davion не герои в heroes.json, связи не записаны.",
+    "Mireska, Shendelzare, Mercurial, Scrolls of Haize, Faerie Dragons и Aether-Wings — не герои и не места из regions.json; в файл не включены. Реалм, где линяют крылья Puck (описание Aether-Wings), безымянный и в кандидаты не записан.",
+    "Путь (path) не заполнен: в источниках нет перемещений героя, только посещение Claszureme.",
+    "Обратных связей в файлах других героев не найдено (grep по \"hero\": \"puck\" пуст).",
+    "Fae Realm и Multiverse стоят в поле places инфобокса; связь с Fae Realm выведена из реплики, Multiverse — не место. Кандидатами не записаны."
+  ]
+}

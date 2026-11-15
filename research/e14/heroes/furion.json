@@ -1,0 +1,48 @@
+{
+  "hero": "furion",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Manglewood Forest",
+      "event": "visit",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Nature's_Prophet/Lore",
+      "note": "Он срезал ветку с самого старого дерева в лесу и сделал из неё посох. Важного события здесь нет."
+    },
+    {
+      "place": "Endless Copse",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Nature's_Prophet/Lore",
+      "note": "По описанию предмета: цветок для его посоха сорван в глубине Endless Copse. Бывал ли он там сам, не сказано."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Nature's Prophet вырос из последнего семени богини лесов Веродиции и унаследовал от неё дар предвидения. Он охраняет дикую природу и её обитателей: мягок с теми, кто живёт в гармонии с лесом, и жесток к тем, кто несёт в него разрушение. Странствуя по глухим чащам, он призывает деревья и древесных существ туда, где нужна его защита.",
+      "en": "Nature's Prophet grew from the last seed of Verodicia, the goddess of the woods, and inherited her gift of foresight. He guards wild places and their creatures, gentle with those who live in harmony with the forest and merciless toward anyone who would ravage it. Roaming the deep wilderness, he calls up trees and treants wherever his protection is needed."
+    }
+  },
+  "unconfirmed": [
+    "Биография не называет ни одного места по имени; его места взяты из инфобокса и текста лор-страницы.",
+    "Dark grey place, где он бывал в промежутках между смертями: текст не называет место; возможный Underscape только предположение лор-страницы, связь не записана.",
+    "Nature из инфобокса (places) — понятие, а не место на схеме; не записано.",
+    "Terrene Plane (material plane) — символика руны Laguz, а не место, где бывал герой; не записано.",
+    "Treant Protector: вместе названы «гордостью Веродиции», а реплики называют его младшим братом; тип родства в тексте не назван, связь не записана.",
+    "Windranger: сожаление после его гибели — только реплика озвучки, связь не записана.",
+    "Hoodwink: он предлагал ей вступить в свою группу, она отказала — тип отношений в тексте не назван, связь не записана.",
+    "Ursa: только реплика озвучки, связь не записана.",
+    "Enchantress: упомянут среди хранителей, которых собирает Earth Spirit, и в сравнении с древесными существами; прямой связи с Furion нет, не записано.",
+    "Virga Truebark, Castor Twin-Tusks, Al-Fusha, Enno, Father Mushroom — персонажи без ключа в heroes.json или без известной роли, связи не записаны.",
+    "Родина: биография называет только лес богини Веродиции, без названия; регион western-forests по соседству с Manglewood Forest и Endless Copse был нашей догадкой и снят при проверке.",
+    "Связи earth_spirit, lone_druid, earthshaker, drow_ranger, venomancer, shredder, tinker сняты при проверке: разделы отношений лор-страницы пересказывают реплики озвучки (Earth Spirit, Lone Druid, Planetfall, Drow Ranger) и Dota Underlords. Lone Druid ↔ Nature's Prophet уже отклонена в партии 02 (lone_druid.json).",
+    "Drowned Forest — родина призываемых Shroomling, а не героя; кандидатом не записан."
+  ]
+}
