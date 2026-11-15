@@ -1,6 +1,11 @@
 {
   "hero": "mars",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
   "links": [
     {
       "region": "heavens",
@@ -10,20 +15,12 @@
     },
     {
       "place": "Quoidge",
-      "event": "battle",
+      "event": "mention",
       "source": "liquipedia",
       "via": "infobox",
       "url": "https://liquipedia.net/dota2/Mars/Lore",
-      "note": "Место названо в инфобоксе лор-страницы; по его войнам здесь образовался город",
-      "doubt": "Что Quoidge возник из его войн, сказано в реплике, а не в тексте лора; сам он там не назван участником конкретной битвы"
-    },
-    {
-      "place": "Ultoria",
-      "event": "mention",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Mars/Lore",
-      "note": "Упомянут в реплике про лунный цикл Ultoria; сам герой там не бывал"
+      "note": "Quoidge стоит только в поле places инфобокса лор-страницы; что Mars там делал, в тексте не сказано.",
+      "doubt": "Без текста о событии: тип mention выбран как самый слабый, чтобы не придумывать битву."
     }
   ],
   "relations": [
@@ -34,17 +31,27 @@
       "via": "infobox",
       "url": "https://liquipedia.net/dota2/Mars/Lore",
       "note": "Отец по инфобоксу лор-страницы"
+    },
+    {
+      "hero": "dawnbreaker",
+      "type": "love",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Dawnbreaker/Lore",
+      "note": "Обратная запись к dawnbreaker.json: по лор-странице Dawnbreaker они когда-то были парой (он звался Ares) и вместе свергли Continuum.",
+      "doubt": "Связь в прошлом, после похода они расстались; на странице Mars об этом нет."
     }
   ],
   "profile": {
     "summary": {
-      "ru": "Марс, сын Зевса, бог войны, который веками воевал ради завоеваний и мести. Однажды ему стало мало сражений без цели, и он решил отречься от наследия отца, разрушить старый пантеон и построить новую империю на его руинах. Его окружают мёртвые воины Ash Legion, которые держат для него Arena of Blood.",
+      "ru": "Mars, сын Zeus, бог войны, который веками воевал ради завоеваний и мести. Однажды ему стало мало сражений без цели, и он решил отречься от наследия отца, разрушить старый пантеон и построить новую империю на его руинах. Его окружают мёртвые воины Ash Legion, которые держат для него Arena of Blood.",
       "en": "Mars is the god of war and Zeus's son, who spent ages fighting for conquest and vengeance. Tired of battles with no purpose, he resolved to break from his father's legacy, topple the old pantheon, and raise a new empire on its ruins. His undead Ash Legion fills his Arena of Blood for him."
     },
-    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/mars.png"]
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/mars.png"
+    ]
   },
   "unconfirmed": [
-    "Dawnbreaker: в dawnbreaker.json записана связь love (он её возлюбленный по лору Dawnbreaker, раньше звался Ares). На странице Mars её нет, и подтвердить её по нашим источникам нечем, обратная запись не добавлена.",
     "Wisp (Io): «самый старый друг, помог в тёмные времена» взято из раздела Relationships и опирается на реплику ally_52; тип связи по тексту не выводится, не записано.",
     "Zuus: отчуждение и желание свергнуть его пантеон взято из раздела Relationships и опирается на реплику rival_156; enemy не записан, связь с zuus остаётся family по инфобоксу.",
     "Broodmother: названа в поле heroes инфобокса без типа связи; интерес к кладке из реплики rival_23 — связь не записана.",
@@ -54,6 +61,7 @@
     "Ash Legion: фракция, где базируется не сказано; Arena of Blood — способность, на карту не выносится.",
     "Selemene и Flayed Twins: цели Mars по репликам, места в лоре не указаны; Selemene's Moon на схеме есть, но связь с Mars не подтверждена.",
     "Hera, Poseidon, Hades, Vulcan, Cronus: родственники и боги по инфобоксу и репликам, в heroes.json их нет — в файл героя не записаны.",
-    "Комикс sundered-moon-comic: лор-страница ссылается на него, но в кэше текста комикса нет, поэтому не использован и не записан в read."
+    "Комикс sundered-moon-comic: лор-страница ссылается на него, но в кэше текста комикса нет, поэтому не использован и не записан в read.",
+    "Ultoria: упомянута только в реплике как мера времени («цикл ультарийской луны»); сам Mars там не был — связь снята при проверке."
   ]
 }

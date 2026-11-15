@@ -38,14 +38,6 @@
       "via": "lore",
       "url": "https://liquipedia.net/dota2/Pangolier/Lore",
       "note": "Упомянут как родина любимого герою белого вина. Бывал ли он там, в тексте не сказано."
-    },
-    {
-      "place": "Weeping Rose",
-      "event": "mention",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Pangolier/Lore",
-      "doubt": "Лор-страница только предполагает, что здесь могли проходить попойки героя с Dragon Knight; это догадка, а не сказанное в источнике."
     }
   ],
   "relations": [
@@ -90,12 +82,21 @@
       "via": "lore",
       "url": "https://liquipedia.net/dota2/Pangolier/Lore",
       "note": "Текст называет Leshrac одним из самых ненавистных врагов героя: из-за давнего поступка с женщиной из его жизни."
+    },
+    {
+      "hero": "necrolyte",
+      "type": "enemy",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Pangolier/Lore",
+      "note": "Лор-страница: герой клянётся покончить с Rotund'jere за причинённые им страдания.",
+      "doubt": "Rotund'jere — личное имя Necrophos; в тексте оно не сопоставлено с героем напрямую."
     }
   ],
   "profile": {
     "summary": {
-      "ru": "Донте Панлин — фехтовальщик из ордена «Ниванские франты», который ищет опасность и честные вызовы: сражается с тиранами и чудовищами и не выносит жестокости. Остроумный и обаятельный, он любит вино, романтику и яркий стиль, но верен товарищам по ордену и не признаёт власть королей.",
-      "en": "Donté Panlin is a swordsman of the Nivan Gallants who seeks out peril and fair challenges, taking on tyrants and monsters while refusing cruelty. Witty and charming, he enjoys wine, romance and flashy style, yet stays loyal to his fellow order members and shows little respect for crowned authority."
+      "ru": "Pangolier, он же Донте Панлин, — фехтовальщик из Nivan Gallants, для которого жизнь без приключений ничего не стоит. Он берётся за любых чудовищ и тиранов, заигрывает со всеми подряд и уговорит кого угодно из знати. Странствия доводили его до Revtel и Qaldin, а в свободное время он ходит на скачки в White Spire.",
+      "en": "Pangolier, whose name is Donte Panlin, is a swordsman of the Nivan Gallants who believes life is worthless without adventure. He takes on any monster or tyrant, flirts with everyone he meets and can talk any noble round. His travels have taken him to Revtel and Qaldin, and in his free time he goes to the races in White Spire."
     },
     "art": [
       "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/pangolier.png"
@@ -110,10 +111,10 @@
     "Monkey King: в тексте перечислены схватки, включая Sun Wukong, но это не тип связи (поединок), не записано.",
     "Medusa: в тексте герой обещал помочь с поиском её похищенных сестёр; тип не назван, не записано.",
     "Disruptor: извинение за то, что его спутали с Oglodi, — основано на реплике; не записано.",
-    "Rotund'jere: в тексте назван врагом героя, но имя не сопоставлено с ключом героя (по реплике — Necrophos); реплика не основание, не записано.",
     "Yurnero и Lanaya: герой посредничает между ними (текст), но тип отношений герой–герой не назван; реплики не основание.",
     "Lina и Rylai: герой уговорил Lina помириться с Rylai — связи самого героя с ними в тексте нет, не записано.",
     "Bounty Hunter, Broodmother: есть только в списке связанных героев инфобокса, тип в тексте не назван — не записано.",
-    "Места Desert of Misrule (Lanaya) и Marrowfell Hunters (фракция) упомянуты только в репликах и вне списка связей героя; в links не записаны."
+    "Места Desert of Misrule (Lanaya) и Marrowfell Hunters (фракция) упомянуты только в репликах и вне списка связей героя; в links не записаны.",
+    "Weeping Rose: лор-страница лишь предполагает, что там проходили попойки с Davion; догадка снята при проверке."
   ]
 }

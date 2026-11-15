@@ -48,6 +48,25 @@
       "via": "lore",
       "url": "https://liquipedia.net/dota2/Jakiro/Lore",
       "note": "Подземные пещеры, чей народ Jakiro однажды защитил (описание предмета Pyrexaec Flux); там до сих пор празднуют День костров. Регион не назван — решает владелец (#59)."
+    },
+    {
+      "name": "Undertree",
+      "hero": "puck",
+      "region": "planes",
+      "event": "origin",
+      "source": "liquipedia",
+      "url": "https://liquipedia.net/dota2/Puck/Lore",
+      "note": "Дерево, где вылупились все фейские дракончики, включая Puck. Не отмечено на схеме; регион предположительный, по аналогии с другим измерением."
+    },
+    {
+      "name": "Mt. Gorod",
+      "hero": "winter_wyvern",
+      "region": "icewrack",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Winter_Wyvern/Lore",
+      "note": "Лор-страница перечисляет Mt. Gorod в инфобоксе рядом с Icewrack, событие не описано. Регион предположительный: на схеме и в источниках не назван, решает владелец (#59)."
     }
   ]
 }

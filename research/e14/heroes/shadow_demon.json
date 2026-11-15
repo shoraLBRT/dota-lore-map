@@ -1,6 +1,11 @@
 {
   "hero": "shadow_demon",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
   "links": [
     {
       "place": "Seven Hells",
@@ -15,11 +20,10 @@
   "relations": [
     {
       "hero": "nevermore",
-      "type": "servant",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Shadow_Demon/Lore",
-      "note": "Shadow Fiend служит Shadow Demon из-за долга душ и называет его хозяином. В инфобоксе это поле family с пометкой debtor."
+      "type": "enemy",
+      "source": "bio",
+      "note": "По биографии Shadow Fiend распознал его сущность в съеденной душе и вместе с Doom разгромил его культ.",
+      "doubt": "Инфобокс Liquipedia (поле family) называет Shadow Fiend его должником, а реплики — слугой, который рвётся из долга; записан вариант по биографии."
     },
     {
       "hero": "doom_bringer",
@@ -34,7 +38,9 @@
       "ru": "Shadow Demon — демон тени, который давно поглядывает на материальный мир как на путь к власти над всеми реальностями. Сначала он обрёл последователей среди слабых колдунов и постепенно подчинил целые культы, стирая в людях их личность. Когда Doom и Shadow Fiend разгромили его культ, от него осталась крошечная искра тени, из которой он снова собрал себя.",
       "en": "Shadow Demon is a shadow entity that has long eyed the material world as a route to dominion over every reality. He first won followers among minor sorcerers and slowly bent whole cults to his will, hollowing out their identities. When Doom and Shadow Fiend tore his cult apart, only a faint spark of shadow survived, and from it he has been rebuilding himself."
     },
-    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/shadow_demon.png"]
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/shadow_demon.png"
+    ]
   },
   "unconfirmed": [
     "Реплики озвучки Shadow Fiend, Doom, Terrorblade, Monkey King, Legion Commander, Spectre, Kunkka, Underlord, Oracle и Dark Willow о Shadow Demon — отдельные строки, связи по ним не записаны.",

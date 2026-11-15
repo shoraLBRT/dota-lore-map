@@ -270,7 +270,9 @@
           ]
         }
       ],
-      "regionHeroes": []
+      "regionHeroes": [
+        "mars"
+      ]
     },
     {
       "id": "planes",
@@ -706,6 +708,7 @@
         }
       ],
       "regionHeroes": [
+        "puck",
         "spectre",
         "elder_titan"
       ]
@@ -2009,7 +2012,7 @@
           "slug": "roseleaf",
           "capital": false,
           "placement": "lore",
-          "significance": "minor",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Розолист",
@@ -3688,7 +3691,7 @@
           "slug": "qaldin",
           "capital": false,
           "placement": "lore",
-          "significance": "link",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Калдин",
@@ -5450,7 +5453,7 @@
           "slug": "endless-copse",
           "capital": false,
           "placement": "ours",
-          "significance": "event",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Бескрайняя роща",
@@ -5475,7 +5478,7 @@
           "slug": "manglewood-forest",
           "capital": false,
           "placement": "ours",
-          "significance": "minor",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Корявый лес",
@@ -7248,6 +7251,7 @@
         "ogre_magi",
         "undying",
         "rubick",
+        "medusa",
         "ringmaster",
         "marci"
       ]
@@ -8084,19 +8088,28 @@
       "links": [
         {
           "regionId": "planes",
-          "placeSlug": "claszureme",
           "event": "origin",
           "source": "liquipedia",
-          "via": "place"
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Puck/Lore",
+          "doubt": "На лор-странице сказано, что Puck вылупился на ветке Undertree и пришёл из другого измерения. Undertree и измерение на схеме не отмечены; регион planes выбран по аналогии с Claszureme и решает владелец (кандидат Undertree)."
         },
         {
-          "regionId": "tomokan",
-          "placeSlug": "tomokan",
-          "event": "link",
+          "regionId": "planes",
+          "placeSlug": "claszureme",
+          "event": "visit",
           "source": "liquipedia",
-          "via": "place"
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Puck/Lore",
+          "doubt": "Инфобокс даёт только название места. Сам факт посещения взят из реплики озвучки («бывал в Claszureme»), поэтому тип visit, а не более сильный."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Puck — фейский дракончик, который ведёт себя как озорной ребёнок, но на деле древнее и чужеродное существо. Он вылупился на дереве Undertree и тысячелетиями сохраняет юный облик, поэтому его мотивы трудно понять. За играми может скрываться что-то гораздо более мрачное.",
+          "en": "Puck is a Faerie Dragon that acts like a mischievous child, yet it is an ancient, alien being from another dimension. It emerged on the Undertree and keeps its young form across millennia, which leaves its motives hard to read. Its playful surface might conceal a far more sinister agenda."
+        }
+      }
     },
     {
       "key": "pudge",
@@ -8884,6 +8897,15 @@
           "url": "https://liquipedia.net/dota2/Dragon_Knight/Lore",
           "note": "В разделе рыцарских соперников лор-страницы Sven не признаёт Давиона настоящим рыцарем из-за драконьей природы, а тот считает себя лучшим рыцарем из двух.",
           "doubt": "Описание построено на репликах Sven и Dragon Knight; конкретного события в тексте нет, связь записана по разделу."
+        },
+        {
+          "hero": "pangolier",
+          "type": "ally",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Pangolier/Lore",
+          "note": "Обратная запись к pangolier.json (партия 03): по лор-странице Pangolier он старый друг и собутыльник Давиона.",
+          "doubt": "Дружба, а не боевой союз; ally — ближайший тип. На странице Dragon Knight Pangolier есть только в репликах."
         }
       ],
       "profile": {
@@ -8970,12 +8992,29 @@
       "links": [
         {
           "regionId": "western-forests",
-          "placeSlug": "endless-copse",
-          "event": "home",
+          "placeSlug": "manglewood-forest",
+          "event": "visit",
           "source": "liquipedia",
-          "via": "place"
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Nature's_Prophet/Lore",
+          "note": "Он срезал ветку с самого старого дерева в лесу и сделал из неё посох. Важного события здесь нет."
+        },
+        {
+          "regionId": "western-forests",
+          "placeSlug": "endless-copse",
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Nature's_Prophet/Lore",
+          "note": "По описанию предмета: цветок для его посоха сорван в глубине Endless Copse. Бывал ли он там сам, не сказано."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Nature's Prophet вырос из последнего семени богини лесов Веродиции и унаследовал от неё дар предвидения. Он охраняет дикую природу и её обитателей: мягок с теми, кто живёт в гармонии с лесом, и жесток к тем, кто несёт в него разрушение. Странствуя по глухим чащам, он призывает деревья и древесных существ туда, где нужна его защита.",
+          "en": "Nature's Prophet grew from the last seed of Verodicia, the goddess of the woods, and inherited her gift of foresight. He guards wild places and their creatures, gentle with those who live in harmony with the forest and merciless toward anyone who would ravage it. Roaming the deep wilderness, he calls up trees and treants wherever his protection is needed."
+        }
+      }
     },
     {
       "key": "life_stealer",
@@ -9137,13 +9176,33 @@
       ],
       "links": [
         {
-          "regionId": "planes",
-          "placeSlug": "the-void",
-          "event": "origin",
+          "regionId": "heavens",
+          "placeSlug": "selemenes-moon",
+          "event": "mention",
           "source": "liquipedia",
-          "via": "place"
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Night_Stalker/Lore",
+          "note": "Поле places инфобокса лор-страницы. В тексте о Луне Селемены сказано лишь косвенно (герой «любимец луны» только по репликам), поэтому тип — упоминание.",
+          "doubt": "Инфобокс называет место, но ни биография, ни лор-текст не говорят, что герой там бывал, родился или живёт."
         }
-      ]
+      ],
+      "relations": [
+        {
+          "hero": "dawnbreaker",
+          "type": "enemy",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Night_Stalker/Lore",
+          "note": "Раздел Relationships лор-страницы: Night Stalker как создание ночи должен враждовать с Детьми Сияния и их созданиями, прямо назван Dawnbreaker. Взаимная запись уже есть в dawnbreaker.json.",
+          "doubt": "Вражда выведена из противостояния Детей Сияния и созданий ночи; личной встречи героев в тексте нет."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Баланар, он же Night Stalker, — древнее ночное существо, которое уцелело, когда на рассвете Первого дня погибли все порождения тьмы. Он выслеживает в темноте тех, кто ушёл от света и не послушал предостережений, и сам стал тем страшилищем, которым пугают детей. Тьма в его сердце поддерживает его и днём, хотя при свете он слабее.",
+          "en": "Balanar, known as Night Stalker, is an ancient creature of the night who alone survived the sunrise that ended his kind. He hunts in darkness for the careless who wandered off from the light, and he himself became the monster that frightens children. The darkness inside him keeps him going even by day, though he is weaker in the light."
+        }
+      }
     },
     {
       "key": "broodmother",
@@ -9583,9 +9642,37 @@
           "placeSlug": "seven-hells",
           "event": "origin",
           "source": "liquipedia",
-          "via": "place"
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Shadow_Demon/Lore",
+          "note": "Инфобокс лор-страницы называет Seven Hells местом героя; по расе он демон, и родной план демонов здесь.",
+          "doubt": "Инфобокс не говорит прямо, что Shadow Demon родом именно оттуда. Биография описывает демонов вообще и не называет ни одного места."
         }
-      ]
+      ],
+      "relations": [
+        {
+          "hero": "nevermore",
+          "type": "enemy",
+          "source": "bio",
+          "note": "По биографии Shadow Fiend распознал его сущность в съеденной душе и вместе с Doom разгромил его культ.",
+          "doubt": "Инфобокс Liquipedia (поле family) называет Shadow Fiend его должником, а реплики — слугой, который рвётся из долга; записан вариант по биографии."
+        },
+        {
+          "hero": "doom_bringer",
+          "type": "enemy",
+          "source": "bio",
+          "note": "Doom и Shadow Fiend ненадолго объединились, чтобы разрушить культ Shadow Demon. Союз был временным и направлен против него.",
+          "doubt": "В биографии нет слова «враг». Тип выведен из того, что союз был против культа Shadow Demon."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Shadow Demon — демон тени, который давно поглядывает на материальный мир как на путь к власти над всеми реальностями. Сначала он обрёл последователей среди слабых колдунов и постепенно подчинил целые культы, стирая в людях их личность. Когда Doom и Shadow Fiend разгромили его культ, от него осталась крошечная искра тени, из которой он снова собрал себя.",
+          "en": "Shadow Demon is a shadow entity that has long eyed the material world as a route to dominion over every reality. He first won followers among minor sorcerers and slowly bent whole cults to his will, hollowing out their identities. When Doom and Shadow Fiend tore his cult apart, only a faint spark of shadow survived, and from it he has been rebuilding himself."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/shadow_demon.png"
+        ]
+      }
     },
     {
       "key": "lone_druid",
@@ -9952,13 +10039,30 @@
       ],
       "links": [
         {
+          "regionId": "uncharted",
+          "event": "origin",
+          "source": "bio",
+          "note": "Родина горгон: царство, куда напали незнакомцы в масках, в биографии не названо; на схеме такого места нет"
+        },
+        {
           "regionId": "fellstrath",
           "placeSlug": "yama-raskav-jungle",
-          "event": "home",
+          "event": "mention",
           "source": "liquipedia",
-          "via": "place"
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Medusa/Lore",
+          "note": "Герой здесь не бывал: в описании её лука упомянут вайпер из этих джунглей"
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Medusa — младшая из трёх горгон, дочерей морской богини, и единственная из сестёр, рождённая смертной. Когда неизвестные похитили сестёр, она выпросила у матери силу в обмен на красоту и поклялась вернуть их и отомстить. С тех пор её принцип: ценна только сила.",
+          "en": "Medusa is the youngest of three Gorgon sisters, daughters of a sea goddess, and the only one of them born mortal. After masked raiders abducted her sisters, she asked her mother for strength in exchange for her beauty, vowing to bring them back and avenge the wrong. Since then she has held that only power is worth having."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/medusa.png"
+        ]
+      }
     },
     {
       "key": "troll_warlord",
@@ -10011,10 +10115,60 @@
           "regionId": "wailing-mountains",
           "placeSlug": "mount-joerlak",
           "event": "origin",
+          "source": "bio",
+          "note": "Родина героя: его пещера и род магнороков у горы Йорлак; в инфобоксе Liquipedia место тоже указано"
+        },
+        {
+          "regionId": "stonehall",
+          "placeSlug": "roseleaf",
+          "event": "battle",
           "source": "liquipedia",
-          "via": "place"
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Magnus/Lore",
+          "doubt": "Текст лор-страницы: герой вступился за Vhoul в конфликте в лесу Roseleaf. Биография этого не говорит; тип «battle» выбран по смыслу, а не по прямой формулировке"
+        },
+        {
+          "regionId": "stonehall",
+          "placeSlug": "stonehall",
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Magnus/Lore",
+          "note": "Герой враждебен Bronze Legion из Stonehall, но сам там не назван бывающим"
         }
-      ]
+      ],
+      "path": [
+        {
+          "regionId": "wailing-mountains",
+          "placeSlug": "mount-joerlak"
+        },
+        {
+          "regionId": "stonehall",
+          "placeSlug": "roseleaf"
+        }
+      ],
+      "relations": [
+        {
+          "hero": "treant",
+          "type": "ally",
+          "regionId": "stonehall",
+          "placeSlug": "roseleaf",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Magnus/Lore",
+          "note": "Лор-страница: в конфликте в Roseleaf герой встал на сторону Vhoul и их защитников, включая Treant Protector; тот же герой указан в инфобоксе",
+          "doubt": "Формулировка опирается на карточку Artifact, пересказанную на лор-странице"
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Magnus — магнорог с горы Йорлак, чей рог ценится выше любого сплава; долгое время он отгонял охотников от своего рода. После извержения, погубившего половину сородичей, он оставил племя и поклялся покарать виновных, прежде чем вернуться к своим. Сейчас он ввязался в конфликт в Roseleaf на стороне слабых и враждует с Bronze Legion.",
+          "en": "Magnus is a magnoceros from Mount Joerlak whose horn is valued above any alloy, and for a long time he drove hunters away from his kin. After a volcanic eruption killed half of his people, he left them and swore to punish those responsible before rejoining them. He now takes sides in the conflict in Roseleaf on behalf of the weak and is hostile to the Bronze Legion."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/magnataur.png"
+        ]
+      }
     },
     {
       "key": "shredder",
@@ -10348,9 +10502,53 @@
           "regionId": "heavens",
           "placeSlug": "the-sun",
           "event": "origin",
-          "source": "ours"
+          "source": "ours",
+          "note": "Phoenix родился из сверхновых первого солнца Хранителя, поэтому относим его к солнечной родине; на схеме это место «The Sun».",
+          "doubt": "Биография не называет место рождения. Привязка к «The Sun» выбрана по родству с первым солнцем, как у Dawnbreaker."
+        },
+        {
+          "regionId": "scintillant",
+          "placeSlug": "scintillant-waste",
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Phoenix/Lore",
+          "note": "Место названо в инфобоксе. Его шлем, по описанию на странице героя, упал у края пустыни, но сам Phoenix там не бывал."
+        },
+        {
+          "regionId": "radiant-lands",
+          "placeSlug": "violet-archives",
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Phoenix/Lore",
+          "note": "Место названо в инфобоксе. Досье о Phoenix хранится в архивах, но сам он там не был."
         }
-      ]
+      ],
+      "relations": [
+        {
+          "hero": "keeper_of_the_light",
+          "type": "family",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Phoenix/Lore",
+          "note": "По инфобоксу — далёкий предок (great-great grandfather), создатель первого солнца, от которого происходят Дети Сияния."
+        },
+        {
+          "hero": "dawnbreaker",
+          "type": "family",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Phoenix/Lore",
+          "note": "По инфобоксу — дальняя родня. Совпадает с записью в файле dawnbreaker.json. По лор-странице его свет вернул к жизни искру Dawnbreaker."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Phoenix — молодая звезда, рождённая из сверхновых первого солнца Хранителя и выброшенная в космос. Из любопытства она приняла облик огненной птицы, чтобы нести свет тем, кому он нужен, и искать свою судьбу. Её свет вернул к жизни Dawnbreaker.",
+          "en": "Phoenix is a young star born from the supernova cycle of the Keeper's first sun and cast into the cosmos. Driven by curiosity, it took the form of a fiery bird to bring light to those who need it and to seek its own destiny. Its light also brought Dawnbreaker back to life."
+        }
+      }
     },
     {
       "key": "oracle",
@@ -10386,10 +10584,38 @@
           "regionId": "icewrack",
           "placeSlug": "icewrack",
           "event": "home",
-          "source": "liquipedia",
-          "via": "place"
+          "source": "comic:icewrack-new-neighbors",
+          "note": "В комиксе новым жителем становится Auroth: она поселяется в леднике по соседству с деревней. В Liquipedia помимо этого сказано, что она помогала Vengeful Spirit в Icewrack во время Crownfall. Комикс учтён по его описанию в content/media.json.",
+          "doubt": "Сам ледник в комиксе не назван, привязка к Icewrack идёт через деревню; точного места в источниках нет."
         }
-      ]
+      ],
+      "relations": [
+        {
+          "hero": "vengefulspirit",
+          "type": "ally",
+          "regionId": "icewrack",
+          "placeSlug": "icewrack",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Winter_Wyvern/Lore",
+          "note": "В тексте лор-страницы: помогла Vengeful Spirit в Icewrack во время событий Crownfall."
+        },
+        {
+          "hero": "jakiro",
+          "type": "family",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Jakiro/Lore",
+          "note": "Обратная запись к jakiro.json: в инфобоксе лор-страницы Jakiro она его кузина (поле family).",
+          "doubt": "Сама она к Jakiro враждебна и жалеет, что не убила его до вылупления; о родстве говорит только сторона Jakiro."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Winter Wyvern, которую зовут Аурос, — дракониха из эльдвурмов, у которой вместо огня внутри копится лютый холод. Она давно собирается дописать древнюю сагу, но поиски книг и битвы с сильными врагами отнимают время, и своих стихов пока не получилось. Ей мало быть персонажем легенд: она хочет стать их творцом.",
+          "en": "Winter Wyvern, who goes by Auroth, is an Eldwurm dragon whose inner furnace is replaced by bitter cold. She keeps meaning to finish the old epic, but research trips for books and fights against powerful foes eat up her time, and she has not yet produced verse worth praise. Being a character in the legends is not enough for her; she wants to be the one writing them."
+        }
+      }
     },
     {
       "key": "arc_warden",
@@ -10542,19 +10768,103 @@
       "links": [
         {
           "regionId": "free-cities",
-          "placeSlug": "white-spire",
-          "event": "home",
+          "placeSlug": "revtel",
+          "event": "visit",
           "source": "liquipedia",
-          "via": "place"
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Pangolier/Lore",
+          "note": "Лор-текст говорит, что странствия доводили героя до Revtel. Там же он давно знаком с Mireska (Dark Willow)."
         },
         {
           "regionId": "scintillant",
           "placeSlug": "qaldin",
-          "event": "link",
+          "event": "visit",
           "source": "liquipedia",
-          "via": "place"
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Pangolier/Lore",
+          "note": "Среди дальних путешествий героя по лор-тексту: до Qaldin он тоже добирался. Подробностей нет."
+        },
+        {
+          "regionId": "free-cities",
+          "placeSlug": "white-spire",
+          "event": "visit",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Pangolier/Lore",
+          "note": "В свободное время он часто бывает на ипподроме White Spire."
+        },
+        {
+          "regionId": "icewrack",
+          "placeSlug": "icewrack",
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Pangolier/Lore",
+          "note": "Упомянут как родина любимого герою белого вина. Бывал ли он там, в тексте не сказано."
         }
-      ]
+      ],
+      "relations": [
+        {
+          "hero": "enchantress",
+          "type": "ally",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Pangolier/Lore",
+          "note": "В тексте сказано, что герой работал вместе с Aiushtha и Ursa. Aiushtha не ключ героя; соответствие с Enchantress — по реплике «Enchantress…» в том же абзаце.",
+          "doubt": "Имя Aiushtha в тексте не сопоставлено с Enchantress напрямую; обратная запись уже есть в enchantress.json."
+        },
+        {
+          "hero": "ursa",
+          "type": "ally",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Pangolier/Lore",
+          "note": "Герой работал вместе с Ursa в прошлом (текст лор-страницы)."
+        },
+        {
+          "hero": "dragon_knight",
+          "type": "ally",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Pangolier/Lore",
+          "doubt": "В тексте «старый друг и собутыльник» (Davion). В списке типов дружбы нет; ally — ближайший тип, в данных это приблизительно."
+        },
+        {
+          "hero": "bristleback",
+          "type": "rival",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Pangolier/Lore",
+          "note": "Rigwarl назван одним из самых ненавистных соперников героя; тип rival прямо из текста.",
+          "doubt": "В лор-тексте Rigwarl не назван Bristleback. Соответствие — по инфобоксу (Bristleback в списке героев) и по теме «иглы/щетина» (квиллы срезаны в бою)."
+        },
+        {
+          "hero": "leshrac",
+          "type": "enemy",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Pangolier/Lore",
+          "note": "Текст называет Leshrac одним из самых ненавистных врагов героя: из-за давнего поступка с женщиной из его жизни."
+        },
+        {
+          "hero": "necrolyte",
+          "type": "enemy",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Pangolier/Lore",
+          "note": "Лор-страница: герой клянётся покончить с Rotund'jere за причинённые им страдания.",
+          "doubt": "Rotund'jere — личное имя Necrophos; в тексте оно не сопоставлено с героем напрямую."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Pangolier, он же Донте Панлин, — фехтовальщик из Nivan Gallants, для которого жизнь без приключений ничего не стоит. Он берётся за любых чудовищ и тиранов, заигрывает со всеми подряд и уговорит кого угодно из знати. Странствия доводили его до Revtel и Qaldin, а в свободное время он ходит на скачки в White Spire.",
+          "en": "Pangolier, whose name is Donte Panlin, is a swordsman of the Nivan Gallants who believes life is worthless without adventure. He takes on any monster or tyrant, flirts with everyone he meets and can talk any noble round. His travels have taken him to Revtel and Qaldin, and in his free time he goes to the races in White Spire."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/pangolier.png"
+        ]
+      }
     },
     {
       "key": "grimstroke",
@@ -10647,18 +10957,49 @@
       "links": [
         {
           "regionId": "heavens",
-          "placeSlug": "olympus",
           "event": "origin",
-          "source": "ours"
+          "source": "bio",
+          "note": "Первый сын небес: родом из небесного мира богов, родной план для бога войны"
         },
         {
           "regionId": "quoidge",
           "placeSlug": "quoidge",
-          "event": "link",
+          "event": "mention",
           "source": "liquipedia",
-          "via": "place"
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Mars/Lore",
+          "note": "Quoidge стоит только в поле places инфобокса лор-страницы; что Mars там делал, в тексте не сказано.",
+          "doubt": "Без текста о событии: тип mention выбран как самый слабый, чтобы не придумывать битву."
         }
-      ]
+      ],
+      "relations": [
+        {
+          "hero": "zuus",
+          "type": "family",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Mars/Lore",
+          "note": "Отец по инфобоксу лор-страницы"
+        },
+        {
+          "hero": "dawnbreaker",
+          "type": "love",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Dawnbreaker/Lore",
+          "note": "Обратная запись к dawnbreaker.json: по лор-странице Dawnbreaker они когда-то были парой (он звался Ares) и вместе свергли Continuum.",
+          "doubt": "Связь в прошлом, после похода они расстались; на странице Mars об этом нет."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Mars, сын Zeus, бог войны, который веками воевал ради завоеваний и мести. Однажды ему стало мало сражений без цели, и он решил отречься от наследия отца, разрушить старый пантеон и построить новую империю на его руинах. Его окружают мёртвые воины Ash Legion, которые держат для него Arena of Blood.",
+          "en": "Mars is the god of war and Zeus's son, who spent ages fighting for conquest and vengeance. Tired of battles with no purpose, he resolved to break from his father's legacy, topple the old pantheon, and raise a new empire on its ruins. His undead Ash Legion fills his Arena of Blood for him."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/mars.png"
+        ]
+      }
     },
     {
       "key": "ringmaster",

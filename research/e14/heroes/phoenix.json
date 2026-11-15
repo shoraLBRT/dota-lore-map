@@ -1,6 +1,11 @@
 {
   "hero": "phoenix",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
   "links": [
     {
       "place": "The Sun",
@@ -41,16 +46,7 @@
       "source": "liquipedia",
       "via": "infobox",
       "url": "https://liquipedia.net/dota2/Phoenix/Lore",
-      "note": "По инфобоксу — дальняя родня. Совпадает с записью в файле dawnbreaker.json."
-    },
-    {
-      "hero": "dawnbreaker",
-      "type": "ally",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Phoenix/Lore",
-      "note": "В разделе Allies: Phoenix пролетел мимо солнечной кузни и вернул искру Dawnbreaker к жизни.",
-      "doubt": "Тип «союзник» выведен из раздела Allies и описания спасения, а не из прямой формулировки о союзе."
+      "note": "По инфобоксу — дальняя родня. Совпадает с записью в файле dawnbreaker.json. По лор-странице его свет вернул к жизни искру Dawnbreaker."
     }
   ],
   "profile": {

@@ -1,6 +1,11 @@
 {
   "hero": "puck",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
   "links": [
     {
       "region": "planes",
@@ -33,22 +38,6 @@
       "source": "liquipedia",
       "url": "https://liquipedia.net/dota2/Puck/Lore",
       "note": "Дерево, где вылупились все фейские дракончики, включая Puck. Не отмечено на схеме; регион предположительный, по аналогии с другим измерением."
-    },
-    {
-      "name": "Fae Realm",
-      "region": "planes",
-      "event": "mention",
-      "source": "liquipedia",
-      "url": "https://liquipedia.net/dota2/Puck",
-      "note": "Место из инфобокса (places). Связь Puck с ним по тексту — косвенная (через понимание речи Mercurial); на карте не отмечено."
-    },
-    {
-      "name": "Multiverse",
-      "region": "planes",
-      "event": "mention",
-      "source": "liquipedia",
-      "url": "https://liquipedia.net/dota2/Puck/Lore",
-      "note": "Место из поля places инфобокса лор-страницы; текста о событии нет, поэтому mention."
     }
   ],
   "unconfirmed": [
@@ -58,6 +47,7 @@
     "Раздел Dota Underlords (Slyrak, Davion) относится к другой игре, не к Dota 2 лору; Slyrak и Davion не герои в heroes.json, связи не записаны.",
     "Mireska, Shendelzare, Mercurial, Scrolls of Haize, Faerie Dragons и Aether-Wings — не герои и не места из regions.json; в файл не включены. Реалм, где линяют крылья Puck (описание Aether-Wings), безымянный и в кандидаты не записан.",
     "Путь (path) не заполнен: в источниках нет перемещений героя, только посещение Claszureme.",
-    "Обратных связей в файлах других героев не найдено (grep по \"hero\": \"puck\" пуст)."
+    "Обратных связей в файлах других героев не найдено (grep по \"hero\": \"puck\" пуст).",
+    "Fae Realm и Multiverse стоят в поле places инфобокса; связь с Fae Realm выведена из реплики, Multiverse — не место. Кандидатами не записаны."
   ]
 }
