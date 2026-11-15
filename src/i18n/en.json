@@ -113,5 +113,17 @@
   "feedback.send": "Send",
   "feedback.close": "Close",
   "feedback.tooLong": "The message does not fit into a GitHub link — please shorten it.",
-  "feedback.sent": "The form opened in a new tab: check the text and create the issue there."
+  "feedback.sent": "The form opened in a new tab: check the text and create the issue there.",
+  "feedback.blockLink": "Spotted a mistake or know more? Tell us",
+  "feedback.block.region": "Region",
+  "feedback.block.place": "Place",
+  "feedback.block.hero": "Hero",
+  "feedback.block.media": "Media",
+  "feedback.kind": "What is it",
+  "feedback.kind.error": "Mistake",
+  "feedback.kind.addition": "Addition",
+  "feedback.kind.other": "Other",
+  "feedback.placeholder.error": "What is wrong and what is right? A source helps, if you have one.",
+  "feedback.placeholder.addition": "What should be added? A source helps, if you have one.",
+  "feedback.placeholder.other": "What did you notice?"
 }

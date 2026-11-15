@@ -155,3 +155,115 @@ describe('окно обратной связи', () => {
     expect(screen.getByRole('dialog', { name: 'О проекте' })).toHaveTextContent('публикуются открыто как issue на GitHub');
   });
 });
+
+describe('«Нашли ошибку?» у блоков (#74)', () => {
+  const LINK = 'Нашли ошибку или знаете больше? Расскажите';
+  const link = () => screen.getByRole('button', { name: LINK });
+  const sendUrl = (win: HTMLElement) => new URL(within(win).getByRole('link', { name: /^Отправить/ }).getAttribute('href')!);
+
+  beforeEach(() => {
+    window.localStorage.setItem('dota-lore-map.lang', 'ru');
+    window.localStorage.removeItem(DRAFT);
+  });
+
+  it('панель региона: строка в конце, окно о регионе с выбором вида, issue с блоком и метками', () => {
+    window.location.hash = '#/r/icewrack';
+    render(<App />);
+    const l = link();
+    expect(l).toHaveAttribute('data-feedback-opener');
+    l.focus();
+    fireEvent.click(l);
+    const win = dialog()!;
+    expect(win).toHaveTextContent('Регион: Айсрак');
+    const kinds = within(win).getByRole('group', { name: 'Что это' });
+    expect(within(kinds).getByRole('radio', { name: 'Ошибка' })).toBeChecked();
+    const field = within(win).getByRole('textbox', { name: 'Сообщение' });
+    expect(field).toHaveFocus();
+    fireEvent.change(field, { target: { value: 'Не тот год основания' } });
+    let url = sendUrl(win);
+    expect(url.searchParams.get('title')).toBe('Ошибка в «Айсрак»: Не тот год основания');
+    expect(url.searchParams.get('labels')).toBe('feedback,content-fix');
+    const body = url.searchParams.get('body')!;
+    expect(body).toContain('- Блок: регион Айсрак (`icewrack`)');
+    expect(body).toContain('- Вид: ошибка');
+    expect(body).toContain('- Язык: ru');
+    expect(body).toContain('#/r/icewrack');
+
+    fireEvent.click(within(kinds).getByRole('radio', { name: 'Дополнение' }));
+    url = sendUrl(win);
+    expect(url.searchParams.get('title')).toBe('Дополнение к «Айсрак»: Не тот год основания');
+    expect(url.searchParams.get('body')).toContain('- Вид: дополнение');
+    fireEvent.click(within(kinds).getByRole('radio', { name: 'Другое' }));
+    expect(sendUrl(win).searchParams.get('title')).toBe('Отзыв о «Айсрак»: Не тот год основания');
+
+    // Esc закрывает окно, экран остаётся, фокус — на строке, которая его открыла.
+    fireEvent.keyDown(field, { key: 'Escape' });
+    expect(dialog()).toBeNull();
+    expect(window.location.hash).toBe('#/r/icewrack');
+    expect(link()).toHaveFocus();
+  });
+
+  it('панель места и профиль героя — свой блок; общая кнопка — без блока и без выбора вида', () => {
+    window.location.hash = '#/r/icewrack/the-barrier';
+    const view = render(<App />);
+    fireEvent.click(link());
+    let win = dialog()!;
+    expect(win).toHaveTextContent('Место: Барьер');
+    fireEvent.change(within(win).getByRole('textbox', { name: 'Сообщение' }), { target: { value: 'x' } });
+    expect(sendUrl(win).searchParams.get('body')).toContain('- Блок: место Барьер (`icewrack/the-barrier`)');
+    fireEvent.click(within(win).getByRole('button', { name: 'Закрыть' }));
+    view.unmount();
+
+    window.location.hash = '#/r/icewrack?hero=crystal_maiden&profile';
+    render(<App />);
+    fireEvent.click(link());
+    win = dialog()!;
+    expect(win).toHaveTextContent('Герой: Crystal Maiden');
+    expect(sendUrl(win).searchParams.get('title')).toBe('Ошибка в «Crystal Maiden»: x');
+    // Общая кнопка левой панели — переключатель: закрывает окно, а открывает его без блока.
+    fireEvent.click(button());
+    expect(dialog()).toBeNull();
+    fireEvent.click(button());
+    win = dialog()!;
+    expect(within(win).queryByRole('group')).toBeNull();
+    expect(sendUrl(win).searchParams.get('labels')).toBe('feedback');
+    expect(sendUrl(win).searchParams.get('title')).toBe('Отзыв с карты: x');
+  });
+
+  // Листание при открытом окне — в Gallery.test (здесь у медиа региона один элемент).
+  it('медиа в галерее: окно поверх галереи, Esc закрывает сначала окно, фокус — на строке в галерее', () => {
+    window.location.hash = '#/r/icewrack?media=icewrack-new-neighbors';
+    render(<App />);
+    const gallery = screen.getByRole('dialog', { name: '«Новые соседи»' });
+    const l = within(gallery).getByRole('button', { name: LINK });
+    l.focus();
+    fireEvent.click(l);
+    const win = dialog()!;
+    expect(win).toHaveTextContent('Медиа: «Новые соседи»');
+    const field = within(win).getByRole('textbox', { name: 'Сообщение' });
+    fireEvent.change(field, { target: { value: 'Неверная подпись' } });
+    const url = sendUrl(win);
+    expect(url.searchParams.get('title')).toBe('Ошибка в «Новые соседи»: Неверная подпись');
+    expect(url.searchParams.get('body')).toContain('- Блок: медиа «Новые соседи» (`icewrack-new-neighbors`)');
+    fireEvent.keyDown(field, { key: 'Escape' });
+    expect(dialog()).toBeNull();
+    expect(screen.getByRole('dialog', { name: '«Новые соседи»' })).toBeInTheDocument();
+    expect(within(gallery).getByRole('button', { name: LINK })).toHaveFocus();
+  });
+
+  it('по-английски — строка, подпись блока, виды и заголовок issue на английском', () => {
+    window.localStorage.setItem('dota-lore-map.lang', 'en');
+    window.location.hash = '#/r/icewrack';
+    render(<App />);
+    fireEvent.click(screen.getByRole('button', { name: 'Spotted a mistake or know more? Tell us' }));
+    const win = screen.getByRole('dialog', { name: 'Feedback' });
+    expect(win).toHaveTextContent('Region: Icewrack');
+    const kinds = within(win).getByRole('group', { name: 'What is it' });
+    for (const name of ['Mistake', 'Addition', 'Other']) expect(within(kinds).getByRole('radio', { name })).toBeInTheDocument();
+    fireEvent.change(within(win).getByRole('textbox', { name: 'Message' }), { target: { value: 'Wrong date' } });
+    const url = new URL(within(win).getByRole('link', { name: /^Send/ }).getAttribute('href')!);
+    expect(url.searchParams.get('title')).toBe('Mistake in “Icewrack”: Wrong date');
+    expect(url.searchParams.get('body')).toContain('- Block: region Icewrack (`icewrack`)');
+    expect(url.searchParams.get('body')).toContain('- Kind: mistake');
+  });
+});

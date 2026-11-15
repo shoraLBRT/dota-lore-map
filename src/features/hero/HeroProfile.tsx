@@ -8,6 +8,8 @@ import { Paragraphs } from '../../components/Paragraphs';
 import type { Hero } from '../../data/types';
 import { getPlace, getRegion, heroCrop, heroUrl, placeName } from '../../data/world';
 import { useT } from '../../i18n';
+import { heroBlock } from '../feedback/context';
+import { FeedbackLink } from '../feedback/FeedbackLink';
 import crumbStyles from '../panel/Blocks.module.css';
 import { MediaCards } from '../panel/MediaCards';
 import { useHeroPreview } from '../search/preview';
@@ -27,7 +29,7 @@ interface Props {
 
 /**
  * Профиль героя в правой панели, на телефоне — в шторке (E15, SPEC §6.8): шапка-арт, имя, ссылка на dota2.com,
- * описание, арты (галерея), «Связан с», места по порядку пути. Пустые блоки не рисуются — партии E14 идут постепенно.
+ * описание, арты (галерея), «Связан с», места по порядку пути, строка «Нашли ошибку?» (§6.9). Пустые блоки не рисуются — партии E14 идут постепенно.
  */
 export function HeroProfile({ hero, spots, threads, onPick }: Props) {
   const { l, lang, t } = useT();
@@ -125,6 +127,7 @@ export function HeroProfile({ hero, spots, threads, onPick }: Props) {
         </nav>
       )}
       <Legend spots={spots} threads={threads} />
+      <FeedbackLink block={heroBlock(hero)} />
     </>
   );
 }
