@@ -29,6 +29,7 @@
   "rail.search": "Поиск героя",
   "rail.sound": "Звук",
   "rail.about": "О проекте",
+  "rail.feedback": "Обратная связь",
   "about.title": "О проекте",
   "about.text": "Интерактивная карта мира Dota 2: регионы, места и связанные с ними герои. Все тексты о мире — наш пересказ лора своими словами.",
   "about.sources": "Источники",
@@ -37,6 +38,7 @@
   "about.thanks": "Благодарности",
   "about.thanksText": "Авторам фанатских карт мира Dota 2, в том числе «The Map of the Ancient»: их работы служили референсом для схемы мира.",
   "about.code": "Исходный код на GitHub",
+  "about.feedback": "Обратная связь — кнопка в левой панели. Сообщения публикуются открыто как issue на GitHub, поэтому не пишите в них личных данных.",
   "about.close": "Закрыть",
   "tooltip.more": "и ещё {n}",
   "tooltip.pick": "Нажмите на героя — он появится на карте",
@@ -101,5 +103,15 @@
   "hero.relation.mentor": "Наставник",
   "hero.relation.student": "Ученик",
   "hero.relation.master": "Господин",
-  "hero.relation.servant": "Слуга"
+  "hero.relation.servant": "Слуга",
+  "feedback.title": "Обратная связь",
+  "feedback.text": "Отзыв, пожелание или ошибка — всё пригодится. Сообщение будет опубликовано открыто на GitHub, не пишите личных данных.",
+  "feedback.account": "Нужен аккаунт GitHub: «Отправить» откроет в новой вкладке форму нового issue с вашим текстом.",
+  "feedback.label": "Сообщение",
+  "feedback.placeholder": "Что заметили, чего не хватает?",
+  "feedback.count": "{count} / {limit}",
+  "feedback.send": "Отправить",
+  "feedback.close": "Закрыть",
+  "feedback.tooLong": "Сообщение не помещается в ссылку на GitHub — сократите его.",
+  "feedback.sent": "Форма открыта в новой вкладке: проверьте текст и создайте issue там."
 }

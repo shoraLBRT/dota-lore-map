@@ -29,6 +29,7 @@
   "rail.search": "Hero search",
   "rail.sound": "Sound",
   "rail.about": "About the project",
+  "rail.feedback": "Feedback",
   "about.title": "About",
   "about.text": "An interactive map of the Dota 2 world: regions, places and the heroes tied to them. All lore texts are our own retelling.",
   "about.sources": "Sources",
@@ -37,6 +38,7 @@
   "about.thanks": "Thanks",
   "about.thanksText": "To the authors of Dota 2 fan world maps, including “The Map of the Ancient”: their work served as a reference for the world layout.",
   "about.code": "Source code on GitHub",
+  "about.feedback": "Feedback — the button in the left rail. Messages are published openly as GitHub issues, so don't include personal data.",
   "about.close": "Close",
   "tooltip.more": "and {n} more",
   "tooltip.pick": "Click a hero to show them on the map",
@@ -101,5 +103,15 @@
   "hero.relation.mentor": "Mentor",
   "hero.relation.student": "Student",
   "hero.relation.master": "Master",
-  "hero.relation.servant": "Servant"
+  "hero.relation.servant": "Servant",
+  "feedback.title": "Feedback",
+  "feedback.text": "A review, a wish or a bug — everything helps. Your message will be published openly on GitHub, so don't include personal data.",
+  "feedback.account": "You need a GitHub account: “Send” opens a new issue form with your text in a new tab.",
+  "feedback.label": "Message",
+  "feedback.placeholder": "What did you notice, what is missing?",
+  "feedback.count": "{count} / {limit}",
+  "feedback.send": "Send",
+  "feedback.close": "Close",
+  "feedback.tooLong": "The message does not fit into a GitHub link — please shorten it.",
+  "feedback.sent": "The form opened in a new tab: check the text and create the issue there."
 }

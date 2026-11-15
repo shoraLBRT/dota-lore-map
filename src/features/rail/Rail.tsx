@@ -4,6 +4,7 @@ import { useSound } from '../../app/sound';
 import { Icon, type IconName } from '../../components/Icon';
 import { LangSwitch } from '../../components/LangSwitch';
 import { Tooltip } from '../../components/Tooltip';
+import { useFeedback } from '../feedback/FeedbackProvider';
 import { useT } from '../../i18n';
 import { AboutDialog } from './AboutDialog';
 import styles from './Rail.module.css';
@@ -24,7 +25,7 @@ function RailButton({ icon, label, className, ...rest }: RailButtonProps) {
   );
 }
 
-/** Левая вертикальная панель (SPEC §6.1): логотип, глобус, поиск, язык; внизу звук и «О проекте». */
+/** Левая вертикальная панель (SPEC §6.1): логотип, глобус, поиск, язык; внизу обратная связь, звук и «О проекте». */
 interface Props {
   className?: string;
   /** Открыть поиск героя (SPEC §6.5). */
@@ -36,6 +37,7 @@ export function Rail({ className, onSearch, searchOpen = false }: Props) {
   const { t } = useT();
   const { route, open } = useNavigation();
   const sound = useSound();
+  const feedback = useFeedback();
   const [aboutOpen, setAboutOpen] = useState(false);
   const screen = route.screen.name;
 
@@ -53,6 +55,14 @@ export function Rail({ className, onSearch, searchOpen = false }: Props) {
         <LangSwitch className={styles.lang} />
       </div>
       <div className={styles.group}>
+        <RailButton
+          icon="feedback"
+          label={t('rail.feedback')}
+          aria-haspopup="dialog"
+          aria-expanded={feedback.isOpen}
+          onClick={feedback.toggle}
+          data-feedback-opener=""
+        />
         {/* Звуки — E9; переключатель уже хранит выбор (SPEC §7.4). */}
         <RailButton
           icon={sound.enabled ? 'sound' : 'soundOff'}
