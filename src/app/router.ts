@@ -4,6 +4,7 @@
 //   #/r/<regionId>         регион
 //   #/r/<regionId>/<slug>  место
 //   ?hero=<key>&media=<id> поверх любого адреса (внутри hash: #/r/icewrack?hero=crystal_maiden)
+//   ?hero=<key>&profile    открыт профиль героя (E15, A15); без флага герой только выбран
 
 export type Screen =
   | { name: 'intro' }
@@ -14,6 +15,8 @@ export type Screen =
 export interface Route {
   screen: Screen;
   hero?: string;
+  /** Профиль героя открыт (флаг `profile` без значения, только вместе с `hero`; A15). */
+  profile?: boolean;
   media?: string;
 }
 
@@ -53,6 +56,7 @@ export function parseHash(hash: string): Route {
   const hero = params.get('hero');
   const media = params.get('media');
   if (hero) route.hero = hero;
+  if (hero && params.has('profile')) route.profile = true;
   if (media) route.media = media;
   return route;
 }
@@ -74,10 +78,11 @@ export function serializeRoute(route: Route): string {
       path = `/r/${encodeURIComponent(s.regionId)}/${encodeURIComponent(s.placeSlug)}`;
       break;
   }
-  const params = new URLSearchParams();
-  if (route.hero) params.set('hero', route.hero);
-  if (route.media) params.set('media', route.media);
-  const query = params.toString();
+  const parts: string[] = [];
+  if (route.hero) parts.push(new URLSearchParams({ hero: route.hero }).toString());
+  if (route.hero && route.profile) parts.push('profile');
+  if (route.media) parts.push(new URLSearchParams({ media: route.media }).toString());
+  const query = parts.join('&');
   return `#${path}${query ? `?${query}` : ''}`;
 }
 

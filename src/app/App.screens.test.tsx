@@ -70,10 +70,13 @@ describe('регион и место', () => {
     expect(window.location.hash).toBe('#/r/icewrack');
   });
 
-  it('герой: dota2.com в новой вкладке, язык ссылки — язык интерфейса (A6, §6.7)', () => {
+  it('портрет героя открывает профиль; dota2.com — в профиле, в новой вкладке, на языке интерфейса (A6, §6.7, §6.8)', () => {
     window.location.hash = '#/r/icewrack';
     render(<App />);
-    const panel = screen.getByRole('complementary');
+    fireEvent.click(screen.getByRole('button', { name: /^Crystal Maiden: открыть профиль/ }));
+    // Камера не двигается: экран тот же, поверх — профиль.
+    expect(window.location.hash).toBe('#/r/icewrack?hero=crystal_maiden&profile');
+    const panel = screen.getByRole('complementary', { name: 'Crystal Maiden' });
     const cm = within(panel).getByRole('link', { name: /Crystal Maiden/ });
     expect(cm).toHaveAttribute('href', 'https://www.dota2.com/hero/crystalmaiden?l=russian');
     expect(cm).toHaveAttribute('target', '_blank');

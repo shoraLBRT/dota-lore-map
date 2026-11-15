@@ -10,10 +10,12 @@ interface Props {
   max?: number;
   /** Курсор, фокус или тап на портрете (null — ушёл): экран показывает героя на карте и нити (SPEC §6.6). */
   onPreview?: (hero: Hero | null) => void;
+  /** Нажатие на портрет — открыть профиль героя (E15, SPEC §6.8); без него портрет — ссылка на dota2.com. */
+  onPick?: (hero: Hero) => void;
 }
 
-/** Портреты героев в ряд со ссылками на официальные страницы (ARCHITECTURE A6). Пустой список не рисуется. */
-export function HeroList({ heroes, max, onPreview }: Props) {
+/** Портреты героев в ряд: открывают профиль героя или, без него, официальную страницу (A6). Пустой список не рисуется. */
+export function HeroList({ heroes, max, onPreview, onPick }: Props) {
   const { t } = useT();
   const [expanded, setExpanded] = useState(false);
   if (heroes.length === 0) return null;
@@ -32,7 +34,7 @@ export function HeroList({ heroes, max, onPreview }: Props) {
             onFocus={onPreview && (() => onPreview(h))}
             onBlur={onPreview && (() => onPreview(null))}
           >
-            <HeroPortrait hero={h} />
+            <HeroPortrait hero={h} onPick={onPick && (() => onPick(h))} tip />
           </li>
         ))}
         {rest > 0 && (
