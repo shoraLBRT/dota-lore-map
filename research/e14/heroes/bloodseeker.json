@@ -1,0 +1,41 @@
+{
+  "hero": "bloodseeker",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "place": "Xhacatocatl",
+      "event": "origin",
+      "source": "bio",
+      "note": "Родина: с туманных вершин Xhacatocatl его послали на охоту по воле близнецов-богов. Liquipedia в инфобоксе ставит туда же origins."
+    },
+    {
+      "place": "Roseleaf",
+      "event": "visit",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Bloodseeker/Lore",
+      "note": "Место стоит в поле places инфобокса лор-страницы; самого события там не описано.",
+      "doubt": "Dark Willow в реплике говорит, что видела его в Roseleaf, а карточка Artifact предполагает охоту на Oglodi там же. Это реплика и догадка, не описанное событие, поэтому тип выбран самый слабый из подтверждённых."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Стригвир, он же Bloodseeker, — ритуальный охотник из горной империи Xhacatocatl, гончая, посланная Бескожими близнецами. Боги требуют океанов крови, и он рыщет по свету, собирая жизненную силу убитых, чтобы умилостивить их и не дать родине опустеть. Под его маской иногда проступают черты самих богов.",
+      "en": "Strygwyr, the Bloodseeker, is a ritual hunter from the mountain empire of Xhacatocatl, a hound sent out by the Flayed Twins. The twin gods need oceans of blood, so he roams the world gathering the life force of his victims to appease them and keep his homeland from being emptied. Beneath his mask, the gods themselves are said to show through at times."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/bloodseeker.png"
+    ]
+  },
+  "unconfirmed": [
+    "Гостевой земли с казнями (Gallows Understudy) в лоре нет названия, а в справочнике нет подходящего места: в links не записана, кандидат не выдвинут.",
+    "Bonehunters: фракция из инфобокса и снаряжение из лора; место сказано только как «засушливые земли», поэтому это кандидат, а не связь.",
+    "Omniknight и Chen: раздел Enemies говорит, что он их не любит, но опирается только на реплики озвучки. Связь не записана.",
+    "Pudge, Luna, Necrophos и Sorla Khan: уважение из раздела Respect, опирается на реплики озвучки и Underlords. Underlords по правилам не используются; связь не записана.",
+    "Snapfire: печенье из реплик и страницы прямо названо не каноном. Связь не записана.",
+    "Outworld Destroyer: поглощение его энергии описано только по одной реплике. Связь не записана.",
+    "Eztzhok: демон, пытавшийся овладеть им, но это персонаж-демон, а не записанная связь героя; по источникам тип связи не определяется.",
+    "Dark Willow и остальные реплики озвучки (Grimstroke, Mars, Monkey King, Pangolier, Void Spirit, Abaddon, Huskar, Lifestealer, Terrorblade, Oracle и др.): только реплики, связи не записаны.",
+    "Anessix: демон, которого он охотился в Underlords; Underlords не используются по правилам."
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "hero": "broodmother",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Mount Pyrotheos",
+      "event": "origin",
+      "source": "bio",
+      "note": "Родина героя: она веками растила потомство в лавовых туннелях под кратером этого вулкана; здесь же поклонялись её культу. Liquipedia в поле origins указывает то же место."
+    },
+    {
+      "region": "uncharted",
+      "event": "visit",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Broodmother/Lore",
+      "note": "Thorny Wastes: место, где героиня охотится на добычу для потомства. Такого места нет в regions.json, регион в источниках не назван, поэтому кандидат не записан.",
+      "doubt": "Охота описана в тексте описания предмета; по нему не ясно, был ли это бой или только визит."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "monkey_king",
+      "type": "enemy",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Broodmother/Lore",
+      "note": "В разделе отношений лор-страницы: Sun Wukong когда-то был её близким союзником, затем отношения разладились, и теперь они враждуют.",
+      "doubt": "Раздел построен на репликах озвучки Monkey King; официального текста о событиях между ними нет."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Broodmother, в биографии Black Arachnia, — паучиха, которая много веков растила потомство в лавовых туннелях под потухшим вулканом Mount Pyrotheos. Когда охотники за добычей начали топтать её детёнышей, она решила уничтожить всех потенциальных захватчиков, вплоть до последнего героя. Её паучата появляются из тел поверженных врагов, а сама она питается жизненной силой жертв.",
+      "en": "Broodmother is Black Arachnia, a spider who spent centuries raising her brood in lava tunnels beneath an extinct volcano. After adventurers began trampling her young, she set out to eliminate every would-be intruder, one hero at a time. Her spiderlings hatch from fallen enemies, and she feeds on the vitality of those she bites."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/broodmother.png"
+    ]
+  },
+  "candidates": [
+    {
+      "name": "Magnetic Ziggurat",
+      "region": "middle-kingdoms",
+      "event": "battle",
+      "source": "bio",
+      "note": "Зиккурат визиря Фолопталиса стоит на склонах Mount Pyrotheos, а сам вулкан в regions.json лежит в middle-kingdoms. Героиня схватила визиря и обернула его шёлком, но в тексте не сказано, где именно это произошло; место выбрано по соседству с горой."
+    }
+  ],
+  "unconfirmed": [
+    "Ptholopthales (Фолопталис) — персонаж, а не герой, поэтому в relations не записан; его история связана с зиккуратом и записана только как кандидат.",
+    "Nyx Assassin: в биографии DotA-версии паучата связаны с Anub'arak, но Liquipedia прямо пишет, что в Dota 2 такой связи нет. Не записано.",
+    "Spiderling и Spiderite (дети и внуки) — юниты, а не герои; в relations не записаны.",
+    "Реплики озвучки (Invoker, Mars, Pangolier, Dark Willow, Dragon Knight, Earthshaker, Axe, Ringmaster, Ursa, Muerta и другие) — отдельные строки, связи не записаны.",
+    "Web-hund в поле race инфобокса помечен как спекулятивный — не записано.",
+    "Blacksmith, создавший броню героине, безымянен и не назван местом; в links не добавлен.",
+    "Комиксов для Broodmother в content/media.json нет, источник comic:<id> не использован."
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "hero": "abaddon",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "place": "Font of Avernus",
+      "event": "origin",
+      "source": "bio",
+      "note": "Родился в роду Аверно, в младенчестве был окунут в купель и здесь вырос; позже стал созданием её чёрного тумана. Liquipedia в поле places называет то же место.",
+      "doubt": "Биография называет купель родом Аверно, но не относит её к конкретному региону; регион Срединные королевства взят из E1, а не из источника."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Abaddon из рода Аверно с детства был окунён в тёмный туман купели и вырос не воином, а созданием этого тумана. Вместо военной учёбы он проводил время у источника и учился сливаться с его силой. После первой битвы сомнения родни рассеялись: он показал власть над жизнью и смертью, которой не было ни у одного лорда рода.",
+      "en": "Abaddon, of House Avernus, was dipped in the black mist of the Font as an infant and grew into a being of that mist rather than a warrior. Instead of military training, he spent his days beside the Font, learning to merge with its power. After his first battle, the family's doubts faded, since he proved a command over life and death no lord of the House had matched."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/abaddon.png"
+    ]
+  },
+  "unconfirmed": [
+    "Nyx Assassin: стоит в поле heroes инфобокса, а враждебность описана в тексте лор-страницы и подтверждена репликой. Но вражда в тексте прямо названа с богиней Nyx, а не с героем, поэтому связь не записана.",
+    "Drow Ranger: стоит в поле heroes инфобокса без текста о связи, отношения не описаны — не записано.",
+    "Демоны Ада ненавидят героя из-за связи с купелью (описание Mistbreaker и Iceshard): раса, а не герой, и место события не названо — не записано.",
+    "Богиня Nyx указана в поле gods инфобокса; это божество, а не герой из heroes.json — в связи не записана.",
+    "Род Аверно (House Avernus) указан как фракция, но его земли в тексте не привязаны к месту на схеме, кроме купели — отдельным местом не записан.",
+    "Лорд Аверно и выбранный Аверно: титулы из инфобокса и реплик, не место и не связь.",
+    "Реплики озвучки и цитаты Artifact (Monkey King, Pangolier, Dark Willow, Legion Commander, Mirana, Underlord, Oracle, Spectre, Winter Wyvern, Wraith King, Ember Spirit, Traxex, Omniknight и другие) — не записаны как связи.",
+    "Предметы Mistbreaker, Iceshard, Mist of Avernus и карточки Artifact — не места и не связи.",
+    "Hero Atlas (кроссовер Monster Hunter) и предположительная раса Human — не лор из основных источников, не записаны.",
+    "Комиксов по Abaddon в content/media.json нет, поэтому источник comic:<id> не использовался."
+  ]
+}

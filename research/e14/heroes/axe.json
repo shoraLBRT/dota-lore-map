@@ -1,0 +1,68 @@
+{
+  "hero": "axe",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero",
+    "comic:valhessi-the-last-castle"
+  ],
+  "links": [
+    {
+      "region": "uncharted",
+      "event": "origin",
+      "source": "ours",
+      "note": "В биографии и на лор-странице нет названной родины: сказано только о службе в армии Красного тумана. Oglodi — раса, а не место из regions.json, поэтому записан uncharted.",
+      "doubt": "Единственное место в биографии, Campaign of the Thousand Tarns, описано как сражения, а не как родина."
+    },
+    {
+      "place": "Thousand Tarns",
+      "event": "battle",
+      "source": "bio",
+      "note": "Семилетняя кампания на Тысячеболотье: здесь герой выслужился и погубил большую часть своих бойцов. Название места взято из названия кампании."
+    },
+    {
+      "place": "Fortress of Valhessi",
+      "event": "battle",
+      "source": "comic:valhessi-the-last-castle",
+      "note": "В комиксе The Last Castle Axe прорубается через гарнизон крепости, а на лор-странице говорится о разгроме сил Valhessi; крепость стоит в Hazhadal Barrens."
+    },
+    {
+      "region": "fellstrath",
+      "event": "journey",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Axe/Lore",
+      "doubt": "Лор-страница говорит лишь «возможно, Fellstrath»: герой очнулся в джунглях после реки и водопада, и место названо предположительно."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "disruptor",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Axe/Lore",
+      "note": "В поле family инфобокса лор-страницы Disruptor указан как двоюродный родственник Axe по роду Oglodi.",
+      "doubt": "Обратной записи в файле disruptor.json пока нет; проверить при слиянии партии."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Могул-хан, он же Axe, начинал рядовым в армии Красного тумана и продвигался по службе, обезглавливая командиров. Самую известную славу он заслужил в многолетней кампании на Тысячеболотье, а когда соратники полегли, объявил себя генералом без войска. Теперь он бродит в одиночку и считает одиночку лучшей армией; его приключения записывает спутница-летописец.",
+      "en": "Mogul Khan, known as Axe, began as a foot soldier in the Red Mist army and climbed the ranks by removing superiors. He earned his fame in a seven-year campaign in the Thousand Tarns, then declared himself general once his comrades were gone, commanding no troops. He now roams alone, convinced that a single warrior is the strongest army, while his scribe Goodkind records his deeds in embellished tales."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/axe.png"
+    ]
+  },
+  "unconfirmed": [
+    "Родина Axe (Могул-хана) не названа ни в биографии, ни на Liquipedia, поэтому origin записан как uncharted.",
+    "Red Mist и Bloodmist — фракции, Oglodi — раса, gryftok — существо; ни одно из них не место из regions.json, на карту не добавлено.",
+    "Джунгли с gryftok: бой назван без места; Fellstrath записан только как предположительный (см. doubt).",
+    "Персонажи Sorla Khan и Goodkind — не герои, в связи не записаны. Сорла охотится на Axe по тексту лор-страницы, но это персонаж, а не герой из heroes.json.",
+    "Реплики озвучки (Bristleback, Sniper, Juggernaut, Warlock, Pangolier, Dark Willow, Monkey King, Legion Commander, Alchemist, Centaur, Tidehunter и другие), включая фразы про кузена и про «Keenfolk», — не основание для связей по правилам партии 01.",
+    "Раздел Underlords про визит в Anessix: источник — Fandom, не биография и не Liquipedia-лор, поэтому не записан.",
+    "Записи о кампании Thousand Tarns: E1 ставил это место как origin, биография описывает его как место сражений. Выбран battle; решение для слияния."
+  ]
+}

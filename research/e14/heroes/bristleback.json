@@ -1,0 +1,51 @@
+{
+  "hero": "bristleback",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "region": "slom-elze",
+      "event": "home",
+      "source": "bio",
+      "note": "Рыцарь-вышибала работает в придорожных тавернах между Слом и Эльзе; в биографии назван только отрезок дороги, одного города нет.",
+      "doubt": "Биография не называет ни город, где он родился, ни город, где базируется. В E1 стояла Элзе; здесь записан регион, а родина не выведена."
+    },
+    {
+      "place": "Njord's Hearth",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Bristleback/Lore",
+      "note": "Njord's Hearth стоит только в поле places инфобокса лор-страницы; что Bristleback там делал, в тексте не сказано.",
+      "doubt": "Без текста о событии: тип mention выбран как самый слабый, чтобы не придумывать посещение."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "tusk",
+      "type": "rival",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Bristleback/Lore",
+      "note": "Лор-страница называет северного противника героя Tusk: у них давнее соперничество, при этом Bristleback не против объединиться с ним.",
+      "doubt": "Биография описывает драку с северным здоровяком, но по имени его не называет; отождествление опирается на лор-страницу и вики-текст героя."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Bristleback, он же Ригварл, — вышибала из придорожных таверн между Слом и Эльзе, которого прозвали так пьяные зрители. После проигранного спора с северным здоровяком он впервые начал тренироваться и понял, что поворот спиной к противнику тоже может сработать. Он до сих пор помнит долг и обещает рассчитаться с обидчиком.",
+      "en": "Rigwarl, known as Bristleback, is a bar enforcer who never shied from a brawl and collected tabs in the taverns between Slom and Elze. A legendary fight with a northern giant left an unpaid bill and a debt of honor, so he began training for the first time and discovered that turning his back could be an edge. He still plans to settle the score with the northerner."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/bristleback.png"
+    ]
+  },
+  "unconfirmed": [
+    "Родина Ригварла не названа ни в биографии, ни на Liquipedia, поэтому origin не записан; регион slom-elze записан как место работы, а не рождения.",
+    "pangolier.json содержит связь rival с Bristleback (лор Pangolier, Rigwarl назван одним из ненавистных соперников). В лор-странице и вики-тексте Bristleback Pangolier не упомянут, поэтому взаимная запись здесь не подтверждается и не добавлена. Расхождение для главного агента.",
+    "Pinzik (инженер, сделал Piston Impaler), Jull и Rigwarl's Mother — персонажи, а не герои: в поля characters и family инфобокса, связи не записаны.",
+    "Оценки Keen Folk (враждебность) и Oglodi (уважение) взяты из реплик озвучки — не записаны.",
+    "Реплики Monkey King, Tusk (спарринг, «nice tusks»), Centaur Warrunner, Lycan, Oracle, Legion Commander и предложение Tusk объединиться — отдельные строки озвучки, связи не записаны.",
+    "The Barrier на Liquipedia описан как край, откуда пришёл северный противник (Tusk), а не место Bristleback — на карту не добавлено.",
+    "Warcraft-происхождение (Quilboar, Bristleback tribe) — вики-тривия, не лор Dota 2; в данные не переносилось."
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "hero": "beastmaster",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "place": "Slom",
+      "event": "origin",
+      "source": "bio",
+      "note": "Вырос при дворе последнего короля Slom: отец служил там кузнецом, а сам Каррох с детства жил в королевском зверинце. Побег из дворца на олене тоже здесь, но это то же место, поэтому оставлен только тип origin."
+    },
+    {
+      "place": "Roseleaf",
+      "event": "home",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Beastmaster/Lore",
+      "note": "В карточке артефакта Beastmaster называет лес своим домом и не даёт кентаврам охотиться на Thunderhide в Roseleaf.",
+      "doubt": "Цитата «этот лес — мой дом» не называет лес по имени; связь с Roseleaf держится на соседней карточке артефакта того же героя. Место проживания может быть и другим."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Каррох, он же Beastmaster, вырос в королевском зверинце Slom после гибели отца. Общаясь с пленным существом, которое говорило без движения рта, он научился понимать всех животных зверинца. Когда зверь умер, Каррох поднял обитателей зверинца против двора и сбежал из дворца на олене. Теперь он взрослый воин, который по-прежнему говорит с дикой природой.",
+      "en": "Karroch, known as Beastmaster, was raised in the royal menagerie of Slom after losing his father young. Through a captive creature that spoke without moving its mouth, he learned to talk with every animal in the menagerie. When the creature died, he turned the animals against the court and fled the palace on a stag. He is now a grown warrior who still speaks with the wild."
+    }
+  },
+  "unconfirmed": [
+    "Last King of Slom и Enno стоят в инфобоксе как персонажи, а не герои из heroes.json, поэтому связей с ними не записано. Вражда с королём прямо названа в биографии, но записать её как связь нельзя.",
+    "Реплики озвучки (Pangolier, Monkey King, Dark Willow, Anti-Mage, Ursa, Lycan и др.) не использованы как основание связей по решению #46.",
+    "Marrowfell Centaurs названы как народ, место их обитания не указано. Кандидата в места не предлагаю.",
+    "Куда Каррох направился после побега из Slom, в источниках не сказано, поэтому path не записан.",
+    "Слово «home» для Roseleaf — из карточки артефакта, а не из биографии; подтверждения в биографии нет."
+  ]
+}

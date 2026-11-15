@@ -1,0 +1,40 @@
+{
+  "hero": "centaur",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Druud",
+      "event": "origin",
+      "source": "bio",
+      "note": "Родина кланов кентавров, из которых вышел герой; Druud стоит и в поле places инфобокса лор-страницы"
+    },
+    {
+      "place": "Omexe",
+      "event": "battle",
+      "source": "bio",
+      "note": "Древняя арена, где он перебил всех соперников, стал непобедимым чемпионом и получил пояс; Omexe также стоит в поле places инфобокса лор-страницы"
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Centaur Warrunner, в лоре Брадвуден, — чемпион кентавров из Druud. Он выигрывал на арене Omexe бой за боем, пока никто не осмелился вызвать его, и получил великий пояс, но победа не принесла удовлетворения. Теперь он ищет новых соперников и хочет доказать, что он лучший боец из всех, кто когда-либо жил.",
+      "en": "Centaur Warrunner, called Bradwarden in the lore, is the champion of the centaur clans of Druud. After beating every challenger in the Omexe arena he received its great belt, yet the victory left him unsatisfied, so he set off in search of a new rival. He now aims to prove he is the finest fighter the world has known."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/centaur.png"
+    ]
+  },
+  "candidates": [],
+  "unconfirmed": [
+    "Disruptor стоит в поле heroes инфобокса лор-страницы, а в репликах Centaur сказано, что тот тоже из Druud. Тип связи не назван, поэтому не записано.",
+    "Реплики о Magnus, Monkey King, Tusk, Terrorblade, Chaos Knight, Legion Commander, Luna, Clockwerk, Enchantress, Leshrac, Beastmaster и Pangolier — озвучка, связи не записаны.",
+    "Желание быть похороненным в Omexe — слова героя, а не событие: место смерти и погребения в лоре не подтверждено.",
+    "Marrowfell Hunters — фракция из инфобокса и карточек Artifact, не место; на карту и в кандидаты не добавлено.",
+    "Хронология переезда между Druud и Omexe в тексте не описана, поэтому path не записан."
+  ]
+}

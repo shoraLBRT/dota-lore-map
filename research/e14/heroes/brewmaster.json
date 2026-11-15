@@ -1,0 +1,68 @@
+{
+  "hero": "brewmaster",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "region": "wailing-mountains",
+      "event": "origin",
+      "source": "bio",
+      "note": "Орден Ойо веками совершает свои обряды в долине глубоко в Стонущих горах."
+    },
+    {
+      "place": "Ruined City",
+      "event": "origin",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Brewmaster/Lore",
+      "note": "Инфобокс лор-страницы называет Ruined City родиной; на эту же связь указывает и реплика о желании вернуться и быть похороненным там.",
+      "doubt": "Биография помещает орден в долину под городом, а не в сам город; инфобокс считает родиной город."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "storm_spirit",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Brewmaster/Lore",
+      "note": "Storm Spirit указан в инфобоксе как двоюродный брат; лор-страница говорит, что у них общие предки."
+    },
+    {
+      "hero": "ember_spirit",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Brewmaster/Lore",
+      "note": "Ember Spirit указан в инфобоксе как двоюродный брат и как родственник; лор-страница называет общих предков."
+    },
+    {
+      "hero": "earth_spirit",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Brewmaster/Lore",
+      "note": "Earth Spirit указан в инфобоксе как двоюродный брат; лор-страница называет общих предков."
+    },
+    {
+      "hero": "void_spirit",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Brewmaster/Lore",
+      "note": "Void Spirit указан в инфобоксе как старший двоюродный брат; лор-страница называет общих предков."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Brewmaster, он же Мангикс, наполовину небожитель: сын смертной матери и Celestial-отца, выросший в ордене Ойо в Стонущих горах. Одолев старшего мастера в многодневном состязании, он получил титул и теперь странствует в поисках мысли, которая свяжет дух и материю; вернуться в Разрушенный город он мечтает однажды.",
+      "en": "Brewmaster, also known as Mangix, is a half-Celestial born to a mortal mother and raised in the Order of Oyo in the Wailing Mountains. After winning his title in a long drinking duel, he roams the world looking for a thought that could reconnect spirit and matter, and he hopes to return to the Ruined City one day."
+    },
+    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/brewmaster.png"]
+  },
+  "unconfirmed": [
+    "Brewmaster's Father (отец-небожитель) упомянут в инфобоксе, но не является героем из списка ключей; связь не записана.",
+    "Событие The Schism в инфобоксе отмечено как «возможно»; в тексте биографии и лор-страницы оно не описано.",
+    "Реплики озвучки о Bristleback, Tusk, Monkey King, Bloodseeker, Naga Siren, Chaos Knight и других героях не записаны как связи: это не основание по правилам проекта.",
+    "Hidden Temple и Wheel-books упомянуты в реплике Void Spirit и в инфобоксе; место Hidden Temple в данных E1 отмечено как «ours», здесь не привязано."
+  ]
+}
