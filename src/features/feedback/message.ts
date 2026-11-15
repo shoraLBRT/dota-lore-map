@@ -7,8 +7,11 @@ import type { Lang } from '../../data/types';
 export const MESSAGE_LIMIT = 1000;
 /** Сколько символов первой строки попадает в заголовок. */
 export const TITLE_EXCERPT = 60;
-/** Потолок длины ссылки на форму issue: GitHub отвечает ошибкой на адреса длиннее ~8 КБ (8192), берём с запасом. */
-export const URL_LIMIT = 8000;
+/**
+ * Потолок длины ссылки на форму issue. Замер 2026-11-15 (ARCHITECTURE A16): без входа в GitHub ссылка длиннее
+ * ~6900 знаков отвечает 500 вместо переадресации ко входу, длиннее ~9000 — 414. Берём с запасом в 200 знаков.
+ */
+export const URL_LIMIT = 6700;
 /** Потолок длины одного значения контекста (адрес может быть любым, его набирает пользователь). */
 const VALUE_LIMIT = 300;
 
@@ -136,16 +139,22 @@ export interface FittedUrl {
 
 /**
  * Ссылка на форму issue не длиннее `limit`. Сообщение не сокращается никогда: сначала отбрасываются строки
- * контекста с наименее важной, затем выдержка в заголовке. Не помещается и так — `null` (сообщение
- * слишком длинное для ссылки, обычно из-за символов, которые кодируются в 9–12 знаков).
+ * контекста с наименее важной (адрес остаётся), затем выдержка в заголовке, затем адрес. Не помещается
+ * и так — `null`: сообщение слишком длинное для ссылки (кириллица — 6 знаков на букву, иероглифы и эмодзи — 9–12).
  */
 export function feedbackUrl(repo: string, message: string, ctx: FeedbackContext, limit = URL_LIMIT): FittedUrl | null {
   if (!cleanMessage(message)) return null;
   const all = contextLines(ctx);
-  for (let keep = all.length; keep >= 0; keep -= 1) {
-    const url = newIssueUrl(repo, { title: feedbackTitle(message, ctx.lang), body: feedbackBody(message, ctx, all.slice(0, keep)) });
-    if (url.length <= limit) return { url, dropped: all.length - keep };
+  const attempt = (excerpt: boolean, keep: number) =>
+    newIssueUrl(repo, {
+      title: feedbackTitle(message, ctx.lang, excerpt),
+      body: feedbackBody(message, ctx, all.slice(0, keep)),
+    });
+  for (const excerpt of [true, false]) {
+    for (let keep = all.length; keep >= (excerpt ? 1 : 0); keep -= 1) {
+      const url = attempt(excerpt, keep);
+      if (url.length <= limit) return { url, dropped: all.length - keep };
+    }
   }
-  const bare = newIssueUrl(repo, { title: feedbackTitle(message, ctx.lang, false), body: feedbackBody(message, ctx, []) });
-  return bare.length <= limit ? { url: bare, dropped: all.length } : null;
+  return null;
 }

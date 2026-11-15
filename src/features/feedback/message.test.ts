@@ -82,14 +82,19 @@ describe('формат issue обратной связи (SPEC §6.9)', () => {
     expect(params(fitted.url).get('body')).toBe(feedbackBody('Спасибо!', ctx));
   });
 
-  it('1000 символов кириллицы и длинный адрес — сообщение целиком, ссылка не длиннее потолка', () => {
+  it('1000 символов кириллицы — сообщение целиком, адрес на месте, ссылка не длиннее потолка', () => {
     const message = 'ж'.repeat(MESSAGE_LIMIT);
-    const fitted = feedbackUrl(REPO, message, { ...ctx, address: `https://x.test/#/${'a'.repeat(5000)}` })!;
+    const fitted = feedbackUrl(REPO, message, ctx)!;
     expect(fitted.url.length).toBeLessThanOrEqual(URL_LIMIT);
     const body = params(fitted.url).get('body')!;
     expect(body.startsWith(message)).toBe(true);
-    // Адрес обрезан до 300 символов, а не выкинут вместе с контекстом.
-    expect(body).toMatch(/Адрес: https:\/\/x\.test\/#\/a+…/);
+    expect(body).toContain(`Адрес: ${ctx.address}`);
+  });
+
+  it('значения контекста обрезаются до 300 символов', () => {
+    const [address] = contextLines({ ...ctx, address: `https://x.test/#/${'a'.repeat(5000)}` });
+    expect(address).toMatch(/^Адрес: https:\/\/x\.test\/#\/a+…$/);
+    expect(address!.length).toBe('Адрес: '.length + 300);
   });
 
   it('длинная ссылка — строки контекста отбрасываются с наименее важной, сообщение не трогается', () => {
@@ -106,6 +111,17 @@ describe('формат issue обратной связи (SPEC §6.9)', () => {
   it('сообщение, которое само не помещается в ссылку, не обрезается: null', () => {
     // «€» — 3 байта UTF-8, 9 знаков в ссылке: 1000 таких — 9000 знаков.
     expect(feedbackUrl(REPO, '€'.repeat(MESSAGE_LIMIT), ctx)).toBeNull();
+  });
+
+  it('адрес важнее выдержки в заголовке: сначала уходит выдержка, потом адрес', () => {
+    const message = 'ж'.repeat(MESSAGE_LIMIT);
+    const withAddress = newIssueUrl(REPO, {
+      title: feedbackTitle(message, 'ru', false),
+      body: feedbackBody(message, ctx, contextLines(ctx).slice(0, 1)),
+    });
+    const fitted = feedbackUrl(REPO, message, ctx, withAddress.length)!;
+    expect(fitted.url).toBe(withAddress);
+    expect(params(fitted.url).get('title')).toBe('Отзыв с карты');
   });
 
   it('без места для контекста — голый заголовок и сообщение с подписью', () => {
