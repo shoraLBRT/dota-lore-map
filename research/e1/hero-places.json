@@ -14,9 +14,20 @@
         {
           "place": "Font of Avernus",
           "event": "origin",
-          "source": "bio"
+          "source": "bio",
+          "note": "Родился в роду Аверно, в младенчестве был окунут в купель и здесь вырос; позже стал созданием её чёрного тумана. Liquipedia в поле places называет то же место.",
+          "doubt": "Биография называет купель родом Аверно, но не относит её к конкретному региону; регион Срединные королевства взят из E1, а не из источника."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Abaddon из рода Аверно ещё младенцем был окунут в тёмный туман купели и вырос не воином, а созданием этого тумана. Вместо военной учёбы он проводил время у источника и учился сливаться с его силой. После первой битвы сомнения родни рассеялись: он показал власть над жизнью и смертью, которой не было ни у одного лорда рода.",
+          "en": "Abaddon, of House Avernus, was dipped in the black mist of the Font as an infant and grew into a being of that mist rather than a warrior. Instead of military training, he spent his days beside the Font, learning to merge with its power. After his first battle, the family's doubts faded, since he proved a command over life and death no lord of the House had matched."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/abaddon.png"
+        ]
+      }
     },
     "Alchemist": {
       "links": [
@@ -40,10 +51,35 @@
         {
           "place": "The Void",
           "event": "origin",
+          "source": "bio",
+          "note": "Калдр появляется из холодной бесконечной пустоты вне времени; тот же origin указан в инфобоксе Liquipedia."
+        },
+        {
+          "place": "Coldbank Plains",
+          "event": "battle",
           "source": "liquipedia",
-          "via": "infobox"
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Ancient_Apparition/Lore",
+          "note": "Напал на деревню Trell в Hinterlands' Coldbank Plains: жители и скот погибли, Trell не был целью, а попал на путь стихии."
         }
-      ]
+      ],
+      "path": [
+        {
+          "place": "The Void"
+        },
+        {
+          "place": "Coldbank Plains"
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Ancient Apparition, он же Калдр, — лишь бледное отражение вечного существа, которое стоит за пределами времени, в пустоте старше самой вселенной. В нашем мире видна только слабая тень его настоящей сущности. По преданиям, с приближением конца космоса его мощь будет расти, и тогда он сможет остановить всё сущее.",
+          "en": "Ancient Apparition, known as Kaldr, is a faded reflection of an eternal being that lies beyond time, in a void older than the universe. Only a pale trace of his true self reaches our world. Legend says his power grows as the cosmos nears its end, and that he aims to freeze existence into stillness."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/ancient_apparition.png"
+        ]
+      }
     },
     "Anti-Mage": {
       "links": [
@@ -148,10 +184,26 @@
       "links": [
         {
           "place": "Thousand Tarns",
-          "event": "origin",
-          "source": "bio"
+          "event": "battle",
+          "source": "bio",
+          "note": "Семилетняя кампания на Тысячеболотье: здесь герой выслужился и погубил большую часть своих бойцов. Название места взято из названия кампании."
+        },
+        {
+          "place": "Fortress of Valhessi",
+          "event": "battle",
+          "source": "comic:valhessi-the-last-castle",
+          "note": "В комиксе The Last Castle Axe прорубается через гарнизон крепости, а на лор-странице говорится о разгроме сил Valhessi; крепость стоит в Hazhadal Barrens."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Могул-хан, он же Axe, начинал рядовым в армии Красного тумана и продвигался по службе, обезглавливая командиров. Самую известную славу он заслужил в многолетней кампании на Тысячеболотье, а когда соратники полегли, объявил себя генералом без войска. Теперь он бродит в одиночку и считает одиночку лучшей армией; его подвиги записывает летописец Гудкайнд.",
+          "en": "Mogul Khan, known as Axe, began as a foot soldier in the Red Mist army and climbed the ranks by removing superiors. He earned his fame in a seven-year campaign in the Thousand Tarns, then declared himself general once his comrades were gone, commanding no troops. He now roams alone, convinced that a single warrior is the strongest army, while his scribe Goodkind records his deeds in embellished tales."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/axe.png"
+        ]
+      }
     },
     "Bane": {
       "links": [
@@ -175,27 +227,55 @@
         {
           "place": "Yama Raskav Jungle",
           "event": "origin",
-          "source": "bio"
+          "source": "bio",
+          "note": "Герой вырос на семейном поле и первый полёт пережил в дикой природе джунглей, где потом и нашёл пещеры; сама биография пишет о джунглях как о своём мире.",
+          "doubt": "Место семейного поля в тексте не названо, поэтому родина привязана к джунглям по описанию мира и по полю infobox лор-страницы (places: Yama Raskav Jungle), а не по прямой фразе о рождении."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Batrider — безымянный юноша, который в детстве на семейном поле попал в лапы огромной летучей мыши и сумел одолеть её. Ощущение полёта захватило его навсегда, и он ушёл в дикие джунгли Yama Raskav, пробившись к пещерам в сердце враждебной природы. Туда он нырнул с верёвкой, запасом смелости и твёрдым решением.",
+          "en": "Batrider is an unnamed youth who, as a boy in the family field, was seized by a giant morde-bat and managed to kill the beast. The thrill of flight hooked him for good, and he set off into the wild Yama Raskav Jungle, pushing through to the caves at the heart of its hostility. He went in with a rope, a dose of nerve and a firm resolve."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/batrider.png"
+        ]
+      }
     },
     "Beastmaster": {
       "links": [
         {
           "place": "Slom",
           "event": "origin",
-          "source": "bio"
+          "source": "bio",
+          "note": "Вырос при дворе последнего короля Slom: отец служил там кузнецом, а сам Каррох с детства жил в королевском зверинце. Побег из дворца на олене тоже здесь, но это то же место, поэтому оставлен только тип origin."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Каррох, он же Beastmaster, вырос в королевском зверинце Slom после гибели отца. Общаясь с пленным существом, которое говорило без движения рта, он научился понимать всех животных зверинца. Когда зверь умер, Каррох поднял обитателей зверинца против двора и сбежал из дворца на олене. Теперь он взрослый воин, который по-прежнему говорит с дикой природой.",
+          "en": "Karroch, known as Beastmaster, was raised in the royal menagerie of Slom after losing his father young. Through a captive creature that spoke without moving its mouth, he learned to talk with every animal in the menagerie. When the creature died, he turned the animals against the court and fled the palace on a stag. He is now a grown warrior who still speaks with the wild."
+        }
+      }
     },
     "Bloodseeker": {
       "links": [
         {
           "place": "Xhacatocatl",
           "event": "origin",
-          "source": "bio"
+          "source": "bio",
+          "note": "Родина: с туманных вершин Xhacatocatl его послали на охоту по воле близнецов-богов. Liquipedia в инфобоксе ставит туда же origins."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Стригвир, он же Bloodseeker, — ритуальный охотник из горной империи Xhacatocatl, гончая, посланная Бескожими близнецами. Боги требуют океанов крови, и он рыщет по свету, собирая жизненную силу убитых, чтобы умилостивить их и не дать родине опустеть. Под его маской иногда проступают черты самих богов.",
+          "en": "Strygwyr, the Bloodseeker, is a ritual hunter from the mountain empire of Xhacatocatl, a hound sent out by the Flayed Twins. The twin gods need oceans of blood, so he roams the world gathering the life force of his victims to appease them and keep his homeland from being emptied. Beneath his mask, the gods themselves are said to show through at times."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/bloodseeker.png"
+        ]
+      }
     },
     "Bounty Hunter": {
       "links": [
@@ -217,37 +297,96 @@
         {
           "place": "Ruined City",
           "event": "origin",
-          "source": "bio"
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Brewmaster/Lore",
+          "note": "Инфобокс лор-страницы называет Ruined City родиной; на эту же связь указывает и реплика о желании вернуться и быть похороненным там.",
+          "doubt": "Биография помещает орден в долину под городом, а не в сам город; инфобокс считает родиной город."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Brewmaster, он же Мангикс, наполовину небожитель: сын смертной матери и Celestial-отца, выросший в ордене Ойо в Стонущих горах. Одолев старшего мастера в многодневном состязании, он получил титул и теперь странствует в поисках мысли, которая свяжет дух и материю; вернуться в Разрушенный город он мечтает однажды.",
+          "en": "Brewmaster, also known as Mangix, is a half-Celestial born to a mortal mother and raised in the Order of Oyo in the Wailing Mountains. After winning his title in a long drinking duel, he roams the world looking for a thought that could reconnect spirit and matter, and he hopes to return to the Ruined City one day."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/brewmaster.png"
+        ]
+      }
     },
     "Bristleback": {
       "links": [
         {
-          "place": "Elze",
-          "event": "home",
-          "source": "bio"
+          "region": "slom-elze",
+          "event": "visit",
+          "source": "bio",
+          "note": "Дрался в придорожных тавернах между Slom и Elze; что это его дом, источники не говорят."
         }
-      ]
+      ],
+      "relations": [
+        {
+          "hero": "tusk",
+          "type": "rival",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Bristleback/Lore",
+          "note": "Лор-страница называет северного противника героя Tusk: у них давнее соперничество, при этом Bristleback не против объединиться с ним.",
+          "doubt": "Биография описывает драку с северным здоровяком, но по имени его не называет; отождествление опирается на лор-страницу и вики-текст героя."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Bristleback, он же Ригварл, — вышибала из придорожных таверн между Слом и Эльзе, которого прозвали так пьяные зрители. После проигранного спора с северным здоровяком он впервые начал тренироваться и понял, что поворот спиной к противнику тоже может сработать. Он до сих пор помнит долг и обещает рассчитаться с обидчиком.",
+          "en": "Rigwarl, known as Bristleback, is a bar enforcer who never shied from a brawl and collected tabs in the taverns between Slom and Elze. A legendary fight with a northern giant left an unpaid bill and a debt of honor, so he began training for the first time and discovered that turning his back could be an edge. He still plans to settle the score with the northerner."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/bristleback.png"
+        ]
+      }
     },
     "Broodmother": {
       "links": [
         {
           "place": "Mount Pyrotheos",
-          "event": "home",
-          "source": "liquipedia",
-          "via": "infobox"
+          "event": "origin",
+          "source": "bio",
+          "note": "Родина героя: она веками растила потомство в лавовых туннелях под кратером этого вулкана; здесь же поклонялись её культу. Liquipedia в поле origins указывает то же место."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Broodmother, в биографии Чёрная Арахния, — паучиха, которая много веков растила потомство в лавовых туннелях под потухшим вулканом Mount Pyrotheos. Когда охотники за добычей начали топтать её детёнышей, она решила уничтожить всех потенциальных захватчиков, вплоть до последнего героя. Её паучата появляются из тел поверженных врагов, а сама она питается жизненной силой жертв.",
+          "en": "Broodmother is Black Arachnia, a spider who spent centuries raising her brood in lava tunnels beneath an extinct volcano. After adventurers began trampling her young, she set out to eliminate every would-be intruder, one hero at a time. Her spiderlings hatch from fallen enemies, and she feeds on the vitality of those she bites."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/broodmother.png"
+        ]
+      }
     },
     "Centaur Warrunner": {
       "links": [
         {
           "place": "Druud",
           "event": "origin",
-          "source": "bio"
+          "source": "bio",
+          "note": "Родина кланов кентавров, из которых вышел герой; Druud стоит и в поле places инфобокса лор-страницы"
+        },
+        {
+          "place": "Omexe",
+          "event": "battle",
+          "source": "bio",
+          "note": "Древняя арена, где он перебил всех соперников, стал непобедимым чемпионом и получил пояс; Omexe также стоит в поле places инфобокса лор-страницы"
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Centaur Warrunner, в лоре Брадвуден, — чемпион кентавров из Druud. Он выигрывал на арене Omexe бой за боем, пока никто не осмелился вызвать его, и получил великий пояс, но победа не принесла удовлетворения. Теперь он ищет новых соперников и хочет доказать, что он лучший боец из всех, кто когда-либо жил.",
+          "en": "Centaur Warrunner, called Bradwarden in the lore, is the champion of the centaur clans of Druud. After beating every challenger in the Omexe arena he received its great belt, yet the victory left him unsatisfied, so he set off in search of a new rival. He now aims to prove he is the finest fighter the world has known."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/centaur.png"
+        ]
+      }
     },
     "Chaos Knight": {
       "links": [

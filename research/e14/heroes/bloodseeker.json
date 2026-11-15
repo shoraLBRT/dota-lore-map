@@ -1,21 +1,17 @@
 {
   "hero": "bloodseeker",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
   "links": [
     {
       "place": "Xhacatocatl",
       "event": "origin",
       "source": "bio",
       "note": "Родина: с туманных вершин Xhacatocatl его послали на охоту по воле близнецов-богов. Liquipedia в инфобоксе ставит туда же origins."
-    },
-    {
-      "place": "Roseleaf",
-      "event": "visit",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Bloodseeker/Lore",
-      "note": "Место стоит в поле places инфобокса лор-страницы; самого события там не описано.",
-      "doubt": "Dark Willow в реплике говорит, что видела его в Roseleaf, а карточка Artifact предполагает охоту на Oglodi там же. Это реплика и догадка, не описанное событие, поэтому тип выбран самый слабый из подтверждённых."
     }
   ],
   "profile": {
@@ -36,6 +32,7 @@
     "Outworld Destroyer: поглощение его энергии описано только по одной реплике. Связь не записана.",
     "Eztzhok: демон, пытавшийся овладеть им, но это персонаж-демон, а не записанная связь героя; по источникам тип связи не определяется.",
     "Dark Willow и остальные реплики озвучки (Grimstroke, Mars, Monkey King, Pangolier, Void Spirit, Abaddon, Huskar, Lifestealer, Terrorblade, Oracle и др.): только реплики, связи не записаны.",
-    "Anessix: демон, которого он охотился в Underlords; Underlords не используются по правилам."
+    "Anessix: демон, которого он охотился в Underlords; Underlords не используются по правилам.",
+    "Сверка: Roseleaf убран — держится только на реплике Dark Willow."
   ]
 }

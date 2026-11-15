@@ -1,6 +1,11 @@
 {
   "hero": "abaddon",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
   "links": [
     {
       "place": "Font of Avernus",
@@ -12,7 +17,7 @@
   ],
   "profile": {
     "summary": {
-      "ru": "Abaddon из рода Аверно с детства был окунён в тёмный туман купели и вырос не воином, а созданием этого тумана. Вместо военной учёбы он проводил время у источника и учился сливаться с его силой. После первой битвы сомнения родни рассеялись: он показал власть над жизнью и смертью, которой не было ни у одного лорда рода.",
+      "ru": "Abaddon из рода Аверно ещё младенцем был окунут в тёмный туман купели и вырос не воином, а созданием этого тумана. Вместо военной учёбы он проводил время у источника и учился сливаться с его силой. После первой битвы сомнения родни рассеялись: он показал власть над жизнью и смертью, которой не было ни у одного лорда рода.",
       "en": "Abaddon, of House Avernus, was dipped in the black mist of the Font as an infant and grew into a being of that mist rather than a warrior. Instead of military training, he spent his days beside the Font, learning to merge with its power. After his first battle, the family's doubts faded, since he proved a command over life and death no lord of the House had matched."
     },
     "art": [

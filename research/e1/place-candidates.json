@@ -67,6 +67,24 @@
       "via": "infobox",
       "url": "https://liquipedia.net/dota2/Winter_Wyvern/Lore",
       "note": "Лор-страница перечисляет Mt. Gorod в инфобоксе рядом с Icewrack, событие не описано. Регион предположительный: на схеме и в источниках не назван, решает владелец (#59)."
+    },
+    {
+      "name": "Trell",
+      "hero": "ancient_apparition",
+      "region": "stonehall",
+      "event": "battle",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Ancient_Apparition/Lore",
+      "note": "Деревня внутри Coldbank Plains; Coldbank Plains лежит в регионе stonehall, поэтому кандидат привязан к нему."
+    },
+    {
+      "name": "Magnetic Ziggurat",
+      "hero": "broodmother",
+      "region": "middle-kingdoms",
+      "event": "battle",
+      "source": "bio",
+      "note": "Зиккурат визиря Фолопталиса стоит на склонах Mount Pyrotheos, а сам вулкан в regions.json лежит в middle-kingdoms. Героиня схватила визиря и обернула его шёлком, но в тексте не сказано, где именно это произошло; место выбрано по соседству с горой."
     }
   ]
 }
