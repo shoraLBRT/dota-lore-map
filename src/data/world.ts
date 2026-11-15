@@ -43,7 +43,7 @@ export function mediaSrc(m: Media, lang: Lang): string | undefined {
 /** Картинка карточки: сама картинка или превью ролика YouTube. */
 export function mediaThumb(m: Media, lang: Lang): string | undefined {
   if (m.type === 'youtube' && m.youtubeId) return `https://i.ytimg.com/vi/${m.youtubeId}/hqdefault.jpg`;
-  return m.thumb ?? mediaSrc(m, lang);
+  return mediaSrc(m, lang);
 }
 
 /** Страница источника на языке интерфейса: у dota2.com язык задаёт параметр `l` (как у героев, A6). */
@@ -94,12 +94,12 @@ export function heroPortrait(hero: Hero): string {
   return `https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/${hero.key}.png`;
 }
 
-/** Широкий портрет героя 400×250 с CDN Valve (шапка профиля и превью рендера, A6). */
+/** Широкий портрет героя с CDN Valve (шапка профиля, A6). */
 export function heroCrop(hero: Hero): string {
   return `https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/crops/${hero.key}.png`;
 }
 
-/** Рендер героя в полный рост с CDN Valve, как на странице героя dota2.com (A6); тяжёлый — только в галерее. */
+/** Рендер героя в полный рост с CDN Valve, как на странице героя dota2.com (A6): первый арт профиля. */
 export function heroRender(hero: Hero): string {
   return `https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/${hero.key}.png`;
 }

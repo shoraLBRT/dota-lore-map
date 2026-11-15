@@ -95,8 +95,6 @@ export interface Media {
   src?: string | Localized;
   /** Видео: id ролика YouTube, встраивается через youtube-nocookie.com. Только у type = youtube. */
   youtubeId?: string;
-  /** Картинка карточки, если `src` слишком тяжёлая для превью (рендер героя в профиле, E15). */
-  thumb?: string;
   /** Картинка — одна страница комикса; целиком он по sourceUrl (галерея показывает метку «отрывок»). */
   excerpt?: boolean;
   title: Localized;

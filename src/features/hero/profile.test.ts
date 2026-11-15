@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { Hero } from '../../data/types';
-import { getHero, heroCrop, heroPortrait, heroRender } from '../../data/world';
+import { getHero, heroPortrait, heroRender } from '../../data/world';
 import { heroSpots } from '../search/search';
 import { artId, heroMedia, heroRelations, profilePlaces, RELATION_INVERSE } from './profile';
 
@@ -53,12 +53,12 @@ describe('связи героев (heroRelations)', () => {
 });
 
 describe('арты профиля (heroMedia, A6)', () => {
-  it('рендер Valve первым, превью — широкий портрет; портрет и повторы из profile.art пропускаются', () => {
+  it('рендер Valve первым; портрет и повторы из profile.art пропускаются', () => {
     const extra = 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/some-art.jpg';
     const h = hero('drow_ranger', { profile: { art: [heroPortrait(hero('drow_ranger')), extra, extra] } });
     const media = heroMedia(h);
     expect(media.map((m) => m.id)).toEqual([artId(h, 'render'), artId(h, 2)]);
-    expect(media[0]).toMatchObject({ type: 'image', src: heroRender(h), thumb: heroCrop(h), credit: 'Valve' });
+    expect(media[0]).toMatchObject({ type: 'image', src: heroRender(h), credit: 'Valve' });
     expect(media[0]!.sourceUrl).toBe('https://www.dota2.com/hero/drow_ranger');
     expect(media[1]!.src).toBe(extra);
   });

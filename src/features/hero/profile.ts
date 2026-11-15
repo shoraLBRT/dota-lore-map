@@ -61,22 +61,21 @@ export const artId = (hero: Hero, n: number | 'render') => `hero-${hero.key}-${n
 
 /**
  * Арты профиля (A6: только официальные изображения Valve, по ссылке):
- * рендер героя с CDN Valve (превью — широкий портрет), арты из `profile.art` (кроме портрета и рендера —
- * они уже есть), затем официальные комиксы, где герой есть: медиа из источников `comic:<id>` его связей.
+ * рендер героя с CDN Valve, арты из `profile.art` (кроме портрета и рендера —
+ * они уже в шапке и первым артом), затем официальные комиксы, где герой есть: медиа из источников `comic:<id>` его связей.
  */
 export function heroMedia(hero: Hero): Media[] {
   const name = { ru: hero.name, en: hero.name };
-  const art = (id: string, src: string, thumb?: string): Media => ({
+  const art = (id: string, src: string): Media => ({
     id,
     type: 'image',
     src,
-    ...(thumb ? { thumb } : {}),
     title: name,
     subtitle: ART_SUBTITLE,
     credit: 'Valve',
     sourceUrl: heroPage(hero),
   });
-  const items: Media[] = [art(artId(hero, 'render'), heroRender(hero), heroCrop(hero))];
+  const items: Media[] = [art(artId(hero, 'render'), heroRender(hero))];
   const known = new Set([heroPortrait(hero), heroCrop(hero), heroRender(hero)]);
   (hero.profile?.art ?? []).forEach((src, i) => {
     if (known.has(src)) return;

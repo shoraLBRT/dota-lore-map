@@ -212,3 +212,11 @@
 .abyss {
   --hl: var(--abyss);
 }
+
+/* Телефон: в свёрнутой шторке (30 % высоты) под крошкой видны шапка и имя героя (SPEC §13). */
+@media (max-width: 767px) {
+  .header {
+    aspect-ratio: 4 / 1;
+    object-position: 50% 15%;
+  }
+}
