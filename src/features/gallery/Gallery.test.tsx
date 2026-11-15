@@ -3,6 +3,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { App } from '../../app/App';
 import type { Lang, Media } from '../../data/types';
 import { getMedia, mediaSourceUrl } from '../../data/world';
+import { NavigationProvider } from '../../app/navigation';
 import { I18nProvider } from '../../i18n';
 import { FeedbackProvider } from '../feedback/FeedbackProvider';
 import { Gallery, SWIPE_MIN } from './Gallery';
@@ -267,5 +268,31 @@ describe('галерея в приложении', () => {
     window.location.hash = '#/?media=hells-ascension';
     render(<App />);
     expect(screen.queryByRole('dialog')).toBeNull();
+  });
+
+  it('«Нашли ошибку?» (#74): окно поверх галереи забирает клавиши — стрелки не листают, Esc галерею не закрывает', () => {
+    const onSelect = vi.fn();
+    const onClose = vi.fn();
+    render(
+      <I18nProvider initialLang="ru">
+        <NavigationProvider>
+          <FeedbackProvider>
+            <Gallery items={items} index={0} onSelect={onSelect} onClose={onClose} />
+          </FeedbackProvider>
+        </NavigationProvider>
+      </I18nProvider>,
+    );
+    fireEvent.click(screen.getByRole('button', { name: 'Нашли ошибку или знаете больше? Расскажите' }));
+    const win = screen.getByRole('dialog', { name: 'Обратная связь' });
+    expect(win).toHaveTextContent(`Медиа: ${comic.title.ru}`);
+    fireEvent.keyDown(window, { key: 'ArrowRight' });
+    fireEvent.keyDown(within(win).getByRole('textbox'), { key: 'ArrowLeft' });
+    expect(onSelect).not.toHaveBeenCalled();
+    fireEvent.keyDown(within(win).getByRole('textbox'), { key: 'Escape' });
+    expect(screen.queryByRole('dialog', { name: 'Обратная связь' })).toBeNull();
+    expect(onClose).not.toHaveBeenCalled();
+    // Окно закрыто — клавиши снова у галереи.
+    fireEvent.keyDown(window, { key: 'ArrowRight' });
+    expect(onSelect).toHaveBeenCalledWith(art.id);
   });
 });

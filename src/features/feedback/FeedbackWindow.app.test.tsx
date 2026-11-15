@@ -230,7 +230,8 @@ describe('«Нашли ошибку?» у блоков (#74)', () => {
     expect(sendUrl(win).searchParams.get('title')).toBe('Отзыв с карты: x');
   });
 
-  it('медиа в галерее: окно поверх галереи, стрелки в поле не листают, Esc закрывает сначала окно', () => {
+  // Листание при открытом окне — в Gallery.test (здесь у медиа региона один элемент).
+  it('медиа в галерее: окно поверх галереи, Esc закрывает сначала окно, фокус — на строке в галерее', () => {
     window.location.hash = '#/r/icewrack?media=icewrack-new-neighbors';
     render(<App />);
     const gallery = screen.getByRole('dialog', { name: '«Новые соседи»' });
@@ -244,9 +245,6 @@ describe('«Нашли ошибку?» у блоков (#74)', () => {
     const url = sendUrl(win);
     expect(url.searchParams.get('title')).toBe('Ошибка в «Новые соседи»: Неверная подпись');
     expect(url.searchParams.get('body')).toContain('- Блок: медиа «Новые соседи» (`icewrack-new-neighbors`)');
-    fireEvent.keyDown(field, { key: 'ArrowLeft' });
-    fireEvent.keyDown(window, { key: 'ArrowLeft' });
-    expect(window.location.hash).toBe('#/r/icewrack?media=icewrack-new-neighbors');
     fireEvent.keyDown(field, { key: 'Escape' });
     expect(dialog()).toBeNull();
     expect(screen.getByRole('dialog', { name: '«Новые соседи»' })).toBeInTheDocument();
