@@ -1,6 +1,6 @@
 // Иконки интерфейса — inline SVG, цвет через currentColor (ARCHITECTURE A8).
 
-export type IconName = 'logo' | 'globe' | 'search' | 'sound' | 'soundOff' | 'info';
+export type IconName = 'logo' | 'globe' | 'search' | 'sound' | 'soundOff' | 'info' | 'feedback';
 
 const PATHS: Record<IconName, string> = {
   // Ромб-эмблема с вписанной «D» из двух дуг: узнаваемо, но не копирует логотип Valve.
@@ -9,6 +9,8 @@ const PATHS: Record<IconName, string> = {
   search: 'M10.5 4a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13Z M15.3 15.3 20 20',
   sound: 'M4 9.5h3.5L12 6v12l-4.5-3.5H4Z M15.5 9a4 4 0 0 1 0 6 M18 6.5a7.5 7.5 0 0 1 0 11',
   soundOff: 'M4 9.5h3.5L12 6v12l-4.5-3.5H4Z M16 9.5l5 5 M21 9.5l-5 5',
+  // Облачко реплики с двумя строками текста.
+  feedback: 'M4.5 5h15v10.5h-9L6 19.5v-4H4.5Z M8 9h8 M8 12h5',
   info: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z M12 11v5.5 M12 7.5v.5',
 };
 

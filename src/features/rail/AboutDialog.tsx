@@ -4,6 +4,7 @@ import { DiamondButton } from '../../components/DiamondButton';
 import { Disclaimer } from '../../components/Disclaimer';
 import { Divider } from '../../components/Divider';
 import { trapTab } from '../../components/focusTrap';
+import { REPO_URL } from '../../app/project';
 import { useT, type MessageKey } from '../../i18n';
 import styles from './AboutDialog.module.css';
 
@@ -11,8 +12,6 @@ const SOURCES: { key: MessageKey; href: string }[] = [
   { key: 'about.source.official', href: 'https://www.dota2.com/heroes' },
   { key: 'about.source.wikis', href: 'https://liquipedia.net/dota2/' },
 ];
-
-const REPO = 'https://github.com/shoraLBRT/dota-lore-map';
 
 /** Окно «О проекте» (SPEC §6.1, §15): описание, источники, благодарности, дисклеймер. Esc и × закрывают. */
 export function AboutDialog({ onClose }: { onClose: () => void }) {
@@ -64,8 +63,9 @@ export function AboutDialog({ onClose }: { onClose: () => void }) {
         </ul>
         <h3>{t('about.thanks')}</h3>
         <p>{t('about.thanksText')}</p>
+        <p>{t('about.feedback')}</p>
         <p>
-          <a href={REPO} target="_blank" rel="noopener noreferrer">
+          <a href={REPO_URL} target="_blank" rel="noopener noreferrer">
             {t('about.code')} ↗
           </a>
         </p>

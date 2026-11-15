@@ -1,0 +1,141 @@
+/* Окно обратной связи (SPEC §6.9): в углу у кнопки, без затемнения — карта под ним остаётся видна. */
+.window {
+  position: fixed;
+  bottom: var(--space-4);
+  left: calc(var(--rail-width) + var(--space-3));
+  /* Выше подсказок и панелей, ниже «О проекте» и галереи. */
+  z-index: 95;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: min(24rem, calc(100vw - var(--rail-width) - 2 * var(--space-3)));
+  max-height: calc(100dvh - 2 * var(--space-4));
+  overflow-y: auto;
+  padding: var(--space-5) var(--space-5) var(--space-4);
+  border: 1px solid var(--metal);
+  background: var(--bg-1);
+  box-shadow: var(--shadow-2);
+  font-size: 0.9rem;
+  clip-path: polygon(
+    var(--cut) 0,
+    100% 0,
+    100% calc(100% - var(--cut)),
+    calc(100% - var(--cut)) 100%,
+    0 100%,
+    0 var(--cut)
+  );
+  animation: appear var(--dur-fade) var(--ease-out) both;
+}
+
+.window:focus {
+  outline: none;
+}
+
+.close {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+}
+
+.title {
+  margin: 0;
+  padding-right: var(--space-6);
+  font-size: 1.35rem;
+}
+
+.text p {
+  margin: 0 0 var(--space-1);
+  color: var(--text-2);
+  line-height: 1.45;
+}
+
+.label {
+  margin-top: var(--space-1);
+  color: var(--text-1);
+  font-weight: 600;
+}
+
+.field {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 7.5rem;
+  padding: var(--space-2);
+  border: 1px solid var(--metal);
+  border-radius: 0;
+  background: var(--bg-0);
+  color: var(--text-1);
+  font: inherit;
+  line-height: 1.45;
+  resize: vertical;
+}
+
+.field::placeholder {
+  color: var(--text-3);
+}
+
+.field:focus-visible {
+  outline: 2px solid var(--accent-bright);
+  outline-offset: 1px;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.count {
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.send {
+  display: inline-block;
+  min-height: 2.75rem;
+  box-sizing: border-box;
+  line-height: 1.75rem;
+  text-decoration: none;
+}
+
+.note {
+  margin: 0;
+  color: var(--text-2);
+  line-height: 1.45;
+}
+
+.note:empty {
+  display: none;
+}
+
+/* SPEC §13: на телефоне кнопка в полосе сверху — окно под полосой, во всю ширину с полями. */
+@media (max-width: 767px) {
+  .window {
+    top: calc(var(--rail-height) + var(--space-2));
+    right: var(--space-2);
+    bottom: auto;
+    left: var(--space-2);
+    width: auto;
+    max-height: calc(100dvh - var(--rail-height) - 2 * var(--space-2));
+    padding: var(--space-4);
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .window {
+    animation-name: fade;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
