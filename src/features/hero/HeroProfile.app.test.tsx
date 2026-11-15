@@ -23,8 +23,9 @@ describe('профиль героя', () => {
     const panel = profile('Tusk')!;
     const heading = within(panel).getByRole('heading', { level: 2, name: 'Tusk' });
     expect(heading).toHaveFocus();
-    // У Tusk нет описания и связей — этих блоков нет, остальное есть.
-    expect(within(panel).queryByRole('heading', { name: 'Связан с' })).toBeNull();
+    // У Tusk нет описания — этого блока нет; связь с Bristleback пришла обратной записью из партии 04 (#49).
+    expect(within(panel).getByRole('heading', { name: 'Связан с' })).toBeInTheDocument();
+    expect(within(panel).getByRole('button', { name: /Bristleback/ })).toBeInTheDocument();
     expect(panel.querySelector('p')).toBeNull();
     expect(within(panel).getByRole('heading', { name: 'Арты' })).toBeInTheDocument();
     expect(within(panel).getByRole('link', { name: /^dota2.com: Tusk/ })).toHaveAttribute(

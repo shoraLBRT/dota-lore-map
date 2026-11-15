@@ -82,10 +82,10 @@
 | Материк и острова | Айсрак (Icewrack) | Radiant (карта S1) | 12 | 9 |
 | Материк и острова | Земля Сияющих (Land of the Radiant) | Radiant (карта S1) | 8 | 9 |
 | Материк и острова | Лес Найтсильвер (Nightsilver Woods) | Radiant (карта S1) | 3 | 3 |
-| Материк и острова | Стоунхолл (Stonehall) | Radiant (по схеме E2) | 24 | 4 |
+| Материк и острова | Стоунхолл (Stonehall) | Radiant (по схеме E2) | 24 | 5 |
 | Материк и острова | Вольные города (The Free Cities) | Radiant (по схеме E2) | 7 | 10 |
 | Материк и острова | Квойдж и Поля Бойни (Quoidge and the Fields of Carnage) | нейтрально (по схеме E2) | 4 | 3 |
-| Материк и острова | Хазадальские пустоши (Hazhadal Barrens) | нейтрально (по схеме E2) | 2 | 2 |
+| Материк и острова | Хазадальские пустоши (Hazhadal Barrens) | нейтрально (по схеме E2) | 2 | 3 |
 | Материк и острова | Друуд (Druud) | Dire (по схеме E2) | 2 | 3 |
 | Материк и острова | Сверкающая пустошь (Scintillant Waste) | Dire (карта S1) | 9 | 6 |
 | Материк и острова | Стонущие горы (Wailing Mountains) | Dire (карта S1) | 6 | 7 |
@@ -179,7 +179,7 @@
 | Home of the Keen Folk | карта S1 | Alchemist*, Clockwerk |  |
 | Knollen | наше | Sniper | горные долины кинов |
 | Dredger's Bight | наше | Techies | родина Techies (кины); страницы на Liquipedia нет |
-| Thousand Tarns | карта S1 | Axe |  |
+| Thousand Tarns | карта S1 | Axe (сражение) |  |
 
 #### Лес Найтсильвер · Nightsilver Woods
 
@@ -218,7 +218,7 @@
 | Clacline | лор | — |  |
 | Kailens | лор | — |  |
 | Sloquoit | лор | — |  |
-| Coldbank Plains | лор | — | к западу |
+| Coldbank Plains | лор | Ancient Apparition (сражение) | к западу |
 | Janau | лор | — |  |
 | Leadbelly's | лор | — | таверна в Стоунхолле |
 
@@ -254,7 +254,7 @@
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
 | ★ Hazhadal Barrens | лор | Chen, Silencer |  |
-| Fortress of Valhessi | лор | — | страницы на Liquipedia нет |
+| Fortress of Valhessi | лор | Axe (сражение) | страницы на Liquipedia нет |
 
 #### Друуд · Druud
 
@@ -263,7 +263,7 @@
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
 | ★ Druud | лор | Arc Warden (бывал), Centaur Warrunner, Disruptor |  |
-| Omexe | лор | — |  |
+| Omexe | лор | Centaur Warrunner (сражение) |  |
 
 #### Сверкающая пустошь · Scintillant Waste
 
@@ -368,10 +368,12 @@
 
 Сторона: **Radiant** (по схеме E2). Два враждующих королевства-соседа, связанных дорогой с тавернами. Слом граничит с Western Forests.
 
+Герои всего региона: Bristleback (бывал)
+
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
 | ★ Slom | лор | Beastmaster, Lycan |  |
-| Elze | лор | Bristleback (живёт), Queen of Pain (связь) |  |
+| Elze | лор | Queen of Pain (связь) |  |
 | Stone Hills | наше | — |  |
 
 #### Ховен и Нишай · The Hoven and Nishai
@@ -435,7 +437,7 @@
 | Font of Avernus | наше | Abaddon |  |
 | Hidden Temple | наше | Spectre (связь)†, Templar Assassin (живёт), Void Spirit (связь) |  |
 | Hidden Hive | наше | Nyx Assassin (живёт) |  |
-| Mount Pyrotheos | наше | Broodmother (живёт) |  |
+| Mount Pyrotheos | наше | Broodmother |  |
 | Skirm | наше | Muerta | страницы на Liquipedia нет |
 | Solar Throne | наше | Mirana | трон империи Helio Imperium |
 
@@ -490,19 +492,19 @@
 |---|---|
 | Abaddon | Font of Avernus (Срединные королевства) |
 | Alchemist | Home of the Keen Folk (Земля Сияющих)* |
-| Ancient Apparition | The Void (Семь планов и Пустота) |
+| Ancient Apparition | The Void (Семь планов и Пустота); Coldbank Plains (Стоунхолл) (сражение) |
 | Anti-Mage | Turstarkuri (Стонущие горы); Tyler Estate (Вольные города) (связь) |
 | Arc Warden | Mad Moon (Небеса) (служба); Sundered Moon (Вольные города) (бывал); Druud (Друуд) (бывал); Tomo'kan (Томо'кан и Окраины) (сражение) |
-| Axe | Thousand Tarns (Земля Сияющих) |
+| Axe | Thousand Tarns (Земля Сияющих) (сражение); Fortress of Valhessi (Хазадальские пустоши) (сражение) |
 | Bane | The Dream (Семь планов и Пустота)* |
 | Batrider | Yama Raskav Jungle (Феллстрат) |
 | Beastmaster | Slom (Слом и Эльзе) |
 | Bloodseeker | Xhacatocatl (Феллстрат) |
 | Bounty Hunter | White Spire (Вольные города) (живёт)†; Highseat (Вольные города) (связь) |
 | Brewmaster | Ruined City (Стонущие горы) |
-| Bristleback | Elze (Слом и Эльзе) (живёт) |
-| Broodmother | Mount Pyrotheos (Срединные королевства) (живёт) |
-| Centaur Warrunner | Druud (Друуд) |
+| Bristleback | весь регион «Слом и Эльзе» (бывал) |
+| Broodmother | Mount Pyrotheos (Срединные королевства) |
+| Centaur Warrunner | Druud (Друуд); Omexe (Друуд) (сражение) |
 | Chaos Knight | Fundamental Plane (Семь планов и Пустота) |
 | Chen | Hazhadal Barrens (Хазадальские пустоши) |
 | Clinkz | The Hoven (Ховен и Нишай); Bleeding Hills (Ховен и Нишай) (связь) |

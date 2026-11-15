@@ -1,0 +1,61 @@
+{
+  "hero": "ancient_apparition",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore"
+  ],
+  "links": [
+    {
+      "place": "The Void",
+      "event": "origin",
+      "source": "bio",
+      "note": "Калдр появляется из холодной бесконечной пустоты вне времени; тот же origin указан в инфобоксе Liquipedia."
+    },
+    {
+      "place": "Coldbank Plains",
+      "event": "battle",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Ancient_Apparition/Lore",
+      "note": "Напал на деревню Trell в Hinterlands' Coldbank Plains: жители и скот погибли, Trell не был целью, а попал на путь стихии."
+    }
+  ],
+  "path": [
+    {
+      "place": "The Void"
+    },
+    {
+      "place": "Coldbank Plains"
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Ancient Apparition, он же Калдр, — лишь бледное отражение вечного существа, которое стоит за пределами времени, в пустоте старше самой вселенной. В нашем мире видна только слабая тень его настоящей сущности. По преданиям, с приближением конца космоса его мощь будет расти, и тогда он сможет остановить всё сущее.",
+      "en": "Ancient Apparition, known as Kaldr, is a faded reflection of an eternal being that lies beyond time, in a void older than the universe. Only a pale trace of his true self reaches our world. Legend says his power grows as the cosmos nears its end, and that he aims to freeze existence into stillness."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/ancient_apparition.png"
+    ]
+  },
+  "candidates": [
+    {
+      "name": "Trell",
+      "region": "stonehall",
+      "event": "battle",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Ancient_Apparition/Lore",
+      "note": "Деревня внутри Coldbank Plains; Coldbank Plains лежит в регионе stonehall, поэтому кандидат привязан к нему."
+    }
+  ],
+  "unconfirmed": [
+    "Terrene Plane: в инфобоксе и в тексте сказано, что Калдр воплощается в нём; в regions.json это наш мир (geo), а не место на схеме, поэтому не записано.",
+    "Hinterlands: упомянут в лоре как область, где лежит Coldbank Plains; в regions.json такого места нет, поэтому не записано ни как место, ни как кандидат.",
+    "Void Spirit: указан в инфобоксе heroes и в разделе Interactions; сказано, что он считает Калдра полезным для своей цели, тип связи по тексту не выводится, не записано.",
+    "Faceless Void: сказано только, что он уважает силу Калдра; ally или enemy не определено, не записано.",
+    "Crystal Maiden: влюблённость Калдра в неё — из реплики Monkey King (trivia), не из биографии или раздела Relationships; не записано.",
+    "Snapfire: совместное дело с мороженым — из реплики в trivia, не записано.",
+    "Сверка: связи с Dawnbreaker (враг), Enigma (хозяин) и Crystal Maiden (соперник) убраны — они держатся только на репликах героев."
+  ]
+}

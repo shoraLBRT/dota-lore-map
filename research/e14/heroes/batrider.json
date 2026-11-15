@@ -1,0 +1,30 @@
+{
+  "hero": "batrider",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "place": "Yama Raskav Jungle",
+      "event": "origin",
+      "source": "bio",
+      "note": "Герой вырос на семейном поле и первый полёт пережил в дикой природе джунглей, где потом и нашёл пещеры; сама биография пишет о джунглях как о своём мире.",
+      "doubt": "Место семейного поля в тексте не названо, поэтому родина привязана к джунглям по описанию мира и по полю infobox лор-страницы (places: Yama Raskav Jungle), а не по прямой фразе о рождении."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Batrider — безымянный юноша, который в детстве на семейном поле попал в лапы огромной летучей мыши и сумел одолеть её. Ощущение полёта захватило его навсегда, и он ушёл в дикие джунгли Yama Raskav, пробившись к пещерам в сердце враждебной природы. Туда он нырнул с верёвкой, запасом смелости и твёрдым решением.",
+      "en": "Batrider is an unnamed youth who, as a boy in the family field, was seized by a giant morde-bat and managed to kill the beast. The thrill of flight hooked him for good, and he set off into the wild Yama Raskav Jungle, pushing through to the caves at the heart of its hostility. He went in with a rope, a dose of nerve and a firm resolve."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/batrider.png"
+    ]
+  },
+  "unconfirmed": [
+    "Место семейного поля не названо ни в биографии, ни на Liquipedia, поэтому отдельного origin на карте для него нет.",
+    "Пещеры в сердце джунглей упомянуты без названия — в candidates не записаны, так как имени для кандидата нет.",
+    "Axe стоит в поле heroes инфобокса лор-страницы без типа связи; из текста тип не выводится, связь не записана.",
+    "Реплики озвучки о Batrider (Dark Willow, Monkey King, Pangolier, Lina, Ember Spirit и другие, включая разделы Allies и Enemies) — не основание для связей по правилам партии 01.",
+    "Трактовки из тривии (Batman, Deadlock, Warcraft III) не являются лором героя и в данные не переносились.",
+    "Комиксов с Batrider в content/media.json нет, поэтому источник comic:<id> не использовался."
+  ]
+}
