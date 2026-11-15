@@ -3,13 +3,13 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import { App } from '../../app/App';
 import { getPlace, getRegion, placeName } from '../../data/world';
 
-// Поиск героя и нити в приложении (E7, SPEC §6.5, §6.6).
+// Поиск героя и нити в приложении (E7, SPEC §6.5, §6.6); выбранный герой — профиль в панели (E15, SPEC §6.8).
 
 const openSearch = () => {
   fireEvent.click(screen.getByRole('button', { name: 'Поиск героя' }));
   return screen.getByRole('combobox', { name: 'Поиск героя' });
 };
-const badge = () => screen.queryByRole('region', { name: 'Выбранный герой' });
+const profile = (name: string) => screen.queryByRole('complementary', { name });
 const threads = () => document.querySelectorAll('[data-testid="threads"] path[data-thread]');
 
 describe('поиск героя и нити', () => {
@@ -51,27 +51,29 @@ describe('поиск героя и нити', () => {
     expect(window.location.hash).toBe('#/r/icewrack');
   });
 
-  it('одно место — камера к нему; плашка с портретом, ссылкой ↗ и ×, без списка мест', () => {
+  it('одно место — камера к нему; профиль с именем, ссылкой ↗ и крошкой «назад»', () => {
     window.location.hash = '#/world';
     render(<App />);
     fireEvent.change(openSearch(), { target: { value: 'cm' } });
     fireEvent.click(screen.getAllByRole('option')[0]!);
     expect(window.location.hash).toBe('#/r/icewrack/icewrack?hero=crystal_maiden');
-    const plaque = badge()!;
+    const plaque = profile('Crystal Maiden')!;
     within(plaque).getByRole('heading', { name: 'Crystal Maiden' });
     expect(within(plaque).getByRole('link', { name: /^dota2.com: Crystal Maiden, официальная страница/ })).toHaveAttribute(
       'href',
       'https://www.dota2.com/hero/crystalmaiden?l=russian',
     );
-    expect(within(plaque).queryByRole('navigation')).toBeNull();
     expect(threads()).toHaveLength(0);
     // Место героя подсвечено, остальные маркеры региона приглушены.
     expect(document.querySelector('[data-place="icewrack"]')?.getAttribute('class')).toMatch(/heroSpot/);
     expect(document.querySelector('[data-place="cobalt"]')?.getAttribute('class')).toMatch(/mutedMarker/);
 
-    fireEvent.click(within(plaque).getByRole('button', { name: 'Снять выбор героя' }));
-    expect(badge()).toBeNull();
+    const icewrack = placeName(getPlace('icewrack', 'icewrack')!, 'ru');
+    fireEvent.click(within(plaque).getByRole('button', { name: `Закрыть профиль героя, назад: ${icewrack}` }));
+    expect(profile('Crystal Maiden')).toBeNull();
     expect(window.location.hash).toBe('#/r/icewrack/icewrack');
+    // Под профилем была панель места — она и вернулась.
+    expect(screen.getByRole('complementary', { name: icewrack })).toBeInTheDocument();
   });
 
   it('места в разных регионах: мир, остальные регионы приглушены, нити; список мест ведёт к месту, герой остаётся', () => {
@@ -82,23 +84,23 @@ describe('поиск героя и нити', () => {
     expect(document.querySelector('polygon[data-region="icewrack"]')?.getAttribute('class')).toMatch(/muted/);
     expect(document.querySelector('[data-tint="wailing-mountains"]')?.getAttribute('class')).toMatch(/lit/);
 
-    const places = within(badge()!).getByRole('navigation', { name: 'Места героя' });
-    const feral = getPlace('wailing-mountains', 'feral-road')!;
-    fireEvent.click(within(places).getByRole('button', { name: placeName(feral, 'ru') }));
+    const places = within(profile('Sven')!).getByRole('navigation', { name: 'Места героя' });
+    const feral = new RegExp(`^${placeName(getPlace('wailing-mountains', 'feral-road')!, 'ru')}`);
+    fireEvent.click(within(places).getByRole('button', { name: feral }));
     expect(window.location.hash).toBe('#/r/wailing-mountains/feral-road?hero=sven');
-    expect(within(badge()!).getByRole('button', { name: placeName(feral, 'ru') })).toHaveAttribute('aria-current', 'true');
+    expect(within(profile('Sven')!).getByRole('button', { name: feral })).toHaveAttribute('aria-current', 'true');
     expect(threads()).toHaveLength(2);
   });
 
   it('Esc: сначала снимает героя, потом — на уровень вверх', () => {
     window.location.hash = '#/r/quoidge?hero=pudge';
     render(<App />);
-    expect(badge()).not.toBeNull();
+    expect(profile('Pudge')).not.toBeNull();
     act(() => {
       fireEvent.keyDown(window, { key: 'Escape' });
     });
     expect(window.location.hash).toBe('#/r/quoidge');
-    expect(badge()).toBeNull();
+    expect(profile('Pudge')).toBeNull();
     fireEvent.keyDown(window, { key: 'Escape' });
     expect(window.location.hash).toBe('#/world');
   });
@@ -107,13 +109,13 @@ describe('поиск героя и нити', () => {
     window.location.hash = '#/r/icewrack';
     render(<App />);
     expect(getRegion('icewrack')).toBeDefined();
-    const tusk = screen.getByRole('link', { name: /^Tusk — официальная страница/ }).closest('li')!;
+    const tusk = screen.getByRole('button', { name: /^Tusk: открыть профиль/ }).closest('li')!;
     fireEvent.pointerEnter(tusk);
     expect(threads()).toHaveLength(1);
     fireEvent.pointerLeave(tusk);
     expect(threads()).toHaveLength(0);
     // У героя с одним местом нитей нет.
-    const cm = screen.getByRole('link', { name: /^Crystal Maiden — официальная страница/ }).closest('li')!;
+    const cm = screen.getByRole('button', { name: /^Crystal Maiden: открыть профиль/ }).closest('li')!;
     fireEvent.focus(cm);
     expect(threads()).toHaveLength(0);
   });
@@ -123,7 +125,7 @@ describe('поиск героя и нити', () => {
     render(<App />);
     const pulse = (slug: string) => document.querySelector(`[data-place="${slug}"] [data-pulse]`);
     const portrait = (name: string) =>
-      screen.getByRole('link', { name: new RegExp(`^${name} — официальная страница`) }).closest('li')!;
+      screen.getByRole('button', { name: new RegExp(`^${name}: открыть профиль`) }).closest('li')!;
     // Phantom Lancer — одно место, нитей нет, но маркер отмечен.
     const pl = portrait('Phantom Lancer');
     fireEvent.pointerEnter(pl, { pointerType: 'mouse' });
@@ -169,10 +171,10 @@ describe('поиск героя и нити', () => {
     expect(lit('radiant-lands')).not.toMatch(/lit/);
   });
 
-  it('неизвестный герой в адресе — ни плашки, ни нитей', () => {
+  it('неизвестный герой в адресе — ни профиля, ни нитей', () => {
     window.location.hash = '#/world?hero=nobody';
     render(<App />);
-    expect(badge()).toBeNull();
+    expect(screen.queryByRole('complementary')).toBeNull();
     expect(threads()).toHaveLength(0);
   });
 
@@ -183,12 +185,12 @@ describe('поиск героя и нити', () => {
     expect(step).toHaveAttribute('data-event', 'home');
     expect(step.querySelector('[data-arrow]')).not.toBeNull();
 
-    const plaque = badge()!;
+    const plaque = profile('Kez')!;
     const places = within(plaque).getByRole('navigation', { name: 'Места героя' });
     const [origin, home] = within(places).getAllByRole('button');
-    expect(origin).toHaveAttribute('title', 'Родина');
+    expect(origin).toHaveTextContent('Родина');
     expect(origin!.querySelector('[data-event="origin"]')).not.toBeNull();
-    expect(home).toHaveAttribute('title', 'Дом');
+    expect(home).toHaveTextContent('Дом');
 
     const toggle = within(plaque).getByRole('button', { name: 'Как читать нити' });
     expect(toggle).toHaveAttribute('aria-expanded', 'false');
@@ -211,7 +213,7 @@ describe('поиск героя и нити', () => {
     window.location.hash = '#/world?hero=techies';
     render(<App />);
     expect(document.querySelector('[data-testid="threads"] [data-step="link"] [data-arrow]')).toBeNull();
-    const plaque = screen.getByRole('region', { name: 'Selected hero' });
+    const plaque = screen.getByRole('complementary', { name: 'Techies' });
     fireEvent.click(within(plaque).getByRole('button', { name: 'How to read the threads' }));
     const items = within(plaque).getAllByRole('listitem').map((li) => li.textContent);
     expect(items).toContain('Other link: a mention, or the kind is not yet known');

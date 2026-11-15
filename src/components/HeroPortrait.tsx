@@ -11,11 +11,13 @@ interface Props {
   link?: boolean;
   /** Кнопка вместо ссылки: выбрать героя на карте (подсказка региона, SPEC §5.3, #65). Имя — из alt картинки. */
   onPick?: () => void;
+  /** У кнопки — подсказка с именем, как у ссылки (портреты в панели открывают профиль, E15). */
+  tip?: boolean;
   className?: string;
 }
 
 /** Портрет героя с CDN Valve (ARCHITECTURE A6): ссылка на официальную страницу в новой вкладке, заглушка при ошибке. */
-export function HeroPortrait({ hero, link: linkProp = true, onPick, className }: Props) {
+export function HeroPortrait({ hero, link: linkProp = true, onPick, tip = false, className }: Props) {
   const { lang, t } = useT();
   const [failed, setFailed] = useState(false);
   const cls = [styles.portrait, className].filter(Boolean).join(' ');
@@ -43,11 +45,17 @@ export function HeroPortrait({ hero, link: linkProp = true, onPick, className }:
   );
 
   if (onPick) {
-    return (
-      <button type="button" className={`${cls} ${styles.button}`} onClick={onPick}>
+    const button = (
+      <button
+        type="button"
+        className={`${cls} ${styles.button}`}
+        onClick={onPick}
+        aria-label={tip ? t('hero.openProfile', { name: hero.name }) : undefined}
+      >
         {picture}
       </button>
     );
+    return tip ? <Tooltip content={hero.name}>{button}</Tooltip> : button;
   }
 
   if (!link) return <span className={`${cls} ${styles.still}`}>{picture}</span>;

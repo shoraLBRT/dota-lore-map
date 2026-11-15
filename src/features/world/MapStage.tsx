@@ -334,6 +334,8 @@ export function MapStage({
   }, [active, activePlaceSlug]);
 
   const inset = panel && active ? view.inset : 0;
+  /** Панель закрывает кадр справа и в мире (профиль героя, E15): камера мира не двигается, но значки нитей не встают под неё. */
+  const cover = panel ? view.inset : 0;
   const insetBottom = panel && active ? (view.insetBottom ?? 0) : 0;
   const framed = useMemo(() => frameCamera(camera, { ...view, inset, insetBottom }), [camera, view, inset, insetBottom]);
   // Мир со списком регионов: карта прижата к верху (или влево, если телефон боком), список — в пустом месте.
@@ -437,12 +439,12 @@ export function MapStage({
   // Видимая часть кадра в координатах сцены (левее панели, выше шторки, ниже плашки героя): значки — только в ней.
   const threadClip = useMemo<Box | undefined>(() => {
     if (!threads || view.width <= 0 || listLayout) return undefined;
-    const frame = visibleFrame(view, inset, EXIT_LABEL_MARGIN, insetBottom);
+    const frame = visibleFrame(view, cover, EXIT_LABEL_MARGIN, insetBottom);
     if (coverTop > 0) frame.top = Math.max(frame.top, coverTop + EXIT_LABEL_MARGIN);
     const [ox, oy] = toScreen([0, 0], framed.camera, framed.offset, view, framed.offsetY);
     const k = threadScale;
     return { left: (frame.left - ox) * k, right: (frame.right - ox) * k, top: (frame.top - oy) * k, bottom: (frame.bottom - oy) * k };
-  }, [threads, view, inset, insetBottom, coverTop, framed, threadScale, listLayout]);
+  }, [threads, view, cover, insetBottom, coverTop, framed, threadScale, listLayout]);
 
   // S2/S3: нить к месту за краем кадра уходит туда со стрелкой и названием (SPEC §6.6).
   const exits = useMemo(() => {

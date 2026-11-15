@@ -1,6 +1,7 @@
 import type { Route } from '../../app/router';
 import type { Media } from '../../data/types';
-import { getMedia, getPlace, getRegion, resolveMedia } from '../../data/world';
+import { getHero, getMedia, getPlace, getRegion, resolveMedia } from '../../data/world';
+import { heroMedia } from '../hero/profile';
 
 export interface GalleryState {
   items: Media[];
@@ -9,19 +10,26 @@ export interface GalleryState {
 
 /**
  * Что показывает галерея по адресу `?media=<id>` (ARCHITECTURE A5): листаются медиа того экрана,
- * с которого она открыта (места или региона). Медиа не из этого списка (ссылка вручную) — одно, без листания.
+ * с которого она открыта (места или региона). Открыта из профиля героя (`?hero=`, E15) и медиа не с экрана —
+ * листаются арты и комиксы героя (`heroMedia`). Медиа не из этих списков (ссылка вручную) — одно, без листания.
  * Неизвестный id — галереи нет.
  */
 export function galleryOf(route: Route): GalleryState | null {
   if (!route.media) return null;
-  const current = getMedia(route.media);
-  if (!current) return null;
   const s = route.screen;
   const ids =
     s.name === 'place' ? getPlace(s.regionId, s.placeSlug)?.media : s.name === 'region' ? getRegion(s.regionId)?.media : undefined;
   const items = resolveMedia(ids);
-  const index = items.findIndex((m) => m.id === current.id);
-  return index >= 0 ? { items, index } : { items: [current], index: 0 };
+  const index = items.findIndex((m) => m.id === route.media);
+  if (index >= 0) return { items, index };
+  const hero = route.hero ? getHero(route.hero) : undefined;
+  if (hero) {
+    const own = heroMedia(hero);
+    const at = own.findIndex((m) => m.id === route.media);
+    if (at >= 0) return { items: own, index: at };
+  }
+  const current = getMedia(route.media);
+  return current ? { items: [current], index: 0 } : null;
 }
 
 /** Счётчик «01 / 03» (SPEC §5.6). */

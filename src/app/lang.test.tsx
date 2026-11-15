@@ -13,24 +13,24 @@ describe('переключение языка на лету', () => {
     window.localStorage.setItem('dota-lore-map.lang', 'ru');
   });
 
-  it('регион с выбранным героем: тексты на новом языке, адрес, герой и панель на месте', () => {
+  it('регион с профилем героя: тексты на новом языке, адрес, герой и панель на месте', () => {
     const hash = '#/r/icewrack?hero=tusk';
     window.location.hash = hash;
     render(<App />);
-    expect(screen.getByRole('heading', { level: 2, name: icewrack.name.ru })).toBeInTheDocument();
-    expect(screen.getByRole('region', { name: 'Выбранный герой' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: 'Tusk' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: `Закрыть профиль героя, назад: ${icewrack.name.ru}` })).toBeInTheDocument();
 
     fireEvent.click(screen.getByRole('button', { name: 'EN' }));
 
     expect(window.location.hash).toBe(hash);
     expect(document.documentElement.lang).toBe('en');
     expect(document.title).toBe('Dota 2 World');
-    expect(screen.getByRole('heading', { level: 2, name: icewrack.name.en })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: '‹ World' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: 'Tusk' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: `Close hero profile, back to ${icewrack.name.en}` })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Collapse panel' })).toBeInTheDocument();
-    const badge = screen.getByRole('region', { name: 'Selected hero' });
-    expect(within(badge).getByRole('button', { name: 'Clear hero selection' })).toBeInTheDocument();
-    expect(within(badge).getByRole('navigation', { name: "Hero's places" })).toBeInTheDocument();
+    const profile = screen.getByRole('complementary', { name: 'Tusk' });
+    expect(within(profile).getByRole('navigation', { name: "Hero's places" })).toBeInTheDocument();
+    expect(within(profile).getByRole('heading', { name: 'Art' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'RU' })).toHaveAttribute('aria-pressed', 'false');
     expect(screen.getByRole('button', { name: 'EN' })).toHaveAttribute('aria-pressed', 'true');
     // Ни одной строки словаря на русском не осталось в правой панели.
