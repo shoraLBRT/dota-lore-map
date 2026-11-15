@@ -36,7 +36,7 @@ describe('поиск героя и нити', () => {
     expect(all[0]).toHaveAttribute('aria-selected', 'true');
     fireEvent.change(input, { target: { value: 'пудж' } });
     fireEvent.keyDown(input, { key: 'Enter' });
-    expect(window.location.hash).toBe('#/r/quoidge?hero=pudge');
+    expect(window.location.hash).toBe('#/r/quoidge?hero=pudge&profile');
     expect(screen.queryByRole('combobox')).toBeNull();
   });
 
@@ -56,7 +56,7 @@ describe('поиск героя и нити', () => {
     render(<App />);
     fireEvent.change(openSearch(), { target: { value: 'cm' } });
     fireEvent.click(screen.getAllByRole('option')[0]!);
-    expect(window.location.hash).toBe('#/r/icewrack/icewrack?hero=crystal_maiden');
+    expect(window.location.hash).toBe('#/r/icewrack/icewrack?hero=crystal_maiden&profile');
     const plaque = profile('Crystal Maiden')!;
     within(plaque).getByRole('heading', { name: 'Crystal Maiden' });
     expect(within(plaque).getByRole('link', { name: /^dota2.com: Crystal Maiden, официальная страница/ })).toHaveAttribute(
@@ -71,13 +71,13 @@ describe('поиск героя и нити', () => {
     const icewrack = placeName(getPlace('icewrack', 'icewrack')!, 'ru');
     fireEvent.click(within(plaque).getByRole('button', { name: `Закрыть профиль героя, назад: ${icewrack}` }));
     expect(profile('Crystal Maiden')).toBeNull();
-    expect(window.location.hash).toBe('#/r/icewrack/icewrack');
+    expect(window.location.hash).toBe('#/r/icewrack/icewrack?hero=crystal_maiden');
     // Под профилем была панель места — она и вернулась.
     expect(screen.getByRole('complementary', { name: icewrack })).toBeInTheDocument();
   });
 
   it('места в разных регионах: мир, остальные регионы приглушены, нити; список мест ведёт к месту, герой остаётся', () => {
-    window.location.hash = '#/world?hero=sven';
+    window.location.hash = '#/world?hero=sven&profile';
     render(<App />);
     expect(threads()).toHaveLength(2);
     expect(document.querySelector('polygon[data-region="shadeshore"]')?.getAttribute('class')).not.toMatch(/muted/);
@@ -88,19 +88,25 @@ describe('поиск героя и нити', () => {
     const feral = new RegExp(`^${placeName(getPlace('wailing-mountains', 'feral-road')!, 'ru')}`);
     fireEvent.click(within(places).getByRole('button', { name: feral }));
     expect(window.location.hash).toBe('#/r/wailing-mountains/feral-road?hero=sven');
-    expect(within(profile('Sven')!).getByRole('button', { name: feral })).toHaveAttribute('aria-current', 'true');
+    // Видна панель места, профиль закрыт; герой выбран — чип сверху.
+    expect(profile('Sven')).toBeNull();
+    expect(screen.getByRole('region', { name: 'Выбранный герой' })).toBeInTheDocument();
     expect(threads()).toHaveLength(2);
   });
 
-  it('Esc: сначала снимает героя, потом — на уровень вверх', () => {
-    window.location.hash = '#/r/quoidge?hero=pudge';
+  it('Esc: сначала закрывает профиль, потом снимает героя, потом — на уровень вверх', () => {
+    window.location.hash = '#/r/quoidge?hero=pudge&profile';
     render(<App />);
     expect(profile('Pudge')).not.toBeNull();
     act(() => {
       fireEvent.keyDown(window, { key: 'Escape' });
     });
-    expect(window.location.hash).toBe('#/r/quoidge');
+    expect(window.location.hash).toBe('#/r/quoidge?hero=pudge');
     expect(profile('Pudge')).toBeNull();
+    act(() => {
+      fireEvent.keyDown(window, { key: 'Escape' });
+    });
+    expect(window.location.hash).toBe('#/r/quoidge');
     fireEvent.keyDown(window, { key: 'Escape' });
     expect(window.location.hash).toBe('#/world');
   });
@@ -179,7 +185,7 @@ describe('поиск героя и нити', () => {
   });
 
   it('нити со смыслом (#67): у Kez шаг пути со стрелкой, значки событий у мест, легенда раскрывается', () => {
-    window.location.hash = '#/world?hero=kez';
+    window.location.hash = '#/world?hero=kez&profile';
     render(<App />);
     const step = document.querySelector('[data-testid="threads"] [data-step="path"]')!;
     expect(step).toHaveAttribute('data-event', 'home');
@@ -210,7 +216,7 @@ describe('поиск героя и нити', () => {
 
   it('легенда (#67): у Techies — пунктир «другая связь», значка у связи без типа нет; EN', () => {
     window.localStorage.setItem('dota-lore-map.lang', 'en');
-    window.location.hash = '#/world?hero=techies';
+    window.location.hash = '#/world?hero=techies&profile';
     render(<App />);
     expect(document.querySelector('[data-testid="threads"] [data-step="link"] [data-arrow]')).toBeNull();
     const plaque = screen.getByRole('complementary', { name: 'Techies' });

@@ -14,7 +14,7 @@ describe('переключение языка на лету', () => {
   });
 
   it('регион с профилем героя: тексты на новом языке, адрес, герой и панель на месте', () => {
-    const hash = '#/r/icewrack?hero=tusk';
+    const hash = '#/r/icewrack?hero=tusk&profile';
     window.location.hash = hash;
     render(<App />);
     expect(screen.getByRole('heading', { level: 2, name: 'Tusk' })).toBeInTheDocument();

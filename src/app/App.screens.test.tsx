@@ -75,7 +75,7 @@ describe('регион и место', () => {
     render(<App />);
     fireEvent.click(screen.getByRole('button', { name: /^Crystal Maiden: открыть профиль/ }));
     // Камера не двигается: экран тот же, поверх — профиль.
-    expect(window.location.hash).toBe('#/r/icewrack?hero=crystal_maiden');
+    expect(window.location.hash).toBe('#/r/icewrack?hero=crystal_maiden&profile');
     const panel = screen.getByRole('complementary', { name: 'Crystal Maiden' });
     const cm = within(panel).getByRole('link', { name: /Crystal Maiden/ });
     expect(cm).toHaveAttribute('href', 'https://www.dota2.com/hero/crystalmaiden?l=russian');

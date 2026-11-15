@@ -12,6 +12,15 @@ describe('parseHash', () => {
     });
   });
 
+  it('профиль героя — флаг profile без значения, только вместе с hero (A15)', () => {
+    expect(parseHash('#/world?hero=axe&profile')).toEqual({ screen: { name: 'world' }, hero: 'axe', profile: true });
+    expect(parseHash('#/world?profile')).toEqual({ screen: { name: 'world' } });
+    expect(serializeRoute({ screen: { name: 'world' }, hero: 'axe', profile: true, media: 'm1' })).toBe(
+      '#/world?hero=axe&profile&media=m1',
+    );
+    expect(serializeRoute({ screen: { name: 'world' }, profile: true })).toBe('#/world');
+  });
+
   it('разбирает ?hero и ?media поверх адреса', () => {
     expect(parseHash('#/r/icewrack?hero=crystal_maiden&media=art-1')).toEqual({
       screen: { name: 'region', regionId: 'icewrack' },

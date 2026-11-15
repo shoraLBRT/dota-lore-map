@@ -86,6 +86,8 @@
   "hero.legendLink": "Other link: a mention, or the kind is not yet known",
   "hero.legendColor": "Thread colour: the side of the hero's first place",
   "hero.profile": "Hero profile",
+  "hero.selected": "Selected hero",
+  "hero.clear": "Clear hero selection",
   "hero.openProfile": "{name}: open hero profile",
   "hero.close": "Close hero profile, back to {name}",
   "hero.arts": "Art",
