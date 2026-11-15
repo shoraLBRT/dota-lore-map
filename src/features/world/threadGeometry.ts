@@ -68,16 +68,21 @@ export function arc(from: Point, to: Point): Arc {
 }
 
 /** Где на дуге пробовать значок события (#67): от середины к концам. */
-const BADGE_TS = [0.5, 0.4, 0.6, 0.3, 0.7];
+const BADGE_TS = [0.5, 0.4, 0.6, 0.3, 0.7, 0.2, 0.8];
 
 /**
  * Значок события на нити (#67): первая из точек BADGE_TS, где квадрат со стороной 2r (единицы сцены)
- * не задевает ни одного препятствия — подписей регионов в мире, колец и подписей маркеров в регионе.
- * Свободной точки нет — null: значок не встаёт поверх подписи.
+ * не задевает ни одного препятствия — подписей регионов в мире, колец и подписей маркеров в регионе —
+ * и целиком лежит в `clip` (видимая часть кадра: не под панелью и не под плашкой героя).
+ * Свободной точки нет — null: значок не встаёт поверх подписи или под панель.
  */
-export function badgeAt(a: Arc, r: number, obstacles: Box[]): number | null {
+export function badgeAt(a: Arc, r: number, obstacles: Box[], clip?: Box): number | null {
+  // Не ближе 2r к концам: там кольцо маркера и вспышка.
+  const edge = (2 * r) / a.length;
   for (const t of BADGE_TS) {
+    if (t < edge || t > 1 - edge) continue;
     const [x, y] = a.stage(t);
+    if (clip && (x - r < clip.left || x + r > clip.right || y - r < clip.top || y + r > clip.bottom)) continue;
     const hit = obstacles.some((o) => x + r > o.left && x - r < o.right && y + r > o.top && y - r < o.bottom);
     if (!hit) return t;
   }

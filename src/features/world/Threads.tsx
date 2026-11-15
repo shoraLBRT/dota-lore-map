@@ -9,7 +9,7 @@ import { arc, badgeAt } from './threadGeometry';
 const STAGE = (p: [number, number]) => [p[0] * STAGE_WIDTH, p[1] * STAGE_HEIGHT] as const;
 
 /** Радиус значка события, экранные px. */
-export const BADGE_R = 9;
+export const BADGE_R = 11;
 /** Короче (экранные px) — значка на нити нет: он закрыл бы её целиком. */
 const MIN_BADGE_LEN = 56;
 /** Короче — нет и стрелки. */
@@ -23,6 +23,8 @@ interface Props {
   scale: number;
   /** Подписи и кольца маркеров в координатах сцены: значок события на них не встаёт (#67). */
   obstacles?: Box[];
+  /** Видимая часть кадра в координатах сцены — без панели, шторки и плашки героя: значок встаёт только в ней. */
+  clip?: Box;
 }
 
 const fixed = (n: number) => n.toFixed(1);
@@ -32,7 +34,7 @@ const fixed = (n: number) => n.toFixed(1);
  * Шаг пути — сплошная со стрелкой «откуда → куда»; прочая связь — пунктир, он течёт (reduced motion — нет).
  * У нити — значок события места, куда она ведёт (#67); на концах — вспышка.
  */
-export function Threads({ threads, scale, obstacles = [] }: Props) {
+export function Threads({ threads, scale, obstacles = [], clip }: Props) {
   const { steps, tone } = threads;
   const k = scale.toFixed(4);
   const ends = new Map(steps.flatMap((s) => [s.from, s.to]).map((s) => [s.key, s]));
@@ -46,7 +48,7 @@ export function Threads({ threads, scale, obstacles = [] }: Props) {
           '--w': (2.2 * scale).toFixed(2),
         } as CSSProperties;
         const len = a.length / scale;
-        const badgeT = hasBadge(step.event) && len >= MIN_BADGE_LEN ? badgeAt(a, BADGE_R * scale, obstacles) : null;
+        const badgeT = hasBadge(step.event) && len >= MIN_BADGE_LEN ? badgeAt(a, BADGE_R * scale, obstacles, clip) : null;
         const arrowT =
           step.kind === 'path' && len >= MIN_ARROW_LEN
             ? badgeT === null
@@ -75,7 +77,7 @@ export function Threads({ threads, scale, obstacles = [] }: Props) {
             {badgeT !== null && hasBadge(step.event) && (
               <g transform={`${at(badgeT)} scale(${k})`} className={styles.threadBadge} data-badge={step.event}>
                 <circle r={BADGE_R} />
-                <svg x={-6} y={-6} width={12} height={12} viewBox="0 0 24 24">
+                <svg x={-7.5} y={-7.5} width={15} height={15} viewBox="0 0 24 24">
                   <path d={EVENT_PATHS[step.event]} />
                 </svg>
               </g>
