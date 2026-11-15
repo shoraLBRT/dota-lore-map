@@ -426,9 +426,41 @@
   stroke-linecap: round;
   stroke-dasharray: var(--len) var(--len);
   stroke-dashoffset: var(--len);
+  animation: thread-draw var(--dur-thread) var(--ease-out) forwards;
+}
+
+/* #67: шаг пути — сплошная нить (выше); прочая связь — пунктир, после прорисовки течёт. */
+.threadLink {
   animation:
     thread-draw var(--dur-thread) var(--ease-out) forwards,
     thread-flow 2.4s linear var(--dur-thread) infinite;
+}
+
+/* Стрелка «откуда → куда» и значок события (#67) — появляются, когда нить прорисована. */
+.threadArrow {
+  fill: var(--hl);
+  stroke: var(--map-ink);
+  stroke-width: 1;
+  stroke-linejoin: round;
+}
+
+.threadBadge circle {
+  fill: var(--map-ink);
+  stroke: var(--hl);
+  stroke-width: 1.5;
+}
+
+.threadBadge path {
+  fill: none;
+  stroke: var(--hl-glow);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.threadArrow,
+.threadBadge {
+  animation: thread-mark var(--dur-fade) var(--ease-out) calc(var(--dur-thread) * 0.6) both;
 }
 
 /* Вспышка на концах нити. */
@@ -512,6 +544,12 @@
   }
 }
 
+@keyframes thread-mark {
+  from {
+    opacity: 0;
+  }
+}
+
 @keyframes thread-flash {
   0% {
     opacity: 0;
@@ -537,8 +575,17 @@
   }
 
   .thread {
-    stroke-dasharray: var(--dash) var(--dash);
+    stroke-dasharray: none;
     stroke-dashoffset: 0;
+    animation: none;
+  }
+
+  .threadLink {
+    stroke-dasharray: var(--dash) var(--dash);
+  }
+
+  .threadArrow,
+  .threadBadge {
     animation: none;
   }
 

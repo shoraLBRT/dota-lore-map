@@ -16,6 +16,7 @@ import { HeroBadge } from '../search/HeroBadge';
 import { HeroSearch } from '../search/HeroSearch';
 import { HeroPreviewProvider } from '../search/preview';
 import { heroScreen, heroSpots, spotScreen } from '../search/search';
+import { heroThreads } from '../search/threads';
 import { MOBILE_QUERY } from './camera';
 import { restoreFocus } from './focus';
 import { MapStage } from './MapStage';
@@ -83,9 +84,14 @@ export function WorldScreen({ screen, veiled = false }: Props) {
   const previewHero = searchOpen && searchPreview ? searchPreview : preview?.key === screenKey ? preview.hero : null;
   const previewSpots = useMemo(() => (previewHero ? heroSpots(previewHero) : undefined), [previewHero]);
   const onPreview = useCallback((h: Hero | null) => setPreview(h ? { key: screenKey, hero: h } : null), [screenKey]);
-  const showPreview = previewSpots !== undefined && previewSpots.length > 1;
-  const threads = showPreview ? previewSpots : spots && spots.length > 1 ? spots : undefined;
-  const threadsKey = showPreview ? `preview/${previewHero!.key}` : hero?.key;
+  // Нити (#67): шаги пути и прочие связи; наведение важнее выбора.
+  const heroLines = useMemo(() => (hero && spots ? heroThreads(hero, spots) : undefined), [hero, spots]);
+  const previewLines = useMemo(
+    () => (previewHero && previewSpots ? heroThreads(previewHero, previewSpots) : undefined),
+    [previewHero, previewSpots],
+  );
+  const threads = previewLines ?? heroLines;
+  const threadsKey = previewLines ? `preview/${previewHero!.key}` : hero?.key;
 
   // Подсказка «выберите регион» при первом входе: гаснет от первого наведения, фокуса или нажатия на регион,
   // а также если пользователь уже ушёл из мира (тап на телефоне сразу открывает регион).
@@ -183,7 +189,7 @@ export function WorldScreen({ screen, veiled = false }: Props) {
             {searchOpen ? (
               <HeroSearch onPick={pick} onClose={() => setSearchOpen(false)} onPreview={setSearchPreview} />
             ) : (
-              hero && spots && <HeroBadge hero={hero} spots={spots} onClear={clearHero} />
+              hero && spots && <HeroBadge hero={hero} spots={spots} threads={heroLines} onClear={clearHero} />
             )}
           </div>
         )}

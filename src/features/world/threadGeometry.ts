@@ -2,6 +2,7 @@
 
 import type { Camera, Point } from '../../data/types';
 import { STAGE_HEIGHT, STAGE_WIDTH, type View } from './camera';
+import type { Box } from './labels';
 
 type XY = [number, number];
 
@@ -31,6 +32,10 @@ export interface Arc {
   length: number;
   /** Точка дуги при t ∈ [0, 1] в нормированных координатах. */
   point: (t: number) => Point;
+  /** Точка дуги при t ∈ [0, 1] в координатах сцены. */
+  stage: (t: number) => XY;
+  /** Направление дуги при t (градусы, 0 — вправо, по часовой — вниз). */
+  angle: (t: number) => number;
 }
 
 export function arc(from: Point, to: Point): Arc {
@@ -52,7 +57,31 @@ export function arc(from: Point, to: Point): Arc {
       const [x, y] = at(a, c, b, t);
       return [x / STAGE_WIDTH, y / STAGE_HEIGHT];
     },
+    stage: (t) => at(a, c, b, t),
+    angle: (t) => {
+      // Производная квадратичной кривой: 2(1−t)(c−a) + 2t(b−c).
+      const dx = (1 - t) * (c[0] - a[0]) + t * (b[0] - c[0]);
+      const dy = (1 - t) * (c[1] - a[1]) + t * (b[1] - c[1]);
+      return (Math.atan2(dy, dx) * 180) / Math.PI;
+    },
   };
+}
+
+/** Где на дуге пробовать значок события (#67): от середины к концам. */
+const BADGE_TS = [0.5, 0.4, 0.6, 0.3, 0.7];
+
+/**
+ * Значок события на нити (#67): первая из точек BADGE_TS, где квадрат со стороной 2r (единицы сцены)
+ * не задевает ни одного препятствия — подписей регионов в мире, колец и подписей маркеров в регионе.
+ * Свободной точки нет — null: значок не встаёт поверх подписи.
+ */
+export function badgeAt(a: Arc, r: number, obstacles: Box[]): number | null {
+  for (const t of BADGE_TS) {
+    const [x, y] = a.stage(t);
+    const hit = obstacles.some((o) => x + r > o.left && x - r < o.right && y + r > o.top && y - r < o.bottom);
+    if (!hit) return t;
+  }
+  return null;
 }
 
 /**

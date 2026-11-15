@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { View } from './camera';
-import { arc, edgeExit, rayExit, toScreen, visibleFrame } from './threadGeometry';
+import { arc, badgeAt, edgeExit, rayExit, toScreen, visibleFrame } from './threadGeometry';
 
 const view: View = { width: 1000, height: 600, layerWidth: 960, layerHeight: 600, inset: 0 };
 
@@ -51,5 +51,24 @@ describe('нити: геометрия (SPEC §6.6)', () => {
     expect(corner.x).toBeCloseTo(0);
     expect(corner.y).toBeCloseTo(0);
     expect(corner.angle).toBeCloseTo(-146.3, 1);
+  });
+
+  it('направление дуги: в начале — вверх-вправо, в середине — вправо, в конце — вниз-вправо', () => {
+    const a = arc([0.25, 0.5], [0.75, 0.5]);
+    expect(a.angle(0)).toBeLessThan(0);
+    expect(a.angle(0.5)).toBeCloseTo(0);
+    expect(a.angle(1)).toBeGreaterThan(0);
+    expect(a.stage(0)).toEqual([400, 500]);
+  });
+
+  it('значок события (#67): середина дуги, если свободна; иначе ближайшая свободная точка; занято всё — null', () => {
+    const a = arc([0.25, 0.5], [0.75, 0.5]);
+    expect(badgeAt(a, 9, [])).toBe(0.5);
+    const [mx, my] = a.stage(0.5);
+    const middle = { left: mx - 20, right: mx + 20, top: my - 20, bottom: my + 20 };
+    const t = badgeAt(a, 9, [middle]);
+    expect(t).not.toBeNull();
+    expect(t).not.toBe(0.5);
+    expect(badgeAt(a, 9, [{ left: 0, right: 1600, top: 0, bottom: 1000 }])).toBeNull();
   });
 });

@@ -1,5 +1,5 @@
 import type { Screen } from '../../app/router';
-import type { Hero, Lang, Point, Region } from '../../data/types';
+import type { Hero, HeroEvent, Lang, Point, Region } from '../../data/types';
 import { getPlace, getRegion, placeName, world } from '../../data/world';
 
 /** Сколько вариантов показывает автодополнение. */
@@ -68,6 +68,8 @@ export interface Spot {
   /** Точка на карте; нет геометрии — нет точки (такое место только в списке плашки). */
   point?: Point;
   tone: Tone;
+  /** Тип события связи с этим местом (A3); по нему — значок и стиль нити (A11, #67). */
+  event: HeroEvent;
 }
 
 /** Все места героя по порядку связей, без повторов. */
@@ -88,6 +90,7 @@ export function heroSpots(hero: Hero): Spot[] {
       ...(place ? { placeSlug: place.slug } : {}),
       ...(point ? { point } : {}),
       tone: toneOf(region),
+      event: link.event,
     });
   }
   return spots;

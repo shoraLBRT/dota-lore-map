@@ -134,6 +134,86 @@
   border-color: var(--hl, var(--metal-bright));
 }
 
+/* Значок события у места (#67) — тот же, что на нити. */
+.place {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.placeIcon {
+  width: 0.95rem;
+  height: 0.95rem;
+  flex: none;
+  color: var(--hl, var(--metal-bright));
+}
+
+/* Легенда «как читать нити» (#67): свёрнута по умолчанию, чтобы плашка не закрывала карту. */
+.legend {
+  margin-top: var(--space-3);
+  font-size: 0.85rem;
+}
+
+.legendToggle {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-2);
+  font: inherit;
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.legendToggle:hover,
+.legendToggle:focus-visible {
+  color: var(--text-1);
+}
+
+.legendList {
+  display: grid;
+  gap: var(--space-1);
+  margin: var(--space-2) 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--text-2);
+}
+
+.legendList[hidden] {
+  display: none;
+}
+
+.legendList li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.legendLine {
+  flex: none;
+  fill: none;
+  stroke: var(--metal-bright);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.legendArrow {
+  fill: var(--metal-bright);
+  stroke: none;
+}
+
+.legendIcon {
+  width: 1rem;
+  height: 1rem;
+  margin-inline: 6px;
+  flex: none;
+  color: var(--metal-bright);
+}
+
+.legendNote {
+  color: var(--text-3);
+}
+
 .radiant {
   --hl: var(--radiant);
 }

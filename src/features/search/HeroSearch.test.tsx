@@ -175,4 +175,48 @@ describe('поиск героя и нити', () => {
     expect(badge()).toBeNull();
     expect(threads()).toHaveLength(0);
   });
+
+  it('нити со смыслом (#67): у Kez шаг пути со стрелкой, значки событий у мест, легенда раскрывается', () => {
+    window.location.hash = '#/world?hero=kez';
+    render(<App />);
+    const step = document.querySelector('[data-testid="threads"] [data-step="path"]')!;
+    expect(step).toHaveAttribute('data-event', 'home');
+    expect(step.querySelector('[data-arrow]')).not.toBeNull();
+
+    const plaque = badge()!;
+    const places = within(plaque).getByRole('navigation', { name: 'Места героя' });
+    const [origin, home] = within(places).getAllByRole('button');
+    expect(origin).toHaveAttribute('title', 'Родина');
+    expect(origin!.querySelector('[data-event="origin"]')).not.toBeNull();
+    expect(home).toHaveAttribute('title', 'Дом');
+
+    const toggle = within(plaque).getByRole('button', { name: 'Как читать нити' });
+    expect(toggle).toHaveAttribute('aria-expanded', 'false');
+    const legend = document.getElementById(toggle.getAttribute('aria-controls')!)!;
+    expect(legend).not.toBeVisible();
+    fireEvent.click(toggle);
+    expect(toggle).toHaveAttribute('aria-expanded', 'true');
+    expect(legend).toBeVisible();
+    const items = within(legend).getAllByRole('listitem').map((li) => li.textContent);
+    expect(items).toEqual([
+      'Путь героя: откуда → куда, по порядку',
+      'Родина',
+      'Дом',
+      'Цвет нити — сторона первого места героя',
+    ]);
+  });
+
+  it('легенда (#67): у Techies — пунктир «другая связь», значка у связи без типа нет; EN', () => {
+    window.localStorage.setItem('dota-lore-map.lang', 'en');
+    window.location.hash = '#/world?hero=techies';
+    render(<App />);
+    expect(document.querySelector('[data-testid="threads"] [data-step="link"] [data-arrow]')).toBeNull();
+    const plaque = screen.getByRole('region', { name: 'Selected hero' });
+    fireEvent.click(within(plaque).getByRole('button', { name: 'How to read the threads' }));
+    const items = within(plaque).getAllByRole('listitem').map((li) => li.textContent);
+    expect(items).toContain('Other link: a mention, or the kind is not yet known');
+    expect(items).toContain('Homeland');
+    expect(items).not.toContain('Link, kind not yet known');
+  });
 });
+
