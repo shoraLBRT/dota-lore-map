@@ -64,6 +64,14 @@ describe('контраст WCAG AA (SPEC §14)', () => {
     expect(css('styles/global.css')).toMatch(/:focus-visible\s*\{\s*outline:\s*2px solid var\(--accent-bright\)/);
   });
 
+  it('тусклый маркер второстепенного места --marker-minor — ≥ 3:1 к фонам (WCAG 1.4.11, #68)', () => {
+    for (const bg of backgrounds) expect(contrast(t['--marker-minor']!, t[bg]!), `на ${bg}`).toBeGreaterThanOrEqual(3);
+    expect(contrast(t['--marker-event']!, t['--bg-0']!)).toBeGreaterThan(contrast(t['--metal-bright']!, t['--bg-0']!));
+    expect(contrast(t['--marker-minor']!, t['--bg-0']!)).toBeLessThan(contrast(t['--metal-bright']!, t['--bg-0']!));
+    // Тусклость — цветом, не прозрачностью: иначе контраст выше не про то, что видно.
+    expect(css('features/world/MapStage.module.css')).not.toMatch(/\.minor[^{]*\{[^}]*opacity/);
+  });
+
   it('красный --accent и тёмный металл не служат цветом текста', () => {
     const bad = CSS.flatMap((f) =>
       [...f.text.matchAll(/(?<![-\w])color:\s*var\((--accent|--accent-dim|--metal|--metal-dim|--border)\)/g)].map(

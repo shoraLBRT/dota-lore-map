@@ -119,6 +119,7 @@
           "slug": "ghastly-eyrie",
           "capital": true,
           "placement": "lore",
+          "significance": "event",
           "note": "столица расы скайрасов, «среди облаков и звёзд»",
           "text": {
             "name": {
@@ -144,6 +145,7 @@
           "slug": "mad-moon",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Безумная Луна",
@@ -168,6 +170,7 @@
           "slug": "selemenes-moon",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "note": "вместе с Demon Star",
           "text": {
             "name": {
@@ -193,6 +196,7 @@
           "slug": "the-sun",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "note": "Children of Light и солнечная кузня (страницы на Liquipedia нет)",
           "text": {
             "name": {
@@ -218,6 +222,7 @@
           "slug": "olympus",
           "capital": false,
           "placement": "ours",
+          "significance": "event",
           "note": "небесная обитель Зевса; страницы на Liquipedia нет",
           "text": {
             "name": {
@@ -243,6 +248,7 @@
           "slug": "ultoria",
           "capital": false,
           "placement": "lore",
+          "significance": "link",
           "note": "небесное тело со своими лунами",
           "text": {
             "name": {
@@ -374,6 +380,7 @@
           "slug": "fundamental-plane",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Предвечный мир",
@@ -398,6 +405,7 @@
           "slug": "primordial-plane",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Изначальный мир",
@@ -422,6 +430,7 @@
           "slug": "elemental-plane",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Стихийный мир",
@@ -446,6 +455,7 @@
           "slug": "astral-plane",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Астральный мир",
@@ -470,6 +480,7 @@
           "slug": "fabric-of-creation",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Ткань творения",
@@ -494,6 +505,7 @@
           "slug": "claszureme",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "note": "мир вне времени",
           "text": {
             "name": {
@@ -519,6 +531,7 @@
           "slug": "the-void",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Пустота",
@@ -543,6 +556,7 @@
           "slug": "the-outworld",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "note": "«мир на краю Бездны», у границы Пустоты",
           "text": {
             "name": {
@@ -568,6 +582,7 @@
           "slug": "land-behind-the-wall",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "note": "родная реальность Dark Seer; страницы на Liquipedia нет",
           "text": {
             "name": {
@@ -593,6 +608,7 @@
           "slug": "ivory-incubarium",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "note": "в другой вселенной",
           "text": {
             "name": {
@@ -618,6 +634,7 @@
           "slug": "heart-of-nature",
           "capital": false,
           "placement": "ours",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Сердце природы",
@@ -642,6 +659,7 @@
           "slug": "lights-keep",
           "capital": false,
           "placement": "ours",
+          "significance": "link",
           "text": {
             "name": {
               "ru": "Твердыня Света",
@@ -666,6 +684,7 @@
           "slug": "the-dream",
           "capital": false,
           "placement": "ours",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Мир снов",
@@ -850,6 +869,7 @@
           "slug": "icewrack",
           "capital": true,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Айсрак",
@@ -874,6 +894,7 @@
           "slug": "the-barrier",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Барьер",
@@ -898,6 +919,7 @@
           "slug": "blueheart-glacier",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Ледник Голубого Сердца",
@@ -922,6 +944,7 @@
           "slug": "black-pool",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Чёрный омут",
@@ -946,6 +969,7 @@
           "slug": "cobalt",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Кобальт",
@@ -970,6 +994,7 @@
           "slug": "azura",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Азура",
@@ -994,6 +1019,7 @@
           "slug": "white-fields",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Белоснежные поля",
@@ -1018,6 +1044,7 @@
           "slug": "wolfsden-tavern",
           "capital": false,
           "placement": "lore",
+          "significance": "link",
           "text": {
             "name": {
               "ru": "Таверна «Волчья дыра»",
@@ -1042,6 +1069,7 @@
           "slug": "njords-hearth",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Очаг Ньорда",
@@ -1066,6 +1094,7 @@
           "slug": "boiling-sea",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Кипящее море",
@@ -1090,6 +1119,7 @@
           "slug": "frostreach",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "note": "самый северный порт мира; страницы на Liquipedia нет",
           "text": {
             "name": {
@@ -1118,6 +1148,7 @@
           "slug": "onyx-grove",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "note": "в северных сосновых лесах",
           "text": {
             "name": {
@@ -1311,6 +1342,7 @@
           "slug": "pole",
           "capital": false,
           "placement": "s1map",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Поль",
@@ -1335,6 +1367,7 @@
           "slug": "violet-archives",
           "capital": false,
           "placement": "s1map",
+          "significance": "link",
           "text": {
             "name": {
               "ru": "Фиолетовые архивы",
@@ -1359,6 +1392,7 @@
           "slug": "violet-plateau",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "note": "архивы находятся в нём или рядом",
           "text": {
             "name": {
@@ -1384,6 +1418,7 @@
           "slug": "castle-of-the-fold",
           "capital": false,
           "placement": "s1map",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Замок Фолд",
@@ -1408,6 +1443,7 @@
           "slug": "home-of-the-keen-folk",
           "capital": false,
           "placement": "s1map",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Дом народа кинов",
@@ -1432,6 +1468,7 @@
           "slug": "knollen",
           "capital": false,
           "placement": "ours",
+          "significance": "event",
           "note": "горные долины кинов",
           "text": {
             "name": {
@@ -1457,6 +1494,7 @@
           "slug": "dredgers-bight",
           "capital": false,
           "placement": "ours",
+          "significance": "event",
           "note": "родина Techies (кины); страницы на Liquipedia нет",
           "text": {
             "name": {
@@ -1482,6 +1520,7 @@
           "slug": "thousand-tarns",
           "capital": false,
           "placement": "s1map",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Тысячеболотье",
@@ -1628,6 +1667,7 @@
           "slug": "nightsilver-woods",
           "capital": true,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Лес Найтсильвер",
@@ -1652,6 +1692,7 @@
           "slug": "temple-of-mene",
           "capital": false,
           "placement": "s1map",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Храм Мены",
@@ -1676,6 +1717,7 @@
           "slug": "shrine-of-selemene",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Святилище Селемены",
@@ -1866,6 +1908,7 @@
           "slug": "stonehall",
           "capital": true,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Стоунхолл",
@@ -1890,6 +1933,7 @@
           "slug": "qine",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Кине",
@@ -1914,6 +1958,7 @@
           "slug": "quath",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Кват",
@@ -1938,6 +1983,7 @@
           "slug": "tares",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "note": "к югу от Стоунхолла",
           "text": {
             "name": {
@@ -1963,6 +2009,7 @@
           "slug": "roseleaf",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Розолист",
@@ -1987,6 +2034,7 @@
           "slug": "tarrin",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "note": "к юго-западу",
           "text": {
             "name": {
@@ -2012,6 +2060,7 @@
           "slug": "sashire",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "note": "к югу",
           "text": {
             "name": {
@@ -2037,6 +2086,7 @@
           "slug": "milltown",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "note": "к западу, на реке между Roseleaf и Tarrin",
           "text": {
             "name": {
@@ -2065,6 +2115,7 @@
           "slug": "ember-city",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "note": "к западу",
           "text": {
             "name": {
@@ -2090,6 +2141,7 @@
           "slug": "redmaw",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "note": "к западу от Roseleaf",
           "text": {
             "name": {
@@ -2115,6 +2167,7 @@
           "slug": "lormount",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Лормаунт",
@@ -2139,6 +2192,7 @@
           "slug": "goldlake",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Голдлейк",
@@ -2163,6 +2217,7 @@
           "slug": "lightglass",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "note": "озеро к северу",
           "text": {
             "name": {
@@ -2188,6 +2243,7 @@
           "slug": "lincastle",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "note": "к востоку",
           "text": {
             "name": {
@@ -2213,6 +2269,7 @@
           "slug": "mistmill",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "note": "к востоку",
           "text": {
             "name": {
@@ -2238,6 +2295,7 @@
           "slug": "pinelyn",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "note": "к северо-востоку",
           "text": {
             "name": {
@@ -2263,6 +2321,7 @@
           "slug": "crester",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "note": "к югу от Tares",
           "text": {
             "name": {
@@ -2288,6 +2347,7 @@
           "slug": "filedo",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Филедо",
@@ -2312,6 +2372,7 @@
           "slug": "clacline",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Клаклайн",
@@ -2336,6 +2397,7 @@
           "slug": "kailens",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Кайленс",
@@ -2360,6 +2422,7 @@
           "slug": "sloquoit",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Слоквойт",
@@ -2384,6 +2447,7 @@
           "slug": "coldbank-plains",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "note": "к западу",
           "text": {
             "name": {
@@ -2409,6 +2473,7 @@
           "slug": "janau",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Джанау",
@@ -2433,6 +2498,7 @@
           "slug": "leadbellys",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "note": "таверна в Стоунхолле",
           "text": {
             "name": {
@@ -2584,6 +2650,7 @@
           "slug": "white-spire",
           "capital": true,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Белый Шпиль",
@@ -2608,6 +2675,7 @@
           "slug": "revtel",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Ревтел",
@@ -2632,6 +2700,7 @@
           "slug": "weeping-rose",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Плачущая Роза",
@@ -2656,6 +2725,7 @@
           "slug": "tyler-estate",
           "capital": false,
           "placement": "lore",
+          "significance": "link",
           "note": "в Weeping Rose",
           "text": {
             "name": {
@@ -2681,6 +2751,7 @@
           "slug": "sundered-moon",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "note": "таверна в White Spire",
           "text": {
             "name": {
@@ -2709,6 +2780,7 @@
           "slug": "iron-fog",
           "capital": false,
           "placement": "ours",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Железный Туман",
@@ -2733,6 +2805,7 @@
           "slug": "highseat",
           "capital": false,
           "placement": "ours",
+          "significance": "link",
           "text": {
             "name": {
               "ru": "Хайсит",
@@ -2931,6 +3004,7 @@
           "slug": "quoidge",
           "capital": true,
           "placement": "lore",
+          "significance": "link",
           "text": {
             "name": {
               "ru": "Квойдж",
@@ -2955,6 +3029,7 @@
           "slug": "smoke-harbor",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Дымная Гавань",
@@ -2979,6 +3054,7 @@
           "slug": "fields-of-endless-carnage",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Поля Вечной Бойни",
@@ -3003,6 +3079,7 @@
           "slug": "cathedral-of-rumusque",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Собор Румуска",
@@ -3141,6 +3218,7 @@
           "slug": "hazhadal-barrens",
           "capital": true,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Хазадальские пустоши",
@@ -3165,6 +3243,7 @@
           "slug": "fortress-of-valhessi",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "note": "страницы на Liquipedia нет",
           "text": {
             "name": {
@@ -3330,6 +3409,7 @@
           "slug": "druud",
           "capital": true,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Друуд",
@@ -3354,6 +3434,7 @@
           "slug": "omexe",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Омекс",
@@ -3532,6 +3613,7 @@
           "slug": "scintillant-waste",
           "capital": true,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Сверкающая пустошь",
@@ -3556,6 +3638,7 @@
           "slug": "desert-of-misrule",
           "capital": false,
           "placement": "s1map",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Пустыня Мизрул",
@@ -3580,6 +3663,7 @@
           "slug": "riftshadow-ruins",
           "capital": false,
           "placement": "s1map",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Руины Рифтшэдоу",
@@ -3604,6 +3688,7 @@
           "slug": "qaldin",
           "capital": false,
           "placement": "lore",
+          "significance": "link",
           "text": {
             "name": {
               "ru": "Калдин",
@@ -3628,6 +3713,7 @@
           "slug": "elharath",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Эль-Харат",
@@ -3652,6 +3738,7 @@
           "slug": "the-barrens",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Пустоши",
@@ -3676,6 +3763,7 @@
           "slug": "halgalreh",
           "capital": false,
           "placement": "ours",
+          "significance": "link",
           "note": "руины пустынной империи",
           "text": {
             "name": {
@@ -3701,6 +3789,7 @@
           "slug": "bone-ruins",
           "capital": false,
           "placement": "ours",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Костяные руины",
@@ -3725,6 +3814,7 @@
           "slug": "singers-gulch",
           "capital": false,
           "placement": "ours",
+          "significance": "link",
           "text": {
             "name": {
               "ru": "Ущелье Певцов",
@@ -3883,6 +3973,7 @@
           "slug": "ruined-city",
           "capital": true,
           "placement": "s1map",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Разрушенный город",
@@ -3907,6 +3998,7 @@
           "slug": "fortress-of-flares",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Крепость Огней",
@@ -3931,6 +4023,7 @@
           "slug": "turstarkuri",
           "capital": false,
           "placement": "s1map",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Турстаркури",
@@ -3955,6 +4048,7 @@
           "slug": "mount-joerlak",
           "capital": false,
           "placement": "s1map",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Гора Йорлак",
@@ -3979,6 +4073,7 @@
           "slug": "feral-road",
           "capital": false,
           "placement": "s1map",
+          "significance": "link",
           "text": {
             "name": {
               "ru": "Дикая дорога",
@@ -4003,6 +4098,7 @@
           "slug": "the-upland",
           "capital": false,
           "placement": "ours",
+          "significance": "event",
           "note": "нагорье священного нефрита",
           "text": {
             "name": {
@@ -4142,6 +4238,7 @@
           "slug": "shadeshore-ruins",
           "capital": true,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Руины Тенистого берега",
@@ -4166,6 +4263,7 @@
           "slug": "tidemarsh",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Приливная топь",
@@ -4190,6 +4288,7 @@
           "slug": "ruelands",
           "capital": false,
           "placement": "lore",
+          "significance": "link",
           "text": {
             "name": {
               "ru": "Земли Скорби",
@@ -4214,6 +4313,7 @@
           "slug": "vigil-keep",
           "capital": false,
           "placement": "ours",
+          "significance": "link",
           "text": {
             "name": {
               "ru": "Твердыня Бдящих",
@@ -4238,6 +4338,7 @@
           "slug": "inner-colonnade",
           "capital": false,
           "placement": "ours",
+          "significance": "minor",
           "note": "при Vigil Keep",
           "text": {
             "name": {
@@ -4379,6 +4480,7 @@
           "slug": "dark-reef",
           "capital": true,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Тёмный риф",
@@ -4403,6 +4505,7 @@
           "slug": "crey",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Крей",
@@ -4427,6 +4530,7 @@
           "slug": "deep-vault",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "note": "оно же Sunken Treasury",
           "text": {
             "name": {
@@ -4452,6 +4556,7 @@
           "slug": "coral-breach",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Коралловый разлом",
@@ -4476,6 +4581,7 @@
           "slug": "reefs-edge",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Край рифа",
@@ -4500,6 +4606,7 @@
           "slug": "recluse-reef",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Уединённый риф",
@@ -4524,6 +4631,7 @@
           "slug": "infernal-hollow",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "note": "страницы на Liquipedia нет",
           "text": {
             "name": {
@@ -4661,6 +4769,7 @@
           "slug": "cladd",
           "capital": true,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Кладд",
@@ -4685,6 +4794,7 @@
           "slug": "trembling-isle",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Дрожащий остров",
@@ -4709,6 +4819,7 @@
           "slug": "sunken-isles",
           "capital": false,
           "placement": "ours",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Затонувшие острова",
@@ -4733,6 +4844,7 @@
           "slug": "isle-of-songs",
           "capital": false,
           "placement": "ours",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Остров Песен",
@@ -4757,6 +4869,7 @@
           "slug": "port-mignin",
           "capital": false,
           "placement": "ours",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Порт Миньин",
@@ -4781,6 +4894,7 @@
           "slug": "narrow-channel",
           "capital": false,
           "placement": "ours",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Узкий пролив",
@@ -4919,6 +5033,7 @@
           "slug": "isle-of-masks",
           "capital": true,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Остров Масок",
@@ -4943,6 +5058,7 @@
           "slug": "temple-of-masks",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Храм Масок",
@@ -4967,6 +5083,7 @@
           "slug": "ivory-isles",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Острова Слоновой Кости",
@@ -4991,6 +5108,7 @@
           "slug": "jidi-isle",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Остров Джиди",
@@ -5015,6 +5133,7 @@
           "slug": "acid-jungles",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Кислотные джунгли",
@@ -5039,6 +5158,7 @@
           "slug": "bay-of-fradj",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Залив Фрадж",
@@ -5063,6 +5183,7 @@
           "slug": "ash-archipelago",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Пепельный архипелаг",
@@ -5229,6 +5350,7 @@
           "slug": "western-forests",
           "capital": true,
           "placement": "lore",
+          "significance": "link",
           "text": {
             "name": {
               "ru": "Западные леса",
@@ -5253,6 +5375,7 @@
           "slug": "zarukina",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Зару'Кина",
@@ -5277,6 +5400,7 @@
           "slug": "vale-of-augury",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Долина Предзнаменований",
@@ -5301,6 +5425,7 @@
           "slug": "augury-bay",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Бухта Предзнаменований",
@@ -5325,6 +5450,7 @@
           "slug": "endless-copse",
           "capital": false,
           "placement": "ours",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Бескрайняя роща",
@@ -5349,6 +5475,7 @@
           "slug": "manglewood-forest",
           "capital": false,
           "placement": "ours",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Корявый лес",
@@ -5515,6 +5642,7 @@
           "slug": "slom",
           "capital": true,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Слом",
@@ -5539,6 +5667,7 @@
           "slug": "elze",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Эльзе",
@@ -5563,6 +5692,7 @@
           "slug": "stone-hills",
           "capital": false,
           "placement": "ours",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Каменные холмы",
@@ -5717,6 +5847,7 @@
           "slug": "the-hoven",
           "capital": true,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Ховен",
@@ -5741,6 +5872,7 @@
           "slug": "bleeding-hills",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Кровоточащие холмы",
@@ -5765,6 +5897,7 @@
           "slug": "nishai",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Нишай",
@@ -5789,6 +5922,7 @@
           "slug": "the-red-mountain",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "note": "предположительно в Нишае",
           "text": {
             "name": {
@@ -5964,6 +6098,7 @@
           "slug": "fellstrath",
           "capital": true,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Феллстрат",
@@ -5988,6 +6123,7 @@
           "slug": "overgrown-empire",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Заросшая империя",
@@ -6012,6 +6148,7 @@
           "slug": "ashkavor",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Ашкавор",
@@ -6036,6 +6173,7 @@
           "slug": "yama-raskav-jungle",
           "capital": false,
           "placement": "ours",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Джунгли Яма-Раскав",
@@ -6060,6 +6198,7 @@
           "slug": "xhacatocatl",
           "capital": false,
           "placement": "ours",
+          "significance": "event",
           "note": "окутанные туманом горы",
           "text": {
             "name": {
@@ -6085,6 +6224,7 @@
           "slug": "velumar",
           "capital": false,
           "placement": "ours",
+          "significance": "event",
           "note": "Murkroots of Velu'Mar, родина Largo; страницы на Liquipedia нет",
           "text": {
             "name": {
@@ -6240,6 +6380,7 @@
           "slug": "tomokan",
           "capital": true,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Томо'кан",
@@ -6264,6 +6405,7 @@
           "slug": "krimwohl",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Кримвол",
@@ -6288,6 +6430,7 @@
           "slug": "outlands",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Окраины",
@@ -6312,6 +6455,7 @@
           "slug": "nanarak",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Нанарак",
@@ -6336,6 +6480,7 @@
           "slug": "dread-marsh",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Гиблая топь",
@@ -6360,6 +6505,7 @@
           "slug": "praxacia",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Пракса'сия",
@@ -6510,6 +6656,7 @@
           "slug": "throne-of-bone",
           "capital": true,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Костяной трон",
@@ -6534,6 +6681,7 @@
           "slug": "ivory-forest",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Костяной лес",
@@ -6558,6 +6706,7 @@
           "slug": "levinthal",
           "capital": false,
           "placement": "ours",
+          "significance": "minor",
           "note": "возможно, то же, что Gleaming City",
           "text": {
             "name": {
@@ -6729,6 +6878,7 @@
           "slug": "candoness",
           "capital": false,
           "placement": "ours",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Кандонес",
@@ -6753,6 +6903,7 @@
           "slug": "devarque",
           "capital": false,
           "placement": "ours",
+          "significance": "link",
           "text": {
             "name": {
               "ru": "Деварк",
@@ -6777,6 +6928,7 @@
           "slug": "yoskreth",
           "capital": false,
           "placement": "ours",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Йоскрет",
@@ -6801,6 +6953,7 @@
           "slug": "ultimyr-academy",
           "capital": false,
           "placement": "ours",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Академия Ультимира",
@@ -6825,6 +6978,7 @@
           "slug": "emauracus",
           "capital": false,
           "placement": "ours",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Эмарак",
@@ -6849,6 +7003,7 @@
           "slug": "font-of-avernus",
           "capital": false,
           "placement": "ours",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Купель Аверно",
@@ -6873,6 +7028,7 @@
           "slug": "hidden-temple",
           "capital": false,
           "placement": "ours",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Потаённый храм",
@@ -6897,6 +7053,7 @@
           "slug": "hidden-hive",
           "capital": false,
           "placement": "ours",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Скрытый Улей",
@@ -6921,6 +7078,7 @@
           "slug": "mount-pyrotheos",
           "capital": false,
           "placement": "ours",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Гора Пиротеос",
@@ -6945,6 +7103,7 @@
           "slug": "skirm",
           "capital": false,
           "placement": "ours",
+          "significance": "event",
           "note": "страницы на Liquipedia нет",
           "text": {
             "name": {
@@ -6970,6 +7129,7 @@
           "slug": "solar-throne",
           "capital": false,
           "placement": "ours",
+          "significance": "event",
           "note": "трон империи Helio Imperium",
           "text": {
             "name": {
@@ -7200,6 +7360,7 @@
           "slug": "aziyog",
           "capital": true,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Азийог",
@@ -7224,6 +7385,7 @@
           "slug": "nether-reaches",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Нижние пределы",
@@ -7248,6 +7410,7 @@
           "slug": "the-emerald-abyss",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Изумрудная бездна",
@@ -7272,6 +7435,7 @@
           "slug": "the-underhollow",
           "capital": false,
           "placement": "lore",
+          "significance": "minor",
           "text": {
             "name": {
               "ru": "Пещеры пустоши",
@@ -7405,6 +7569,7 @@
           "slug": "seven-hells",
           "capital": true,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Семь Преисподних",
@@ -7429,6 +7594,7 @@
           "slug": "vashundol",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Вашундол",
@@ -7453,6 +7619,7 @@
           "slug": "abysm",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Абисм",
@@ -7477,6 +7644,7 @@
           "slug": "foulfell",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Колодец душ",
@@ -7501,6 +7669,7 @@
           "slug": "outer-hells",
           "capital": false,
           "placement": "lore",
+          "significance": "link",
           "text": {
             "name": {
               "ru": "Внешние преисподние",
@@ -7525,6 +7694,7 @@
           "slug": "narrow-maze",
           "capital": false,
           "placement": "lore",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Узкий лабиринт",
@@ -7549,6 +7719,7 @@
           "slug": "underscape",
           "capital": false,
           "placement": "lore",
+          "significance": "link",
           "text": {
             "name": {
               "ru": "Андерскейп",
@@ -7573,6 +7744,7 @@
           "slug": "nothl-realm",
           "capital": false,
           "placement": "lore",
+          "significance": "link",
           "text": {
             "name": {
               "ru": "Мир Нотл",
