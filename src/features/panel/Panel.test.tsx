@@ -5,6 +5,7 @@ import { NavigationProvider } from '../../app/navigation';
 import type { Place, Region } from '../../data/types';
 import { getRegion, heroesOfRegion, world } from '../../data/world';
 import { I18nProvider } from '../../i18n';
+import { FeedbackProvider } from '../feedback/FeedbackProvider';
 import { PlacePanel } from '../location/PlacePanel';
 import { REGION_HEROES, RegionPanel } from '../region/RegionPanel';
 import { Breadcrumbs } from './Breadcrumbs';
@@ -26,7 +27,9 @@ const media = (n: number) => (world.media ?? []).slice(0, n).map((m) => m.id);
 function wrap(node: React.ReactNode, lang: 'ru' | 'en' = 'ru') {
   return render(
     <I18nProvider initialLang={lang}>
-      <NavigationProvider>{node}</NavigationProvider>
+      <NavigationProvider>
+        <FeedbackProvider>{node}</FeedbackProvider>
+      </NavigationProvider>
     </I18nProvider>,
   );
 }
@@ -94,7 +97,8 @@ describe('панель места (SPEC §5.5)', () => {
     expect(screen.getByRole('heading', { level: 2, name: 'Nowhere' })).toBeInTheDocument();
     expect(screen.queryByRole('img')).toBeNull();
     expect(screen.queryByRole('heading', { level: 3 })).toBeNull();
-    expect(screen.queryByRole('button')).toBeNull();
+    // Единственная кнопка — «Нашли ошибку или знаете больше?» (#74): у пустого места она нужнее всего.
+    expect(screen.getAllByRole('button').map((b) => b.textContent)).toEqual(['Нашли ошибку или знаете больше? Расскажите']);
   });
 
   it('место с текстом, шапкой и медиа', () => {

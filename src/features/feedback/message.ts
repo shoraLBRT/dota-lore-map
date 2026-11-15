@@ -1,5 +1,6 @@
-// Заголовок, текст и ссылка issue обратной связи (SPEC §6.9, ARCHITECTURE A16). Чистые функции: их же
-// возьмут кнопки «Нашли ошибку?» у блоков (#74, поле `block`) и отправка через сервер (#75, `feedbackIssue`).
+// Заголовок, текст и ссылка issue обратной связи (SPEC §6.9, ARCHITECTURE A16). Чистые функции: общий отзыв
+// (кнопка в левой панели), отзыв о блоке («Нашли ошибку?», #74: поля `block` и `kind`) и отправка через сервер
+// (#75, `feedbackIssue`) — один формат.
 
 import type { Lang } from '../../data/types';
 
@@ -16,12 +17,28 @@ export const URL_LIMIT = 6700;
 const VALUE_LIMIT = 300;
 
 export const FEEDBACK_LABEL = 'feedback';
+/** Вторая метка отзыва о блоке с контентом (#74): правка текста, а не интерфейса. */
+export const CONTENT_FIX_LABEL = 'content-fix';
+/** Потолок длины названия блока в заголовке issue. */
+const NAME_LIMIT = 60;
 
 export type FeedbackScreen = 'intro' | 'world' | 'region' | 'place';
 
 export interface Named {
   id: string;
   name: string;
+}
+
+/** О каком блоке отзыв («Нашли ошибку?», #74): панель региона или места, профиль героя, медиа в галерее. */
+export type FeedbackBlockType = 'region' | 'place' | 'hero' | 'media';
+
+/** Что сообщают о блоке: ошибку, дополнение или другое. */
+export type FeedbackKind = 'error' | 'addition' | 'other';
+
+export const FEEDBACK_KINDS: readonly FeedbackKind[] = ['error', 'addition', 'other'];
+
+export interface FeedbackBlock extends Named {
+  type: FeedbackBlockType;
 }
 
 /** Где был пользователь, когда писал. Имена — на языке интерфейса, id — для поиска в данных. */
@@ -32,8 +49,10 @@ export interface FeedbackContext {
   hero?: Named & { profile?: boolean };
   /** Открытое медиа галереи (`?media=`). */
   media?: string;
-  /** Блок панели, к которому относится сообщение («Нашли ошибку?», #74). */
-  block?: string;
+  /** Блок, к которому относится сообщение («Нашли ошибку?», #74); имя — на языке интерфейса. */
+  block?: FeedbackBlock;
+  /** Вид отзыва о блоке; без блока не используется. По умолчанию — ошибка. */
+  kind?: FeedbackKind;
   lang: Lang;
   address: string;
   version: string;
@@ -42,6 +61,8 @@ export interface FeedbackContext {
 export interface FeedbackIssue {
   title: string;
   body: string;
+  /** Метки; без поля — только `feedback`. */
+  labels?: string[];
 }
 
 const TEXT = {
@@ -56,6 +77,11 @@ const TEXT = {
     profile: 'профиль открыт',
     media: 'Медиа',
     block: 'Блок',
+    blocks: { region: 'регион', place: 'место', hero: 'профиль героя', media: 'медиа' },
+    kind: 'Вид',
+    kinds: { error: 'ошибка', addition: 'дополнение', other: 'другое' },
+    /** Заголовок отзыва о блоке: «Ошибка в «Айсрак»». */
+    blockTitles: { error: 'Ошибка в «{name}»', addition: 'Дополнение к «{name}»', other: 'Отзыв о «{name}»' },
     lang: 'Язык',
     address: 'Адрес',
     version: 'Версия сборки',
@@ -72,6 +98,10 @@ const TEXT = {
     profile: 'profile open',
     media: 'Media',
     block: 'Block',
+    blocks: { region: 'region', place: 'place', hero: 'hero profile', media: 'media' },
+    kind: 'Kind',
+    kinds: { error: 'mistake', addition: 'addition', other: 'other' },
+    blockTitles: { error: 'Mistake in “{name}”', addition: 'Addition to “{name}”', other: 'Feedback on “{name}”' },
     lang: 'Language',
     address: 'Address',
     version: 'Build version',
@@ -88,9 +118,15 @@ export function cleanMessage(message: string): string {
   return message.trim();
 }
 
-/** Заголовок: «Отзыв с карты: <первая непустая строка, не длиннее TITLE_EXCERPT>». */
-export function feedbackTitle(message: string, lang: Lang, excerpt = true): string {
-  const prefix = TEXT[lang].title;
+/**
+ * Заголовок: «<начало>: <первая непустая строка, не длиннее TITLE_EXCERPT>». Начало — «Отзыв с карты»,
+ * у отзыва о блоке — по виду: «Ошибка в «Айсрак»», «Дополнение к «Айсрак»», «Отзыв о «Айсрак»» (SPEC §6.9).
+ */
+export function feedbackTitle(message: string, lang: Lang, excerpt = true, block?: FeedbackBlock, kind?: FeedbackKind): string {
+  const t = TEXT[lang];
+  // Название уже в кавычках («Новые соседи») — вторые не добавляем.
+  const name = block ? clip(block.name.trim().replace(/^[«“"]+|[»”"]+$/g, ''), NAME_LIMIT) : '';
+  const prefix = block ? t.blockTitles[kind ?? 'error'].replace('{name}', name) : t.title;
   const first = cleanMessage(message).split('\n')[0]!.replace(/\s+/g, ' ').trim();
   return excerpt && first ? `${prefix}: ${clip(first, TITLE_EXCERPT)}` : prefix;
 }
@@ -100,7 +136,10 @@ export function contextLines(ctx: FeedbackContext): string[] {
   const t = TEXT[ctx.lang];
   const named = (n: Named) => `${clip(n.name, VALUE_LIMIT)} (\`${clip(n.id, VALUE_LIMIT)}\`)`;
   const lines: string[] = [`${t.address}: ${clip(ctx.address, VALUE_LIMIT)}`];
-  if (ctx.block) lines.push(`${t.block}: ${clip(ctx.block, VALUE_LIMIT)}`);
+  if (ctx.block) {
+    lines.push(`${t.block}: ${t.blocks[ctx.block.type]} ${named(ctx.block)}`);
+    lines.push(`${t.kind}: ${t.kinds[ctx.kind ?? 'error']}`);
+  }
   lines.push(`${t.screen}: ${t.screens[ctx.screen]}`);
   if (ctx.region) lines.push(`${t.region}: ${named(ctx.region)}`);
   if (ctx.place) lines.push(`${t.place}: ${named(ctx.place)}`);
@@ -122,13 +161,23 @@ export function feedbackBody(message: string, ctx: FeedbackContext, lines = cont
 
 /** Заголовок и текст issue целиком — для отправки без ограничений длины ссылки (#75). */
 export function feedbackIssue(message: string, ctx: FeedbackContext): FeedbackIssue {
-  return { title: feedbackTitle(message, ctx.lang), body: feedbackBody(message, ctx) };
+  return {
+    title: feedbackTitle(message, ctx.lang, true, ctx.block, ctx.kind),
+    body: feedbackBody(message, ctx),
+    labels: feedbackLabels(ctx),
+  };
 }
 
-/** Ссылка на форму нового issue с заполненными заголовком, текстом и меткой. */
-export function newIssueUrl(repo: string, issue: FeedbackIssue, label = FEEDBACK_LABEL): string {
+/** Метки issue: `feedback`, у отзыва о блоке ещё `content-fix` (при любом виде — речь о контенте). */
+export function feedbackLabels(ctx: FeedbackContext): string[] {
+  return ctx.block ? [FEEDBACK_LABEL, CONTENT_FIX_LABEL] : [FEEDBACK_LABEL];
+}
+
+/** Ссылка на форму нового issue с заполненными заголовком, текстом и метками (через запятую, как ждёт GitHub). */
+export function newIssueUrl(repo: string, issue: FeedbackIssue): string {
   const q = (s: string) => encodeURIComponent(s);
-  return `${repo}/issues/new?title=${q(issue.title)}&body=${q(issue.body)}&labels=${q(label)}`;
+  const labels = (issue.labels ?? [FEEDBACK_LABEL]).join(',');
+  return `${repo}/issues/new?title=${q(issue.title)}&body=${q(issue.body)}&labels=${q(labels)}`;
 }
 
 export interface FittedUrl {
@@ -145,10 +194,12 @@ export interface FittedUrl {
 export function feedbackUrl(repo: string, message: string, ctx: FeedbackContext, limit = URL_LIMIT): FittedUrl | null {
   if (!cleanMessage(message)) return null;
   const all = contextLines(ctx);
+  const labels = feedbackLabels(ctx);
   const attempt = (excerpt: boolean, keep: number) =>
     newIssueUrl(repo, {
-      title: feedbackTitle(message, ctx.lang, excerpt),
+      title: feedbackTitle(message, ctx.lang, excerpt, ctx.block, ctx.kind),
       body: feedbackBody(message, ctx, all.slice(0, keep)),
+      labels,
     });
   for (const excerpt of [true, false]) {
     for (let keep = all.length; keep >= (excerpt ? 1 : 0); keep -= 1) {

@@ -4,6 +4,7 @@ import { App } from '../../app/App';
 import type { Lang, Media } from '../../data/types';
 import { getMedia, mediaSourceUrl } from '../../data/world';
 import { I18nProvider } from '../../i18n';
+import { FeedbackProvider } from '../feedback/FeedbackProvider';
 import { Gallery, SWIPE_MIN } from './Gallery';
 import { counter, galleryOf } from './items';
 
@@ -45,13 +46,17 @@ function show(index: number, list: Media[] = items, lang: Lang = 'ru') {
   const onClose = vi.fn();
   const view = render(
     <I18nProvider initialLang={lang}>
-      <Gallery items={list} index={index} onSelect={onSelect} onClose={onClose} />
+      <FeedbackProvider>
+        <Gallery items={list} index={index} onSelect={onSelect} onClose={onClose} />
+      </FeedbackProvider>
     </I18nProvider>,
   );
   const rerender = (i: number) =>
     view.rerender(
       <I18nProvider initialLang={lang}>
-        <Gallery items={list} index={i} onSelect={onSelect} onClose={onClose} />
+        <FeedbackProvider>
+          <Gallery items={list} index={i} onSelect={onSelect} onClose={onClose} />
+        </FeedbackProvider>
       </I18nProvider>,
     );
   return { onSelect, onClose, rerender };
@@ -159,13 +164,16 @@ describe('галерея S4 (SPEC §5.6)', () => {
     opener.focus();
     const view = render(
       <I18nProvider initialLang="ru">
-        <Gallery items={items} index={0} onSelect={() => undefined} onClose={() => undefined} />
+        <FeedbackProvider>
+          <Gallery items={items} index={0} onSelect={() => undefined} onClose={() => undefined} />
+        </FeedbackProvider>
       </I18nProvider>,
     );
     const close = screen.getByRole('button', { name: 'Закрыть галерею' });
     expect(close).toHaveFocus();
     fireEvent.keyDown(close, { key: 'Tab', shiftKey: true });
-    expect(screen.getByRole('link', { name: 'Читать комикс целиком ↗' })).toHaveFocus();
+    // Последний элемент окна — «Нашли ошибку?» (#74).
+    expect(screen.getByRole('button', { name: 'Нашли ошибку или знаете больше? Расскажите' })).toHaveFocus();
     view.unmount();
     expect(opener).toHaveFocus();
     opener.remove();

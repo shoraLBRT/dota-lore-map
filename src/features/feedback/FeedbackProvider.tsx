@@ -1,9 +1,10 @@
 import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from 'react';
+import type { FeedbackBlockRef } from './context';
 import { FeedbackWindow } from './FeedbackWindow';
 
-/** Что открыть: без полей — общий отзыв (кнопка в левой панели); `block` — блок панели (#74). */
+/** Что открыть: без полей — общий отзыв (кнопка в левой панели); `block` — отзыв о блоке («Нашли ошибку?», #74). */
 export interface FeedbackRequest {
-  block?: string;
+  block?: FeedbackBlockRef;
 }
 
 interface Feedback {
@@ -28,7 +29,14 @@ export function FeedbackProvider({ children }: { children: ReactNode }) {
   return (
     <FeedbackContext.Provider value={value}>
       {children}
-      {request && <FeedbackWindow block={request.block} onClose={close} />}
+      {/* Другой блок — новое окно: вид отзыва сбрасывается, фокус вернётся на ссылку, которая открыла это. */}
+      {request && (
+        <FeedbackWindow
+          key={request.block ? `${request.block.type}:${request.block.id}` : 'general'}
+          block={request.block}
+          onClose={close}
+        />
+      )}
     </FeedbackContext.Provider>
   );
 }

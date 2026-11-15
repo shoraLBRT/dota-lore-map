@@ -113,5 +113,17 @@
   "feedback.send": "Отправить",
   "feedback.close": "Закрыть",
   "feedback.tooLong": "Сообщение не помещается в ссылку на GitHub — сократите его.",
-  "feedback.sent": "Форма открыта в новой вкладке: проверьте текст и создайте issue там."
+  "feedback.sent": "Форма открыта в новой вкладке: проверьте текст и создайте issue там.",
+  "feedback.blockLink": "Нашли ошибку или знаете больше? Расскажите",
+  "feedback.block.region": "Регион",
+  "feedback.block.place": "Место",
+  "feedback.block.hero": "Герой",
+  "feedback.block.media": "Медиа",
+  "feedback.kind": "Что это",
+  "feedback.kind.error": "Ошибка",
+  "feedback.kind.addition": "Дополнение",
+  "feedback.kind.other": "Другое",
+  "feedback.placeholder.error": "Что не так и как правильно? Если можете — источник.",
+  "feedback.placeholder.addition": "Что стоит добавить? Если можете — источник.",
+  "feedback.placeholder.other": "Что заметили?"
 }

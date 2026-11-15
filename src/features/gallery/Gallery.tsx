@@ -7,6 +7,9 @@ import { trapTab } from '../../components/focusTrap';
 import type { Media } from '../../data/types';
 import { mediaSourceUrl, mediaSrc } from '../../data/world';
 import { useT } from '../../i18n';
+import { mediaBlock } from '../feedback/context';
+import { FeedbackLink } from '../feedback/FeedbackLink';
+import { useFeedback } from '../feedback/FeedbackProvider';
 import styles from './Gallery.module.css';
 import { counter, youtubeEmbed } from './items';
 
@@ -40,6 +43,10 @@ export function Gallery({ items, index, onSelect, onClose }: Props) {
   // Картинка с CDN грузится заметно: пока её нет — индикатор, а не пустая ячейка (аудит E13).
   const [loaded, setLoaded] = useState<string | null>(null);
   const sfx = useSfx();
+  // Окно обратной связи поверх галереи (#74): пока оно открыто, клавиши — его (стрелки в поле не листают,
+  // Esc закрывает сначала окно — A11).
+  const feedbackOpen = useFeedback().isOpen;
+  const feedbackOpenRef = useRef(feedbackOpen);
 
   const item = items[index] ?? items[0]!;
   const many = items.length > 1;
@@ -53,6 +60,7 @@ export function Gallery({ items, index, onSelect, onClose }: Props) {
   useEffect(() => {
     stepRef.current = step;
     closeRef.current = onClose;
+    feedbackOpenRef.current = feedbackOpen;
   });
 
   // Звук открытия галереи (SPEC §7.4) — один раз, листание его не повторяет.
@@ -74,7 +82,7 @@ export function Gallery({ items, index, onSelect, onClose }: Props) {
   // Клавиши слушаем на window: фокус может быть и вне окна (после клика по картинке — на body).
   useEffect(() => {
     const onKeyDown = (e: globalThis.KeyboardEvent) => {
-      if (e.defaultPrevented) return;
+      if (e.defaultPrevented || feedbackOpenRef.current) return;
       if (e.key === 'Escape') closeRef.current();
       else if (e.key === 'ArrowLeft') stepRef.current(-1);
       else if (e.key === 'ArrowRight') stepRef.current(1);
@@ -210,6 +218,7 @@ export function Gallery({ items, index, onSelect, onClose }: Props) {
             </a>
           )}
           <p className={styles.credit}>© {item.credit}</p>
+          <FeedbackLink block={mediaBlock(item)} />
         </aside>
       </div>
     </div>,

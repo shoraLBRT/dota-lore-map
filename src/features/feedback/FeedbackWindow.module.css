@@ -3,8 +3,9 @@
   position: fixed;
   bottom: var(--space-4);
   left: calc(var(--rail-width) + var(--space-3));
-  /* Выше подсказок и панелей, ниже «О проекте» и галереи. */
-  z-index: 95;
+  /* Верхний слой: из галереи окно открывает «Нашли ошибку?» (#74) — оно поверх неё. «О проекте» и галерею
+     одновременно с окном не открыть: клик по ним — клик вне окна. */
+  z-index: 120;
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
@@ -41,6 +42,63 @@
   margin: 0;
   padding-right: var(--space-6);
   font-size: 1.35rem;
+}
+
+.subject {
+  margin: 0;
+  color: var(--text-2);
+}
+
+.subject strong {
+  color: var(--text-1);
+  font-weight: 600;
+}
+
+/* Вид отзыва о блоке: три кнопки-переключателя в ряд. */
+.kinds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-2);
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.kinds legend {
+  width: 100%;
+  margin-bottom: var(--space-1);
+  padding: 0;
+}
+
+.kind {
+  position: relative;
+  display: inline-flex;
+}
+
+.kind input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.kind span {
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--metal-dim);
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+.kind input:checked + span {
+  border-color: var(--accent-bright);
+  background: var(--bg-2);
+  color: var(--text-1);
+}
+
+.kind input:focus-visible + span {
+  outline: 2px solid var(--accent-bright);
+  outline-offset: 1px;
 }
 
 .text p {
@@ -118,6 +176,13 @@
     width: auto;
     max-height: calc(100dvh - var(--rail-height) - 2 * var(--space-2));
     padding: var(--space-4);
+  }
+
+  .kind span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    box-sizing: border-box;
   }
 
   /* Цель касания 44×44 px, как у кнопок полосы (ARCHITECTURE A13). */
