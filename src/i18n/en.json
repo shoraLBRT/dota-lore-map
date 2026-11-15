@@ -72,5 +72,19 @@
   "search.empty": "No heroes found",
   "hero.selected": "Selected hero",
   "hero.clear": "Clear hero selection",
-  "hero.places": "Hero's places"
+  "hero.places": "Hero's places",
+  "hero.event.origin": "Homeland",
+  "hero.event.home": "Home",
+  "hero.event.journey": "Journey, move",
+  "hero.event.battle": "Battle, attack",
+  "hero.event.service": "Service",
+  "hero.event.exile": "Exile, imprisonment",
+  "hero.event.death": "Death, rebirth",
+  "hero.event.visit": "Visited",
+  "hero.event.mention": "Mentioned",
+  "hero.event.link": "Link, kind not yet known",
+  "hero.legend": "How to read the threads",
+  "hero.legendPath": "The hero's journey: from → to, in order",
+  "hero.legendLink": "Other link: a mention, or the kind is not yet known",
+  "hero.legendColor": "Thread colour: the side of the hero's first place"
 }

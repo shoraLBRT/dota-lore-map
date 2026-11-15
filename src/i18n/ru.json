@@ -72,5 +72,19 @@
   "search.empty": "Никого не нашли",
   "hero.selected": "Выбранный герой",
   "hero.clear": "Снять выбор героя",
-  "hero.places": "Места героя"
+  "hero.places": "Места героя",
+  "hero.event.origin": "Родина",
+  "hero.event.home": "Дом",
+  "hero.event.journey": "Путь, переезд",
+  "hero.event.battle": "Сражение, нападение",
+  "hero.event.service": "Служба",
+  "hero.event.exile": "Изгнание, заточение",
+  "hero.event.death": "Гибель, перерождение",
+  "hero.event.visit": "Бывал",
+  "hero.event.mention": "Упоминание",
+  "hero.event.link": "Связь, тип не уточнён",
+  "hero.legend": "Как читать нити",
+  "hero.legendPath": "Путь героя: откуда → куда, по порядку",
+  "hero.legendLink": "Другая связь: упоминание или тип ещё не уточнён",
+  "hero.legendColor": "Цвет нити — сторона первого места героя"
 }

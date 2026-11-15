@@ -135,7 +135,7 @@ describe('MapStage', () => {
 });
 
 describe('MapStage — список регионов на телефоне (#39)', () => {
-  function renderWithList(activeRegionId?: string, focus?: { key: string; regionId: string; tone: 'neutral' }[]) {
+  function renderWithList(activeRegionId?: string, focus?: { key: string; regionId: string; tone: 'neutral'; event: 'origin' }[]) {
     const onSelectRegion = vi.fn();
     render(
       <I18nProvider initialLang="en">
@@ -181,7 +181,7 @@ describe('MapStage — список регионов на телефоне (#39)
   });
 
   it('выбран герой: его регион отмечен и в списке', () => {
-    renderWithList(undefined, [{ key: 'b', regionId: 'b', tone: 'neutral' }]);
+    renderWithList(undefined, [{ key: 'b', regionId: 'b', tone: 'neutral', event: 'origin' }]);
     expect(item(/b en/).className).toMatch(/heroRegion/);
     expect(item(/a en/).className).toMatch(/muted/);
   });
@@ -213,7 +213,7 @@ describe('MapStage — маркеры мест (S2/S3, SPEC §5.4, §6.3)', () =
     size('offsetHeight', 600);
     try {
       const onSelectSpot = vi.fn();
-      const far = { key: 'icewrack', regionId: 'icewrack', point: [0.9, 0.9] as [number, number], tone: 'neutral' as const };
+      const far = { key: 'icewrack', regionId: 'icewrack', point: [0.9, 0.9] as [number, number], tone: 'neutral' as const, event: 'origin' as const };
       render(
         <I18nProvider initialLang="en">
           <MapStage
@@ -222,7 +222,7 @@ describe('MapStage — маркеры мест (S2/S3, SPEC §5.4, §6.3)', () =
             onSelectRegion={vi.fn()}
             onSelectPlace={vi.fn()}
             onSelectSpot={onSelectSpot}
-            preview={[{ key: 'a/spot', regionId: 'a', placeSlug: 'spot', point: [0.2, 0.2], tone: 'neutral' }, far]}
+            preview={[{ key: 'a/spot', regionId: 'a', placeSlug: 'spot', point: [0.2, 0.2], tone: 'neutral', event: 'origin' }, far]}
           />
         </I18nProvider>,
       );
