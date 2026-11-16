@@ -3,22 +3,37 @@
 Интерактивная карта лора Dota 2 — некоммерческий фанатский проект.
 
 ## Читать перед работой
-1. [docs/PROJECT_STATE.md](docs/PROJECT_STATE.md) — что уже есть, что дальше, открытые вопросы.
-2. [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — обязательные технические решения (стек, структура, форматы данных).
-3. [docs/SPEC.md](docs/SPEC.md) — функциональные требования (разделы по номерам, например §5.4).
-4. Бэклог — GitHub Issues, эпики E1–E12 в майлстоуне MVP. Порядок работ — в PROJECT_STATE.
+Документы большие — читать **выборочно**, иначе сессия уходит на чтение.
+1. [docs/PROJECT_STATE.md](docs/PROJECT_STATE.md) — целиком (короткий): что есть, очередь задач, решения.
+2. Задача в GitHub Issues — целиком. В ней поля «Модель», «Зависит от», «Где», «Читать», «Готово, когда».
+3. [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) и [docs/SPEC.md](docs/SPEC.md) — **только разделы из поля «Читать» задачи** (`grep -n "^## A4" docs/ARCHITECTURE.md`, затем чтение диапазона строк). Целиком не читать.
+4. `docs/HISTORY.md`, `docs/research/*` — не читать, пока задача прямо на них не сошлётся.
+5. Партии E14 (#50–#58): вместо ARCHITECTURE — `research/e14/VERIFY.md` и `research/e14/README.md`.
+
+## Выбор задачи
+- Очередь — в PROJECT_STATE «Порядок работ». Брать первую задачу без меток `blocked` и `needs-owner`, подходящую модели сессии (`model:sonnet`, `model:opus`).
+- Закрыл задачу — сними метку `blocked` с задач, у которых она была последней незакрытой в поле «Зависит от» (`gh issue edit N --remove-label blocked`).
+- Задача требует решения, которого нет в её тексте, — остановиться и спросить владельца, а не решать самому.
 
 ## Правила
 - Одна задача — одна ветка (`feat/`, `fix/`, `docs/`, `chore/`, `content/` + номер issue) — один PR. В `main` не коммитим.
-- PR пишется по-русски: что вошло, что сознательно не вошло. `Closes #N` — только если эпик или задача закончены полностью, иначе `Refs #N`.
-- Перед PR: `npm run check` зелёный (до появления `package.json` — только `python research/e1/build.py --check`).
+- PR пишется по-русски: что вошло, что сознательно не вошло, что не проверено. `Closes #N` — только если эпик или задача закончены полностью, иначе `Refs #N`.
+- Перед PR: `npm run check` зелёный.
 - Тексты интерфейса и контент — всегда на двух языках (`ru`, `en`).
 - Тексты лора пишем своими словами. Не копируем тексты Liquipedia, Fandom и официальные биографии.
 - Liquipedia: автоматические запросы только через API `https://liquipedia.net/dota2/api.php` с User-Agent `DotaLoreMapResearch/0.1 (non-commercial fan project)` и паузой ≥ 2 с между запросами. Обходить защиту сайтов (подмена User-Agent браузера и т. п.) нельзя.
-- Решение, которое переживёт задачу, записывается в ARCHITECTURE.md или SPEC.md, а не только в коммит.
-- В конце задачи обновить docs/PROJECT_STATE.md в том же PR.
+- Решение, которое переживёт задачу, записывается в ARCHITECTURE.md или SPEC.md — в раздел, названный в задаче, коротко: правило, а не рассказ о том, как к нему пришли.
+- **PROJECT_STATE.md в конце задачи** (в том же PR): вычеркнуть или убрать задачу из очереди, при необходимости поправить одну строку в «Что есть» и счётчики. Не больше трёх строк на задачу; подробности, списки проверенного и «было → стало» — в описание PR, не в документы.
+
+## Проверка в браузере
+- Достаточно одного прохода по сценарию из «Готово, когда» задачи; полный регресс интерфейса не нужен — его держат тесты.
+- Панель предпросмотра показывает только 800×600 кадра. Снимок экрана нужного размера — headless Chrome:
+  `chrome --headless=new --window-size=1440,900 --virtual-time-budget=6000 --screenshot=<файл.png> "http://localhost:5183/dota-lore-map/#/r/icewrack"` (после #105 — `npm run shot`). Ширину < 500 px headless Chrome на Windows не даёт — телефон смотреть в панели предпросмотра (375×600).
+- Dev-сервер для предпросмотра — конфигурация `dev` в `.claude/launch.json` (порт 5183).
 
 ## Команды
-- `python research/e1/build.py` — проверить данные исследования и перегенерировать docs/research/E1-places.md.
-- `node map/check-layout.mjs` — проверить геометрию карты `map/layout.json`; `node map/render-schema.mjs` — перерисовать схему `docs/map/schema.svg`.
-- После E3: `npm run dev`, `npm run data`, `npm run check`.
+- `npm run dev`, `npm run data` (пересобрать `src/data/world.generated.json`), `npm run check` (всё: данные, типы, линт, тесты, сборка, бюджет, геометрия, Python).
+- Тесты одного файла: `npx vitest run src/features/world/labels.test.ts` — во время работы гонять их, а не весь `check`.
+- `python research/e1/build.py` — проверить данные исследования и перегенерировать `docs/research/E1-places.md`.
+- `node map/check-layout.mjs` — геометрия `map/layout.json`; `node map/render-schema.mjs` — перерисовать `docs/map/schema.svg`.
+- E14: `python research/e14/fetch.py <key>…`, `python research/e14/check.py [--merge] <key>…`.
