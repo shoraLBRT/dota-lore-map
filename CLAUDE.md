@@ -28,12 +28,13 @@
 
 ## Проверка в браузере
 - Достаточно одного прохода по сценарию из «Готово, когда» задачи; полный регресс интерфейса не нужен — его держат тесты.
-- Панель предпросмотра показывает только 800×600 кадра. Снимок экрана нужного размера — headless Chrome:
-  `chrome --headless=new --window-size=1440,900 --virtual-time-budget=6000 --screenshot=<файл.png> "http://localhost:5183/dota-lore-map/#/r/icewrack"` (после #105 — `npm run shot`). Ширину < 500 px headless Chrome на Windows не даёт — телефон смотреть в панели предпросмотра (375×600).
+- Панель предпросмотра показывает только 800×600 кадра. Снимок экрана нужного размера — `npm run shot -- r/icewrack [1440x900]` → `e2e/shots/` (в Git Bash адрес без ведущего `/`); телефон — `375x812`.
 - Dev-сервер для предпросмотра — конфигурация `dev` в `.claude/launch.json` (порт 5183).
 
 ## Команды
 - `npm run dev`, `npm run data` (пересобрать `src/data/world.generated.json`), `npm run check` (всё: данные, типы, линт, тесты, сборка, бюджет, геометрия, Python).
+- `npm run e2e` — Playwright: дымовой сценарий и axe в Chromium, Firefox, WebKit и на телефоне (в `check` не входит; браузеры — `npx playwright install chromium firefox webkit`). Один проект — `npx playwright test --project=firefox`.
+- `npm run shot -- <адрес> [ШxВ]` — снимок экрана в `e2e/shots/`.
 - Тесты одного файла: `npx vitest run src/features/world/labels.test.ts` — во время работы гонять их, а не весь `check`.
 - `python research/e1/build.py` — проверить данные исследования и перегенерировать `docs/research/E1-places.md`.
 - `node map/check-layout.mjs` — геометрия `map/layout.json`; `node map/render-schema.mjs` — перерисовать `docs/map/schema.svg`.
