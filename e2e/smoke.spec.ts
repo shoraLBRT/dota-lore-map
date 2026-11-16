@@ -23,7 +23,11 @@ test('интро → регион → место → галерея → поис
   if (mobile) {
     await tap(page.getByRole('navigation', { name: 'Регионы' }).getByRole('button', { name: 'Айсрак' }));
   } else {
-    await tap(page.locator('[role="button"][data-region="icewrack"]'));
+    // Клик — в верхнюю часть полигона: подсказка региона (наведение) встаёт под его подписью
+    // и перекрывает середину полигона (SPEC §5.3; место подсказки — #101).
+    const region = page.locator('[role="button"][data-region="icewrack"]');
+    const box = (await region.boundingBox())!;
+    await region.click({ position: { x: box.width * 0.2, y: box.height * 0.25 } });
   }
   await expectHash(page, '#/r/icewrack');
   await expect(panelHeading(page)).toHaveText('Айсрак');

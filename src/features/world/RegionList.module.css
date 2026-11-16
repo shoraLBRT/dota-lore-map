@@ -70,7 +70,7 @@
   transition:
     border-color var(--dur-hover) var(--ease-out),
     background-color var(--dur-hover) var(--ease-out),
-    opacity var(--dur-hover) var(--ease-out);
+    color var(--dur-hover) var(--ease-out);
 }
 
 .item:hover,
@@ -138,12 +138,26 @@
   background: var(--hl);
 }
 
+/* Приглушение — цветом текста и меткой, не прозрачностью пункта: текст держит контраст AA (A14, axe в e2e). */
 .muted {
-  opacity: 0.5;
+  color: var(--text-3);
+}
+
+.muted .name {
+  font-weight: 400;
+}
+
+.muted .swatch {
+  opacity: 0.4;
 }
 
 .muted:hover,
 .muted:focus-visible {
+  color: var(--text-1);
+}
+
+.muted:hover .swatch,
+.muted:focus-visible .swatch {
   opacity: 1;
 }
 
