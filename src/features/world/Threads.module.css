@@ -1,0 +1,138 @@
+/* Нити (SPEC §6.6, A5): прорисовка по stroke-dashoffset за --dur-thread, затем течение пунктира. */
+.threads {
+  pointer-events: none;
+  filter: drop-shadow(0 0 4px var(--hl)) drop-shadow(0 0 1px var(--hl-glow));
+}
+
+.threadCasing {
+  fill: none;
+  stroke: var(--map-ink);
+  stroke-width: calc(var(--w) * 2.4);
+  stroke-linecap: round;
+  stroke-dasharray: var(--len) var(--len);
+  stroke-dashoffset: var(--len);
+  animation: thread-draw var(--dur-thread) var(--ease-out) forwards;
+}
+
+.thread {
+  fill: none;
+  stroke: var(--hl);
+  stroke-width: var(--w);
+  stroke-linecap: round;
+  stroke-dasharray: var(--len) var(--len);
+  stroke-dashoffset: var(--len);
+  animation: thread-draw var(--dur-thread) var(--ease-out) forwards;
+}
+
+/* #67: шаг пути — сплошная нить (выше); прочая связь — пунктир, после прорисовки течёт. */
+.threadLink {
+  animation:
+    thread-draw var(--dur-thread) var(--ease-out) forwards,
+    thread-flow 2.4s linear var(--dur-thread) infinite;
+}
+
+/* Стрелка «откуда → куда» и значок события (#67) — появляются, когда нить прорисована. */
+.threadArrow {
+  fill: var(--hl);
+  stroke: var(--map-ink);
+  stroke-width: 1;
+  stroke-linejoin: round;
+}
+
+.threadBadge circle {
+  fill: var(--map-ink);
+  stroke: var(--hl);
+  stroke-width: 1.5;
+}
+
+.threadBadge path {
+  fill: none;
+  stroke: var(--hl-glow);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.threadArrow,
+.threadBadge {
+  animation: thread-mark var(--dur-fade) var(--ease-out) calc(var(--dur-thread) * 0.6) both;
+}
+
+/* Вспышка на концах нити. */
+.flash {
+  fill: var(--hl-glow);
+  stroke: var(--hl);
+  stroke-width: 2;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: thread-flash calc(var(--dur-thread) + 300ms) var(--ease-out) both;
+}
+
+@keyframes thread-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes thread-flow {
+  from {
+    stroke-dasharray: var(--dash) var(--dash);
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dasharray: var(--dash) var(--dash);
+    stroke-dashoffset: calc(var(--dash) * -2);
+  }
+}
+
+@keyframes thread-mark {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes thread-flash {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+
+  40% {
+    opacity: 1;
+    transform: scale(1.4);
+  }
+
+  100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+}
+
+/* SPEC §14: при reduced motion — без сдвигов и масштаба: нить сразу нарисована и не течёт, вспышки нет. */
+@media (prefers-reduced-motion: reduce) {
+  .threadCasing {
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+
+  .thread {
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+
+  .threadLink {
+    stroke-dasharray: var(--dash) var(--dash);
+  }
+
+  .threadArrow,
+  .threadBadge {
+    animation: none;
+  }
+
+  .flash {
+    opacity: 0.8;
+    animation: none;
+  }
+}

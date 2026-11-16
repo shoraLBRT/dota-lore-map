@@ -1,7 +1,8 @@
 import type { CSSProperties } from 'react';
 import { EVENT_PATHS, hasBadge } from '../../components/EventIcon';
 import type { HeroThreads } from '../search/threads';
-import styles from './MapStage.module.css';
+import styles from './Threads.module.css';
+import tones from './tones.module.css';
 import { STAGE_HEIGHT, STAGE_WIDTH } from './camera';
 import type { Box } from './labels';
 import { arc, badgeAt } from './threadGeometry';
@@ -39,7 +40,7 @@ export function Threads({ threads, scale, obstacles = [], clip }: Props) {
   const k = scale.toFixed(4);
   const ends = new Map(steps.flatMap((s) => [s.from, s.to]).map((s) => [s.key, s]));
   return (
-    <g className={[styles.threads, styles[tone]].join(' ')} aria-hidden="true" data-testid="threads">
+    <g className={[styles.threads, tones[tone]].join(' ')} aria-hidden="true" data-testid="threads">
       {steps.map((step, i) => {
         const a = arc(step.from.point!, step.to.point!);
         const style = {

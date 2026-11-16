@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import type { Region } from '../../data/types';
 import { preloadImage, regionArt } from './art';
 import { STAGE_HEIGHT, STAGE_WIDTH } from './camera';
-import styles from './MapStage.module.css';
+import styles from './RegionArt.module.css';
 
 /**
  * Детальная картинка региона поверх общей (SPEC §7.1 A3, ARCHITECTURE A10): SVG `<image>` под маркерами,

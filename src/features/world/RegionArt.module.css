@@ -1,0 +1,15 @@
+/* Детальная картинка региона: кроссфейд после перелёта (A3, ARCHITECTURE A10). */
+.art {
+  pointer-events: none;
+  animation: fade-in var(--dur-fade) var(--ease-out) var(--dur-camera) both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

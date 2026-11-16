@@ -1,0 +1,25 @@
+/* Цвет подсветки (SPEC §8.3, ARCHITECTURE A8): стороны и ярусы. */
+.radiant {
+  --hl: var(--radiant);
+  --hl-glow: var(--radiant-glow);
+}
+
+.dire {
+  --hl: var(--dire);
+  --hl-glow: var(--dire-glow);
+}
+
+.neutral {
+  --hl: var(--neutral);
+  --hl-glow: var(--neutral-glow);
+}
+
+.upper {
+  --hl: var(--upper);
+  --hl-glow: var(--upper-glow);
+}
+
+.abyss {
+  --hl: var(--abyss);
+  --hl-glow: var(--abyss-glow);
+}

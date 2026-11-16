@@ -1,0 +1,62 @@
+/*
+ * Нить ушла за край кадра (S2/S3): стрелка, место и (если другой) регион, клик ведёт к месту.
+ * left/top — левый верхний угол метки, его считает placeEdgeLabels (#64): метка целиком в видимой части кадра.
+ */
+.exit {
+  position: absolute;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  max-width: 14rem;
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--hl);
+  background: var(--bg-1);
+  color: var(--text-1);
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: 0 0 10px var(--hl-glow);
+  animation: fade-in var(--dur-fade) var(--ease-out) var(--dur-camera) both;
+}
+
+.exitText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.exitName,
+.exitRegion {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.exitRegion {
+  color: var(--text-2);
+  font-size: 0.7rem;
+  font-weight: 400;
+}
+
+.exit:hover,
+.exit:focus-visible {
+  background: var(--bg-2);
+}
+
+.exitArrow {
+  display: inline-block;
+  color: var(--hl);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
