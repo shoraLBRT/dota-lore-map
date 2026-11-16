@@ -32,7 +32,7 @@ src/
   i18n/             словарь интерфейса ru.json / en.json, хук useT(): t(key) — строки интерфейса, l({ ru, en }) — контент
   styles/           tokens.css, global.css
 public/             статические ассеты (шрифты, звуки, арт карты после оптимизации)
-docs/               SPEC, ARCHITECTURE, PROJECT_STATE, исследования
+docs/               SPEC, ARCHITECTURE, PROJECT_STATE (коротко: состояние и очередь), HISTORY (история по PR, не читать перед работой), исследования
 ```
 
 ## A3. Данные
