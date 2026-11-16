@@ -11,7 +11,8 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: CI,
   retries: CI ? 1 : 0,
-  workers: CI ? 2 : undefined,
+  // Больше двух потоков WebKit под Windows падает (Target crashed) — держим два везде.
+  workers: 2,
   reporter: CI ? [['github'], ['list']] : [['line']],
   timeout: 60_000,
   expect: { timeout: 10_000 },
