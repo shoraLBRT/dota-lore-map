@@ -264,6 +264,8 @@ SPEC §7.1: анимация камеры не прерывается клика
 - GitHub Actions: на каждый PR — `npm ci && npm run check`; на push в `main` — сборка и деплой на GitHub Pages (`base: '/dota-lore-map/'`).
 - `npm run check` = `data` (сборка и валидация данных) + `typecheck` + `lint` + `test` + `build` + `scripts/check-budget.mjs` (бюджет загрузки, A14) + `map/check-layout.mjs` + `python research/e1/build.py --check` + `python research/e14/test_e14.py` (тесты модели связей и скриптов E14).
 - Ничего не мержится с красным CI.
+- **Коммиты и версии — стандарт [habze](https://github.com/shoraLBRT/habze/blob/main/STANDARD.md)** (#104). PR сливаются только squash; заголовок PR — Conventional Commit на английском, его проверяет обязательная проверка `pr-title / check` (`.github/workflows/pr-title.yml`). Версию (`package.json`, `package-lock.json`, `.release-please-manifest.json`) и `CHANGELOG.md` ведёт release-please (`.github/workflows/release.yml`, `release-please-config.json`): он держит открытым Release PR, слияние которого ставит тег `vX.Y.Z` и выпускает релиз; руками их не правим. Стартовая версия — 0.1.0, история до `bootstrap-sha` в релизы не входит. Обновления зависимостей — Renovate (`renovate.json`, пресет habze).
+- Ветка `main` защищена набором правил: слияние только через PR, обязательные проверки `check` (CI) и `pr-title / check`.
 
 ## A8. Дизайн-система
 
