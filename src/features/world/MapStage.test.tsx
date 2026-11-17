@@ -460,7 +460,7 @@ describe('MapStage — мир с открытой панелью (#97)', () => {
     rerender(stage(true));
     expect(layer().style.transform).toBe('translate(calc(15% - 240px), 15%) scale(0.7)');
     expect(Element.prototype.animate).toHaveBeenCalledTimes(1);
-    expect(vi.mocked(Element.prototype.animate).mock.calls[0][1]).toMatchObject({ duration: 700 });
+    expect(vi.mocked(Element.prototype.animate).mock.calls[0]?.[1]).toMatchObject({ duration: 700 });
     rerender(stage(false));
     expect(layer().style.transform).toBe('translate(0%, 0%) scale(1)');
     expect(Element.prototype.animate).toHaveBeenCalledTimes(2);
