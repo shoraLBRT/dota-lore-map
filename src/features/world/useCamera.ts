@@ -17,6 +17,9 @@ import {
   type View,
 } from './camera';
 
+/** Кадр «мир слева от панели» — отдельный кадр для анимации, хотя камера та же (#97). */
+const WORLD_PANEL_SHOT = 'world-panel' as const;
+
 function isMobile(): boolean {
   try {
     return window.matchMedia(MOBILE_QUERY).matches;
@@ -96,8 +99,10 @@ export function useCamera({ active, activePlaceSlug, panel, regionList, topInset
     return pos ? placeCamera(active.layout.camera, pos) : active.layout.camera;
   }, [active, activePlaceSlug]);
 
-  const inset = panel && active ? view.inset : 0;
-  /** Панель закрывает кадр справа и в мире (профиль героя, E15): камера мира не двигается, но значки нитей не встают под неё. */
+  /** Мир с открытой панелью (профиль героя, #97): карта целиком кадрируется в свободную часть слева от панели. */
+  const worldPanel = inWorld && panel && !regionList && view.inset > 0;
+  const inset = panel && (active || worldPanel) ? view.inset : 0;
+  /** Панель закрывает кадр справа в любом экране: значки нитей не встают под неё. */
   const cover = panel ? view.inset : 0;
   const insetBottom = panel && active ? (view.insetBottom ?? 0) : 0;
   /** Камера места не уводит из кадра регион, если он помещается целиком (#96). */
@@ -124,7 +129,9 @@ export function useCamera({ active, activePlaceSlug, panel, regionList, topInset
   const threadScale = (view.layerWidth > 0 ? STAGE_WIDTH / view.layerWidth : 1) / framed.camera.zoom;
 
   // Анимация камеры (A3, A4). Пока она идёт, навигация занята: клики ставятся в очередь.
-  const shownCamera = useRef<Camera>(camera);
+  // Кадр — камера, а в мире ещё и панель: открыли или свернули профиль — карта переезжает (#97).
+  const shot = worldPanel ? WORLD_PANEL_SHOT : camera;
+  const shownCamera = useRef<Camera | typeof WORLD_PANEL_SHOT>(shot);
   const shownTarget = useRef(target);
   const shownRegion = useRef(active?.id);
   const running = useRef<Animation | null>(null);
@@ -143,18 +150,19 @@ export function useCamera({ active, activePlaceSlug, panel, regionList, topInset
     const prevCamera = shownCamera.current;
     const prevRegion = shownRegion.current;
     let from = shownTarget.current;
-    shownCamera.current = camera;
+    shownCamera.current = shot;
     shownTarget.current = target;
     shownRegion.current = active?.id;
     // Тот же кадр, другой размер окна — без анимации, transform уже стоит в style.
-    if (!el || prevCamera === camera) return;
+    if (!el || prevCamera === shot) return;
     if (running.current) {
       // Новый переход посреди старого (кнопка «назад» браузера) — продолжаем с текущего положения.
       from = window.getComputedStyle(el).transform || from;
       running.current.cancel();
       running.current = null;
     }
-    const withinRegion = prevRegion !== undefined && prevRegion === active?.id;
+    const worldToWorld = prevRegion === undefined && !active;
+    const withinRegion = worldToWorld || (prevRegion !== undefined && prevRegion === active?.id);
     const duration = withinRegion
       ? cssDuration('--dur-place') || DURATION.place
       : cssDuration('--dur-camera') || DURATION.region;
@@ -175,7 +183,7 @@ export function useCamera({ active, activePlaceSlug, panel, regionList, topInset
         release();
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps -- анимируем только смену кадра, не размер окна
-  }, [camera]);
+  }, [shot]);
 
   useEffect(() => () => running.current?.cancel(), []);
 

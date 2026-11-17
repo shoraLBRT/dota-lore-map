@@ -197,7 +197,8 @@ export function WorldScreen({ screen, veiled = false }: Props) {
               open({ name: 'region', regionId: id });
             }}
             onSelectPlace={(id, slug) => open({ name: 'place', regionId: id, placeSlug: slug })}
-            panel={Boolean(region) || profileOpen}
+            // Свёрнутый профиль в мире кадр не закрывает: карта снова на весь кадр (#97).
+            panel={Boolean(region) || (profileOpen && !collapsed)}
             onCameraBusy={hold}
             focus={spots}
             threads={threads}

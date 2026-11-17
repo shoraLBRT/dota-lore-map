@@ -425,6 +425,48 @@ describe('MapStage — подписи и подсказки (аудит E13)', (
   });
 });
 
+describe('MapStage — мир с открытой панелью (#97)', () => {
+  const original = Element.prototype.animate;
+  const sizes = ['offsetWidth', 'offsetHeight', 'clientWidth', 'clientHeight'] as const;
+  // Свои свойства прототипа (offset*) возвращаем, унаследованные от Element (client*) — просто снимаем.
+  const own = sizes.map((k) => Object.getOwnPropertyDescriptor(HTMLElement.prototype, k));
+  beforeEach(() => {
+    Element.prototype.animate = vi.fn(() => ({ finished: new Promise(() => undefined), cancel: () => undefined }) as unknown as Animation);
+    document.documentElement.style.setProperty('--panel-inset', '480px');
+    for (const k of sizes) {
+      Object.defineProperty(HTMLElement.prototype, k, { configurable: true, get: () => (k.endsWith('Width') ? 1600 : 1000) });
+    }
+  });
+  afterEach(() => {
+    Element.prototype.animate = original;
+    document.documentElement.style.removeProperty('--panel-inset');
+    sizes.forEach((k, i) => {
+      const d = own[i];
+      if (d) Object.defineProperty(HTMLElement.prototype, k, d);
+      else delete (HTMLElement.prototype as unknown as Record<string, unknown>)[k];
+    });
+  });
+
+  it('панель открыта — карта переезжает влево от неё, закрыта — обратно на весь кадр', () => {
+    const props = { regions: [region('a', true)], onSelectRegion: vi.fn(), onSelectPlace: vi.fn(), heroesOf: () => heroes(0) };
+    const stage = (panel: boolean) => (
+      <I18nProvider initialLang="en">
+        <MapStage {...props} panel={panel} />
+      </I18nProvider>
+    );
+    const { rerender, container } = render(stage(false));
+    const layer = () => container.querySelector<HTMLElement>('svg')!.parentElement!;
+    expect(layer().style.transform).toBe('translate(0%, 0%) scale(1)');
+    rerender(stage(true));
+    expect(layer().style.transform).toBe('translate(calc(15% - 240px), 15%) scale(0.7)');
+    expect(Element.prototype.animate).toHaveBeenCalledTimes(1);
+    expect(vi.mocked(Element.prototype.animate).mock.calls[0][1]).toMatchObject({ duration: 700 });
+    rerender(stage(false));
+    expect(layer().style.transform).toBe('translate(0%, 0%) scale(1)');
+    expect(Element.prototype.animate).toHaveBeenCalledTimes(2);
+  });
+});
+
 describe('camera', () => {
   it('весь мир — без сдвига и масштаба', () => {
     expect(cameraTransform({ x: 0.5, y: 0.5, zoom: 1 })).toBe('translate(0%, 0%) scale(1)');
@@ -477,6 +519,15 @@ describe('camera', () => {
     // Альбомная ориентация: свободной высоты меньше слоя — zoom уменьшается.
     const landscape = { width: 760, height: 360, layerWidth: 576, layerHeight: 360, inset: 0, insetBottom: 108 };
     expect(frameCamera(camera, landscape).camera.zoom).toBeCloseTo(2 * (252 / 360));
+  });
+  it('мир под панелью (#97): карта целиком в свободной части слева от панели', () => {
+    // 1440×900, панель 492 px: свободно 948 px, мир ужимается до 948/1440 и встаёт в её середину.
+    const view = { width: 1440, height: 900, layerWidth: 1440, layerHeight: 900, inset: 492 };
+    const framed = frameCamera({ x: 0.5, y: 0.5, zoom: 1 }, view);
+    expect(framed.camera).toEqual({ x: 0.5, y: 0.5, zoom: 948 / 1440 });
+    expect(framed.offset).toBe(246);
+    // Широкое окно: мир помещается в свободную часть без уменьшения.
+    expect(frameCamera({ x: 0.5, y: 0.5, zoom: 1 }, { ...view, width: 2400 }).camera.zoom).toBe(1);
   });
   it('отрицательный сдвиг по вертикали — вниз', () => {
     expect(cameraTransform({ x: 0.5, y: 0.5, zoom: 1 }, 0, -40)).toBe('translate(0%, calc(0% + 40px)) scale(1)');
