@@ -30,7 +30,7 @@ const YOUTUBE_ID = /^[A-Za-z0-9_-]{11}$/;
 const isHttps = (v) => typeof v === 'string' && /^https:\/\/[^\s/]+\.[^\s]+$/.test(v);
 /** src картинки: https-ссылка или относительный путь без схемы (ARCHITECTURE A3). */
 const isMediaSrc = (v) => isHttps(v) || (isNonEmptyString(v) && !/^[a-z][a-z0-9+.-]*:|^\/\//i.test(v) && !/\s/.test(v));
-// Модель связей героя (E14, ARCHITECTURE A3). Те же правила проверяет research/e1/build.py.
+// Модель связей героя (E14, ARCHITECTURE A3). Правила — только здесь; research/e14/check.py вызывает --check-hero.
 export const EVENTS = ['origin', 'home', 'journey', 'battle', 'service', 'exile', 'death', 'visit', 'mention'];
 /**
  * События, при которых место — не остановка пути героя: `mention` — герой там не был.
@@ -67,6 +67,12 @@ const VIA = ['infobox', 'lore', 'place'];
 const LINK_KEYS = ['place', 'region', 'event', 'source', 'via', 'url', 'note', 'doubt'];
 const RELATION_KEYS = ['hero', 'type', 'place', 'region', 'source', 'via', 'url', 'note', 'doubt'];
 const ENTRY_KEYS = ['links', 'path', 'relations', 'profile'];
+/** Файл героя E14 (research/e14/heroes/<key>.json): запись модели плюс поля исследователя (их проверяет check.py). */
+const HERO_FILE_KEYS = [...ENTRY_KEYS, 'hero', 'read', 'candidates', 'unconfirmed'];
+const TIERS = ['upper', 'continent', 'abyss'];
+const SIDES = ['radiant', 'dire', 'neutral'];
+const SIDE_BASIS = ['s1map', 'position', 'tier'];
+const PLACEMENTS = ['lore', 's1map', 'ours'];
 export const SUMMARY_MAX = 500;
 /** Арты профиля — только официальные ссылки Valve (A6). */
 const VALVE_ART = /^https:\/\/(www\.dota2\.com|([a-z0-9-]+\.)*steamstatic\.com|steamcdn-a\.akamaihd\.net)\/\S+$/;
@@ -361,8 +367,11 @@ function unknownKeys(obj, allowed, where, errors) {
   for (const key of Object.keys(obj)) if (!allowed.includes(key)) errors.push(`${where}: неизвестный ключ "${key}"`);
 }
 
-/** source / via / url / note / doubt записи модели связей (A3). Ошибка — undefined. */
-function sourceOf(rec, where, mediaIds, errors) {
+/**
+ * source / via / url / note / doubt записи модели связей (A3). Ошибка — undefined.
+ * strict — файл героя E14: у Liquipedia нужна url, у ours — note.
+ */
+function sourceOf(rec, where, { mediaIds, strict = false }, errors) {
   const before = errors.length;
   const { source, via, url } = rec;
   if (typeof source === 'string' && source.startsWith('comic:')) {
@@ -381,6 +390,10 @@ function sourceOf(rec, where, mediaIds, errors) {
   }
   for (const key of ['note', 'doubt']) {
     if (rec[key] !== undefined && !isNonEmptyString(rec[key])) errors.push(`${where}: ${key} — непустая строка`);
+  }
+  if (strict && source === 'liquipedia' && url === undefined) errors.push(`${where}: у источника liquipedia нужна ссылка url`);
+  if (strict && source === 'ours' && !isNonEmptyString(rec.note)) {
+    errors.push(`${where}: у источника ours нужна заметка note — почему так решили`);
   }
   return errors.length === before ? compact({ source, via, url, note: rec.note, doubt: rec.doubt }) : undefined;
 }
@@ -429,7 +442,7 @@ function buildLinks(entry, where, refs, errors) {
     unknownKeys(link, LINK_KEYS, w, errors);
     const eventOk = EVENTS.includes(link.event);
     if (!eventOk) errors.push(`${w}: event — ${EVENTS.join(' | ')}`);
-    const src = sourceOf(link, w, refs.mediaIds, errors);
+    const src = sourceOf(link, w, refs, errors);
     const spot = spotOf(link, w, refs, errors);
     if (link.region === 'uncharted' && !link.note) errors.push(`${w}: у героя «Неизведанных земель» нужна заметка note`);
     if (!spot || !src || !eventOk) return;
@@ -489,7 +502,7 @@ function buildRelations(entry, where, refs, heroKeys, errors) {
     if (!typeOk) errors.push(`${w}: type — ${Object.keys(RELATIONS).join(' | ')}`);
     if (seen.has(`${rel.hero}/${rel.type}`)) errors.push(`${w}: связь ${rel.hero} / ${rel.type} повторяется`);
     seen.add(`${rel.hero}/${rel.type}`);
-    const src = sourceOf(rel, w, refs.mediaIds, errors);
+    const src = sourceOf(rel, w, refs, errors);
     const spot = spotOf(rel, w, refs, errors, true);
     if (!src || spot === undefined || !heroOk || !typeOk) return;
     relations.push(compact({ hero: rel.hero, type: rel.type, ...(spot ?? {}), ...src }));
@@ -523,6 +536,41 @@ function buildProfile(entry, where, errors) {
   return Object.keys(out).length > 0 ? out : undefined;
 }
 
+/** Запись героя → { links, path?, relations?, profile? }; не объект — undefined. */
+function heroEntry(entry, where, refs, heroKeys, errors, keys = ENTRY_KEYS) {
+  if (!isObject(entry)) {
+    errors.push(`${where}: ожидается объект { links, path?, relations?, profile? }`);
+    return undefined;
+  }
+  unknownKeys(entry, keys, where, errors);
+  if (!Array.isArray(entry.links) || entry.links.length === 0) errors.push(`${where}: пустой список мест links`);
+  const { links, spots } = buildLinks(entry, where, refs, errors);
+  return compact({
+    links,
+    path: buildPath(entry, where, refs, spots, errors),
+    relations: buildRelations(entry, where, refs, heroKeys, errors),
+    profile: buildProfile(entry, where, errors),
+  });
+}
+
+/** Справочники для проверки записей героя: регионы, места, медиа. */
+function heroRefs(regions, media, strict = false) {
+  const regionById = new Map(regions.regions.map((r) => [r.id, r]));
+  const placeRegion = new Map(regions.regions.flatMap((r) => r.locations.map((l) => [l.name, r.id])));
+  return { regionById, placeRegion, mediaIds: buildMedia(media, []).ids, strict };
+}
+
+/**
+ * Ошибки файла героя E14 (research/e14/heroes/<key>.json) по модели связей — строже, чем hero-places.json:
+ * у Liquipedia нужна url, у ours — note. Поля исследователя (read, candidates, …) проверяет research/e14/check.py.
+ */
+export function checkHeroFile({ heroes, regions, media }, data, where) {
+  const errors = [];
+  const heroKeys = new Set(heroes.heroes.map((h) => h.key));
+  heroEntry(data, where, heroRefs(regions, media, true), heroKeys, errors, HERO_FILE_KEYS);
+  return errors;
+}
+
 /**
  * research/e1/hero-places.json → Map key → { links, path?, relations?, profile? } (модель связей, A3).
  * Порядок links сохраняется: по нему идут места героя и нити (A11).
@@ -543,22 +591,11 @@ function buildHeroes(heroPlaces, heroes, refs, errors) {
       errors.push(`${where}: героя нет в heroes.json`);
       continue;
     }
-    if (!isObject(entry)) {
-      errors.push(`${where}: ожидается объект { links, path?, relations?, profile? }`);
-      continue;
-    }
-    unknownKeys(entry, ENTRY_KEYS, where, errors);
-    if (!Array.isArray(entry.links) || entry.links.length === 0) errors.push(`${where}: пустой список мест links`);
-    const { links, spots } = buildLinks(entry, where, refs, errors);
-    out.set(
-      hero.key,
-      compact({
-        links,
-        path: buildPath(entry, where, refs, spots, errors),
-        relations: buildRelations(entry, where, refs, heroKeys, errors),
-        profile: buildProfile(entry, where, errors),
-      }),
-    );
+    const model = heroEntry(entry, where, refs, heroKeys, errors);
+    if (model) out.set(hero.key, model);
+  }
+  for (const h of heroes.heroes) {
+    if (!Object.hasOwn(heroPlaces.heroes, h.name)) errors.push(`${file}: герой не распределён: ${h.name}`);
   }
   // Два героя не могут быть наставниками (хозяевами) друг друга.
   for (const [a, model] of out) {
@@ -632,12 +669,20 @@ export function buildWorld({ heroes, regions, heroPlaces, heroAliases, contents 
   const regionById = new Map();
   const placeRegion = new Map();
   for (const r of regions.regions) {
-    if (regionById.has(r.id)) errors.push(`research/e1/regions.json: регион "${r.id}" повторяется`);
+    const rw = `research/e1/regions.json: регион "${r.id}"`;
+    if (regionById.has(r.id)) errors.push(`${rw} повторяется`);
     regionById.set(r.id, r);
+    if (!TIERS.includes(r.tier) || !SIDES.includes(r.side)) errors.push(`${rw}: неверный tier/side`);
+    if (!SIDE_BASIS.includes(r.sideBasis)) errors.push(`${rw}: неверный sideBasis`);
+    else if ((r.tier !== 'continent') !== (r.sideBasis === 'tier')) {
+      errors.push(`${rw}: sideBasis «tier» — только у ярусов, и у ярусов — только он`);
+    } else if (r.sideBasis === 'tier' && r.side !== 'neutral') errors.push(`${rw}: ярус должен быть нейтральным`);
+    if (r.locations.filter((l) => l.capital).length > 1) errors.push(`${rw}: больше одной столицы`);
     const slugs = new Set();
     for (const l of r.locations) {
       if (placeRegion.has(l.name)) errors.push(`research/e1/regions.json: место "${l.name}" в двух регионах`);
       placeRegion.set(l.name, r.id);
+      if (!PLACEMENTS.includes(l.placement)) errors.push(`research/e1/regions.json: место "${l.name}": неверный placement`);
       const slug = placeSlug(l.name);
       if (!slug) errors.push(`research/e1/regions.json: у места "${l.name}" пустой slug`);
       if (slugs.has(slug)) errors.push(`research/e1/regions.json: slug "${slug}" повторяется в регионе ${r.id}`);
@@ -806,9 +851,35 @@ export function run(root) {
   return { errors: [], warnings: result.warnings, out, world: result.world };
 }
 
+/**
+ * --check-hero <file>…: проверить файлы героев E14 по модели связей (строго), ошибки — по строке в stdout.
+ * --check [--hero-places <file>]: собрать мир без записи (слияние партии E14 — research/e14/check.py --merge).
+ */
+function checkMode(root, argv) {
+  const { sources, errors } = readSources(root);
+  const at = argv.indexOf('--check-hero');
+  if (errors.length === 0 && at >= 0) {
+    for (const file of argv.slice(at + 1).filter((a) => !a.startsWith('--'))) {
+      const where = `heroes/${basename(file)}`;
+      try {
+        errors.push(...checkHeroFile(sources, readJson(resolve(file)), where));
+      } catch (e) {
+        errors.push(`${where}: ${e.message}`);
+      }
+    }
+  } else if (errors.length === 0) {
+    const hp = argv.indexOf('--hero-places');
+    if (hp >= 0) sources.heroPlaces = readJson(resolve(argv[hp + 1]));
+    errors.push(...buildWorld(sources).errors);
+  }
+  process.stdout.write(errors.map((e) => `${e}\n`).join(''));
+  process.exitCode = errors.length > 0 ? 1 : 0;
+}
+
 function main(argv) {
   const i = argv.indexOf('--root');
   const root = i >= 0 ? resolve(argv[i + 1]) : fileURLToPath(new URL('..', import.meta.url));
+  if (argv.includes('--check') || argv.includes('--check-hero')) return checkMode(root, argv);
   const { errors, warnings = [], world } = run(root);
   for (const w of warnings) console.warn(`build-data: предупреждение — ${w}`);
   if (errors.length > 0) {

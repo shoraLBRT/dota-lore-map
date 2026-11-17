@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { afterEach, describe, expect, it } from 'vitest';
 import {
   buildWorld,
+  checkHeroFile,
   heroSlug,
   normalizeAlias,
   OFF_PATH_EVENTS,
@@ -38,6 +39,7 @@ function fixture() {
         {
           id: 'icewrack',
           tier: 'continent',
+          sideBasis: 'position',
           side: 'radiant',
           en: 'Icewrack',
           ru: 'Ледяная пустошь',
@@ -50,13 +52,14 @@ function fixture() {
         {
           id: 'tomokan',
           tier: 'continent',
+          sideBasis: 'position',
           side: 'neutral',
           en: "Tomo'kan",
           ru: 'Томокан',
           geo: 'Запад.',
           locations: [{ name: "Tomo'kan", placement: 'ours' }],
         },
-        { id: 'uncharted', tier: 'continent', side: 'neutral', en: 'Uncharted', ru: 'Неизведанные', geo: '', locations: [] },
+        { id: 'uncharted', tier: 'continent', sideBasis: 'position', side: 'neutral', en: 'Uncharted', ru: 'Неизведанные', geo: '', locations: [] },
       ],
     },
     heroPlaces: {
@@ -325,6 +328,35 @@ describe('buildWorld', () => {
     expect(buildWorld({ ...f, media }).errors).toEqual([
       'research/e1/hero-places.json: Alchemist: links[1]: неизвестное медиа "comic:nope"',
     ]);
+  });
+
+  it('регионы и распределение героев: правила regions.json и «каждый герой привязан» (A3, #115)', () => {
+    const errorsOf = (change) => {
+      const f = fixture();
+      change(f);
+      return buildWorld(f).errors.join('\n');
+    };
+    expect(errorsOf((f) => (f.regions.regions[0].tier = 'sky'))).toContain('неверный tier/side');
+    expect(errorsOf((f) => delete f.regions.regions[0].sideBasis)).toContain('неверный sideBasis');
+    expect(errorsOf((f) => (f.regions.regions[0].sideBasis = 'tier'))).toContain('только у ярусов');
+    expect(errorsOf((f) => f.regions.regions[0].locations[1].capital = true)).toContain('больше одной столицы');
+    expect(errorsOf((f) => (f.regions.regions[0].locations[1].placement = 'guess'))).toContain('неверный placement');
+    expect(errorsOf((f) => delete f.heroPlaces.heroes.Alchemist)).toContain('герой не распределён: Alchemist');
+  });
+
+  it('файл героя E14 (--check-hero): строже hero-places — url у Liquipedia, note у ours (A3, #115)', () => {
+    const f = fixture();
+    const check = (data) => checkHeroFile(f, data, 'heroes/x.json').join('\n');
+    const ok = { hero: 'x', read: ['bio.ru'], links: [{ place: 'Icewrack', event: 'home', source: 'bio' }], unconfirmed: [] };
+    expect(check(ok)).toBe('');
+    expect(check({ ...ok, links: [{ place: 'Icewrack', event: 'home', source: 'liquipedia', via: 'lore' }] })).toContain(
+      'нужна ссылка url',
+    );
+    expect(check({ ...ok, links: [{ place: 'Icewrack', event: 'home', source: 'ours' }] })).toContain('нужна заметка note');
+    expect(check({ ...ok, extra: 1 })).toContain('неизвестный ключ');
+    // В hero-places.json те же записи — без строгих правил.
+    f.heroPlaces.heroes.Alchemist = { links: [{ place: 'Icewrack', event: 'home', source: 'liquipedia', via: 'lore' }] };
+    expect(buildWorld(f).errors).toEqual([]);
   });
 
   it('ловит ошибки модели связей (A3)', () => {
