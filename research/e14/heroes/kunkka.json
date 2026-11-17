@@ -20,7 +20,7 @@
       "via": "lore",
       "url": "https://liquipedia.net/dota2/Kunkka/Lore",
       "note": "Ветеран был в битве за Порт-Миньин; в биографии этого места нет.",
-      "doubt": "Порядок относительно боёв у Дрожащего острова выведен из порядка перечисления в лоре."
+      "doubt": "Битва названа только в тексте лор-страницы, без собственной ссылки; в биографии её нет, порядок относительно Trembling Isle не известен."
     },
     {
       "place": "Trembling Isle",
@@ -30,22 +30,13 @@
       "doubt": "Судьба героя после боя неизвестна: по биографии он мог погибнуть или остаться призраком, поэтому гибель здесь не записана."
     },
     {
-      "region": "radiant-lands",
-      "event": "home",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Kunkka/Lore",
-      "note": "После боя у Дрожащего острова он очутился на берегу народа кинов и снова командовал флотом, где командой были кины.",
-      "doubt": "Лор называет только берег кинов, без конкретного места на схеме; сведения опираются на прозу лор-страницы, а описание предмета, приведённое там же как ссылка, не использовано."
-    },
-    {
       "place": "Isle of Songs",
       "event": "mention",
       "source": "liquipedia",
       "via": "lore",
       "url": "https://liquipedia.net/dota2/Kunkka/Lore",
       "note": "Принцесса с Острова Песен подарила ему шарф; сам он там не бывал.",
-      "doubt": "Характер этих отношений в лоре прямо назван неясным."
+      "doubt": "Опора — описание предмета героя Commodore's Sash; характер отношений с принцессой не ясен."
     }
   ],
   "path": [
@@ -54,26 +45,12 @@
     },
     {
       "place": "Trembling Isle"
-    },
-    {
-      "region": "radiant-lands"
-    }
-  ],
-  "relations": [
-    {
-      "hero": "tidehunter",
-      "type": "rival",
-      "place": "Trembling Isle",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Kunkka/Lore",
-      "note": "Давняя вражда: Tidehunter вызвал Мэльрона на Дрожащем острове; при этом Kunkka уважает соперника."
     }
   ],
   "profile": {
     "summary": {
-      "ru": "Kunkka был адмиралом кладдского флота и защищал родные острова от демонов Катаракты. Последний бой у Дрожащего острова превратился в хаос, когда в него вмешался Мэльрон и смешал корабли в бурю. Судьба адмирала неизвестна: возможно, он погиб, а возможно, остался призраком на единственном корабле. Позднее, по слухам, он служил народу кин на их побережье.",
-      "en": "Kunkka was the admiral of the Claddish fleet, sent to defend his homeland's isles from the demons of the Cataract. His last battle at the Trembling Isle turned chaotic when a sea giant joined the fray and tangled the ships in a storm. Nobody knows whether he survived, or whether he lingers as a phantom on one ghostly vessel. Later accounts say he took command among the Keen folk on their shore."
+      "ru": "Kunkka был адмиралом кладдского флота и защищал родные острова, когда демоны Катаракты двинулись на земли людей. В решающей битве у Дрожащего острова маги Кладда призвали духов предков, и флот едва держался, пока из глубин не поднялся Мэльрон Щупальценосный и не смешал корабли в бурю. Что там произошло, никто не знает: Катаракта опустела, а Kunkka теперь командует одним призрачным кораблём. Погиб ли он, неизвестно даже Tidehunter.",
+      "en": "Kunkka was the admiral of the Claddish Navy, defending his home isles when the demons of the Cataract moved against the lands of men. In the decisive battle at the Trembling Isle the mages of Cladd summoned ancestral spirits and the fleet barely held, until Maelrawn the Tentacular rose from the depths and churned the ships into a storm. No one knows what happened there: the Cataract is deserted, and Kunkka now commands a single ghostly ship. Not even Tidehunter knows whether he died."
     },
     "art": [
       "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/kunkka.png"
@@ -95,6 +72,8 @@
     "Слух о том, что Kunkka рассёк щупальце Мэльрона Neptunian Sabre, и слух о мечах кийских мастеров из обломков Катаракты: сведения из описаний предметов и слухов.",
     "Реплики озвучки (Monkey King, Legion Commander, Storm Spirit, Alchemist, Brewmaster, Slark, Naga Siren и др.) — не основание для связей.",
     "Ключи от ворот столицы кинов не записаны: столица на схеме не отмечена, а сведение приведено со ссылкой на описание предмета.",
-    "Тайные секреты на морском дне, знакомые лорные мелочи (скорбут, пиратский ром) — без мест на схеме, не записаны."
+    "Тайные секреты на морском дне, знакомые лорные мелочи (скорбут, пиратский ром) — без мест на схеме, не записаны.",
+    "Сверка: берег кинов (регион radiant-lands, home) снят — в лор-тексте опирается только на описания предметов Claddish Gauntlets и Claddish Hightops.",
+    "Сверка: Tidehunter (rival) снят — биография говорит лишь, что Tidehunter призвал Мэльрона; тип связи из текстов Kunkka не выводится (в разделе Friendships and Rivalries — только реплики). Проверить по биографии Tidehunter в его партии."
   ]
 }

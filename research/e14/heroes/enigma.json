@@ -1,6 +1,11 @@
 {
   "hero": "enigma",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
   "links": [
     {
       "place": "Fundamental Plane",
@@ -8,31 +13,14 @@
       "source": "liquipedia",
       "via": "infobox",
       "url": "https://liquipedia.net/dota2/Enigma/Lore",
-      "note": "Инфобокс называет план происхождения Fundamental Plane; возвращение туда после гибели — из текста лор-страницы (тип origin, не death, так как место одно).",
-      "doubt": "Обе биографии не называют родину: происхождение описано как неизвестное, есть только легенды."
-    },
-    {
-      "place": "Primordial Plane",
-      "event": "exile",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Enigma/Lore",
-      "note": "По тексту о Расколе он вырвался из первичного плана вскоре после того, как четыре Фундаментала разошлись.",
-      "doubt": "Лор не сказано, совпадает ли первичный план с Fundamental Plane; возможно, это одно и то же место."
-    },
-    {
-      "place": "The Void",
-      "event": "mention",
-      "source": "bio",
-      "note": "Биография называет его существом пустоты: это описание природы, а не место, где он бывал.",
-      "doubt": "Пустота названа качеством существа, а не локацией."
+      "note": "Поле origins инфобокса лор-страницы: Fundamental Plane, родной план Фундаменталов (так же у Chaos Knight).",
+      "doubt": "Биография происхождение не называет — только легенды; поле инфобокса опирается на реплику Elder Titan."
     },
     {
       "region": "planes",
-      "event": "mention",
+      "event": "journey",
       "source": "bio",
-      "note": "Биография говорит, что он существует между планами и вне измерений; конкретного плана не названо.",
-      "doubt": "Общее указание на планы, без конкретного места."
+      "note": "Биография называет его зверем между планами: после Fundamental Plane он странствует по планам, конкретный план не назван."
     },
     {
       "place": "Heart of Nature",
@@ -81,10 +69,12 @@
   ],
   "profile": {
     "summary": {
-      "ru": "Enigma — Fundamental, сущность, появившаяся при расколе мира в Schism. О его происхождении ничего достоверного не известно, а сохранившиеся легенды расходятся между собой. Он существует между измерениями, то материальный, то бесплотный, и помнится как поглотитель миров.",
-      "en": "Enigma is a Fundamental, a cosmic being that came into existence when the world was split apart at the Schism. Nothing reliable is known about its origin, and the surviving tales of it contradict one another. It moves between planes, sometimes solid and sometimes insubstantial, and is remembered as a devourer of worlds."
+      "ru": "О прошлом Enigma ничего достоверного не известно — сохранились только противоречивые легенды. По одной, он был алхимиком, проклятым за гордыню; по другой — древним существом тяготения из тьмы, что была до первого света; по третьей — первой погибшей звездой, ставшей разумной чёрной дырой. Его описывают как силу, поглощающую миры, существо пустоты, которое скитается между планами, то обретая плоть, то теряя её.",
+      "en": "Nothing reliable is known about Enigma's past; only contradictory legends survive. One calls him an alchemist cursed for his pride, another an ancient being of gravity from the darkness before the first light, a third the first star to collapse into a thinking black hole. He is described as a force that devours worlds, a creature of the void wandering between the planes, at times solid and at times bodiless."
     },
-    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/enigma.png"]
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/enigma.png"
+    ]
   },
   "unconfirmed": [
     "Ancient Apparition: есть только в поле heroes инфобокса, тип связи не указан; реплики «elemental to elemental» — не основание.",
@@ -93,6 +83,16 @@
     "Mireska, Cedric, Jovat Kazran: персонажи лора без ключа героя в heroes.json, в links и relations не записаны.",
     "Реплики озвучки (Dark Willow, Pudge, Arc Warden, Bristleback, Earth Spirit, Monkey King, Legion Commander, Pugna, Tidehunter, Oracle и др.) — не основание для связей, только для unconfirmed.",
     "Ресурсы из перечисления «Schism» и «Order», «Time», «Stars», «Elementals», «Alchemy» в инфобоксе — не места, в links не записаны.",
-    "Путь героя (path) не записан: лор говорит, что он вырвался из первичного плана, но не ясно, перемещение ли это между разными местами."
+    "Путь героя (path) не записан: лор говорит, что он вырвался из первичного плана, но не ясно, перемещение ли это между разными местами.",
+    "Сверка: Primordial Plane (exile) снят — раздел The Schism лор-страницы пересказывает монолог Void Spirit и реплики Elder Titan.",
+    "Сверка: The Void снят — биография называет его существом пустоты, это описание природы, а не место."
+  ],
+  "path": [
+    {
+      "place": "Fundamental Plane"
+    },
+    {
+      "region": "planes"
+    }
   ]
 }

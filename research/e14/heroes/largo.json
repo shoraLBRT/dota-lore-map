@@ -1,6 +1,10 @@
 {
   "hero": "largo",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore"
+  ],
   "links": [
     {
       "place": "Velu'Mar",
@@ -11,17 +15,17 @@
   ],
   "profile": {
     "summary": {
-      "ru": "Ларго принадлежит к изгнанному народу, который нашёл Велу'Мар, живой остров, говорящий только песнями. Он вырос среди бардов-шаманов, научившихся слышать остров и отвечать ему. Сейчас он странствует со стайкой юных лягушат-учеников и ищет новые мелодии, чтобы привезти их домой.",
-      "en": "Largo belongs to an exiled people who came to know Velu'Mar, a living island that communicates through song. He grew up among bard monks trained to hear the island and answer it. Now he travels with a band of young frog followers, gathering fresh melodies he hopes to carry back to his people."
+      "ru": "Largo принадлежит к изгнанному народу, который нашёл Велу'Мар, живой остров, говорящий только песнями. Он вырос среди бардов-шаманов, научившихся слышать остров и отвечать ему. Сейчас он странствует со стайкой юных лягушат-учеников и ищет новые мелодии, чтобы привезти их домой.",
+      "en": "Largo belongs to an exiled people who came to know Velu'Mar, a living island that communicates through song. He grew up among shaman bards trained to hear the island and answer it. Now he travels with a band of young frog followers, gathering fresh melodies he hopes to carry back to his people."
     }
   },
   "candidates": [
     {
       "name": "Murkroot Forest",
       "region": "fellstrath",
-      "event": "exile",
+      "event": "mention",
       "source": "bio",
-      "note": "Русская биография: изгнанники пришли из лесов Murkroot; в английской сказано только о народе. Регион в источниках не назван, fellstrath предположительно по Velu'Mar, решает владелец"
+      "note": "Только русская биография: изгнанники пришли из лесов Хмурых корней; в английской Murkroots — название народа, а не места. Это родина народа, а не самого Largo; регион не назван, fellstrath предположен по Velu'Mar."
     }
   ],
   "unconfirmed": [

@@ -1,6 +1,10 @@
 {
   "hero": "wisp",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore"
+  ],
   "links": [
     {
       "place": "Fundamental Plane",
@@ -50,23 +54,16 @@
       "via": "infobox",
       "url": "https://liquipedia.net/dota2/Io/Lore",
       "note": "Сиблинг по инфобоксу лор-страницы Io."
-    },
-    {
-      "hero": "earthshaker",
-      "type": "ally",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Io/Lore",
-      "note": "Раздел Relationships лор-страницы Io: Earthshaker назван младшим другом, с которым Io общается и обсуждает дальние путешествия.",
-      "doubt": "Дружба описана в разделе, который опирается на реплики Earthshaker; других текстовых подтверждений нет."
     }
   ],
   "profile": {
     "summary": {
-      "ru": "Io — древнее проявление жизненной силы, старше самого времени, и одна из Фундаменталов вселенной. Оно существует на всех планах сразу, а в физическом мире присутствует лишь малой долей своего существа, искривляя силовые линии. Считается доброжелательной силой, связывающей существование воедино.",
-      "en": "Io is an ancient entity older than time, one of the Fundamentals that arose in the Schism. It exists on every plane at once and reaches the material world only through a small fraction of itself, bending the lines of force that hold reality together. Its aims remain unknown."
+      "ru": "Io — один из Фундаменталов вселенной, сила старше времени и странник из миров за гранью понимания смертных. Оно существует на всех планах сразу, а в физический мир проникает лишь малой частью себя, искривляя силовые линии, что связывают бытие. Враги зовут его великим разрушителем, учёные почитают, а цели его остаются неведомы.",
+      "en": "Io is one of the Fundamentals, a power that predates time itself and a wanderer from realms beyond mortal understanding. It exists on every plane at once and reaches the physical world only through a tiny part of itself, bending the lines of charge that hold existence together. Enemies call it the great unmaker, scholars revere it, and its aims remain unknown."
     },
-    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/wisp.png"]
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/wisp.png"
+    ]
   },
   "unconfirmed": [
     "Dawnbreaker (dawnbreaker.json): связь wisp → enemy (Io погасила её искру) — в лоре Io нет упоминаний Dawnbreaker, обратной записи нет; в файл Io не добавлена, нужна сверка по лору Dawnbreaker.",
@@ -75,6 +72,15 @@
     "Enigma и Chaos Knight в репликах (брат, «ride with me») и Keeper of the Light (вражда) — кроме инфобокса, реплики не основание; вражда с Keeper из реплики не записана.",
     "Physical/material plane: в биографии «физический план», в тексте лора назван Terrene Plane только ссылкой; такого места в regions.json нет, учтено регионом planes; кандидат не добавлен.",
     "Schism — событие, а не место; в links не добавлено.",
-    "Hero Atlas (Monster Hunter) и liquipedia-hero не открыты полностью в этой партии: текст героя в кэше проверен выборочно, на связи и места не повлиял."
+    "Hero Atlas (Monster Hunter) и liquipedia-hero не открыты полностью в этой партии: текст героя в кэше проверен выборочно, на связи и места не повлиял.",
+    "Сверка: Earthshaker (друг) снят — раздел Relationships опирается только на реплики набора Planetfall; так же решено в earthshaker.json (партия 05)."
+  ],
+  "path": [
+    {
+      "place": "Fundamental Plane"
+    },
+    {
+      "region": "planes"
+    }
   ]
 }

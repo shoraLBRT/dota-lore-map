@@ -1,6 +1,11 @@
 {
   "hero": "grimstroke",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
   "links": [
     {
       "place": "Ashkavor",
@@ -9,41 +14,14 @@
       "note": "Родина героя и его народа: здесь он стал Вознесённым у рунного камня, здесь же погибли и были превращены в тени его соплеменники. Liquipedia в инфобоксе называет то же место."
     }
   ],
-  "relations": [
-    {
-      "hero": "ember_spirit",
-      "type": "enemy",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Grimstroke/Lore",
-      "note": "Лор-страница называет трёх духов-братьев, к которым герой питает особую ненависть: Xin, Kaolin и Raijin. Инфобокс перечисляет героев Ember Spirit, Earth Spirit и Storm Spirit.",
-      "doubt": "Соответствие Xin, Kaolin и Raijin героям инфобокса не написано прямо: сопоставление сделано по инфобоксу и по упоминанию пламени Xin, а не по тексту. Нужна проверка владельцем."
-    },
-    {
-      "hero": "earth_spirit",
-      "type": "enemy",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Grimstroke/Lore",
-      "note": "См. запись про Ember Spirit: тот же раздел лор-страницы, отдельный герой из инфобокса.",
-      "doubt": "Соответствие Kaolin герою Earth Spirit выведено из инфобокса, в тексте не названо."
-    },
-    {
-      "hero": "storm_spirit",
-      "type": "enemy",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Grimstroke/Lore",
-      "note": "См. запись про Ember Spirit: тот же раздел лор-страницы, отдельный герой из инфобокса.",
-      "doubt": "Соответствие Raijin герою Storm Spirit выведено из инфобокса, в тексте не названо."
-    }
-  ],
   "profile": {
     "summary": {
-      "ru": "Grimstroke, последний из Вознесённых Ашкавора, был стражем своего народа, но при Вознесении загрязнённые чернила поглотили его и весь народ, превратив соплеменников в тени. Теперь он бродит по миру со своей кистью и строит масштабные замыслы, подчиняя себе тех, кого встречает. Единственная привязанность, о которой сказано в тексте, связана с его погибшей возлюбленной Яовхи, которая осталась рядом с ним в виде духа.",
-      "en": "Grimstroke, the last of the Ascended of Ashkavor, was meant to guard his people, but during his Ascension the tainted ink consumed him and every one of his kin, leaving them as shades. He now travels the world with an enchanted brush, pursuing grand designs and drawing others under his control. The only attachment the texts describe is to his lost beloved, Yaovhi, who remains at his side as a spirit."
+      "ru": "Grimstroke должен был стать новым Вознесённым стражем Ашкавора и связать свою душу с душами народа. Всю жизнь он искал силы сверх дозволенного наставниками и ради этого нарушил запрет, добавив в чернила сукровицу. На обряде отравленные чернила начали поглощать его, и, чтобы выжить, он направил скверну по связи в свой народ. Он уцелел, а все жители Ашкавора превратились в тени из вязких чернил.",
+      "en": "Grimstroke was to become the new Ascended guardian of Ashkavor, binding his soul to the souls of his people. All his life he sought power beyond what his teachers allowed, and he broke the ban on enhancing the inks with ichor. During the rite the tainted ink began to swallow him, and to survive he forced the corruption back through the bond into his people. He lived, while every Ashkavoran was turned into a shade of thick ink."
     },
-    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/grimstroke.png"]
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/grimstroke.png"
+    ]
   },
   "candidates": [],
   "unconfirmed": [
@@ -53,6 +31,7 @@
     "Dead God и его Dirge: антипатия к Dirge из реплики озвучки; Dead God не в heroes.json",
     "Mars: вышел в одном трейлере с героем (trivia), связь не подтверждена текстом лора",
     "Ascended Ones, Ancients, Soulbind, Fortune of the Five Houses: факции и предметы, не места на карте; родина уже покрыта Ashkavor",
-    "Комикса с героем в content/media.json нет"
+    "Комикса с героем в content/media.json нет",
+    "Сверка: Ember Spirit, Earth Spirit, Storm Spirit (враги) сняты — ненависть к трём братьям-духам в лор-тексте держится на одной реплике озвучки, а соответствие Xin, Kaolin и Raijin героям лишь выведено."
   ]
 }

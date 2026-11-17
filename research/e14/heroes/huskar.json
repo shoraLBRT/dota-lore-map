@@ -1,6 +1,11 @@
 {
   "hero": "huskar",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
   "links": [
     {
       "place": "Nothl Realm",
@@ -9,22 +14,14 @@
       "note": "Он был на краю гибели в мире Nothl, и жрец теней вернул его душу из вечности; тело и кровь изменились."
     }
   ],
-  "relations": [
-    {
-      "hero": "dazzle",
-      "type": "family",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Huskar/Lore",
-      "note": "В инфобоксе и на лор-странице указано двоюродное родство; в биографии Dazzle назван жрецом, спасшим героя."
-    }
-  ],
   "profile": {
     "summary": {
-      "ru": "Huskar — воин ордена Dezun, которого жрец теней Dazzle вытащил из мира Nothl, спасив его душу от вечности. Возвращённая кровь стала источником огромной силы, но спасение оставило обиду: орден хотел сделать его орудием, а собственной жертвы у него отняли. Перед большой войной он ушёл из родных мест в поисках союзников и достойного дела. Секреты, которые он принёс из мира Nothl, теперь служат его собственным целям.",
-      "en": "Huskar is a warrior of the Dezun Order whose soul was pulled out of eternity by the shadow priest Dazzle after he had suffered in the Nothl Realm. Returned changed, his blood became a source of enormous power, yet the rescue left him bitter, since the order wanted to use him as a tool and denied him his own sacrifice. Before the great war he left his homeland to seek allies and a worthy cause. The secrets he brought back from the Nothl Realm now serve his own goals."
+      "ru": "Huskar очнулся на пороге священного мира Nothl: жрец теней Dazzle, нарушив древние обряды ордена Dezun, вернул его дух из вечности. Возвращение изменило его — собственная кровь стала источником яростной силы. Спасение его разгневало: оно лишило его жертвы, что открыла бы ему место среди богов. Когда старейшины ордена захотели сделать его орудием своей кампании, он покинул родные края в поисках союзников и дела, достойного его силы.",
+      "en": "Huskar woke at the edge of the sacred Nothl Realm as the shadow priest Dazzle, defying the old rites of the Dezun Order, called his spirit back from eternity. The return changed him, turning his own blood into a source of fierce power. The rescue enraged him, because it robbed him of the sacrifice that would have earned him a place among the gods. When the order's elders wanted to use him as a weapon in their campaign, he left his ancestral home to find allies and a cause worthy of his power."
     },
-    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/huskar.png"]
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/huskar.png"
+    ]
   },
   "candidates": [
     {
@@ -43,6 +40,7 @@
     "Уважение к Bloodseeker и Witch Doctor за схожий взгляд на жизнь: тип связи из прозы не выводится.",
     "Troll Warlord презирает героя за сходство: это пересказ реплики озвучки, тип связи не подтверждён.",
     "Реплики озвучки от Monkey King, Bounty Hunter, Lifestealer, Lycan, Tiny, Visage, Brewmaster и Oracle — не основание для связей.",
-    "Народ героя напоминает коренные народы Нового Света, но место на схеме не названо: родину по народу не привязываю."
+    "Народ героя напоминает коренные народы Нового Света, но место на схеме не названо: родину по народу не привязываю.",
+    "Сверка: Dazzle (двоюродный брат) снят — поле family инфобокса опирается на реплику озвучки. Биография называет Dazzle жрецом, спасшим Huskar вопреки обрядам, но тип связи из неё не выводится; проверить в партии Dazzle."
   ]
 }
