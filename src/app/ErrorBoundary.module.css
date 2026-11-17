@@ -1,0 +1,63 @@
+/* Экран ошибки (#107): токены дизайн-системы, без анимаций. */
+.screen {
+  display: grid;
+  min-height: 100vh;
+  min-height: 100dvh;
+  place-items: center;
+  padding: var(--space-4);
+  background: var(--bg-0);
+  color: var(--text-1);
+  font-family: var(--font-body);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 32rem;
+  padding: var(--space-6);
+  border: 1px solid var(--border);
+  background: var(--bg-1);
+  box-shadow: var(--shadow-2);
+  text-align: center;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  letter-spacing: var(--tracking-display);
+  color: var(--metal-bright);
+}
+
+.body {
+  margin: 0;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  justify-content: center;
+}
+
+.report {
+  color: var(--text-2);
+  font-size: 0.9rem;
+}
+
+.report:hover {
+  color: var(--text-1);
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: var(--space-5) var(--space-4);
+  }
+
+  .title {
+    font-size: 1.6rem;
+  }
+}
