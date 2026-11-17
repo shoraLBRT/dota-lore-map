@@ -1,0 +1,32 @@
+{
+  "hero": "disruptor",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Druud",
+      "event": "origin",
+      "source": "bio",
+      "note": "Родной край: высокие степи, где живёт его народ Oglodi."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Disruptor — невысокий, но бесстрашный грозодел из народа Oglodi, живущего на плато Друуд. Он первым разобрался в летних бурях и, найдя в руинах предков древнюю катушку, научился вызывать молнии по своей воле. Его силу сородичи считают и даром, и бедой, а сам он применяет её против королевств с юга, которые теснят земли оглоди.",
+      "en": "Disruptor is a small but fearless stormcrafter from the Oglodi people of the Druud highlands. He was the first to understand summer storms, and after finding an ancient coil in his ancestors' ruins he learned to summon lightning at will. His people regard that power as both a gift and a danger, and he turns it against the kingdoms from the south that press on Oglodi land."
+    }
+  },
+  "unconfirmed": [
+    "Pangolier: поле heroes инфобокса лор-страницы Disruptor называет его, но тип связи не сказан, поэтому не записано.",
+    "Реплики других героев о Disruptor (Bristleback, Dark Willow, Grimstroke, Centaur, Monkey King, Mirana, Oracle, Legion Commander и др.) — отдельные строки озвучки, связи не записаны.",
+    "Реплика «Upland Druud» (о том, откуда он едет) не совпадает с биографией; место Upland в regions.json относится к wailing-mountains, сопоставления не делаю.",
+    "Безымянные места: руины древних городов и южные королевства — названий в источниках нет, в links и candidates не добавлены.",
+    "Axe: см. doubt у связи family — расхождение с axe.json для сверки главным агентом.",
+    "Модель Thrall из Warcraft и заметки Trivia — метатекст, не лор; не записано.",
+    "Сверка: родство с Axe (кузен) снято — поле family инфобокса ссылается только на реплики озвучки; так же решено в axe.json."
+  ]
+}

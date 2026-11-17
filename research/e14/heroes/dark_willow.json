@@ -1,0 +1,61 @@
+{
+  "hero": "dark_willow",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Revtel",
+      "event": "origin",
+      "source": "bio",
+      "note": "Выросла в Ревтеле в семье фейского купца-правителя; позже сожгла семейное поместье и бежала оттуда."
+    },
+    {
+      "place": "Overgrown Empire",
+      "event": "visit",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Dark_Willow/Lore",
+      "note": "По вступлению к событию Wrath of the Mo'rokai героиня ищет реликвии в джунглях Fellstrath, находит руины Overgrown Empire и будит двух древних зверей."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Dark Willow — Миреска, фея из семьи ревтельских купцов. Она сбежала из родного города, сожгла семейное поместье и стала бродячей мошенницей вместе со светлячком Джексом. Её ищут наемники из нескольких стран, и она почти никогда не задерживается на одном месте.",
+      "en": "Dark Willow is Mireska, a fae from a merchant family in Revtel. She slipped away from her home city, torched the family estate, and became a wandering con artist with her wisp Jex. Hired hunters chase her across several nations, so she rarely stays put for long."
+    }
+  },
+  "candidates": [
+    {
+      "name": "Fae Realm",
+      "region": "planes",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Dark_Willow/Lore",
+      "note": "Фейский мир, куда героиня может попасть в любой момент. В regions.json его нет; предполагаемый регион — planes, так как это отдельный план бытия. Решение за владельцем в #59."
+    }
+  ],
+  "unconfirmed": [
+    "Riki: в riki.json стоит ally. Лор-страница говорит только о том, что они разошлись (Riki вступил в Jasper Circle, она отказалась) и что могли бы подружиться. Дружбы или вражды не сказано, связь здесь не записана.",
+    "Undying: в undying.json стоит rival. Источник говорит, что она ограбила его могилу и не возвращает вещи, но о соперничестве не сказано, связь здесь не записана.",
+    "Anti-Mage: агенты Tyler Estate Nortrom и Anti-Mage разыскивают героиню. Ключа anti_mage нет в heroes.json, поэтому связь не записана.",
+    "Puck: лор-страница говорит, что он постоянно вмешивается в её дела и злит её. Тип связи не назван, поэтому не записан.",
+    "Darkterror: из него она украла Claszureme Hourglass. Места на схеме нет, регион в источнике не назван.",
+    "Засушливые земли к юго-востоку от Roseleaf, которые ей понравились (источник — описание Hearts of Misrule): название не указано, на схему не привязано.",
+    "Инфобокс лор-страницы перечисляет героев (Meepo, Puck, Anti-Mage, Silencer, Pangolier, Bounty Hunter, Faceless Void, Shadow Shaman, Riki, Kunkka, Tidehunter) без типов связи. Записаны только те, где текст даёт тип.",
+    "Сверка: Weeping Rose, Iron Fog, White Spire, Quoidge, Yama Raskav Jungle, Roseleaf, Trembling Isle, Tyler Estate и Font of Avernus сняты: в лор-тексте каждое место держится на одной реплике озвучки Dark Willow.",
+    "Сверка: связи с Meepo (друг), Kunkka и Tidehunter (Trembling Isle), Bounty Hunter (Гондар) сняты: лор-страница выводит их только из реплик озвучки."
+  ],
+  "path": [
+    {
+      "place": "Revtel"
+    },
+    {
+      "place": "Overgrown Empire"
+    }
+  ]
+}

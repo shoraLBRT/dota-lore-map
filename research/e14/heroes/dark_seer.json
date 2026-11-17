@@ -1,0 +1,42 @@
+{
+  "hero": "dark_seer",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Land Behind the Wall",
+      "event": "origin",
+      "source": "bio",
+      "note": "Родина героя — мир за стеной, откуда он пришёл. Биография сама называет так свой край, инфобокс Liquipedia подтверждает то же место."
+    }
+  ],
+  "candidates": [
+    {
+      "name": "Maze Between the Walls",
+      "region": "planes",
+      "event": "battle",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Dark_Seer/Lore",
+      "note": "Лабиринт, куда герой завёл армию врагов, а затем запечатал их. По биографии это место за стенами, рядом с Land Behind the Wall, поэтому предположительно регион planes. Возможно, это отдельная местность, и владельцу #59 стоит решить это."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Dark Seer, Иш'Кафэль, — стратег, который побеждает силой разума, не прибегая к оружию. Когда-то он был военачальником на службе у бога-короля Damathryx; после разгрома его армии он завёл врагов в лабиринт, вырвался оттуда и запечатал их тёмной энергией. Так он оказался в чужом мире без пути назад и теперь хочет доказать, что лучший тактик этого мира — он.",
+      "en": "Ish'Kafel, known as Dark Seer, is a tactician who wins through the power of his intellect rather than weapons. Once a general serving a god-king, he saw his army destroyed, then lured the pursuers into a labyrinth, slipped out, and sealed them inside with a blast of dark energy. He landed in a foreign world with no route home and now wants to prove he is its finest strategist."
+    }
+  },
+  "unconfirmed": [
+    "Место, где герой живёт сейчас, в биографиях и инфобоксе не названо, поэтому запись home не добавлена.",
+    "Переход через стену описан, но регион нового мира не назван: путь (path) не записан.",
+    "Lekel D'vit (событие в инфобоксе Liquipedia) и Great Boundaries War — событие и бог, а не места на схеме; не привязаны.",
+    "Реплики других героев о Dark Seer (Monkey King, Legion Commander, Tidehunter, Earthshaker и др.) — отдельные строки озвучки, связи не записаны.",
+    "Имя Vhoul в тексте карточки артефакта (город, где вспыхнуло восстание) не сопоставлено ни с одним местом на схеме; без связи.",
+    "Сверка: упоминание Roseleaf снято — оно из текста карточки Artifact, а это не источник лора."
+  ]
+}

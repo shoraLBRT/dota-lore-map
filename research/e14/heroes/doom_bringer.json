@@ -1,0 +1,58 @@
+{
+  "hero": "doom_bringer",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "region": "heavens",
+      "event": "origin",
+      "source": "bio",
+      "note": "Родом из мира по ту сторону света, откуда его изгнали за неповиновение. По имени место в биографии не названо; регион Heavens — наше соответствие по смыслу.",
+      "doubt": "Биография говорит о мире без названия; связь с регионом Heavens — толкование."
+    },
+    {
+      "place": "Vashundol",
+      "event": "exile",
+      "source": "bio",
+      "note": "Колокол Vashundol отбивал его наказания перед падением с небес.",
+      "doubt": "Биография не говорит прямо, что Vashundol — место изгнания; записано по контексту колокола и падения."
+    },
+    {
+      "place": "Seven Hells",
+      "event": "home",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Doom/Lore",
+      "note": "По биографии он свободно ходит между семью тёмными владениями, и инфобокс лора связывает его с Seven Hells.",
+      "doubt": "Инфобокс перечисляет Seven Hells среди происхождения, а биография — как место, где он бывает. Записано как текущий дом; родина — по биографии, регион Heavens."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Doom — демон, в прошлом один из высших военачальников небесного мира. За отказ склониться его лишили крыльев и сбросили на землю, и теперь он бродит по мирам, свободно переходя между семью преисподними. Куда бы он ни пришёл, он приносит с собой собственный ад, а по его убеждению однажды мир будет принадлежать ему.",
+      "en": "Doom is a demon who was once a high-ranking commander in the heavens. For refusing to submit he had his wings burned away and was thrown down to the mortal world. Now he roams freely between the seven hells, and wherever he goes he brings a torment of his own. He is convinced that one day the world will be his."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/doom_bringer.png"
+    ]
+  },
+  "unconfirmed": [
+    "Реплики озвучки союзников и врагов о Doom (Legion Commander, Terrorblade, Monkey King, Chaos Knight, Elder Titan, Kez и другие) — отдельные строки, связи по ним не записаны.",
+    "Падение на землю и кратер в пустыне: биография описывает место падения, но пустыня не названа, поэтому путь и регион не записаны.",
+    "Vashundol и Seven Hells — места из инфобокса и биографии, но их роль в истории не расписана подробно; тип exile для Vashundol и home для Seven Hells — наше толкование.",
+    "Shadow Fiend: по биографии Shadow Demon временный союзник Doom против культа; тип союза не ясен, запись оставлена для партии Shadow Fiend."
+  ],
+  "relations": [
+    {
+      "hero": "shadow_demon",
+      "type": "enemy",
+      "source": "ours",
+      "note": "Обратная запись к shadow_demon.json: по биографии Shadow Demon герой ненадолго объединился с Shadow Fiend, чтобы уничтожить его культ. В источниках самого Doom этого нет.",
+      "doubt": "Тип выведен из союза против культа, слова «враг» в биографии Shadow Demon нет."
+    }
+  ]
+}
