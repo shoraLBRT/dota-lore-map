@@ -1,6 +1,11 @@
 {
   "hero": "lycan",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
   "links": [
     {
       "place": "Slom",
@@ -15,15 +20,17 @@
       "via": "lore",
       "url": "https://liquipedia.net/dota2/Lycan/Lore",
       "note": "Лор-страница описывает интервью в глубине Западных лесов в рамках кроссовера Hero Atlas; поле places инфобокса называет то же место.",
-      "doubt": "Событие взято из записи кроссовера, а не из биографии; перечислены только разговор и подтверждение, что превращение больно. Тип «visit» выбран по смыслу."
+      "doubt": "Единственное основание — рамка интервью Goodkind из кроссовера Hero Atlas; биография Западные леса не называет."
     }
   ],
   "profile": {
     "summary": {
-      "ru": "Lycan, он же Бэйнхаллоу, — последний наследник благородного дома Эмбри из старого королевства Слом. Король, боясь мятежа этого рода, велел превратить мальчика в волка, чтобы тот убил собственного отца, но ребёнок сохранил свою душу и напал на слуг монарха. Теперь он бродит по миру, наполовину воин и наполовину зверь, и ищет возмездия за потерянную семью.",
+      "ru": "Lycan, он же Бэйнхаллоу, — последний наследник знатного дома Эмбри из старого королевства Слом. Когда род поднял мятеж против короля и проиграл, король истребил семью, а мальчика велел обратить в волка, чтобы тот загрыз отца. Но разум ребёнка уцелел, и зверь набросился на королевских слуг. Теперь он скитается по дорогам, наполовину воин и наполовину волк, и ищет справедливости за всё потерянное.",
       "en": "Lycan, known as Banehallow, is the surviving heir of the noble House of Ambry from the old kingdom of Slom. After the king had the family slaughtered, he had the boy transformed into a wolf and ordered him to kill his own father, but the child's mind survived and he turned on the royal servants instead. Now he wanders the world, half warrior and half wolf, seeking vengeance for everything he lost."
     },
-    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/lycan.png"]
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/lycan.png"
+    ]
   },
   "unconfirmed": [
     "Связь соперничества с Lone Druid из lone_druid.json не подтверждена: в источниках Lycan Lone Druid фигурирует только в репликах озвучки (раздел соперничества), а родство через оборотничество в его текстах не сказано. Обратную запись не добавлял.",
