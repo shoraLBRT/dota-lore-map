@@ -129,9 +129,20 @@
   outline: none;
 }
 
-/* Активное место (S3) выделено (SPEC §5.5). */
-.current .ring {
-  stroke-width: 3;
+/* Активное место (S3) выделено (SPEC §5.5, #96): кольцо крупнее (markerLayout.ts: ringOf) и ярче,
+   подпись — как у столицы (fontOf). `.marker.current` перекрывает значимость и подсветку героя. */
+.marker.current .ring {
+  stroke: var(--accent-bright);
+  stroke-width: 3.5;
+  filter: drop-shadow(0 0 10px var(--marker-glow)) drop-shadow(0 0 3px var(--marker-glow));
+}
+
+.marker.current .markerLabel {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: var(--tracking-display);
+  fill: var(--text-1);
 }
 
 @keyframes marker-in {

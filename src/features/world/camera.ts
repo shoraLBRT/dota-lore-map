@@ -54,6 +54,8 @@ export const MOBILE_QUERY = '(max-width: 767px)';
 
 /** Сколько пустоты (доля мира) допускается за краем картинки при кадрировании под панель. */
 const EDGE_MARGIN = 0.05;
+/** Камера места: ближе какой доли видимой части к её краю не встаёт выбранное место (#96). */
+const PLACE_MARGIN = 0.2;
 
 export const UNMEASURED: View = { width: 0, height: 0, layerWidth: 0, layerHeight: 0, inset: 0 };
 
@@ -61,9 +63,16 @@ export const UNMEASURED: View = { width: 0, height: 0, layerWidth: 0, layerHeigh
  * Камера с учётом панели: рамка региона (1/zoom ширины мира) должна поместиться в свободную часть кадра,
  * поэтому zoom уменьшается в (ширина − панель) / ширина слоя раз; больше задуманного не приближаем.
  * Центр затем сдвигается к середине мира настолько, чтобы за краем картинки было как можно меньше пустоты;
- * рамка региона при этом остаётся в кадре. Возвращает камеру и сдвиг центра для cameraTransform.
+ * рамка региона при этом остаётся в кадре. `keep` — рамка региона и точка места (доли мира) у камеры места:
+ * центр сдвигается не дальше, чем нужно, чтобы регион остался в видимой части кадра, а если не помещается —
+ * вылезал из неё как можно меньше, не уводя к краю само место (#96).
+ * Возвращает камеру и сдвиг центра для cameraTransform.
  */
-export function frameCamera(camera: Camera, view: View): { camera: Camera; offset: number; offsetY?: number } {
+export function frameCamera(
+  camera: Camera,
+  view: View,
+  keep?: { box: WorldBox; place: Point },
+): { camera: Camera; offset: number; offsetY?: number } {
   const bottom = view.insetBottom ?? 0;
   if ((view.inset <= 0 && bottom <= 0) || view.layerWidth <= 0 || view.layerHeight <= 0) return { camera, offset: 0 };
   const free = view.inset > 0 ? Math.max(view.width - view.inset, view.layerWidth * 0.25) : view.width;
@@ -80,11 +89,41 @@ export function frameCamera(camera: Camera, view: View): { camera: Camera; offse
     const hi = Math.max(seen / 2, 1 - seen / 2) + EDGE_MARGIN;
     return Math.min(Math.max(c, lo), hi);
   };
+  // Рамка региона держит центр так, чтобы за видимую часть (`size` — её доля мира) уходило не больше, чем нужно:
+  // помещается — целиком в кадре; не помещается — вылезает поровну за оба края, но само место остаётся
+  // не ближе PLACE_MARGIN видимой части к её краю (рядом с ним — подпись).
+  const hold = (c: number, from: number, to: number, size: number, place: number) => {
+    if (to - from <= size) return Math.min(Math.max(c, to - size / 2), from + size / 2);
+    const even = Math.min(Math.max(c, from + size / 2), to - size / 2);
+    const reach = size / 2 - size * PLACE_MARGIN;
+    return Math.min(Math.max(even, place - reach), place + reach);
+  };
+  let x = clamp(camera.x, seenX);
+  let y = clamp(camera.y, seenY);
+  if (keep) {
+    x = hold(x, keep.box.left, keep.box.right, seenX, keep.place[0]);
+    y = hold(y, keep.box.top, keep.box.bottom, freeY / (view.layerHeight * zoom), keep.place[1]);
+  }
   return {
-    camera: { x: clamp(camera.x, seenX), y: clamp(camera.y, seenY), zoom },
+    camera: { x, y, zoom },
     offset: Math.max(view.inset, 0) / 2,
     ...(bottom > 0 ? { offsetY: bottom / 2 } : {}),
   };
+}
+
+/** Прямоугольник в долях мира (0..1). */
+export interface WorldBox {
+  left: number;
+  top: number;
+  right: number;
+  bottom: number;
+}
+
+/** Рамка многоугольника региона в долях мира. */
+export function polygonBox(polygon: Point[]): WorldBox {
+  const xs = polygon.map((p) => p[0]);
+  const ys = polygon.map((p) => p[1]);
+  return { left: Math.min(...xs), top: Math.min(...ys), right: Math.max(...xs), bottom: Math.max(...ys) };
 }
 
 /** Прямоугольник в px внутри кадра карты. */

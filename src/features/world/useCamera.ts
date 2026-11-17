@@ -8,6 +8,7 @@ import {
   frameCamera,
   MOBILE_QUERY,
   placeCamera,
+  polygonBox,
   SHEET_PEEK,
   STAGE_WIDTH,
   UNMEASURED,
@@ -99,7 +100,15 @@ export function useCamera({ active, activePlaceSlug, panel, regionList, topInset
   /** Панель закрывает кадр справа и в мире (профиль героя, E15): камера мира не двигается, но значки нитей не встают под неё. */
   const cover = panel ? view.inset : 0;
   const insetBottom = panel && active ? (view.insetBottom ?? 0) : 0;
-  const framed = useMemo(() => frameCamera(camera, { ...view, inset, insetBottom }), [camera, view, inset, insetBottom]);
+  /** Камера места не уводит из кадра регион, если он помещается целиком (#96). */
+  const keep = useMemo(() => {
+    const place = active?.places.find((p) => p.slug === activePlaceSlug)?.pos;
+    return active?.layout && place ? { box: polygonBox(active.layout.polygon), place } : undefined;
+  }, [active, activePlaceSlug]);
+  const framed = useMemo(
+    () => frameCamera(camera, { ...view, inset, insetBottom }, keep),
+    [camera, view, inset, insetBottom, keep],
+  );
   // Мир со списком регионов: карта прижата к верху (или влево, если телефон боком), список — в пустом месте.
   const listLayout = useMemo(
     () => (regionList && inWorld && hasMap ? worldListLayout(view, topInset) : null),

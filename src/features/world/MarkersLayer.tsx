@@ -58,9 +58,9 @@ export function MarkersLayer({
     const name = placeName(p, lang);
     const select = () => onSelectPlace(regionId, p.slug);
     const side = sides.get(p.slug) ?? 'top';
-    const ring = ringOf(p);
+    const ring = ringOf(p, isActive);
     const sig = significance(p);
-    const label = markerLabelAttrs(side, ring, fontOf(p));
+    const label = markerLabelAttrs(side, ring, fontOf(p, isActive));
     const previewed = previewPlaces?.has(`${regionId}/${p.slug}`) ?? false;
     const muted = focusPlaces && !focusPlaces.has(`${regionId}/${p.slug}`);
     const media = onOpenMedia ? placeMediaBadge(p) : null;
