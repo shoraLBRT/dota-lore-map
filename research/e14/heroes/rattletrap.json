@@ -1,0 +1,53 @@
+{
+  "hero": "rattletrap",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore"],
+  "links": [
+    {
+      "place": "Home of the Keen Folk",
+      "event": "origin",
+      "source": "ours",
+      "note": "Раса героя по инфобоксу лор-страницы (поле race) — Keen, то есть кины. Родина этого народа на схеме — Home of the Keen Folk. Сам герой в биографии место не называет: там только деревня предков на равнине, которую разорили пришедшие с гор.",
+      "doubt": "Связь по народу, а не по тексту о самом герое; родовая деревня в биографии безымянна и может находиться в другом месте, чем земля кинов."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "sniper",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Clockwerk/Lore",
+      "note": "В поле family инфобокса лор-страницы Снайпер назван двоюродным братом героя."
+    },
+    {
+      "hero": "tinker",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Clockwerk/Lore",
+      "note": "В поле family инфобокса лор-страницы Механик назван двоюродным братом героя."
+    },
+    {
+      "hero": "snapfire",
+      "type": "rival",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Clockwerk/Lore",
+      "note": "Раздел Relationships лор-страницы называет соперничество со Snapfire.",
+      "doubt": "Утверждение опирается на раздел, который ссылается на реплику Timbersaw; в биографии и в поле family инфобокса Snapfire не назван. Записано, потому что текст раздела прямо говорит о соперничестве."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Болтозвяк — низкорослый механик из народа кинов, родственник Снайпера и Механика. Он учился ремеслу сына часовщика, пока война не разорила родную деревню на равнине, и умирающий отец велел ему стать воином. Тот превратил себя в ходячий арсенал: собрал механические доспехи и устройства для засад и разрушения.",
+      "en": "Rattletrap, known as Clockwerk, is a small Keen tinkerer and a cousin of Sniper and Tinker. He was learning a clockmaker's trade until war burned his village on the plains, and his dying father urged him to become a warrior. He answered by turning himself into a walking arsenal, building mechanical armor and gadgets for ambushes and demolition."
+    }
+  },
+  "unconfirmed": [
+    "Деревня предков и горы, откуда пришла война, в источниках не названы — привязать к схеме нечего, кандидата в места не добавлял.",
+    "Поля places и origins в инфобоксе лор-страницы пусты; родина привязана только через народ (source ours).",
+    "Отец и дед героя (Rattletrap's Father, Rattletrap's Grandfather) — не герои карты, в relations не записаны.",
+    "Реплики других героев (Alchemist, Disruptor, Monkey King, Snapfire и др.) — не основание для связей, в relations не записаны.",
+    "Вики-текст главной страницы героя (liquipedia-hero) проверен поиском по ключевым словам, но не прочитан целиком; в read не записан."
+  ]
+}

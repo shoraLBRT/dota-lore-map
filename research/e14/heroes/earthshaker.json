@@ -1,0 +1,45 @@
+{
+  "hero": "earthshaker",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "place": "Nishai",
+      "event": "origin",
+      "source": "bio",
+      "note": "Родина: в горах Нишай он лежал в камне и проснулся после сезона землетрясений. Инфобокс лор-страницы называет то же место."
+    },
+    {
+      "place": "The Red Mountain",
+      "event": "service",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Earthshaker/Lore",
+      "note": "Ему поручено охранять эту гору.",
+      "doubt": "На лор-странице сказано, что гора, возможно, находится в Nishai. На схеме она отдельное место в регионе hoven, поэтому связь записана с ней, а не с Nishai."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "wisp",
+      "type": "ally",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Earthshaker/Lore",
+      "note": "Лор-страница называет Io его другом; он обращается к Io за помощью в поисках пути к другому миру."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Earthshaker, он же Рейгор Каменное Копыто, — древнее существо из камня, пробудившееся от землетрясения в горах Нишай. Он сам создал себя силой воли и принял облик зверя. Его сила хранится в тотеме, который он не выпускает из рук, а в лоре он охраняет Красную гору.",
+      "en": "Earthshaker, also called Raigor Stonehoof, is an ancient being of stone who woke during a quake in the Nishai peaks. He shaped his own body into a beast and answers to no one. He keeps the power of the earth in a totem he never sets down, and in the lore he is tasked with watching over the Red Mountain."
+    }
+  },
+  "unconfirmed": [
+    "Планета «Sister Earth»: по лор-странице её разрушили неизвестные существа, а её осколок теперь в Earthshaker. Места на схеме у неё нет, привязать к региону не с чем — не записано.",
+    "Инфобокс лор-страницы (поле heroes) называет Void Spirit и Earth Spirit, но тип связи из инфобокса не следует, а текста о них в лоре нет — связи не записаны. Ответ Void Spirit («I have the answers») — реплика озвучки, а не связь.",
+    "Инфобокс (поле places) называет The Earth: это общее название мира, а не место на схеме — не записано.",
+    "Связь с луной (Planetfall-реплика) без указания места — не записана; Mad Moon и Selemene's Moon в тексте не упомянуты.",
+    "Реплики озвучки из раздела Friendships and Rivalries (Dark Willow, Elder Titan, Anti-Mage, Pangolier и другие) — не основание для связей.",
+    "Вид Behemoths (инфобокс, останки которых он носит как доспех) — вид, не место; связь с ними не записана."
+  ]
+}

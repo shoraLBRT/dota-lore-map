@@ -1,0 +1,118 @@
+{
+  "hero": "chaos_knight",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "place": "Fundamental Plane",
+      "event": "origin",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Chaos_Knight/Lore",
+      "note": "Родной план: биография говорит о далёком верхнем плане, где законы вселенной стали разумными; в инфобоксе лор-страницы этот план назван Fundamental Plane.",
+      "doubt": "Биография не называет план по имени; соответствие сделано по описанию и полю origins инфобокса."
+    },
+    {
+      "region": "planes",
+      "event": "journey",
+      "source": "bio",
+      "note": "Герой переходит из мира в мир, гоняясь за Светом, поэтому связь с регионом планов, а не с одним местом. Семь планов и Мультивселенная из инфобокса тоже попадают сюда."
+    }
+  ],
+  "path": [
+    { "place": "Fundamental Plane" },
+    { "region": "planes" }
+  ],
+  "relations": [
+    {
+      "hero": "elder_titan",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Chaos_Knight/Lore",
+      "note": "Создатель героя; в инфобоксе связь записана как family, тип «создатель» в модели не предусмотрен."
+    },
+    {
+      "hero": "enigma",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Chaos_Knight/Lore",
+      "note": "Младший брат-сиблинг из числа Фундаменталов."
+    },
+    {
+      "hero": "keeper_of_the_light",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Chaos_Knight/Lore",
+      "note": "Младший брат; по сути антагонист: свет против хаоса, взаимная вражда, но они родня."
+    },
+    {
+      "hero": "wisp",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Chaos_Knight/Lore",
+      "note": "Io в инфобоксе записан как младший сиблинг; в данных ключ героя — wisp."
+    },
+    {
+      "hero": "dawnbreaker",
+      "type": "enemy",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Chaos_Knight/Lore",
+      "note": "Главный враг её создателей и её личная незавершённая вражда с ним: она хочет его одолеть, чтобы исправить прошлое."
+    },
+    {
+      "hero": "omniknight",
+      "type": "enemy",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Chaos_Knight/Lore",
+      "note": "Охотится на него, потому что тот стоит на стороне Света и служит Omniscience."
+    },
+    {
+      "hero": "brewmaster",
+      "type": "rival",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Chaos_Knight/Lore",
+      "note": "Взаимная неприязнь и насмешки с обеих сторон."
+    },
+    {
+      "hero": "arc_warden",
+      "type": "enemy",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Chaos_Knight/Lore",
+      "note": "Arc Warden презирает его за разобщённость и видит в нём врага.",
+      "doubt": "Сведения только с одной стороны: записано отношение Arc Warden, ответного отношения Chaos Knight в тексте нет."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Chaos Knight — древнейший из Фундаменталов, воплощение хаоса, который охотится на существо по имени Свет и перескакивает из мира в мир ради этой охоты. Родом он из плана, где законы вселенной обрели разум. Верхом на Армагеддоне он врывается в бой, а при нужде призывает свои версии из других миров.",
+      "en": "Chaos Knight is the eldest of the Fundamentals, a living force of disorder that hunts a being known only as the Light and hops between worlds to keep that hunt going. He comes from a realm where the basic rules of existence became aware of themselves. He charges into fights on his horse Armageddon and can summon copies of himself from elsewhere."
+    }
+  },
+  "candidates": [
+    {
+      "name": "Ruined Keep",
+      "region": "uncharted",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Chaos_Knight/Lore",
+      "note": "Здесь выкован тёмный шлем героя (снаряжение), работают слепые кузнецы; регион по источникам не установлен, поэтому временно uncharted. Решение владельца в #59."
+    }
+  ],
+  "unconfirmed": [
+    "Ruined Keep (поле places и снаряжение): регион не назван, стоит кандидатом.",
+    "Фантазмы, по версии лор-страницы, призываются из Астрального плана или Пустоты: это домысел, не подтверждено; место не записано.",
+    "Пара реплик о Void Spirit (Inai): отношение описано только в ответах союзников и при убийстве, тип связи не записан.",
+    "Фразы о Dragon Knight, Doom, Troll Warlord и Enigma-подколки: реплики озвучки, связи не записаны.",
+    "Лор-страница описывает противостояние Chaos Knight и Keeper в духе «антитезы» — записано как family по инфобоксу; тип rival не добавлен, чтобы не дублировать связь.",
+    "Armageddon, Ataxia, Atramentos и Enmity — скакуны, не герои; места для них не записаны.",
+    "Раздел о древней войне Ancients и Mad Moon — спекуляция Archronicus, не записана."
+  ]
+}

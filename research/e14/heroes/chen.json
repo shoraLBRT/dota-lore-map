@@ -1,0 +1,24 @@
+{
+  "hero": "chen",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "place": "Hazhadal Barrens",
+      "event": "origin",
+      "source": "bio",
+      "note": "Родина и место детства героя: биография прямо называет эту пустошь местом рождения. Инфобокс лор-страницы даёт то же место."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Chen вырос среди разбойничьих племён пустыни Hazhadal, где его народ разводил локати, маленьких роющих драконов. После разгрома клана рыцарями Fold ему сохранили жизнь при условии, что он примет веру. Он стал ревностным воином церкви и использует дар приручения зверей, чтобы выслеживать неверных.",
+      "en": "Chen grew up among desert outlaw clans in the Hazhadal Barrens, where his people tamed small burrowing dragons known as locuthi. After the Knights of the Fold crushed his clan, he was spared on condition that he take up their faith. He became a fervent member of the order and turns his gift for taming beasts toward hunting down unbelievers."
+    }
+  },
+  "unconfirmed": [
+    "Где Chen прошёл обращение и служил Fold, в текстах не названо. Castle of the Fold на схеме есть (radiant-lands), но связь с Chen источниками не подтверждена, поэтому не записана.",
+    "Где Chen живёт и действует сейчас, в источниках не сказано.",
+    "Obelis (поле gods инфобокса, упоминание в реплике) — божество, не место; на схеме такого места нет, в кандидаты не выношу.",
+    "Поле heroes в инфобоксе пустое: связей героев по инфобоксу нет. Реплики о Chen от Dark Willow, Monkey King, Omniknight, Legion Commander и других — строки озвучки, связи не записаны."
+  ]
+}

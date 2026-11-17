@@ -1,0 +1,52 @@
+{
+  "hero": "earth_spirit",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore"],
+  "links": [
+    {
+      "place": "The Upland",
+      "event": "origin",
+      "source": "bio",
+      "note": "Нагорье, где из нефритовой жилы вырезали его образ и где он теперь бродит. Инфобокс добавляет The Earth, но это весь мир, а не место на схеме."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "void_spirit",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Earth_Spirit/Lore",
+      "note": "По инфобоксу лор-страницы — старший брат Earth Spirit."
+    },
+    {
+      "hero": "storm_spirit",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Earth_Spirit/Lore",
+      "note": "По инфобоксу лор-страницы — брат Earth Spirit."
+    },
+    {
+      "hero": "ember_spirit",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Earth_Spirit/Lore",
+      "note": "По инфобоксу лор-страницы — брат Earth Spirit."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Earth Spirit, он же Каолин, — древний дух земли, заключённый в нефритовом образе полководца. Тысячу лет он копил силу в каменной оболочке, пока не вырвался наружу. Теперь он бродит по нагорью и в бою поднимает из почвы каменных воинов, похороненных вместе с ним. Лор-страница числит его братом Void Spirit, Storm Spirit и Ember Spirit.",
+      "en": "Earth Spirit, also called Kaolin, is an ancient spirit of the earth bound inside a jade likeness of a general. For a thousand years it gathered strength within its stone shell until it broke free. Now it wanders the highlands and, in battle, raises the stone warriors buried in the soil with it. The lore page lists Void Spirit, Storm Spirit and Ember Spirit as his brothers."
+    }
+  },
+  "unconfirmed": [
+    "Brewmaster: инфобокс Earth Spirit называет его двоюродным братом, но опора — реплика Void Spirit о Brewmaster, а партия 01 (brewmaster.json) это родство уже сняла. Не записано; расхождение — владельцу.",
+    "Grimstroke: раздел «Relationships» говорит, что он презирает Каолина, но это пересказ одной реплики (держаться подальше) — не записано.",
+    "Monkey King, Wraith King, Ember Spirit, Spectre, Vengeful Spirit, Brewmaster, Oracle: реплики озвучки о встречах, победах и поражениях — связи не записаны.",
+    "Nature's Prophet и Tiny: Earth Spirit называет NP «своим пророком» и говорит, что знает природу Tiny, — реплики озвучки, связи не записаны (как в tiny.json).",
+    "Verodicia: лор-страница предполагает, что Каолин может быть перерождением богини; это спекуляция без текста биографии, места и связи не записаны.",
+    "Liquipedia не упоминает отдельного места, кроме The Upland и The Earth; кандидатов в места нет."
+  ]
+}

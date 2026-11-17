@@ -1,0 +1,81 @@
+{
+  "hero": "crystal_maiden",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero",
+    "comic:icewrack-new-neighbors"
+  ],
+  "links": [
+    {
+      "place": "Icewrack",
+      "event": "home",
+      "source": "bio",
+      "note": "Родители отправили её сюда в изгнание, но она осталась, заняла место мага и живёт здесь до сих пор. В комиксе New Bloom она защищает местную деревню."
+    },
+    {
+      "place": "Blueheart Glacier",
+      "event": "service",
+      "source": "bio",
+      "note": "На вершине ледника её учил отшельник-маг; в конце учёбы он оставил ей свой пост."
+    },
+    {
+      "place": "Boiling Sea",
+      "event": "exile",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Crystal_Maiden/Lore",
+      "note": "Рассердив наставника, она сама ушла туда, где ледник встречается с морем, и несколько месяцев медитировала, чтобы вернуть его доверие."
+    },
+    {
+      "place": "Wolfsden Tavern",
+      "event": "visit",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Crystal_Maiden/Lore",
+      "doubt": "Вероятно бывала: в лоре есть только шляпа-сувенир оттуда, самого события нет."
+    }
+  ],
+  "path": [
+    { "place": "Icewrack" },
+    { "place": "Blueheart Glacier" },
+    { "place": "Boiling Sea" },
+    { "place": "Blueheart Glacier" }
+  ],
+  "relations": [
+    {
+      "hero": "lina",
+      "type": "family",
+      "source": "bio",
+      "note": "Lina — её старшая сестра (биография и инфобокс лор-страницы). В лоре между ними также описано соперничество, но тип связи один — family."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Crystal Maiden, по-домашнему Рилай, родилась с такой силой над льдом, что рядом с ней замерзало и портилось всё вокруг. Родные отправили её на далёкий север, в Icewrack, где её приютил отшельник-маг и оставил ей свой пост у ледника. Теперь она владеет наукой льда, как никто, и мечтает однажды проспать тысячу лет под ледником.",
+      "en": "Crystal Maiden, called Rylai at home, was born with a grip on ice so strong that anything near her froze or spoiled. Her family sent her to the far north, to Icewrack, where a hermit mage took her in and later left her his post above the glacier. She now commands the frozen arts better than anyone, and dreams of one day sleeping under the ice for a thousand years."
+    },
+    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/crystal_maiden.png"]
+  },
+  "candidates": [
+    {
+      "name": "Dragon Hold",
+      "region": "uncharted",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Crystal_Maiden/Lore",
+      "note": "Место указано только в инфобоксе лор-страницы рядом с историей Dragon's Blood; в regions.json его нет, регион по источникам не установлен. Владельцу решить в #59, есть ли оно на схеме."
+    }
+  ],
+  "unconfirmed": [
+    "Родной край, где она провела детство (в биографии назван только как мягкий климат), не назван: origin не записан.",
+    "Tusk: лор-страница пишет, что она знала его в юности; основание — реплика озвучки, тип связи в тексте не назван, поэтому связь не записана.",
+    "Ледяной маг-наставник (Ice Wizard) и Pierpont — персонажи, не ключи героев; связи с ними не записаны. Тот, кто стоит за Pierpont, в источниках не отождествлён с магом.",
+    "Sven, Dragon Knight, Ancient Apparition, Pangolier, Winter Wyvern: в инфобоксе перечислены как герои рядом, без типа связи; реплики из лора не основание.",
+    "Kaldr, по реплике Monkey King, испытывает к ней симпатию — это слух из озвучки, связь не записана.",
+    "Dragon's Blood (сюжет отдельной серии): упомянут её контакт с Dragon Hold и спасение нескольких персонажей от Terrorblade; это вне биографии и вне карты, не записано.",
+    "Путь до Icewrack через родину (мягкий климат) и переезд туда от родителей: путь начинается с Icewrack, потому что исходное место не названо."
+  ]
+}
