@@ -3,7 +3,7 @@ import { useSfx } from '../../app/sound';
 import type { Place } from '../../data/types';
 import { placeName } from '../../data/world';
 import { useT } from '../../i18n';
-import type { LabelSide } from './labels';
+import { labelBox, type LabelSide } from './labels';
 import { fontOf, markerLabelAttrs, ringOf, significance } from './markerLayout';
 import styles from './MarkersLayer.module.css';
 import { mediaKinds, placeMediaBadge, type MediaBadge } from './mediaBadge';
@@ -22,6 +22,8 @@ interface Props {
   activePlaceSlug: string | undefined;
   /** Где подпись каждого маркера (markerLayout.ts). */
   sides: Map<string, LabelSide>;
+  /** Ширина текста подписи каждого маркера, px (markerLayout.ts) — для плашки под ней (#98). */
+  labelWidths: Map<string, number>;
   markerScale: number;
   /** Места выбранного героя (`region/slug`): подсвечены, остальные приглушены. */
   focusPlaces: Set<string> | null;
@@ -41,6 +43,7 @@ export function MarkersLayer({
   regionId,
   activePlaceSlug,
   sides,
+  labelWidths,
   markerScale,
   focusPlaces,
   previewPlaces,
@@ -60,7 +63,10 @@ export function MarkersLayer({
     const side = sides.get(p.slug) ?? 'top';
     const ring = ringOf(p, isActive);
     const sig = significance(p);
-    const label = markerLabelAttrs(side, ring, fontOf(p, isActive));
+    const size = fontOf(p, isActive);
+    const label = markerLabelAttrs(side, ring, size);
+    // Плашка под подписью (#98, SPEC §8.6): та же рамка, по которой расставляются подписи (labels.ts).
+    const plate = labelBox(side === 'hidden' ? 'top' : side, { width: labelWidths.get(p.slug) ?? 0, size, ring });
     const previewed = previewPlaces?.has(`${regionId}/${p.slug}`) ?? false;
     const muted = focusPlaces && !focusPlaces.has(`${regionId}/${p.slug}`);
     const media = onOpenMedia ? placeMediaBadge(p) : null;
@@ -111,16 +117,27 @@ export function MarkersLayer({
           ) : (
             <circle className={styles.dot} r={sig === 'minor' ? 3 : 4} />
           )}
-          <text
-            className={styles.markerLabel}
-            x={label.x}
-            y={label.y}
-            textAnchor={label.textAnchor}
-            data-measure={`m:${p.slug}`}
-            data-side={side}
-          >
-            {name}
-          </text>
+          <g className={styles.label}>
+            <rect
+              className={styles.plate}
+              x={plate.left}
+              y={plate.top}
+              width={plate.right - plate.left}
+              height={plate.bottom - plate.top}
+              rx={3}
+              data-plate=""
+            />
+            <text
+              className={styles.markerLabel}
+              x={label.x}
+              y={label.y}
+              textAnchor={label.textAnchor}
+              data-measure={`m:${p.slug}`}
+              data-side={side}
+            >
+              {name}
+            </text>
+          </g>
         </g>
         {media && (
           // Значок медиа (#69, SPEC §6.3) — отдельная кнопка сразу за маркером (Tab: место → его медиа),

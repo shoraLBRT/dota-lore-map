@@ -31,11 +31,15 @@
   font-family: var(--font-body);
   font-size: 13px;
   font-weight: 600;
-  paint-order: stroke;
-  stroke: var(--map-ink);
-  stroke-width: 3px;
   pointer-events: none;
   transition: fill var(--dur-hover) var(--ease-out);
+}
+
+/* Подпись — на тёмной плашке, а не с обводкой (#98, SPEC §8.6): читается на любом фоне карты.
+   Размер плашки — рамка подписи из labels.ts (labelBox) с полями LABEL_PAD_X, LABEL_PAD_Y. */
+.plate {
+  fill: var(--label-plate);
+  pointer-events: none;
 }
 
 .capital .markerLabel {
@@ -155,25 +159,29 @@
   }
 }
 
-/* Прозрачность маркера занята анимацией появления — приглушаем его части. */
+/* Прозрачность маркера занята анимацией появления — приглушаем его части. Подпись — цветом текста,
+   а не прозрачностью (#98): на плашке она остаётся ≥ 4.5:1 (quality.test.ts). */
 .mutedMarker .ring,
 .mutedMarker .dot,
-.mutedMarker .markerLabel,
 .mutedMarker .badgeFrame,
 .mutedMarker .badgeLines {
   opacity: 0.35;
 }
 
+.mutedMarker .markerLabel {
+  fill: var(--text-3);
+}
+
 /* Подписи не налезают друг на друга (аудит E13, labels.ts): лишняя прячется
    и появляется при наведении, фокусе и у выбранного места. */
-.marker.labelHidden .markerLabel {
+.marker.labelHidden .label {
   opacity: 0;
   transition: opacity var(--dur-hover) var(--ease-out);
 }
 
-.marker.labelHidden:hover .markerLabel,
-.marker.labelHidden:focus-visible .markerLabel,
-.marker.labelHidden.current .markerLabel {
+.marker.labelHidden:hover .label,
+.marker.labelHidden:focus-visible .label,
+.marker.labelHidden.current .label {
   opacity: 1;
 }
 
@@ -199,9 +207,11 @@
   opacity: 1;
 }
 
-.previewed .markerLabel,
-.marker.labelHidden.previewed .markerLabel {
+.previewed .markerLabel {
   fill: var(--text-1);
+}
+
+.marker.labelHidden.previewed .label {
   opacity: 1;
 }
 

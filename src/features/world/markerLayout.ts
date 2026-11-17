@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import type { Lang, Place, Significance } from '../../data/types';
 import { placeName } from '../../data/world';
-import { LABEL_GAP, placeMarkerLabels, type Box, type LabelSide, type MarkerLabel } from './labels';
+import { LABEL_GAP, LABEL_PAD_X, LABEL_PAD_Y, placeMarkerLabels, type Box, type LabelSide, type MarkerLabel } from './labels';
 import { toStage } from './stage';
 import { toScreen, visibleFrame } from './threadGeometry';
 import type { Frame } from './useCamera';
@@ -24,7 +24,7 @@ export const fontOf = (p: Place, selected = false) =>
 /** Порядок подписей после текущего места, столицы и мест героя: события, связи E1, второстепенные (labels.ts). */
 const SIGNIFICANCE_RANK: Record<Significance, number> = { event: 3, link: 4, minor: 5 };
 
-/** Подпись маркера на стороне `side`: якорь и базовая линия (labels.ts: labelBox). */
+/** Подпись маркера на стороне `side`: якорь и базовая линия текста внутри плашки (labels.ts: labelBox). */
 export function markerLabelAttrs(
   side: LabelSide,
   ring: number,
@@ -33,13 +33,13 @@ export function markerLabelAttrs(
   const d = ring + LABEL_GAP;
   switch (side) {
     case 'bottom':
-      return { x: 0, y: d + 0.78 * size, textAnchor: 'middle' };
+      return { x: 0, y: d + LABEL_PAD_Y + 0.78 * size, textAnchor: 'middle' };
     case 'right':
-      return { x: d, y: 0.28 * size, textAnchor: 'start' };
+      return { x: d + LABEL_PAD_X, y: 0.28 * size, textAnchor: 'start' };
     case 'left':
-      return { x: -d, y: 0.28 * size, textAnchor: 'end' };
+      return { x: -d - LABEL_PAD_X, y: 0.28 * size, textAnchor: 'end' };
     default:
-      return { x: 0, y: -d - 0.22 * size, textAnchor: 'middle' };
+      return { x: 0, y: -d - LABEL_PAD_Y - 0.22 * size, textAnchor: 'middle' };
   }
 }
 
@@ -100,5 +100,7 @@ export function useMarkerLabels({ spots, activeId, activePlaceSlug, focusPlaces,
     }
     return placeMarkerLabels(items, bounds);
   }, [items, activeId, view, inset, insetBottom, framed, regionZoom]);
-  return { items, sides };
+  // Ширина текста каждой подписи — для плашки под ней (MarkersLayer, #98).
+  const labelWidths = useMemo(() => new Map(items.map((m) => [m.key, m.width])), [items]);
+  return { items, sides, labelWidths };
 }

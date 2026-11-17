@@ -63,19 +63,27 @@ export const LABEL_GAP = 3;
 /** Минимальный просвет между подписями, px. */
 const PAD = 2;
 
-/** Рамка подписи для стороны `side` в координатах группы маркера (0, 0 — центр маркера). */
+/** Поля плашки подписи маркера (#98, SPEC §8.6): по бокам и сверху-снизу от текста, px. */
+export const LABEL_PAD_X = 4;
+export const LABEL_PAD_Y = 2;
+
+/**
+ * Рамка подписи для стороны `side` в координатах группы маркера (0, 0 — центр маркера) — это и плашка
+ * под текстом (#98): ширина текста и кегль плюс поля `LABEL_PAD_X`, `LABEL_PAD_Y`.
+ */
 export function labelBox(side: Exclude<LabelSide, 'hidden'>, m: Pick<MarkerLabel, 'width' | 'size' | 'ring'>): Box {
-  const h = m.size;
+  const h = m.size + 2 * LABEL_PAD_Y;
+  const w = m.width + 2 * LABEL_PAD_X;
   const d = m.ring + LABEL_GAP;
   switch (side) {
     case 'top':
-      return { left: -m.width / 2, right: m.width / 2, top: -d - h, bottom: -d };
+      return { left: -w / 2, right: w / 2, top: -d - h, bottom: -d };
     case 'bottom':
-      return { left: -m.width / 2, right: m.width / 2, top: d, bottom: d + h };
+      return { left: -w / 2, right: w / 2, top: d, bottom: d + h };
     case 'right':
-      return { left: d, right: d + m.width, top: -h / 2, bottom: h / 2 };
+      return { left: d, right: d + w, top: -h / 2, bottom: h / 2 };
     case 'left':
-      return { left: -d - m.width, right: -d, top: -h / 2, bottom: h / 2 };
+      return { left: -d - w, right: -d, top: -h / 2, bottom: h / 2 };
   }
 }
 
@@ -120,8 +128,14 @@ export function placeMarkerLabels(items: MarkerLabel[], bounds?: Box): Map<strin
       break;
     }
     if (side === 'hidden' && m.must) {
-      // Обязательная подпись: первая сторона, где она хотя бы не вылезает из кадра, иначе — сверху.
-      side = SIDES.find((s) => !bounds || inside(shift(labelBox(s, m), m.x, m.y), bounds)) ?? 'top';
+      // Обязательная подпись: среди сторон, где она не вылезает из кадра, — та, что накрывает меньше
+      // подписей и колец (при равенстве — первая по порядку); таких нет — сверху.
+      const conflicts = (s: (typeof SIDES)[number]) => {
+        const box = shift(labelBox(s, m), m.x, m.y);
+        return placed.filter((p) => overlap(p, box)).length + rings.filter((r, j) => items[j] !== m && overlap(r, box)).length;
+      };
+      const fits = SIDES.filter((s) => !bounds || inside(shift(labelBox(s, m), m.x, m.y), bounds));
+      side = fits.reduce<(typeof SIDES)[number] | undefined>((best, s) => (best && conflicts(best) <= conflicts(s) ? best : s), undefined) ?? 'top';
       placed.push(shift(labelBox(side, m), m.x, m.y));
     }
     result.set(m.key, side);
