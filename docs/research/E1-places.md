@@ -90,7 +90,7 @@
 | Материк и острова | Сверкающая пустошь (Scintillant Waste) | Dire (карта S1) | 9 | 6 |
 | Материк и острова | Стонущие горы (Wailing Mountains) | Dire (карта S1) | 6 | 7 |
 | Материк и острова | Тенистый берег (Shadeshore) | Dire (по схеме E2) | 5 | 4 |
-| Материк и острова | Глубины (The Deep) | Dire (карта S1) | 7 | 4 |
+| Материк и острова | Глубины (The Deep) | Dire (карта S1) | 7 | 5 |
 | Материк и острова | Кладд и острова (Cladd and the Isles) | Radiant (по схеме E2) | 6 | 2 |
 | Материк и острова | Тропические острова (Tropic Isles) | Dire (по схеме E2) | 7 | 3 |
 | Материк и острова | Западные леса (Western Forests) | Radiant (по схеме E2) | 6 | 5 |
@@ -285,9 +285,11 @@
 
 Сторона: **Dire** (карта S1). На карте Source 1 в половине Dire: The Wailing Mountains, The Ruined City, The monasteries of Turstarkuri, The Mountain Joerlak, The Feral Road.
 
+Герои всего региона: Storm Spirit
+
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
-| ★ Ruined City | карта S1 | Brewmaster, Storm Spirit (живёт) |  |
+| ★ Ruined City | карта S1 | Brewmaster, Storm Spirit (упоминание) |  |
 | Fortress of Flares | лор | Ember Spirit |  |
 | Turstarkuri | карта S1 | Anti-Mage |  |
 | Mount Joerlak | карта S1 | Magnus |  |
@@ -319,9 +321,9 @@
 | ★ Dark Reef | лор | Slark |  |
 | Crey | лор | Naga Siren (сражение) |  |
 | Deep Vault | лор | Naga Siren (упоминание), Slardar (живёт) | оно же Sunken Treasury |
-| Coral Breach | лор | — |  |
+| Coral Breach | лор | Slardar (упоминание) |  |
 | Reef's Edge | лор | — |  |
-| Recluse Reef | лор | — |  |
+| Recluse Reef | лор | Tidehunter (упоминание) |  |
 | Infernal Hollow | лор | — | страницы на Liquipedia нет |
 
 #### Кладд и острова · Cladd and the Isles
@@ -331,7 +333,7 @@
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
 | ★ Cladd | лор | Kunkka |  |
-| Trembling Isle | лор | Kunkka (сражение) |  |
+| Trembling Isle | лор | Kunkka (сражение), Tidehunter (сражение) |  |
 | Sunken Isles | наше | Tidehunter |  |
 | Isle of Songs | наше | Kunkka (упоминание) |  |
 | Port Mignin | наше | Kunkka (сражение) |  |
@@ -408,7 +410,7 @@
 |---|---|---|---|
 | ★ Tomo'kan | лор | Arc Warden (сражение), Hoodwink (живёт), Primal Beast (сражение), Ursa (живёт) |  |
 | Krimwohl | лор | Hoodwink |  |
-| Outlands | лор | — |  |
+| Outlands | лор | Snapfire (бывал) |  |
 | Nanarak | лор | Snapfire (живёт) |  |
 | Dread Marsh | лор | — |  |
 | Praxa'cia | лор | — |  |
@@ -480,10 +482,10 @@
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
-| ★ Seven Hells | лор | Doom (живёт), Lion (сражение), Muerta (упоминание), Shadow Demon |  |
+| ★ Seven Hells | лор | Doom (живёт), Lion (сражение), Muerta (упоминание), Shadow Demon, Shadow Fiend (упоминание), Terrorblade |  |
 | Vashundol | лор | Doom (изгнание) |  |
 | Abysm | лор | Shadow Fiend |  |
-| Foulfell | лор | Terrorblade |  |
+| Foulfell | лор | Terrorblade (изгнание) |  |
 | Outer Hells | лор | Warlock (связь) |  |
 | Narrow Maze | лор | Razor (живёт), Visage (живёт) |  |
 | Underscape | лор | Muerta (упоминание), Necrophos (упоминание), Razor (связь) |  |
@@ -583,22 +585,22 @@
 | Rubick | весь регион «Неизведанные земли»* |
 | Sand King | Scintillant Waste (Сверкающая пустошь); Qaldin (Сверкающая пустошь) (связь) |
 | Shadow Demon | Seven Hells (Семь Преисподних и загробье) |
-| Shadow Fiend | Abysm (Семь Преисподних и загробье) |
+| Shadow Fiend | Abysm (Семь Преисподних и загробье); Seven Hells (Семь Преисподних и загробье) (упоминание) |
 | Shadow Shaman | Bleeding Hills (Ховен и Нишай) |
 | Silencer | Hazhadal Barrens (Хазадальские пустоши); Tyler Estate (Вольные города) (связь)† |
 | Skywrath Mage | Ghastly Eyrie (Небеса) |
-| Slardar | Deep Vault (Глубины) (живёт) |
+| Slardar | Deep Vault (Глубины) (живёт); Coral Breach (Глубины) (упоминание) |
 | Slark | Dark Reef (Глубины); весь регион «Тенистый берег» (живёт) |
-| Snapfire | Nanarak (Томо'кан и Окраины) (живёт) |
+| Snapfire | Nanarak (Томо'кан и Окраины) (живёт); Outlands (Томо'кан и Окраины) (бывал) |
 | Sniper | Knollen (Земля Сияющих) |
 | Spectre | весь регион «Семь планов и Пустота»; Ruelands (Тенистый берег) (связь)†; Hidden Temple (Срединные королевства) (связь)† |
 | Spirit Breaker | Elemental Plane (Семь планов и Пустота); Nether Reaches (Подземье) (связь); Ultoria (Небеса) (связь)† |
-| Storm Spirit | Ruined City (Стонущие горы) (живёт) |
+| Storm Spirit | весь регион «Стонущие горы»; Ruined City (Стонущие горы) (упоминание) |
 | Sven | Shadeshore Ruins (Тенистый берег); Vigil Keep (Тенистый берег) (связь); Feral Road (Стонущие горы) (связь)† |
 | Techies | Dredger's Bight (Земля Сияющих); Ruelands (Тенистый берег) (связь)† |
 | Templar Assassin | Hidden Temple (Срединные королевства) (живёт); Violet Archives (Земля Сияющих) (связь); Halgalreh (Сверкающая пустошь) (связь)† |
-| Terrorblade | Foulfell (Семь Преисподних и загробье) |
-| Tidehunter | Sunken Isles (Кладд и острова) |
+| Terrorblade | Seven Hells (Семь Преисподних и загробье); Foulfell (Семь Преисподних и загробье) (изгнание) |
+| Tidehunter | Sunken Isles (Кладд и острова); Trembling Isle (Кладд и острова) (сражение); Recluse Reef (Глубины) (упоминание) |
 | Timbersaw | Augury Bay (Западные леса) |
 | Tinker | Violet Plateau (Земля Сияющих) (живёт) |
 | Tiny | Azura (Айсрак) |
