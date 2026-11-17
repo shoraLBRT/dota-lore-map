@@ -1,6 +1,11 @@
 {
   "hero": "primal_beast",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
   "links": [
     {
       "region": "uncharted",
@@ -13,13 +18,17 @@
       "place": "Tomo'kan",
       "event": "battle",
       "source": "bio",
-      "note": "Туманная роща: здесь он опустошал всё вокруг и стал хищником-вершиной.",
-      "doubt": "Биография называет Mistwood; на схеме это Tomo'kan (туманный лес Томо'кан)."
+      "note": "Тысячи лет Туманный лес был его угодьями: он опустошал его и охотился даже на дуран. Сейчас он далеко отсюда.",
+      "doubt": "Биография называет Mistwood; лор-страница Liquipedia отождествляет его с Tomo'kan."
     }
   ],
   "path": [
-    { "region": "uncharted" },
-    { "place": "Tomo'kan" }
+    {
+      "region": "uncharted"
+    },
+    {
+      "place": "Tomo'kan"
+    }
   ],
   "relations": [
     {
@@ -28,7 +37,8 @@
       "source": "liquipedia",
       "via": "lore",
       "url": "https://liquipedia.net/dota2/Primal_Beast/Lore",
-      "note": "Зверь ненавидит Hoodwink за то, что она заперла его. В инфобоксе лор-страницы Hoodwink стоит в поле heroes."
+      "note": "Лор-страница: Hoodwink, защищая остатки своего дома в Tomo'kan, хитростью поймала его в Gleipnir и заперла в Continuum Vault; за это он её ненавидит.",
+      "doubt": "Биография не называет ловца по имени; что это Hoodwink, утверждает текст лор-страницы. Hoodwink — герой будущей партии, обратная запись не делается."
     }
   ],
   "profile": {
@@ -36,7 +46,9 @@
       "ru": "Primal Beast — дикий хищник, которого выбросило в наш мир из другого измерения. Вечная бойня сделала его вершиной пищевой цепи, а чувств у него осталось только на голод и боль. В туманной роще он крушил всё вокруг, пока Hoodwink не заперла его сначала в Gleipnir, а потом в Хранилище Континуума. Непредсказуемые силы Механизма Континуума выпустили его, и теперь он движется к населённым землям.",
       "en": "Primal Beast is a feral predator flung into our world from another dimension. Endless bloodshed made him the apex hunter of his old home, leaving him driven only by hunger and pain. He tore through the Mistwood until Hoodwink trapped him in the Gleipnir and later sealed him in the Continuum Vault. Unpredictable forces of the Continuum Device set him loose, and he is now heading toward inhabited lands."
     },
-    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/primal_beast.png"]
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/primal_beast.png"
+    ]
   },
   "candidates": [
     {
@@ -47,15 +59,6 @@
       "via": "lore",
       "url": "https://liquipedia.net/dota2/Primal_Beast/Lore",
       "note": "Хранилище, где Hoodwink заперла Зверя (в биографии — Vault). Место вне обычного пространства, поэтому регион — planes; решает владелец."
-    },
-    {
-      "name": "Multiverse",
-      "region": "planes",
-      "event": "mention",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Primal_Beast/Lore",
-      "note": "Поле places инфобокса. Скорее общее понятие, чем место; кандидат под вопросом."
     }
   ],
   "unconfirmed": [
@@ -63,6 +66,6 @@
     "Aghanim — персонаж, а не герой; опасения и захват его двойников в связи не записаны.",
     "Реплики озвучки (Hoodwink, Void Spirit, Aghanim в Continuum Conundrum) — не основание для связей.",
     "Gleipnir, Continuum Device и Durana — предметы и существа, не места; Krimwohl упомянут только в репликах Hoodwink.",
-    "hoodwink.json пока нет: обратная связь «враг» у неё не проверена этой партией."
+    "Multiverse из поля places инфобокса — не место (мультивселенная), в кандидаты не записано."
   ]
 }
