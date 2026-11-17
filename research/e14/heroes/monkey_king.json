@@ -1,0 +1,54 @@
+{
+  "hero": "monkey_king",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "place": "White Spire",
+      "event": "home",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Monkey_King/Lore",
+      "note": "в инфобоксе поле origins с пометкой о текущем месте; о рождении и родине в биографии ничего нет"
+    },
+    {
+      "place": "Narrow Maze",
+      "event": "visit",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Monkey_King/Lore",
+      "note": "бывал там, но не по тропе; стёр своё имя из Книги мёртвых",
+      "doubt": "страница лора подкрепляет это репликами; биография об этом не говорит, событие не из основного текста"
+    },
+    {
+      "place": "Nightsilver Woods",
+      "event": "visit",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Monkey_King/Lore",
+      "doubt": "в инфобоксе место указано без пояснения, характер визита взят как обычный визит"
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Сунь Укун, он же Monkey King, пять веков провёл под горой, куда его заточили древние боги за бунт. Выйдя на свободу, он дал обет служить богам и помочь паломнику благополучно вернуться домой, но тяга к проказам и насмешкам над небожителями никуда не делась. В лоре текущим домом ему назначен Белый шпиль.",
+      "en": "Sun Wukong, the Monkey King, spent five centuries pinned beneath a mountain that the elder gods raised to end his rebellion. Freed on the condition of serving the gods, he escorted a young acolyte home, yet his restless streak and love of trickery never faded. The lore lists White Spire as his present base."
+    }
+  },
+  "candidates": [
+    {
+      "name": "Palace of Hurra'agdu",
+      "region": "uncharted",
+      "event": "visit",
+      "source": "liquipedia",
+      "url": "https://liquipedia.net/dota2/Monkey_King/Lore",
+      "note": "указано в инфобоксе places и среди мест лора, но в regions.json такого места нет; регион по источникам не определить"
+    }
+  ],
+  "unconfirmed": [
+    "Место заточения под горой не названо ни в биографии, ни в лоре, поэтому не записано в links.",
+    "Инфобокс перечисляет героев Beastmaster, Razor, Tidehunter, Ember Spirit, Broodmother и Lycan без типа связи, поэтому связи не записаны.",
+    "Вражда и симпатии из раздела Relationships и реплик озвучки (Ember Spirit, Earth Spirit, Storm Spirit, Razor, Gyrocopter и другие) не записаны: это реплики, а не биография или лор-текст.",
+    "Знакомство с Black Arachnia, Breklin, Skitskurr, Banehallow, Lina, Luna и Rylai подтверждается только репликами или не относится к героям карты, связи не записаны.",
+    "Служение богам и спутник-аколит в биографии: боги и аколит не герои карты, связь не записана."
+  ]
+}

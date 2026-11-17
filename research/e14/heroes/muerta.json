@@ -1,0 +1,57 @@
+{
+  "hero": "muerta",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "place": "Skirm",
+      "event": "origin",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Muerta/Lore",
+      "note": "Родом из городка в далёкой пустыне, где жила под именем Селеста, пока банда не разорила его."
+    },
+    {
+      "place": "Seven Hells",
+      "event": "home",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Muerta/Lore",
+      "note": "Место указано только в инфобоксе; в тексте лора о нём не сказано.",
+      "doubt": "Текст лора не описывает, как и когда герой связан с этим местом; оставлено по полю places инфобокса."
+    },
+    {
+      "place": "Underscape",
+      "event": "visit",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Muerta/Lore",
+      "note": "Место указано только в инфобоксе; характер связи не назван.",
+      "doubt": "Только поле places инфобокса, без описания события; тип визита не подтверждён текстом."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "oracle",
+      "type": "enemy",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Muerta/Lore",
+      "note": "Оракул, лидер сестёр Вуали, по приказу которой похитили одну из дочерей героя; ради мести Муэрта действует против него."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Муэрта — уроженка Скирма, которая отказалась умирать после расправы бандитов над её семьёй. Смерть заключил с ней сделку: отдал призрачные пистолеты и взял её в помощницы, а она охотится за душами, пытающимися уклониться от своего часа. Её родные остаются за пеленой духов, но договор позволяет ей ненадолго призывать их, а движет ею месть.",
+      "en": "Muerta was a woman from Skirm who would not die after bandits destroyed her family. Death made a bargain with her, giving her two ghostly pistols and making her his assistant, and she now hunts souls that try to slip away from their end. Her kin stay beyond the spirit veil, though the deal lets her summon them briefly, and vengeance is what drives her."
+    },
+    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/muerta.png"]
+  },
+  "candidates": [],
+  "unconfirmed": [
+    "Carrion Fields of Gorm (Поля падальшиков в Горме) упомянуты в биографии как место могил, но на схеме такого места нет, а регион в тексте не назван. В кандидаты не добавлено, чтобы не угадывать регион.",
+    "Asan, the Exile Unveiled: лор говорит, что Муэрта спасла и воспитывала Asan вместе с сёстрами-изгнанницами, чтобы противостоять Оракулу. Asan в heroes.json отдельного ключа нет, а соотнесение с phantom_assassin держится только на подписи в озвучке, поэтому связь не записана.",
+    "Phantom Assassin: в инфобоксе указан как связанный герой, но тип связи с Муэртой в тексте лора не назван; реплики озвучки об убийстве и мести — не основание.",
+    "Смерть (The Reaper): Муэрта — его помощница по тексту биографии, но ключа героя для Смерти в heroes.json нет, поэтому связь master/servant не записана.",
+    "Семья Муэрты (отец, дочери) и Zell с бандитами — не герои на схеме; их связи с местами не записаны."
+  ]
+}

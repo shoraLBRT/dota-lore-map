@@ -1,0 +1,45 @@
+{
+  "hero": "morphling",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "region": "uncharted",
+      "event": "origin",
+      "source": "bio",
+      "note": "родился в войне за Влой у речной границы; по инфобоксу это Terrene Plane, на схеме места нет, см. candidates",
+      "doubt": "биография не называет место, где упала комета; Terrene Plane взят из инфобокса Liquipedia"
+    },
+    {
+      "place": "Astral Plane",
+      "event": "journey",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Morphling/Lore",
+      "doubt": "инфобокс перечисляет места без событий; путь через космос из биографии, связь с Astral Plane — наше толкование"
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Morphling — водная стихия, родившаяся из ледяной кометы, рухнувшей во время древней войны на речной границе. Не имея постоянного облика, он принял вид первого военачальника, ступившего в воду, а дальше перенимал обличья всех бойцов, которых встречал на поле боя. По инфобоксу Liquipedia он почитает Polymorphia, бога меняющихся форм.",
+      "en": "Morphling is a liquid elemental that came into being when a frozen comet fell during an ancient war at a river border. Lacking any fixed shape, he took the likeness of the first commander to step into the river, then copied every kind of soldier he met on the field. According to the lore infobox, he venerates Polymorphia, the god of shifting forms."
+    },
+    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/morphling.png"]
+  },
+  "candidates": [
+    {
+      "name": "Terrene Plane",
+      "region": "planes",
+      "event": "origin",
+      "source": "liquipedia",
+      "url": "https://liquipedia.net/dota2/Morphling/Lore",
+      "note": "место рождения по инфобоксу (places); в regions.json такого места нет, регион предположительный, решает владелец"
+    }
+  ],
+  "unconfirmed": [
+    "инфобокс heroes = Dawnbreaker, но тип связи не указан; реплики о «мастере» (voice lines) не основание, связь не записана",
+    "Birot — персонаж, а не герой; регулярные контакты указаны только в описании предмета, не в биографии",
+    "Vloy — война и река из биографии, на схеме не нанесены; регион не определён",
+    "Polymorphia — божество из инфобокса, места на схеме нет",
+    "Путь героя не записан: биография говорит о падении кометы на землю, но без названных остановок"
+  ]
+}

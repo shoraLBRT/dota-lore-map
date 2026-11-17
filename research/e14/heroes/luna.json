@@ -1,0 +1,91 @@
+{
+  "hero": "luna",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "region": "uncharted",
+      "event": "origin",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Luna/Lore",
+      "note": "Родина — равнины (The Plains), в прошлом. Биография называет лишь «далёкую родину», без имени; места The Plains на схеме нет, оно записано кандидатом.",
+      "doubt": "Название родины взято из инфобокса Liquipedia, в биографии его нет; регион неизвестен, поэтому остаётся uncharted."
+    },
+    {
+      "place": "Nightsilver Woods",
+      "event": "home",
+      "source": "bio",
+      "note": "Теперь она хранительница Серебряных лесов; здесь же её приняли в Тёмную Луну."
+    },
+    {
+      "place": "Temple of Mene",
+      "event": "service",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Luna/Lore",
+      "doubt": "Сказано, что Луна, «вероятно», знакома с храмом и защищает его от Орды Тёмной Луны; служба здесь — наше толкование."
+    },
+    {
+      "place": "Shrine of Selemene",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Luna/Lore",
+      "note": "Святилище Селемене упомянуто в связи с реликвией Ордена, которую Луна хранит; сама там событий не описано."
+    },
+    {
+      "place": "Selemene's Moon",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Luna/Lore",
+      "note": "Место указано в инфобоксе лор-страницы без события с участием героя."
+    }
+  ],
+  "path": [
+    { "region": "uncharted" },
+    { "place": "Nightsilver Woods" }
+  ],
+  "relations": [
+    {
+      "hero": "snapfire",
+      "type": "ally",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Luna/Lore",
+      "note": "Герой указан в инфобоксе; раздел отношений описывает, что в прежние годы они вместе вершили дела, то есть были союзниками."
+    },
+    {
+      "hero": "mirana",
+      "type": "ally",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Luna/Lore",
+      "doubt": "Инфобокс и текст лишь говорят, что обе связаны с культом Селемене; тип ally — наше толкование, Луна при этом недовольна высоким положением Мираны."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Luna — бывшая предводительница степных набегов, которая после долгих скитаний вышла к древнему лесу и прошла испытание Селемене. Её приняли в Тёмную Луну, и она отреклась от кровавого прошлого, став Лунной наездницей. Теперь она охраняет Серебряные леса верхом на своём звере и защищает храм богини.",
+      "en": "Luna was once a feared raider who led armies across the plains before wandering half-starved into a forest. There she was tested by the goddess Selemene and admitted to the Dark Moon order. She gave up her violent past and became a Moon Rider, guarding the Nightsilver Woods from the back of her great feline mount."
+    }
+  },
+  "candidates": [
+    {
+      "name": "The Plains",
+      "region": "uncharted",
+      "event": "origin",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Luna/Lore",
+      "note": "Родина героя (origins в инфобоксе, в прошлом). На схеме равнин с таким именем нет, регион из текста не следует — решает владелец (#59)."
+    }
+  ],
+  "unconfirmed": [
+    "Родина The Plains есть только в инфобоксе Liquipedia; в биографии она не названа, поэтому привязка к региону не подтверждена.",
+    "Реплики озвучки (Pudge — о коте-маунте, Mars — о «баранах» Селемене, Legion Commander — о её смерти) — отдельные строки, связи по ним не записаны.",
+    "Лор-страница: Dragon Knight не любит Луну, а Slyrak знает об этом — это чувство Dragon Knight, не отношение героя, и тип связи из него не выводится; не записано.",
+    "Nova — маунт Луны, персонаж из «characters» инфобокса, не герой; связь с героем не записана.",
+    "Раздел Dragon's Blood и хероатлас Monster Hunter не использованы: они вне основного лора Dota 2 и не привязаны к карте."
+  ]
+}

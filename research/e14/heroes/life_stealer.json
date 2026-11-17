@@ -1,0 +1,34 @@
+{
+  "hero": "life_stealer",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Devarque",
+      "event": "origin",
+      "source": "bio",
+      "note": "Здесь заключённый маг и вор Н'эйкс были заперты в одной камере, здесь же существо возродилось; Liquipedia в инфобоксе тоже указывает Деварк как происхождение.",
+      "doubt": "В биографии здесь он возродился и был заперт; родина его народа в источниках не названа."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Lifestealer — это Н'эйкс, вор, которого Чёрствый совет проклял долгой жизнью и оставил гнить в темнице Деварка. Заключённый маг хотел подчинить его своей жизненной силой и отправить на побег, но сам застрял в чужом теле. Пробудившись от этого потока, существо вырвалось из камеры, сводя стражей с ума и питаясь их жизнью. Теперь в одном теле живут два разума: безымянный жестокий вор и «Хозяин», которому он лишь притворяется повиноваться.",
+      "en": "Lifestealer is N'aix, a thief whom the Vile Council cursed with endless life and left rotting in the Devarque dungeons. An imprisoned wizard tried to seize the thief's body with his own life force to use it as a battering ram, but his mind got trapped inside. Jolted awake by that flood of life, the creature broke out, turning guards against each other. Two minds now share one body: a nameless thief and the Master whose orders he only pretends to follow."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/life_stealer.png"
+    ]
+  },
+  "unconfirmed": [
+    "Реплики озвучки о знакомстве и вражде с другими героями (Dark Willow, Mars, Tiny, Pangolier, Monkey King и др.) не основание для связей по решению партии 01 — связей не записано.",
+    "Раса Oglodi: родина народа в источниках не названа, на схеме такого места нет — origin по народу не ставлю.",
+    "Хозяин (Master) — персонаж без ключа героя, связь с героем не записана.",
+    "Место, где подмастерье мастера-зачарователя изготовил для героя аугментации, в лоре не названо.",
+    "Фракция Vile Council — организация, не место на схеме; связь не записана."
+  ]
+}
