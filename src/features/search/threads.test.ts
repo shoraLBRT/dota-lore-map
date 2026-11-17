@@ -23,8 +23,8 @@ const spot = (key: string, event: HeroEvent, point: [number, number] | null = [0
 const hero = (path?: Hero['path']): Hero => ({ key: 'x', name: 'X', slug: 'x', links: [], ...(path ? { path } : {}) });
 
 describe('нити героя (#67)', () => {
-  it('Kez: родина → дом — шаг пути со значком «дом»', () => {
-    expect(short(lines('kez'))).toEqual(['heavens/ghastly-eyrie>icewrack/icewrack:path:home']);
+  it('Hoodwink: родина → дом — шаг пути со значком «дом»', () => {
+    expect(short(lines('hoodwink'))).toEqual(['tomokan/krimwohl>tomokan/tomokan:path:home']);
   });
 
   it('Arc Warden: путь по порядку связей, значок — событие места, куда ведёт шаг', () => {
@@ -48,7 +48,7 @@ describe('нити героя (#67)', () => {
   });
 
   it('цвет — сторона первого места', () => {
-    expect(lines('kez').tone).toBe(heroSpots(getHero('kez')!)[0]!.tone);
+    expect(lines('hoodwink').tone).toBe(heroSpots(getHero('hoodwink')!)[0]!.tone);
   });
 
   it('есть `path` — остановки из него (можно вернуться), остальные места — пунктир', () => {
