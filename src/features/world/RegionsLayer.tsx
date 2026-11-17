@@ -80,7 +80,7 @@ export function RegionsLayer({ drawn, activeId, inWorld, tip, litId, focusRegion
                 onActivate(() => onSelectRegion(r.id, 'map'))(e);
               }}
               // SPEC §5.3: на тач-устройствах подсказки нет, тап сразу открывает регион.
-              onPointerEnter={(e) => e.pointerType !== 'touch' && on.onEnter(r)}
+              onPointerEnter={(e) => e.pointerType !== 'touch' && on.onEnter(r, { x: e.clientX, y: e.clientY })}
               onPointerLeave={(e) => e.pointerType !== 'touch' && on.onLeave(r)}
               onFocus={() => on.onFocus(r)}
               onBlur={() => on.onBlur(r)}

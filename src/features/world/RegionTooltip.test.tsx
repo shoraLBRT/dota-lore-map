@@ -2,7 +2,7 @@ import { render, screen, within } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import type { Hero, Region } from '../../data/types';
 import { I18nProvider } from '../../i18n';
-import { clampTooltip, placeTooltip, RegionTooltip, splitHeroes } from './RegionTooltip';
+import { clampTooltip, headingTo, placeTooltip, RegionTooltip, splitHeroes } from './RegionTooltip';
 
 const heroes = (n: number): Hero[] =>
   Array.from({ length: n }, (_, i) => ({ key: `h${i}`, name: `Hero ${i}`, slug: `hero${i}`, links: [] }));
@@ -111,6 +111,20 @@ describe('placeTooltip', () => {
       const box = { left: 100, top: 50, right: 950, bottom: 550 };
       expect(at(box)).toEqual(placeTooltip({ x: 500, y: 300 }, tip, view));
     });
+  });
+});
+
+describe('headingTo (#101)', () => {
+  const tip = { left: 300, top: 50, right: 500, bottom: 150 };
+  it('к подсказке — да, в сторону и назад — нет', () => {
+    expect(headingTo({ x: 100, y: 100 }, { x: 160, y: 100 }, tip)).toBe(true);
+    expect(headingTo({ x: 100, y: 100 }, { x: 160, y: 85 }, tip)).toBe(true);
+    expect(headingTo({ x: 100, y: 100 }, { x: 100, y: 160 }, tip)).toBe(false);
+    expect(headingTo({ x: 100, y: 100 }, { x: 60, y: 100 }, tip)).toBe(false);
+  });
+  it('мышь стоит или подсказка не измерена — нет', () => {
+    expect(headingTo({ x: 100, y: 100 }, { x: 100, y: 100 }, tip)).toBe(false);
+    expect(headingTo({ x: 100, y: 100 }, { x: 160, y: 100 }, { left: 0, top: 0, right: 0, bottom: 0 })).toBe(false);
   });
 });
 

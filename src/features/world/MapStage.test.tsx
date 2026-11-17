@@ -600,6 +600,34 @@ describe('MapStage — подсказка региона с героями (#65)
     expect(tip()).toBeNull();
   });
 
+  it('сосед на пути к подсказке не перехватывает её, сосед в стороне — сразу (#101)', () => {
+    vi.useFakeTimers();
+    const { polygon, tip } = renderPickable();
+    const b = screen.getByRole('button', { name: 'b en' });
+    const at = (x: number, y: number) => ({ pointerType: 'mouse', clientX: x, clientY: y });
+    fireEvent.pointerMove(window, at(100, 100));
+    fireEvent.pointerEnter(polygon, at(100, 100));
+    vi.spyOn(tip()!, 'getBoundingClientRect').mockReturnValue(new DOMRect(300, 50, 200, 100));
+    // К подсказке через b: подсказка остаётся у a и доживает до входа мыши на неё.
+    fireEvent.pointerMove(window, at(150, 100));
+    fireEvent.pointerLeave(polygon, at(160, 100));
+    fireEvent.pointerEnter(b, at(160, 100));
+    fireEvent.pointerMove(window, at(220, 100));
+    act(() => vi.advanceTimersByTime(TOOLTIP_CLOSE_DELAY / 2));
+    fireEvent.pointerLeave(b, at(290, 100));
+    fireEvent.pointerEnter(tip()!);
+    act(() => vi.advanceTimersByTime(TOOLTIP_CLOSE_DELAY * 2));
+    expect(polygon.getAttribute('aria-describedby')).toBe(tip()!.id);
+
+    // С подсказки обратно на a, затем на b — в сторону от подсказки: подсказка сразу у b.
+    fireEvent.pointerLeave(tip()!);
+    fireEvent.pointerEnter(polygon, at(100, 100));
+    fireEvent.pointerMove(window, at(100, 100));
+    fireEvent.pointerLeave(polygon, at(100, 160));
+    fireEvent.pointerEnter(b, at(100, 160));
+    expect(b.getAttribute('aria-describedby')).not.toBeNull();
+  });
+
   it('портрет выбирает героя, «+N» раскрывает всех на месте, клик по региону открывает регион', () => {
     const { onPickHero, onSelectRegion, polygon, tip } = renderPickable();
     fireEvent.pointerEnter(polygon, { pointerType: 'mouse' });

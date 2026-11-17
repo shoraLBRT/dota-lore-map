@@ -82,6 +82,37 @@ function besideBox(anchor: Anchor, box: Box, tip: Size, view: Size): { left: num
   return pos ? { left: Math.round(pos.left), top: Math.round(pos.top) } : null;
 }
 
+/** Запас вокруг подсказки для `headingTo`, px: мышь идёт к ней не идеально прямо. */
+const AIM_SLACK = 12;
+
+/**
+ * Мышь из `from` пришла в `to` по пути к подсказке `tip` (#101): `to` внутри выпуклой оболочки `from` и подсказки.
+ * Тогда соседний регион на пути не перехватывает подсказку сразу (SPEC §6.2, п. 1).
+ */
+export function headingTo(from: { x: number; y: number }, to: { x: number; y: number }, tip: Box): boolean {
+  if (tip.right <= tip.left || tip.bottom <= tip.top || (from.x === to.x && from.y === to.y)) return false;
+  const l = tip.left - AIM_SLACK;
+  const r = tip.right + AIM_SLACK;
+  const t = tip.top - AIM_SLACK;
+  const b = tip.bottom + AIM_SLACK;
+  if (to.x >= l && to.x <= r && to.y >= t && to.y <= b) return true;
+  const corners = [
+    { x: l, y: t },
+    { x: r, y: t },
+    { x: r, y: b },
+    { x: l, y: b },
+  ];
+  const cross = (o: { x: number; y: number }, a: { x: number; y: number }, c: { x: number; y: number }) =>
+    (a.x - o.x) * (c.y - o.y) - (a.y - o.y) * (c.x - o.x);
+  return corners.some((a, i) => {
+    const c = corners[(i + 1) % 4]!;
+    const d1 = cross(from, a, to);
+    const d2 = cross(a, c, to);
+    const d3 = cross(c, from, to);
+    return !((d1 < 0 || d2 < 0 || d3 < 0) && (d1 > 0 || d2 > 0 || d3 > 0));
+  });
+}
+
 /** Подсказка выросла («+N» раскрыт): остаётся на месте и только сдвигается внутрь окна (#65). */
 export function clampTooltip(pos: { left: number; top: number }, tip: Size, view: Size): { left: number; top: number } {
   const clamp = (v: number, size: number, max: number) => Math.min(Math.max(v, EDGE), Math.max(EDGE, max - size - EDGE));
