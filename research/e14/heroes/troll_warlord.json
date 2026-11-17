@@ -1,0 +1,34 @@
+{
+  "hero": "troll_warlord",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "The Hoven",
+      "event": "origin",
+      "source": "bio",
+      "note": "Монгер-тролль из глубин Ховена; в инфобоксе Liquipedia Ховен указан как место обитания (home), это то же место, поэтому одна связь — origin."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Troll Warlord, он же Джа'ракал, родом из глубин Ховена и относится к монгерам. Собратья изгнали его за невыносимый нрав и жадность, но на следующий день он вернулся с оружием, перебил обидчиков и поклялся полагаться только на себя. С тех пор он бродит по свету в одиночку, и громкий титул повелителя троллей достаётся ему лишь потому, что армия у него из одного бойца.",
+      "en": "Troll Warlord, Jah'rakal, is a monger troll from the depths of the Hoven. His kin drove him out for his bitter, greedy temper, but he came back armed the next day, slew every one of them, and swore to rely on nothing but himself. Since then he has wandered the world alone, a self-styled lord of trolls whose only army is himself."
+    }
+  },
+  "unconfirmed": [
+    "Dazzle и Huskar: неприязнь Jah'rakal к ним указана только в реплике озвучки (Huskar: «похож на меня»); связи не записаны.",
+    "Shadow Shaman: инфобокс указывает героя без типа связи; текста, который её поясняет, нет.",
+    "The Shopkeeper: инфобокс-персонаж и реплика озвучки о будущей расправе; связь не записана.",
+    "Rhasta (Hill Troll): презрение только в реплике озвучки; связь не записана.",
+    "Oglodi: битва с двумя охотниками за троллями пересказана из описания предмета Bitter Lineage; место и связь не записаны.",
+    "Keen: раса из инфобокса и реплика озвучки о неприязни; места не указано, связь не записана.",
+    "Мать (Jah'rakal's Mother) в инфобоксе: персонаж без места и героя, связь не записана.",
+    "Разделы Allies meeting и Enemies killing (Bristleback, Chaos Knight, Monkey King, Underlord, Arc Warden, Timbersaw, Tusk, Wraith King, Breklin): все строки — реплики озвучки, связи не записаны.",
+    "Imperious Command и Bitter Lineage: описания предметов, не основание для мест и связей."
+  ]
+}

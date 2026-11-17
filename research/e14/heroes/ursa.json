@@ -1,0 +1,38 @@
+{
+  "hero": "ursa",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "region": "uncharted",
+      "event": "origin",
+      "source": "ours",
+      "note": "Родина Ulfsaar в биографии не названа: только дикие леса его племени. Darkwoods из инфобокса Liquipedia держится на реплике Ursa и реплике из Artifact, поэтому на схеме — Неизведанные земли."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Ursa, Ulfsaar, — самый свирепый воин медвежьего племени, которое охраняет свои дикие леса и сородичей. Пока матери зимой спят с детёнышами, самцы обходят земли наверху. Когда до него дошли смутные слухи о растущем зле, он покинул родные края, чтобы найти угрозу и уничтожить её, пока она не добралась до его народа. Он горд и надёжен, верный союзник и защитник.",
+      "en": "Ursa, Ulfsaar, is the fiercest warrior of a bear-like tribe that guards its wild woodland and its people. While the mothers sleep through the winter with their cubs, the males patrol the land above. When faint but growing rumors of a spreading evil reached him, he left his homeland to find the threat and destroy it before it could reach his kin. He is proud and wholly dependable, a firm ally and protector."
+    }
+  },
+  "unconfirmed": [
+    "Tomo'kan (бывшая привязка, infobox): поле origins инфобокса — Darkwoods со ссылками только на реплику Ursa и реплику из Artifact; биография родину не называет. Связь снята, герой — в Неизведанных землях.",
+    "Enchantress: в enchantress.json — союзник по инфобоксу; у Ursa тоже только поле heroes и реплика озвучки. Обратная связь не записана, старая запись односторонняя.",
+    "Pangolier: в pangolier.json — союзник; у Ursa совместная работа с Donte Panlin держится на реплике Pangolier. Обратная связь не записана, старая запись односторонняя.",
+    "Замёрзшие горы к северу от родины: из описания предмета Alpine Stalker's Scarf; место безымянное, не записано.",
+    "Sylla (наставница, у которой Ursa учился, и которой он повредил палец): основание — реплики Lone Druid; Sylla не ключ героя, связь не записана.",
+    "Lone Druid (соперник, «кузен по медвежьей природе», дети героя): только реплики озвучки Lone Druid; связь не записана.",
+    "Pangolier и Enchantress: тип ally держится на поле heroes инфобокса без типа; записаны с doubt.",
+    "Donte Panlin (Pangolier): то же, что Pangolier, — раздел Relationships пересказывает реплику.",
+    "Monkey King, Lycan, Mirana, Legion Commander, Axe, Drow Ranger, Earth Spirit, Oracle, Ogre Magi, Outworld Destroyer, Windranger, Dark Seer: реплики озвучки, Friendships and Rivalries и Artifact — связи не записаны.",
+    "Roshan (вражда): только описание набора предметов и реплика; не связь героя.",
+    "Alchemy, Spirit Breaker, Sangstrath и Ravager/Razorwyrm/Cholgar: в тексте лора это предметы, виды или фракции, не места и не герои; записаны как не места.",
+    "Frozen mountains north of homeland и Ice Shaman («замёрзшая земля»): места без названия в биографии, основание — описания предметов; места не записаны.",
+    "Cubs (family в инфобоксе): не герой, связь не записана."
+  ]
+}

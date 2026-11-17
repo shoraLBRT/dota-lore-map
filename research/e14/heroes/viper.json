@@ -1,0 +1,31 @@
+{
+  "hero": "viper",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore"
+  ],
+  "links": [
+    {
+      "place": "Nether Reaches",
+      "event": "origin",
+      "source": "bio",
+      "note": "Родина его рода: низшие драконы миллионы лет жили в отрезанных от мира пещерах Nether Reaches. Биография говорит о роде, а не о рождении самого героя."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Viper — из низших драконов, что миллионы лет жили в светящихся пещерах Нижних пределов, отрезанных от мира сдвигом земной коры. Жестокий колдун поймал его, надеясь приручить, и Viper какое-то время изображал покорность, чтобы выведать его тёмную магию. Поняв, что его собственные яды страшнее любых чар, он разъел кислотой прутья клетки, плюнул ядом в глаза старому магу и улетел, чтобы мир узнал своего нового хозяина.",
+      "en": "Viper is a netherdrake, one of a race that lived for millions of years in the glowing caverns of the Nether Reaches after a shift of the earth cut them off. A cruel wizard captured him hoping to tame him, and for a while Viper played along to learn the wizard's dark magic. Realizing his own toxins were deadlier than any spell, he ate through his cage bars with acid, spat poison in the old mage's eyes, and flew off to show the world its new master."
+    }
+  },
+  "unconfirmed": [
+    "Pugna (бывший хозяин, захватчик): биография не называет захватившего мага, только «старого заклинателя». Лор-страница Liquipedia называет Pugna в инфобоксе (family) и в тексте, но опирается на реплики озвучки и Artifact. Связь не записана; в pugna.json servant at Nether Reaches остаётся односторонней.",
+    "Место, где маг держал героя в клетке: в биографии не названо. Связи с местом нет.",
+    "Weeping Rose: желание захватить город — только реплика Underlords; связь не записана.",
+    "Бездна (abyss) и проход в неё: упомянуты только в описании набора предметов; связь не записана.",
+    "Kanna и Prellex (персонажи): упомянуты только в Artifact; связи не записаны.",
+    "Anti-Mage, Winter Wyvern, Lich, Crystal Maiden, Chen, Enchantress, Lina, Rylai: отношения только из реплик Underlords, Artifact и раздела Friendships and Rivalries (реплики озвучки); связей не записано.",
+    "Раздел Relationships и Acquaintances (знакомые, реплики): типы связей из них не выводятся; связей не записано."
+  ]
+}

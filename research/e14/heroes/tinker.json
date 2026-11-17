@@ -1,0 +1,41 @@
+{
+  "hero": "tinker",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore"
+  ],
+  "links": [
+    {
+      "place": "Violet Plateau",
+      "event": "home",
+      "source": "bio",
+      "note": "Подземная лаборатория Боуша и его помощников под туманным плато; здесь открыли портал, случился Violet Plateau Incident, и отсюда он бежал один.",
+      "doubt": "В биографии лаборатория описана как прошлая база; где Боуш живёт сейчас, не сказано."
+    },
+    {
+      "place": "Home of the Keen Folk",
+      "event": "origin",
+      "source": "ours",
+      "note": "О самом Боуше места рождения нет. Народ Keen указан в инфобоксе Liquipedia, а в биографии назван карликовым; родина народа есть на схеме, поэтому связь наша.",
+      "doubt": "Связь народа с конкретным местом — наше решение; в тексте лора родина Keen не названа."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Боуш, он же Tinker, родом из народа кинов, славящегося смекалкой и недоверием к магии. Он был видным учёным, изучавшим законы природы, и основал подземную лабораторию под туманным Фиолетовым плато. Однажды его команда открыла портал в неведомый мир, и на плато опустилась вечная тьма, полная ужасающих звуков. Боуш выбрался лишь со своими изобретениями и стал единственным уцелевшим после этой катастрофы.",
+      "en": "Boush, known as Tinker, comes from the Keen Folk, a small people prized for cleverness and wary of magic. He was a leading investigator of natural law and set up an underground laboratory beneath the misty Violet Plateau. One day his team tore open a portal to an unknown realm, and the plateau was swallowed by a permanent black gloom filled with horrors. Boush alone escaped with his inventions, the lone survivor of the disaster."
+    }
+  },
+  "candidates": [],
+  "unconfirmed": [
+    "Мир за порталом: в биографии безымянный «мир за гранью понимания»; Multiverse из инфобокса Liquipedia — не место, а понятие. Ни связью, ни кандидатом не записан.",
+    "Clockwerk и Sniper (кузены): указаны в инфобоксе Liquipedia, но все сноски — реплики озвучки; связи не записаны. Связь Sniper-Tinker ранее снята по той же причине и не возвращена.",
+    "Snapfire: инфобокс называет героя без типа связи; дружба указана только в репликах озвучки Snapfire, в биографии её нет.",
+    "Bristleback (неприязнь к кинам), Earth Spirit, Disruptor и Juggernaut (Yurnero, обвинение в катастрофе): только реплики озвучки и фразы при убийстве; связи не записаны.",
+    "Rigwarl: враждебность к Tinker взята из реплики озвучки Bristleback; сам народ Rigwarl в биографии не упомянут.",
+    "Seven Minute War: событие только из реплики озвучки Tinker, в биографии его нет; не записано.",
+    "Раздел Artifact и Dota Underlords (фракция S.O.L.K., Rollermaw, Mecha Boots, Pipe of Insight, Confluence Engine) и описания предметов: не основание для мест и связей.",
+    "Alchemy и отношение Tinker к алхимикам: только реплика озвучки; в биографии не упомянуто."
+  ]
+}

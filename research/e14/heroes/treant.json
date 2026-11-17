@@ -1,0 +1,37 @@
+{
+  "hero": "treant",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Vale of Augury",
+      "event": "origin",
+      "source": "bio",
+      "doubt": "В биографии родина — горы за Долиной прорицаний; сами горы на схеме не названы, поэтому привязка к Долине (Vale of Augury), которую называет инфобокс лор-страницы."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Treant Protector, Руфтреллен, — один из древних великанов-деревьев, что стерегут скрытый священный лес в горах за Vale of Augury. Веками они почти не замечали внешнего мира, пока чужаки не стали приходить с топорами и огнём. После тысячи лет сомнений любопытство взяло верх, и одного Protector отправили странствовать. Он должен наблюдать за переменами и узнать, какие угрозы ждут их священную землю.",
+      "en": "Treant Protector, Rooftrellen, is one of the ancient tree giants who guard a hidden sacred forest in the high country past the Vale of Augury. For ages they paid little heed to the outside world, until outsiders came with axes and fire. After a thousand years of doubt, curiosity won, and one Protector was sent out to wander. He is to watch how the world changes and learn what dangers may threaten their sacred land."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/treant.png"
+    ]
+  },
+  "unconfirmed": [
+    "Roseleaf: визит и «великое дело» держатся только на репликах Dark Willow; в биографии Roseleaf нет, место не записано.",
+    "Timbersaw (shredder): лор-страница выводит соперничество из догадки, что нападение «ходячих деревьев» на Augury Bay связано с энтами, и из реплик озвучки; тип связи из текста не следует, связь не записана (в shredder.json она тоже не записана).",
+    "Magnus (magnataur): в файле magnataur.json он союзник Treant в Roseleaf (бой с Vhoul). Собственные источники Treant этого не подтверждают: там сказано только о визите в Roseleaf. Связь одностороння, обратная запись не сделана.",
+    "Augury Bay: лор-страница называет вероятным, что Treant разведывал город перед нападением ходячих деревьев; это предположение, место не записано.",
+    "Раздел Allies meeting / Enemies killing и Friendships and Rivalries (Axe, Bristleback, Earth Spirit, Elder Titan, Lina, Meepo, Monkey King, Puck, Dark Willow, Pangolier, Grimstroke, Mars, Snapfire, Hoodwink, Nature's Prophet, Slark, Spectre, Storm Spirit, Troll Warlord и др.): связей нет, только реплики озвучки.",
+    "Dark Willow и Mireska: реплики о том, что уход из Roseleaf был ошибкой или наоборот достоин уважения; сама по себе реплика связи не даёт, Mireska в биографии не появляется.",
+    "Nature's Prophet: лор прямо говорит, что неизвестно, родственны ли Treant Protector деревьям treant Nature's Prophet; связи не записано.",
+    "Stuntwood Sanctuary: место из описания другой статьи, в биографии его нет и на схему оно не попадает; не записано.",
+    "Hero Atlas (Dota 2 X Monster Hunter) не читался: раздел лор-страницы, ссылающийся на него, не использован."
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "hero": "vengefulspirit",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore"
+  ],
+  "links": [
+    {
+      "place": "Ghastly Eyrie",
+      "event": "origin",
+      "source": "bio",
+      "note": "Шенделзара — старшая принцесса скайрасов, первая в очереди на престол Жуткого гнезда; здесь же её лишили наследства. Что с ней случилось после ухода из гнезда, в биографии не описано."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "skywrath_mage",
+      "type": "love",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Vengeful_Spirit/Lore",
+      "note": "В тексте лор-страницы: Dragonus назван тайным возлюбленным Шенделзары (ссылка на биографию Skywrath Mage).",
+      "doubt": "Чувство описано со стороны Skywrath Mage; в текстах не сказано, отвечала ли Шенделзара взаимностью. Тип записан по формулировке «тайный возлюбленный», взаимность не подтверждена."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Vengeful Spirit, в прошлом принцесса Шенделзара, была первой в очереди на престол скайрасов в Жутком гнезде, пока предательство сестры не лишило её и трона, и крыльев. Лишившись возможности летать, она заключила сделку с богиней Скри'Ок: отдала искалеченное тело и получила вечный дух, которым движет месть. Теперь её гнев направлен на сестру, занявшую её место.",
+      "en": "Vengeful Spirit, once the princess Shendelzare, was the first heir to the Skywrath throne in the Ghastly Eyrie until her sister's treachery cost her both the crown and her wings. Left unable to fly, she struck a bargain with the goddess Scree'Auk, giving up her broken body for a spirit powered by vengeance. Her anger now targets the sister who took her place."
+    }
+  },
+  "unconfirmed": [
+    "Winter Wyvern (ally, Icewrack): связь записана в winter_wyvern.json по лор-странице Winter Wyvern; в кэше Vengeful Spirit (биография, лор-страница) ни Winter Wyvern, ни Icewrack не упомянуты, поэтому обратная запись не добавлена. Не подтверждено со стороны Vengeful Spirit.",
+    "Puck (восхищение крыльями): единственная опора — реплика озвучки Puck (vo_puck_puck_rival_07), связь не записана.",
+    "Imperia (младшая сестра, infobox family): Imperia нет в heroes.json, поэтому связь героев не записана; сестра из биографии — безымянная, личность определена только по инфобоксу Crownfall.",
+    "Phantom Assassin (сестра в Trivia): заметка о DotA, которая прямо отвергнута для Dota 2 на той же странице; связь не записана.",
+    "Инфобокс лор-страницы перечисляет героев Skywrath Mage и Puck без типа связи: не основание.",
+    "Места из монолога озвучки (берега реки Pas?re, где её подобрала Scree'Auk; башня, с которой её сбросили): только реплики озвучки, в биографии их нет; места на схему и в кандидаты не добавлены.",
+    "Раздел Friendships and Rivalries (союзники и враги по репликам озвучки, включая Luna, Monkey King, Legion Commander, Oracle и др.): связей не записано."
+  ]
+}

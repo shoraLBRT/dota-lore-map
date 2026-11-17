@@ -1,0 +1,25 @@
+{
+  "hero": "weaver",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "place": "Fabric of Creation",
+      "event": "origin",
+      "source": "bio",
+      "note": "Ткачи работают в ткани творения, там же Скитскур хранил свой участок; изгнание — стражи отрезали его владения от гобелена, но оставили в живых. Инфобокс Liquipedia называет то же место в поле origins и places."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Weaver, он же Скитскур, — ткач, который следил за прочностью ткани творения и латал её разрывы, чтобы миры не распадались. Мастер своего дела, он тяготился мыслью, что эпоха созидания осталась в прошлом, и начал ткать собственный мир. Его самовольные перемены привлекли внимание стражей, которые отрезали его владения от гобелена и оставили в живых. Теперь он одинок и свободен, и ради нового замысла хочет распустить старую ткань по швам.",
+      "en": "Weaver, known as Skitskurr, is a Weaver whose job was to keep the fabric of creation taut and mend its worn spots so that worlds did not come undone. Skilled at that work, he chafed at the idea that the age of making had already passed, and he began to shape a world of his own. When his bold changes drew suspicion, the guardians cut his domain out of the cosmic tapestry and left him alive and alone. Now free, he intends to unpick the old fabric along its stitching to make room for something new."
+    }
+  },
+  "unconfirmed": [
+    "Loom (станок, которым создавали мир): упомянут в биографии как прошлая работа творения, это не место на карте, в links не записан.",
+    "Союзники (Abaddon, Monkey King, Nyx Assassin), враги (Bristleback, Broodmother, Chaos Knight, Earth Spirit, Legion Commander, Nyx Assassin, Omniknight, Pudge, Razor, Queen of Pain, Sand King, Sven, Tidehunter, Troll Warlord, Wraith King, Zeus) и Oracle из раздела Friendships and Rivalries: только реплики озвучки, связи не записаны.",
+    "Инфобокс и текст лора не называют других героев (поля heroes пусто): связей по этим источникам нет.",
+    "Описания предметов и способностей (Crimson Pique, Skittering Desolation, Shukuchi, Time Lapse и др.) и раздел Trivia не использованы как основание: места или связи из них не записаны.",
+    "Time (поле others инфобокса) и «время» из описания Shukuchi / Geminate Attack: не место, не записано."
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "hero": "venomancer",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore"
+  ],
+  "links": [
+    {
+      "place": "Bay of Fradj",
+      "event": "journey",
+      "source": "bio",
+      "note": "Травник Лисайл пересёк залив Фраджи на лодке, чтобы попасть на остров Джиди."
+    },
+    {
+      "place": "Jidi Isle",
+      "event": "journey",
+      "source": "bio",
+      "note": "Лисайл приплыл на остров за целебными вытяжками; позже остров стал тесен для Venomancer, и тяга к новым ядам увела его прочь. Изгнанием это не было."
+    },
+    {
+      "place": "Acid Jungles",
+      "event": "death",
+      "source": "bio",
+      "note": "Здесь травника Лисайла ужалил ящер; после самодельного противоядия он семнадцать лет пролежал в коме и поднялся уже Venomancer, новым хозяином джунглей. Родина самого Лисайла в биографии не названа: он пришёл сюда из-за залива."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Venomancer когда-то был травником Лисайлом, который переплыл залив Фрадж в поисках целебных вытяжек на острове Джиди. В Кислотных джунглях его ужалил притаившийся ящер; Лисайл ввёл себе самодельное противоядие и впал в кому. Через семнадцать лет на том месте поднялось новое существо из яда рептилии и оболочки орхидеи, почти без прежнего разума. Вскоре остров стал ему тесен, и он ушёл искать новые яды.",
+      "en": "Venomancer was once Lesale, a herbalist who crossed the Bay of Fradj to look for useful plant extracts on Jidi Isle. In the Acid Jungles a hidden reptile stung him, and after taking a makeshift antidote he fell into a coma. Seventeen years later a new creature rose from that spot, made of the reptile's poison and the orchid's toxic skin, its old mind nearly gone. The island soon grew too small, and he left in search of new poisons."
+    }
+  },
+  "unconfirmed": [
+    "Venoling (племянник Лисайла, поле family в инфобоксе лор-страницы): Venoling — не герой из списка ключей, связь записать нельзя; места Venoling не указаны.",
+    "Культ Aktok (лор-страница, раздел Encounter with the Aktok cultists): событие без названного места, связано с богом Aktok, которого нет в списке героев.",
+    "Реплики озвучки из раздела Friendships and Rivalries (Medusa, Monkey King, Sven, Viper и др.): связи по ним не записаны, только реплики.",
+    "Liquipedia, infobox origins: Acid Jungles совпадает с биографией, отдельная запись не нужна."
+  ],
+  "path": [
+    {
+      "place": "Bay of Fradj"
+    },
+    {
+      "place": "Jidi Isle"
+    },
+    {
+      "place": "Acid Jungles"
+    }
+  ]
+}

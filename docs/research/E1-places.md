@@ -71,13 +71,13 @@
 ## 5. Регионы, места и герои
 
 <!-- GENERATED:BEGIN -->
-Регионов: **26**, мест: **172**, героев привязано: **127** из 127, из них в «Неизведанных землях»: **13**.
+Регионов: **26**, мест: **172**, героев привязано: **127** из 127, из них в «Неизведанных землях»: **14**.
 
 ### Сводка по регионам
 
 | Ярус | Регион | Сторона | Мест | Героев |
 |---|---|---|---|---|
-| Верхний ярус | Небеса (The Heavens) | нейтрально (ярус) | 6 | 12 |
+| Верхний ярус | Небеса (The Heavens) | нейтрально (ярус) | 6 | 13 |
 | Верхний ярус | Семь планов и Пустота (The Seven Planes and the Void) | нейтрально (ярус) | 13 | 18 |
 | Материк и острова | Айсрак (Icewrack) | Radiant (карта S1) | 12 | 9 |
 | Материк и острова | Земля Сияющих (Land of the Radiant) | Radiant (карта S1) | 8 | 10 |
@@ -97,10 +97,10 @@
 | Материк и острова | Слом и Эльзе (Slom and Elze) | Radiant (по схеме E2) | 3 | 4 |
 | Материк и острова | Ховен и Нишай (The Hoven and Nishai) | Dire (по схеме E2) | 4 | 4 |
 | Материк и острова | Феллстрат (Fellstrath) | Dire (по схеме E2) | 6 | 7 |
-| Материк и острова | Томо'кан и Окраины (Tomo'kan and the Outlands) | Dire (по схеме E2) | 6 | 5 |
+| Материк и острова | Томо'кан и Окраины (Tomo'kan and the Outlands) | Dire (по схеме E2) | 6 | 4 |
 | Материк и острова | Империя Костей (Empire of Bone) | Dire (по схеме E2) | 3 | 1 |
 | Материк и острова | Срединные королевства (The Middle Kingdoms) | нейтрально (по схеме E2) | 11 | 13 |
-| Материк и острова | Неизведанные земли (The Uncharted Lands) | нейтрально (по схеме E2) | 0 | 13 |
+| Материк и острова | Неизведанные земли (The Uncharted Lands) | нейтрально (по схеме E2) | 0 | 14 |
 | Бездна | Подземье (The Underdark) | нейтрально (ярус) | 4 | 4 |
 | Бездна | Семь Преисподних и загробье (The Seven Hells and the Afterlife) | нейтрально (ярус) | 8 | 12 |
 
@@ -110,7 +110,7 @@
 
 Сторона: **нейтрально** (ярус). Небо над миром и небесные тела: столица скайрасов высоко над землёй, Безумная Луна (разрушена, её осколки — Radiant Ore и Direstone), Луна Селемены, Солнце.
 
-Герои всего региона: Doom, Mars
+Герои всего региона: Doom, Mars, Visage (служба)
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
@@ -176,7 +176,7 @@
 | Violet Archives | карта S1 | Phoenix (упоминание), Templar Assassin (связь) |  |
 | Violet Plateau | лор | Tinker (живёт) | архивы находятся в нём или рядом |
 | Castle of the Fold | карта S1 | — |  |
-| Home of the Keen Folk | карта S1 | Alchemist*, Clockwerk*, Gyrocopter* |  |
+| Home of the Keen Folk | карта S1 | Alchemist*, Clockwerk*, Gyrocopter*, Tinker* |  |
 | Knollen | наше | Sniper | горные долины кинов |
 | Dredger's Bight | наше | Techies | родина Techies (кины); страницы на Liquipedia нет |
 | Thousand Tarns | карта S1 | Axe (сражение) |  |
@@ -348,9 +348,9 @@
 | ★ Isle of Masks | лор | Juggernaut |  |
 | Temple of Masks | лор | Juggernaut (упоминание) |  |
 | Ivory Isles | лор | Juggernaut (упоминание) |  |
-| Jidi Isle | лор | — |  |
-| Acid Jungles | лор | Venomancer |  |
-| Bay of Fradj | лор | — |  |
+| Jidi Isle | лор | Venomancer (путь) |  |
+| Acid Jungles | лор | Venomancer (гибель) |  |
+| Bay of Fradj | лор | Venomancer (путь) |  |
 | Ash Archipelago | лор | Gyrocopter (живёт) |  |
 
 #### Западные леса · Western Forests
@@ -359,9 +359,9 @@
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
-| ★ Western Forests | лор | Lycan (бывал) |  |
+| ★ Western Forests | лор | Lycan (бывал), Windranger |  |
 | Zaru'Kina | лор | Windranger |  |
-| Vale of Augury | лор | Treant Protector (живёт) |  |
+| Vale of Augury | лор | Treant Protector |  |
 | Augury Bay | лор | Timbersaw |  |
 | Endless Copse | наше | Nature's Prophet (упоминание) |  |
 | Manglewood Forest | наше | Nature's Prophet (бывал) |  |
@@ -384,7 +384,7 @@
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
-| ★ The Hoven | лор | Clinkz, Troll Warlord (живёт) |  |
+| ★ The Hoven | лор | Clinkz, Troll Warlord |  |
 | Bleeding Hills | лор | Clinkz (связь), Shadow Shaman |  |
 | Nishai | лор | Earthshaker |  |
 | The Red Mountain | лор | Earthshaker (служба) | предположительно в Нишае |
@@ -408,7 +408,7 @@
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
-| ★ Tomo'kan | лор | Arc Warden (сражение), Hoodwink (живёт), Primal Beast (сражение), Ursa (живёт) |  |
+| ★ Tomo'kan | лор | Arc Warden (сражение), Hoodwink (живёт), Primal Beast (сражение) |  |
 | Krimwohl | лор | Hoodwink |  |
 | Outlands | лор | Snapfire (бывал) |  |
 | Nanarak | лор | Snapfire (живёт) |  |
@@ -461,6 +461,7 @@
 | Ringmaster | ни в биографии, ни в лоре на Liquipedia место не названо: история идёт в безымянных городках и в цирке Осберта Кеттла |
 | Rubick | В биографиях dota2.com и на лор-странице Liquipedia нет места рождения, учёбы или жизни героя; поле places инфобокса пусто. Родину не угадываем. |
 | Undying | В биографии и на лор-странице нет ни одного названного места: родина и прежнее имя героя остались неизвестны. Яма Мёртвого бога — не место из regions.json, поэтому записан uncharted. |
+| Ursa | Родина Ulfsaar в биографии не названа: только дикие леса его племени. Darkwoods из инфобокса Liquipedia держится на реплике Ursa и реплике из Artifact, поэтому на схеме — Неизведанные земли. |
 | Witch Doctor | По официальной биографии колдун несколько жизней копил знания в горах острова Arktura. На схеме такого острова нет — он записан кандидатом; пока герой в Неизведанных землях. |
 
 ### Бездна
@@ -480,6 +481,8 @@
 
 Сторона: **нейтрально** (ярус). Семь слоёв ада, тюрьма Foulfell, путь мёртвых душ (Narrow Maze → Underscape) и загробный мир Nothl.
 
+Герои всего региона: Visage (служба)
+
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
 | ★ Seven Hells | лор | Doom (живёт), Lion (сражение), Muerta (упоминание), Shadow Demon, Shadow Fiend (упоминание), Terrorblade |  |
@@ -487,7 +490,7 @@
 | Abysm | лор | Shadow Fiend |  |
 | Foulfell | лор | Terrorblade (изгнание) |  |
 | Outer Hells | лор | Warlock (связь) |  |
-| Narrow Maze | лор | Razor (живёт), Visage (живёт) |  |
+| Narrow Maze | лор | Razor (живёт), Visage (служба) |  |
 | Underscape | лор | Muerta (упоминание), Necrophos (упоминание), Razor (связь) |  |
 | Nothl Realm | лор | Dazzle (связь), Huskar (гибель) |  |
 
@@ -602,22 +605,22 @@
 | Terrorblade | Seven Hells (Семь Преисподних и загробье); Foulfell (Семь Преисподних и загробье) (изгнание) |
 | Tidehunter | Sunken Isles (Кладд и острова); Trembling Isle (Кладд и острова) (сражение); Recluse Reef (Глубины) (упоминание) |
 | Timbersaw | Augury Bay (Западные леса) |
-| Tinker | Violet Plateau (Земля Сияющих) (живёт) |
+| Tinker | Violet Plateau (Земля Сияющих) (живёт); Home of the Keen Folk (Земля Сияющих)* |
 | Tiny | Azura (Айсрак) |
-| Treant Protector | Vale of Augury (Западные леса) (живёт) |
-| Troll Warlord | The Hoven (Ховен и Нишай) (живёт) |
+| Treant Protector | Vale of Augury (Западные леса) |
+| Troll Warlord | The Hoven (Ховен и Нишай) |
 | Tusk | Cobalt (Айсрак); Wolfsden Tavern (Айсрак) (связь) |
 | Underlord | Aziyog (Подземье) (живёт); Stonehall (Стоунхолл) (связь)† |
 | Undying | весь регион «Неизведанные земли»* |
-| Ursa | Tomo'kan (Томо'кан и Окраины) (живёт) |
+| Ursa | весь регион «Неизведанные земли»* |
 | Vengeful Spirit | Ghastly Eyrie (Небеса) |
-| Venomancer | Acid Jungles (Тропические острова) |
+| Venomancer | Bay of Fradj (Тропические острова) (путь); Jidi Isle (Тропические острова) (путь); Acid Jungles (Тропические острова) (гибель) |
 | Viper | Nether Reaches (Подземье) |
-| Visage | Narrow Maze (Семь Преисподних и загробье) (живёт) |
+| Visage | Narrow Maze (Семь Преисподних и загробье) (служба); весь регион «Семь Преисподних и загробье» (служба); весь регион «Небеса» (служба) |
 | Void Spirit | The Void (Семь планов и Пустота); Hidden Temple (Срединные королевства) (связь) |
 | Warlock | Ultimyr Academy (Срединные королевства) (живёт); Outer Hells (Семь Преисподних и загробье) (связь) |
 | Weaver | Fabric of Creation (Семь планов и Пустота) |
-| Windranger | Zaru'Kina (Западные леса) |
+| Windranger | Zaru'Kina (Западные леса); Western Forests (Западные леса) |
 | Winter Wyvern | Icewrack (Айсрак) (живёт) |
 | Witch Doctor | весь регион «Неизведанные земли»* |
 | Wraith King | Throne of Bone (Империя Костей) (живёт) |
