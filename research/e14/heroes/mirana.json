@@ -1,19 +1,21 @@
 {
   "hero": "mirana",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
   "links": [
     {
       "place": "Nightsilver Woods",
-      "event": "origin",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Mirana/Lore",
-      "note": "Родина по полю origins инфобокса лор-страницы; биография описывает её как хранительницу этого леса.",
-      "doubt": "Биография говорит о службе в лесу, а не о рождении там; родина взята из инфобокса, текст молчит."
+      "event": "service",
+      "source": "bio",
+      "note": "Родина по полю origins инфобокса лор-страницы; биография описывает её как хранительницу этого леса."
     },
     {
       "place": "Temple of Mene",
-      "event": "visit",
+      "event": "mention",
       "source": "liquipedia",
       "via": "lore",
       "url": "https://liquipedia.net/dota2/Mirana/Lore",
@@ -22,17 +24,19 @@
     },
     {
       "place": "Solar Throne",
-      "event": "mention",
+      "event": "origin",
       "source": "bio",
       "note": "Биография называет её первой претенденткой на Лучезарный трон, сама она там не была."
     }
   ],
   "profile": {
     "summary": {
-      "ru": "Mirana — наследница королевского рода и претендентка на Лучезарный трон, которая ради служения богине Луны Селемене отреклась от земных владений и титулов. Её называют принцессой Луны. Она объезжает Лес Найтсильвер на большом кошачьем спутнике Сэган и защищает священные лотосы от браконьеров. Её лук с лунной породой придаёт стрелам силу ночного светила.",
-      "en": "Mirana is a royal heir and former contender for the Solar Throne who gave up her worldly lands and titles to serve the moon goddess Selemene. She is known as the Princess of the Moon. She patrols the Nightsilver Woods on her great feline companion Sagan, guarding a sacred lotus from poachers. Her bow, reinforced with lunar ore, lets her arrows carry the light of the moon."
+      "ru": "Mirana родилась в королевской семье и была наследницей Solar Throne, но отказалась от земель и титулов, чтобы служить Selemene, богине Луны. С тех пор её зовут Принцессой Луны. Верхом на огромном звере-фамильяре она обходит священные Nightsilver Woods и ловит тех, кто пытается украсть светящийся лотос из прудов богини. Её лук с наконечниками из лунной руды заряжает стрелы светом Луны.",
+      "en": "Mirana was born into a royal family as heir to the Solar Throne, but gave up her lands and titles to serve Selemene, goddess of the Moon. Since then she has been called the Princess of the Moon. Riding a huge feline familiar, she patrols the sacred Nightsilver Woods and hunts anyone who tries to steal the glowing lotus from the goddess's pools. Her bow, tipped with lunar ore, charges its arrows with moonlight."
     },
-    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/mirana.png"]
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/mirana.png"
+    ]
   },
   "unconfirmed": [
     "Marci: Liquipedia-лор называет её телохранительницей Mirana, но опирается на сериал Dragon's Blood и твит; биография Mirana её не упоминает. Связь не записана. В marci.json стоит тип ally — расхождение (тип и основание) для владельца.",

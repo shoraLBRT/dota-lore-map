@@ -1,6 +1,10 @@
 {
   "hero": "slark",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore"
+  ],
   "links": [
     {
       "place": "Dark Reef",
@@ -18,38 +22,14 @@
     }
   ],
   "path": [
-    { "place": "Dark Reef" },
-    { "region": "shadeshore" }
-  ],
-  "relations": [
     {
-      "hero": "drow_ranger",
-      "type": "ally",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Slark/Lore",
-      "note": "Drow Ranger стоит в поле heroes инфобокса лор-страницы Slark; лор говорит, что у Slark может быть особая связь с Traxex и Pudge. Это подтверждает связь с обратной стороны.",
-      "doubt": "Тип не назван ни в инфобоксе, ни в тексте; ally выбран условно, как в файле drow_ranger. Упоминание в тексте опирается на реплику озвучки, поэтому основанием считается только инфобокс."
+      "place": "Dark Reef"
     },
     {
-      "hero": "pudge",
-      "type": "ally",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Slark/Lore",
-      "note": "Pudge стоит в поле heroes инфобокса лор-страницы Slark; та же «возможная» особая связь, что и с Drow Ranger.",
-      "doubt": "Тип не назван; ally выбран условно. Реплика озвучки, на которую ссылается текст, основанием не считается."
-    },
-    {
-      "hero": "naga_siren",
-      "type": "ally",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Slark/Lore",
-      "note": "Naga Siren стоит в поле heroes инфобокса лор-страницы Slark.",
-      "doubt": "Тип не назван. Лор-страница пишет только, что Slark знает Slithice (Naga Siren) и что-то о её пении; из знакомства тип не выводится, поэтому ally условно. Реплика озвучки и описание предмета основанием не считаются."
+      "region": "shadeshore"
     }
   ],
+  "relations": [],
   "profile": {
     "summary": {
       "ru": "Slark — единственный заключенный, которому удалось сбежать из подводной тюрьмы Темный риф. Большую часть жизни он провел там, никому не доверяя и держа свои планы при себе. Во время неудачного побега тринадцатый участник незаметно скрылся, и теперь он прячется в мангровых зарослях у Тенистого взморья.",
@@ -66,6 +46,9 @@
     "Реплики озвучки (ссора с Naga Siren, фин-рот, наставник из Slithereen в Dark Reef, сокамерник, которого он съел, и др.) и фраза про Dark Pact — не основания для записи связей и мест.",
     "Тип связи с Pudge, Drow Ranger и Naga Siren не назван в источниках; записан ally условно (см. doubt у каждой связи).",
     "Dark Ones, Deep Ones, Meranths, Slithereen, Daggerfish, Umizar, Glow Conch и Skadi — фракции, расы, виды и боги, не места; на карту не добавлены.",
-    "Миссия в Dota 2 X Monster Hunter (Hero Atlas) и Slark/Old Abilities не читались, поскольку биография и лор-страница их не пересказывают."
+    "Миссия в Dota 2 X Monster Hunter (Hero Atlas) и Slark/Old Abilities не читались, поскольку биография и лор-страница их не пересказывают.",
+    "Drow Ranger: только поле heroes инфобокса и «возможно» в тексте, тип не назван. Запись slark в drow_ranger.json остаётся односторонней.",
+    "Pudge: только поле heroes инфобокса, тип связи не назван; связь не записана.",
+    "Naga Siren: «знает Slithice» — знакомство, тип связи не выводится; связь не записана."
   ]
 }

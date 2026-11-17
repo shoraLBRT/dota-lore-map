@@ -1,15 +1,17 @@
 {
   "hero": "spectre",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
   "links": [
     {
-      "region": "planes",
+      "region": "uncharted",
       "event": "origin",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Spectre/Lore",
-      "note": "Родной план Меркуриал, откуда приходит её энергия; конкретного места в биографии нет.",
-      "doubt": "Биография родной план не называет. «Shadow realm» есть в тексте лор-страницы, но опирается на описание предмета; регион «planes» — наше соответствие «Seven Planes» из инфобокса."
+      "source": "ours",
+      "note": "Биография не называет ни одного места; «теневой план» на лор-странице держится на описании предмета."
     }
   ],
   "profile": {
@@ -25,6 +27,7 @@
     "Инфобокс heroes (Puck, Dark Willow, Void Spirit, Phantom Lancer, Meepo): тип связи не указан, в тексте лора нет — не записаны.",
     "Inai, Azwraith, Imperia, Brewmaster, Keeper of the Light и прочие реплики озвучки: не основание для связей.",
     "Ascendants и Transcendencies: группы сущностей, не места и не герои — не записаны.",
-    "Phantom Advent (отколовшаяся часть Haunt): описана без места, связь с регионом не выводится."
+    "Phantom Advent (отколовшаяся часть Haunt): описана без места, связь с регионом не выводится.",
+    "Регион planes (origin): только лор-страница со ссылкой на описание предмета; заменено на uncharted."
   ]
 }

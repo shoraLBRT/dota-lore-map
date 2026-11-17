@@ -1,13 +1,16 @@
 {
   "hero": "meepo",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
   "links": [
     {
       "place": "Riftshadow Ruins",
-      "event": "origin",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Meepo/Lore",
+      "event": "home",
+      "source": "bio",
       "note": "Биография описывает его жизнь и ремесло в этих руинах; инфобокс называет их происхождением."
     },
     {
@@ -16,7 +19,8 @@
       "source": "liquipedia",
       "via": "lore",
       "url": "https://liquipedia.net/dota2/Meepo/Lore",
-      "note": "Годами копал там и вытащил гигантский резонирующий кристалл; место не родное, поэтому visit."
+      "note": "Годами копал там и вытащил гигантский резонирующий кристалл; место не родное, поэтому visit.",
+      "doubt": "Держится только на описаниях предметов набора самого Meepo; в биографии места нет."
     },
     {
       "place": "Bone Ruins",
@@ -24,21 +28,14 @@
       "source": "liquipedia",
       "via": "lore",
       "url": "https://liquipedia.net/dota2/Meepo/Lore",
-      "note": "Исследовал руины, добыл ключ от входной арки и выгнал бандитов."
-    },
-    {
-      "place": "The Underhollow",
-      "event": "visit",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Meepo/Lore",
-      "doubt": "В тексте потерялся клон Meepo, а не основной герой; засчитано как визит клона."
+      "note": "Исследовал руины, добыл ключ от входной арки и выгнал бандитов.",
+      "doubt": "Держится только на описаниях предметов набора самого Meepo; в биографии места нет."
     }
   ],
   "profile": {
     "summary": {
-      "ru": "Meepo — добытчик и геомант из большого неназванного рода. Промышляет в Riftshadow Ruins: откапывает резные обломки и кристаллы, продаёт их в городе и за щедрую плату водит путников по развалинам, храня их тайны. Его копание привело его и в Singer's Gulch, и в Bone Ruins.",
-      "en": "Meepo is a scavenging geomancer from a large, unnamed family. He makes his living in the Riftshadow Ruins, digging up carved fragments and crystals, selling them in town, and guiding travelers through the wastes for a generous tip. His digging also took him to Singer's Gulch and the Bone Ruins."
+      "ru": "Meepo живёт в Riftshadow Ruins, где даже еду найти трудно, а звери опасны. Он выживает ловушками и смекалкой и раскапывает обломки старого дворца, где когда-то проводили тёмные обряды и раскалывали души. Найденные резные камни и кристаллы Riftshadow он продаёт в городе. С кристаллами он обращается осторожно: они могут взорваться в руках.",
+      "en": "Meepo lives in the Riftshadow Ruins, where food is scarce and the beasts are dangerous. He survives by traps and wits and digs through the remains of an old palace where dark rites once split souls apart. He sells the carvings and Riftshadow crystals he finds in town. He handles the crystals with care, since they can go off in his hands."
     }
   },
   "unconfirmed": [
@@ -46,6 +43,7 @@
     "Долг перед Jasper Circle и охота Lorlin Lasan — персонажи и фракция, не герои из справочника; в связи герой–герой не записаны.",
     "Infobox-поле heroes (Bounty Hunter, Rubick, Dark Willow) не задаёт тип связи; нужен владелец или текст лор-страницы, описывающий отношения.",
     "Отношения с Mireska, Gondar, Lina, Monkey King, Phantom Lancer, Tusk и другими — только по репликам озвучки, связей не записано.",
-    "Кристалл Riftshadow и ‘Ущелье теней’ как отдельные места на схеме не требуются: это предметы, упомянутые в тексте, без собственного места."
+    "Кристалл Riftshadow и ‘Ущелье теней’ как отдельные места на схеме не требуются: это предметы, упомянутые в тексте, без собственного места.",
+    "The Underhollow: потерянный клон Meepo — из ассетов игрового режима, а не из лора героя; связь не записана."
   ]
 }

@@ -1,6 +1,10 @@
 {
   "hero": "sand_king",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore"
+  ],
   "links": [
     {
       "place": "Scintillant Waste",
@@ -11,11 +15,8 @@
     {
       "place": "Qaldin",
       "event": "mention",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Sand_King/Lore",
-      "note": "Здесь связь через джиннов, которые выковали его панцирь",
-      "doubt": "В тексте лора Калдин назван как место джиннов, сам герой там не описан; держится на инфобоксе"
+      "source": "bio",
+      "note": "Здесь связь через джиннов, которые выковали его панцирь"
     },
     {
       "place": "Desert of Misrule",
@@ -31,15 +32,17 @@
       "source": "liquipedia",
       "via": "lore",
       "url": "https://liquipedia.net/dota2/Sand_King/Lore",
-      "doubt": "Панцирь Древнего Правителя откопан в руинах Эль-Харат, но кто и когда его нашёл, в тексте не сказано"
+      "doubt": "Только описание предмета набора самого Sand King (Ancient Sovereign); в биографии места нет."
     }
   ],
   "profile": {
     "summary": {
-      "ru": "Криксалис, он же Sand King, — душа Искрящейся пустыни, пробудившаяся в панцире, который выковали калдинские джинны. Огромный скорпионоподобный паук, он одновременно страж, воин и посланник, неотделимый от пустыни, которая его создала. Почитает джиннов и считает себя законным властителем песков.",
-      "en": "Crixalis, known as Sand King, is the soul of the desert, awakened inside an armored shell forged by the Djinn of Qaldin. Shaped like a giant scorpion-like arachnid, he is a guardian, warrior and envoy, bound to the desert that made him. He venerates the Djinn and regards himself as the lawful ruler of the sands."
+      "ru": "Пески Scintillant Waste живые и разумные: вся пустыня думает сама с собой. Чтобы говорить с теми, кто меньше её, она отделяет часть себя и вселяет её в магический панцирь работы джиннов Qaldin. Эта часть зовёт себя Crixalis, «Душа песка», а другие знают её как Sand King. Его облик огромного паукообразного повторяет мелких жителей пустыни; он её страж, воин и посол.",
+      "en": "The Scintillant Waste is a living, thinking desert whose sands reason among themselves. To speak with smaller beings it sets a fragment of itself free inside a magic carapace made by the Djinn of Qaldin. That fragment calls itself Crixalis, the Soul of the Sand, and others know it as Sand King. His huge arachnid shape echoes the desert's small creatures, and he serves it as guardian, warrior and envoy."
     },
-    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/sand_king.png"]
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/sand_king.png"
+    ]
   },
   "unconfirmed": [
     "Инфобокс лора называет героев Broodmother, Earthshaker, Nyx Assassin и Weaver, но тип связи в тексте не назван; разделы о них пересказывают реплики озвучки, поэтому связи не записаны",
