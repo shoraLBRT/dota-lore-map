@@ -118,6 +118,8 @@ describe('MapStage — наведение на регион (S1h)', () => {
     for (const other of ['radiant', 'dire', 'neutral', 'upper', 'abyss'].filter((t) => !tone.test(t)))
       expect(active).not.toMatch(new RegExp(other));
     expect(document.querySelector('[data-region="b"]')!.getAttribute('class')).not.toMatch(/dire/);
+    // Рамку не перекрывают границы соседей: активный полигон рисуется последним.
+    expect([...document.querySelectorAll('polygon[data-region]')].at(-1)!.getAttribute('data-region')).toBe('a');
   });
 });
 

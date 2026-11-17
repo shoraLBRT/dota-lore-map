@@ -41,10 +41,13 @@ export function RegionsLayer({ drawn, activeId, inWorld, tip, litId, focusRegion
   const heroClass = (regionId: string) =>
     focusRegions ? (focusRegions.has(regionId) ? styles.heroRegion : styles.muted) : undefined;
 
+  // S2/S3: активный регион — последним, чтобы границы соседей не перекрывали его рамку (#94).
+  const polygons = inWorld ? drawn : [...drawn.filter((r) => r.id !== activeId), ...drawn.filter((r) => r.id === activeId)];
+
   return (
     <>
       <g>
-        {drawn.map((r) => {
+        {polygons.map((r) => {
           const isActive = r.id === activeId;
           // S2/S3: соседи затемнены и не кликаются, активный регион — «пустое место» карты (SPEC §5.4)
           // в рамке цвета своей стороны или яруса (SPEC §8.3, #94).
