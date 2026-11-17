@@ -1,6 +1,11 @@
 {
   "hero": "tidehunter",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
   "links": [
     {
       "place": "Sunken Isles",
@@ -14,7 +19,7 @@
       "source": "liquipedia",
       "via": "lore",
       "url": "https://liquipedia.net/dota2/Tidehunter/Lore",
-      "note": "Участвовал во второй битве у Дрожащего острова, где призвал Мэльрона."
+      "note": "Текст лора: был во второй битве у Дрожащего острова и призвал Мэльрона, погубившего и демонов Катаракты, и кладдский флот; биография Kunkka тоже говорит, что Мэльрона призвал Tidehunter."
     },
     {
       "place": "Recluse Reef",
@@ -31,15 +36,17 @@
       "type": "enemy",
       "source": "bio",
       "note": "Биография: Tidehunter особенно не жалует адмирала Kunkka, их вражда длится давно, причины утеряны (bio.en; в bio.ru то же).",
-      "doubt": "В kunkka.json связь записана как rival (партия прошлая, до этой сверки связь была снята). Текст говорит о ненависти и вражде, поэтому тип enemy. Главному агенту: добавить обратную запись в kunkka.json."
+      "doubt": "Тип enemy — по словам биографии о ненависти и давнем противостоянии; в kunkka.json добавлена обратная запись."
     }
   ],
   "profile": {
     "summary": {
-      "ru": "Левиафан когда-то был защитником Затонувших островов, но порвал со своим народом и стал служить глубоководному богу Мэльрону, охотясь на всех, кто заплывает на мелководье. Его давняя вражда с адмиралом Kunkka, причины которой потеряны на дне моря, — одна из самых злых в океане. В битве у Дрожащего острова он впервые призвал своего бога.",
-      "en": "Leviathan was once a champion of the Sunken Isles, but he turned his back on his people and took up service to the abyssal god Maelrawn, hunting anyone who strays into the shallows. His long-standing feud with Admiral Kunkka, whose cause has been lost to time, is among the bitterest in the sea. At the battle of the Trembling Isle he summoned his god for the first time."
+      "ru": "Tidehunter по имени Левиафан был когда-то защитником Затонувших островов, но его цели так же туманны, как и цели его народа, меранфов, веками воюющих за подводные пути. Устав от этих мелких распрей, он ушёл сам по себе и хранит верность лишь богу глубин Мэльрону Щупальценосному. Теперь он рыщет по мелководью, нападая на людей и меранфов, что попадутся на пути. Особенно он ненавидит адмирала Kunkka — их вражда тянется так давно, что причины её затерялись в морских глубинах.",
+      "en": "The Tidehunter called Leviathan was once a champion of the Sunken Isles, though his aims are as murky as those of his people, the Meranths, whose tribes have long fought over the lanes beneath the sea. Weary of their petty feuds, he left to go his own way, faithful only to the abyssal god Maelrawn the Tentacular. He now prowls the shallows, attacking any man or meranth who crosses his path. Above all he hates Admiral Kunkka, a feud so old that its cause has sunk out of memory."
     },
-    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/tidehunter.png"]
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/tidehunter.png"
+    ]
   },
   "candidates": [],
   "unconfirmed": [
