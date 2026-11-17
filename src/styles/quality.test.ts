@@ -158,7 +158,7 @@ describe('свои шрифты (A8, #108)', () => {
 
   it('каждый файл из @font-face и preload лежит в public/fonts, рядом — лицензия OFL', () => {
     const urls = [...fonts.matchAll(/url\('\/(fonts\/[^']+)'\)/g), ...html.matchAll(/href="\/(fonts\/[^"]+)"/g)].map(
-      (m) => m[1],
+      (m) => m[1]!,
     );
     expect(urls.length).toBe(8);
     for (const u of urls) expect(existsSync(join(ROOT, 'public', u)), u).toBe(true);
