@@ -227,14 +227,14 @@ describe('поиск героя и нити', () => {
     expect(threads()).toHaveLength(0);
   });
 
-  it('нити со смыслом (#67): у Kez шаг пути со стрелкой, значки событий у мест, легенда раскрывается', () => {
-    window.location.hash = '#/world?hero=kez&profile';
+  it('нити со смыслом (#67): у Hoodwink шаг пути со стрелкой, значки событий у мест, легенда раскрывается', () => {
+    window.location.hash = '#/world?hero=hoodwink&profile';
     render(<App />);
     const step = document.querySelector('[data-testid="threads"] [data-step="path"]')!;
     expect(step).toHaveAttribute('data-event', 'home');
     expect(step.querySelector('[data-arrow]')).not.toBeNull();
 
-    const plaque = profile('Kez')!;
+    const plaque = profile('Hoodwink')!;
     const places = within(plaque).getByRole('navigation', { name: 'Места героя' });
     const [origin, home] = within(places).getAllByRole('button');
     expect(origin).toHaveTextContent('Родина');

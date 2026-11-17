@@ -1,0 +1,52 @@
+{
+  "hero": "legion_commander",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Qine",
+      "event": "origin",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Legion_Commander/Lore",
+      "note": "Поле origins инфобокса: Qine до пятнадцати лет, со ссылкой на официальный комикс Tip of the Spear (стр. 2). Биография об этом молчит."
+    },
+    {
+      "place": "Stonehall",
+      "event": "home",
+      "source": "bio",
+      "doubt": "Инфобокс лор-страницы ставит Stonehall в origins с пометкой «потом». Здесь взято home: город — её база, где она командует легионом. Более ранний переезд отражён в path и в связи с Qine.",
+      "note": "Тресдин командует Бронзовым легионом в Стоунхолле и собирает союзников для мести после нападения. Нападение бездны на город записано здесь же, отдельной связью battle не добавлялось: по правилу одно место — одна связь."
+    }
+  ],
+  "path": [
+    {
+      "place": "Qine"
+    },
+    {
+      "place": "Stonehall"
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Tresdin командовала Бронзовым легионом Stonehall, когда посреди города без предупреждения открылся разлом и из него хлынула орда чудовищ из бездны. Легион пробился сквозь горящие улицы к разлому, где Tresdin сошлась в поединке с предводителем орды. Пока её воины гибли вокруг, она отсекла чудовищу лапу и пронзила его сердце, и портал закрылся. Город лежал в руинах, и Tresdin, собрав всех союзников, каких смогла, поклялась беспощадно отомстить силам бездны.",
+      "en": "Tresdin was leading the Bronze Legion of Stonehall when a rift tore open in the city without warning and a horde of abyssal monsters poured out. The legion fought through the burning streets to the rift, where Tresdin met the horde's champion in a duel. As her soldiers fell around her, she severed the beast's paw and drove her blade into its heart, and the portal collapsed. With the city in ruins, she gathered what allies she could and swore merciless vengeance on the forces of the abyss."
+    }
+  },
+  "unconfirmed": [
+    "Underlord: инфобокс перечисляет Underlord в поле heroes, а описание героя ведёт «Abyssal Invaders» на его страницу. Связь с Underlords по правилам не записывается; тип связи в источниках тоже не назван.",
+    "Dark Willow: в её реплике Rix собирается убить Тресдин, а Mireska считает её командование жёстким. Это реплики озвучки, связь не записана. Rix и Belasanno в heroes.json нет, это персонажи.",
+    "Реплики озвучки без записи в инфобоксе, биографии или лор-тексте: Monkey King (соперничество и насмешки), Tusk (предлагает спарринг), Winter Wyvern, Abaddon, Ember Spirit, Queen of Pain, Wraith King, Axe, Dark Seer, Pangolier (вопрос о Belasanno), Oracle. Связи не записаны.",
+    "Baneful Devotion: описание предмета говорит о поиске мести в подземном мире и шлеме из магматического потока. Ни одного места в тексте не названо, связь с underdark не записана.",
+    "Stonehall Royal Guard Set: описание набора говорит, что Тресдин, возможно, служила в королевской страже Стоунхолла. Это описание набора, не биография, поэтому связи со службой не записаны.",
+    "Blades of Voth Domosh: описание предмета говорит о языке Ozkavosh и демонах. Это предмет, места не названы.",
+    "Artifact: карта Stonehall Elite упоминает измену Rix и организацию Stonehall Elite. Источник Artifact, связь не записана.",
+    "Dark Carnival: сюжетная реплика про образование в Stonehall, без события с героиней. Связь не записана.",
+    "Roseleaf (бой с армией Red Mist): раздел лор-страницы держится только на репликах озвучки Pangolier и Dark Willow; связь снята при сверке.",
+    "Quath, Seven Hells: только поле places инфобокса, событий с героиней в тексте нет; связи сняты при сверке."
+  ]
+}

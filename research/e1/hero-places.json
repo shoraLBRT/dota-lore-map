@@ -86,15 +86,17 @@
         {
           "place": "Turstarkuri",
           "event": "origin",
-          "source": "bio"
-        },
-        {
-          "place": "Tyler Estate",
-          "event": "link",
-          "source": "liquipedia",
-          "via": "infobox"
+          "source": "bio",
+          "note": "Монастырь в горах, где он провёл юность и откуда бежал после гибели монахов.",
+          "doubt": "Биография не говорит, что он родился или вырос там: он пришёл пилигримом и не был принят в монастырь. Выбрано origin, потому что это единственное место его жизни до бегства; инфобокс Liquipedia тоже называет Turstarkuri родиной. Альтернатива — service (учился как послушник)."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Юный пилигрим пришёл в горный монастырь Turstarkuri за мудростью и прислуживал монахам, ещё не будучи принятым в орден. Легион Мёртвого бога бросил на монастырь кости павших армий, обитель пала за две недели, а убитых монахов подняли жрецами Мёртвого бога. Уцелел только он и бежал в другие земли с несколькими свитками. Он поклялся покончить и с магами Мёртвого бога, и со всякой магией вообще.",
+          "en": "A young pilgrim came to the mountain monastery of Turstarkuri seeking wisdom and served the monks before being admitted to their order. The Legion of the Dead God hurled the bones of fallen armies at the monastery, which fell within two weeks, and the slain monks were raised as the Dead God's priests. He alone escaped to other lands with a few of the monastery's scrolls. He vowed to wipe out the Dead God's sorcerers and, beyond them, all magic."
+        }
+      }
     },
     "Arc Warden": {
       "links": [
@@ -280,17 +282,22 @@
     "Bounty Hunter": {
       "links": [
         {
-          "place": "White Spire",
-          "event": "home",
-          "source": "liquipedia",
-          "via": "place"
-        },
-        {
           "place": "Highseat",
-          "event": "link",
-          "source": "bio"
+          "event": "battle",
+          "source": "bio",
+          "note": "по слухам из биографии он проник в лагерь повстанцев и доставил туда пойманного вора",
+          "doubt": "в биографии это слух, который авторы сами не подтверждают; место в регионе «Free Cities» помечено нашим решением"
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "О Gondar, охотнике за головами, ходит много историй, и никто не знает, какие правдивы. Одни говорят, что его бросили детёнышем, другие — что его вырастил охотник Soruq или гильдия воров. Его добыча шепчется, что это он нашёл скрывшегося короля-тирана Goff, проник в лагеря повстанцев у Highseat за вором White Cape и даже покончил с карьерой самого Soruq. За хорошую цену он найдёт кого угодно.",
+          "en": "Many tales are told of Gondar the Bounty Hunter, and no one knows which are true. Some say he was abandoned as a kit; others say he was raised by the hunter Soruq or by a guild of thieves. His quarry whispers that he found the hiding tyrant King Goff, slipped into the rebel camps at Highseat to take the thief White Cape, and even ended Soruq's own career. For the right price, he can find anyone."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/bounty_hunter.png"
+        ]
+      }
     },
     "Brewmaster": {
       "links": [
@@ -484,15 +491,29 @@
         {
           "place": "The Hoven",
           "event": "origin",
-          "source": "liquipedia",
-          "via": "infobox"
+          "source": "bio",
+          "note": "Родина героя: лес у подножия холмов, он был его защитником. В инфобоксе Liquipedia то же место указано как origin."
+        },
+        {
+          "place": "Seven Hells",
+          "event": "battle",
+          "source": "bio",
+          "note": "Последний бой с демоном Мараксиформом у врат шестого ада.",
+          "doubt": "В биографии сказано только «шестой ад»; отнесён к Семи Преисподним по инфобоксу Liquipedia (places)."
         },
         {
           "place": "Bleeding Hills",
-          "event": "link",
-          "source": "bio"
+          "event": "mention",
+          "source": "bio",
+          "note": "Холмы названы как место, у подножия которых лежит Ховен. Сам герой там не назван."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Clinkz был лучником и защитником Hoven — огромного леса у подножия Кровоточащих холмов. Когда демон Maraxiform поднялся из шестого ада, чтобы забрать лес, король-маг Sutherex пообещал вечную жизнь тому, кто убьёт демона. Не зная об этом, Clinkz загнал демона к вратам шестого ада и сразил последней стрелой, но адское пламя охватило и его. Заклятие сработало в миг его гибели, и он навсегда остался горящим скелетом.",
+          "en": "Clinkz was an archer and protector of the Hoven, a vast forest below the Bleeding Hills. When the demon Maraxiform rose from the sixth hell to claim it, the king-mage Sutherex promised endless life to whoever slew the demon. Unaware, Clinkz drove it back to the gates of the sixth hell and killed it with his last arrow as hellfire engulfed him. The spell took hold at the instant of his death, leaving him a burning skeleton forever."
+        }
+      }
     },
     "Clockwerk": {
       "links": [
@@ -707,16 +728,17 @@
       "links": [
         {
           "place": "Nothl Realm",
-          "event": "link",
-          "source": "bio"
-        },
-        {
-          "place": "Fellstrath",
-          "event": "home",
-          "source": "liquipedia",
-          "via": "place"
+          "event": "journey",
+          "source": "bio",
+          "note": "Обряд теней проходит через мир Nothl; биография не называет родины героя, поэтому место путешествия — первое в списке."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Dazzle — юный послушник ордена Dezun, который добился обряда теней раньше, чем старейшины сочли его готовым. Путь через мир Nothl перевернул для него свет и тьму, и теперь он одинаково хорошо лечит и губит. Он использует этот дар против врагов и ради союзников.",
+          "en": "Dazzle is a young acolyte of the Dezun Order who pushed for the rite of shades before his elders thought him ready. The rite led him through the Nothl Realm, where light and dark trade places, and he came back able to heal and to harm alike. He turns that gift against enemies and on behalf of allies."
+        }
+      }
     },
     "Death Prophet": {
       "links": [
@@ -1250,14 +1272,33 @@
         {
           "place": "Krimwohl",
           "event": "origin",
-          "source": "bio"
+          "source": "bio",
+          "note": "Ранние годы прошли на зелёных окраинах Кримвола, пока королевство не начало вырубать леса."
         },
         {
           "place": "Tomo'kan",
           "event": "home",
-          "source": "bio"
+          "source": "bio",
+          "note": "Ушла на север в туманную рощу и живёт там сейчас."
         }
-      ]
+      ],
+      "path": [
+        {
+          "place": "Krimwohl"
+        },
+        {
+          "place": "Tomo'kan"
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Hoodwink — наземная белка, выросшая на зелёных окраинах Кримвола. Когда королевство стало пожирать леса, она ушла на север, в туманную рощу Томо'кан, где научилась уворачиваться от хищников и ладить с местными бандитами. Теперь она досаждает тем, кто хочет покорить дикие земли, забирает их добро и помогает уцелевшим родичам вернуться к зелени.",
+          "en": "Hoodwink is a ground squirrel who grew up on the green borders of Krimwohl before its kingdom started eating into the forests. She fled north into the mistwoods of Tomo'kan, where she learned to slip past the predators and to play the local outlaws against each other. Now she harasses anyone trying to tame the wilds, takes what she fancies, and steers surviving kin back toward the greenery."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/hoodwink.png"
+        ]
+      }
     },
     "Huskar": {
       "links": [
@@ -1444,30 +1485,69 @@
         {
           "place": "Fundamental Plane",
           "event": "origin",
-          "source": "bio"
+          "source": "bio",
+          "note": "Родной план: биография говорит, что он вырвался из Фундаментального плана и отделился от связанных с ним древних сил."
         },
         {
-          "place": "Light's Keep",
-          "event": "link",
-          "source": "liquipedia",
-          "via": "infobox"
+          "region": "planes",
+          "event": "journey",
+          "source": "bio",
+          "note": "Скачет по всем мирам одновременно, поэтому связь с регионом планов, а не с одним местом."
         }
-      ]
+      ],
+      "path": [
+        {
+          "place": "Fundamental Plane"
+        },
+        {
+          "region": "planes"
+        }
+      ],
+      "relations": [
+        {
+          "hero": "chaos_knight",
+          "type": "family",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Keeper_of_the_Light/Lore",
+          "note": "Старший брат-Фундаментал: поле family лор-страницы ссылается на биографию Chaos Knight, где Свет назван одним из Фундаменталов, которого он преследует. Биография Keeper of the Light говорит о преследующем его хаосе."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Keeper of the Light, он же Эзалор, — один из Фундаменталов: древняя сила порядка и света, пробудившаяся на заре вселенной. Он вырвался из родного плана и теперь скачет по всем мирам сразу, опережая брата Chaos Knight. Под видом дряхлого старика на бледном коне он прячет настоящую мощь, которая вспыхивает, когда он сталкивается с хаосом и тьмой.",
+          "en": "Keeper of the Light, also called Ezalor, is one of the Fundamentals: an ancient force of order and radiance that woke up at the dawn of the universe. He broke free of his home plane and now rides across every world at once, always just ahead of his brother Chaos Knight. Disguised as a frail old man on a pale horse, he hides real power that flares up whenever he faces chaos or darkness."
+        }
+      }
     },
     "Kez": {
       "links": [
         {
-          "place": "Ghastly Eyrie",
+          "region": "uncharted",
           "event": "origin",
           "source": "liquipedia",
-          "via": "infobox"
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Kez/Lore",
+          "note": "Родина по инфобоксу лор-страницы — Skywrath (City). Такого места на схеме нет, поэтому место записано как uncharted; кандидат заведён в candidates.",
+          "doubt": "Ghastly Eyrie из текущей привязки в кэше не упоминается, в инфобоксе стоит Skywrath (City); соответствие Skywrath и региона heavens не подтверждено источниками."
         },
         {
           "place": "Icewrack",
-          "event": "home",
-          "source": "bio"
+          "event": "exile",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Kez/Lore",
+          "note": "В инфобоксе Icewrack указан как место, где он был в изгнании. В биографии сказано, что он долго пропадал в Айсреке, и теперь ему надо снова поднять цену за свою голову.",
+          "doubt": "Слово «изгнание» взято из инфобокса; сама биография говорит только о долгом отсутствии. Тип home из прошлой привязки снят: он покинул Icewrack, а не живёт там."
         }
-      ]
+      ],
+      "relations": [],
+      "profile": {
+        "summary": {
+          "ru": "Kez, он же Kestrel, из бескрылых, родился с наградой за голову, которая росла вместе с его умением устраивать переполох; королева Империя раз за разом её повышала. Долгое время он провёл в изгнании в Icewrack, а теперь собирает армию Kazurai, чтобы свергнуть узурпаторшу. Сам Kez считает, что его цену нужно вернуть на достойный уровень.",
+          "en": "Kez, also known as Kestrel, is a Flightless warrior who was born with a bounty on his head. The bounty grew as he caused more trouble, and Queen Imperia kept raising it. After a long exile in Icewrack he set out to rebuild the Kazurai and overthrow the usurper queen, and he still wants his bounty brought back up to a respectable level."
+        }
+      }
     },
     "Kunkka": {
       "links": [
@@ -1552,14 +1632,32 @@
           "place": "Qine",
           "event": "origin",
           "source": "liquipedia",
-          "via": "infobox"
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Legion_Commander/Lore",
+          "note": "Поле origins инфобокса: Qine до пятнадцати лет, со ссылкой на официальный комикс Tip of the Spear (стр. 2). Биография об этом молчит."
         },
         {
           "place": "Stonehall",
           "event": "home",
-          "source": "bio"
+          "source": "bio",
+          "doubt": "Инфобокс лор-страницы ставит Stonehall в origins с пометкой «потом». Здесь взято home: город — её база, где она командует легионом. Более ранний переезд отражён в path и в связи с Qine.",
+          "note": "Тресдин командует Бронзовым легионом в Стоунхолле и собирает союзников для мести после нападения. Нападение бездны на город записано здесь же, отдельной связью battle не добавлялось: по правилу одно место — одна связь."
         }
-      ]
+      ],
+      "path": [
+        {
+          "place": "Qine"
+        },
+        {
+          "place": "Stonehall"
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Tresdin командовала Бронзовым легионом Stonehall, когда посреди города без предупреждения открылся разлом и из него хлынула орда чудовищ из бездны. Легион пробился сквозь горящие улицы к разлому, где Tresdin сошлась в поединке с предводителем орды. Пока её воины гибли вокруг, она отсекла чудовищу лапу и пронзила его сердце, и портал закрылся. Город лежал в руинах, и Tresdin, собрав всех союзников, каких смогла, поклялась беспощадно отомстить силам бездны.",
+          "en": "Tresdin was leading the Bronze Legion of Stonehall when a rift tore open in the city without warning and a horde of abyssal monsters poured out. The legion fought through the burning streets to the rift, where Tresdin met the horde's champion in a duel. As her soldiers fell around her, she severed the beast's paw and drove her blade into its heart, and the portal collapsed. With the city in ruins, she gathered what allies she could and swore merciless vengeance on the forces of the abyss."
+        }
+      }
     },
     "Leshrac": {
       "links": [
@@ -3552,12 +3650,30 @@
     "Wraith King": {
       "links": [
         {
+          "region": "empire-of-bone",
+          "event": "origin",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Wraith_King/Lore",
+          "note": "Королевство из костей, которым он правил с самого начала; в биографии это его империя",
+          "doubt": "родина по тексту не названа; это его первое королевство, возможно, здесь он и родился"
+        },
+        {
           "place": "Throne of Bone",
           "event": "home",
           "source": "liquipedia",
-          "via": "infobox"
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Wraith_King/Lore",
+          "note": "Светящийся трон во дворце, где он правит сейчас",
+          "doubt": "название места взято из инфобокса; в биографии сказано только о троне и дворце"
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Король Ostarion веками строил королевство из костей врагов, веря, что не умрёт, пока растут башни его дворца. Поняв, что и кость не вечна, он обратился к энергии призраков, которую оставляют тёмные души. В ночь Wraith-Night он прошёл обряд превращения, заставив подданных собирать для него души, и наутро восстал Королём-призраком. Теперь он редко сидит на троне и сам выходит с мечом, требуя верности и после смерти.",
+          "en": "For ages King Ostarion built his kingdom from his enemies' bones, believing he could not die while his palace towers kept rising. Learning that even bone decays, he turned to wraith energy, the spirit some dark souls release at death. On Wraith-Night he underwent a rite of transformation fuelled by souls his subjects gathered, and rose at dawn as the Wraith King. Now he seldom sits on his throne, marching out sword in hand to demand loyalty beyond death."
+        }
+      }
     },
     "Zeus": {
       "links": [
@@ -3565,9 +3681,46 @@
           "place": "Olympus",
           "event": "origin",
           "source": "liquipedia",
-          "via": "infobox"
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Zeus/Lore",
+          "doubt": "Инфобокс лор-страницы даёт Olympus как origin (exiled). Биография говорит только о небесах и Отце богов, без названия места. В тексте лора сказано, что он живёт на горе, «вероятно, Olympus», поэтому привязка к месту сделана по инфобоксу с оговоркой.",
+          "note": "Изгнанный владыка небес: место, откуда он родом по инфобоксу. Изгнание здесь же (exile), но по порядку выбран origin."
+        },
+        {
+          "place": "Sundered Moon",
+          "event": "visit",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Zeus/Lore",
+          "note": "Раздел The Sundered Moon: Zeus пришёл в таверну, флиртовал с Medusa и заключил сделку с Arc Warden. В самой таверне он был, но важное событие там — переговоры, а не место его жизни."
         }
-      ]
+      ],
+      "relations": [
+        {
+          "hero": "mars",
+          "type": "family",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Zeus/Lore",
+          "note": "Поле family инфобокса: Mars назван сыном Zeus. Подтверждает обратную запись в файле mars."
+        },
+        {
+          "hero": "arc_warden",
+          "type": "ally",
+          "place": "Sundered Moon",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Zeus/Lore",
+          "doubt": "Союз условный: Zeus соглашается «войти в дело», если это вернёт ему силу, и сам называет историю Zet безосновательной. Обратная запись в arc_warden основана на тексте лора Arc Warden, здесь она подтверждается только согласием Zeus в таверне.",
+          "note": "В таверне Zet дал Zeus фрагмент силы (шлем), а Zeus пообещал быть в деле. Ally записан по тексту, а не по полю heroes."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Zeus — владыка небес и отец богов, который смотрит на всех героев как на своих шумных, непослушных детей. Устав от его бесконечных романов со смертными, божественная супруга поставила условие: раз он так любит смертных, пусть сам станет одним из них. Если он докажет верность, то вернётся к ней бессмертным мужем, а если нет — умрёт среди своих созданий. Zeus принял условие, ведь бессмертие ему дороже смертных, и теперь доказывает, что достоин супруги, добиваясь побед на поле боя.",
+          "en": "Zeus, lord of the heavens and father of gods, regards every hero as one of his rowdy, unruly children. Tired of his endless affairs with mortal women, his divine wife set him a condition: since he loves mortals so much, he should become one. If he proves faithful he may return to her as her immortal husband; if not, he will die among his creatures. Zeus accepted, valuing immortality more than mortals, and now tries to prove himself worthy of her by winning on the battlefield."
+        }
+      }
     }
   }
 }

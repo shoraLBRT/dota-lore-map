@@ -71,13 +71,13 @@
 ## 5. Регионы, места и герои
 
 <!-- GENERATED:BEGIN -->
-Регионов: **26**, мест: **172**, героев привязано: **127** из 127, из них в «Неизведанных землях»: **14**.
+Регионов: **26**, мест: **172**, героев привязано: **127** из 127, из них в «Неизведанных землях»: **15**.
 
 ### Сводка по регионам
 
 | Ярус | Регион | Сторона | Мест | Героев |
 |---|---|---|---|---|
-| Верхний ярус | Небеса (The Heavens) | нейтрально (ярус) | 6 | 13 |
+| Верхний ярус | Небеса (The Heavens) | нейтрально (ярус) | 6 | 12 |
 | Верхний ярус | Семь планов и Пустота (The Seven Planes and the Void) | нейтрально (ярус) | 13 | 18 |
 | Материк и острова | Айсрак (Icewrack) | Radiant (карта S1) | 12 | 9 |
 | Материк и острова | Земля Сияющих (Land of the Radiant) | Radiant (карта S1) | 8 | 10 |
@@ -96,13 +96,13 @@
 | Материк и острова | Западные леса (Western Forests) | Radiant (по схеме E2) | 6 | 5 |
 | Материк и острова | Слом и Эльзе (Slom and Elze) | Radiant (по схеме E2) | 3 | 4 |
 | Материк и острова | Ховен и Нишай (The Hoven and Nishai) | Dire (по схеме E2) | 4 | 4 |
-| Материк и острова | Феллстрат (Fellstrath) | Dire (по схеме E2) | 6 | 7 |
+| Материк и острова | Феллстрат (Fellstrath) | Dire (по схеме E2) | 6 | 6 |
 | Материк и острова | Томо'кан и Окраины (Tomo'kan and the Outlands) | Dire (по схеме E2) | 6 | 4 |
 | Материк и острова | Империя Костей (Empire of Bone) | Dire (по схеме E2) | 3 | 1 |
 | Материк и острова | Срединные королевства (The Middle Kingdoms) | нейтрально (по схеме E2) | 11 | 13 |
-| Материк и острова | Неизведанные земли (The Uncharted Lands) | нейтрально (по схеме E2) | 0 | 14 |
+| Материк и острова | Неизведанные земли (The Uncharted Lands) | нейтрально (по схеме E2) | 0 | 15 |
 | Бездна | Подземье (The Underdark) | нейтрально (ярус) | 4 | 4 |
-| Бездна | Семь Преисподних и загробье (The Seven Hells and the Afterlife) | нейтрально (ярус) | 8 | 12 |
+| Бездна | Семь Преисподних и загробье (The Seven Hells and the Afterlife) | нейтрально (ярус) | 8 | 13 |
 
 ### Верхний ярус
 
@@ -114,7 +114,7 @@
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
-| ★ Ghastly Eyrie | лор | Kez, Skywrath Mage, Vengeful Spirit | столица расы скайрасов, «среди облаков и звёзд» |
+| ★ Ghastly Eyrie | лор | Skywrath Mage, Vengeful Spirit | столица расы скайрасов, «среди облаков и звёзд» |
 | Mad Moon | лор | Arc Warden (служба) |  |
 | Selemene's Moon | лор | Luna (упоминание), Night Stalker (упоминание) | вместе с Demon Star |
 | The Sun | лор | Dawnbreaker*, Phoenix* | Children of Light и солнечная кузня (страницы на Liquipedia нет) |
@@ -125,7 +125,7 @@
 
 Сторона: **нейтрально** (ярус). Иные планы бытия и измерения вне Terrene Plane (наш мир).
 
-Герои всего региона: Chaos Knight (путь), Elder Titan, Enigma (путь), Io (живёт), Puck, Spectre
+Герои всего региона: Chaos Knight (путь), Elder Titan, Enigma (путь), Io (живёт), Keeper of the Light (путь), Puck, Spectre
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
@@ -140,7 +140,7 @@
 | Land Behind the Wall | лор | Dark Seer | родная реальность Dark Seer; страницы на Liquipedia нет |
 | Ivory Incubarium | лор | Oracle | в другой вселенной |
 | Heart of Nature | наше | Enigma (упоминание), Leshrac |  |
-| Light's Keep | наше | Keeper of the Light (связь) |  |
+| Light's Keep | наше | — |  |
 | The Dream | наше | Bane* |  |
 
 ### Материк и острова
@@ -153,7 +153,7 @@
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
-| ★ Icewrack | лор | Crystal Maiden (живёт), Kez (живёт), Pangolier (упоминание), Winter Wyvern (живёт) |  |
+| ★ Icewrack | лор | Crystal Maiden (живёт), Kez (изгнание), Pangolier (упоминание), Winter Wyvern (живёт) |  |
 | The Barrier | лор | — |  |
 | Blueheart Glacier | лор | Crystal Maiden (служба) |  |
 | Black Pool | лор | Lich (гибель) |  |
@@ -228,13 +228,13 @@
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
-| ★ White Spire | лор | Bounty Hunter (живёт)†, Monkey King (живёт), Pangolier (бывал) |  |
+| ★ White Spire | лор | Monkey King (живёт), Pangolier (бывал) |  |
 | Revtel | лор | Dark Willow, Pangolier (бывал) |  |
 | Weeping Rose | лор | Queen of Pain (связь)† |  |
-| Tyler Estate | лор | Anti-Mage (связь), Silencer (связь)† | в Weeping Rose |
-| Sundered Moon | лор | Arc Warden (бывал), Drow Ranger (бывал) | таверна в White Spire |
+| Tyler Estate | лор | Silencer (связь)† | в Weeping Rose |
+| Sundered Moon | лор | Arc Warden (бывал), Drow Ranger (бывал), Zeus (бывал) | таверна в White Spire |
 | Iron Fog | наше | — |  |
-| Highseat | наше | Bounty Hunter (связь) |  |
+| Highseat | наше | Bounty Hunter (сражение) |  |
 
 #### Квойдж и Поля Бойни · Quoidge and the Fields of Carnage
 
@@ -385,7 +385,7 @@
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
 | ★ The Hoven | лор | Clinkz, Troll Warlord |  |
-| Bleeding Hills | лор | Clinkz (связь), Shadow Shaman |  |
+| Bleeding Hills | лор | Clinkz (упоминание), Shadow Shaman |  |
 | Nishai | лор | Earthshaker |  |
 | The Red Mountain | лор | Earthshaker (служба) | предположительно в Нишае |
 
@@ -395,7 +395,7 @@
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
-| ★ Fellstrath | лор | Dazzle (живёт)† |  |
+| ★ Fellstrath | лор | — |  |
 | Overgrown Empire | лор | Dark Willow (бывал) |  |
 | Ashkavor | лор | Grimstroke |  |
 | Yama Raskav Jungle | наше | Batrider, Medusa (упоминание) |  |
@@ -418,6 +418,8 @@
 #### Империя Костей · Empire of Bone
 
 Сторона: **Dire** (по схеме E2). Владения Остариона: дворец, башни, мостовые и даже лес — из кости. Его армии разрушили Levinthal (Gleaming City).
+
+Герои всего региона: Wraith King
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
@@ -451,6 +453,7 @@
 |---|---|
 | Death Prophet | Ни биография, ни лор-страница Liquipedia не называют места, где Кробелус родилась или жила; загробный мир описан только общими словами. |
 | Jakiro | в биографиях мест нет; в инфобоксе лор-страницы названы Grosche и The Riverwarren, но их нет в regions.json, см. candidates |
+| Kez | Родина по инфобоксу лор-страницы — Skywrath (City). Такого места на схеме нет, поэтому место записано как uncharted; кандидат заведён в candidates. |
 | Luna | Родина — равнины (The Plains), в прошлом. Биография называет лишь «далёкую родину», без имени; места The Plains на схеме нет, оно записано кандидатом. |
 | Marci | родина не названа ни в биографии, ни в игровом лоре; места из инфобокса Liquipedia (Hauptstadt, Barrowhaven и др.) взяты из сериала «DOTA: Dragon's Blood» — по решению В5 на карту и в кандидаты не добавляем |
 | Medusa | Родина горгон: царство, куда напали незнакомцы в масках, в биографии не названо; на схеме такого места нет |
@@ -485,14 +488,14 @@
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
-| ★ Seven Hells | лор | Doom (живёт), Lion (сражение), Muerta (упоминание), Shadow Demon, Shadow Fiend (упоминание), Terrorblade |  |
+| ★ Seven Hells | лор | Clinkz (сражение), Doom (живёт), Lion (сражение), Muerta (упоминание), Shadow Demon, Shadow Fiend (упоминание), Terrorblade |  |
 | Vashundol | лор | Doom (изгнание) |  |
 | Abysm | лор | Shadow Fiend |  |
 | Foulfell | лор | Terrorblade (изгнание) |  |
 | Outer Hells | лор | Warlock (связь) |  |
 | Narrow Maze | лор | Razor (живёт), Visage (служба) |  |
 | Underscape | лор | Muerta (упоминание), Necrophos (упоминание), Razor (связь) |  |
-| Nothl Realm | лор | Dazzle (связь), Huskar (гибель) |  |
+| Nothl Realm | лор | Dazzle (путь), Huskar (гибель) |  |
 
 ### Указатель: герой → места
 
@@ -501,27 +504,27 @@
 | Abaddon | Font of Avernus (Срединные королевства) |
 | Alchemist | Home of the Keen Folk (Земля Сияющих)* |
 | Ancient Apparition | The Void (Семь планов и Пустота); Coldbank Plains (Стоунхолл) (сражение) |
-| Anti-Mage | Turstarkuri (Стонущие горы); Tyler Estate (Вольные города) (связь) |
+| Anti-Mage | Turstarkuri (Стонущие горы) |
 | Arc Warden | Mad Moon (Небеса) (служба); Sundered Moon (Вольные города) (бывал); Druud (Друуд) (бывал); Tomo'kan (Томо'кан и Окраины) (сражение) |
 | Axe | Thousand Tarns (Земля Сияющих) (сражение); Fortress of Valhessi (Хазадальские пустоши) (сражение) |
 | Bane | The Dream (Семь планов и Пустота)* |
 | Batrider | Yama Raskav Jungle (Феллстрат) |
 | Beastmaster | Slom (Слом и Эльзе) |
 | Bloodseeker | Xhacatocatl (Феллстрат) |
-| Bounty Hunter | White Spire (Вольные города) (живёт)†; Highseat (Вольные города) (связь) |
+| Bounty Hunter | Highseat (Вольные города) (сражение) |
 | Brewmaster | Ruined City (Стонущие горы) |
 | Bristleback | весь регион «Слом и Эльзе» (бывал) |
 | Broodmother | Mount Pyrotheos (Срединные королевства) |
 | Centaur Warrunner | Druud (Друуд); Omexe (Друуд) (сражение) |
 | Chaos Knight | Fundamental Plane (Семь планов и Пустота); весь регион «Семь планов и Пустота» (путь) |
 | Chen | Hazhadal Barrens (Хазадальские пустоши) |
-| Clinkz | The Hoven (Ховен и Нишай); Bleeding Hills (Ховен и Нишай) (связь) |
+| Clinkz | The Hoven (Ховен и Нишай); Seven Hells (Семь Преисподних и загробье) (сражение); Bleeding Hills (Ховен и Нишай) (упоминание) |
 | Clockwerk | Home of the Keen Folk (Земля Сияющих)* |
 | Crystal Maiden | Icewrack (Айсрак) (живёт); Blueheart Glacier (Айсрак) (служба); Boiling Sea (Айсрак) (бывал); Wolfsden Tavern (Айсрак) (упоминание) |
 | Dark Seer | Land Behind the Wall (Семь планов и Пустота) |
 | Dark Willow | Revtel (Вольные города); Overgrown Empire (Феллстрат) (бывал) |
 | Dawnbreaker | The Sun (Небеса)* |
-| Dazzle | Nothl Realm (Семь Преисподних и загробье) (связь); Fellstrath (Феллстрат) (живёт)† |
+| Dazzle | Nothl Realm (Семь Преисподних и загробье) (путь) |
 | Death Prophet | весь регион «Неизведанные земли»* |
 | Disruptor | Druud (Друуд) |
 | Doom | весь регион «Небеса»; Vashundol (Семь Преисподних и загробье) (изгнание); Seven Hells (Семь Преисподних и загробье) (живёт) |
@@ -542,8 +545,8 @@
 | Io | Fundamental Plane (Семь планов и Пустота); весь регион «Семь планов и Пустота» (живёт) |
 | Jakiro | весь регион «Неизведанные земли»* |
 | Juggernaut | Isle of Masks (Тропические острова); Ivory Isles (Тропические острова) (упоминание); Temple of Masks (Тропические острова) (упоминание) |
-| Keeper of the Light | Fundamental Plane (Семь планов и Пустота); Light's Keep (Семь планов и Пустота) (связь) |
-| Kez | Ghastly Eyrie (Небеса); Icewrack (Айсрак) (живёт) |
+| Keeper of the Light | Fundamental Plane (Семь планов и Пустота); весь регион «Семь планов и Пустота» (путь) |
+| Kez | весь регион «Неизведанные земли»; Icewrack (Айсрак) (изгнание) |
 | Kunkka | Cladd (Кладд и острова); Port Mignin (Кладд и острова) (сражение); Trembling Isle (Кладд и острова) (сражение); Isle of Songs (Кладд и острова) (упоминание) |
 | Largo | Velu'Mar (Феллстрат) |
 | Legion Commander | Qine (Стоунхолл); Stonehall (Стоунхолл) (живёт) |
@@ -623,8 +626,8 @@
 | Windranger | Zaru'Kina (Западные леса); Western Forests (Западные леса) |
 | Winter Wyvern | Icewrack (Айсрак) (живёт) |
 | Witch Doctor | весь регион «Неизведанные земли»* |
-| Wraith King | Throne of Bone (Империя Костей) (живёт) |
-| Zeus | Olympus (Небеса) |
+| Wraith King | весь регион «Империя Костей»; Throne of Bone (Империя Костей) (живёт) |
+| Zeus | Olympus (Небеса); Sundered Moon (Вольные города) (бывал) |
 <!-- GENERATED:END -->
 
 ## 6. Что осталось в E1

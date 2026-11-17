@@ -1,0 +1,36 @@
+{
+  "hero": "bounty_hunter",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Highseat",
+      "event": "battle",
+      "source": "bio",
+      "note": "по слухам из биографии он проник в лагерь повстанцев и доставил туда пойманного вора",
+      "doubt": "в биографии это слух, который авторы сами не подтверждают; место в регионе «Free Cities» помечено нашим решением"
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "О Gondar, охотнике за головами, ходит много историй, и никто не знает, какие правдивы. Одни говорят, что его бросили детёнышем, другие — что его вырастил охотник Soruq или гильдия воров. Его добыча шепчется, что это он нашёл скрывшегося короля-тирана Goff, проник в лагеря повстанцев у Highseat за вором White Cape и даже покончил с карьерой самого Soruq. За хорошую цену он найдёт кого угодно.",
+      "en": "Many tales are told of Gondar the Bounty Hunter, and no one knows which are true. Some say he was abandoned as a kit; others say he was raised by the hunter Soruq or by a guild of thieves. His quarry whispers that he found the hiding tyrant King Goff, slipped into the rebel camps at Highseat to take the thief White Cape, and even ended Soruq's own career. For the right price, he can find anyone."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/bounty_hunter.png"
+    ]
+  },
+  "unconfirmed": [
+    "Родина не названа: биография и инфобокс дают только расы (djinn, giants, ursine), а не место; место рождения и роль Soruq в обучении — слухи",
+    "Qaldin и Scintillant Waste: тесные связи, оружие ассасинов и поездка на восток пустоши — из описаний предметов и набора, не из текста лора",
+    "White Spire как дом и гонки в нём: только реплика озвучки Pangolier",
+    "Связи по репликам озвучки и инфобоксу без типа: Meepo и Pangolier (инфобокс heroes, тип не указан), Riki (соперничество из реплики), Dark Willow (реплики о Revtel и Roseleaf), Monkey King, Slark, Undying, Abaddon и другие враги и союзники из раздела реплик",
+    "Наставник Tybara и ученик второго ранга: из описания предмета и слухов; Tybara, Soruq и Goff в проекте не герои, связей героев не создают",
+    "Панголинская гильдия: принадлежность Gondar — только по описаниям предметов",
+    "Revtel, Qaldin, Scintillant Waste, White Spire: только поле places инфобокса, которое опирается на реплики озвучки и описания предметов и наборов; в биографии этих мест нет. Связи сняты при сверке (White Spire раньше стоял как home)."
+  ]
+}

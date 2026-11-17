@@ -1,0 +1,64 @@
+{
+  "hero": "zuus",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore"
+  ],
+  "links": [
+    {
+      "place": "Olympus",
+      "event": "origin",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Zeus/Lore",
+      "doubt": "Инфобокс лор-страницы даёт Olympus как origin (exiled). Биография говорит только о небесах и Отце богов, без названия места. В тексте лора сказано, что он живёт на горе, «вероятно, Olympus», поэтому привязка к месту сделана по инфобоксу с оговоркой.",
+      "note": "Изгнанный владыка небес: место, откуда он родом по инфобоксу. Изгнание здесь же (exile), но по порядку выбран origin."
+    },
+    {
+      "place": "Sundered Moon",
+      "event": "visit",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Zeus/Lore",
+      "note": "Раздел The Sundered Moon: Zeus пришёл в таверну, флиртовал с Medusa и заключил сделку с Arc Warden. В самой таверне он был, но важное событие там — переговоры, а не место его жизни."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "mars",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Zeus/Lore",
+      "note": "Поле family инфобокса: Mars назван сыном Zeus. Подтверждает обратную запись в файле mars."
+    },
+    {
+      "hero": "arc_warden",
+      "type": "ally",
+      "place": "Sundered Moon",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Zeus/Lore",
+      "doubt": "Союз условный: Zeus соглашается «войти в дело», если это вернёт ему силу, и сам называет историю Zet безосновательной. Обратная запись в arc_warden основана на тексте лора Arc Warden, здесь она подтверждается только согласием Zeus в таверне.",
+      "note": "В таверне Zet дал Zeus фрагмент силы (шлем), а Zeus пообещал быть в деле. Ally записан по тексту, а не по полю heroes."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Zeus — владыка небес и отец богов, который смотрит на всех героев как на своих шумных, непослушных детей. Устав от его бесконечных романов со смертными, божественная супруга поставила условие: раз он так любит смертных, пусть сам станет одним из них. Если он докажет верность, то вернётся к ней бессмертным мужем, а если нет — умрёт среди своих созданий. Zeus принял условие, ведь бессмертие ему дороже смертных, и теперь доказывает, что достоин супруги, добиваясь побед на поле боя.",
+      "en": "Zeus, lord of the heavens and father of gods, regards every hero as one of his rowdy, unruly children. Tired of his endless affairs with mortal women, his divine wife set him a condition: since he loves mortals so much, he should become one. If he proves faithful he may return to her as her immortal husband; if not, he will die among his creatures. Zeus accepted, valuing immortality more than mortals, and now tries to prove himself worthy of her by winning on the battlefield."
+    }
+  },
+  "unconfirmed": [
+    "Arc Warden (Зет): реплики о Зет в озвучке Zeus и Mars не записаны; союз записан только по тексту таверны из лора, поле heroes инфобокса без типа связи.",
+    "Medusa: поле heroes инфобокса и флирт в таверне; реплика Medusa «передай братьям привет» — не основание для связи, Zeus в таверне неудачно флиртует, тип не выводится.",
+    "Storm Spirit: поле heroes инфобокса и соперничество за власть над грозой из раздела Artifact. Artifact не основание для связи, поэтому не записано.",
+    "Bristleback: только поле heroes инфобокса, без текста о связи с Zeus.",
+    "Largo и Monkey King: реплики озвучки о Zeus и Hera — строки озвучки, связи не записаны.",
+    "Roseleaf: поход Zeus к Storm Spirit из раздела Artifact — источник не из биографии и не из лора Dota 2, в links не добавлен.",
+    "Mountain cloister (гора-монастырь Zeus): упоминается в лоре как место, куда он зовёт, но не как отдельное место на схеме — в links и candidates не добавлен.",
+    "Гера, Посейдон, Аид, Гефест, Кронос: божества и родня из инфобокса и реплик, не герои на схеме — связей героев не записано.",
+    "Биографии (bio.ru, bio.en) не называют ни одного места, кроме небес; место Olympus держится на инфобоксе лора."
+  ]
+}

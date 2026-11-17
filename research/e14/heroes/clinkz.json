@@ -1,0 +1,44 @@
+{
+  "hero": "clinkz",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "The Hoven",
+      "event": "origin",
+      "source": "bio",
+      "note": "Родина героя: лес у подножия холмов, он был его защитником. В инфобоксе Liquipedia то же место указано как origin."
+    },
+    {
+      "place": "Seven Hells",
+      "event": "battle",
+      "source": "bio",
+      "note": "Последний бой с демоном Мараксиформом у врат шестого ада.",
+      "doubt": "В биографии сказано только «шестой ад»; отнесён к Семи Преисподним по инфобоксу Liquipedia (places)."
+    },
+    {
+      "place": "Bleeding Hills",
+      "event": "mention",
+      "source": "bio",
+      "note": "Холмы названы как место, у подножия которых лежит Ховен. Сам герой там не назван."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Clinkz был лучником и защитником Hoven — огромного леса у подножия Кровоточащих холмов. Когда демон Maraxiform поднялся из шестого ада, чтобы забрать лес, король-маг Sutherex пообещал вечную жизнь тому, кто убьёт демона. Не зная об этом, Clinkz загнал демона к вратам шестого ада и сразил последней стрелой, но адское пламя охватило и его. Заклятие сработало в миг его гибели, и он навсегда остался горящим скелетом.",
+      "en": "Clinkz was an archer and protector of the Hoven, a vast forest below the Bleeding Hills. When the demon Maraxiform rose from the sixth hell to claim it, the king-mage Sutherex promised endless life to whoever slew the demon. Unaware, Clinkz drove it back to the gates of the sixth hell and killed it with his last arrow as hellfire engulfed him. The spell took hold at the instant of his death, leaving him a burning skeleton forever."
+    }
+  },
+  "unconfirmed": [
+    "Maraxiform, Sutherex, дед героя (family в инфобоксе) и король-маг — персонажи, а не герои; в связи героя не пишутся.",
+    "Связи из реплик озвучки (Monkey King, Terrorblade, Pudge, Lina, Imperia и др.) не основание для связи — только в этом списке.",
+    "Подробность про рецепт печенья от Snapfire взята из реплики озвучки; мест и связей из неё не выводим.",
+    "Текущее место службы — Ховен (лор-текст Liquipedia и описания предметов): совпадает с origin, отдельная связь home не записана.",
+    "Преследование демона до врат ада — разовый эпизод боя, путь героя не записан.",
+    "Snapfire (союзник): только поле heroes инфобокса без типа и реплики озвучки; связь снята при сверке. В snapfire.json связи с Clinkz тоже нет."
+  ]
+}
