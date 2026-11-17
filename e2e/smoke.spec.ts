@@ -61,7 +61,7 @@ test('интро → регион → место → галерея → поис
   await expectHash(page, '#/r/icewrack/icewrack?hero=crystal_maiden&profile');
   await expect(panelHeading(page)).toHaveText('Crystal Maiden');
   await expectNoHorizontalScroll(page);
-  await tap(page.getByRole('button', { name: /^Закрыть профиль героя/ }));
+  await tap(page.getByRole('button', { name: 'Закрыть профиль' }));
   await expectHash(page, '#/r/icewrack/icewrack?hero=crystal_maiden');
   await expectNoHorizontalScroll(page);
 });

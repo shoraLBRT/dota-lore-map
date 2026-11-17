@@ -1,6 +1,6 @@
 import { useId, useMemo, useState } from 'react';
 import { useNavigation } from '../../app/navigation';
-import { serializeRoute, type Screen } from '../../app/router';
+import { serializeRoute } from '../../app/router';
 import { DiamondButton } from '../../components/DiamondButton';
 import { EventIcon, hasBadge, type BadgeEvent } from '../../components/EventIcon';
 import { HeroPortrait } from '../../components/HeroPortrait';
@@ -29,7 +29,7 @@ interface Props {
 
 /**
  * Профиль героя в правой панели, на телефоне — в шторке (E15, SPEC §6.8): шапка-арт, имя, ссылка на dota2.com,
- * описание, арты (галерея), «Связан с», места по порядку пути, строка «Нашли ошибку?» (§6.9). Пустые блоки не рисуются — партии E14 идут постепенно.
+ * описание, места по порядку пути с легендой нитей, арты (галерея), «Связан с», строка «Нашли ошибку?» (§6.9). Пустые блоки не рисуются — партии E14 идут постепенно.
  */
 export function HeroProfile({ hero, spots, threads, onPick }: Props) {
   const { l, lang, t } = useT();
@@ -63,36 +63,6 @@ export function HeroProfile({ hero, spots, threads, onPick }: Props) {
         dota2.com ↗
       </a>
       {summary && <Paragraphs text={l(summary)} />}
-      <MediaCards title={t('hero.arts')} media={media} onOpen={(id) => navigate({ ...route, media: id })} />
-      {relations.length > 0 && (
-        <section>
-          <h3>{t('hero.relations')}</h3>
-          <ul className={styles.relations}>
-            {relations.map(({ hero: other, type }) => (
-              <li
-                key={`${other.key}/${type}`}
-                onPointerEnter={() => preview(other)}
-                onPointerLeave={(e) => e.pointerType !== 'touch' && preview(null)}
-                onFocus={() => preview(other)}
-                onBlur={() => preview(null)}
-              >
-                <button
-                  type="button"
-                  className={styles.relation}
-                  onClick={() => onPick(other)}
-                  aria-label={t('hero.openRelation', { name: other.name, type: t(`hero.relation.${type}`) })}
-                >
-                  <HeroPortrait hero={other} link={false} className={styles.relationPortrait} />
-                  <span className={styles.relationText}>
-                    <span className={styles.relationName}>{other.name}</span>
-                    <span className={styles.relationType}>{t(`hero.relation.${type}`)}</span>
-                  </span>
-                </button>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
       {places.length > 0 && (
         <nav aria-labelledby={`${hero.key}-places`}>
           <h3 id={`${hero.key}-places`}>{t('hero.places')}</h3>
@@ -127,6 +97,36 @@ export function HeroProfile({ hero, spots, threads, onPick }: Props) {
         </nav>
       )}
       <Legend spots={spots} threads={threads} />
+      <MediaCards title={t('hero.arts')} media={media} onOpen={(id) => navigate({ ...route, media: id })} />
+      {relations.length > 0 && (
+        <section>
+          <h3>{t('hero.relations')}</h3>
+          <ul className={styles.relations}>
+            {relations.map(({ hero: other, type }) => (
+              <li
+                key={`${other.key}/${type}`}
+                onPointerEnter={() => preview(other)}
+                onPointerLeave={(e) => e.pointerType !== 'touch' && preview(null)}
+                onFocus={() => preview(other)}
+                onBlur={() => preview(null)}
+              >
+                <button
+                  type="button"
+                  className={styles.relation}
+                  onClick={() => onPick(other)}
+                  aria-label={t('hero.openRelation', { name: other.name, type: t(`hero.relation.${type}`) })}
+                >
+                  <HeroPortrait hero={other} link={false} className={styles.relationPortrait} />
+                  <span className={styles.relationText}>
+                    <span className={styles.relationName}>{other.name}</span>
+                    <span className={styles.relationType}>{t(`hero.relation.${type}`)}</span>
+                  </span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
       <FeedbackLink block={heroBlock(hero)} />
     </>
   );
@@ -198,28 +198,16 @@ function LineSample({ kind }: { kind: 'path' | 'link' }) {
   );
 }
 
-/** Название экрана под профилем: мир, регион или место — туда ведёт крошка «назад». */
-function screenName(screen: Screen, lang: 'ru' | 'en', world: string): string {
-  if (screen.name === 'region' || screen.name === 'place') {
-    const region = getRegion(screen.regionId);
-    const place = screen.name === 'place' && region ? getPlace(region.id, screen.placeSlug) : undefined;
-    if (place) return placeName(place, lang);
-    if (region) return region.name[lang];
-  }
-  return world;
-}
-
 /**
- * Крошка в шапке профиля (SPEC §6.4, §6.8): «‹ Мир», «‹ Регион» или «‹ Место» — закрывает профиль
- * и возвращает панель экрана под ним; то же делают Esc и «назад» браузера (A11).
+ * Кнопка в шапке профиля (SPEC §6.4, §6.8): «‹ Закрыть профиль» — закрывает профиль и возвращает панель
+ * экрана под ним, герой остаётся выбранным; то же делают Esc и «назад» браузера (A11).
  */
 export function ProfileCrumb({ onClose }: { onClose: () => void }) {
-  const { lang, t } = useT();
-  const { route } = useNavigation();
-  const text = screenName(route.screen, lang, t('panel.world'));
+  const { t } = useT();
+  const text = t('hero.close');
   return (
     <nav className={crumbStyles.crumbs} aria-label={t('panel.breadcrumbs')}>
-      <DiamondButton icon="back" label={t('hero.close', { name: text })} onClick={onClose}>
+      <DiamondButton icon="back" label={text} onClick={onClose}>
         {text}
       </DiamondButton>
     </nav>
