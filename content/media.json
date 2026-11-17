@@ -98,6 +98,97 @@
       },
       "credit": "Valve Corporation",
       "sourceUrl": "https://www.dota2.com/eminenceofristul"
+    },
+    {
+      "id": "ghastly-eyrie-ascension-day",
+      "type": "image",
+      "src": "https://clan.fastly.steamstatic.com/images/3703047/ba80108f618e691d184e7eb5579e56c33b9a811b.jpg",
+      "title": { "ru": "«День вознесения»", "en": "Ascension Day" },
+      "subtitle": { "ru": "Арт", "en": "Art" },
+      "description": {
+        "ru": "Арт Valve, которым в 2024 году анонсировали Crownfall: стеклянные купола и шпили Мрачного Гнездовья, столицы скайрасов, торчат из облаков. В день своего вознесения Шендельзару сбросили с самой высокой из этих башен — так начинается вся история.",
+        "en": "Valve art that announced Crownfall in 2024: the glass domes and spires of the Ghastly Eyrie, capital of the Skywrath, rising out of the clouds. On the day of her ascension Shendelzare was thrown from the tallest of these towers — that is where the whole story begins."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/newsentry/7428199535674663482"
+    },
+    {
+      "id": "crownfall-trailer",
+      "type": "youtube",
+      "youtubeId": "7QxnMnBYziA",
+      "title": { "ru": "Crownfall", "en": "Crownfall" },
+      "subtitle": { "ru": "Трейлер", "en": "Trailer" },
+      "description": {
+        "ru": "Короткий ролик к началу Crownfall (2024): Шен и Dragonus пробираются по людным улицам столицы скайрасов, чтобы вернуть трон.",
+        "en": "A short clip for the start of Crownfall (2024): Shen and Dragonus slip through the crowded streets of the Skywrath capital on their way to reclaiming the throne."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/crownfall"
+    },
+    {
+      "id": "crownfall-act-iv-trailer",
+      "type": "youtube",
+      "youtubeId": "In5C2HWaWk8",
+      "title": { "ru": "Crownfall: акт IV", "en": "Crownfall Act IV" },
+      "subtitle": { "ru": "Трейлер", "en": "Trailer" },
+      "description": {
+        "ru": "Ролик к четвёртому, последнему акту Crownfall «Шпили Скайрата» (2024). История возвращается в столицу скайрасов: пора свергнуть королеву Империю.",
+        "en": "Clip for the fourth and final act of Crownfall, \"The Spires of Skywrath\" (2024). The story comes back to the Skywrath capital, and Queen Imperia is finally to be toppled."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/newsentry/4446834797838336420"
+    },
+    {
+      "id": "crownfall-act-ii-trailer",
+      "type": "youtube",
+      "youtubeId": "gEF7eriHskE",
+      "title": { "ru": "Crownfall: акт II", "en": "Crownfall Act II" },
+      "subtitle": { "ru": "Трейлер", "en": "Trailer" },
+      "description": {
+        "ru": "Ролик ко второму акту Crownfall (2024): действие уходит в выжженные пески Друуда, где Skywrath Mage ищет союзников и следы ордена казураев.",
+        "en": "Clip for Crownfall Act II (2024): the action moves to the sun-scorched sands of Druud, where Skywrath Mage looks for allies and for traces of the Kazurai order."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/newsentry/5991554339562872856"
+    },
+    {
+      "id": "crownfall-act-iii-trailer",
+      "type": "youtube",
+      "youtubeId": "Majry-FXiK0",
+      "title": { "ru": "Crownfall: акт III", "en": "Crownfall Act III" },
+      "subtitle": { "ru": "Трейлер", "en": "Trailer" },
+      "description": {
+        "ru": "Ролик к третьему акту Crownfall «Морозы Айсрака» (2024): Vengeful Spirit на продуваемом всеми ветрами севере собирает местных героев, чтобы отбить деревню у дракона.",
+        "en": "Clip for Crownfall Act III, \"The Frosts of Icewrack\" (2024): on the wind-blasted northern heights Vengeful Spirit gathers the local heroes to save a village from a dragon."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/newsentry/4238531900078333321"
+    },
+    {
+      "id": "dark-reef-siltbreaker",
+      "type": "image",
+      "src": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/blogfiles/blog_siltbreakerrises.jpg",
+      "title": { "ru": "«Пробуждение Siltbreaker»", "en": "Siltbreaker Rises" },
+      "subtitle": { "ru": "Арт", "en": "Art" },
+      "description": {
+        "ru": "Арт кампании Siltbreaker из боевого пропуска 2017 года. В подводной тюрьме Тёмный риф просыпается древнее чудовище Siltbreaker, и защитники Пучины спускаются в глубину, чтобы его остановить.",
+        "en": "Art for the Siltbreaker campaign from the 2017 Battle Pass. Deep in the undersea prison of Dark Reef the ancient monster Siltbreaker wakes, and the defenders of the Brine dive down to stop him."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/newsentry/2882822214138800984"
+    },
+    {
+      "id": "underhollow-roshan",
+      "type": "image",
+      "src": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/blogfiles/bpti8_underhollow_blimxvi.jpg",
+      "title": { "ru": "«Пещеры пустоши зовут»", "en": "The Underhollow Beckons" },
+      "subtitle": { "ru": "Арт", "en": "Art" },
+      "description": {
+        "ru": "Арт к режиму Underhollow из боевого пропуска 2018 года. Учуяв редчайший сыр, Рошан проломился в лабиринт пещер под своим логовом — и герои, прихватив сыр, бегут от него по тёмным тоннелям.",
+        "en": "Art for the Underhollow mode from the 2018 Battle Pass. Lured by the rarest of cheeses, Roshan smashed his way into the cave maze beneath his lair — and the heroes, cheese in hand, run from him through the dark tunnels."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/newsentry/2882822214138792458"
     }
   ]
 }

@@ -12,6 +12,7 @@
     "ru": "Под корнями вулканов и слоем магмы лежит другой мир — без неба и солнца. Обсидиановые своды, светящиеся пещеры и леса гигантских грибов тянутся до самых тектонических плит.\n\nЗдесь правит сила. Врогрос (Underlord) собирает Абиссальную Орду в городе Азийог, чтобы однажды выйти на поверхность и потребовать себе земли наверху. Ещё глубже, в запечатанных Нижних пределах, миллионы лет живут ядовитые незердрейки.\n\nИз этих глубин вышли Underlord, Viper и Pugna — колдун, родившийся в Нижних пределах и выросший в храме Искусств Забвения.",
     "en": "Beneath the roots of volcanoes and the layer of magma lies another world, one without sky or sun. Obsidian vaults, glowing caverns and forests of giant fungi stretch all the way down to the tectonic plates.\n\nStrength rules here. Vrogros the Underlord gathers the Abyssal Horde in the city of Aziyog, waiting for the day it marches up to claim the lands above. Deeper still, in the sealed Nether Reaches, venomous netherdrakes have dwelt for millions of years.\n\nThe Underlord, Viper and Pugna all rose from these depths, Pugna born in the Nether Reaches and raised in a temple of the Arts of Oblivion."
   },
+  "media": ["underhollow-roshan"],
   "places": {
     "Aziyog": {
       "name": { "ru": "Азийог", "en": "Aziyog" },
@@ -43,7 +44,8 @@
       "description": {
         "ru": "Кольца пещер, сходящиеся к центру, где Рошан хранит свой редчайший сыр. О лоре этого места известно мало: оно знакомо прежде всего как арена 2018 года.",
         "en": "Rings of caverns spiraling inward to where Roshan guards his rarest cheese. Little lore is attached to it; it is known mostly as the battleground of 2018."
-      }
+      },
+      "media": ["underhollow-roshan"]
     }
   }
 }

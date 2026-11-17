@@ -27,6 +27,7 @@
     "ru": "Под толщей океана лежат затонувшие города, их сокровищницы и тюрьмы. Это владения слизеринов, наг и мерантов, а порядок здесь держат Конклав Пучины и стража, верная своему долгу тысячелетиями.\n\nSlardar стережёт глубинные хранилища, Naga Siren когда-то отбила Крей у захватчиков, а Slark остаётся единственным, кто сумел сбежать из Тёмного рифа. Morphling, ожившая вода с упавшей кометы, считает эти глубины своим домом.\n\nЕщё ниже, за последними руинами, лежит Адская впадина. Оттуда демон Буки'вак Порченый расползается гнилью по всему дну.",
     "en": "Beneath the weight of the ocean lie sunken cities with their vaults and prisons. This is the realm of slithereen, naga and meranths, kept in order by the Conclave of the Brine and guards who have held their posts for millennia.\n\nSlardar watches over the deep treasuries, Naga Siren once drove raiders out of Crey, and Slark is still the only prisoner ever to escape Dark Reef. Morphling, living water fallen from a comet, calls these depths home.\n\nFurther down, past the last ruins, opens the Infernal Hollow. From there the demon Buki'vak the Corrupted spreads his rot across the sea floor."
   },
+  "media": ["dark-reef-siltbreaker"],
   "places": {
     "Dark Reef": {
       "name": {
@@ -40,7 +41,8 @@
       "description": {
         "ru": "Подводная тюрьма в глубокой впадине под металлической решёткой: тёмный лабиринт, угри-патрульные и ядовитые анемоны у выходов. Здесь держат худших обитателей моря. Сбежать отсюда удалось только одному узнику — Slark.",
         "en": "An underwater prison sunk into a trench beneath a metal grid: a dark labyrinth, patrolling eels and stinging anemones at every exit. It holds the worst the sea has to offer. Slark is the only one who ever got out."
-      }
+      },
+      "media": ["dark-reef-siltbreaker"]
     },
     "Crey": {
       "name": {

@@ -48,6 +48,9 @@
         "ru": "Над облаками мир не кончается. Здесь, недосягаемые для бескрылых народов, парят крепости скайрасов, а ещё выше кружат светила, от которых зависит судьба всего, что лежит внизу.\n\nНебеса помнят Безумную Луну — тюрьму двух древних разумов, Радинтула и Дируулта. Когда она раскололась, её осколки дождём упали на землю, и с тех пор войны Сияющих и Тьмы ведутся за этот звёздный камень. Рядом всё так же светит Луна Селемены, богини, которой служат Mirana и Luna.\n\nОтсюда родом скайрас Драгонус (Skywrath Mage) и свергнутая принцесса Шендельзаре, ставшая Vengeful Spirit. С небесами связаны и боги-громовержцы, и дети звёзд — Phoenix и Dawnbreaker.",
         "en": "The world does not end at the clouds. Above them, out of reach of anything without wings, drift the fortresses of the Skywrath, and higher still wheel the celestial bodies whose fate shapes everything below.\n\nThe heavens remember the Mad Moon, a prison built for two ancient minds, Radinthul and Diruulth. When it cracked apart, its shards rained down on the earth, and the Radiant and the Dire have fought over that starstone ever since. Beside the ruin still glows the moon of Selemene, the goddess served by Mirana and Luna.\n\nThis is the home of Dragonus the Skywrath Mage and of Shendelzare, the deposed princess who became the Vengeful Spirit. Thunder gods and the children of stars, Phoenix and Valora, are bound to these skies as well."
       },
+      "media": [
+        "ghastly-eyrie-ascension-day"
+      ],
       "layout": {
         "polygon": [
           [
@@ -135,6 +138,11 @@
               "en": "The Skywrath capital, perched so high that other races can barely reach it. It answers to the queen of the Nest of Thorns: the throne meant for Shendelzare was seized by her younger sister Imperia, and the palace has bred conspiracies ever since."
             }
           },
+          "media": [
+            "ghastly-eyrie-ascension-day",
+            "crownfall-act-iv-trailer",
+            "crownfall-trailer"
+          ],
           "pos": [
             0.12,
             0.065
@@ -751,7 +759,8 @@
         "en": "The far north of the world: a frozen expanse between the Barrier mountains and the Boiling Sea. Few ships ever arrive; the only sea route runs through Frostreach, the northernmost port there is. Through the heart of the land flows the Blueheart Glacier, the wellspring of all frost magic.\n\nIts kingdoms once suffered under the sorcerer Ethreain until his own subjects rose up, killed him and sank him in the Black Pool; he has since returned as the Lich. Today the north belongs to hardy tribes like the Frostiron, and its taverns still retell Tusk's brawls.\n\nYoung Rylai, who froze everything around her, was sent to Icewrack and found a teacher in the Ice Wizard, becoming the Crystal Maiden. The flightless Skywrath Kez spent his exile here, and the Lone Druid roams the northern pines."
       },
       "media": [
-        "icewrack-new-neighbors"
+        "icewrack-new-neighbors",
+        "crownfall-act-iii-trailer"
       ],
       "layout": {
         "polygon": [
@@ -3311,7 +3320,8 @@
         "en": "A high plateau south of the Fields of Endless Carnage — red deserts, wind-scoured steppe and endless tablelands. This is the country of the centaur clans. Outsiders take them for brutes: they have no writing, no formal music, no organised faith. To a centaur, though, combat is the purest form of thought.\n\nThe uplands are also home to the Oglodi, the last remnant of a once-great civilisation. They ride stryders, scavenge the ruins of their ancestors' cities and revere the weather itself — summer storms bring rain but leave charred bodies in their wake. Settled kingdoms to the south keep pressing on their land.\n\nTwo heroes hail from here. Centaur Warrunner became the undisputed champion of the Omexe arena, then rode off in search of an opponent worthy of him. Disruptor, a young stormcrafter, adapted an ancient coil that calls down lightning at will and turned it on the southern intruders."
       },
       "media": [
-        "druud-hells-basin"
+        "druud-hells-basin",
+        "crownfall-act-ii-trailer"
       ],
       "layout": {
         "polygon": [
@@ -4404,6 +4414,9 @@
         "ru": "Под толщей океана лежат затонувшие города, их сокровищницы и тюрьмы. Это владения слизеринов, наг и мерантов, а порядок здесь держат Конклав Пучины и стража, верная своему долгу тысячелетиями.\n\nSlardar стережёт глубинные хранилища, Naga Siren когда-то отбила Крей у захватчиков, а Slark остаётся единственным, кто сумел сбежать из Тёмного рифа. Morphling, ожившая вода с упавшей кометы, считает эти глубины своим домом.\n\nЕщё ниже, за последними руинами, лежит Адская впадина. Оттуда демон Буки'вак Порченый расползается гнилью по всему дну.",
         "en": "Beneath the weight of the ocean lie sunken cities with their vaults and prisons. This is the realm of slithereen, naga and meranths, kept in order by the Conclave of the Brine and guards who have held their posts for millennia.\n\nSlardar watches over the deep treasuries, Naga Siren once drove raiders out of Crey, and Slark is still the only prisoner ever to escape Dark Reef. Morphling, living water fallen from a comet, calls these depths home.\n\nFurther down, past the last ruins, opens the Infernal Hollow. From there the demon Buki'vak the Corrupted spreads his rot across the sea floor."
       },
+      "media": [
+        "dark-reef-siltbreaker"
+      ],
       "layout": {
         "polygon": [
           [
@@ -4498,6 +4511,9 @@
               "en": "An underwater prison sunk into a trench beneath a metal grid: a dark labyrinth, patrolling eels and stinging anemones at every exit. It holds the worst the sea has to offer. Slark is the only one who ever got out."
             }
           },
+          "media": [
+            "dark-reef-siltbreaker"
+          ],
           "pos": [
             0.9,
             0.68
@@ -7295,6 +7311,9 @@
         "ru": "Под корнями вулканов и слоем магмы лежит другой мир — без неба и солнца. Обсидиановые своды, светящиеся пещеры и леса гигантских грибов тянутся до самых тектонических плит.\n\nЗдесь правит сила. Врогрос (Underlord) собирает Абиссальную Орду в городе Азийог, чтобы однажды выйти на поверхность и потребовать себе земли наверху. Ещё глубже, в запечатанных Нижних пределах, миллионы лет живут ядовитые незердрейки.\n\nИз этих глубин вышли Underlord, Viper и Pugna — колдун, родившийся в Нижних пределах и выросший в храме Искусств Забвения.",
         "en": "Beneath the roots of volcanoes and the layer of magma lies another world, one without sky or sun. Obsidian vaults, glowing caverns and forests of giant fungi stretch all the way down to the tectonic plates.\n\nStrength rules here. Vrogros the Underlord gathers the Abyssal Horde in the city of Aziyog, waiting for the day it marches up to claim the lands above. Deeper still, in the sealed Nether Reaches, venomous netherdrakes have dwelt for millions of years.\n\nThe Underlord, Viper and Pugna all rose from these depths, Pugna born in the Nether Reaches and raised in a temple of the Arts of Oblivion."
       },
+      "media": [
+        "underhollow-roshan"
+      ],
       "layout": {
         "polygon": [
           [
@@ -7441,7 +7460,7 @@
           "slug": "the-underhollow",
           "capital": false,
           "placement": "lore",
-          "significance": "minor",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Пещеры пустоши",
@@ -7456,6 +7475,9 @@
               "en": "Rings of caverns spiraling inward to where Roshan guards his rarest cheese. Little lore is attached to it; it is known mostly as the battleground of 2018."
             }
           },
+          "media": [
+            "underhollow-roshan"
+          ],
           "pos": [
             0.22,
             0.97
@@ -11523,6 +11545,139 @@
       },
       "credit": "Valve Corporation",
       "sourceUrl": "https://www.dota2.com/eminenceofristul"
+    },
+    {
+      "id": "ghastly-eyrie-ascension-day",
+      "type": "image",
+      "src": "https://clan.fastly.steamstatic.com/images/3703047/ba80108f618e691d184e7eb5579e56c33b9a811b.jpg",
+      "title": {
+        "ru": "«День вознесения»",
+        "en": "Ascension Day"
+      },
+      "subtitle": {
+        "ru": "Арт",
+        "en": "Art"
+      },
+      "description": {
+        "ru": "Арт Valve, которым в 2024 году анонсировали Crownfall: стеклянные купола и шпили Мрачного Гнездовья, столицы скайрасов, торчат из облаков. В день своего вознесения Шендельзару сбросили с самой высокой из этих башен — так начинается вся история.",
+        "en": "Valve art that announced Crownfall in 2024: the glass domes and spires of the Ghastly Eyrie, capital of the Skywrath, rising out of the clouds. On the day of her ascension Shendelzare was thrown from the tallest of these towers — that is where the whole story begins."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/newsentry/7428199535674663482"
+    },
+    {
+      "id": "crownfall-trailer",
+      "type": "youtube",
+      "youtubeId": "7QxnMnBYziA",
+      "title": {
+        "ru": "Crownfall",
+        "en": "Crownfall"
+      },
+      "subtitle": {
+        "ru": "Трейлер",
+        "en": "Trailer"
+      },
+      "description": {
+        "ru": "Короткий ролик к началу Crownfall (2024): Шен и Dragonus пробираются по людным улицам столицы скайрасов, чтобы вернуть трон.",
+        "en": "A short clip for the start of Crownfall (2024): Shen and Dragonus slip through the crowded streets of the Skywrath capital on their way to reclaiming the throne."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/crownfall"
+    },
+    {
+      "id": "crownfall-act-iv-trailer",
+      "type": "youtube",
+      "youtubeId": "In5C2HWaWk8",
+      "title": {
+        "ru": "Crownfall: акт IV",
+        "en": "Crownfall Act IV"
+      },
+      "subtitle": {
+        "ru": "Трейлер",
+        "en": "Trailer"
+      },
+      "description": {
+        "ru": "Ролик к четвёртому, последнему акту Crownfall «Шпили Скайрата» (2024). История возвращается в столицу скайрасов: пора свергнуть королеву Империю.",
+        "en": "Clip for the fourth and final act of Crownfall, \"The Spires of Skywrath\" (2024). The story comes back to the Skywrath capital, and Queen Imperia is finally to be toppled."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/newsentry/4446834797838336420"
+    },
+    {
+      "id": "crownfall-act-ii-trailer",
+      "type": "youtube",
+      "youtubeId": "gEF7eriHskE",
+      "title": {
+        "ru": "Crownfall: акт II",
+        "en": "Crownfall Act II"
+      },
+      "subtitle": {
+        "ru": "Трейлер",
+        "en": "Trailer"
+      },
+      "description": {
+        "ru": "Ролик ко второму акту Crownfall (2024): действие уходит в выжженные пески Друуда, где Skywrath Mage ищет союзников и следы ордена казураев.",
+        "en": "Clip for Crownfall Act II (2024): the action moves to the sun-scorched sands of Druud, where Skywrath Mage looks for allies and for traces of the Kazurai order."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/newsentry/5991554339562872856"
+    },
+    {
+      "id": "crownfall-act-iii-trailer",
+      "type": "youtube",
+      "youtubeId": "Majry-FXiK0",
+      "title": {
+        "ru": "Crownfall: акт III",
+        "en": "Crownfall Act III"
+      },
+      "subtitle": {
+        "ru": "Трейлер",
+        "en": "Trailer"
+      },
+      "description": {
+        "ru": "Ролик к третьему акту Crownfall «Морозы Айсрака» (2024): Vengeful Spirit на продуваемом всеми ветрами севере собирает местных героев, чтобы отбить деревню у дракона.",
+        "en": "Clip for Crownfall Act III, \"The Frosts of Icewrack\" (2024): on the wind-blasted northern heights Vengeful Spirit gathers the local heroes to save a village from a dragon."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/newsentry/4238531900078333321"
+    },
+    {
+      "id": "dark-reef-siltbreaker",
+      "type": "image",
+      "src": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/blogfiles/blog_siltbreakerrises.jpg",
+      "title": {
+        "ru": "«Пробуждение Siltbreaker»",
+        "en": "Siltbreaker Rises"
+      },
+      "subtitle": {
+        "ru": "Арт",
+        "en": "Art"
+      },
+      "description": {
+        "ru": "Арт кампании Siltbreaker из боевого пропуска 2017 года. В подводной тюрьме Тёмный риф просыпается древнее чудовище Siltbreaker, и защитники Пучины спускаются в глубину, чтобы его остановить.",
+        "en": "Art for the Siltbreaker campaign from the 2017 Battle Pass. Deep in the undersea prison of Dark Reef the ancient monster Siltbreaker wakes, and the defenders of the Brine dive down to stop him."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/newsentry/2882822214138800984"
+    },
+    {
+      "id": "underhollow-roshan",
+      "type": "image",
+      "src": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/blogfiles/bpti8_underhollow_blimxvi.jpg",
+      "title": {
+        "ru": "«Пещеры пустоши зовут»",
+        "en": "The Underhollow Beckons"
+      },
+      "subtitle": {
+        "ru": "Арт",
+        "en": "Art"
+      },
+      "description": {
+        "ru": "Арт к режиму Underhollow из боевого пропуска 2018 года. Учуяв редчайший сыр, Рошан проломился в лабиринт пещер под своим логовом — и герои, прихватив сыр, бегут от него по тёмным тоннелям.",
+        "en": "Art for the Underhollow mode from the 2018 Battle Pass. Lured by the rarest of cheeses, Roshan smashed his way into the cave maze beneath his lair — and the heroes, cheese in hand, run from him through the dark tunnels."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/newsentry/2882822214138792458"
     }
   ]
 }
