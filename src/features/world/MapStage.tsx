@@ -5,7 +5,7 @@ import { useT } from '../../i18n';
 import { AmbientCanvas } from '../atmosphere/AmbientCanvas';
 import type { Spot } from '../search/search';
 import type { HeroThreads } from '../search/threads';
-import { preloadRegionArt } from './art';
+import { preloadRegionArt, WORLD_ART } from './art';
 import { STAGE_HEIGHT, STAGE_WIDTH, type Rect } from './camera';
 import { EDGE_CLOUDS } from './cloudSets';
 import { Clouds } from './Clouds';
@@ -15,7 +15,7 @@ import { useMarkerLabels } from './markerLayout';
 import { MarkersLayer } from './MarkersLayer';
 import type { MediaBadge } from './mediaBadge';
 import { PlaceTooltip } from './PlaceTooltip';
-import { RegionArt } from './RegionArt';
+import { RegionArt, WorldArt } from './RegionArt';
 import { RegionList } from './RegionList';
 import { RegionsLayer, UnmappedRegions, zoomedClass } from './RegionsLayer';
 import { RegionTooltip } from './RegionTooltip';
@@ -105,6 +105,9 @@ export function MapStage({
   const svgRef = useRef<SVGSVGElement>(null);
   /** Пункт списка регионов под наведением или фокусом: регион подсвечен на карте, без подсказки. */
   const [listId, setListId] = useState<string | null>(null);
+  // Картинка мира не загрузилась — полигоны снова залиты цветом биома (заглушка, ARCHITECTURE A10).
+  const [artFailed, setArtFailed] = useState(false);
+  const worldArt = artFailed ? undefined : WORLD_ART;
 
   const drawn = regions.filter((r) => r.layout);
   const listed = regions.filter((r) => !r.layout);
@@ -151,8 +154,10 @@ export function MapStage({
               role="group"
               aria-label={t('world.map')}
             >
+              {worldArt && <WorldArt src={worldArt} onError={() => setArtFailed(true)} />}
               <RegionsLayer
                 drawn={drawn}
+                art={!!worldArt}
                 activeId={active?.id}
                 inWorld={inWorld}
                 tip={tip}

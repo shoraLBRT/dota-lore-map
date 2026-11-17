@@ -1,6 +1,13 @@
 import '@testing-library/jest-dom/vitest';
 import { cleanup } from '@testing-library/react';
-import { afterEach } from 'vitest';
+import { afterEach, vi } from 'vitest';
+
+// jsdom картинки не грузит: с адресом картинки мира «Начать» ждала бы её 4 с в каждом тесте.
+// Карта в тестах — процедурная заглушка; картинку мира проверяют WorldArt и RegionsLayer с `art`.
+vi.mock('../features/world/art', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('../features/world/art')>()),
+  WORLD_ART: undefined,
+}));
 
 // Тесты scripts/ идут в окружении node, где нет window.
 if (typeof window !== 'undefined') {

@@ -16,6 +16,8 @@ const highlight = (r: Region) => (r.tier === 'continent' ? r.side : r.tier);
 interface Props {
   /** Регионы с геометрией. */
   drawn: Region[];
+  /** Под полигонами картинка мира: полигоны прозрачные, затемнение — полупрозрачной заливкой. */
+  art?: boolean;
   activeId: string | undefined;
   inWorld: boolean;
   /** Подсказка региона: что показано и обработчики полигонов. */
@@ -34,7 +36,7 @@ interface Props {
  * Слой регионов (ARCHITECTURE A4): сверху вниз — подписи, заливка подсветки S1h, полигоны-кнопки
  * (в DOM — в обратном порядке). В S2/S3 полигоны не кнопки: соседи затемнены, активный — «пустое место».
  */
-export function RegionsLayer({ drawn, activeId, inWorld, tip, litId, focusRegions, previewRegions, widths, onSelectRegion }: Props) {
+export function RegionsLayer({ drawn, art = false, activeId, inWorld, tip, litId, focusRegions, previewRegions, widths, onSelectRegion }: Props) {
   const { l } = useT();
   const { shownId, focusId, tooltipId, region: on } = tip;
   /** Класс приглушения или подсветки при выбранном герое. */
@@ -42,6 +44,8 @@ export function RegionsLayer({ drawn, activeId, inWorld, tip, litId, focusRegion
     focusRegions ? (focusRegions.has(regionId) ? styles.heroRegion : styles.muted) : undefined;
 
   // S2/S3: активный регион — последним, чтобы границы соседей не перекрывали его рамку (#94).
+  const fill = (r: Region) => (art ? undefined : biomeColor(r.biome));
+  const artClass = art ? styles.onArt : undefined;
   const polygons = inWorld ? drawn : [...drawn.filter((r) => r.id !== activeId), ...drawn.filter((r) => r.id === activeId)];
 
   return (
@@ -55,9 +59,11 @@ export function RegionsLayer({ drawn, activeId, inWorld, tip, litId, focusRegion
             return (
               <polygon
                 key={r.id}
-                className={[styles.region, isActive ? [styles.active, tones[highlight(r)]].join(' ') : styles.dimmed].join(' ')}
+                className={[styles.region, artClass, isActive ? [styles.active, tones[highlight(r)]].join(' ') : styles.dimmed]
+                  .filter(Boolean)
+                  .join(' ')}
                 points={points(r.layout!.polygon)}
-                fill={biomeColor(r.biome)}
+                fill={fill(r)}
                 aria-hidden="true"
                 data-region={r.id}
               />
@@ -66,9 +72,9 @@ export function RegionsLayer({ drawn, activeId, inWorld, tip, litId, focusRegion
           return (
             <polygon
               key={r.id}
-              className={[styles.region, heroClass(r.id)].filter(Boolean).join(' ')}
+              className={[styles.region, artClass, heroClass(r.id)].filter(Boolean).join(' ')}
               points={points(r.layout!.polygon)}
-              fill={biomeColor(r.biome)}
+              fill={fill(r)}
               role="button"
               tabIndex={0}
               aria-label={l(r.name)}

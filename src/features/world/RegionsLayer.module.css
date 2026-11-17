@@ -96,6 +96,26 @@
   transition-delay: 0s;
 }
 
+/* Над картинкой мира (ARCHITECTURE A10): полигон невидим, но ловит мышь (заливка есть, прозрачность 0);
+   границы нарисованы на картинке. Затемнение соседей и приглушение — полупрозрачной заливкой цвета фона. */
+.onArt {
+  fill: var(--bg-0);
+  fill-opacity: 0;
+  stroke: transparent;
+  transition: fill-opacity var(--dur-fade) var(--ease-out);
+}
+
+.onArt.dimmed {
+  filter: none;
+  fill-opacity: 0.62;
+  transition: fill-opacity var(--dur-camera) var(--ease-in-out);
+}
+
+.onArt.muted {
+  filter: none;
+  fill-opacity: 0.55;
+}
+
 /* Выбран герой (SPEC §6.5): его регионы и места подсвечены, остальные приглушены. */
 .region.muted {
   filter: brightness(0.45) saturate(0.5);

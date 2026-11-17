@@ -5,6 +5,27 @@ import { STAGE_HEIGHT, STAGE_WIDTH } from './camera';
 import styles from './RegionArt.module.css';
 
 /**
+ * Картинка мира (ARCHITECTURE A10): нижний слой сцены под полигонами-кнопками, во весь `viewBox`.
+ * Ошибка загрузки — `onError`, и сцена возвращается к процедурной заглушке.
+ */
+export function WorldArt({ src, onError }: { src: string; onError: () => void }) {
+  return (
+    <image
+      className={styles.world}
+      href={src}
+      x={0}
+      y={0}
+      width={STAGE_WIDTH}
+      height={STAGE_HEIGHT}
+      preserveAspectRatio="none"
+      aria-hidden="true"
+      data-testid="world-art"
+      onError={onError}
+    />
+  );
+}
+
+/**
  * Детальная картинка региона поверх общей (SPEC §7.1 A3, ARCHITECTURE A10): SVG `<image>` под маркерами,
  * покрывает рамку `layout.camera` и проявляется кроссфейдом, когда загружена и камера долетела.
  * Нет арта — ничего не рисует.

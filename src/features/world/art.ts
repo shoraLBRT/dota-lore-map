@@ -1,12 +1,13 @@
 // Арт карты и его предзагрузка (SPEC §14, ARCHITECTURE A4, A10).
-// Пока нарисованного арта нет (E2), карта — процедурная заглушка: адресов картинок нет,
-// и все функции ниже безопасно ничего не делают. Когда арт появится, достаточно заполнить
-// WORLD_ART и поле `layout.art` регионов — интро и наведение начнут его грузить сами.
+// Картинка мира — процедурная карта `public/map/world-2560.webp` (`node map/render-art.mjs`, #110);
+// не загрузилась — карта остаётся процедурной заглушкой (`biomes.ts`). Детальных картинок регионов
+// пока нет (#111): без `layout.art` функции ниже безопасно ничего не делают.
+// В юнит-тестах WORLD_ART подменён на `undefined` (src/test/setup.ts): jsdom картинки не грузит.
 
 import type { Region } from '../../data/types';
 
-/** Картинка мира целиком для интро и S1. `undefined` — арта ещё нет. */
-export const WORLD_ART: string | undefined = undefined;
+/** Картинка мира целиком для интро и S1. `undefined` — арта нет, рисуется заглушка. */
+export const WORLD_ART: string | undefined = `${import.meta.env.BASE_URL}map/world-2560.webp`;
 
 /** Детальная картинка региона для приближения (A3). */
 export function regionArt(region: Region): string | undefined {
