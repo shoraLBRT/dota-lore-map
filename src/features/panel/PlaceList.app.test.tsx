@@ -6,7 +6,7 @@ import type { Place } from '../../data/types';
 import { getRegion, placeName } from '../../data/world';
 import { PLACES_SHOWN, sortPlaces } from './PlaceList';
 
-// Список мест в панели региона (#99, SPEC §5.4 п. 6).
+// Список мест в панели региона (#99, SPEC §5.4 п. 7).
 
 const stonehall = getRegion('stonehall')!;
 const rows = () => Array.from(document.querySelectorAll<HTMLButtonElement>('[data-place-row]'));
@@ -24,7 +24,7 @@ describe('список мест в панели региона (#99)', () => {
     window.localStorage.setItem('dota-lore-map.lang', 'ru');
   });
 
-  it('порядок: столица, места событий, обычные, второстепенные; внутри — по алфавиту', () => {
+  it('порядок: столица, места событий, обычные, второстепенные; внутри — по алфавиту без кавычек', () => {
     const list = [
       place('Delta', { significance: 'minor' }),
       place('Bravo'),
@@ -32,8 +32,9 @@ describe('список мест в панели региона (#99)', () => {
       place('Zulu', { capital: true }),
       place('Echo', { significance: 'event' }),
       place('Charlie', { significance: 'link' }),
+      place('«Alpine»', { significance: 'link' }),
     ];
-    expect(sortPlaces(list, 'en').map((p) => p.name)).toEqual(['Zulu', 'Echo', 'Bravo', 'Charlie', 'Alpha', 'Delta']);
+    expect(sortPlaces(list, 'en').map((p) => p.name)).toEqual(['Zulu', 'Echo', '«Alpine»', 'Bravo', 'Charlie', 'Alpha', 'Delta']);
   });
 
   it('Стоунхолл: первые 8 мест и «Все места (24)», раскрытие показывает все и ставит фокус на девятое', async () => {

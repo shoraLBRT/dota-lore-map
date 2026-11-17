@@ -21,10 +21,10 @@ const KIND_LABEL: Partial<Record<Kind, MessageKey>> = {
   minor: 'places.minor',
 };
 
-/** Порядок списка: столица, места событий, обычные, второстепенные; внутри — по алфавиту языка. */
+/** Порядок списка: столица, места событий, обычные, второстепенные; внутри — по алфавиту языка, кавычки не в счёт. */
 export function sortPlaces(places: Place[], lang: Lang): Place[] {
   return [...places].sort(
-    (a, b) => RANK[kindOf(a)] - RANK[kindOf(b)] || placeName(a, lang).localeCompare(placeName(b, lang), lang),
+    (a, b) => RANK[kindOf(a)] - RANK[kindOf(b)] || placeName(a, lang).localeCompare(placeName(b, lang), lang, { ignorePunctuation: true }),
   );
 }
 
