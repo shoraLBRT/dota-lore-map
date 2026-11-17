@@ -27,5 +27,17 @@
     "Kanna и Prellex (персонажи): упомянуты только в Artifact; связи не записаны.",
     "Anti-Mage, Winter Wyvern, Lich, Crystal Maiden, Chen, Enchantress, Lina, Rylai: отношения только из реплик Underlords, Artifact и раздела Friendships and Rivalries (реплики озвучки); связей не записано.",
     "Раздел Relationships и Acquaintances (знакомые, реплики): типы связей из них не выводятся; связей не записано."
+  ],
+  "relations": [
+    {
+      "hero": "pugna",
+      "type": "master",
+      "place": "Nether Reaches",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Viper/Lore",
+      "note": "Лор-страница Viper называет бывшим хозяином Pugna: тот поймал дракона в пещерах Nether Reaches и держал взаперти, пока Viper не сбежал.",
+      "doubt": "Биография Viper называет пленителя лишь безымянным старым магом; имя Pugna даёт лор-страница. Viper бежал и мстит, так что сейчас они скорее враги."
+    }
   ]
 }

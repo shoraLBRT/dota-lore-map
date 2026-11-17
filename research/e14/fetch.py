@@ -13,7 +13,7 @@ User-Agent браузера не подставляем. В запросах н�
   bio.ru.txt, bio.en.txt           биография без разметки
   liquipedia-lore.wiki             вики-текст <Герой>/Lore (нет страницы — файла нет)
   liquipedia-hero.wiki             вики-текст <Герой>
-  meta.json                        ссылки, дата, какие страницы не нашлись
+  meta.json                        ссылки, дата, какие страницы не нашлись, какие биографии обрезаны (truncated)
 
 Запуск из корня репозитория:
   python research/e14/fetch.py <key> [<key> ...]     ключи из research/e1/heroes.json
@@ -37,6 +37,7 @@ CACHE = Path(__file__).resolve().parent / "cache"
 HEROES = ROOT / "research" / "e1" / "heroes.json"
 
 USER_AGENT = "DotaLoreMapResearch/0.1 (non-commercial fan project)"
+BIO_LIMIT = 4090     # datafeed dota2.com отдаёт bio_loc не длиннее 4095 знаков: длиннее — обрезано на стороне сервера
 PAUSE = 2.5          # секунды между запросами (правило — не меньше 2)
 DOTA2 = "https://www.dota2.com/datafeed/herodata"
 LIQUIPEDIA_API = "https://liquipedia.net/dota2/api.php"
@@ -146,6 +147,9 @@ def fetch_hero(hero, refresh=False, dry_run=False):
             ok = False
             continue
         (out / f"bio.{lang}.txt").write_text(strip_markup(bio), encoding="utf-8")
+        if len(bio) >= BIO_LIMIT:
+            print(f"{key}: bio.{lang} обрезана самим dota2.com (≈4 КБ) — конец читать по liquipedia-lore.wiki")
+            meta.setdefault("truncated", []).append(f"bio.{lang}")
         meta["sources"][f"bio.{lang}"] = {
             "url": f"https://www.dota2.com/hero/{re.sub(r'[^a-z0-9]', '', name.lower())}?l={LANGS[lang]}",
             "api": url,

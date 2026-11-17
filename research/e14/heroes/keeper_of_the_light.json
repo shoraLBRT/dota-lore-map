@@ -36,6 +36,20 @@
       "via": "lore",
       "url": "https://liquipedia.net/dota2/Keeper_of_the_Light/Lore",
       "note": "Старший брат-Фундаментал: поле family лор-страницы ссылается на биографию Chaos Knight, где Свет назван одним из Фундаменталов, которого он преследует. Биография Keeper of the Light говорит о преследующем его хаосе."
+    },
+    {
+      "hero": "dawnbreaker",
+      "type": "family",
+      "source": "bio",
+      "note": "Биография Dawnbreaker: Дети Сияния происходят от первого солнца, которое оставил после себя Keeper; Valora — их творение.",
+      "doubt": "Тип family взят как ближайший: родство через созданное им первое солнце. В биографии Keeper Dawnbreaker нет."
+    },
+    {
+      "hero": "phoenix",
+      "type": "family",
+      "source": "bio",
+      "note": "Биография Phoenix: звезда-феникс родилась в роду первого солнца Keeper.",
+      "doubt": "Тип family взят как ближайший: родство через звёздный род. В биографии Keeper Phoenix нет."
     }
   ],
   "profile": {

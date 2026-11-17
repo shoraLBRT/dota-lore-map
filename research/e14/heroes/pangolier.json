@@ -51,14 +51,6 @@
       "doubt": "Имя Aiushtha в тексте не сопоставлено с Enchantress напрямую; обратная запись уже есть в enchantress.json."
     },
     {
-      "hero": "ursa",
-      "type": "ally",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Pangolier/Lore",
-      "note": "Герой работал вместе с Ursa в прошлом (текст лор-страницы)."
-    },
-    {
       "hero": "dragon_knight",
       "type": "ally",
       "source": "liquipedia",
@@ -74,23 +66,6 @@
       "url": "https://liquipedia.net/dota2/Pangolier/Lore",
       "note": "Rigwarl назван одним из самых ненавистных соперников героя; тип rival прямо из текста.",
       "doubt": "В лор-тексте Rigwarl не назван Bristleback. Соответствие — по инфобоксу (Bristleback в списке героев) и по теме «иглы/щетина» (квиллы срезаны в бою)."
-    },
-    {
-      "hero": "leshrac",
-      "type": "enemy",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Pangolier/Lore",
-      "note": "Текст называет Leshrac одним из самых ненавистных врагов героя: из-за давнего поступка с женщиной из его жизни."
-    },
-    {
-      "hero": "necrolyte",
-      "type": "enemy",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Pangolier/Lore",
-      "note": "Лор-страница: герой клянётся покончить с Rotund'jere за причинённые им страдания.",
-      "doubt": "Rotund'jere — личное имя Necrophos; в тексте оно не сопоставлено с героем напрямую."
     }
   ],
   "profile": {
@@ -115,6 +90,9 @@
     "Lina и Rylai: герой уговорил Lina помириться с Rylai — связи самого героя с ними в тексте нет, не записано.",
     "Bounty Hunter, Broodmother: есть только в списке связанных героев инфобокса, тип в тексте не назван — не записано.",
     "Места Desert of Misrule (Lanaya) и Marrowfell Hunters (фракция) упомянуты только в репликах и вне списка связей героя; в links не записаны.",
-    "Weeping Rose: лор-страница лишь предполагает, что там проходили попойки с Davion; догадка снята при проверке."
+    "Weeping Rose: лор-страница лишь предполагает, что там проходили попойки с Davion; догадка снята при проверке.",
+    "Necrophos (enemy): клятва остановить Rotund'jere на лор-странице Pangolier держится на его репликах озвучки; лор-страница Necrophos и биографии это не подтверждают. Связь снята (#150).",
+    "Leshrac (enemy): конфликт «клятва убить» на лор-страницах обоих героев пересказывает только реплики озвучки Pangolier; в биографиях Leshrac нет. Связь снята (#150).",
+    "Ursa (ally): «работали вместе» берётся из одной реплики озвучки Pangolier; в источниках Ursa нет. Связь снята (#150)."
   ]
 }

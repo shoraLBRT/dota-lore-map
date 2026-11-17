@@ -22,6 +22,16 @@
       "url": "https://liquipedia.net/dota2/Vengeful_Spirit/Lore",
       "note": "В тексте лор-страницы: Dragonus назван тайным возлюбленным Шенделзары (ссылка на биографию Skywrath Mage).",
       "doubt": "Чувство описано со стороны Skywrath Mage; в текстах не сказано, отвечала ли Шенделзара взаимностью. Тип записан по формулировке «тайный возлюбленный», взаимность не подтверждена."
+    },
+    {
+      "hero": "winter_wyvern",
+      "type": "ally",
+      "place": "Icewrack",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Winter_Wyvern/Lore",
+      "note": "Лор-страница Winter Wyvern: во время событий Crownfall она помогла Vengeful Spirit в Icewrack.",
+      "doubt": "Подтверждается одним пунктом лор-страницы Winter Wyvern; биография и лор-страница Vengeful Spirit её не называют."
     }
   ],
   "profile": {
