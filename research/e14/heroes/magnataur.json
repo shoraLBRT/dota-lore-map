@@ -1,6 +1,11 @@
 {
   "hero": "magnataur",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
   "links": [
     {
       "place": "Mount Joerlak",
@@ -26,19 +31,11 @@
     }
   ],
   "path": [
-    { "place": "Mount Joerlak" },
-    { "place": "Roseleaf" }
-  ],
-  "relations": [
     {
-      "hero": "treant",
-      "type": "ally",
-      "place": "Roseleaf",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Magnus/Lore",
-      "note": "Лор-страница: в конфликте в Roseleaf герой встал на сторону Vhoul и их защитников, включая Treant Protector; тот же герой указан в инфобоксе",
-      "doubt": "Формулировка опирается на карточку Artifact, пересказанную на лор-странице"
+      "place": "Mount Joerlak"
+    },
+    {
+      "place": "Roseleaf"
     }
   ],
   "profile": {
@@ -46,7 +43,9 @@
       "ru": "Magnus — магнорог с горы Йорлак, чей рог ценится выше любого сплава; долгое время он отгонял охотников от своего рода. После извержения, погубившего половину сородичей, он оставил племя и поклялся покарать виновных, прежде чем вернуться к своим. Сейчас он ввязался в конфликт в Roseleaf на стороне слабых и враждует с Bronze Legion.",
       "en": "Magnus is a magnoceros from Mount Joerlak whose horn is valued above any alloy, and for a long time he drove hunters away from his kin. After a volcanic eruption killed half of his people, he left them and swore to punish those responsible before rejoining them. He now takes sides in the conflict in Roseleaf on behalf of the weak and is hostile to the Bronze Legion."
     },
-    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/magnataur.png"]
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/magnataur.png"
+    ]
   },
   "candidates": [],
   "unconfirmed": [
@@ -58,6 +57,7 @@
     "Путь Mount Joerlak → Roseleaf: маршрут не описан; в путь включены два места из инфобокса и биографии (уход от рода)",
     "Безымянное место на севере от горы, где выжившие встретили заставу: в источниках не названо",
     "Судьба героя после извержения (погиб или вернулся к роду): биография оставляет версии открытыми; в links не отражено",
-    "Комиксов в content/media.json для героя нет"
+    "Комиксов в content/media.json для героя нет",
+    "Treant Protector (ally, Roseleaf): основание — реплика из Artifact; Artifact не источник (VERIFY.md), у Treant Protector этого нет. Связь снята (#150)."
   ]
 }

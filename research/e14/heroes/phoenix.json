@@ -35,10 +35,9 @@
     {
       "hero": "keeper_of_the_light",
       "type": "family",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Phoenix/Lore",
-      "note": "По инфобоксу — далёкий предок (great-great grandfather), создатель первого солнца, от которого происходят Дети Сияния."
+      "source": "bio",
+      "note": "Биография Phoenix: звезда-феникс родилась в роду первого солнца Keeper и унаследовала его свет от предков.",
+      "doubt": "Тип family взят как ближайший: родство через звёздный род, а не прямое. Keeper назван в биографии по титулу; в биографии самого Keeper Phoenix нет."
     },
     {
       "hero": "dawnbreaker",

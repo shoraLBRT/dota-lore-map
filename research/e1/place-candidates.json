@@ -20,16 +20,6 @@
       "note": "Островные горы, где Жарвакко учился колдовству. В старой редакции биографии, которую хранит Liquipedia (и в поле places инфобокса), остров назван Prefectura — это одно и то же место под двумя именами. Регион не назван; по смыслу это остров, но какой — решает владелец (#59)."
     },
     {
-      "name": "Wyrmforge",
-      "hero": "elder_titan",
-      "region": "uncharted",
-      "event": "mention",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Elder_Titan/Lore",
-      "note": "Стоит в поле places инфобокса: Elder Titan хранит у себя обломок этой кузницы среди собранных реликвий. Сам он там не бывал по тексту; регион не назван — решает владелец (#59)."
-    },
-    {
       "name": "Grosche",
       "hero": "jakiro",
       "region": "uncharted",
@@ -173,6 +163,41 @@
       "note": "В биографии книга о скарабеях хранится в архиве Ultimyr; на схеме есть Ultimyr Academy в middle-kingdoms, но архив назван отдельно. Сам герой там не был."
     },
     {
+      "name": "Cataract",
+      "hero": "kunkka",
+      "region": "planes",
+      "event": "mention",
+      "source": "bio",
+      "note": "Откуда пришёл демонический флот, и куда Катаракта уходит в пустоту; сама Катаракта на схеме не отмечена, регион предположен по упоминанию пустоты."
+    },
+    {
+      "name": "Skywrath",
+      "hero": "kez",
+      "region": "heavens",
+      "event": "origin",
+      "source": "liquipedia",
+      "url": "https://liquipedia.net/dota2/Kez/Lore",
+      "note": "Skywrath (City) — родина по инфобоксу лор-страницы. Регион heavens предположен только по теме небесного города; в кэше источника о местоположении нет. Решение за владельцем (#59)."
+    },
+    {
+      "name": "Court of Ristul",
+      "hero": "queenofpain",
+      "region": "hells",
+      "event": "home",
+      "source": "comic:hells-ascension",
+      "note": "Двор Ристула, при котором Акаша была сестрой Б'Кора; в регионах такого места нет, регион предположен по Узкому лабиринту в том же описании."
+    },
+    {
+      "name": "Wyrmforge",
+      "hero": "elder_titan",
+      "region": "uncharted",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Elder_Titan/Lore",
+      "note": "Стоит в поле places инфобокса: Elder Titan хранит у себя обломок этой кузницы среди собранных реликвий. Сам он там не бывал по тексту; регион не назван — решает владелец (#59)."
+    },
+    {
       "name": "Great Seat of Cymurri",
       "hero": "oracle",
       "region": "planes",
@@ -205,31 +230,6 @@
       "via": "lore",
       "url": "https://liquipedia.net/dota2/Primal_Beast/Lore",
       "note": "Хранилище, где Hoodwink заперла Зверя (в биографии — Vault). Место вне обычного пространства, поэтому регион — planes; решает владелец."
-    },
-    {
-      "name": "Cataract",
-      "hero": "kunkka",
-      "region": "planes",
-      "event": "mention",
-      "source": "bio",
-      "note": "Откуда пришёл демонический флот, и куда Катаракта уходит в пустоту; сама Катаракта на схеме не отмечена, регион предположен по упоминанию пустоты."
-    },
-    {
-      "name": "Skywrath",
-      "hero": "kez",
-      "region": "heavens",
-      "event": "origin",
-      "source": "liquipedia",
-      "url": "https://liquipedia.net/dota2/Kez/Lore",
-      "note": "Skywrath (City) — родина по инфобоксу лор-страницы. Регион heavens предположен только по теме небесного города; в кэше источника о местоположении нет. Решение за владельцем (#59)."
-    },
-    {
-      "name": "Court of Ristul",
-      "hero": "queenofpain",
-      "region": "hells",
-      "event": "home",
-      "source": "comic:hells-ascension",
-      "note": "Двор Ристула, при котором Акаша была сестрой Б'Кора; в регионах такого места нет, регион предположен по Узкому лабиринту в том же описании."
     }
   ]
 }

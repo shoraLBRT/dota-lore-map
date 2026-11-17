@@ -37,15 +37,6 @@
       "doubt": "Соперничество описано в тексте раздела, но опирается на реплики Jakiro; отдельного события нет."
     },
     {
-      "hero": "sven",
-      "type": "rival",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Dragon_Knight/Lore",
-      "note": "В разделе рыцарских соперников лор-страницы Sven не признаёт Давиона настоящим рыцарем из-за драконьей природы, а тот считает себя лучшим рыцарем из двух.",
-      "doubt": "Описание построено на репликах Sven и Dragon Knight; конкретного события в тексте нет, связь записана по разделу."
-    },
-    {
       "hero": "pangolier",
       "type": "ally",
       "source": "liquipedia",
@@ -71,6 +62,7 @@
     "Поля family инфобокса: Bram и Kaden (наставник-оруженосец и возможный отец) — персонажи аниме DOTA: Dragon's Blood, по правилам партии не записаны.",
     "Всё, что говорится о Давионе в аниме (сирота, версия из сериала, места сериала), не записано ни как связь, ни как кандидат.",
     "Lina, Ursa, Omniknight, Chaos Knight, Pangolier, Monkey King, Terrorblade, Lone Druid, Void Spirit, Snapfire, Bristleback, Vengeful Spirit, Skywrath Mage, Hoodwink, Mars, Pudge, Dark Willow, Dawnbreaker, Ember Spirit, Gyrocopter, Batrider и другие — реплики озвучки, связи не записаны.",
-    "Slyrak, Ульдорак, Vyxia, Anessix и Crimson Wyvern — персонажи-драконы, не герои; Eldwurms, Dragon Clan и Blood Route — фракции и понятия, не места. Не записаны."
+    "Slyrak, Ульдорак, Vyxia, Anessix и Crimson Wyvern — персонажи-драконы, не герои; Eldwurms, Dragon Clan и Blood Route — фракции и понятия, не места. Не записаны.",
+    "Sven (rival): раздел о рыцарском соперничестве пересказывает реплики озвучки; события в тексте нет. Связь снята (#150)."
   ]
 }

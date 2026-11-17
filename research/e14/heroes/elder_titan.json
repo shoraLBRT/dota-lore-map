@@ -46,15 +46,6 @@
       "doubt": "Отдельного типа «создатель — создание» в модели нет; взят family как ближайший."
     },
     {
-      "hero": "keeper_of_the_light",
-      "type": "family",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Elder_Titan/Lore",
-      "note": "Keeper of the Light стоит в полях family и heroes инфобокса как творение (creation).",
-      "doubt": "Отдельного типа «создатель — создание» в модели нет; взят family как ближайший."
-    },
-    {
       "hero": "enigma",
       "type": "family",
       "source": "liquipedia",
@@ -98,6 +89,7 @@
     "Комикса с этим героем в content/media.json нет — comic:<id> не использован.",
     "Primordial Harmony (поле places) — состояние единства до Раскола, а не место; кандидатом не записано.",
     "Treant Protector и Earthshaker: по лор-странице он знал их в прошлом, но тип связи не назван и опирается на реплики — не записаны.",
-    "Arc Warden: на его лор-странице из реплик выведены и союз, и вражда с Elder Titan — связь не записана ни с одной стороны."
+    "Arc Warden: на его лор-странице из реплик выведены и союз, и вражда с Elder Titan — связь не записана ни с одной стороны.",
+    "Keeper of the Light (family, создание): инфобокс и «создатель» опираются на монолог Void Spirit и реплики озвучки; биография Keeper говорит лишь о побеге с Фундаментальной плоскости. Связь снята (#150)."
   ]
 }

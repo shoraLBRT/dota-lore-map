@@ -19,14 +19,6 @@
   ],
   "relations": [
     {
-      "hero": "hoodwink",
-      "type": "family",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Enchantress/Lore",
-      "note": "Hoodwink — её племянница: в инфобоксе (поле family) по репликам Hoodwink, которая зовёт её тётушкой."
-    },
-    {
       "hero": "ursa",
       "type": "ally",
       "source": "liquipedia",
@@ -52,6 +44,7 @@
   "unconfirmed": [
     "Родина Enchantress не названа ни в биографии, ни на Liquipedia.",
     "Расы Fae, Trolls и Centaurs в инфобоксе к ней в тексте не привязаны — не использованы.",
-    "Terrorblade в инфобоксе среди связанных героев, но связь — шутливая реплика («лучший друг»); Lone Druid — подколка в озвучке. Не записаны."
+    "Terrorblade в инфобоксе среди связанных героев, но связь — шутливая реплика («лучший друг»); Lone Druid — подколка в озвучке. Не записаны.",
+    "Hoodwink (family, племянница): поле family инфобокса держится на репликах Hoodwink («Auntie A»); биографии родню не называют. Связь снята (#150)."
   ]
 }

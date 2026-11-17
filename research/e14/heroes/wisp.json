@@ -40,14 +40,6 @@
       "note": "Старший брат-сиблинг по инфобоксу лор-страницы Io; из биографии Chaos Knight тоже следует родство с Фундаменталами."
     },
     {
-      "hero": "keeper_of_the_light",
-      "type": "family",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Io/Lore",
-      "note": "Брат по инфобоксу лор-страницы Io."
-    },
-    {
       "hero": "enigma",
       "type": "family",
       "source": "liquipedia",
@@ -73,7 +65,8 @@
     "Physical/material plane: в биографии «физический план», в тексте лора назван Terrene Plane только ссылкой; такого места в regions.json нет, учтено регионом planes; кандидат не добавлен.",
     "Schism — событие, а не место; в links не добавлено.",
     "Hero Atlas (Monster Hunter) и liquipedia-hero не открыты полностью в этой партии: текст героя в кэше проверен выборочно, на связи и места не повлиял.",
-    "Сверка: Earthshaker (друг) снят — раздел Relationships опирается только на реплики набора Planetfall; так же решено в earthshaker.json (партия 05)."
+    "Сверка: Earthshaker (друг) снят — раздел Relationships опирается только на реплики набора Planetfall; так же решено в earthshaker.json (партия 05).",
+    "Keeper of the Light (family, брат): то же — инфобокс и реплики; биография Io называет его Фундаментальным, но не братом Keeper. Связь снята (#150)."
   ],
   "path": [
     {

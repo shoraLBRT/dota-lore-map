@@ -43,12 +43,11 @@ describe('связи героев (heroRelations)', () => {
     for (const [type, inverse] of Object.entries(RELATION_INVERSE)) expect(RELATION_INVERSE[inverse]).toBe(type);
   });
 
-  it('в данных: у Sven нет своих связей, но его записали Dragon Knight (соперник) и Lone Druid (союзник)', () => {
-    const sven = getHero('sven')!;
-    expect(sven.relations).toBeUndefined();
-    const rel = heroRelations(sven).map((r) => `${r.hero.key}:${r.type}`);
-    expect(rel).toContain('dragon_knight:rival');
-    expect(rel).toContain('lone_druid:ally');
+  it('в данных: у Ursa нет своих связей, но её записала Enchantress (союзник)', () => {
+    const ursa = getHero('ursa')!;
+    expect(ursa.relations).toBeUndefined();
+    const rel = heroRelations(ursa).map((r) => `${r.hero.key}:${r.type}`);
+    expect(rel).toContain('enchantress:ally');
   });
 });
 

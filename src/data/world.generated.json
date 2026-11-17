@@ -8078,35 +8078,6 @@
           "doubt": "Лор упоминает только события комикса, без точной сцены. Комикс sundered-moon-comic в media.json мы не читали, поэтому источником указана Liquipedia, а не комикс."
         }
       ],
-      "relations": [
-        {
-          "hero": "windrunner",
-          "type": "rival",
-          "source": "liquipedia",
-          "via": "infobox",
-          "url": "https://liquipedia.net/dota2/Drow_Ranger/Lore",
-          "note": "Windranger стоит в поле heroes инфобокса; лор-страница называет Лиралей (это имя Windranger) главной соперницей Траксекс.",
-          "doubt": "Соперничество известно по репликам Monkey King, пересказывающим их взаимные колкости; общего события нет."
-        },
-        {
-          "hero": "pudge",
-          "type": "ally",
-          "source": "liquipedia",
-          "via": "infobox",
-          "url": "https://liquipedia.net/dota2/Drow_Ranger/Lore",
-          "note": "Pudge стоит в поле heroes инфобокса; лор говорит, что у Траксекс «может быть особая связь» с Pudge и Slark.",
-          "doubt": "Тип не назван ни в инфобоксе, ни в тексте; ally выбран как самый нейтральный. Подсказки из реплики Dark Willow и из мультфильма — не основание, их учли только как общий фон."
-        },
-        {
-          "hero": "slark",
-          "type": "ally",
-          "source": "liquipedia",
-          "via": "infobox",
-          "url": "https://liquipedia.net/dota2/Drow_Ranger/Lore",
-          "note": "Slark стоит в поле heroes инфобокса; тот же «возможный» особый союз, что и с Pudge.",
-          "doubt": "Тип не назван; ally выбран условно, как и для Pudge."
-        }
-      ],
       "profile": {
         "summary": {
           "ru": "Траксекс, известная как Drow Ranger, не родилась дроу: после нападения разбойников на караван её родителей тихий народ нашёл спрятавшуюся девочку и приютил. Она выросла ловкой и скрытной, но чувствовала себя чужой и ушла жить в лес в одиночку. Путники рассказывают о ней как о почти призрачной охотнице, чьи ледяные стрелы находят сердца врагов.",
@@ -8237,6 +8208,15 @@
           "note": "Биография называет её первой претенденткой на Лучезарный трон, сама она там не была."
         }
       ],
+      "relations": [
+        {
+          "hero": "marci",
+          "type": "ally",
+          "source": "bio",
+          "note": "Биография Marci: она почти всегда странствует рядом с принцессой, а корни их дружбы скрыты тайнами.",
+          "doubt": "Источник — биография Marci; в биографии Mirana её нет. Liquipedia называет Marci слугой по сериалу Dragon's Blood (В5 — только медиа), поэтому записана дружба."
+        }
+      ],
       "profile": {
         "summary": {
           "ru": "Mirana родилась в королевской семье и была наследницей Solar Throne, но отказалась от земель и титулов, чтобы служить Selemene, богине Луны. С тех пор её зовут Принцессой Луны. Верхом на огромном звере-фамильяре она обходит священные Nightsilver Woods и ловит тех, кто пытается украсть светящийся лотос из прудов богини. Её лук с наконечниками из лунной руды заряжает стрелы светом Луны.",
@@ -8301,6 +8281,15 @@
           "via": "infobox",
           "url": "https://liquipedia.net/dota2/Shadow_Fiend/Lore",
           "doubt": "Место стоит в поле places инфобокса, но ни биография, ни текст лор-страницы не описывают его связь с героем."
+        }
+      ],
+      "relations": [
+        {
+          "hero": "shadow_demon",
+          "type": "enemy",
+          "source": "bio",
+          "note": "Биография Shadow Demon: Shadow Fiend распознал его суть в съеденной душе и вместе с Doom разгромил его культ.",
+          "doubt": "Источник — биография Shadow Demon; в биографии Shadow Fiend этого нет. Лор-страница говорит ещё о долге душ перед Shadow Demon, но опирается на реплики озвучки."
         }
       ],
       "profile": {
@@ -8653,6 +8642,17 @@
           "url": "https://liquipedia.net/dota2/Vengeful_Spirit/Lore",
           "note": "В тексте лор-страницы: Dragonus назван тайным возлюбленным Шенделзары (ссылка на биографию Skywrath Mage).",
           "doubt": "Чувство описано со стороны Skywrath Mage; в текстах не сказано, отвечала ли Шенделзара взаимностью. Тип записан по формулировке «тайный возлюбленный», взаимность не подтверждена."
+        },
+        {
+          "hero": "winter_wyvern",
+          "type": "ally",
+          "regionId": "icewrack",
+          "placeSlug": "icewrack",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Winter_Wyvern/Lore",
+          "note": "Лор-страница Winter Wyvern: во время событий Crownfall она помогла Vengeful Spirit в Icewrack.",
+          "doubt": "Подтверждается одним пунктом лор-страницы Winter Wyvern; биография и лор-страница Vengeful Spirit её не называют."
         }
       ],
       "profile": {
@@ -9109,17 +9109,6 @@
           "note": "Родина Riki в биографии не названа: сказано только, что он из династии Tahlin и что его народ предали в ночь гибели царского рода. Liquipedia упоминает безымянную родину с пряностями, но это реплика другого героя, не название места. Поэтому на схеме — Неизведанные земли; кандидата в места нет."
         }
       ],
-      "relations": [
-        {
-          "hero": "dark_willow",
-          "type": "ally",
-          "source": "liquipedia",
-          "via": "lore",
-          "url": "https://liquipedia.net/dota2/Riki/Lore",
-          "note": "Dark Willow (Миреска) вместе с Riki была связана с Jasper Circle; по её репликам они потом пошли разными путями.",
-          "doubt": "Бывшие соратники: сейчас их пути разошлись, в источнике нет ни дружбы, ни вражды."
-        }
-      ],
       "profile": {
         "summary": {
           "ru": "Riki — средний сын правящей династии Tahlin, который с детства оттачивал умение оставаться незаметным, пока старшие и младшие братья получали внимание. Когда царский род истребили, он единственный выбрался из дворца, и теперь работает наёмным убийцей. Он всё ещё хочет расквитаться с теми, кто лишил его семьи и наследства.",
@@ -9188,14 +9177,6 @@
           "url": "https://liquipedia.net/dota2/Enigma/Lore",
           "note": "Поле family инфобокса: Elder Titan назван создателем (creator) Enigma.",
           "doubt": "Отдельного типа «создатель — создание» в модели нет; взят family как ближайший."
-        },
-        {
-          "hero": "keeper_of_the_light",
-          "type": "family",
-          "source": "liquipedia",
-          "via": "infobox",
-          "url": "https://liquipedia.net/dota2/Enigma/Lore",
-          "note": "Поле family инфобокса: брат Enigma."
         },
         {
           "hero": "wisp",
@@ -9716,6 +9697,19 @@
           "note": "Родина его рода: низшие драконы миллионы лет жили в отрезанных от мира пещерах Nether Reaches. Биография говорит о роде, а не о рождении самого героя."
         }
       ],
+      "relations": [
+        {
+          "hero": "pugna",
+          "type": "master",
+          "regionId": "underdark",
+          "placeSlug": "nether-reaches",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Viper/Lore",
+          "note": "Лор-страница Viper называет бывшим хозяином Pugna: тот поймал дракона в пещерах Nether Reaches и держал взаперти, пока Viper не сбежал.",
+          "doubt": "Биография Viper называет пленителя лишь безымянным старым магом; имя Pugna даёт лор-страница. Viper бежал и мстит, так что сейчас они скорее враги."
+        }
+      ],
       "profile": {
         "summary": {
           "ru": "Viper — из низших драконов, что миллионы лет жили в светящихся пещерах Нижних пределов, отрезанных от мира сдвигом земной коры. Жестокий колдун поймал его, надеясь приручить, и Viper какое-то время изображал покорность, чтобы выведать его тёмную магию. Поняв, что его собственные яды страшнее любых чар, он разъел кислотой прутья клетки, плюнул ядом в глаза старому магу и улетел, чтобы мир узнал своего нового хозяина.",
@@ -9816,15 +9810,6 @@
           "url": "https://liquipedia.net/dota2/Dragon_Knight/Lore",
           "note": "В разделе отношений лор-страницы описано презрительное соперничество: Jakiro считает Давиона полукровкой. Jakiro также стоит в поле heroes инфобокса.",
           "doubt": "Соперничество описано в тексте раздела, но опирается на реплики Jakiro; отдельного события нет."
-        },
-        {
-          "hero": "sven",
-          "type": "rival",
-          "source": "liquipedia",
-          "via": "lore",
-          "url": "https://liquipedia.net/dota2/Dragon_Knight/Lore",
-          "note": "В разделе рыцарских соперников лор-страницы Sven не признаёт Давиона настоящим рыцарем из-за драконьей природы, а тот считает себя лучшим рыцарем из двух.",
-          "doubt": "Описание построено на репликах Sven и Dragon Knight; конкретного события в тексте нет, связь записана по разделу."
         },
         {
           "hero": "pangolier",
@@ -10100,14 +10085,6 @@
         }
       ],
       "relations": [
-        {
-          "hero": "hoodwink",
-          "type": "family",
-          "source": "liquipedia",
-          "via": "infobox",
-          "url": "https://liquipedia.net/dota2/Enchantress/Lore",
-          "note": "Hoodwink — её племянница: в инфобоксе (поле family) по репликам Hoodwink, которая зовёт её тётушкой."
-        },
         {
           "hero": "ursa",
           "type": "ally",
@@ -10860,22 +10837,6 @@
           "via": "lore",
           "url": "https://liquipedia.net/dota2/Lone_Druid/Lore",
           "note": "Лор-страница называет Elder Titan союзником в группе природных героев и отмечает, что оба стремятся починить мир."
-        },
-        {
-          "hero": "lycan",
-          "type": "rival",
-          "source": "liquipedia",
-          "via": "lore",
-          "url": "https://liquipedia.net/dota2/Lone_Druid/Lore",
-          "note": "В разделе соперничества Lycan назван Бейнхэллоу: они соперничают из-за разного понимания того, кто из зверей сильнее, хотя и могут считать друг друга родственными по оборотничеству."
-        },
-        {
-          "hero": "sven",
-          "type": "ally",
-          "source": "liquipedia",
-          "via": "lore",
-          "url": "https://liquipedia.net/dota2/Lone_Druid/Lore",
-          "note": "Sven находит в Силле родственную душу, одиночку, с которым ему почётно сражаться плечом к плечу."
         }
       ],
       "profile": {
@@ -11084,17 +11045,6 @@
           "note": "В биографии и на лор-странице нет ни одного названного места: родина и прежнее имя героя остались неизвестны. Яма Мёртвого бога — не место из regions.json, поэтому записан uncharted."
         }
       ],
-      "relations": [
-        {
-          "hero": "dark_willow",
-          "type": "rival",
-          "source": "liquipedia",
-          "via": "infobox",
-          "url": "https://liquipedia.net/dota2/Undying/Lore",
-          "note": "Dark Willow стоит в поле heroes инфобокса. Лор-страница говорит, что Миреска забрала погребальные вещи, которые были положены вместе с Undying, и не возвращает их; реплика Dark Willow это подтверждает.",
-          "doubt": "В инфобоксе тип связи не указан: «соперник» выбран по сюжету кражи. Отождествление Миреска с Dark Willow опирается на ссылку вики и на реплику, а не на прямое указание в тексте."
-        }
-      ],
       "profile": {
         "summary": {
           "ru": "Undying, или Дирдж, — глашатай Мёртвого бога: бывший воин, чей разум растворился в бесконечном погребальном хоре. Он раз за разом поднимается из смерти и поднимает павших против живых. Имя и родина, которые были у него до перерождения, так и остаются неизвестными.",
@@ -11274,6 +11224,20 @@
           "via": "lore",
           "url": "https://liquipedia.net/dota2/Keeper_of_the_Light/Lore",
           "note": "Старший брат-Фундаментал: поле family лор-страницы ссылается на биографию Chaos Knight, где Свет назван одним из Фундаменталов, которого он преследует. Биография Keeper of the Light говорит о преследующем его хаосе."
+        },
+        {
+          "hero": "dawnbreaker",
+          "type": "family",
+          "source": "bio",
+          "note": "Биография Dawnbreaker: Дети Сияния происходят от первого солнца, которое оставил после себя Keeper; Valora — их творение.",
+          "doubt": "Тип family взят как ближайший: родство через созданное им первое солнце. В биографии Keeper Dawnbreaker нет."
+        },
+        {
+          "hero": "phoenix",
+          "type": "family",
+          "source": "bio",
+          "note": "Биография Phoenix: звезда-феникс родилась в роду первого солнца Keeper.",
+          "doubt": "Тип family взят как ближайший: родство через звёздный род. В биографии Keeper Phoenix нет."
         }
       ],
       "profile": {
@@ -11335,14 +11299,6 @@
           "via": "infobox",
           "url": "https://liquipedia.net/dota2/Io/Lore",
           "note": "Старший брат-сиблинг по инфобоксу лор-страницы Io; из биографии Chaos Knight тоже следует родство с Фундаменталами."
-        },
-        {
-          "hero": "keeper_of_the_light",
-          "type": "family",
-          "source": "liquipedia",
-          "via": "infobox",
-          "url": "https://liquipedia.net/dota2/Io/Lore",
-          "note": "Брат по инфобоксу лор-страницы Io."
         },
         {
           "hero": "enigma",
@@ -11584,19 +11540,6 @@
           "placeSlug": "roseleaf"
         }
       ],
-      "relations": [
-        {
-          "hero": "treant",
-          "type": "ally",
-          "regionId": "stonehall",
-          "placeSlug": "roseleaf",
-          "source": "liquipedia",
-          "via": "lore",
-          "url": "https://liquipedia.net/dota2/Magnus/Lore",
-          "note": "Лор-страница: в конфликте в Roseleaf герой встал на сторону Vhoul и их защитников, включая Treant Protector; тот же герой указан в инфобоксе",
-          "doubt": "Формулировка опирается на карточку Artifact, пересказанную на лор-странице"
-        }
-      ],
       "profile": {
         "summary": {
           "ru": "Magnus — магнорог с горы Йорлак, чей рог ценится выше любого сплава; долгое время он отгонял охотников от своего рода. После извержения, погубившего половину сородичей, он оставил племя и поклялся покарать виновных, прежде чем вернуться к своим. Сейчас он ввязался в конфликт в Roseleaf на стороне слабых и враждует с Bronze Legion.",
@@ -11766,6 +11709,17 @@
           "source": "bio",
           "note": "Шенделзара, старшая принцесса скайрасов, стала Vengeful Spirit; по биографии Драгонус её любил и мечтает вернуть ей трон и здоровое тело.",
           "doubt": "Ненависть Vengeful Spirit к нему в биографии дана как его собственное предположение, а не как факт; тип записан по любви."
+        },
+        {
+          "hero": "arc_warden",
+          "type": "ally",
+          "regionId": "druud",
+          "placeSlug": "druud",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Arc_Warden/Lore",
+          "note": "Лор-страница Arc Warden (по комиксу Crownfall об Anzua): Драгонус встретил Зета у места падения кометы в горах Druud и вошёл с ним в гору.",
+          "doubt": "Скорее совместный поход, чем союз: Зет сперва гнал Драгонус прочь. В биографии и на лор-странице Skywrath Mage этого нет."
         }
       ],
       "profile": {
@@ -11853,15 +11807,6 @@
           "via": "infobox",
           "url": "https://liquipedia.net/dota2/Elder_Titan/Lore",
           "note": "Io стоит в полях family и heroes инфобокса как творение (creation).",
-          "doubt": "Отдельного типа «создатель — создание» в модели нет; взят family как ближайший."
-        },
-        {
-          "hero": "keeper_of_the_light",
-          "type": "family",
-          "source": "liquipedia",
-          "via": "infobox",
-          "url": "https://liquipedia.net/dota2/Elder_Titan/Lore",
-          "note": "Keeper of the Light стоит в полях family и heroes инфобокса как творение (creation).",
           "doubt": "Отдельного типа «создатель — создание» в модели нет; взят family как ближайший."
         },
         {
@@ -12129,10 +12074,9 @@
         {
           "hero": "keeper_of_the_light",
           "type": "family",
-          "source": "liquipedia",
-          "via": "infobox",
-          "url": "https://liquipedia.net/dota2/Phoenix/Lore",
-          "note": "По инфобоксу — далёкий предок (great-great grandfather), создатель первого солнца, от которого происходят Дети Сияния."
+          "source": "bio",
+          "note": "Биография Phoenix: звезда-феникс родилась в роду первого солнца Keeper и унаследовала его свет от предков.",
+          "doubt": "Тип family взят как ближайший: родство через звёздный род, а не прямое. Keeper назван в биографии по титулу; в биографии самого Keeper Phoenix нет."
         },
         {
           "hero": "dawnbreaker",
@@ -12314,16 +12258,6 @@
           "url": "https://liquipedia.net/dota2/Arc_Warden/Lore",
           "note": "Dawnbreaker стоит в поле heroes инфобокса. В лоре она стоит по другую сторону войны Древних и хочет, чтобы Зет погиб, хотя и уважает его.",
           "doubt": "Уважение и враждебность в тексте сочетаются; записана вражда, потому что её действия направлены против Зета."
-        },
-        {
-          "hero": "hoodwink",
-          "type": "enemy",
-          "regionId": "tomokan",
-          "placeSlug": "tomokan",
-          "source": "liquipedia",
-          "via": "lore",
-          "url": "https://liquipedia.net/dota2/Arc_Warden/Lore",
-          "note": "В разделе врагов лора: Hoodwink не выносит появления Зета в своём лесу и сражается с ним в Tomo'kan."
         }
       ],
       "profile": {
@@ -12468,14 +12402,6 @@
           "doubt": "Имя Aiushtha в тексте не сопоставлено с Enchantress напрямую; обратная запись уже есть в enchantress.json."
         },
         {
-          "hero": "ursa",
-          "type": "ally",
-          "source": "liquipedia",
-          "via": "lore",
-          "url": "https://liquipedia.net/dota2/Pangolier/Lore",
-          "note": "Герой работал вместе с Ursa в прошлом (текст лор-страницы)."
-        },
-        {
           "hero": "dragon_knight",
           "type": "ally",
           "source": "liquipedia",
@@ -12491,23 +12417,6 @@
           "url": "https://liquipedia.net/dota2/Pangolier/Lore",
           "note": "Rigwarl назван одним из самых ненавистных соперников героя; тип rival прямо из текста.",
           "doubt": "В лор-тексте Rigwarl не назван Bristleback. Соответствие — по инфобоксу (Bristleback в списке героев) и по теме «иглы/щетина» (квиллы срезаны в бою)."
-        },
-        {
-          "hero": "leshrac",
-          "type": "enemy",
-          "source": "liquipedia",
-          "via": "lore",
-          "url": "https://liquipedia.net/dota2/Pangolier/Lore",
-          "note": "Текст называет Leshrac одним из самых ненавистных врагов героя: из-за давнего поступка с женщиной из его жизни."
-        },
-        {
-          "hero": "necrolyte",
-          "type": "enemy",
-          "source": "liquipedia",
-          "via": "lore",
-          "url": "https://liquipedia.net/dota2/Pangolier/Lore",
-          "note": "Лор-страница: герой клянётся покончить с Rotund'jere за причинённые им страдания.",
-          "doubt": "Rotund'jere — личное имя Necrophos; в тексте оно не сопоставлено с героем напрямую."
         }
       ],
       "profile": {
@@ -12765,10 +12674,9 @@
         {
           "hero": "keeper_of_the_light",
           "type": "family",
-          "source": "liquipedia",
-          "via": "infobox",
-          "url": "https://liquipedia.net/dota2/Dawnbreaker/Lore",
-          "note": "По инфобоксу — её прадед, создатель предков Детей Сияния. В лоре она упрекает его за то, что он оставил потомков угасать."
+          "source": "bio",
+          "note": "Биография Dawnbreaker: Дети Сияния происходят от первого солнца, которое оставил после себя Keeper; сама Valora — их творение, то есть потомок созданного им света.",
+          "doubt": "Тип family взят как ближайший: в биографии это родство через созданное им первое солнце, а не прямое. Keeper назван там по титулу; в биографии самого Keeper Dawnbreaker нет."
         },
         {
           "hero": "phoenix",
@@ -12786,15 +12694,6 @@
           "url": "https://liquipedia.net/dota2/Dawnbreaker/Lore",
           "note": "Когда-то была его возлюбленной, тогда он звался Ares. Вместе они свергли Continuum в многовековой кампании, потом расстались.",
           "doubt": "Связь в прошлом: после общей войны они расстались, о причинах не сказано."
-        },
-        {
-          "hero": "wisp",
-          "type": "enemy",
-          "source": "liquipedia",
-          "via": "lore",
-          "url": "https://liquipedia.net/dota2/Dawnbreaker/Lore",
-          "note": "Io (wisp) погасила искру её и её создателей после провала миссии; сначала Валора хотела отомстить.",
-          "doubt": "Позже она перестала держать на Io злобу, поэтому тип «враг» относится к прошлому."
         },
         {
           "hero": "chaos_knight",
@@ -12895,17 +12794,6 @@
         {
           "regionId": "tomokan",
           "placeSlug": "tomokan"
-        }
-      ],
-      "relations": [
-        {
-          "hero": "hoodwink",
-          "type": "enemy",
-          "source": "liquipedia",
-          "via": "lore",
-          "url": "https://liquipedia.net/dota2/Primal_Beast/Lore",
-          "note": "Лор-страница: Hoodwink, защищая остатки своего дома в Tomo'kan, хитростью поймала его в Gleipnir и заперла в Continuum Vault; за это он её ненавидит.",
-          "doubt": "Биография не называет ловца по имени; что это Hoodwink, утверждает текст лор-страницы. Hoodwink — герой будущей партии, обратная запись не делается."
         }
       ],
       "profile": {
