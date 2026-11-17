@@ -7,19 +7,11 @@
   ],
   "links": [
     {
-      "region": "uncharted",
-      "event": "origin",
-      "source": "ours",
-      "note": "Родина в биографии названа только как глубоководная бездна и затонувший город; на схеме такого места нет. Liquipedia указывает Sunken Treasury, но его регион в источниках не назван.",
-      "doubt": "Регион не выводится по тексту; место из Liquipedia вынесено в unconfirmed."
-    },
-    {
       "place": "Deep Vault",
-      "event": "mention",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Slardar/Lore",
-      "doubt": "Место указано только в инфобоксе. В тексте сказано, что страж охраняет тайные сокровищницы, но Deep Vault по имени не назван."
+      "event": "home",
+      "source": "bio",
+      "note": "Биография: страж сокровищниц затонувших городов, преследует тех, кто унёс что-то из Sunken Treasury; на схеме Deep Vault — оно же Sunken Treasury (regions.json).",
+      "doubt": "Биография говорит о целой сети затонувших городов в глубинах; служба в Sunken Treasury записана как дом, места рождения источники не называют."
     },
     {
       "place": "Coral Breach",
@@ -32,12 +24,12 @@
   ],
   "profile": {
     "summary": {
-      "ru": "Slardar, представитель змееногих из народа Deep Ones, служит Slithereen Guard и охраняет затонувшие города с сокровищами на морском дне. Молчаливый страж поднимается к мелководью, чтобы разведать угрозы, и преследует воров, которым удалось вынести что-то из Sunken Treasury. Долгая жизнь под давлением толщи воды сделала его невероятно сильным.",
-      "en": "Slardar is a Slithereen who serves in the Slithereen Guard, watching over sunken cities and their buried riches on the ocean floor. The taciturn guardian surfaces into shallow water to scout for threats and hunts down thieves who escape with goods from the Sunken Treasury. A life lived under crushing deep-sea pressure has made him extraordinarily powerful."
+      "ru": "Slardar — слизерин, один из Глубинных, страж сети затонувших городов и древних сокровищ, скрытых в них. В тёмных безднах океана Slithereen Guard охраняет тайные сокровищницы от воров, которых подсылают жадные колдуны с суши. Молчаливый и преданный, он поднимается к мелководью, несмотря на боль от света, — разведать угрозы и догнать тех немногих, кто сумел что-то унести из Sunken Treasury. Жизнь под огромным давлением толщи воды сделала его невероятно сильным.",
+      "en": "Slardar is a Slithereen, one of the Deep Ones, who guards a network of sunken cities and the ancient riches hidden in them. In the lightless ocean depths the Slithereen Guard protects secret vaults from thieves sent by greedy sorcerers of the dry lands. Silent and loyal, he rises to the painful brightness of the shallows to scout for threats and to hunt the rare few who escape the Sunken Treasury with its goods. A life under the crushing weight of the sea has made him immensely strong."
     }
   },
   "unconfirmed": [
-    "Sunken Treasury (Liquipedia origins, биография): место на схеме не найдено, регион в источниках не назван. Кандидат не записан, чтобы не угадывать регион.",
+    "Sunken Treasury из биографии записан как Deep Vault: в regions.json это одно место. Родина героя в источниках не названа.",
     "Naga Siren: указана в инфобоксе Liquipedia (heroes) без типа связи, в тексте биографии и лора не упомянута. Связь не записана, см. naga_siren.json.",
     "Реплики озвучки (Naga Siren, Medusa, Alchemist, Slark, Tidehunter, Monkey King и др.) не основание связи по решению партии 01 (#46)."
   ]
