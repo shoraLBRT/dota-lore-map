@@ -1,5 +1,5 @@
 /// <reference types="node" />
-import { readdirSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
@@ -142,5 +142,38 @@ describe('alt у картинок (SPEC §14)', () => {
     const imgs = TSX.flatMap((f) => [...f.text.matchAll(/<img\b[\s\S]*?\/>/g)].map((m) => ({ path: f.path, tag: m[0] })));
     expect(imgs.length).toBeGreaterThanOrEqual(3);
     expect(imgs.filter((i) => !/\balt=/.test(i.tag)).map((i) => i.path)).toEqual([]);
+  });
+});
+
+describe('свои шрифты (A8, #108)', () => {
+  const ROOT = process.cwd();
+  const html = readFileSync(join(ROOT, 'index.html'), 'utf8');
+  const fonts = css('styles/fonts.css');
+
+  it('ни index.html, ни CSS не ходят на Google Fonts', () => {
+    for (const text of [html, ...CSS.map((f) => f.text)]) {
+      expect(text).not.toMatch(/fonts\.(googleapis|gstatic)\.com/);
+    }
+  });
+
+  it('каждый файл из @font-face и preload лежит в public/fonts, рядом — лицензия OFL', () => {
+    const urls = [...fonts.matchAll(/url\('\/(fonts\/[^']+)'\)/g), ...html.matchAll(/href="\/(fonts\/[^"]+)"/g)].map(
+      (m) => m[1],
+    );
+    expect(urls.length).toBe(8);
+    for (const u of urls) expect(existsSync(join(ROOT, 'public', u)), u).toBe(true);
+    expect(readdirSync(join(ROOT, 'public/fonts')).filter((f) => f.startsWith('OFL-'))).toHaveLength(2);
+  });
+
+  it('у каждого @font-face — unicode-range и font-display: swap; preload — только latin', () => {
+    const faces = fonts.match(/@font-face\s*{[^}]*}/g) ?? [];
+    expect(faces).toHaveLength(6);
+    for (const f of faces) {
+      expect(f).toMatch(/unicode-range:/);
+      expect(f).toMatch(/font-display:\s*swap/);
+    }
+    const preloads = html.match(/<link rel="preload"[^>]*>/g) ?? [];
+    expect(preloads).toHaveLength(2);
+    for (const p of preloads) expect(p).toMatch(/-latin-.*crossorigin/);
   });
 });

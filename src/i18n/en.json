@@ -37,6 +37,7 @@
   "about.source.wikis": "Liquipedia and Dota 2 Wiki (Fandom) — for cross-checking and finding places",
   "about.thanks": "Thanks",
   "about.thanksText": "To the authors of Dota 2 fan world maps, including “The Map of the Ancient”: their work served as a reference for the world layout.",
+  "about.fonts": "Fonts: Cormorant SC and Manrope, under the SIL Open Font License 1.1; the site serves them itself, with no third-party servers.",
   "about.code": "Source code on GitHub",
   "about.feedback": "Feedback — the button in the left rail. Messages are published openly as GitHub issues, so don't include personal data.",
   "about.close": "Close",

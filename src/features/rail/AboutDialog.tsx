@@ -63,6 +63,7 @@ export function AboutDialog({ onClose }: { onClose: () => void }) {
         </ul>
         <h3>{t('about.thanks')}</h3>
         <p>{t('about.thanksText')}</p>
+        <p>{t('about.fonts')}</p>
         <p>{t('about.feedback')}</p>
         <p>
           <a href={REPO_URL} target="_blank" rel="noopener noreferrer">

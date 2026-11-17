@@ -3,7 +3,7 @@ import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
-import { BUNDLE_BUDGET, FONTS_ESTIMATE, measure, TOTAL_BUDGET } from './check-budget.mjs';
+import { measure, measureFonts } from './check-budget.mjs';
 
 // Бюджет загрузки до мира (SPEC §14, ARCHITECTURE A14).
 
@@ -25,7 +25,19 @@ describe('check-budget', () => {
     expect(total).toBeLessThan(1000);
   });
 
-  it('бюджет бандла с шрифтами укладывается в ~3 МБ SPEC', () => {
-    expect(BUNDLE_BUDGET + FONTS_ESTIMATE).toBeLessThanOrEqual(TOTAL_BUDGET);
+  it('шрифты — настоящий размер woff2 из dist/fonts, без gzip и без файлов лицензии', () => {
+    dir = mkdtempSync(join(tmpdir(), 'budget-'));
+    mkdirSync(join(dir, 'fonts'));
+    writeFileSync(join(dir, 'fonts', 'a-latin.woff2'), Buffer.alloc(1500));
+    writeFileSync(join(dir, 'fonts', 'a-cyrillic.woff2'), Buffer.alloc(500));
+    writeFileSync(join(dir, 'fonts', 'OFL.txt'), 'license');
+    const { files, total } = measureFonts(dir);
+    expect(files.map((f) => f.file).sort()).toEqual(['fonts/a-cyrillic.woff2', 'fonts/a-latin.woff2']);
+    expect(total).toBe(2000);
+  });
+
+  it('без dist/fonts — пусто', () => {
+    dir = mkdtempSync(join(tmpdir(), 'budget-'));
+    expect(measureFonts(dir)).toEqual({ files: [], total: 0 });
   });
 });
