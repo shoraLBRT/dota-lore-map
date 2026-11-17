@@ -1,39 +1,27 @@
 {
   "hero": "sniper",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore"
+  ],
   "links": [
     {
       "place": "Knollen",
       "event": "origin",
       "source": "bio",
-      "note": "родился в горах Кноллена; выстрел в день посвящения принёс изгнание, но не перемещение, поэтому сюда же не добавлен exile"
+      "note": "Родился в горах Кноллена; изгнание из деревни — по пророчеству, куда он ушёл, источники не говорят."
     }
   ],
-  "relations": [
-    {
-      "hero": "rattletrap",
-      "type": "family",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Sniper/Lore",
-      "note": "двоюродный брат по инфобоксу"
-    },
-    {
-      "hero": "tinker",
-      "type": "family",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Sniper/Lore",
-      "doubt": "инфобокс: «cousin or cousin of a cousin», степень родства не определена"
-    }
-  ],
+  "relations": [],
   "profile": {
     "summary": {
-      "ru": "Sniper родом из горного Кноллена, где кины веками добывают пропитание охотой на крутых скалах. Кардел Остроглаз — лучший стрелок своего племени, но в день посвящения его выстрел попал в глаз зверя, и старейшины увидели в этом знак. Пророчество принесло ему и славу, и изгнание: вернуться домой он сможет лишь после легендарного подвига на поле боя.",
-      "en": "Sniper hails from the mountain valleys of Knollen, where the Keen Folk have long hunted cliff-dwelling beasts from afar. Kardel Sharpeye is the finest marksman of his people, but his coming-of-age shot struck the creature's central eye, and the elders read it as a prophecy. That sign promised him greatness and cast him out, leaving him unable to return home until he earns legendary status on a battlefield."
+      "ru": "Sniper, он же Кардел Остроглаз, родом из гор Кноллена, где кины испокон веков охотятся на скальных зверей, стреляя по ним издалека. Он был одним из лучших стрелков деревни, и в день посвящения его пуля попала зверю прямо в сверкающий глаз. Старейшины увидели в этом начало мрачного пророчества о величии и изгнании. Теперь он живёт вдали от своего народа и не сможет вернуться, пока не прославится на поле битвы.",
+      "en": "Sniper, Kardel Sharpeye, comes from the mountains of Knollen, where the Keen Folk have always lived by shooting cliff beasts from afar. He was one of the best marksmen of his village, and on the day of his coming-of-age test his bullet struck a beast right in its glittering eye. The elders took it as the start of a dark prophecy of greatness and exile. He now lives apart from his people and may not return until he becomes a legend on the battlefield."
     }
   },
   "unconfirmed": [
+    "Clockwerk (кузен) и Tinker («кузен или кузен кузена»): в инфобоксе, но все сноски — реплики озвучки Clockwerk; связи сняты.",
     "Snapfire: инфобокс называет героя без типа связи; соперничество указано только в разделе Relationships, который пересказывает реплику озвучки Timbersaw",
     "Bristleback: неприязнь к кинам — только реплика озвучки Bristleback",
     "Frosted Winds Tribe: инфобокс указывает фракцию, но в тексте биографии её нет; контакт упомянут только в описании набора предметов",
