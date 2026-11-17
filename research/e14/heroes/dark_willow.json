@@ -1,6 +1,11 @@
 {
   "hero": "dark_willow",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
   "links": [
     {
       "place": "Revtel",
@@ -9,124 +14,12 @@
       "note": "Выросла в Ревтеле в семье фейского купца-правителя; позже сожгла семейное поместье и бежала оттуда."
     },
     {
-      "place": "Weeping Rose",
-      "event": "exile",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Dark_Willow/Lore",
-      "note": "Торговый центр, где она часто бывала; её оттуда выгнали, причина в источнике не названа. Позже она собирается вернуться и ограбить его."
-    },
-    {
-      "place": "Iron Fog",
-      "event": "visit",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Dark_Willow/Lore",
-      "note": "Подолгу бывала там и видела машины и ужасы, которые творили над людьми; зачем приезжала, неизвестно."
-    },
-    {
-      "place": "White Spire",
-      "event": "visit",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Dark_Willow/Lore",
-      "note": "Ставит на гонки курьеров; в источнике прямо названо, что она любит азартные игры там."
-    },
-    {
-      "place": "Quoidge",
-      "event": "visit",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Dark_Willow/Lore",
-      "note": "Лор-текст называет Quoidge в числе мест, куда её водят странствия."
-    },
-    {
-      "place": "Yama Raskav Jungle",
-      "event": "visit",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Dark_Willow/Lore",
-      "note": "Лор-текст называет джунгли среди мест её странствий."
-    },
-    {
-      "place": "Roseleaf",
-      "event": "visit",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Dark_Willow/Lore",
-      "note": "Была там во время или после боя между Bronze Legion и Red Mist, нашла там Bullsnake Flag.",
-      "doubt": "Точное время визита относительно боя в источнике не сказано."
-    },
-    {
-      "place": "Trembling Isle",
-      "event": "battle",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Dark_Willow/Lore",
-      "note": "Оказалась на острове во время битвы Claddish Navy с Demons of the Cataract; из текста видно, что она как-то навредила флоту.",
-      "doubt": "Причина её присутствия и степень участия в битве неизвестны; выбран battle, потому что источник связывает её с гибелью флота."
-    },
-    {
       "place": "Overgrown Empire",
       "event": "visit",
       "source": "liquipedia",
       "via": "lore",
       "url": "https://liquipedia.net/dota2/Dark_Willow/Lore",
-      "note": "В джунглях Fellstrath она нашла руины Overgrown Empire и тем самым разбудила Mo'rokai. Сама она этих зверей не воевала."
-    },
-    {
-      "place": "Tyler Estate",
-      "event": "mention",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Dark_Willow/Lore",
-      "note": "Место упомянуто как сторона, которая её разыскивает; сама она туда не ходила."
-    },
-    {
-      "place": "Font of Avernus",
-      "event": "mention",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Dark_Willow/Lore",
-      "note": "Она хочет украсть священный туман Font of Avernus; сама там не была."
-    }
-  ],
-  "relations": [
-    {
-      "hero": "meepo",
-      "type": "ally",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Dark_Willow/Lore",
-      "note": "Лор-страница называет Meepo хорошим другом: вместе ходят в таверны и на гонки.",
-      "doubt": "Дружба в типах связи не предусмотрена; выбран ближайший тип ally."
-    },
-    {
-      "hero": "kunkka",
-      "type": "enemy",
-      "place": "Trembling Isle",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Dark_Willow/Lore",
-      "note": "Кункка охотится на неё после событий у Trembling Isle."
-    },
-    {
-      "hero": "tidehunter",
-      "type": "enemy",
-      "place": "Trembling Isle",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Dark_Willow/Lore",
-      "note": "Лор-страница прямо говорит о враждебных отношениях; она винит его в событиях у Trembling Isle."
-    },
-    {
-      "hero": "bounty_hunter",
-      "type": "enemy",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Dark_Willow/Lore",
-      "note": "Отец нанял охотника за наградой Гондара, чтобы вернуть её в Ревтел; она грозит ему расправой.",
-      "doubt": "Гондар назван охотником за наградой, но связь имени с героем Bounty Hunter сделана по общему названию, а не по прямой привязке в тексте."
+      "note": "По вступлению к событию Wrath of the Mo'rokai героиня ищет реликвии в джунглях Fellstrath, находит руины Overgrown Empire и будит двух древних зверей."
     }
   ],
   "profile": {
@@ -153,7 +46,16 @@
     "Puck: лор-страница говорит, что он постоянно вмешивается в её дела и злит её. Тип связи не назван, поэтому не записан.",
     "Darkterror: из него она украла Claszureme Hourglass. Места на схеме нет, регион в источнике не назван.",
     "Засушливые земли к юго-востоку от Roseleaf, которые ей понравились (источник — описание Hearts of Misrule): название не указано, на схему не привязано.",
-    "Порядок путешествий: источник не даёт точной хронологии после Ревтела, поэтому path не записан.",
-    "Инфобокс лор-страницы перечисляет героев (Meepo, Puck, Anti-Mage, Silencer, Pangolier, Bounty Hunter, Faceless Void, Shadow Shaman, Riki, Kunkka, Tidehunter) без типов связи. Записаны только те, где текст даёт тип."
+    "Инфобокс лор-страницы перечисляет героев (Meepo, Puck, Anti-Mage, Silencer, Pangolier, Bounty Hunter, Faceless Void, Shadow Shaman, Riki, Kunkka, Tidehunter) без типов связи. Записаны только те, где текст даёт тип.",
+    "Сверка: Weeping Rose, Iron Fog, White Spire, Quoidge, Yama Raskav Jungle, Roseleaf, Trembling Isle, Tyler Estate и Font of Avernus сняты: в лор-тексте каждое место держится на одной реплике озвучки Dark Willow.",
+    "Сверка: связи с Meepo (друг), Kunkka и Tidehunter (Trembling Isle), Bounty Hunter (Гондар) сняты: лор-страница выводит их только из реплик озвучки."
+  ],
+  "path": [
+    {
+      "place": "Revtel"
+    },
+    {
+      "place": "Overgrown Empire"
+    }
   ]
 }

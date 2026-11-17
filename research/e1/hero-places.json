@@ -394,18 +394,90 @@
           "place": "Fundamental Plane",
           "event": "origin",
           "source": "liquipedia",
-          "via": "infobox"
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Chaos_Knight/Lore",
+          "note": "Родной план: биография говорит о далёком верхнем плане, где законы вселенной стали разумными; в инфобоксе лор-страницы этот план назван Fundamental Plane.",
+          "doubt": "Биография не называет план по имени; соответствие сделано по описанию и полю origins инфобокса."
+        },
+        {
+          "region": "planes",
+          "event": "journey",
+          "source": "bio",
+          "note": "Герой переходит из мира в мир, гоняясь за Светом, поэтому связь с регионом планов, а не с одним местом. Семь планов и Мультивселенная из инфобокса тоже попадают сюда."
         }
-      ]
+      ],
+      "path": [
+        {
+          "place": "Fundamental Plane"
+        },
+        {
+          "region": "planes"
+        }
+      ],
+      "relations": [
+        {
+          "hero": "elder_titan",
+          "type": "family",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Chaos_Knight/Lore",
+          "note": "Создатель героя; в инфобоксе связь записана как family, тип «создатель» в модели не предусмотрен."
+        },
+        {
+          "hero": "enigma",
+          "type": "family",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Chaos_Knight/Lore",
+          "note": "Младший брат-сиблинг из числа Фундаменталов."
+        },
+        {
+          "hero": "keeper_of_the_light",
+          "type": "family",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Chaos_Knight/Lore",
+          "note": "Младший брат; по сути антагонист: свет против хаоса, взаимная вражда, но они родня."
+        },
+        {
+          "hero": "wisp",
+          "type": "family",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Chaos_Knight/Lore",
+          "note": "Io в инфобоксе записан как младший сиблинг; в данных ключ героя — wisp."
+        },
+        {
+          "hero": "dawnbreaker",
+          "type": "enemy",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Chaos_Knight/Lore",
+          "note": "Главный враг её создателей и её личная незавершённая вражда с ним: она хочет его одолеть, чтобы исправить прошлое."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Chaos Knight — древнейший из Фундаменталов, воплощение хаоса, который охотится на существо по имени Свет и перескакивает из мира в мир ради этой охоты. Родом он из плана, где законы вселенной обрели разум. Верхом на Армагеддоне он врывается в бой, а при нужде призывает свои версии из других миров.",
+          "en": "Chaos Knight is the eldest of the Fundamentals, a living force of disorder that hunts a being known only as the Light and hops between worlds to keep that hunt going. He comes from a realm where the basic rules of existence became aware of themselves. He charges into fights on his horse Armageddon and can summon copies of himself from elsewhere."
+        }
+      }
     },
     "Chen": {
       "links": [
         {
           "place": "Hazhadal Barrens",
           "event": "origin",
-          "source": "bio"
+          "source": "bio",
+          "note": "Родина и место детства героя: биография прямо называет эту пустошь местом рождения. Инфобокс лор-страницы даёт то же место."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Chen вырос среди разбойничьих племён пустыни Hazhadal, где его народ разводил локати, маленьких роющих драконов. После разгрома клана рыцарями Fold ему сохранили жизнь при условии, что он примет веру. Он стал ревностным воином церкви и использует дар приручения зверей, чтобы выслеживать неверных.",
+          "en": "Chen grew up among desert outlaw clans in the Hazhadal Barrens, where his people tamed small burrowing dragons known as locuthi. After the Knights of the Fold crushed his clan, he was spared on condition that he take up their faith. He became a fervent member of the order and turns his gift for taming beasts toward hunting down unbelievers."
+        }
+      }
     },
     "Clinkz": {
       "links": [
@@ -427,38 +499,130 @@
         {
           "place": "Home of the Keen Folk",
           "event": "origin",
-          "source": "bio"
+          "source": "ours",
+          "note": "Раса героя по инфобоксу лор-страницы (поле race) — Keen, то есть кины. Родина этого народа на схеме — Home of the Keen Folk. Сам герой в биографии место не называет: там только деревня предков на равнине, которую разорили пришедшие с гор.",
+          "doubt": "Связь по народу, а не по тексту о самом герое; родовая деревня в биографии безымянна и может находиться в другом месте, чем земля кинов."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Rattletrap, он же Clockwerk, — маленький изобретатель из народа кинов, той же дальней родни, что Sniper и Tinker. Внук часовщика, он долго учился этому ремеслу, пока война, пришедшая с гор, не сожгла деревни на равнине. Умирающий отец велел ему сменить ремесло на войну, и Rattletrap превратил себя в ходячий арсенал: собрал механическую броню и устройства для засад и разрушения.",
+          "en": "Rattletrap, known as Clockwerk, is a small Keen tinkerer from the same distant kin as Sniper and Tinker. He was learning a clockmaker's trade until war burned his village on the plains, and his dying father urged him to become a warrior. He answered by turning himself into a walking arsenal, building mechanical armor and gadgets for ambushes and demolition."
+        }
+      }
     },
     "Crystal Maiden": {
       "links": [
         {
           "place": "Icewrack",
           "event": "home",
+          "source": "bio",
+          "note": "Родители отправили её сюда в изгнание, но она осталась, заняла место мага и живёт здесь до сих пор. В комиксе New Bloom она защищает местную деревню."
+        },
+        {
+          "place": "Blueheart Glacier",
+          "event": "service",
+          "source": "bio",
+          "note": "На вершине ледника её учил отшельник-маг; в конце учёбы он оставил ей свой пост."
+        },
+        {
+          "place": "Boiling Sea",
+          "event": "visit",
           "source": "liquipedia",
-          "via": "infobox"
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Crystal_Maiden/Lore",
+          "note": "Рассердив наставника, она сама ушла туда, где ледник встречается с морем, и несколько месяцев медитировала, чтобы вернуть его доверие.",
+          "doubt": "Источник — описание предмета Winter Snowdrop из набора самого героя, а не биография. Ушла туда сама, на время, поэтому visit, а не exile."
+        },
+        {
+          "place": "Wolfsden Tavern",
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Crystal_Maiden/Lore",
+          "doubt": "Источник — описание предмета; было ли там событие с героиней, не сказано.",
+          "note": "Лор-страница упоминает шляпу-сувенир из таверны."
         }
-      ]
+      ],
+      "path": [
+        {
+          "place": "Icewrack"
+        },
+        {
+          "place": "Blueheart Glacier"
+        },
+        {
+          "place": "Boiling Sea"
+        },
+        {
+          "place": "Blueheart Glacier"
+        }
+      ],
+      "relations": [
+        {
+          "hero": "lina",
+          "type": "family",
+          "source": "bio",
+          "note": "Lina — её старшая сестра (биография и инфобокс лор-страницы). В лоре между ними также описано соперничество, но тип связи один — family."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Crystal Maiden, Райлай, с рождения связана со льдом так сильно, что рядом с ней замерзали родники и гибли посевы. Родители отослали её старшую сестру Lina на юг, а её саму — на холодный север, в Icewrack, где её взял в ученицы отшельник-маг с вершины ледника Blueheart. Закончив учёбу, он ушёл в ледник на тысячелетний сон и оставил ей своё место, а её искусство льда с тех пор только выросло.",
+          "en": "Crystal Maiden, Rylai, was born so bound to ice that springs froze and crops withered wherever she lingered. Her parents sent her elder sister Lina south and Rylai herself to the cold north of Icewrack, where a hermit mage atop the Blueheart Glacier made her his pupil. When her training ended he sank into the glacier for a thousand-year sleep and left her his place; her frost magic has only grown since."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/crystal_maiden.png"
+        ]
+      }
     },
     "Dark Seer": {
       "links": [
         {
           "place": "Land Behind the Wall",
           "event": "origin",
-          "source": "liquipedia",
-          "via": "infobox"
+          "source": "bio",
+          "note": "Родина героя — мир за стеной, откуда он пришёл. Биография сама называет так свой край, инфобокс Liquipedia подтверждает то же место."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Dark Seer, Иш'Кафэль, — стратег, который побеждает силой разума, не прибегая к оружию. Когда-то он был военачальником на службе у бога-короля Damathryx; после разгрома его армии он завёл врагов в лабиринт, вырвался оттуда и запечатал их тёмной энергией. Так он оказался в чужом мире без пути назад и теперь хочет доказать, что лучший тактик этого мира — он.",
+          "en": "Ish'Kafel, known as Dark Seer, is a tactician who wins through the power of his intellect rather than weapons. Once a general serving a god-king, he saw his army destroyed, then lured the pursuers into a labyrinth, slipped out, and sealed them inside with a blast of dark energy. He landed in a foreign world with no route home and now wants to prove he is its finest strategist."
+        }
+      }
     },
     "Dark Willow": {
       "links": [
         {
           "place": "Revtel",
           "event": "origin",
-          "source": "bio"
+          "source": "bio",
+          "note": "Выросла в Ревтеле в семье фейского купца-правителя; позже сожгла семейное поместье и бежала оттуда."
+        },
+        {
+          "place": "Overgrown Empire",
+          "event": "visit",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Dark_Willow/Lore",
+          "note": "По вступлению к событию Wrath of the Mo'rokai героиня ищет реликвии в джунглях Fellstrath, находит руины Overgrown Empire и будит двух древних зверей."
         }
-      ]
+      ],
+      "path": [
+        {
+          "place": "Revtel"
+        },
+        {
+          "place": "Overgrown Empire"
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Dark Willow — Миреска, фея из семьи ревтельских купцов. Она сбежала из родного города, сожгла семейное поместье и стала бродячей мошенницей вместе со светлячком Джексом. Её ищут наемники из нескольких стран, и она почти никогда не задерживается на одном месте.",
+          "en": "Dark Willow is Mireska, a fae from a merchant family in Revtel. She slipped away from her home city, torched the family estate, and became a wandering con artist with her wisp Jex. Hired hunters chase her across several nations, so she rarely stays put for long."
+        }
+      }
     },
     "Dawnbreaker": {
       "links": [
@@ -578,18 +742,61 @@
         {
           "place": "Druud",
           "event": "origin",
-          "source": "bio"
+          "source": "bio",
+          "note": "Родной край: высокие степи, где живёт его народ Oglodi."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Disruptor — невысокий, но бесстрашный грозодел из народа Oglodi, живущего на плато Друуд. Он первым разобрался в летних бурях и, найдя в руинах предков древнюю катушку, научился вызывать молнии по своей воле. Его силу сородичи считают и даром, и бедой, а сам он применяет её против королевств с юга, которые теснят земли оглоди.",
+          "en": "Disruptor is a small but fearless stormcrafter from the Oglodi people of the Druud highlands. He was the first to understand summer storms, and after finding an ancient coil in his ancestors' ruins he learned to summon lightning at will. His people regard that power as both a gift and a danger, and he turns it against the kingdoms from the south that press on Oglodi land."
+        }
+      }
     },
     "Doom": {
       "links": [
         {
-          "place": "Vashundol",
+          "region": "heavens",
           "event": "origin",
-          "source": "bio"
+          "source": "bio",
+          "note": "Родом из мира по ту сторону света, откуда его изгнали за неповиновение. По имени место в биографии не названо; регион Heavens — наше соответствие по смыслу.",
+          "doubt": "Биография говорит о мире без названия; связь с регионом Heavens — толкование."
+        },
+        {
+          "place": "Vashundol",
+          "event": "exile",
+          "source": "bio",
+          "note": "Колокол Vashundol отбивал его наказания перед падением с небес.",
+          "doubt": "Биография не говорит прямо, что Vashundol — место изгнания; записано по контексту колокола и падения."
+        },
+        {
+          "place": "Seven Hells",
+          "event": "home",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Doom/Lore",
+          "note": "По биографии он свободно ходит между семью тёмными владениями, и инфобокс лора связывает его с Seven Hells.",
+          "doubt": "Инфобокс перечисляет Seven Hells среди происхождения, а биография — как место, где он бывает. Записано как текущий дом; родина — по биографии, регион Heavens."
         }
-      ]
+      ],
+      "relations": [
+        {
+          "hero": "shadow_demon",
+          "type": "enemy",
+          "source": "ours",
+          "note": "Обратная запись к shadow_demon.json: по биографии Shadow Demon герой ненадолго объединился с Shadow Fiend, чтобы уничтожить его культ. В источниках самого Doom этого нет.",
+          "doubt": "Тип выведен из союза против культа, слова «враг» в биографии Shadow Demon нет."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Doom — демон, в прошлом один из высших военачальников небесного мира. За отказ склониться его лишили крыльев и сбросили на землю, и теперь он бродит по мирам, свободно переходя между семью преисподними. Куда бы он ни пришёл, он приносит с собой собственный ад, а по его убеждению однажды мир будет принадлежать ему.",
+          "en": "Doom is a demon who was once a high-ranking commander in the heavens. For refusing to submit he had his wings burned away and was thrown down to the mortal world. Now he roams freely between the seven hells, and wherever he goes he brings a torment of his own. He is convinced that one day the world will be his."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/doom_bringer.png"
+        ]
+      }
     },
     "Dragon Knight": {
       "links": [
@@ -716,19 +923,41 @@
         {
           "place": "The Upland",
           "event": "origin",
-          "source": "liquipedia",
-          "via": "infobox"
+          "source": "bio",
+          "note": "Нагорье, где из нефритовой жилы вырезали его образ и где он теперь бродит. Инфобокс добавляет The Earth, но это весь мир, а не место на схеме."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Earth Spirit, он же Каолин, — древний дух земли, заключённый в нефритовом образе полководца. Тысячу лет он копил силу в каменной оболочке, пока не вырвался наружу. Теперь он бродит по нагорью и в бою поднимает из почвы каменных воинов, похороненных вместе с ним.",
+          "en": "Earth Spirit, also called Kaolin, is an ancient spirit of the earth bound inside a jade likeness of a general. For a thousand years it gathered strength within its stone shell until it broke free. Now it wanders the highlands and, in battle, raises the stone warriors buried in the soil with it."
+        }
+      }
     },
     "Earthshaker": {
       "links": [
         {
           "place": "Nishai",
           "event": "origin",
-          "source": "bio"
+          "source": "bio",
+          "note": "Родина: в горах Нишай он лежал в камне и проснулся после сезона землетрясений. Инфобокс лор-страницы называет то же место."
+        },
+        {
+          "place": "The Red Mountain",
+          "event": "service",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Earthshaker/Lore",
+          "note": "Ему поручено охранять эту гору.",
+          "doubt": "Источник — набор самого героя Guardian of the Red Mountain, а не биография; лор-страница лишь предполагает, что гора в Nishai."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Earthshaker, он же Рейгор Каменное Копыто, — древнее существо из камня, пробудившееся от землетрясения в горах Нишай. Он сам создал себя силой воли и принял облик зверя. Его сила хранится в тотеме, который он не выпускает из рук.",
+          "en": "Earthshaker, also called Raigor Stonehoof, is an ancient being of stone who woke during a quake in the Nishai peaks. He shaped his own body into a beast and answers to no one. He keeps the power of the earth in a totem he never sets down."
+        }
+      }
     },
     "Elder Titan": {
       "links": [

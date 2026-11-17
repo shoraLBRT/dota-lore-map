@@ -1,6 +1,11 @@
 {
   "hero": "earthshaker",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
   "links": [
     {
       "place": "Nishai",
@@ -15,23 +20,13 @@
       "via": "lore",
       "url": "https://liquipedia.net/dota2/Earthshaker/Lore",
       "note": "Ему поручено охранять эту гору.",
-      "doubt": "На лор-странице сказано, что гора, возможно, находится в Nishai. На схеме она отдельное место в регионе hoven, поэтому связь записана с ней, а не с Nishai."
-    }
-  ],
-  "relations": [
-    {
-      "hero": "wisp",
-      "type": "ally",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Earthshaker/Lore",
-      "note": "Лор-страница называет Io его другом; он обращается к Io за помощью в поисках пути к другому миру."
+      "doubt": "Источник — набор самого героя Guardian of the Red Mountain, а не биография; лор-страница лишь предполагает, что гора в Nishai."
     }
   ],
   "profile": {
     "summary": {
-      "ru": "Earthshaker, он же Рейгор Каменное Копыто, — древнее существо из камня, пробудившееся от землетрясения в горах Нишай. Он сам создал себя силой воли и принял облик зверя. Его сила хранится в тотеме, который он не выпускает из рук, а в лоре он охраняет Красную гору.",
-      "en": "Earthshaker, also called Raigor Stonehoof, is an ancient being of stone who woke during a quake in the Nishai peaks. He shaped his own body into a beast and answers to no one. He keeps the power of the earth in a totem he never sets down, and in the lore he is tasked with watching over the Red Mountain."
+      "ru": "Earthshaker, он же Рейгор Каменное Копыто, — древнее существо из камня, пробудившееся от землетрясения в горах Нишай. Он сам создал себя силой воли и принял облик зверя. Его сила хранится в тотеме, который он не выпускает из рук.",
+      "en": "Earthshaker, also called Raigor Stonehoof, is an ancient being of stone who woke during a quake in the Nishai peaks. He shaped his own body into a beast and answers to no one. He keeps the power of the earth in a totem he never sets down."
     }
   },
   "unconfirmed": [
@@ -40,6 +35,7 @@
     "Инфобокс (поле places) называет The Earth: это общее название мира, а не место на схеме — не записано.",
     "Связь с луной (Planetfall-реплика) без указания места — не записана; Mad Moon и Selemene's Moon в тексте не упомянуты.",
     "Реплики озвучки из раздела Friendships and Rivalries (Dark Willow, Elder Titan, Anti-Mage, Pangolier и другие) — не основание для связей.",
-    "Вид Behemoths (инфобокс, останки которых он носит как доспех) — вид, не место; связь с ними не записана."
+    "Вид Behemoths (инфобокс, останки которых он носит как доспех) — вид, не место; связь с ними не записана.",
+    "Сверка: дружба с Io снята — лор-страница выводит её только из реплик набора Planetfall."
   ]
 }

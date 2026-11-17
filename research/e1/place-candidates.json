@@ -85,6 +85,37 @@
       "event": "battle",
       "source": "bio",
       "note": "Зиккурат визиря Фолопталиса стоит на склонах Mount Pyrotheos, а сам вулкан в regions.json лежит в middle-kingdoms. Героиня схватила визиря и обернула его шёлком, но в тексте не сказано, где именно это произошло; место выбрано по соседству с горой."
+    },
+    {
+      "name": "Ruined Keep",
+      "hero": "chaos_knight",
+      "region": "uncharted",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Chaos_Knight/Lore",
+      "note": "Здесь выкован тёмный шлем героя (снаряжение), работают слепые кузнецы; регион по источникам не установлен, поэтому временно uncharted. Решение владельца в #59.",
+      "doubt": "Источник — описание предмета Dark Ruin Helm из набора самого героя, а не биография."
+    },
+    {
+      "name": "Maze Between the Walls",
+      "hero": "dark_seer",
+      "region": "planes",
+      "event": "battle",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Dark_Seer/Lore",
+      "note": "Лабиринт, куда герой завёл армию врагов, а затем запечатал их. По биографии это место за стенами, рядом с Land Behind the Wall, поэтому предположительно регион planes. Возможно, это отдельная местность, и владельцу #59 стоит решить это."
+    },
+    {
+      "name": "Fae Realm",
+      "hero": "dark_willow",
+      "region": "planes",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Dark_Willow/Lore",
+      "note": "Фейский мир, куда героиня может попасть в любой момент. В regions.json его нет; предполагаемый регион — planes, так как это отдельный план бытия. Решение за владельцем в #59."
     }
   ]
 }

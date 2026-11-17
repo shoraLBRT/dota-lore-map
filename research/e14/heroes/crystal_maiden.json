@@ -22,26 +22,36 @@
     },
     {
       "place": "Boiling Sea",
-      "event": "exile",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Crystal_Maiden/Lore",
-      "note": "Рассердив наставника, она сама ушла туда, где ледник встречается с морем, и несколько месяцев медитировала, чтобы вернуть его доверие."
-    },
-    {
-      "place": "Wolfsden Tavern",
       "event": "visit",
       "source": "liquipedia",
       "via": "lore",
       "url": "https://liquipedia.net/dota2/Crystal_Maiden/Lore",
-      "doubt": "Вероятно бывала: в лоре есть только шляпа-сувенир оттуда, самого события нет."
+      "note": "Рассердив наставника, она сама ушла туда, где ледник встречается с морем, и несколько месяцев медитировала, чтобы вернуть его доверие.",
+      "doubt": "Источник — описание предмета Winter Snowdrop из набора самого героя, а не биография. Ушла туда сама, на время, поэтому visit, а не exile."
+    },
+    {
+      "place": "Wolfsden Tavern",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Crystal_Maiden/Lore",
+      "doubt": "Источник — описание предмета; было ли там событие с героиней, не сказано.",
+      "note": "Лор-страница упоминает шляпу-сувенир из таверны."
     }
   ],
   "path": [
-    { "place": "Icewrack" },
-    { "place": "Blueheart Glacier" },
-    { "place": "Boiling Sea" },
-    { "place": "Blueheart Glacier" }
+    {
+      "place": "Icewrack"
+    },
+    {
+      "place": "Blueheart Glacier"
+    },
+    {
+      "place": "Boiling Sea"
+    },
+    {
+      "place": "Blueheart Glacier"
+    }
   ],
   "relations": [
     {
@@ -53,22 +63,13 @@
   ],
   "profile": {
     "summary": {
-      "ru": "Crystal Maiden, по-домашнему Рилай, родилась с такой силой над льдом, что рядом с ней замерзало и портилось всё вокруг. Родные отправили её на далёкий север, в Icewrack, где её приютил отшельник-маг и оставил ей свой пост у ледника. Теперь она владеет наукой льда, как никто, и мечтает однажды проспать тысячу лет под ледником.",
-      "en": "Crystal Maiden, called Rylai at home, was born with a grip on ice so strong that anything near her froze or spoiled. Her family sent her to the far north, to Icewrack, where a hermit mage took her in and later left her his post above the glacier. She now commands the frozen arts better than anyone, and dreams of one day sleeping under the ice for a thousand years."
+      "ru": "Crystal Maiden, Райлай, с рождения связана со льдом так сильно, что рядом с ней замерзали родники и гибли посевы. Родители отослали её старшую сестру Lina на юг, а её саму — на холодный север, в Icewrack, где её взял в ученицы отшельник-маг с вершины ледника Blueheart. Закончив учёбу, он ушёл в ледник на тысячелетний сон и оставил ей своё место, а её искусство льда с тех пор только выросло.",
+      "en": "Crystal Maiden, Rylai, was born so bound to ice that springs froze and crops withered wherever she lingered. Her parents sent her elder sister Lina south and Rylai herself to the cold north of Icewrack, where a hermit mage atop the Blueheart Glacier made her his pupil. When her training ended he sank into the glacier for a thousand-year sleep and left her his place; her frost magic has only grown since."
     },
-    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/crystal_maiden.png"]
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/crystal_maiden.png"
+    ]
   },
-  "candidates": [
-    {
-      "name": "Dragon Hold",
-      "region": "uncharted",
-      "event": "mention",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Crystal_Maiden/Lore",
-      "note": "Место указано только в инфобоксе лор-страницы рядом с историей Dragon's Blood; в regions.json его нет, регион по источникам не установлен. Владельцу решить в #59, есть ли оно на схеме."
-    }
-  ],
   "unconfirmed": [
     "Родной край, где она провела детство (в биографии назван только как мягкий климат), не назван: origin не записан.",
     "Tusk: лор-страница пишет, что она знала его в юности; основание — реплика озвучки, тип связи в тексте не назван, поэтому связь не записана.",
@@ -76,6 +77,7 @@
     "Sven, Dragon Knight, Ancient Apparition, Pangolier, Winter Wyvern: в инфобоксе перечислены как герои рядом, без типа связи; реплики из лора не основание.",
     "Kaldr, по реплике Monkey King, испытывает к ней симпатию — это слух из озвучки, связь не записана.",
     "Dragon's Blood (сюжет отдельной серии): упомянут её контакт с Dragon Hold и спасение нескольких персонажей от Terrorblade; это вне биографии и вне карты, не записано.",
-    "Путь до Icewrack через родину (мягкий климат) и переезд туда от родителей: путь начинается с Icewrack, потому что исходное место не названо."
+    "Путь до Icewrack через родину (мягкий климат) и переезд туда от родителей: путь начинается с Icewrack, потому что исходное место не названо.",
+    "Сверка: кандидат Dragon Hold снят — место взято из Dragon's Blood, а это не источник мест (В5)."
   ]
 }

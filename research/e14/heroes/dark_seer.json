@@ -1,21 +1,17 @@
 {
   "hero": "dark_seer",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
   "links": [
     {
       "place": "Land Behind the Wall",
       "event": "origin",
       "source": "bio",
       "note": "Родина героя — мир за стеной, откуда он пришёл. Биография сама называет так свой край, инфобокс Liquipedia подтверждает то же место."
-    },
-    {
-      "place": "Roseleaf",
-      "event": "mention",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Dark_Seer/Lore",
-      "note": "В тексте карточки артефакта он говорит о будущих стычках за Stonehall и о Roseleaf. Сам он там не был.",
-      "doubt": "Это игровая карточка с прозой, а не биография; упомянутые конфликты в лоре ещё не описаны, поэтому тип mention."
     }
   ],
   "candidates": [
@@ -40,6 +36,7 @@
     "Переход через стену описан, но регион нового мира не назван: путь (path) не записан.",
     "Lekel D'vit (событие в инфобоксе Liquipedia) и Great Boundaries War — событие и бог, а не места на схеме; не привязаны.",
     "Реплики других героев о Dark Seer (Monkey King, Legion Commander, Tidehunter, Earthshaker и др.) — отдельные строки озвучки, связи не записаны.",
-    "Имя Vhoul в тексте карточки артефакта (город, где вспыхнуло восстание) не сопоставлено ни с одним местом на схеме; без связи."
+    "Имя Vhoul в тексте карточки артефакта (город, где вспыхнуло восстание) не сопоставлено ни с одним местом на схеме; без связи.",
+    "Сверка: упоминание Roseleaf снято — оно из текста карточки Artifact, а это не источник лора."
   ]
 }

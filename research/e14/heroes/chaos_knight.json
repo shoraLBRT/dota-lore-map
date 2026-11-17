@@ -1,6 +1,11 @@
 {
   "hero": "chaos_knight",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
   "links": [
     {
       "place": "Fundamental Plane",
@@ -19,8 +24,12 @@
     }
   ],
   "path": [
-    { "place": "Fundamental Plane" },
-    { "region": "planes" }
+    {
+      "place": "Fundamental Plane"
+    },
+    {
+      "region": "planes"
+    }
   ],
   "relations": [
     {
@@ -62,31 +71,6 @@
       "via": "lore",
       "url": "https://liquipedia.net/dota2/Chaos_Knight/Lore",
       "note": "Главный враг её создателей и её личная незавершённая вражда с ним: она хочет его одолеть, чтобы исправить прошлое."
-    },
-    {
-      "hero": "omniknight",
-      "type": "enemy",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Chaos_Knight/Lore",
-      "note": "Охотится на него, потому что тот стоит на стороне Света и служит Omniscience."
-    },
-    {
-      "hero": "brewmaster",
-      "type": "rival",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Chaos_Knight/Lore",
-      "note": "Взаимная неприязнь и насмешки с обеих сторон."
-    },
-    {
-      "hero": "arc_warden",
-      "type": "enemy",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Chaos_Knight/Lore",
-      "note": "Arc Warden презирает его за разобщённость и видит в нём врага.",
-      "doubt": "Сведения только с одной стороны: записано отношение Arc Warden, ответного отношения Chaos Knight в тексте нет."
     }
   ],
   "profile": {
@@ -103,7 +87,8 @@
       "source": "liquipedia",
       "via": "lore",
       "url": "https://liquipedia.net/dota2/Chaos_Knight/Lore",
-      "note": "Здесь выкован тёмный шлем героя (снаряжение), работают слепые кузнецы; регион по источникам не установлен, поэтому временно uncharted. Решение владельца в #59."
+      "note": "Здесь выкован тёмный шлем героя (снаряжение), работают слепые кузнецы; регион по источникам не установлен, поэтому временно uncharted. Решение владельца в #59.",
+      "doubt": "Источник — описание предмета Dark Ruin Helm из набора самого героя, а не биография."
     }
   ],
   "unconfirmed": [
@@ -113,6 +98,7 @@
     "Фразы о Dragon Knight, Doom, Troll Warlord и Enigma-подколки: реплики озвучки, связи не записаны.",
     "Лор-страница описывает противостояние Chaos Knight и Keeper в духе «антитезы» — записано как family по инфобоксу; тип rival не добавлен, чтобы не дублировать связь.",
     "Armageddon, Ataxia, Atramentos и Enmity — скакуны, не герои; места для них не записаны.",
-    "Раздел о древней войне Ancients и Mad Moon — спекуляция Archronicus, не записана."
+    "Раздел о древней войне Ancients и Mad Moon — спекуляция Archronicus, не записана.",
+    "Сверка: связи с Omniknight (враг), Brewmaster (соперник) и Arc Warden (враг) сняты: разделы лор-страницы о них собраны только из реплик озвучки."
   ]
 }

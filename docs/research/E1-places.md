@@ -77,7 +77,7 @@
 
 | Ярус | Регион | Сторона | Мест | Героев |
 |---|---|---|---|---|
-| Верхний ярус | Небеса (The Heavens) | нейтрально (ярус) | 6 | 10 |
+| Верхний ярус | Небеса (The Heavens) | нейтрально (ярус) | 6 | 11 |
 | Верхний ярус | Семь планов и Пустота (The Seven Planes and the Void) | нейтрально (ярус) | 13 | 18 |
 | Материк и острова | Айсрак (Icewrack) | Radiant (карта S1) | 12 | 9 |
 | Материк и острова | Земля Сияющих (Land of the Radiant) | Radiant (карта S1) | 8 | 9 |
@@ -96,7 +96,7 @@
 | Материк и острова | Западные леса (Western Forests) | Radiant (по схеме E2) | 6 | 4 |
 | Материк и острова | Слом и Эльзе (Slom and Elze) | Radiant (по схеме E2) | 3 | 4 |
 | Материк и острова | Ховен и Нишай (The Hoven and Nishai) | Dire (по схеме E2) | 4 | 4 |
-| Материк и острова | Феллстрат (Fellstrath) | Dire (по схеме E2) | 6 | 6 |
+| Материк и острова | Феллстрат (Fellstrath) | Dire (по схеме E2) | 6 | 7 |
 | Материк и острова | Томо'кан и Окраины (Tomo'kan and the Outlands) | Dire (по схеме E2) | 6 | 5 |
 | Материк и острова | Империя Костей (Empire of Bone) | Dire (по схеме E2) | 3 | 1 |
 | Материк и острова | Срединные королевства (The Middle Kingdoms) | нейтрально (по схеме E2) | 11 | 13 |
@@ -110,7 +110,7 @@
 
 Сторона: **нейтрально** (ярус). Небо над миром и небесные тела: столица скайрасов высоко над землёй, Безумная Луна (разрушена, её осколки — Radiant Ore и Direstone), Луна Селемены, Солнце.
 
-Герои всего региона: Mars
+Герои всего региона: Doom, Mars
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
@@ -125,7 +125,7 @@
 
 Сторона: **нейтрально** (ярус). Иные планы бытия и измерения вне Terrene Plane (наш мир).
 
-Герои всего региона: Elder Titan, Puck, Spectre
+Герои всего региона: Chaos Knight (путь), Elder Titan, Puck, Spectre
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
@@ -155,14 +155,14 @@
 |---|---|---|---|
 | ★ Icewrack | лор | Crystal Maiden (живёт), Kez (живёт), Pangolier (упоминание), Winter Wyvern (живёт) |  |
 | The Barrier | лор | — |  |
-| Blueheart Glacier | лор | — |  |
+| Blueheart Glacier | лор | Crystal Maiden (служба) |  |
 | Black Pool | лор | Lich (живёт) |  |
 | Cobalt | лор | Tusk |  |
 | Azura | лор | Tiny |  |
 | White Fields | лор | — |  |
-| Wolfsden Tavern | лор | Tusk (связь) |  |
+| Wolfsden Tavern | лор | Crystal Maiden (упоминание), Tusk (связь) |  |
 | Njord's Hearth | лор | — |  |
-| Boiling Sea | лор | — |  |
+| Boiling Sea | лор | Crystal Maiden (бывал) |  |
 | Frostreach | лор | — | самый северный порт мира; страницы на Liquipedia нет |
 | Onyx Grove | лор | Lone Druid (живёт) | в северных сосновых лесах |
 
@@ -176,7 +176,7 @@
 | Violet Archives | карта S1 | Phoenix (упоминание), Templar Assassin (связь) |  |
 | Violet Plateau | лор | Tinker (живёт) | архивы находятся в нём или рядом |
 | Castle of the Fold | карта S1 | — |  |
-| Home of the Keen Folk | карта S1 | Alchemist*, Clockwerk |  |
+| Home of the Keen Folk | карта S1 | Alchemist*, Clockwerk* |  |
 | Knollen | наше | Sniper | горные долины кинов |
 | Dredger's Bight | наше | Techies | родина Techies (кины); страницы на Liquipedia нет |
 | Thousand Tarns | карта S1 | Axe (сражение) |  |
@@ -385,7 +385,7 @@
 | ★ The Hoven | лор | Clinkz, Troll Warlord (живёт) |  |
 | Bleeding Hills | лор | Clinkz (связь), Shadow Shaman |  |
 | Nishai | лор | Earthshaker |  |
-| The Red Mountain | лор | — | предположительно в Нишае |
+| The Red Mountain | лор | Earthshaker (служба) | предположительно в Нишае |
 
 #### Феллстрат · Fellstrath
 
@@ -394,7 +394,7 @@
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
 | ★ Fellstrath | лор | Dazzle (живёт)† |  |
-| Overgrown Empire | лор | — |  |
+| Overgrown Empire | лор | Dark Willow (бывал) |  |
 | Ashkavor | лор | Grimstroke |  |
 | Yama Raskav Jungle | наше | Batrider, Medusa (упоминание) |  |
 | Xhacatocatl | наше | Bloodseeker | окутанные туманом горы |
@@ -477,8 +477,8 @@
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
-| ★ Seven Hells | лор | Shadow Demon |  |
-| Vashundol | лор | Doom |  |
+| ★ Seven Hells | лор | Doom (живёт), Shadow Demon |  |
+| Vashundol | лор | Doom (изгнание) |  |
 | Abysm | лор | Shadow Fiend |  |
 | Foulfell | лор | Terrorblade |  |
 | Outer Hells | лор | Warlock (связь) |  |
@@ -505,22 +505,22 @@
 | Bristleback | весь регион «Слом и Эльзе» (бывал) |
 | Broodmother | Mount Pyrotheos (Срединные королевства) |
 | Centaur Warrunner | Druud (Друуд); Omexe (Друуд) (сражение) |
-| Chaos Knight | Fundamental Plane (Семь планов и Пустота) |
+| Chaos Knight | Fundamental Plane (Семь планов и Пустота); весь регион «Семь планов и Пустота» (путь) |
 | Chen | Hazhadal Barrens (Хазадальские пустоши) |
 | Clinkz | The Hoven (Ховен и Нишай); Bleeding Hills (Ховен и Нишай) (связь) |
-| Clockwerk | Home of the Keen Folk (Земля Сияющих) |
-| Crystal Maiden | Icewrack (Айсрак) (живёт) |
+| Clockwerk | Home of the Keen Folk (Земля Сияющих)* |
+| Crystal Maiden | Icewrack (Айсрак) (живёт); Blueheart Glacier (Айсрак) (служба); Boiling Sea (Айсрак) (бывал); Wolfsden Tavern (Айсрак) (упоминание) |
 | Dark Seer | Land Behind the Wall (Семь планов и Пустота) |
-| Dark Willow | Revtel (Вольные города) |
+| Dark Willow | Revtel (Вольные города); Overgrown Empire (Феллстрат) (бывал) |
 | Dawnbreaker | The Sun (Небеса)* |
 | Dazzle | Nothl Realm (Семь Преисподних и загробье) (связь); Fellstrath (Феллстрат) (живёт)† |
 | Death Prophet | весь регион «Неизведанные земли»* |
 | Disruptor | Druud (Друуд) |
-| Doom | Vashundol (Семь Преисподних и загробье) |
+| Doom | весь регион «Небеса»; Vashundol (Семь Преисподних и загробье) (изгнание); Seven Hells (Семь Преисподних и загробье) (живёт) |
 | Dragon Knight | Candoness (Срединные королевства) (сражение); Elemental Plane (Семь планов и Пустота) (упоминание) |
 | Drow Ranger | весь регион «Айсрак»; Sundered Moon (Вольные города) (бывал) |
 | Earth Spirit | The Upland (Стонущие горы) |
-| Earthshaker | Nishai (Ховен и Нишай) |
+| Earthshaker | Nishai (Ховен и Нишай); The Red Mountain (Ховен и Нишай) (служба) |
 | Elder Titan | весь регион «Семь планов и Пустота»; Astral Plane (Семь планов и Пустота) (бывал) |
 | Ember Spirit | Fortress of Flares (Стонущие горы) (живёт) |
 | Enchantress | Nightsilver Woods (Лес Найтсильвер) (бывал) |
