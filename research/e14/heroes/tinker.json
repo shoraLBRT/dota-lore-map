@@ -19,12 +19,6 @@
       "source": "ours",
       "note": "О самом Боуше места рождения нет. Народ Keen указан в инфобоксе Liquipedia, а в биографии назван карликовым; родина народа есть на схеме, поэтому связь наша.",
       "doubt": "Связь народа с конкретным местом — наше решение; в тексте лора родина Keen не названа."
-    },
-    {
-      "region": "uncharted",
-      "event": "mention",
-      "source": "bio",
-      "note": "Мир за гранью понимания, в который открыли портал и откуда пришли кошмары. Боуш туда не ходил, название мира в биографии не дано; кандидат — Multiverse (инфобокс Liquipedia)."
     }
   ],
   "profile": {
@@ -33,18 +27,9 @@
       "en": "Boush, known as Tinker, comes from the Keen Folk, a small people prized for cleverness and wary of magic. He was a leading investigator of natural law and set up an underground laboratory beneath the misty Violet Plateau. One day his team tore open a portal to an unknown realm, and the plateau was swallowed by a permanent black gloom filled with horrors. Boush alone escaped with his inventions, the lone survivor of the disaster."
     }
   },
-  "candidates": [
-    {
-      "name": "Multiverse",
-      "region": "planes",
-      "event": "mention",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Tinker/Lore",
-      "note": "Место из инфобокса Liquipedia (places); в биографии мир безымянный. Регион — предположение: мир за пределами известных планов, решает владелец."
-    }
-  ],
+  "candidates": [],
   "unconfirmed": [
+    "Мир за порталом: в биографии безымянный «мир за гранью понимания»; Multiverse из инфобокса Liquipedia — не место, а понятие. Ни связью, ни кандидатом не записан.",
     "Clockwerk и Sniper (кузены): указаны в инфобоксе Liquipedia, но все сноски — реплики озвучки; связи не записаны. Связь Sniper-Tinker ранее снята по той же причине и не возвращена.",
     "Snapfire: инфобокс называет героя без типа связи; дружба указана только в репликах озвучки Snapfire, в биографии её нет.",
     "Bristleback (неприязнь к кинам), Earth Spirit, Disruptor и Juggernaut (Yurnero, обвинение в катастрофе): только реплики озвучки и фразы при убийстве; связи не записаны.",
