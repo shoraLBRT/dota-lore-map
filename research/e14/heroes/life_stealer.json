@@ -1,0 +1,33 @@
+{
+  "hero": "life_stealer",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Devarque",
+      "event": "exile",
+      "source": "bio",
+      "note": "Вор Н'эйкс отбывал здесь пожизненное заключение; в этой темнице он стал Lifestealer и вырвался на волю. Откуда он родом, источники не говорят."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "en": "Lifestealer was once N'aix, a thief whom the Vile Council cursed with a long life so that his prison term in Devarque would last longer. A wizard locked in the same cell tried to possess him and use him as a weapon for his own escape, but the wizard's will broke inside the thief's mind. Revived by the stolen life force, the creature took control of the guards, broke free and fed on them. Two minds now share one body, and the thief only pretends to obey the other.",
+      "ru": "Lifestealer когда-то был вором Н'эйксом: совет проклял его долгой жизнью, чтобы срок в темнице Деварка тянулся дольше. Маг из той же камеры хотел вселиться в него и сбежать под шум резни, но сам растворился в безумии вора. Ожившее от чужой силы существо подчинило стражу, вырвалось на волю и питалось жизнями охранников. Теперь в одном теле живут два разума, и вор лишь делает вид, что слушается второго."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/life_stealer.png"
+    ]
+  },
+  "unconfirmed": [
+    "Реплики озвучки о знакомстве и вражде с другими героями (Dark Willow, Mars, Tiny, Pangolier, Monkey King и др.) не основание для связей по решению партии 01 — связей не записано.",
+    "Раса Oglodi: родина народа в источниках не названа, на схеме такого места нет — origin по народу не ставлю.",
+    "Хозяин (Master) — персонаж без ключа героя, связь с героем не записана.",
+    "Место, где подмастерье мастера-зачарователя изготовил для героя аугментации, в лоре не названо.",
+    "Фракция Vile Council — организация, не место на схеме; связь не записана."
+  ]
+}

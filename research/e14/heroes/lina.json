@@ -1,0 +1,51 @@
+{
+  "hero": "lina",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Desert of Misrule",
+      "event": "home",
+      "source": "bio",
+      "note": "Родители отправили Lina к тётке на юг, в эту пустыню; здесь она живёт с детства. Где семья жила раньше, биография не называет."
+    },
+    {
+      "place": "Scintillant Waste",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Lina/Lore",
+      "note": "Место стоит в инфобоксе рядом с пустыней Misrule.",
+      "doubt": "Место есть только в инфобоксе лор-страницы, в тексте биографии его нет."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "crystal_maiden",
+      "type": "family",
+      "source": "bio",
+      "note": "Crystal Maiden — её младшая сестра (биография и инфобокс лор-страницы). Соперничество между ними описано, но тип связи — family."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Lina, она же Slayer, в детстве постоянно ссорилась с младшей сестрой Райлай (Crystal Maiden) и обычно оказывалась в выигрыше. Родители, устав от их вражды, отправили старшую дочь на юг, к терпеливой тётушке в пустыню Desert of Misrule, где её огненный нрав пришёлся как нельзя кстати. Гордая и уверенная в себе, она не даёт своему пламени угаснуть.",
+      "en": "Lina, known as the Slayer, bickered constantly with her younger sister Rylai (Crystal Maiden) as a child and usually came out on top. Fed up with the feud, their parents sent the elder daughter south to a patient aunt in the Desert of Misrule, where her fiery temper felt right at home. Proud and self-assured, she refuses to let her flame be put out."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/lina.png"
+    ]
+  },
+  "unconfirmed": [
+    "Край детства, который в биографии назван только как умеренный (temperate region), не назван по имени: origin на схеме не записан.",
+    "Crownfall-сюжет о Белой Башне (White Spire) приведён в ссылках инфобокса как реплики, а не как описание места героини; связь с Белой Башней не записана.",
+    "Lord of Misrule — персонаж, не ключ героя; связи с ним не записаны.",
+    "Героиня в инфобоксе перечислена рядом с Pangolier без типа связи; реплики из лора (Dark Willow, Mars, Pangolier, Juggernaut) не основание, связи не записаны.",
+    "Dragon's Blood (отдельная серия и ссылка Lina/Dragon's Blood) вне биографии и вне карты, не использовано.",
+    "Путь героини не записан: пока известна одна остановка, а переезд из детского края не назван."
+  ]
+}

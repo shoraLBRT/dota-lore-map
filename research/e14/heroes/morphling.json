@@ -1,0 +1,34 @@
+{
+  "hero": "morphling",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "region": "uncharted",
+      "event": "origin",
+      "source": "bio",
+      "note": "Morphling родился там, где комета упала на поле битвы в войне Влой у пограничной реки; ни эта война, ни река на схеме не названы, других мест в биографии нет."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "en": "Morphling is a water elemental born from a comet of ice that had drifted between worlds for ages. It fell on the eve of the ancient Vloy war and melted above a battle fought across a narrow river. The newborn being took the shape of the first general to cross the water and killed him. Through the rest of the fight he kept changing form, learning to be every kind of soldier on the field.",
+      "ru": "Morphling — водная стихия, рождённая из ледяной кометы, которая веками блуждала между мирами. Она упала накануне древней войны Влой и растаяла над битвой у узкой пограничной реки. Новорождённое существо приняло облик первого полководца, ступившего в воду, и убило его. До конца сражения он менял формы, перенимая повадки всех воинов на поле."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/morphling.png"
+    ]
+  },
+  "unconfirmed": [
+    "инфобокс heroes = Dawnbreaker, но тип связи не указан; реплики о «мастере» (voice lines) не основание, связь не записана",
+    "Birot — персонаж, а не герой; регулярные контакты указаны только в описании предмета, не в биографии",
+    "Vloy — война и река из биографии, на схеме не нанесены; регион не определён",
+    "Polymorphia — божество из инфобокса, места на схеме нет",
+    "Путь героя не записан: биография говорит о падении кометы на землю, но без названных остановок",
+    "Astral Plane и Terrene Plane: лор-страница пишет, что Morphling существует в обоих планах, только со ссылкой на описание предмета Blade of Tears — не основание; кандидат Terrene Plane снят."
+  ]
+}

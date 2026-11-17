@@ -1,0 +1,56 @@
+{
+  "hero": "muerta",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Skirm",
+      "event": "origin",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Muerta/Lore",
+      "note": "По лор-странице (вводный комикс и Hero Atlas) в юности её звали Селеста, она жила в пустынном городке Скирм, пока бандиты его не разорили.",
+      "doubt": "Биография родину не называет; вводного комикса нет в content/media.json."
+    },
+    {
+      "place": "Seven Hells",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Muerta/Lore",
+      "note": "Место указано только в инфобоксе; в тексте лора о нём не сказано.",
+      "doubt": "Место есть только в инфобоксе лор-страницы; ни биография, ни текст лора не говорят, что Muerta там бывала."
+    },
+    {
+      "place": "Underscape",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Muerta/Lore",
+      "note": "Место указано только в инфобоксе; характер связи не назван.",
+      "doubt": "Место есть только в инфобоксе лор-страницы; ни биография, ни текст лора не говорят, что Muerta там бывала."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "en": "Muerta is the subject of many tales, but all agree on one thing: bandits killed her family, and her hatred was so strong that she refused to die. Death was so struck by that rage that he gave her a pair of ghostly pistols, Mercy and Grace, and made her his second in command. She now tracks down souls whose time has run out and drags them to their final fate.",
+      "ru": "О Muerta рассказывают по-разному, но все истории сходятся в одном: бандиты убили её семью, и от ненависти она отказалась умирать. Смерть был так поражён этой яростью, что вручил ей два призрачных пистолета, Милость и Благодать, и сделал своей правой рукой. Теперь она выслеживает души, чей срок истёк, и тащит их к последнему пристанищу."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/muerta.png"
+    ]
+  },
+  "candidates": [],
+  "unconfirmed": [
+    "Carrion Fields of Gorm (Поля падальшиков в Горме) упомянуты в биографии как место могил, но на схеме такого места нет, а регион в тексте не назван. В кандидаты не добавлено, чтобы не угадывать регион.",
+    "Asan, the Exile Unveiled: лор говорит, что Muerta спасла и воспитывала Asan вместе с сёстрами-изгнанницами, чтобы противостоять Оракулу. Asan в heroes.json отдельного ключа нет, а соотнесение с phantom_assassin держится только на подписи в озвучке, поэтому связь не записана.",
+    "Phantom Assassin: в инфобоксе указан как связанный герой, но тип связи с Муэртой в тексте лора не назван; реплики озвучки об убийстве и мести — не основание.",
+    "Смерть (The Reaper): Muerta — его помощница по тексту биографии, но ключа героя для Смерти в heroes.json нет, поэтому связь master/servant не записана.",
+    "Семья Муэрты (отец, дочери) и Zell с бандитами — не герои на схеме; их связи с местами не записаны.",
+    "Oracle: раздел о Сёстрах Завесы, похитивших дочь Muerta по воле Oracle, опирается на реплики озвучки — не основание для связи."
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "hero": "lich",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore"
+  ],
+  "links": [
+    {
+      "region": "icewrack",
+      "event": "service",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Lich/Lore",
+      "note": "При жизни Этриан правил силой: по заметке лор-страницы, под его властью оказались все королевства Icewrack.",
+      "doubt": "Заметка опирается на историю Crownfall, а не на биографию; биография говорит лишь о порабощённых королевствах без названия."
+    },
+    {
+      "place": "Black Pool",
+      "event": "death",
+      "source": "bio",
+      "note": "Сюда мятежники сбросили связанного мага; на дне он пролежал мёртвым, здесь же Анхил поднял его и вернул к не-жизни. Родиной место не является, хотя инфобокс пишет его в origins."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Lich в прошлом — маг льда Этриан, державший целые царства в страхе перед морозной магией. Взбунтовавшиеся подданные связали его и опустили в озеро, которое считалось бездонным; там он провисел годы мёртвым, но нетленным. Геомант Анхил поднял тело и попытался воскресить колдуна, но очнувшийся Lich убил его. Теперь это нежить, холодная к живым.",
+      "en": "Lich began as the frost mage Ethreain, who held whole realms in fear through the menace of freezing magic. Rebellious subjects ambushed him, bound him and dropped him into a pool they believed was bottomless, where he hung for years, dead yet unrotting. The geomancer Anhil later hauled him up and tried to resurrect him, and the revived Lich killed him at once. He now exists as an undead sorcerer, cold toward the living."
+    }
+  },
+  "candidates": [],
+  "unconfirmed": [
+    "Lion и Crystal Maiden указаны в инфобоксе без типа связи; в тексте лора их связь с Lich дана только в разделе Artifact, поэтому связи не записаны.",
+    "Реплики озвучки с другими героями (союзники, соперники, подколки) не использованы как основание для связей.",
+    "Конкретный город или королевство, где Этриан правил до ареста, в биографии не названы.",
+    "Анхил — персонаж, не герой; связь с ним не на карте, Rix и Vhoul из раздела Artifact не переносятся."
+  ],
+  "path": [
+    {
+      "region": "icewrack"
+    },
+    {
+      "place": "Black Pool"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "hero": "monkey_king",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "White Spire",
+      "event": "home",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Monkey_King/Lore",
+      "note": "Инфобокс называет Белый шпиль текущим местом героя.",
+      "doubt": "Основание — комикс A New Journey, которого нет в content/media.json; в биографии мест нет."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "en": "Sun Wukong, the Monkey King, waged war on the heavens until the elder gods buried him under a mountain for five hundred years. To earn their pardon he agreed to guard a young acolyte on a secret pilgrimage and bring him home with a sacred relic. He kept that oath and for a while lived at peace with the gods. Yet mischief is in his nature, and he never tires of mocking the powers above.",
+      "ru": "Сунь Укун, он же Monkey King, воевал с небесами, пока древние боги не придавили его горой на пятьсот лет. Ради прощения он взялся охранять молодого послушника в тайном паломничестве и вернуть его домой с реликвией. Клятву он сдержал и какое-то время жил в мире с богами. Но проказы у него в крови, и дразнить небожителей ему не надоедает."
+    }
+  },
+  "unconfirmed": [
+    "Место заточения под горой не названо ни в биографии, ни в лоре, поэтому не записано в links.",
+    "Инфобокс перечисляет героев Beastmaster, Razor, Tidehunter, Ember Spirit, Broodmother и Lycan без типа связи, поэтому связи не записаны.",
+    "Вражда и симпатии из раздела Relationships и реплик озвучки (Ember Spirit, Earth Spirit, Storm Spirit, Razor, Gyrocopter и другие) не записаны: это реплики, а не биография или лор-текст.",
+    "Знакомство с Black Arachnia, Breklin, Skitskurr, Banehallow, Lina, Luna и Rylai подтверждается только репликами или не относится к героям карты, связи не записаны.",
+    "Служение богам и спутник-аколит в биографии: боги и аколит не герои карты, связь не записана.",
+    "Narrow Maze, Nightsilver Woods, Palace of Hurra'agdu: на лор-странице все три держатся только на репликах озвучки — не основание.",
+    "Комикс A New Journey (Белый шпиль) в content/media.json отсутствует, поэтому источник comic:<id> не использован."
+  ]
+}

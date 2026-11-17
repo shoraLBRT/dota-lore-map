@@ -1,0 +1,35 @@
+{
+  "hero": "leshrac",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "place": "Heart of Nature",
+      "event": "origin",
+      "source": "bio",
+      "note": "Существо вырвано из сердца природы; то же место указано в инфобоксе лор-страницы как origins."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Leshrac, он же Истерзанная душа, родом из сердца природы и наполовину существует в другом плане бытия. Когда-то философ, искавший смысл существования, он заглянул в хроноптические кристаллы и навсегда изменился от увиденного. Теперь его надменность — единственный проблеск в мрачном разуме, а природу он считает злой и уродливой.",
+      "en": "Leshrac, also called the Tormented Soul, came out of nature's core and lives partly in one plane and partly in another. He was once a philosopher hunting for the meaning of existence, until he peered into Chronoptic Crystals and was changed for good by the horrors he saw. Today his arrogance is the only glimmer in a bleak mind, and he regards nature as vile and cruel."
+    },
+    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/leshrac.png"]
+  },
+  "candidates": [
+    {
+      "name": "Terrene Plane",
+      "region": "planes",
+      "event": "home",
+      "source": "liquipedia",
+      "url": "https://liquipedia.net/dota2/Leshrac/Lore",
+      "note": "Инфобокс лор-страницы указывает Terrene Plane как место героя; на схеме такого места нет, в regions.json оно не значится. Регион planes по соседству с Heart of Nature."
+    }
+  ],
+  "unconfirmed": [
+    "Pangolier: в разделе Enemies лор-страницы Leshrac описан конфликт с Pangolier (клятва убить), но он построен целиком на репликах озвучки, связь не записана. Запись enemy в pangolier.json опирается только на Liquipedia-текст, решение за главным агентом.",
+    "Связи из реплик и лор-подразделов Allies и Enemies (Puck, Grimstroke, Razor, Siltbreaker, Hoodwink, Dark Willow, Spirit Breaker, Void Spirit, Centaur Warrunner, Magnus, Enchantress) не записаны: основаны только на озвучке.",
+    "Oglodi: в инфобоксе раса указана как предполагаемая (speculative), не записана как место.",
+    "Chronoptic Crystals и The Impurities: предметы и сущности, не места, на схему не добавлены."
+  ]
+}
