@@ -34,6 +34,12 @@ export function Panel({ label, collapsed, onToggle, contentKey, back, children }
     if (contentRef.current) contentRef.current.inert = collapsed;
   }, [collapsed, contentKey, mobile]);
 
+  // Новый экран — текст снова сверху: из списка мест (#99) панель места иначе открылась бы прокрученной вниз.
+  // Прокручивается внутренний блок рамки — последний: над ним стоит шапка.
+  useEffect(() => {
+    document.getElementById(id)?.lastElementChild?.scrollTo?.({ top: 0 });
+  }, [contentKey, id]);
+
   // Шапка меняется вместе с экраном: старая кнопка уходит, фокус возвращается туда, откуда пришли (§14).
   const header = back && (
     <div key={contentKey} className={styles.content}>

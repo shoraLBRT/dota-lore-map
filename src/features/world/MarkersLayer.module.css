@@ -78,9 +78,10 @@
   font-weight: 500;
 }
 
-/* Наведение и фокус: кольцо светится, подпись ярче (SPEC §5.4, §7.2). */
+/* Наведение и фокус: кольцо светится, подпись ярче (SPEC §5.4, §7.2); `.lit` — то же от строки списка мест в панели (#99). */
 .marker:hover .ring,
 .marker:focus-visible .ring,
+.lit .ring,
 .current .ring {
   stroke: var(--accent-bright);
   filter: drop-shadow(0 0 6px var(--marker-glow));
@@ -88,6 +89,7 @@
 
 .marker:hover .markerLabel,
 .marker:focus-visible .markerLabel,
+.lit .markerLabel,
 .current .markerLabel {
   fill: var(--text-1);
 }
@@ -181,6 +183,7 @@
 
 .marker.labelHidden:hover .label,
 .marker.labelHidden:focus-visible .label,
+.marker.labelHidden.lit .label,
 .marker.labelHidden.current .label {
   opacity: 1;
 }

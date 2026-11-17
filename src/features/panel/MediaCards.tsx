@@ -4,7 +4,7 @@ import { mediaThumb, resolveMedia } from '../../data/world';
 import { useT } from '../../i18n';
 import styles from './Blocks.module.css';
 
-/** Больше трёх карточек в панели не показываем (SPEC §5.4 п. 7, §5.5 п. 5). */
+/** Больше трёх карточек в панели не показываем (SPEC §5.4 п. 8, §5.5 п. 5). */
 export const MAX_MEDIA = 3;
 
 interface Props {

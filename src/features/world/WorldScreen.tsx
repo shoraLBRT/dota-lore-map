@@ -104,6 +104,10 @@ export function WorldScreen({ screen, veiled = false }: Props) {
   const [searchPreview, setSearchPreview] = useState<Hero | null>(null);
   const previewHero = searchOpen && searchPreview ? searchPreview : preview?.key === screenKey ? preview.hero : null;
   const previewSpots = useMemo(() => (previewHero ? heroSpots(previewHero) : undefined), [previewHero]);
+  // Строка места в панели региона под наведением или фокусом (#99): маркер подсвечен. Живёт, пока не сменился экран.
+  const [placeLit, setPlaceLit] = useState<{ key: string; slug: string } | null>(null);
+  const litPlace = placeLit?.key === screenKey ? placeLit.slug : undefined;
+  const onPreviewPlace = useCallback((slug: string | null) => setPlaceLit(slug ? { key: screenKey, slug } : null), [screenKey]);
   const onPreview = useCallback((h: Hero | null) => setPreview(h ? { key: screenKey, hero: h } : null), [screenKey]);
   // Нити (#67): шаги пути и прочие связи; наведение важнее выбора.
   const heroLines = useMemo(() => (hero && spots ? heroThreads(hero, spots) : undefined), [hero, spots]);
@@ -204,6 +208,7 @@ export function WorldScreen({ screen, veiled = false }: Props) {
             threads={threads}
             threadsKey={threadsKey}
             preview={previewSpots}
+            litPlace={litPlace}
             onPickHero={pickHere}
             onSelectSpot={(s) => open(spotScreen(s))}
             onOpenMedia={openMedia}
@@ -242,7 +247,7 @@ export function WorldScreen({ screen, veiled = false }: Props) {
                 ) : place ? (
                   <PlacePanel region={region!} place={place} />
                 ) : (
-                  <RegionPanel region={region!} />
+                  <RegionPanel region={region!} onPreviewPlace={onPreviewPlace} />
                 )}
               </HeroPickProvider>
             </HeroPreviewProvider>
