@@ -128,8 +128,14 @@ export function placeMarkerLabels(items: MarkerLabel[], bounds?: Box): Map<strin
       break;
     }
     if (side === 'hidden' && m.must) {
-      // Обязательная подпись: первая сторона, где она хотя бы не вылезает из кадра, иначе — сверху.
-      side = SIDES.find((s) => !bounds || inside(shift(labelBox(s, m), m.x, m.y), bounds)) ?? 'top';
+      // Обязательная подпись: среди сторон, где она не вылезает из кадра, — та, что накрывает меньше
+      // подписей и колец (при равенстве — первая по порядку); таких нет — сверху.
+      const conflicts = (s: (typeof SIDES)[number]) => {
+        const box = shift(labelBox(s, m), m.x, m.y);
+        return placed.filter((p) => overlap(p, box)).length + rings.filter((r, j) => items[j] !== m && overlap(r, box)).length;
+      };
+      const fits = SIDES.filter((s) => !bounds || inside(shift(labelBox(s, m), m.x, m.y), bounds));
+      side = fits.reduce<(typeof SIDES)[number] | undefined>((best, s) => (best && conflicts(best) <= conflicts(s) ? best : s), undefined) ?? 'top';
       placed.push(shift(labelBox(side, m), m.x, m.y));
     }
     result.set(m.key, side);

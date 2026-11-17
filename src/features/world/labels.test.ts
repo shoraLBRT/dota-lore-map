@@ -91,6 +91,12 @@ describe('placeMarkerLabels — подписи маркеров не налез�
     expect(placeMarkerLabels([m('c', 0, 0, { must: true }), ...around]).get('c')).toBe('top');
   });
 
+  it('обязательной подписи тесно везде — сторона, где она накрывает меньше колец (#98)', () => {
+    // Сверху и снизу по два соседа, справа и слева — по одному: выигрывает правая (первая из равных).
+    const crowd = [m('n1', -10, -24), m('n2', 10, -24), m('s1', -10, 24), m('s2', 10, 24), m('e', 40, 0), m('w', -40, 0)];
+    expect(placeMarkerLabels([m('c', 0, 0, { must: true }), ...crowd]).get('c')).toBe('right');
+  });
+
   it('рамки сторон не пересекают кольцо своего маркера', () => {
     for (const side of ['top', 'bottom', 'right', 'left'] as const) {
       const b = labelBox(side, { width: 60, size: 13, ring: 9 });
