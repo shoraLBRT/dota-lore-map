@@ -2,7 +2,7 @@ import { render, screen, within } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import type { Hero, Region } from '../../data/types';
 import { I18nProvider } from '../../i18n';
-import { clampTooltip, placeTooltip, RegionTooltip, splitHeroes } from './RegionTooltip';
+import { clampTooltip, headingTo, placeTooltip, RegionTooltip, splitHeroes } from './RegionTooltip';
 
 const heroes = (n: number): Hero[] =>
   Array.from({ length: n }, (_, i) => ({ key: `h${i}`, name: `Hero ${i}`, slug: `hero${i}`, links: [] }));
@@ -72,6 +72,59 @@ describe('placeTooltip', () => {
 
   it('у нижнего края — над якорем', () => {
     expect(placeTooltip({ x: 500, y: 560 }, tip, view).top).toBe(442);
+  });
+
+  describe('рядом с габаритом региона (#101)', () => {
+    const at = (box: { left: number; top: number; right: number; bottom: number }, x = 500, y = 300) =>
+      placeTooltip({ x, y, box, minLeft: 64 }, tip, view);
+    const overlaps = (p: { left: number; top: number }, b: { left: number; top: number; right: number; bottom: number }) =>
+      p.left < b.right && p.left + tip.width > b.left && p.top < b.bottom && p.top + tip.height > b.top;
+
+    it('справа, на высоте названия', () => {
+      const box = { left: 400, top: 200, right: 600, bottom: 400 };
+      expect(at(box)).toEqual({ left: 606, top: 250 });
+    });
+
+    it('у правого края — слева', () => {
+      const box = { left: 700, top: 200, right: 900, bottom: 400 };
+      expect(at(box, 800)).toEqual({ left: 494, top: 250 });
+    });
+
+    it('слева — левая полоса: снизу', () => {
+      const box = { left: 200, top: 100, right: 850, bottom: 300 };
+      const p = at(box, 500, 200);
+      expect(p).toEqual({ left: 400, top: 306 });
+      expect(overlaps(p, box)).toBe(false);
+    });
+
+    it('снизу не помещается — сверху', () => {
+      const box = { left: 200, top: 250, right: 850, bottom: 550 };
+      expect(at(box, 500, 400)).toEqual({ left: 400, top: 144 });
+    });
+
+    it('не правее левой полосы и не за краем окна', () => {
+      const box = { left: 100, top: 250, right: 850, bottom: 550 };
+      expect(at(box, 120, 400).left).toBe(72);
+    });
+
+    it('ни одна сторона не подошла — у якоря, как без габарита', () => {
+      const box = { left: 100, top: 50, right: 950, bottom: 550 };
+      expect(at(box)).toEqual(placeTooltip({ x: 500, y: 300 }, tip, view));
+    });
+  });
+});
+
+describe('headingTo (#101)', () => {
+  const tip = { left: 300, top: 50, right: 500, bottom: 150 };
+  it('к подсказке — да, в сторону и назад — нет', () => {
+    expect(headingTo({ x: 100, y: 100 }, { x: 160, y: 100 }, tip)).toBe(true);
+    expect(headingTo({ x: 100, y: 100 }, { x: 160, y: 85 }, tip)).toBe(true);
+    expect(headingTo({ x: 100, y: 100 }, { x: 100, y: 160 }, tip)).toBe(false);
+    expect(headingTo({ x: 100, y: 100 }, { x: 60, y: 100 }, tip)).toBe(false);
+  });
+  it('мышь стоит или подсказка не измерена — нет', () => {
+    expect(headingTo({ x: 100, y: 100 }, { x: 100, y: 100 }, tip)).toBe(false);
+    expect(headingTo({ x: 100, y: 100 }, { x: 160, y: 100 }, { left: 0, top: 0, right: 0, bottom: 0 })).toBe(false);
   });
 });
 
