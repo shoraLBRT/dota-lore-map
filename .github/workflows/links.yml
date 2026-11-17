@@ -1,0 +1,62 @@
+name: Links
+
+# Еженедельная проверка внешних ссылок на картинки и видео (#109, ARCHITECTURE A7).
+# Опрашивает только CDN Valve и YouTube oEmbed (scripts/check-links.mjs). При сломанных
+# ссылках создаёт или обновляет один issue «Сломанные внешние ссылки» с меткой bug и падает.
+
+on:
+  schedule:
+    - cron: '17 6 * * 1' # понедельник, 06:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: links
+  cancel-in-progress: false
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Проверить ссылки
+        id: check
+        shell: bash
+        run: |
+          set +e
+          node scripts/check-links.mjs > links.txt
+          code=$?
+          set -e
+          cat links.txt
+          { echo '### Внешние ссылки'; echo; echo '```'; cat links.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+      - name: Создать или обновить issue
+        if: steps.check.outputs.code != '0'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TITLE: Сломанные внешние ссылки
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          {
+            echo "Еженедельная проверка ссылок (\`scripts/check-links.mjs\`) нашла сломанные адреса — [запуск]($RUN_URL)."
+            echo
+            echo '```'
+            cat links.txt
+            echo '```'
+          } > body.md
+          num=$(gh issue list --state open --label bug --search "in:title \"$TITLE\"" --json number,title \
+            --jq "map(select(.title == env.TITLE)) | .[0].number // empty")
+          if [ -n "$num" ]; then
+            gh issue comment "$num" --body-file body.md
+          else
+            gh issue create --title "$TITLE" --label bug --body-file body.md
+          fi
+          exit 1
