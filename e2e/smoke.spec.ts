@@ -53,12 +53,12 @@ test('интро → регион → место → галерея → поис
 
   // Поиск героя: выбор открывает профиль на экране героя (место Айсрак в регионе Айсрак), закрытие оставляет героя.
   await tap(page.getByRole('button', { name: 'Поиск героя' }));
-  await page.getByRole('combobox', { name: 'Герой, регион или место' }).fill('cm');
-  await tap(page.getByRole('option', { name: /Crystal Maiden/ }));
-  await expectHash(page, '#/r/icewrack/icewrack?hero=crystal_maiden&profile');
-  await expect(panelHeading(page)).toHaveText('Crystal Maiden');
+  await page.getByRole('combobox', { name: 'Герой, регион или место' }).fill('ww');
+  await tap(page.getByRole('option', { name: /Winter Wyvern/ }));
+  await expectHash(page, '#/r/icewrack/icewrack?hero=winter_wyvern&profile');
+  await expect(panelHeading(page)).toHaveText('Winter Wyvern');
   await expectNoHorizontalScroll(page);
   await tap(page.getByRole('button', { name: 'Закрыть профиль' }));
-  await expectHash(page, '#/r/icewrack/icewrack?hero=crystal_maiden');
+  await expectHash(page, '#/r/icewrack/icewrack?hero=winter_wyvern');
   await expectNoHorizontalScroll(page);
 });

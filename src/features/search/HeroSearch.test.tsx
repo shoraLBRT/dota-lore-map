@@ -54,14 +54,14 @@ describe('поиск героя и нити', () => {
   it('одно место — камера к нему; профиль с именем, ссылкой ↗ и крошкой «назад»', () => {
     window.location.hash = '#/world';
     render(<App />);
-    fireEvent.change(openSearch(), { target: { value: 'cm' } });
+    fireEvent.change(openSearch(), { target: { value: 'ww' } });
     fireEvent.click(screen.getAllByRole('option')[0]!);
-    expect(window.location.hash).toBe('#/r/icewrack/icewrack?hero=crystal_maiden&profile');
-    const plaque = profile('Crystal Maiden')!;
-    within(plaque).getByRole('heading', { name: 'Crystal Maiden' });
-    expect(within(plaque).getByRole('link', { name: /^dota2.com: Crystal Maiden, официальная страница/ })).toHaveAttribute(
+    expect(window.location.hash).toBe('#/r/icewrack/icewrack?hero=winter_wyvern&profile');
+    const plaque = profile('Winter Wyvern')!;
+    within(plaque).getByRole('heading', { name: 'Winter Wyvern' });
+    expect(within(plaque).getByRole('link', { name: /^dota2.com: Winter Wyvern, официальная страница/ })).toHaveAttribute(
       'href',
-      'https://www.dota2.com/hero/crystalmaiden?l=russian',
+      'https://www.dota2.com/hero/winterwyvern?l=russian',
     );
     expect(threads()).toHaveLength(0);
     // Место героя подсвечено, остальные маркеры региона приглушены.
@@ -70,8 +70,8 @@ describe('поиск героя и нити', () => {
 
     const icewrack = placeName(getPlace('icewrack', 'icewrack')!, 'ru');
     fireEvent.click(within(plaque).getByRole('button', { name: 'Закрыть профиль' }));
-    expect(profile('Crystal Maiden')).toBeNull();
-    expect(window.location.hash).toBe('#/r/icewrack/icewrack?hero=crystal_maiden');
+    expect(profile('Winter Wyvern')).toBeNull();
+    expect(window.location.hash).toBe('#/r/icewrack/icewrack?hero=winter_wyvern');
     // Под профилем была панель места — она и вернулась.
     expect(screen.getByRole('complementary', { name: icewrack })).toBeInTheDocument();
   });
@@ -121,8 +121,8 @@ describe('поиск героя и нити', () => {
     fireEvent.pointerLeave(tusk);
     expect(threads()).toHaveLength(0);
     // У героя с одним местом нитей нет.
-    const cm = screen.getByRole('button', { name: /^Crystal Maiden: открыть профиль/ }).closest('li')!;
-    fireEvent.focus(cm);
+    const ww = screen.getByRole('button', { name: /^Winter Wyvern: открыть профиль/ }).closest('li')!;
+    fireEvent.focus(ww);
     expect(threads()).toHaveLength(0);
   });
 

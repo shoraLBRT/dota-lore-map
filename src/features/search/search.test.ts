@@ -56,7 +56,7 @@ describe('места героя', () => {
   });
 
   it('одно место — к нему; все места в одном регионе — регион', () => {
-    expect(heroScreen(getHero('crystal_maiden')!)).toEqual({ name: 'place', regionId: 'icewrack', placeSlug: 'icewrack' });
+    expect(heroScreen(getHero('winter_wyvern')!)).toEqual({ name: 'place', regionId: 'icewrack', placeSlug: 'icewrack' });
     expect(heroScreen(getHero('pudge')!)).toEqual({ name: 'region', regionId: 'quoidge' });
   });
 
