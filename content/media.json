@@ -189,6 +189,84 @@
       },
       "credit": "Valve Corporation",
       "sourceUrl": "https://www.dota2.com/newsentry/2882822214138792458"
+    },
+    {
+      "id": "artifact-omexe-arena",
+      "type": "image",
+      "src": { "ru": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10183_large_russian.5b17e1b63eb15d58294f69cd3aef1f232d189f99.png", "en": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10183_large_english.33db6236abb7949d27926d07a7eadefdb66c33f3.png" },
+      "title": { "ru": "«Арена Омекс»", "en": "The Omexe Arena" },
+      "subtitle": { "ru": "Арт", "en": "Art" },
+      "description": {
+        "ru": "Карточка Artifact (Valve, 2018), иллюстрация — Dimitar Marinski. Ярусы трибун, забитые зрителями, и одинокий боец с топором на изрытой песчаной арене.",
+        "en": "Artifact card (Valve, 2018), illustrated by Dimitar Marinski. Tiers of packed stands and a lone axe-wielding fighter on the churned sand of the arena."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://store.steampowered.com/app/583950/"
+    },
+    {
+      "id": "artifact-tyler-estate",
+      "type": "image",
+      "src": { "ru": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10154_large_russian.42759f6d5859f939c2466aa5572da9a0fbd20080.png", "en": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10154_large_english.059a0207bb605b2094724a9380c901ac8eb3c7ef.png" },
+      "title": { "ru": "«Поместье Тайлер»", "en": "The Tyler Estate" },
+      "subtitle": { "ru": "Арт", "en": "Art" },
+      "description": {
+        "ru": "Карточка Artifact (Valve, 2018), иллюстрация — Dimitar Marinski. Ночью за коваными воротами и заросшим садом светятся окна огромного особняка.",
+        "en": "Artifact card (Valve, 2018), illustrated by Dimitar Marinski. At night, behind wrought-iron gates and an overgrown garden, the windows of a vast mansion glow."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://store.steampowered.com/app/583950/"
+    },
+    {
+      "id": "artifact-iron-fog-goldmine",
+      "type": "image",
+      "src": { "ru": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10165_large_russian.95e54b7d638209c67968b163f11bfee4d0f31e9a.png", "en": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10165_large_english.9bd1a3b4ff1c07841fb1947d3cdaa21039ce8e2e.png" },
+      "title": { "ru": "«Рудник Железного тумана»", "en": "Iron Fog Goldmine" },
+      "subtitle": { "ru": "Арт", "en": "Art" },
+      "description": {
+        "ru": "Карточка Artifact (Valve, 2018), иллюстрация — James Paick. В пещере закованные рудокопы долбят золотую жилу, а над ними стоит надсмотрщик в богатой шубе.",
+        "en": "Artifact card (Valve, 2018), illustrated by James Paick. In a cavern, chained miners hack at a vein of gold while an overseer in a rich fur coat looks down on them."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://store.steampowered.com/app/583950/"
+    },
+    {
+      "id": "artifact-roseleaf-wall",
+      "type": "image",
+      "src": { "ru": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10120_large_russian.10e26909b20d3722a5aa78041ce25c7ae8fbc5c9.png", "en": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10120_large_english.0c8b471008d0a538774ac8d62aa7b25496045d32.png" },
+      "title": { "ru": "«Стена Розолиста»", "en": "Roseleaf Wall" },
+      "subtitle": { "ru": "Арт", "en": "Art" },
+      "description": {
+        "ru": "Карточка Artifact (Valve, 2018), иллюстрация — Pauline Voss. Живая стена из зелени и жёлтых роз, над которой порхают светящиеся бабочки.",
+        "en": "Artifact card (Valve, 2018), illustrated by Pauline Voss. A living wall of greenery and yellow roses with glowing butterflies drifting over it."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://store.steampowered.com/app/583950/"
+    },
+    {
+      "id": "artifact-stonehall-elite",
+      "type": "image",
+      "src": { "ru": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10131_large_russian.53b5a17652450f84438420924f77e49152a53846.png", "en": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10131_large_english.2ee44440f5038ffb3f7391d06feb68e6f87e05f9.png" },
+      "title": { "ru": "«Элитный воин Стоунхолла»", "en": "Stonehall Elite" },
+      "subtitle": { "ru": "Арт", "en": "Art" },
+      "description": {
+        "ru": "Карточка Artifact (Valve, 2018), иллюстрация — Jason Kang. Воин в золочёных доспехах с рогатым шлемом и красным плащом держит на плече меч.",
+        "en": "Artifact card (Valve, 2018), illustrated by Jason Kang. A soldier in gilded armour, horned helmet and red cloak, a sword resting on his shoulder."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://store.steampowered.com/app/583950/"
+    },
+    {
+      "id": "artifact-pit-fighter-quoidge",
+      "type": "image",
+      "src": { "ru": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10083_large_russian.b7b8afa2f31a7c08fcfa76c44ca9533a0e681a63.png", "en": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10083_large_english.4ad7efe3f45ccebdd3f8536eeb3718bb368bed3a.png" },
+      "title": { "ru": "«Гладиатор из Квойджа»", "en": "Pit Fighter of Quoidge" },
+      "subtitle": { "ru": "Арт", "en": "Art" },
+      "description": {
+        "ru": "Карточка Artifact (Valve, 2018), иллюстрация — Daarken. Сшитый из кусков бледный боец скалится в лунном свете — житель города нежити.",
+        "en": "Artifact card (Valve, 2018), illustrated by Daarken. A pale fighter stitched together from pieces snarls in the moonlight — a resident of the undead city."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://store.steampowered.com/app/583950/"
     }
   ]
 }

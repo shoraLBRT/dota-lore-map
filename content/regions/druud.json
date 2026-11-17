@@ -28,7 +28,8 @@
       "description": {
         "ru": "Древняя арена, где кланы кентавров тысячелетиями сходятся в смертельных боях до последнего стоящего на ногах. Победитель получает Великий пояс Омекса; его носит Centaur Warrunner, который хотел бы однажды лечь в эту землю.",
         "en": "An ancient arena where the centaur clans have met for millennia to fight to the last one standing. The victor is awarded the Great Belt of Omexe — now worn by Centaur Warrunner, who wishes to be buried in these grounds one day."
-      }
+      },
+      "media": ["artifact-omexe-arena"]
     }
   }
 }

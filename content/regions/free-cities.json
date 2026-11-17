@@ -43,7 +43,8 @@
       "description": {
         "ru": "Лечебница-тюрьма для магов-преступников, которая следит за немногими, но непреложными законами Плачущей Розы. Над узниками ставят опыты, а беглецов выслеживают агенты поместья — среди них Anti-Mage и Silencer.",
         "en": "An asylum for the criminally wizardous that enforces Weeping Rose's few but absolute laws. Inmates are experimented upon, and escapees are hunted down by the Estate's agents — Anti-Mage and Silencer among them."
-      }
+      },
+      "media": ["artifact-tyler-estate"]
     },
     "Sundered Moon": {
       "name": { "ru": "«Расколотая Луна»", "en": "The Sundered Moon" },
@@ -60,7 +61,8 @@
       "description": {
         "ru": "Город машин и механизмов под властью Медного Глашатая, одного из королей-купцов Ревтела. Хозяин гордится его точностью и порядком, но Миреска говорит, что с людьми там творят страшные вещи. Где он находится, неизвестно — мы поместили его рядом с Ревтелом.",
         "en": "A city of industry and machinery run by the Brass Herald, one of Revtel's merchant kings. He boasts of its precision; Mireska says terrible things are done to people there. Its location is unknown — we placed it near Revtel."
-      }
+      },
+      "media": ["artifact-iron-fog-goldmine"]
     },
     "Highseat": {
       "name": { "ru": "Хайсит", "en": "Highseat" },

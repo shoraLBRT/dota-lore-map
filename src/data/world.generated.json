@@ -1789,6 +1789,9 @@
         "ru": "Имперский город Стоунхолл и земли вокруг него — плодородные равнины, реки, озёра и десятки городов. На троне сидит император Галаний, но славу империи принесли её армии, прежде всего Бронзовый легион. Стоунхолл растёт за счёт соседей: легион осаждает город, присоединяет его и забирает годных к службе пленников в рекруты. Многие называют эти войны напрасным кровопролитием.\n\nРасположение здешних городов известно на редкость подробно: Тарес и Сашир — на юге, Таррин — на юго-западе, Миллтаун, Эмбер и Колдбэнкские равнины — на западе, Линкасл и Мистмилл — на востоке, озеро Лайтгласс — на севере. Но кроме места на карте лор почти ничего о них не рассказывает.\n\nОднажды посреди городской площади открылся разлом, и в столицу хлынула орда Бездны во главе с Underlord. Legion Commander — командир Трездин — со своим легионом отбросила её, но почти все бойцы погибли, а город лёг в руины; с тех пор она ведёт личную войну против Бездны. Из этих же краёв родом Phantom Assassin: она родилась в купеческой семье в Таресе.",
         "en": "The imperial city of Stonehall and the lands around it — fertile plains, rivers, lakes and dozens of towns. Emperor Galanius holds the throne, but the empire owes its reputation to its armies, above all the Bronze Legion. Stonehall grows at its neighbours' expense: the Legion besieges a city, annexes it and drafts any captives fit to fight. Plenty of people call these wars needless bloodshed.\n\nThe layout of the realm is known in unusual detail — Tares and Sashire to the south, Tarrin to the south-west, Milltown, Ember and the Coldbank Plains to the west, Lincastle and Mistmill to the east, Lake Lightglass to the north. Beyond their bearings, though, the lore says very little about most of them.\n\nOne day a rift tore open in the city square and an abyssal horde led by the Underlord poured into the capital. Legion Commander Tresdin and her Legion drove it back, but nearly every soldier fell and the city was left in ruins; she has waged a personal war on the Abyss ever since. Phantom Assassin also hails from these lands — she was born to a merchant family in Tares."
       },
+      "media": [
+        "artifact-stonehall-elite"
+      ],
       "layout": {
         "polygon": [
           [
@@ -1935,6 +1938,9 @@
               "en": "Capital of the empire and home of the Bronze Legion, patrolled by an elite royal guard and known for its fine schools. Much of the city still lies in ruins after the abyssal breach, but Stonehall did not fall."
             }
           },
+          "media": [
+            "artifact-stonehall-elite"
+          ],
           "pos": [
             0.455,
             0.37
@@ -2036,6 +2042,9 @@
               "en": "A vhoul city turned battlefield: the Bronze Legion laid an ambush here for the Red Mist army while the townsfolk rose up against both. The battle went disastrously for Tresdin, and Mireska later picked a Legion banner out of the ruins."
             }
           },
+          "media": [
+            "artifact-roseleaf-wall"
+          ],
           "pos": [
             0.405,
             0.355
@@ -2737,7 +2746,7 @@
           "slug": "tyler-estate",
           "capital": false,
           "placement": "lore",
-          "significance": "link",
+          "significance": "event",
           "note": "в Weeping Rose",
           "text": {
             "name": {
@@ -2753,6 +2762,9 @@
               "en": "An asylum for the criminally wizardous that enforces Weeping Rose's few but absolute laws. Inmates are experimented upon, and escapees are hunted down by the Estate's agents — Anti-Mage and Silencer among them."
             }
           },
+          "media": [
+            "artifact-tyler-estate"
+          ],
           "pos": [
             0.64,
             0.415
@@ -2792,7 +2804,7 @@
           "slug": "iron-fog",
           "capital": false,
           "placement": "ours",
-          "significance": "minor",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Железный Туман",
@@ -2807,6 +2819,9 @@
               "en": "A city of industry and machinery run by the Brass Herald, one of Revtel's merchant kings. He boasts of its precision; Mireska says terrible things are done to people there. Its location is unknown — we placed it near Revtel."
             }
           },
+          "media": [
+            "artifact-iron-fog-goldmine"
+          ],
           "pos": [
             0.65,
             0.345
@@ -2877,6 +2892,9 @@
         "ru": "На севере края стоит Квойдж — город, где нежить живёт вполне цивилизованно бок о бок с неопрятными мясниками. Говорят, его создал бог Марс, возможно на месте давней битвы, а из развлечений здесь в почёте разве что бои в ямах. В дне пути лежит Дымная Гавань — порт, где не задают лишних вопросов.\n\nДалеко на юге, между Хазадальскими пустошами и Друудом, тянутся Поля Вечной Бойни. Это проклятая земля: тела павших не гниют и не уходят в почву, как глубоко ни копай. Ночами здесь трудится Pudge — разделывает мёртвых, чтобы к рассвету поле было чистым, и давно уже не только разделывает.\n\nК этому краю мы отнесли и собор Румуска: его клирики совершили паломничество на Поля, чтобы очистить их от скверны Мёртвого бога. Из стен собора вышел Necrophos — монах, который подхватил чуму, но вместо того чтобы умереть, стал её пророком.",
         "en": "In the north stands Quoidge, a city where the undead lead perfectly civilised lives alongside slovenly butchers. The god Mars is said to have founded it, perhaps on the site of some old battle, and pit fighting is about the only sport in town. A day's journey away lies Smoke Harbor, a port that asks no questions.\n\nFar to the south, between the Hazhadal Barrens and Druud, stretch the Fields of Endless Carnage — a cursed land where the fallen never rot and never return to the soil, however deep the grave. Here Pudge works through the night, carving up the dead so the field is clear by dawn, and long ago acquired a taste for the job.\n\nWe also place the Cathedral of Rumusque here: its clerics once marched on the Fields to purge them of the Dead God's taint. The Necrophos rose from within its walls — a monk who caught the plague and, instead of dying, became its prophet."
       },
+      "media": [
+        "artifact-pit-fighter-quoidge"
+      ],
       "layout": {
         "polygon": [
           [
@@ -3016,7 +3034,7 @@
           "slug": "quoidge",
           "capital": true,
           "placement": "lore",
-          "significance": "link",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Квойдж",
@@ -3031,6 +3049,9 @@
               "en": "A city of civilised undead far north of the Fields and south of Skywrath, said to have been founded by Mars. Pudge happily gives tours of the city and its grim surroundings, from the Plains of Ceaseless Torment to the River of Woe."
             }
           },
+          "media": [
+            "artifact-pit-fighter-quoidge"
+          ],
           "pos": [
             0.73,
             0.345
@@ -3462,6 +3483,9 @@
               "en": "An ancient arena where the centaur clans have met for millennia to fight to the last one standing. The victor is awarded the Great Belt of Omexe — now worn by Centaur Warrunner, who wishes to be buried in these grounds one day."
             }
           },
+          "media": [
+            "artifact-omexe-arena"
+          ],
           "pos": [
             0.735,
             0.69
@@ -11678,6 +11702,138 @@
       },
       "credit": "Valve Corporation",
       "sourceUrl": "https://www.dota2.com/newsentry/2882822214138792458"
+    },
+    {
+      "id": "artifact-omexe-arena",
+      "type": "image",
+      "src": {
+        "ru": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10183_large_russian.5b17e1b63eb15d58294f69cd3aef1f232d189f99.png",
+        "en": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10183_large_english.33db6236abb7949d27926d07a7eadefdb66c33f3.png"
+      },
+      "title": {
+        "ru": "«Арена Омекс»",
+        "en": "The Omexe Arena"
+      },
+      "subtitle": {
+        "ru": "Арт",
+        "en": "Art"
+      },
+      "description": {
+        "ru": "Карточка Artifact (Valve, 2018), иллюстрация — Dimitar Marinski. Ярусы трибун, забитые зрителями, и одинокий боец с топором на изрытой песчаной арене.",
+        "en": "Artifact card (Valve, 2018), illustrated by Dimitar Marinski. Tiers of packed stands and a lone axe-wielding fighter on the churned sand of the arena."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://store.steampowered.com/app/583950/"
+    },
+    {
+      "id": "artifact-tyler-estate",
+      "type": "image",
+      "src": {
+        "ru": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10154_large_russian.42759f6d5859f939c2466aa5572da9a0fbd20080.png",
+        "en": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10154_large_english.059a0207bb605b2094724a9380c901ac8eb3c7ef.png"
+      },
+      "title": {
+        "ru": "«Поместье Тайлер»",
+        "en": "The Tyler Estate"
+      },
+      "subtitle": {
+        "ru": "Арт",
+        "en": "Art"
+      },
+      "description": {
+        "ru": "Карточка Artifact (Valve, 2018), иллюстрация — Dimitar Marinski. Ночью за коваными воротами и заросшим садом светятся окна огромного особняка.",
+        "en": "Artifact card (Valve, 2018), illustrated by Dimitar Marinski. At night, behind wrought-iron gates and an overgrown garden, the windows of a vast mansion glow."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://store.steampowered.com/app/583950/"
+    },
+    {
+      "id": "artifact-iron-fog-goldmine",
+      "type": "image",
+      "src": {
+        "ru": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10165_large_russian.95e54b7d638209c67968b163f11bfee4d0f31e9a.png",
+        "en": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10165_large_english.9bd1a3b4ff1c07841fb1947d3cdaa21039ce8e2e.png"
+      },
+      "title": {
+        "ru": "«Рудник Железного тумана»",
+        "en": "Iron Fog Goldmine"
+      },
+      "subtitle": {
+        "ru": "Арт",
+        "en": "Art"
+      },
+      "description": {
+        "ru": "Карточка Artifact (Valve, 2018), иллюстрация — James Paick. В пещере закованные рудокопы долбят золотую жилу, а над ними стоит надсмотрщик в богатой шубе.",
+        "en": "Artifact card (Valve, 2018), illustrated by James Paick. In a cavern, chained miners hack at a vein of gold while an overseer in a rich fur coat looks down on them."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://store.steampowered.com/app/583950/"
+    },
+    {
+      "id": "artifact-roseleaf-wall",
+      "type": "image",
+      "src": {
+        "ru": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10120_large_russian.10e26909b20d3722a5aa78041ce25c7ae8fbc5c9.png",
+        "en": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10120_large_english.0c8b471008d0a538774ac8d62aa7b25496045d32.png"
+      },
+      "title": {
+        "ru": "«Стена Розолиста»",
+        "en": "Roseleaf Wall"
+      },
+      "subtitle": {
+        "ru": "Арт",
+        "en": "Art"
+      },
+      "description": {
+        "ru": "Карточка Artifact (Valve, 2018), иллюстрация — Pauline Voss. Живая стена из зелени и жёлтых роз, над которой порхают светящиеся бабочки.",
+        "en": "Artifact card (Valve, 2018), illustrated by Pauline Voss. A living wall of greenery and yellow roses with glowing butterflies drifting over it."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://store.steampowered.com/app/583950/"
+    },
+    {
+      "id": "artifact-stonehall-elite",
+      "type": "image",
+      "src": {
+        "ru": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10131_large_russian.53b5a17652450f84438420924f77e49152a53846.png",
+        "en": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10131_large_english.2ee44440f5038ffb3f7391d06feb68e6f87e05f9.png"
+      },
+      "title": {
+        "ru": "«Элитный воин Стоунхолла»",
+        "en": "Stonehall Elite"
+      },
+      "subtitle": {
+        "ru": "Арт",
+        "en": "Art"
+      },
+      "description": {
+        "ru": "Карточка Artifact (Valve, 2018), иллюстрация — Jason Kang. Воин в золочёных доспехах с рогатым шлемом и красным плащом держит на плече меч.",
+        "en": "Artifact card (Valve, 2018), illustrated by Jason Kang. A soldier in gilded armour, horned helmet and red cloak, a sword resting on his shoulder."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://store.steampowered.com/app/583950/"
+    },
+    {
+      "id": "artifact-pit-fighter-quoidge",
+      "type": "image",
+      "src": {
+        "ru": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10083_large_russian.b7b8afa2f31a7c08fcfa76c44ca9533a0e681a63.png",
+        "en": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10083_large_english.4ad7efe3f45ccebdd3f8536eeb3718bb368bed3a.png"
+      },
+      "title": {
+        "ru": "«Гладиатор из Квойджа»",
+        "en": "Pit Fighter of Quoidge"
+      },
+      "subtitle": {
+        "ru": "Арт",
+        "en": "Art"
+      },
+      "description": {
+        "ru": "Карточка Artifact (Valve, 2018), иллюстрация — Daarken. Сшитый из кусков бледный боец скалится в лунном свете — житель города нежити.",
+        "en": "Artifact card (Valve, 2018), illustrated by Daarken. A pale fighter stitched together from pieces snarls in the moonlight — a resident of the undead city."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://store.steampowered.com/app/583950/"
     }
   ]
 }
