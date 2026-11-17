@@ -70,16 +70,24 @@ describe('check-links: запросы', () => {
     expect(calls[1].headers.Range).toBe('bytes=0-0');
   });
 
-  it('404 — сломан без повтора; 503 и ошибка сети — один повтор', async () => {
+  it('404 — сломан без повтора; 503 на HEAD — GET с Range; 5xx и ошибка сети — повторы', async () => {
+    const noWait = [0, 0];
     let calls = [];
-    expect(await checkUrl('https://cdn.steamstatic.com/a.png', fakeFetch({ HEAD: 404 }, calls))).toBe('HTTP 404');
+    expect(await checkUrl('https://cdn.steamstatic.com/a.png', fakeFetch({ HEAD: 404 }, calls), noWait)).toBe('HTTP 404');
     expect(calls).toHaveLength(1);
     calls = [];
-    expect(await checkUrl('https://cdn.steamstatic.com/a.png', fakeFetch({ HEAD: (n) => (n === 1 ? 503 : 200) }, calls))).toBeNull();
-    expect(calls).toHaveLength(2);
+    expect(await checkUrl('https://cdn.steamstatic.com/a.png', fakeFetch({ HEAD: 503, GET: 206 }, calls), noWait)).toBeNull();
+    expect(calls.map((c) => c.method)).toEqual(['HEAD', 'GET']);
     calls = [];
-    expect(await checkUrl('https://cdn.steamstatic.com/a.png', fakeFetch({ HEAD: new Error('down') }, calls))).toBe('down');
-    expect(calls).toHaveLength(2);
+    const flaky = fakeFetch({ HEAD: 503, GET: (n) => (n < 4 ? 503 : 206) }, calls);
+    expect(await checkUrl('https://cdn.steamstatic.com/a.png', flaky, noWait)).toBeNull();
+    expect(calls).toHaveLength(4);
+    calls = [];
+    expect(await checkUrl('https://cdn.steamstatic.com/a.png', fakeFetch({ HEAD: 503, GET: 503 }, calls), noWait)).toBe('HTTP 503');
+    expect(calls).toHaveLength(6);
+    calls = [];
+    expect(await checkUrl('https://cdn.steamstatic.com/a.png', fakeFetch({ HEAD: new Error('down') }, calls), noWait)).toBe('down');
+    expect(calls).toHaveLength(3);
   });
 
   it('oEmbed опрашивается GET', async () => {

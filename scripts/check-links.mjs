@@ -71,14 +71,25 @@ async function request(fetchFn, url, method) {
   return res.status;
 }
 
-/** HEAD (oEmbed и ответ 405 — GET с Range), один повтор. Возвращает null или описание ошибки. */
-export async function checkUrl(url, fetchFn = fetch) {
+// Паузы перед повторами: CDN Valve временами отвечает раннерам GitHub 503 на HEAD.
+export const RETRY_DELAYS_MS = [2_000, 6_000];
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+/**
+ * HEAD (для oEmbed — GET); на HEAD с ответом 405, 429 или 5xx — сразу GET с Range.
+ * 5xx, 429 и ошибки сети повторяются с паузами RETRY_DELAYS_MS, 4xx — нет.
+ * Возвращает null или описание ошибки.
+ */
+export async function checkUrl(url, fetchFn = fetch, delays = RETRY_DELAYS_MS) {
   const firstMethod = url.startsWith('https://www.youtube.com/oembed') ? 'GET' : 'HEAD';
   let last = '';
-  for (let attempt = 0; attempt < 2; attempt++) {
+  for (let attempt = 0; attempt <= delays.length; attempt++) {
+    if (attempt > 0 && delays[attempt - 1] > 0) await sleep(delays[attempt - 1]);
     try {
       let status = await request(fetchFn, url, firstMethod);
-      if (status === 405 && firstMethod === 'HEAD') status = await request(fetchFn, url, 'GET');
+      if (firstMethod === 'HEAD' && (status === 405 || status === 429 || status >= 500)) {
+        status = await request(fetchFn, url, 'GET');
+      }
       if (status >= 200 && status < 300) return null;
       last = `HTTP ${status}`;
       if (status < 500 && status !== 429) break; // 4xx не повторяем: адрес сломан
