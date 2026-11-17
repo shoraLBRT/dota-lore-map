@@ -1,6 +1,11 @@
 {
   "hero": "skeleton_king",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
   "links": [
     {
       "region": "empire-of-bone",
@@ -12,14 +17,6 @@
       "doubt": "родина по тексту не названа; это его первое королевство, возможно, здесь он и родился"
     },
     {
-      "place": "Levinthal",
-      "event": "battle",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Wraith_King/Lore",
-      "note": "Осада владений Герцога Левинта; Остарион убил герцога в поединке"
-    },
-    {
       "place": "Throne of Bone",
       "event": "home",
       "source": "liquipedia",
@@ -29,21 +26,10 @@
       "doubt": "название места взято из инфобокса; в биографии сказано только о троне и дворце"
     }
   ],
-  "relations": [
-    {
-      "hero": "queenofpain",
-      "type": "love",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Wraith_King/Lore",
-      "note": "Остарион хочет сделать её своей королевой",
-      "doubt": "связь односторонняя: по тексту лора она отказала ему, тип отражает только его чувства"
-    }
-  ],
   "profile": {
     "summary": {
-      "ru": "Остарион, древний король Империи костей, ради бессмертия прошёл обряд превращения в ночь призраков и возродился как Wraith King. Теперь он сам выходит на поле боя с мечом и требует верности, которая переживает смерть.",
-      "en": "Ostarion, an ancient king who ruled a realm built from bone, went through a transformation during the Wraith-Night rite in pursuit of immortality and rose again as the Wraith King. Now he fights in person with his sword and demands loyalty that outlasts death."
+      "ru": "Король Ostarion веками строил королевство из костей врагов, веря, что не умрёт, пока растут башни его дворца. Поняв, что и кость не вечна, он обратился к энергии призраков, которую оставляют тёмные души. В ночь Wraith-Night он прошёл обряд превращения, заставив подданных собирать для него души, и наутро восстал Королём-призраком. Теперь он редко сидит на троне и сам выходит с мечом, требуя верности и после смерти.",
+      "en": "For ages King Ostarion built his kingdom from his enemies' bones, believing he could not die while his palace towers kept rising. Learning that even bone decays, he turned to wraith energy, the spirit some dark souls release at death. On Wraith-Night he underwent a rite of transformation fuelled by souls his subjects gathered, and rose at dawn as the Wraith King. Now he seldom sits on his throne, marching out sword in hand to demand loyalty beyond death."
     }
   },
   "unconfirmed": [
@@ -53,6 +39,8 @@
     "Dreadknight, Magnoceros, Ambinderath, Chainbreaker, The Bloodletter, Shadow Fiend: связи только из описаний предметов и реплик озвучки, не записаны.",
     "Поражение от Chainbreaker и The Bloodletter с помощью Silver Edge: из описания предмета в Underlords, не записано.",
     "Реплики озвучки о встречах, победах и поражениях (Monkey King, Juggernaut, Lycan, Visage, Undying, Underlord, Ember Spirit и другие): связи не записаны.",
-    "Ostarion's Father: персонаж, не герой, в связях не используется."
+    "Ostarion's Father: персонаж, не герой, в связях не используется.",
+    "Levinthal (осада и поединок с герцогом): только описание предмета Shattered Blade of Levinthal; связь снята при сверке.",
+    "Queen of Pain (любовь, отказ): только реплики озвучки; связь снята при сверке."
   ]
 }

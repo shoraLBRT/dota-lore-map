@@ -21,8 +21,12 @@
     }
   ],
   "path": [
-    { "place": "Fundamental Plane" },
-    { "region": "planes" }
+    {
+      "place": "Fundamental Plane"
+    },
+    {
+      "region": "planes"
+    }
   ],
   "relations": [
     {
@@ -31,47 +35,7 @@
       "source": "liquipedia",
       "via": "lore",
       "url": "https://liquipedia.net/dota2/Keeper_of_the_Light/Lore",
-      "note": "Младший брат Chaos Knight; текст лор-страницы называет его антитезой брата. Охота Chaos Knight за ним записана в описании, отдельной связи врага не добавлено."
-    },
-    {
-      "hero": "elder_titan",
-      "type": "family",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Keeper_of_the_Light/Lore",
-      "note": "Создатель: все Фундаменталы, включая его, дети Elder Titan. Тип «создатель» в модели не предусмотрен, записано как family."
-    },
-    {
-      "hero": "enigma",
-      "type": "family",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Keeper_of_the_Light/Lore",
-      "note": "Брат-Фундамент из детей Elder Titan. В лоре описана и вражда Enigma к нему; в данных одна связь на пару, поэтому выбрано родство."
-    },
-    {
-      "hero": "wisp",
-      "type": "family",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Keeper_of_the_Light/Lore",
-      "note": "Io (ключ wisp) — брат-Фундамент, один из детей Elder Titan по тексту лор-страницы."
-    },
-    {
-      "hero": "dawnbreaker",
-      "type": "family",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Keeper_of_the_Light/Lore",
-      "note": "Потомок: в разделе о родне лор-страница называет Dawnbreaker одной из его детей-светил; в своей биографии она приходится ему правнучкой."
-    },
-    {
-      "hero": "phoenix",
-      "type": "family",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Keeper_of_the_Light/Lore",
-      "note": "Далёкий потомок по тексту лор-страницы: Phoenix назван среди его детей-светил."
+      "note": "Старший брат-Фундаментал: поле family лор-страницы ссылается на биографию Chaos Knight, где Свет назван одним из Фундаменталов, которого он преследует. Биография Keeper of the Light говорит о преследующем его хаосе."
     }
   ],
   "profile": {
@@ -89,6 +53,7 @@
     "Omniknight: сближение с Light и вражда Chaos Knight описаны по репликам озвучки и ответам Chaos Knight. Не записано.",
     "Реплики озвучки без связи: Dark Willow, Monkey King, Snapfire, Pangolier, Void Spirit, Lina, Arc Warden, Bristleback, Rubick, Oracle, Legion Commander и другие. Тип связи не записан.",
     "Solar Goddess и Children of Light — божество и фракция, не герои; в relations не попадают.",
-    "Omniscience, Wings of Daybreak, Staff и Stag of the Northlight, наборы предметов — описания предметов, не записаны."
+    "Omniscience, Wings of Daybreak, Staff и Stag of the Northlight, наборы предметов — описания предметов, не записаны.",
+    "Elder Titan (создатель), Enigma и Io (братья-Фундаменталы), Dawnbreaker и Phoenix (потомки): в лор-странице держатся только на репликах озвучки (монологи Void Spirit и Dawnbreaker, реплики Elder Titan); биография Keeper of the Light их не называет. Связи сняты при сверке; записи keeper_of_the_light в elder_titan.json, enigma.json, wisp.json, dawnbreaker.json и phoenix.json остаются односторонними."
   ]
 }

@@ -1,6 +1,10 @@
 {
   "hero": "zuus",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore"
+  ],
   "links": [
     {
       "place": "Olympus",
@@ -42,8 +46,8 @@
   ],
   "profile": {
     "summary": {
-      "ru": "Zeus, владыка небес и отец богов, лишился силы и стал смертным: жена Гера поставила ему условие после бесконечных измен со смертными женщинами. Теперь он добивается побед в битвах, чтобы вернуть место среди бессмертных. Ради этого он ввязывается в войну Древних и торгуется за крохи своей прежней силы.",
-      "en": "Zeus, the king of the gods, was stripped of his power and made mortal by his wife Hera after endless affairs with mortal women. To earn back his immortal place he must keep winning battles. He is drawn into the war of the Ancients and bargains for scraps of his lost power."
+      "ru": "Zeus — владыка небес и отец богов, который смотрит на всех героев как на своих шумных, непослушных детей. Устав от его бесконечных романов со смертными, божественная супруга поставила условие: раз он так любит смертных, пусть сам станет одним из них. Если он докажет верность, то вернётся к ней бессмертным мужем, а если нет — умрёт среди своих созданий. Zeus принял условие, ведь бессмертие ему дороже смертных, и теперь доказывает, что достоин супруги, добиваясь побед на поле боя.",
+      "en": "Zeus, lord of the heavens and father of gods, regards every hero as one of his rowdy, unruly children. Tired of his endless affairs with mortal women, his divine wife set him a condition: since he loves mortals so much, he should become one. If he proves faithful he may return to her as her immortal husband; if not, he will die among his creatures. Zeus accepted, valuing immortality more than mortals, and now tries to prove himself worthy of her by winning on the battlefield."
     }
   },
   "unconfirmed": [

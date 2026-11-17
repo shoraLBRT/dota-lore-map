@@ -1,6 +1,11 @@
 {
   "hero": "bounty_hunter",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
   "links": [
     {
       "place": "Highseat",
@@ -8,46 +13,16 @@
       "source": "bio",
       "note": "по слухам из биографии он проник в лагерь повстанцев и доставил туда пойманного вора",
       "doubt": "в биографии это слух, который авторы сами не подтверждают; место в регионе «Free Cities» помечено нашим решением"
-    },
-    {
-      "place": "Revtel",
-      "event": "visit",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Bounty_Hunter/Lore",
-      "doubt": "только поле places инфобокса; реплика озвучки о поездке в Revtel не записана как основание"
-    },
-    {
-      "place": "Qaldin",
-      "event": "visit",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Bounty_Hunter/Lore",
-      "doubt": "только поле places инфобокса; связи с ассасинами Qaldin идут из описаний предметов и в unconfirmed"
-    },
-    {
-      "place": "Scintillant Waste",
-      "event": "visit",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Bounty_Hunter/Lore",
-      "doubt": "только поле places инфобокса; восточная часть пустоши идёт из описания набора и в unconfirmed"
-    },
-    {
-      "place": "White Spire",
-      "event": "visit",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Bounty_Hunter/Lore",
-      "doubt": "только поле places инфобокса; тип «дом» не подтверждён, ставки на бегах в White Spire идут из реплики озвучки"
     }
   ],
   "profile": {
     "summary": {
-      "ru": "Охотник за головами Гондар, известный в игре как Bounty Hunter, выслеживает любую цель за плату и забирает награду. Его происхождение остаётся загадкой: биография приводит несколько противоречивых слухов о его прошлом. Он действует из тени и почти не оставляет следов.",
-      "en": "Gondar, known in the game as Bounty Hunter, tracks down any target for a fee and collects the reward. His origins remain a mystery, and the official biography lists several contradictory rumors about his past. He works from the shadows and leaves few traces."
+      "ru": "О Gondar, охотнике за головами, ходит много историй, и никто не знает, какие правдивы. Одни говорят, что его бросили детёнышем, другие — что его вырастил охотник Soruq или гильдия воров. Его добыча шепчется, что это он нашёл скрывшегося короля-тирана Goff, проник в лагеря повстанцев у Highseat за вором White Cape и даже покончил с карьерой самого Soruq. За хорошую цену он найдёт кого угодно.",
+      "en": "Many tales are told of Gondar the Bounty Hunter, and no one knows which are true. Some say he was abandoned as a kit; others say he was raised by the hunter Soruq or by a guild of thieves. His quarry whispers that he found the hiding tyrant King Goff, slipped into the rebel camps at Highseat to take the thief White Cape, and even ended Soruq's own career. For the right price, he can find anyone."
     },
-    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/bounty_hunter.png"]
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/bounty_hunter.png"
+    ]
   },
   "unconfirmed": [
     "Родина не названа: биография и инфобокс дают только расы (djinn, giants, ursine), а не место; место рождения и роль Soruq в обучении — слухи",
@@ -55,6 +30,7 @@
     "White Spire как дом и гонки в нём: только реплика озвучки Pangolier",
     "Связи по репликам озвучки и инфобоксу без типа: Meepo и Pangolier (инфобокс heroes, тип не указан), Riki (соперничество из реплики), Dark Willow (реплики о Revtel и Roseleaf), Monkey King, Slark, Undying, Abaddon и другие враги и союзники из раздела реплик",
     "Наставник Tybara и ученик второго ранга: из описания предмета и слухов; Tybara, Soruq и Goff в проекте не герои, связей героев не создают",
-    "Панголинская гильдия: принадлежность Gondar — только по описаниям предметов"
+    "Панголинская гильдия: принадлежность Gondar — только по описаниям предметов",
+    "Revtel, Qaldin, Scintillant Waste, White Spire: только поле places инфобокса, которое опирается на реплики озвучки и описания предметов и наборов; в биографии этих мест нет. Связи сняты при сверке (White Spire раньше стоял как home)."
   ]
 }

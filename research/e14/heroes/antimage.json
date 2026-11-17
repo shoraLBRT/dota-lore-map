@@ -1,6 +1,11 @@
 {
   "hero": "antimage",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
   "links": [
     {
       "place": "Turstarkuri",
@@ -8,21 +13,12 @@
       "source": "bio",
       "note": "Монастырь в горах, где он провёл юность и откуда бежал после гибели монахов.",
       "doubt": "Биография не говорит, что он родился или вырос там: он пришёл пилигримом и не был принят в монастырь. Выбрано origin, потому что это единственное место его жизни до бегства; инфобокс Liquipedia тоже называет Turstarkuri родиной. Альтернатива — service (учился как послушник)."
-    },
-    {
-      "place": "Tyler Estate",
-      "event": "mention",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Anti-Mage/Lore",
-      "note": "Место указано в поле places инфобокса лор-страницы; события с участием героя там не описано.",
-      "doubt": "В биографии Tyler Estate не упоминается. Связь «работает на Tyler Estate» держится на карточке Artifact и репликах озвучки, поэтому в links не записана, см. unconfirmed."
     }
   ],
   "profile": {
     "summary": {
-      "ru": "Anti-Mage в юности был послушником горного монастыря Турстаркури. Когда легион Мертвого бога перебил монахов, он один уцелел и ушёл в другие земли. Поклявшись покончить с магией Мертвого бога и вообще с любым колдовством, он стал охотником на чародеев и сохранил монашескую выдержку.",
-      "en": "Anti-Mage was once a novice at the mountain monastery of Turstarkuri. When the Dead God's legion slaughtered the monks, he alone escaped and fled to distant lands. Vowing to end the Dead God's sorcery and magic itself, he hunts casters while keeping the monks' discipline."
+      "ru": "Юный пилигрим пришёл в горный монастырь Turstarkuri за мудростью и прислуживал монахам, ещё не будучи принятым в орден. Легион Мёртвого бога бросил на монастырь кости павших армий, обитель пала за две недели, а убитых монахов подняли жрецами Мёртвого бога. Уцелел только он и бежал в другие земли с несколькими свитками. Он поклялся покончить и с магами Мёртвого бога, и со всякой магией вообще.",
+      "en": "A young pilgrim came to the mountain monastery of Turstarkuri seeking wisdom and served the monks before being admitted to their order. The Legion of the Dead God hurled the bones of fallen armies at the monastery, which fell within two weeks, and the slain monks were raised as the Dead God's priests. He alone escaped to other lands with a few of the monastery's scrolls. He vowed to wipe out the Dead God's sorcerers and, beyond them, all magic."
     }
   },
   "unconfirmed": [
@@ -37,6 +33,7 @@
     "Terrorblade: в лоре сказано, что он задумывался братом Anti-Mage, но лор это, по словам самой страницы, убрал. Основание — реплика озвучки, связь не записана.",
     "Storm Spirit, Zeus, Dark Willow, Monkey King, Pangolier, Queen of Pain, Huskar и другие: реплики озвучки (соперничество, союзы, фразы при убийстве). По правилу партии 01 связей из них не выведено.",
     "Hero Atlas (Monster Hunter) и The Hunt: вне основного лора Dota 2, не привязаны к карте; Tyler Estate как родина из Hero Atlas не использована.",
-    "Artifact: карточка Collateral Damage описывает работу героя на Tyler Estate, не используется как основание."
+    "Artifact: карточка Collateral Damage описывает работу героя на Tyler Estate, не используется как основание.",
+    "Tyler Estate: только поле places инфобокса, которое опирается на карточку Artifact и реплики озвучки; в биографии места нет. Связь снята при сверке."
   ]
 }

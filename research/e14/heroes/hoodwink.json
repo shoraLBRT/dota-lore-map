@@ -1,6 +1,11 @@
 {
   "hero": "hoodwink",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
   "links": [
     {
       "place": "Krimwohl",
@@ -16,17 +21,11 @@
     }
   ],
   "path": [
-    { "place": "Krimwohl" },
-    { "place": "Tomo'kan" }
-  ],
-  "relations": [
     {
-      "hero": "enchantress",
-      "type": "family",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Hoodwink/Lore",
-      "note": "По инфобоксу лора Enchantress — тётя Hoodwink. Биография родню не называет."
+      "place": "Krimwohl"
+    },
+    {
+      "place": "Tomo'kan"
     }
   ],
   "profile": {
@@ -34,12 +33,15 @@
       "ru": "Hoodwink — наземная белка, выросшая на зелёных окраинах Кримвола. Когда королевство стало пожирать леса, она ушла на север, в туманную рощу Томо'кан, где научилась уворачиваться от хищников и ладить с местными бандитами. Теперь она досаждает тем, кто хочет покорить дикие земли, забирает их добро и помогает уцелевшим родичам вернуться к зелени.",
       "en": "Hoodwink is a ground squirrel who grew up on the green borders of Krimwohl before its kingdom started eating into the forests. She fled north into the mistwoods of Tomo'kan, where she learned to slip past the predators and to play the local outlaws against each other. Now she harasses anyone trying to tame the wilds, takes what she fancies, and steers surviving kin back toward the greenery."
     },
-    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/hoodwink.png"]
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/hoodwink.png"
+    ]
   },
   "unconfirmed": [
     "Обратная связь arc_warden (враг, Tomo'kan): биография и лор-страница Hoodwink Зета не называют. В трейлере Nemestice по википедии героя она с ним сражалась, но места нет и это трейлерный эпизод. Не записано; решение за владельцем.",
     "Обратная связь primal_beast (враг, Tomo'kan): ловец в биографии не назван. Связь на лор-странице Hoodwink держится на описании предмета Gleipnir и на странице Primal Beast. Не записано.",
     "Nishai: инфобокс лора перечисляет его среди мест героя без типа события; в биографии нет. Не записано (в regions.json есть как место региона hoven).",
-    "Списки Liquipedia (Puck, Sniper, Chen, Leshrac, Sagan, Snapfire, Krimwohl в роли врага и др., дядя, Witch Doctor, Night Stalker) основаны на репликах озвучки. Не записаны по правилу партии 01."
+    "Списки Liquipedia (Puck, Sniper, Chen, Leshrac, Sagan, Snapfire, Krimwohl в роли врага и др., дядя, Witch Doctor, Night Stalker) основаны на репликах озвучки. Не записаны по правилу партии 01.",
+    "Enchantress (тётя): поле family инфобокса опирается только на реплику озвучки («Auntie A»); биография родню не называет. Связь снята при сверке; запись hoodwink в enchantress.json остаётся односторонней."
   ]
 }

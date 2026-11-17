@@ -13,7 +13,7 @@
       "source": "liquipedia",
       "via": "infobox",
       "url": "https://liquipedia.net/dota2/Legion_Commander/Lore",
-      "note": "В инфобоксе лор-страницы Qine стоит в origins с пометкой «до пятнадцати лет». Биография об этом молчит, поэтому опора только на инфобокс."
+      "note": "Поле origins инфобокса: Qine до пятнадцати лет, со ссылкой на официальный комикс Tip of the Spear (стр. 2). Биография об этом молчит."
     },
     {
       "place": "Stonehall",
@@ -21,32 +21,6 @@
       "source": "bio",
       "doubt": "Инфобокс лор-страницы ставит Stonehall в origins с пометкой «потом». Здесь взято home: город — её база, где она командует легионом. Более ранний переезд отражён в path и в связи с Qine.",
       "note": "Тресдин командует Бронзовым легионом в Стоунхолле и собирает союзников для мести после нападения. Нападение бездны на город записано здесь же, отдельной связью battle не добавлялось: по правилу одно место — одна связь."
-    },
-    {
-      "place": "Roseleaf",
-      "event": "battle",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Legion_Commander/Lore",
-      "doubt": "Подробностей мало. Лор намекает, что Тресдин сама могла начать бой и приняла неудачные решения; о причинах исхода сказано только то, что легион потерпел поражение.",
-      "note": "Бронзовый легион под её командованием пытался сдержать армию Red Mist в Roseleaf. После битвы на месте нашли знамя легиона (Bullsnake Flag)."
-    },
-    {
-      "place": "Quath",
-      "event": "mention",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Legion_Commander/Lore",
-      "note": "Quath стоит в поле places инфобокса лор-страницы. В тексте о нём нет ни одного события с героиней."
-    },
-    {
-      "place": "Seven Hells",
-      "event": "mention",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Legion_Commander/Lore",
-      "doubt": "Место названо только в поле places инфобокса. Текст связывает героиню с абиссальной ордой, но о самом Seven Hells не говорит.",
-      "note": "Прямой связи героини с этим местом в тексте нет; упоминание оставлено как mention, чтобы не терять поле инфобокса."
     }
   ],
   "path": [
@@ -59,8 +33,8 @@
   ],
   "profile": {
     "summary": {
-      "ru": "Legion Commander — Тресдин, командующая Бронзовым легионом Стоунхолла. Она выросла в Qine, а после пятнадцати лет перебралась в Стоунхолл. Когда в город ворвалась армия бездны, она сразилась с её предводителем и поклялась мстить всем, кто пришёл из абиссальной орды. Позже её легион потерпел поражение в Roseleaf, и роль самой Тресдин в этом до сих пор неясна.",
-      "en": "Legion Commander is Tresdin, commander of the Bronze Legion in Stonehall. She grew up in Qine and moved to Stonehall after age fifteen. When an abyssal army broke into the city, she dueled its leader and swore revenge on the whole invading horde. Her legion later suffered a crushing defeat at Roseleaf, and her part in that disaster remains unclear."
+      "ru": "Tresdin командовала Бронзовым легионом Stonehall, когда посреди города без предупреждения открылся разлом и из него хлынула орда чудовищ из бездны. Легион пробился сквозь горящие улицы к разлому, где Tresdin сошлась в поединке с предводителем орды. Пока её воины гибли вокруг, она отсекла чудовищу лапу и пронзила его сердце, и портал закрылся. Город лежал в руинах, и Tresdin, собрав всех союзников, каких смогла, поклялась беспощадно отомстить силам бездны.",
+      "en": "Tresdin was leading the Bronze Legion of Stonehall when a rift tore open in the city without warning and a horde of abyssal monsters poured out. The legion fought through the burning streets to the rift, where Tresdin met the horde's champion in a duel. As her soldiers fell around her, she severed the beast's paw and drove her blade into its heart, and the portal collapsed. With the city in ruins, she gathered what allies she could and swore merciless vengeance on the forces of the abyss."
     }
   },
   "unconfirmed": [
@@ -71,6 +45,8 @@
     "Stonehall Royal Guard Set: описание набора говорит, что Тресдин, возможно, служила в королевской страже Стоунхолла. Это описание набора, не биография, поэтому связи со службой не записаны.",
     "Blades of Voth Domosh: описание предмета говорит о языке Ozkavosh и демонах. Это предмет, места не названы.",
     "Artifact: карта Stonehall Elite упоминает измену Rix и организацию Stonehall Elite. Источник Artifact, связь не записана.",
-    "Dark Carnival: сюжетная реплика про образование в Stonehall, без события с героиней. Связь не записана."
+    "Dark Carnival: сюжетная реплика про образование в Stonehall, без события с героиней. Связь не записана.",
+    "Roseleaf (бой с армией Red Mist): раздел лор-страницы держится только на репликах озвучки Pangolier и Dark Willow; связь снята при сверке.",
+    "Quath, Seven Hells: только поле places инфобокса, событий с героиней в тексте нет; связи сняты при сверке."
   ]
 }
