@@ -43,6 +43,7 @@ describe('ErrorBoundary', () => {
     expect(body).toContain(window.location.href);
     expect(body).toContain('Error: битые данные');
     expect(body).toContain('Экран: регион');
+    expect(url.searchParams.get('title')).toBe('Отзыв с карты: Ошибка в приложении: Error: битые данные');
     expect(link).toHaveAttribute('target', '_blank');
     expect(consoleError).toHaveBeenCalled();
   });

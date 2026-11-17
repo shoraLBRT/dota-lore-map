@@ -59,7 +59,9 @@ export function errorReportUrl(error: unknown, lang: Lang, href: string, hash: s
   } catch {
     // Адрес мог и сам быть причиной — тогда экран неизвестен, остаётся заставка.
   }
-  const message = `${TEXT[lang].message}:\n\n\`\`\`\n${errorText(error)}\n\`\`\``;
+  // Первая строка (она же выдержка в заголовке issue) — «Ошибка в приложении: Error: …», ниже — текст целиком.
+  const text = errorText(error);
+  const message = `${TEXT[lang].message}: ${text.split('\n')[0]}\n\n\`\`\`\n${text}\n\`\`\``;
   const ctx: FeedbackContext = { screen, lang, address: href, version: BUILD_VERSION };
   return feedbackUrl(REPO_URL, message, ctx)?.url ?? null;
 }
