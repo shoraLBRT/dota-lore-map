@@ -7,7 +7,7 @@ import { getPlace, getRegion, placeName } from '../../data/world';
 
 const openSearch = () => {
   fireEvent.click(screen.getByRole('button', { name: 'Поиск героя' }));
-  return screen.getByRole('combobox', { name: 'Поиск героя' });
+  return screen.getByRole('combobox', { name: 'Герой, регион или место' });
 };
 const profile = (name: string) => screen.queryByRole('complementary', { name });
 const threads = () => document.querySelectorAll('[data-testid="threads"] path[data-thread]');
@@ -45,7 +45,7 @@ describe('поиск героя и нити', () => {
     render(<App />);
     const input = openSearch();
     fireEvent.change(input, { target: { value: 'zzzz' } });
-    expect(screen.getByText('Никого не нашли')).toBeInTheDocument();
+    expect(screen.getByText('Ничего не нашли')).toBeInTheDocument();
     fireEvent.keyDown(input, { key: 'Escape' });
     expect(screen.queryByRole('combobox')).toBeNull();
     expect(window.location.hash).toBe('#/r/icewrack');
@@ -175,6 +175,49 @@ describe('поиск героя и нити', () => {
     expect(lit('icewrack')).not.toMatch(/lit/);
     fireEvent.keyDown(input, { key: 'Escape' });
     expect(lit('radiant-lands')).not.toMatch(/lit/);
+  });
+
+  it('регионы и места (#100): место с регионом в подписи, выбор открывает его экран, герой остаётся', () => {
+    window.location.hash = '#/world?hero=crystal_maiden';
+    render(<App />);
+    const input = openSearch();
+    fireEvent.change(input, { target: { value: 'турст' } });
+    const [option, ...rest] = screen.getAllByRole('option');
+    expect(rest).toHaveLength(0);
+    expect(option).toHaveTextContent('Турстаркури');
+    expect(option).toHaveTextContent(getRegion('wailing-mountains')!.name.ru);
+    fireEvent.click(option!);
+    expect(window.location.hash).toBe('#/r/wailing-mountains/turstarkuri?hero=crystal_maiden');
+    expect(screen.queryByRole('combobox')).toBeNull();
+
+    // EN-название в RU-интерфейсе: регион и место показаны по-русски.
+    fireEvent.change(openSearch(), { target: { value: 'icew' } });
+    expect(screen.getAllByRole('option').map((o) => o.textContent)).toEqual(['Айсрак', 'Айсрак, Айсрак']);
+    expect(screen.getByRole('group', { name: 'Регионы' })).toBeInTheDocument();
+    expect(screen.getByRole('group', { name: 'Места' })).toBeInTheDocument();
+    fireEvent.keyDown(screen.getByRole('combobox'), { key: 'Enter' });
+    expect(window.location.hash).toBe('#/r/icewrack?hero=crystal_maiden');
+  });
+
+  it('клавиатура идёт по всем группам; вариант региона героя на карте не показывает (#100)', () => {
+    window.location.hash = '#/world';
+    render(<App />);
+    const litCount = () => [...document.querySelectorAll('[data-tint]')].filter((el) => /lit/.test(el.getAttribute('class') ?? '')).length;
+    const input = openSearch();
+    fireEvent.change(input, { target: { value: 'a' } });
+    expect(screen.getByRole('group', { name: 'Герои' })).toBeInTheDocument();
+    const options = screen.getAllByRole('option');
+    expect(options).toHaveLength(8);
+    expect(litCount()).toBeGreaterThan(0);
+    for (let i = 0; i < 4; i++) fireEvent.keyDown(input, { key: 'ArrowDown' });
+    expect(options[4]).toHaveAttribute('aria-selected', 'true');
+    expect(within(screen.getByRole('group', { name: 'Регионы' })).getAllByRole('option')[0]).toBe(options[4]);
+    expect(litCount()).toBe(0);
+    fireEvent.keyDown(input, { key: 'ArrowUp' });
+    expect(litCount()).toBeGreaterThan(0);
+    fireEvent.keyDown(input, { key: 'ArrowDown' });
+    fireEvent.keyDown(input, { key: 'Enter' });
+    expect(window.location.hash).toMatch(/^#\/r\/[a-z-]+$/);
   });
 
   it('неизвестный герой в адресе — ни профиля, ни нитей', () => {

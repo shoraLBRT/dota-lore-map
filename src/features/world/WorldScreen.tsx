@@ -226,7 +226,15 @@ export function WorldScreen({ screen, veiled = false }: Props) {
               .join(' ')}
           >
             {searchOpen ? (
-              <HeroSearch onPick={pick} onClose={() => setSearchOpen(false)} onPreview={setSearchPreview} />
+              <HeroSearch
+                onPick={pick}
+                onOpen={(screen) => {
+                  setSearchOpen(false);
+                  open(screen);
+                }}
+                onClose={() => setSearchOpen(false)}
+                onPreview={setSearchPreview}
+              />
             ) : (
               hero && <HeroChip hero={hero} onOpen={openProfile} onClear={clearHero} />
             )}
