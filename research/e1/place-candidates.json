@@ -142,6 +142,25 @@
       "event": "mention",
       "source": "bio",
       "note": "Только русская биография: изгнанники пришли из лесов Хмурых корней; в английской Murkroots — название народа, а не места. Это родина народа, а не самого Largo; регион не назван, fellstrath предположен по Velu'Mar."
+    },
+    {
+      "name": "Terrene Plane",
+      "hero": "leshrac",
+      "region": "planes",
+      "event": "home",
+      "source": "liquipedia",
+      "url": "https://liquipedia.net/dota2/Leshrac/Lore",
+      "note": "Инфобокс лор-страницы указывает Terrene Plane как место героя; на схеме такого места нет, в regions.json оно не значится. Регион planes по соседству с Heart of Nature."
+    },
+    {
+      "name": "The Plains",
+      "hero": "luna",
+      "region": "uncharted",
+      "event": "origin",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Luna/Lore",
+      "note": "Родина героя (origins в инфобоксе, в прошлом). На схеме равнин с таким именем нет, регион из текста не следует — решает владелец (#59)."
     }
   ]
 }

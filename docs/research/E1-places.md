@@ -71,38 +71,38 @@
 ## 5. Регионы, места и герои
 
 <!-- GENERATED:BEGIN -->
-Регионов: **26**, мест: **172**, героев привязано: **127** из 127, из них в «Неизведанных землях»: **10**.
+Регионов: **26**, мест: **172**, героев привязано: **127** из 127, из них в «Неизведанных землях»: **12**.
 
 ### Сводка по регионам
 
 | Ярус | Регион | Сторона | Мест | Героев |
 |---|---|---|---|---|
-| Верхний ярус | Небеса (The Heavens) | нейтрально (ярус) | 6 | 11 |
+| Верхний ярус | Небеса (The Heavens) | нейтрально (ярус) | 6 | 12 |
 | Верхний ярус | Семь планов и Пустота (The Seven Planes and the Void) | нейтрально (ярус) | 13 | 18 |
 | Материк и острова | Айсрак (Icewrack) | Radiant (карта S1) | 12 | 9 |
 | Материк и острова | Земля Сияющих (Land of the Radiant) | Radiant (карта S1) | 8 | 10 |
 | Материк и острова | Лес Найтсильвер (Nightsilver Woods) | Radiant (карта S1) | 3 | 3 |
 | Материк и острова | Стоунхолл (Stonehall) | Radiant (по схеме E2) | 24 | 5 |
-| Материк и острова | Вольные города (The Free Cities) | Radiant (по схеме E2) | 7 | 10 |
+| Материк и острова | Вольные города (The Free Cities) | Radiant (по схеме E2) | 7 | 9 |
 | Материк и острова | Квойдж и Поля Бойни (Quoidge and the Fields of Carnage) | нейтрально (по схеме E2) | 4 | 3 |
 | Материк и острова | Хазадальские пустоши (Hazhadal Barrens) | нейтрально (по схеме E2) | 2 | 3 |
 | Материк и острова | Друуд (Druud) | Dire (по схеме E2) | 2 | 3 |
 | Материк и острова | Сверкающая пустошь (Scintillant Waste) | Dire (карта S1) | 9 | 6 |
 | Материк и острова | Стонущие горы (Wailing Mountains) | Dire (карта S1) | 6 | 7 |
 | Материк и острова | Тенистый берег (Shadeshore) | Dire (по схеме E2) | 5 | 4 |
-| Материк и острова | Глубины (The Deep) | Dire (карта S1) | 7 | 4 |
+| Материк и острова | Глубины (The Deep) | Dire (карта S1) | 7 | 3 |
 | Материк и острова | Кладд и острова (Cladd and the Isles) | Radiant (по схеме E2) | 6 | 2 |
 | Материк и острова | Тропические острова (Tropic Isles) | Dire (по схеме E2) | 7 | 3 |
-| Материк и острова | Западные леса (Western Forests) | Radiant (по схеме E2) | 6 | 4 |
+| Материк и острова | Западные леса (Western Forests) | Radiant (по схеме E2) | 6 | 5 |
 | Материк и острова | Слом и Эльзе (Slom and Elze) | Radiant (по схеме E2) | 3 | 4 |
 | Материк и острова | Ховен и Нишай (The Hoven and Nishai) | Dire (по схеме E2) | 4 | 4 |
 | Материк и острова | Феллстрат (Fellstrath) | Dire (по схеме E2) | 6 | 7 |
 | Материк и острова | Томо'кан и Окраины (Tomo'kan and the Outlands) | Dire (по схеме E2) | 6 | 5 |
 | Материк и острова | Империя Костей (Empire of Bone) | Dire (по схеме E2) | 3 | 1 |
 | Материк и острова | Срединные королевства (The Middle Kingdoms) | нейтрально (по схеме E2) | 11 | 13 |
-| Материк и острова | Неизведанные земли (The Uncharted Lands) | нейтрально (по схеме E2) | 0 | 10 |
+| Материк и острова | Неизведанные земли (The Uncharted Lands) | нейтрально (по схеме E2) | 0 | 12 |
 | Бездна | Подземье (The Underdark) | нейтрально (ярус) | 4 | 4 |
-| Бездна | Семь Преисподних и загробье (The Seven Hells and the Afterlife) | нейтрально (ярус) | 8 | 9 |
+| Бездна | Семь Преисподних и загробье (The Seven Hells and the Afterlife) | нейтрально (ярус) | 8 | 11 |
 
 ### Верхний ярус
 
@@ -116,7 +116,7 @@
 |---|---|---|---|
 | ★ Ghastly Eyrie | лор | Kez, Skywrath Mage, Vengeful Spirit | столица расы скайрасов, «среди облаков и звёзд» |
 | Mad Moon | лор | Arc Warden (служба) |  |
-| Selemene's Moon | лор | Night Stalker (упоминание) | вместе с Demon Star |
+| Selemene's Moon | лор | Luna (упоминание), Night Stalker (упоминание) | вместе с Demon Star |
 | The Sun | лор | Dawnbreaker*, Phoenix* | Children of Light и солнечная кузня (страницы на Liquipedia нет) |
 | Olympus | наше | Zeus | небесная обитель Зевса; страницы на Liquipedia нет |
 | Ultoria | лор | Spirit Breaker (связь)† | небесное тело со своими лунами |
@@ -149,14 +149,14 @@
 
 Сторона: **Radiant** (карта S1). Крайний север. Южнее горного хребта The Barrier, у Северного (Кипящего) моря. Единственный морской путь — порт Frostreach. На карте Source 1: «The cold northern realm of Ice» в половине Radiant.
 
-Герои всего региона: Drow Ranger
+Герои всего региона: Drow Ranger, Lich (служба)
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
 | ★ Icewrack | лор | Crystal Maiden (живёт), Kez (живёт), Pangolier (упоминание), Winter Wyvern (живёт) |  |
 | The Barrier | лор | — |  |
 | Blueheart Glacier | лор | Crystal Maiden (служба) |  |
-| Black Pool | лор | Lich (живёт) |  |
+| Black Pool | лор | Lich (гибель) |  |
 | Cobalt | лор | Tusk |  |
 | Azura | лор | Tiny |  |
 | White Fields | лор | — |  |
@@ -230,7 +230,7 @@
 |---|---|---|---|
 | ★ White Spire | лор | Bounty Hunter (живёт)†, Monkey King (живёт), Pangolier (бывал) |  |
 | Revtel | лор | Dark Willow, Pangolier (бывал) |  |
-| Weeping Rose | лор | Lion, Queen of Pain (связь)† |  |
+| Weeping Rose | лор | Queen of Pain (связь)† |  |
 | Tyler Estate | лор | Anti-Mage (связь), Silencer (связь)† | в Weeping Rose |
 | Sundered Moon | лор | Arc Warden (бывал), Drow Ranger (бывал) | таверна в White Spire |
 | Iron Fog | наше | — |  |
@@ -271,8 +271,8 @@
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
-| ★ Scintillant Waste | лор | Phoenix (упоминание), Sand King |  |
-| Desert of Misrule | карта S1 | Lina |  |
+| ★ Scintillant Waste | лор | Lina (упоминание), Phoenix (упоминание), Sand King |  |
+| Desert of Misrule | карта S1 | Lina (живёт) |  |
 | Riftshadow Ruins | карта S1 | Meepo |  |
 | Qaldin | лор | Pangolier (бывал), Sand King (связь) |  |
 | El'Harath | лор | — |  |
@@ -311,8 +311,6 @@
 #### Глубины · The Deep
 
 Сторона: **Dire** (карта S1). Затонувшие города на дне океана под охраной слизеринов; ещё глубже — Infernal Hollow. На карте Source 1 «The Slithereen» — в половине Dire.
-
-Герои всего региона: Morphling (живёт)
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
@@ -357,7 +355,7 @@
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
-| ★ Western Forests | лор | — |  |
+| ★ Western Forests | лор | Lycan (бывал) |  |
 | Zaru'Kina | лор | Windranger |  |
 | Vale of Augury | лор | Treant Protector (живёт) |  |
 | Augury Bay | лор | Timbersaw |  |
@@ -430,7 +428,7 @@
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
 | Candoness | наше | Dragon Knight (сражение) |  |
-| Devarque | наше | Lifestealer (связь) |  |
+| Devarque | наше | Lifestealer (изгнание) |  |
 | Yoskreth | наше | — |  |
 | Ultimyr Academy | наше | Invoker (сражение), Warlock (живёт) |  |
 | Emauracus | наше | Omniknight (живёт) |  |
@@ -449,8 +447,10 @@
 |---|---|
 | Death Prophet | Ни биография, ни лор-страница Liquipedia не называют места, где Кробелус родилась или жила; загробный мир описан только общими словами. |
 | Jakiro | в биографиях мест нет; в инфобоксе лор-страницы названы Grosche и The Riverwarren, но их нет в regions.json, см. candidates |
+| Luna | Родина — равнины (The Plains), в прошлом. Биография называет лишь «далёкую родину», без имени; места The Plains на схеме нет, оно записано кандидатом. |
 | Marci | родина не названа ни в биографии, ни в игровом лоре; места из инфобокса Liquipedia (Hauptstadt, Barrowhaven и др.) взяты из сериала «DOTA: Dragon's Blood» — по решению В5 на карту и в кандидаты не добавляем |
 | Medusa | Родина горгон: царство, куда напали незнакомцы в масках, в биографии не названо; на схеме такого места нет |
+| Morphling | Morphling родился там, где комета упала на поле битвы в войне Влой у пограничной реки; ни эта война, ни река на схеме не названы, других мест в биографии нет. |
 | Ogre Magi | Ни в биографии, ни на лор-странице Liquipedia не назван ни регион, ни место, где родился и вырос Ogre Magi. Инфобокс с полем places пуст. Род огров записан без привязки к земле, поэтому связь оставлена в неизведанных землях. |
 | Riki | Родина Riki в биографии не названа: сказано только, что он из династии Tahlin и что его народ предали в ночь гибели царского рода. Liquipedia упоминает безымянную родину с пряностями, но это реплика другого героя, не название места. Поэтому на схеме — Неизведанные земли; кандидата в места нет. |
 | Ringmaster | ни в биографии, ни в лоре на Liquipedia место не названо: история идёт в безымянных городках и в цирке Осберта Кеттла |
@@ -477,13 +477,13 @@
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
-| ★ Seven Hells | лор | Doom (живёт), Shadow Demon |  |
+| ★ Seven Hells | лор | Doom (живёт), Lion (сражение), Muerta (упоминание), Shadow Demon |  |
 | Vashundol | лор | Doom (изгнание) |  |
 | Abysm | лор | Shadow Fiend |  |
 | Foulfell | лор | Terrorblade |  |
 | Outer Hells | лор | Warlock (связь) |  |
 | Narrow Maze | лор | Razor (живёт), Visage (живёт) |  |
-| Underscape | лор | Razor (связь) |  |
+| Underscape | лор | Muerta (упоминание), Razor (связь) |  |
 | Nothl Realm | лор | Dazzle (связь), Huskar (гибель) |  |
 
 ### Указатель: герой → места
@@ -540,13 +540,13 @@
 | Largo | Velu'Mar (Феллстрат) |
 | Legion Commander | Qine (Стоунхолл); Stonehall (Стоунхолл) (живёт) |
 | Leshrac | Heart of Nature (Семь планов и Пустота) |
-| Lich | Black Pool (Айсрак) (живёт) |
-| Lifestealer | Devarque (Срединные королевства) (связь) |
-| Lina | Desert of Misrule (Сверкающая пустошь) |
-| Lion | Weeping Rose (Вольные города) |
+| Lich | весь регион «Айсрак» (служба); Black Pool (Айсрак) (гибель) |
+| Lifestealer | Devarque (Срединные королевства) (изгнание) |
+| Lina | Desert of Misrule (Сверкающая пустошь) (живёт); Scintillant Waste (Сверкающая пустошь) (упоминание) |
+| Lion | Seven Hells (Семь Преисподних и загробье) (сражение) |
 | Lone Druid | Onyx Grove (Айсрак) (живёт) |
-| Luna | Nightsilver Woods (Лес Найтсильвер) (живёт) |
-| Lycan | Slom (Слом и Эльзе) |
+| Luna | весь регион «Неизведанные земли»; Nightsilver Woods (Лес Найтсильвер) (живёт); Selemene's Moon (Небеса) (упоминание) |
+| Lycan | Slom (Слом и Эльзе); Western Forests (Западные леса) (бывал) |
 | Magnus | Mount Joerlak (Стонущие горы); Roseleaf (Стоунхолл) (сражение); Stonehall (Стоунхолл) (упоминание) |
 | Marci | весь регион «Неизведанные земли»* |
 | Mars | весь регион «Небеса»; Quoidge (Квойдж и Поля Бойни) (упоминание) |
@@ -554,8 +554,8 @@
 | Meepo | Riftshadow Ruins (Сверкающая пустошь); Singer's Gulch (Сверкающая пустошь) (связь)† |
 | Mirana | Nightsilver Woods (Лес Найтсильвер) (живёт); Solar Throne (Срединные королевства) |
 | Monkey King | White Spire (Вольные города) (живёт) |
-| Morphling | весь регион «Глубины» (живёт) |
-| Muerta | Skirm (Срединные королевства) |
+| Morphling | весь регион «Неизведанные земли» |
+| Muerta | Skirm (Срединные королевства); Seven Hells (Семь Преисподних и загробье) (упоминание); Underscape (Семь Преисподних и загробье) (упоминание) |
 | Naga Siren | Crey (Глубины) (живёт) |
 | Nature's Prophet | Manglewood Forest (Западные леса) (бывал); Endless Copse (Западные леса) (упоминание) |
 | Necrophos | Cathedral of Rumusque (Квойдж и Поля Бойни) |

@@ -1187,7 +1187,8 @@
         }
       ],
       "regionHeroes": [
-        "drow_ranger"
+        "drow_ranger",
+        "lich"
       ]
     },
     {
@@ -2725,7 +2726,7 @@
           "slug": "weeping-rose",
           "capital": false,
           "placement": "lore",
-          "significance": "event",
+          "significance": "link",
           "text": {
             "name": {
               "ru": "Плачущая Роза",
@@ -4700,9 +4701,7 @@
           ]
         }
       ],
-      "regionHeroes": [
-        "morphling"
-      ]
+      "regionHeroes": []
     },
     {
       "id": "cladd",
@@ -5397,7 +5396,7 @@
           "slug": "western-forests",
           "capital": true,
           "placement": "lore",
-          "significance": "link",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Западные леса",
@@ -6952,7 +6951,7 @@
           "slug": "devarque",
           "capital": false,
           "placement": "ours",
-          "significance": "link",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Деварк",
@@ -7290,9 +7289,11 @@
       },
       "places": [],
       "regionHeroes": [
+        "morphling",
         "witch_doctor",
         "riki",
         "death_prophet",
+        "luna",
         "jakiro",
         "ogre_magi",
         "undying",
@@ -8220,11 +8221,21 @@
       ],
       "links": [
         {
-          "regionId": "the-deep",
-          "event": "home",
-          "source": "bio"
+          "regionId": "uncharted",
+          "event": "origin",
+          "source": "bio",
+          "note": "Morphling родился там, где комета упала на поле битвы в войне Влой у пограничной реки; ни эта война, ни река на схеме не названы, других мест в биографии нет."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Morphling — водная стихия, рождённая из ледяной кометы, которая веками блуждала между мирами. Она упала накануне древней войны Влой и растаяла над битвой у узкой пограничной реки. Новорождённое существо приняло облик первого полководца, ступившего в воду, и убило его. До конца сражения он менял формы, перенимая повадки всех воинов на поле.",
+          "en": "Morphling is a water elemental born from a comet of ice that had drifted between worlds for ages. It fell on the eve of the ancient Vloy war and melted above a battle fought across a narrow river. The newborn being took the shape of the first general to cross the water and killed him. Through the rest of the fight he kept changing form, learning to be every kind of soldier on the field."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/morphling.png"
+        ]
+      }
     },
     {
       "key": "nevermore",
@@ -8585,10 +8596,38 @@
         {
           "regionId": "scintillant",
           "placeSlug": "desert-of-misrule",
-          "event": "origin",
-          "source": "bio"
+          "event": "home",
+          "source": "bio",
+          "note": "Родители отправили Lina к тётке на юг, в эту пустыню; здесь она живёт с детства. Где семья жила раньше, биография не называет."
+        },
+        {
+          "regionId": "scintillant",
+          "placeSlug": "scintillant-waste",
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Lina/Lore",
+          "note": "Место стоит в инфобоксе рядом с пустыней Misrule.",
+          "doubt": "Место есть только в инфобоксе лор-страницы, в тексте биографии его нет."
         }
-      ]
+      ],
+      "relations": [
+        {
+          "hero": "crystal_maiden",
+          "type": "family",
+          "source": "bio",
+          "note": "Crystal Maiden — её младшая сестра (биография и инфобокс лор-страницы). Соперничество между ними описано, но тип связи — family."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Lina, она же Slayer, в детстве постоянно ссорилась с младшей сестрой Райлай (Crystal Maiden) и обычно оказывалась в выигрыше. Родители, устав от их вражды, отправили старшую дочь на юг, к терпеливой тётушке в пустыню Desert of Misrule, где её огненный нрав пришёлся как нельзя кстати. Гордая и уверенная в себе, она не даёт своему пламени угаснуть.",
+          "en": "Lina, known as the Slayer, bickered constantly with her younger sister Rylai (Crystal Maiden) as a child and usually came out on top. Fed up with the feud, their parents sent the elder daughter south to a patient aunt in the Desert of Misrule, where her fiery temper felt right at home. Proud and self-assured, she refuses to let her flame be put out."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/lina.png"
+        ]
+      }
     },
     {
       "key": "lion",
@@ -8600,13 +8639,25 @@
       ],
       "links": [
         {
-          "regionId": "free-cities",
-          "placeSlug": "weeping-rose",
-          "event": "origin",
+          "regionId": "hells",
+          "placeSlug": "seven-hells",
+          "event": "battle",
           "source": "liquipedia",
-          "via": "infobox"
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Lion/Lore",
+          "note": "Lion спустился за предавшим его демоном в ад, убил его и забрал его руку; из ада он вышел преображённым.",
+          "doubt": "Биография говорит просто «ад»; название Seven Hells даёт инфобокс лор-страницы."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Lion — бывший Великий магистр школы демонической магии, который когда-то сражался на стороне света. Лесть и честолюбие сделали его уязвимым: демон сманил его на тёмный путь и потом предал. Lion отправился за ним в ад, расправился с ним и забрал его руку, но демонопластика изменила его тело до неузнаваемости. Теперь он живёт в уединении и карает тех, кто называет себя его учениками.",
+          "en": "Lion is a former Grandmaster of the Demon Witch sorcery tradition who once fought for light and justice. Flattery and ambition made him vulnerable, and a demon lured him onto a dark path before betraying him. He chased the demon into hell and destroyed it, but the demonic transformation left his body unrecognizable. Now he lives in seclusion and punishes anyone who claims to be his student."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/lion.png"
+        ]
+      }
     },
     {
       "key": "shadow_shaman",
@@ -8703,11 +8754,36 @@
       "links": [
         {
           "regionId": "icewrack",
+          "event": "service",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Lich/Lore",
+          "note": "При жизни Этриан правил силой: по заметке лор-страницы, под его властью оказались все королевства Icewrack.",
+          "doubt": "Заметка опирается на историю Crownfall, а не на биографию; биография говорит лишь о порабощённых королевствах без названия."
+        },
+        {
+          "regionId": "icewrack",
           "placeSlug": "black-pool",
-          "event": "home",
-          "source": "bio"
+          "event": "death",
+          "source": "bio",
+          "note": "Сюда мятежники сбросили связанного мага; на дне он пролежал мёртвым, здесь же Анхил поднял его и вернул к не-жизни. Родиной место не является, хотя инфобокс пишет его в origins."
         }
-      ]
+      ],
+      "path": [
+        {
+          "regionId": "icewrack"
+        },
+        {
+          "regionId": "icewrack",
+          "placeSlug": "black-pool"
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Lich в прошлом — маг льда Этриан, державший целые царства в страхе перед морозной магией. Взбунтовавшиеся подданные связали его и опустили в озеро, которое считалось бездонным; там он провисел годы мёртвым, но нетленным. Геомант Анхил поднял тело и попытался воскресить колдуна, но очнувшийся Lich убил его. Теперь это нежить, холодная к живым.",
+          "en": "Lich began as the frost mage Ethreain, who held whole realms in fear through the menace of freezing magic. Rebellious subjects ambushed him, bound him and dropped him into a pool they believed was bottomless, where he hung for years, dead yet unrotting. The geomancer Anhil later hauled him up and tried to resurrect him, and the revived Lich killed him at once. He now exists as an undead sorcerer, cold toward the living."
+        }
+      }
     },
     {
       "key": "riki",
@@ -9170,12 +9246,47 @@
       ],
       "links": [
         {
+          "regionId": "uncharted",
+          "event": "origin",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Luna/Lore",
+          "note": "Родина — равнины (The Plains), в прошлом. Биография называет лишь «далёкую родину», без имени; места The Plains на схеме нет, оно записано кандидатом.",
+          "doubt": "Название родины взято из инфобокса Liquipedia, в биографии его нет; регион неизвестен, поэтому остаётся uncharted."
+        },
+        {
           "regionId": "nightsilver",
           "placeSlug": "nightsilver-woods",
           "event": "home",
-          "source": "bio"
+          "source": "bio",
+          "note": "Теперь она хранительница Серебряных лесов; здесь же её приняли в Тёмную Луну."
+        },
+        {
+          "regionId": "heavens",
+          "placeSlug": "selemenes-moon",
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Luna/Lore",
+          "note": "Место указано в инфобоксе лор-страницы без события с участием героя.",
+          "doubt": "Место есть только в инфобоксе; в биографии Luna служит Селемене, но о самой луне богини речи нет."
         }
-      ]
+      ],
+      "path": [
+        {
+          "regionId": "uncharted"
+        },
+        {
+          "regionId": "nightsilver",
+          "placeSlug": "nightsilver-woods"
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Luna когда-то наводила ужас на равнины во главе армии людей и зверей, но потеряла войско и, полубезумная от голода, забрела в древний лес. Там она, сама того не зная, прошла испытание богини Селемене. Ей предложили вступить в Тёмную Луну, и она отреклась от кровавого прошлого. Теперь она Лунная наездница и стражница Серебряных лесов.",
+          "en": "Luna was once a feared raider who led armies across the plains before wandering half-starved into a forest. There she was tested by the goddess Selemene and admitted to the Dark Moon order. She gave up her violent past and became a Moon Rider, guarding the Nightsilver Woods from the back of her great feline mount."
+        }
+      }
     },
     {
       "key": "dragon_knight",
@@ -9312,10 +9423,19 @@
           "regionId": "planes",
           "placeSlug": "heart-of-nature",
           "event": "origin",
-          "source": "liquipedia",
-          "via": "infobox"
+          "source": "bio",
+          "note": "Существо вырвано из сердца природы; то же место указано в инфобоксе лор-страницы как origins."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Leshrac, он же Истерзанная душа, родом из сердца природы и наполовину существует в другом плане бытия. Когда-то философ, искавший смысл существования, он заглянул в хроноптические кристаллы и навсегда изменился от увиденного. Теперь его надменность — единственный проблеск в мрачном разуме, а природу он считает злой и уродливой.",
+          "en": "Leshrac, also called the Tormented Soul, came out of nature's core and lives partly in one plane and partly in another. He was once a philosopher hunting for the meaning of existence, until he peered into Chronoptic Crystals and was changed for good by the horrors he saw. Today his arrogance is the only glimmer in a bleak mind, and he regards nature as vile and cruel."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/leshrac.png"
+        ]
+      }
     },
     {
       "key": "furion",
@@ -9368,10 +9488,20 @@
         {
           "regionId": "middle-kingdoms",
           "placeSlug": "devarque",
-          "event": "link",
-          "source": "bio"
+          "event": "exile",
+          "source": "bio",
+          "note": "Вор Н'эйкс отбывал здесь пожизненное заключение; в этой темнице он стал Lifestealer и вырвался на волю. Откуда он родом, источники не говорят."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Lifestealer когда-то был вором Н'эйксом: совет проклял его долгой жизнью, чтобы срок в темнице Деварка тянулся дольше. Маг из той же камеры хотел вселиться в него и сбежать под шум резни, но сам растворился в безумии вора. Ожившее от чужой силы существо подчинило стражу, вырвалось на волю и питалось жизнями охранников. Теперь в одном теле живут два разума, и вор лишь делает вид, что слушается второго.",
+          "en": "Lifestealer was once N'aix, a thief whom the Vile Council cursed with a long life so that his prison term in Devarque would last longer. A wizard locked in the same cell tried to possess him and use him as a weapon for his own escape, but the wizard's will broke inside the thief's mind. Revived by the stolen life force, the creature took control of the guards, broke free and fed on them. Two minds now share one body, and the thief only pretends to obey the other."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/life_stealer.png"
+        ]
+      }
     },
     {
       "key": "dark_seer",
@@ -10066,9 +10196,29 @@
           "regionId": "slom-elze",
           "placeSlug": "slom",
           "event": "origin",
-          "source": "bio"
+          "source": "bio",
+          "note": "Род Эмбри из старого королевства Слом; герой родился в этом знатном доме."
+        },
+        {
+          "regionId": "western-forests",
+          "placeSlug": "western-forests",
+          "event": "visit",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Lycan/Lore",
+          "note": "Лор-страница описывает интервью в глубине Западных лесов в рамках кроссовера Hero Atlas; поле places инфобокса называет то же место.",
+          "doubt": "Единственное основание — рамка интервью Goodkind из кроссовера Hero Atlas; биография Западные леса не называет."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Lycan, он же Бэйнхаллоу, — последний наследник знатного дома Эмбри из старого королевства Слом. Когда род поднял мятеж против короля и проиграл, король истребил семью, а мальчика велел обратить в волка, чтобы тот загрыз отца. Но разум ребёнка уцелел, и зверь набросился на королевских слуг. Теперь он скитается по дорогам, наполовину воин и наполовину волк, и ищет справедливости за всё потерянное.",
+          "en": "Lycan, known as Banehallow, is the surviving heir of the noble House of Ambry from the old kingdom of Slom. After the king had the family slaughtered, he had the boy transformed into a wolf and ordered him to kill his own father, but the child's mind survived and he turned on the royal servants instead. Now he wanders the world, half warrior and half wolf, seeking vengeance for everything he lost."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/lycan.png"
+        ]
+      }
     },
     {
       "key": "brewmaster",
@@ -11407,9 +11557,18 @@
           "placeSlug": "white-spire",
           "event": "home",
           "source": "liquipedia",
-          "via": "infobox"
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Monkey_King/Lore",
+          "note": "Инфобокс называет Белый шпиль текущим местом героя.",
+          "doubt": "Основание — комикс A New Journey, которого нет в content/media.json; в биографии мест нет."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Сунь Укун, он же Monkey King, воевал с небесами, пока древние боги не придавили его горой на пятьсот лет. Ради прощения он взялся охранять молодого послушника в тайном паломничестве и вернуть его домой с реликвией. Клятву он сдержал и какое-то время жил в мире с богами. Но проказы у него в крови, и дразнить небожителей ему не надоедает.",
+          "en": "Sun Wukong, the Monkey King, waged war on the heavens until the elder gods buried him under a mountain for five hundred years. To earn their pardon he agreed to guard a young acolyte on a secret pilgrimage and bring him home with a sacred relic. He kept that oath and for a while lived at peace with the gods. Yet mischief is in his nature, and he never tires of mocking the powers above."
+        }
+      }
     },
     {
       "key": "dark_willow",
@@ -11884,9 +12043,41 @@
           "placeSlug": "skirm",
           "event": "origin",
           "source": "liquipedia",
-          "via": "infobox"
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Muerta/Lore",
+          "note": "По лор-странице (вводный комикс и Hero Atlas) в юности её звали Селеста, она жила в пустынном городке Скирм, пока бандиты его не разорили.",
+          "doubt": "Биография родину не называет; вводного комикса нет в content/media.json."
+        },
+        {
+          "regionId": "hells",
+          "placeSlug": "seven-hells",
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Muerta/Lore",
+          "note": "Место указано только в инфобоксе; в тексте лора о нём не сказано.",
+          "doubt": "Место есть только в инфобоксе лор-страницы; ни биография, ни текст лора не говорят, что Muerta там бывала."
+        },
+        {
+          "regionId": "hells",
+          "placeSlug": "underscape",
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Muerta/Lore",
+          "note": "Место указано только в инфобоксе; характер связи не назван.",
+          "doubt": "Место есть только в инфобоксе лор-страницы; ни биография, ни текст лора не говорят, что Muerta там бывала."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "О Muerta рассказывают по-разному, но все истории сходятся в одном: бандиты убили её семью, и от ненависти она отказалась умирать. Смерть был так поражён этой яростью, что вручил ей два призрачных пистолета, Милость и Благодать, и сделал своей правой рукой. Теперь она выслеживает души, чей срок истёк, и тащит их к последнему пристанищу.",
+          "en": "Muerta is the subject of many tales, but all agree on one thing: bandits killed her family, and her hatred was so strong that she refused to die. Death was so struck by that rage that he gave her a pair of ghostly pistols, Mercy and Grace, and made her his second in command. She now tracks down souls whose time has run out and drags them to their final fate."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/muerta.png"
+        ]
+      }
     },
     {
       "key": "kez",
