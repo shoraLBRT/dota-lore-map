@@ -1,0 +1,30 @@
+{
+  "hero": "omniknight",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Emauracus",
+      "event": "origin",
+      "source": "bio",
+      "note": "Утёсы Эмаураса — оплот ордена Всезнания, где герой вырос оруженосцем; после похода он вернулся сюда, и здесь ему открылось божество. В инфобоксе лора Emauracus тоже указан в origins.",
+      "doubt": "Биография не говорит прямо, что он здесь родился: «вернулся» и служба ордену с юности указывают на дом ордена."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Пурист Громобой, он же Omniknight, с юности служил ордену Всезнания и много лет воевал в его крестовом походе. Видя, как гибнут старшие рыцари, братья и оруженосцы, он усомнился в смысле своих клятв и вернулся к утёсам Emauracus, чтобы бросить вызов жрецам. Там божество открылось ему, и с тех пор он больше не сомневается в вере.",
+      "en": "Purist Thunderwrath, known as Omniknight, served the order of the Omniscience from youth and spent long years on its crusade. As his elders, brothers and squires died around him, he began to doubt his vows and went back to the cliffs of Emauracus to challenge the priests. There the god revealed itself to him, and he has not doubted his faith since."
+    }
+  },
+  "unconfirmed": [
+    "Инфобокс лора перечисляет героев Chaos Knight и Luna без типа связи, поэтому связи не записаны.",
+    "Связи из озвучки (ответы и реплики Chaos Knight, Sven, Necrophos и др.) и из раздела Artifact (альянс с Luna, Stonehall, Ristul) не записаны: озвучка не основание (#46), Artifact не источник.",
+    "Aghanim в инфобоксе (characters) — персонаж, не герой и не место; отношение из реплики объявщика не записано.",
+    "bio.ru.txt в кэше обрывается на последнем предложении (ответ dota2.com ограничен примерно 4 КБ); английская биография полная, мест в оборванном хвосте нет."
+  ]
+}

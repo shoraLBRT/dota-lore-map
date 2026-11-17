@@ -1,0 +1,54 @@
+{
+  "hero": "pugna",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "place": "Nether Reaches",
+      "event": "origin",
+      "source": "bio",
+      "note": "родной мир: рядом с проходами в Пределы, где стоял монастырь Забвения"
+    },
+    {
+      "place": "Tyler Estate",
+      "event": "battle",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Pugna/Lore",
+      "doubt": "место есть в инфобоксе, но в биографии не упомянуто; связь с нападением — из раздела Artifact на странице лора"
+    },
+    {
+      "place": "Weeping Rose",
+      "event": "battle",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Pugna/Lore",
+      "doubt": "место есть в инфобоксе, но в биографии не упомянуто; нападение — из раздела Artifact на странице лора"
+    }
+  ],
+  "relations": [
+    {
+      "hero": "viper",
+      "type": "servant",
+      "place": "Nether Reaches",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Pugna/Lore",
+      "note": "нетопырь, которого Pugna пленил и держал в подчинении",
+      "doubt": "в инфобоксе поле family («бывший фамильяр»); тип servant взят из текста лора (пленение, подчинение). Viper также враг: сбежал и поклялся отомстить, но отдельной связью не записан"
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Pugna — маг Забвения из Пределов пустоты, перерождённый преемник покойного настоятеля ламаистского монастыря. В годовалом возрасте он сжёг двух детей-соперников, претендуя на трон, а через пять лет храм обратился в пепел. Позже он пленил нетопыря Viper, который сбежал и поклялся отомстить.",
+      "en": "Pugna is an Oblivion sorcerer from the Nether Reaches, reborn as the successor of a dead grandmaster of a monastery. At barely over a year old he burned two rival children to ash to claim the throne, and within five years the temple itself was reduced to rubble. Later he captured the netherdrake Viper, who escaped and swore revenge."
+    },
+    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/pugna.png"]
+  },
+  "candidates": [],
+  "unconfirmed": [
+    "Связи с Kanna, Prellex и Dire из инфобокса (characters) и раздела Allegiance относятся к Artifact, не к биографии и не к лору героя: не записаны.",
+    "Реплики озвучки о Clinkz, Dark Willow, Monkey King, Pangolier, Skywrath Mage, Snapfire и других героев не основание для связей (решение партии 01): не записаны.",
+    "Обитель монастыря Забвения, где он родился, в тексте не названа: отдельного места и кандидата нет.",
+    "Ix'yxa Destroyer — бог, не герой; связь «прокси» из раздела Allegiance не записана (Artifact и не герой)."
+  ]
+}

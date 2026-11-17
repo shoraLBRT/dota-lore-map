@@ -1,0 +1,54 @@
+{
+  "hero": "naga_siren",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "region": "the-deep",
+      "event": "origin",
+      "source": "ours",
+      "note": "Родина героя не названа ни в одном источнике. Её народ Slithereen служит у Crey, а Crey лежит в the-deep.",
+      "doubt": "Место родины самой героини в тексте не указано, регион выведен из службы её народа."
+    },
+    {
+      "place": "Crey",
+      "event": "battle",
+      "source": "bio",
+      "note": "Последняя битва, в которой её отряд разбила армия левиантов. После неё героиню лишили ранга и изгнали из стражи."
+    },
+    {
+      "place": "Deep Vault",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Naga_Siren/Lore",
+      "doubt": "Место указано в инфобоксе. В тексте сказано лишь, что она, вероятно, знает о хранилище и его стражах."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Naga Siren, в прошлом Слизис, была военачальницей стражи Slithereen, которая защищала Deep Ones и сокровища затонувших городов. В битве при Крее из сокровищницы пропала драгоценная чаша, и героиню изгнали с позором. Теперь она живёт вдали от своих, пока не вернёт похищенное.",
+      "en": "Naga Siren, once Slithice, commanded a battalion of the Slithereen Guard that guarded the Deep Ones and their sunken riches. After the lost battle at Crey, a jeweled chalice vanished from the treasury and she was cast out in disgrace. She must live apart from her people until she returns what was taken."
+    }
+  },
+  "candidates": [
+    {
+      "name": "Stonefish Gate",
+      "region": "the-deep",
+      "event": "battle",
+      "source": "liquipedia",
+      "url": "https://liquipedia.net/dota2/Naga_Siren/Lore",
+      "note": "Битва из описания набора самой героини (The Order of Cyprin): в первый срок службы она помогала Conclave of the Brine. Регион в источниках не назван, the-deep выбран по морским союзникам — предположение.",
+      "doubt": "Единственное основание — описание набора героини."
+    }
+  ],
+  "unconfirmed": [
+    "Slardar: указан в инфобоксе (heroes) и упомянут в тексте как «как Slardar» (служил защите Deep Ones). Тип связи в тексте не назван, поэтому связь не записана.",
+    "Rhasta (Shadow Shaman): «старые друзья» взято только из реплики озвучки, с основанием из биографии не совпадает. Связь не записана.",
+    "Tidehunter: слух о пропавшей чаше взят из реплики озвучки, не из лора. Связь не записана."
+  ]
+}

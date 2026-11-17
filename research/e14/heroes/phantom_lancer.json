@@ -1,0 +1,34 @@
+{
+  "hero": "phantom_lancer",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Pole",
+      "event": "origin",
+      "source": "bio",
+      "note": "Родная деревня, откуда Азурайт ушёл на войну; инфобокс подтверждает. По описанию его набора, после победы над Ворном он не возвращается сюда, хотя его бы приняли."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Phantom Lancer — Азурайт, рыбак-копейщик из далёкой деревни Pole, до которой войны королевства долго не доходили. Он ушёл с призывниками на войну против Тёмного мага Ворна; в последнем штурме из его родни выжил только он и один прорвался в крепость. В поединке он пронзил Ворна, и сила взорвавшегося мага наполнила его, создав толпу фантомов-двойников. Подошедшие солдаты увидели лишь очередной призрак.",
+      "en": "Phantom Lancer is Azwraith, a fisherman and spearman from the remote village of Pole, which long knew nothing of the kingdom's wars. He joined the conscripts marching against the Dread Magus Vorn; in the final assault he alone of his kin survived and broke into the fortress. He pierced Vorn in a duel, and the exploding wizard's power filled him, surrounding him with phantom copies of himself. The soldiers who arrived found only another phantom."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/phantom_lancer.png"
+    ]
+  },
+  "unconfirmed": [
+    "Dark Willow и Juggernaut: в поле heroes инфобокса без типа; нравоучения Миреске и «старая дружба» с Юрнеро держатся только на репликах озвучки — связи не записаны.",
+    "Крепость Ворна и башня-святилище в биографии не названы, поэтому место сражения на схему не привязано.",
+    "Ворн, Niuhi, Bramble Lord, Kanna и Teardrop Gems — персонажи и предмет, а не места; в links не включены.",
+    "Семья героя (family: Some family) без имени и без места: связь не записана.",
+    "Реплики озвучки (Legion Commander, Monkey King, Timbersaw, Earthshaker, Bounty Hunter, Dark Seer, Luna, Meepo, Tusk, Oracle) не дают связей по правилу партии 01.",
+    "Kanna как таинственная фигура: упомянута в разделе знакомств без места и без типа связи, не записана."
+  ]
+}

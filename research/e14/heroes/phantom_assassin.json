@@ -1,0 +1,38 @@
+{
+  "hero": "phantom_assassin",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Tares",
+      "event": "origin",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Phantom_Assassin/Lore",
+      "note": "Родина по инфобоксу и тексту лора: в раннем детстве её взяли в орден из купеческой семьи в Tares (интервью Hero Atlas). В официальной биографии места нет."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Мортред — убийца из Сестёр Вуали, ордена, который считает убийство священной частью естественного порядка. Цели сёстры находят в медитациях и пророчествах, заказов не берут, а их выбор кажется случайным. Воспитанные без собственного имени, Phantom Assassin заменяют друг друга, но эта иногда шепчет запретное — своё имя. По лору её ребёнком забрали в орден из купеческой семьи в Tares.",
+      "en": "Mortred serves the Veiled Sisters, who see killing as holy and part of how the world should work. They find their targets through meditation and prophecy, take no contracts, and seem to choose at random. Raised without a name of their own, the assassins are interchangeable, yet this one sometimes whispers her forbidden name. The lore says she was taken into the order as a child from a merchant family in Tares."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/phantom_assassin.png"
+    ]
+  },
+  "unconfirmed": [
+    "Veiled Sisters: орден назван в биографии, но места, где он находится, в тексте нет. Связь с местом не записана",
+    "Bloodroot Guard: лор допускает связь Мортред с этой фракцией, но фракция не герой и места не указывает",
+    "Codicil of the Veiled Ones: в описании предмета сказано, что цель могла назначить другая сестра. Имени героя там нет, связь не записана",
+    "Craler: двойные клинки Manifold Paradox принадлежат Мортред, но Craler в инфобоксе указан как персонаж без типа связи",
+    "Mireska, Dark Willow, Bounty Hunter, Grimstroke, Wraith King, Death Prophet, Monkey King, Slark и другие герои из реплик озвучки: все связи такого рода не записаны, потому что реплика не основание",
+    "Crepuscular Sigil, Penumbral Crest: предметы, связей с героями не дают",
+    "Oracle: подчинение Veiled Oracle держится на репликах Asan, а в инфобоксе тип не назван — связь не записана.",
+    "Lordran: названа только в описании кроссоверного набора (Girdle of the Dark Wraith) — это мир другой игры, не кандидат в место."
+  ]
+}

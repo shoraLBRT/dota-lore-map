@@ -1,0 +1,45 @@
+{
+  "hero": "necrolyte",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Cathedral of Rumusque",
+      "event": "service",
+      "source": "bio",
+      "note": "Здесь Ротунд'йер стал кардиналом и служил, пока не начал выманивать земли у знати. Родина в биографии не названа, поэтому это первое место по хронологии."
+    },
+    {
+      "place": "Underscape",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Necrophos/Lore",
+      "note": "Место указано в поле places инфобокса лор-страницы; в тексте о нём не сказано.",
+      "doubt": "Есть только в инфобоксе: ни биография, ни текст лора не говорят, что герой там бывал."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Necrophos — бывший монах Ротунд'йер. В эпоху мора он неожиданно стал кардиналом, когда начальство вымерло, а затем обирал умирающих богачей, суля им духовное воздаяние. Осуждённый за ересь и отправленный к чумным, он выжил, и болезнь стала питать его силу: теперь Necrophos ходит по миру, сеет мор и крепнет с каждой сгинувшей деревней.",
+      "en": "Necrophos is the former monk Rotund'jere, who became a cardinal during a great plague only because his superiors had died, and then profited from dying nobles by promising them spiritual rewards. Condemned for heresy and sent to a plague ward, he survived the disease, which fed his power instead, and now wanders the world spreading plague and growing stronger with each village he destroys."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/necrolyte.png"
+    ]
+  },
+  "unconfirmed": [
+    "Pangolier: строка Relationships лор-страницы (Donte Panlin клянётся его остановить) держится только на реплике озвучки Pangolier — связь не записана. Запись enemy в pangolier.json из прошлой партии остаётся односторонней и опирается на ту же реплику.",
+    "Родина героя не названа ни в биографии, ни на Liquipedia: origin не записано, первым местом взят Cathedral of Rumusque (service).",
+    "Plague ward (чумная палата, куда его осудили) — безымянное место: на схему не добавлено и в links не записано.",
+    "Pudge: поле heroes инфобокса называет его, но тип связи не указан; «привязанность» и «не могу ненавидеть» основаны на репликах озвучки, не записано.",
+    "Omniknight: презрение «too clean» взято из реплики, не записано.",
+    "Dark Willow, Monkey King, Undying, Death Prophet, Morphling, Venomancer, Abaddon, Terrorblade, Troll Warlord, Disruptor, Oracle, Legion Commander, Batrider: строки разделов Friendships/Rivalries и Others — реплики озвучки, не основание для связи, не записано.",
+    "Lady Onshu: персонаж из поля characters инфобокса, не герой с ключом; в relations не записан.",
+    "Bloodseeker: строка из раздела Artifact, не основание для связи."
+  ]
+}
