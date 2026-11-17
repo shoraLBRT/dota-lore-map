@@ -4,6 +4,8 @@
   inset: 0;
   z-index: 110;
   display: grid;
+  /* Строка и колонка — ровно по экрану: высокая картинка (карточка Artifact) не растягивает окно за его край. */
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
   place-items: center;
   padding: var(--space-5);
   background: var(--veil-strong);
@@ -14,6 +16,7 @@
   position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr) 22rem;
+  grid-template-rows: minmax(0, 1fr);
   width: min(80rem, 100%);
   height: min(52rem, 100%);
   border: 1px solid var(--metal);
@@ -40,6 +43,7 @@
 .frame {
   position: relative;
   display: grid;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
   min-width: 0;
   min-height: 0;
   background: var(--bg-0);
@@ -53,6 +57,7 @@
 
 .media {
   display: grid;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
   place-items: center;
   min-height: 0;
   padding: var(--space-4) var(--space-7);

@@ -12,6 +12,7 @@
     "ru": "Имперский город Стоунхолл и земли вокруг него — плодородные равнины, реки, озёра и десятки городов. На троне сидит император Галаний, но славу империи принесли её армии, прежде всего Бронзовый легион. Стоунхолл растёт за счёт соседей: легион осаждает город, присоединяет его и забирает годных к службе пленников в рекруты. Многие называют эти войны напрасным кровопролитием.\n\nРасположение здешних городов известно на редкость подробно: Тарес и Сашир — на юге, Таррин — на юго-западе, Миллтаун, Эмбер и Колдбэнкские равнины — на западе, Линкасл и Мистмилл — на востоке, озеро Лайтгласс — на севере. Но кроме места на карте лор почти ничего о них не рассказывает.\n\nОднажды посреди городской площади открылся разлом, и в столицу хлынула орда Бездны во главе с Underlord. Legion Commander — командир Трездин — со своим легионом отбросила её, но почти все бойцы погибли, а город лёг в руины; с тех пор она ведёт личную войну против Бездны. Из этих же краёв родом Phantom Assassin: она родилась в купеческой семье в Таресе.",
     "en": "The imperial city of Stonehall and the lands around it — fertile plains, rivers, lakes and dozens of towns. Emperor Galanius holds the throne, but the empire owes its reputation to its armies, above all the Bronze Legion. Stonehall grows at its neighbours' expense: the Legion besieges a city, annexes it and drafts any captives fit to fight. Plenty of people call these wars needless bloodshed.\n\nThe layout of the realm is known in unusual detail — Tares and Sashire to the south, Tarrin to the south-west, Milltown, Ember and the Coldbank Plains to the west, Lincastle and Mistmill to the east, Lake Lightglass to the north. Beyond their bearings, though, the lore says very little about most of them.\n\nOne day a rift tore open in the city square and an abyssal horde led by the Underlord poured into the capital. Legion Commander Tresdin and her Legion drove it back, but nearly every soldier fell and the city was left in ruins; she has waged a personal war on the Abyss ever since. Phantom Assassin also hails from these lands — she was born to a merchant family in Tares."
   },
+  "media": ["artifact-stonehall-elite"],
   "places": {
     "Stonehall": {
       "name": { "ru": "Стоунхолл", "en": "Stonehall" },
@@ -19,7 +20,8 @@
       "description": {
         "ru": "Столица империи и дом Бронзового легиона; по её улицам ходит элитная королевская стража, а местные школы славятся на всю округу. После прорыва Бездны большая часть города лежит в руинах, но Стоунхолл устоял.",
         "en": "Capital of the empire and home of the Bronze Legion, patrolled by an elite royal guard and known for its fine schools. Much of the city still lies in ruins after the abyssal breach, but Stonehall did not fall."
-      }
+      },
+      "media": ["artifact-stonehall-elite"]
     },
     "Qine": {
       "name": { "ru": "Кине", "en": "Qine" },
@@ -51,7 +53,8 @@
       "description": {
         "ru": "Город вхулов, ставший полем битвы: Бронзовый легион устроил здесь засаду на армию Красного Тумана, а горожане восстали против обеих сторон. Для Трездин сражение закончилось катастрофой, и позже Миреска подобрала в руинах знамя легиона.",
         "en": "A vhoul city turned battlefield: the Bronze Legion laid an ambush here for the Red Mist army while the townsfolk rose up against both. The battle went disastrously for Tresdin, and Mireska later picked a Legion banner out of the ruins."
-      }
+      },
+      "media": ["artifact-roseleaf-wall"]
     },
     "Tarrin": {
       "name": { "ru": "Таррин", "en": "Tarrin" },

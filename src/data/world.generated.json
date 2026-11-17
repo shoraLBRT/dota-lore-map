@@ -48,6 +48,9 @@
         "ru": "Над облаками мир не кончается. Здесь, недосягаемые для бескрылых народов, парят крепости скайрасов, а ещё выше кружат светила, от которых зависит судьба всего, что лежит внизу.\n\nНебеса помнят Безумную Луну — тюрьму двух древних разумов, Радинтула и Дируулта. Когда она раскололась, её осколки дождём упали на землю, и с тех пор войны Сияющих и Тьмы ведутся за этот звёздный камень. Рядом всё так же светит Луна Селемены, богини, которой служат Mirana и Luna.\n\nОтсюда родом скайрас Драгонус (Skywrath Mage) и свергнутая принцесса Шендельзаре, ставшая Vengeful Spirit. С небесами связаны и боги-громовержцы, и дети звёзд — Phoenix и Dawnbreaker.",
         "en": "The world does not end at the clouds. Above them, out of reach of anything without wings, drift the fortresses of the Skywrath, and higher still wheel the celestial bodies whose fate shapes everything below.\n\nThe heavens remember the Mad Moon, a prison built for two ancient minds, Radinthul and Diruulth. When it cracked apart, its shards rained down on the earth, and the Radiant and the Dire have fought over that starstone ever since. Beside the ruin still glows the moon of Selemene, the goddess served by Mirana and Luna.\n\nThis is the home of Dragonus the Skywrath Mage and of Shendelzare, the deposed princess who became the Vengeful Spirit. Thunder gods and the children of stars, Phoenix and Valora, are bound to these skies as well."
       },
+      "media": [
+        "ghastly-eyrie-ascension-day"
+      ],
       "layout": {
         "polygon": [
           [
@@ -135,6 +138,11 @@
               "en": "The Skywrath capital, perched so high that other races can barely reach it. It answers to the queen of the Nest of Thorns: the throne meant for Shendelzare was seized by her younger sister Imperia, and the palace has bred conspiracies ever since."
             }
           },
+          "media": [
+            "ghastly-eyrie-ascension-day",
+            "crownfall-act-iv-trailer",
+            "crownfall-trailer"
+          ],
           "pos": [
             0.12,
             0.065
@@ -751,7 +759,8 @@
         "en": "The far north of the world: a frozen expanse between the Barrier mountains and the Boiling Sea. Few ships ever arrive; the only sea route runs through Frostreach, the northernmost port there is. Through the heart of the land flows the Blueheart Glacier, the wellspring of all frost magic.\n\nIts kingdoms once suffered under the sorcerer Ethreain until his own subjects rose up, killed him and sank him in the Black Pool; he has since returned as the Lich. Today the north belongs to hardy tribes like the Frostiron, and its taverns still retell Tusk's brawls.\n\nYoung Rylai, who froze everything around her, was sent to Icewrack and found a teacher in the Ice Wizard, becoming the Crystal Maiden. The flightless Skywrath Kez spent his exile here, and the Lone Druid roams the northern pines."
       },
       "media": [
-        "icewrack-new-neighbors"
+        "icewrack-new-neighbors",
+        "crownfall-act-iii-trailer"
       ],
       "layout": {
         "polygon": [
@@ -1780,6 +1789,9 @@
         "ru": "Имперский город Стоунхолл и земли вокруг него — плодородные равнины, реки, озёра и десятки городов. На троне сидит император Галаний, но славу империи принесли её армии, прежде всего Бронзовый легион. Стоунхолл растёт за счёт соседей: легион осаждает город, присоединяет его и забирает годных к службе пленников в рекруты. Многие называют эти войны напрасным кровопролитием.\n\nРасположение здешних городов известно на редкость подробно: Тарес и Сашир — на юге, Таррин — на юго-западе, Миллтаун, Эмбер и Колдбэнкские равнины — на западе, Линкасл и Мистмилл — на востоке, озеро Лайтгласс — на севере. Но кроме места на карте лор почти ничего о них не рассказывает.\n\nОднажды посреди городской площади открылся разлом, и в столицу хлынула орда Бездны во главе с Underlord. Legion Commander — командир Трездин — со своим легионом отбросила её, но почти все бойцы погибли, а город лёг в руины; с тех пор она ведёт личную войну против Бездны. Из этих же краёв родом Phantom Assassin: она родилась в купеческой семье в Таресе.",
         "en": "The imperial city of Stonehall and the lands around it — fertile plains, rivers, lakes and dozens of towns. Emperor Galanius holds the throne, but the empire owes its reputation to its armies, above all the Bronze Legion. Stonehall grows at its neighbours' expense: the Legion besieges a city, annexes it and drafts any captives fit to fight. Plenty of people call these wars needless bloodshed.\n\nThe layout of the realm is known in unusual detail — Tares and Sashire to the south, Tarrin to the south-west, Milltown, Ember and the Coldbank Plains to the west, Lincastle and Mistmill to the east, Lake Lightglass to the north. Beyond their bearings, though, the lore says very little about most of them.\n\nOne day a rift tore open in the city square and an abyssal horde led by the Underlord poured into the capital. Legion Commander Tresdin and her Legion drove it back, but nearly every soldier fell and the city was left in ruins; she has waged a personal war on the Abyss ever since. Phantom Assassin also hails from these lands — she was born to a merchant family in Tares."
       },
+      "media": [
+        "artifact-stonehall-elite"
+      ],
       "layout": {
         "polygon": [
           [
@@ -1926,6 +1938,9 @@
               "en": "Capital of the empire and home of the Bronze Legion, patrolled by an elite royal guard and known for its fine schools. Much of the city still lies in ruins after the abyssal breach, but Stonehall did not fall."
             }
           },
+          "media": [
+            "artifact-stonehall-elite"
+          ],
           "pos": [
             0.455,
             0.37
@@ -2027,6 +2042,9 @@
               "en": "A vhoul city turned battlefield: the Bronze Legion laid an ambush here for the Red Mist army while the townsfolk rose up against both. The battle went disastrously for Tresdin, and Mireska later picked a Legion banner out of the ruins."
             }
           },
+          "media": [
+            "artifact-roseleaf-wall"
+          ],
           "pos": [
             0.405,
             0.355
@@ -2728,7 +2746,7 @@
           "slug": "tyler-estate",
           "capital": false,
           "placement": "lore",
-          "significance": "link",
+          "significance": "event",
           "note": "в Weeping Rose",
           "text": {
             "name": {
@@ -2744,6 +2762,9 @@
               "en": "An asylum for the criminally wizardous that enforces Weeping Rose's few but absolute laws. Inmates are experimented upon, and escapees are hunted down by the Estate's agents — Anti-Mage and Silencer among them."
             }
           },
+          "media": [
+            "artifact-tyler-estate"
+          ],
           "pos": [
             0.64,
             0.415
@@ -2783,7 +2804,7 @@
           "slug": "iron-fog",
           "capital": false,
           "placement": "ours",
-          "significance": "minor",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Железный Туман",
@@ -2798,6 +2819,9 @@
               "en": "A city of industry and machinery run by the Brass Herald, one of Revtel's merchant kings. He boasts of its precision; Mireska says terrible things are done to people there. Its location is unknown — we placed it near Revtel."
             }
           },
+          "media": [
+            "artifact-iron-fog-goldmine"
+          ],
           "pos": [
             0.65,
             0.345
@@ -2868,6 +2892,9 @@
         "ru": "На севере края стоит Квойдж — город, где нежить живёт вполне цивилизованно бок о бок с неопрятными мясниками. Говорят, его создал бог Марс, возможно на месте давней битвы, а из развлечений здесь в почёте разве что бои в ямах. В дне пути лежит Дымная Гавань — порт, где не задают лишних вопросов.\n\nДалеко на юге, между Хазадальскими пустошами и Друудом, тянутся Поля Вечной Бойни. Это проклятая земля: тела павших не гниют и не уходят в почву, как глубоко ни копай. Ночами здесь трудится Pudge — разделывает мёртвых, чтобы к рассвету поле было чистым, и давно уже не только разделывает.\n\nК этому краю мы отнесли и собор Румуска: его клирики совершили паломничество на Поля, чтобы очистить их от скверны Мёртвого бога. Из стен собора вышел Necrophos — монах, который подхватил чуму, но вместо того чтобы умереть, стал её пророком.",
         "en": "In the north stands Quoidge, a city where the undead lead perfectly civilised lives alongside slovenly butchers. The god Mars is said to have founded it, perhaps on the site of some old battle, and pit fighting is about the only sport in town. A day's journey away lies Smoke Harbor, a port that asks no questions.\n\nFar to the south, between the Hazhadal Barrens and Druud, stretch the Fields of Endless Carnage — a cursed land where the fallen never rot and never return to the soil, however deep the grave. Here Pudge works through the night, carving up the dead so the field is clear by dawn, and long ago acquired a taste for the job.\n\nWe also place the Cathedral of Rumusque here: its clerics once marched on the Fields to purge them of the Dead God's taint. The Necrophos rose from within its walls — a monk who caught the plague and, instead of dying, became its prophet."
       },
+      "media": [
+        "artifact-pit-fighter-quoidge"
+      ],
       "layout": {
         "polygon": [
           [
@@ -3007,7 +3034,7 @@
           "slug": "quoidge",
           "capital": true,
           "placement": "lore",
-          "significance": "link",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Квойдж",
@@ -3022,6 +3049,9 @@
               "en": "A city of civilised undead far north of the Fields and south of Skywrath, said to have been founded by Mars. Pudge happily gives tours of the city and its grim surroundings, from the Plains of Ceaseless Torment to the River of Woe."
             }
           },
+          "media": [
+            "artifact-pit-fighter-quoidge"
+          ],
           "pos": [
             0.73,
             0.345
@@ -3311,7 +3341,8 @@
         "en": "A high plateau south of the Fields of Endless Carnage — red deserts, wind-scoured steppe and endless tablelands. This is the country of the centaur clans. Outsiders take them for brutes: they have no writing, no formal music, no organised faith. To a centaur, though, combat is the purest form of thought.\n\nThe uplands are also home to the Oglodi, the last remnant of a once-great civilisation. They ride stryders, scavenge the ruins of their ancestors' cities and revere the weather itself — summer storms bring rain but leave charred bodies in their wake. Settled kingdoms to the south keep pressing on their land.\n\nTwo heroes hail from here. Centaur Warrunner became the undisputed champion of the Omexe arena, then rode off in search of an opponent worthy of him. Disruptor, a young stormcrafter, adapted an ancient coil that calls down lightning at will and turned it on the southern intruders."
       },
       "media": [
-        "druud-hells-basin"
+        "druud-hells-basin",
+        "crownfall-act-ii-trailer"
       ],
       "layout": {
         "polygon": [
@@ -3452,6 +3483,9 @@
               "en": "An ancient arena where the centaur clans have met for millennia to fight to the last one standing. The victor is awarded the Great Belt of Omexe — now worn by Centaur Warrunner, who wishes to be buried in these grounds one day."
             }
           },
+          "media": [
+            "artifact-omexe-arena"
+          ],
           "pos": [
             0.735,
             0.69
@@ -4404,6 +4438,9 @@
         "ru": "Под толщей океана лежат затонувшие города, их сокровищницы и тюрьмы. Это владения слизеринов, наг и мерантов, а порядок здесь держат Конклав Пучины и стража, верная своему долгу тысячелетиями.\n\nSlardar стережёт глубинные хранилища, Naga Siren когда-то отбила Крей у захватчиков, а Slark остаётся единственным, кто сумел сбежать из Тёмного рифа. Morphling, ожившая вода с упавшей кометы, считает эти глубины своим домом.\n\nЕщё ниже, за последними руинами, лежит Адская впадина. Оттуда демон Буки'вак Порченый расползается гнилью по всему дну.",
         "en": "Beneath the weight of the ocean lie sunken cities with their vaults and prisons. This is the realm of slithereen, naga and meranths, kept in order by the Conclave of the Brine and guards who have held their posts for millennia.\n\nSlardar watches over the deep treasuries, Naga Siren once drove raiders out of Crey, and Slark is still the only prisoner ever to escape Dark Reef. Morphling, living water fallen from a comet, calls these depths home.\n\nFurther down, past the last ruins, opens the Infernal Hollow. From there the demon Buki'vak the Corrupted spreads his rot across the sea floor."
       },
+      "media": [
+        "dark-reef-siltbreaker"
+      ],
       "layout": {
         "polygon": [
           [
@@ -4498,6 +4535,9 @@
               "en": "An underwater prison sunk into a trench beneath a metal grid: a dark labyrinth, patrolling eels and stinging anemones at every exit. It holds the worst the sea has to offer. Slark is the only one who ever got out."
             }
           },
+          "media": [
+            "dark-reef-siltbreaker"
+          ],
           "pos": [
             0.9,
             0.68
@@ -7295,6 +7335,9 @@
         "ru": "Под корнями вулканов и слоем магмы лежит другой мир — без неба и солнца. Обсидиановые своды, светящиеся пещеры и леса гигантских грибов тянутся до самых тектонических плит.\n\nЗдесь правит сила. Врогрос (Underlord) собирает Абиссальную Орду в городе Азийог, чтобы однажды выйти на поверхность и потребовать себе земли наверху. Ещё глубже, в запечатанных Нижних пределах, миллионы лет живут ядовитые незердрейки.\n\nИз этих глубин вышли Underlord, Viper и Pugna — колдун, родившийся в Нижних пределах и выросший в храме Искусств Забвения.",
         "en": "Beneath the roots of volcanoes and the layer of magma lies another world, one without sky or sun. Obsidian vaults, glowing caverns and forests of giant fungi stretch all the way down to the tectonic plates.\n\nStrength rules here. Vrogros the Underlord gathers the Abyssal Horde in the city of Aziyog, waiting for the day it marches up to claim the lands above. Deeper still, in the sealed Nether Reaches, venomous netherdrakes have dwelt for millions of years.\n\nThe Underlord, Viper and Pugna all rose from these depths, Pugna born in the Nether Reaches and raised in a temple of the Arts of Oblivion."
       },
+      "media": [
+        "underhollow-roshan"
+      ],
       "layout": {
         "polygon": [
           [
@@ -7441,7 +7484,7 @@
           "slug": "the-underhollow",
           "capital": false,
           "placement": "lore",
-          "significance": "minor",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Пещеры пустоши",
@@ -7456,6 +7499,9 @@
               "en": "Rings of caverns spiraling inward to where Roshan guards his rarest cheese. Little lore is attached to it; it is known mostly as the battleground of 2018."
             }
           },
+          "media": [
+            "underhollow-roshan"
+          ],
           "pos": [
             0.22,
             0.97
@@ -11523,6 +11569,271 @@
       },
       "credit": "Valve Corporation",
       "sourceUrl": "https://www.dota2.com/eminenceofristul"
+    },
+    {
+      "id": "ghastly-eyrie-ascension-day",
+      "type": "image",
+      "src": "https://clan.fastly.steamstatic.com/images/3703047/ba80108f618e691d184e7eb5579e56c33b9a811b.jpg",
+      "title": {
+        "ru": "«День вознесения»",
+        "en": "Ascension Day"
+      },
+      "subtitle": {
+        "ru": "Арт",
+        "en": "Art"
+      },
+      "description": {
+        "ru": "Арт Valve, которым в 2024 году анонсировали Crownfall: стеклянные купола и шпили Мрачного Гнездовья, столицы скайрасов, торчат из облаков. В день своего вознесения Шендельзару сбросили с самой высокой из этих башен — так начинается вся история.",
+        "en": "Valve art that announced Crownfall in 2024: the glass domes and spires of the Ghastly Eyrie, capital of the Skywrath, rising out of the clouds. On the day of her ascension Shendelzare was thrown from the tallest of these towers — that is where the whole story begins."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/newsentry/7428199535674663482"
+    },
+    {
+      "id": "crownfall-trailer",
+      "type": "youtube",
+      "youtubeId": "7QxnMnBYziA",
+      "title": {
+        "ru": "Crownfall",
+        "en": "Crownfall"
+      },
+      "subtitle": {
+        "ru": "Трейлер",
+        "en": "Trailer"
+      },
+      "description": {
+        "ru": "Короткий ролик к началу Crownfall (2024): Шен и Dragonus пробираются по людным улицам столицы скайрасов, чтобы вернуть трон.",
+        "en": "A short clip for the start of Crownfall (2024): Shen and Dragonus slip through the crowded streets of the Skywrath capital on their way to reclaiming the throne."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/crownfall"
+    },
+    {
+      "id": "crownfall-act-iv-trailer",
+      "type": "youtube",
+      "youtubeId": "In5C2HWaWk8",
+      "title": {
+        "ru": "Crownfall: акт IV",
+        "en": "Crownfall Act IV"
+      },
+      "subtitle": {
+        "ru": "Трейлер",
+        "en": "Trailer"
+      },
+      "description": {
+        "ru": "Ролик к четвёртому, последнему акту Crownfall «Шпили Скайрата» (2024). История возвращается в столицу скайрасов: пора свергнуть королеву Империю.",
+        "en": "Clip for the fourth and final act of Crownfall, \"The Spires of Skywrath\" (2024). The story comes back to the Skywrath capital, and Queen Imperia is finally to be toppled."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/newsentry/4446834797838336420"
+    },
+    {
+      "id": "crownfall-act-ii-trailer",
+      "type": "youtube",
+      "youtubeId": "gEF7eriHskE",
+      "title": {
+        "ru": "Crownfall: акт II",
+        "en": "Crownfall Act II"
+      },
+      "subtitle": {
+        "ru": "Трейлер",
+        "en": "Trailer"
+      },
+      "description": {
+        "ru": "Ролик ко второму акту Crownfall (2024): действие уходит в выжженные пески Друуда, где Skywrath Mage ищет союзников и следы ордена казураев.",
+        "en": "Clip for Crownfall Act II (2024): the action moves to the sun-scorched sands of Druud, where Skywrath Mage looks for allies and for traces of the Kazurai order."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/newsentry/5991554339562872856"
+    },
+    {
+      "id": "crownfall-act-iii-trailer",
+      "type": "youtube",
+      "youtubeId": "Majry-FXiK0",
+      "title": {
+        "ru": "Crownfall: акт III",
+        "en": "Crownfall Act III"
+      },
+      "subtitle": {
+        "ru": "Трейлер",
+        "en": "Trailer"
+      },
+      "description": {
+        "ru": "Ролик к третьему акту Crownfall «Морозы Айсрака» (2024): Vengeful Spirit на продуваемом всеми ветрами севере собирает местных героев, чтобы отбить деревню у дракона.",
+        "en": "Clip for Crownfall Act III, \"The Frosts of Icewrack\" (2024): on the wind-blasted northern heights Vengeful Spirit gathers the local heroes to save a village from a dragon."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/newsentry/4238531900078333321"
+    },
+    {
+      "id": "dark-reef-siltbreaker",
+      "type": "image",
+      "src": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/blogfiles/blog_siltbreakerrises.jpg",
+      "title": {
+        "ru": "«Пробуждение Siltbreaker»",
+        "en": "Siltbreaker Rises"
+      },
+      "subtitle": {
+        "ru": "Арт",
+        "en": "Art"
+      },
+      "description": {
+        "ru": "Арт кампании Siltbreaker из боевого пропуска 2017 года. В подводной тюрьме Тёмный риф просыпается древнее чудовище Siltbreaker, и защитники Пучины спускаются в глубину, чтобы его остановить.",
+        "en": "Art for the Siltbreaker campaign from the 2017 Battle Pass. Deep in the undersea prison of Dark Reef the ancient monster Siltbreaker wakes, and the defenders of the Brine dive down to stop him."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/newsentry/2882822214138800984"
+    },
+    {
+      "id": "underhollow-roshan",
+      "type": "image",
+      "src": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/blogfiles/bpti8_underhollow_blimxvi.jpg",
+      "title": {
+        "ru": "«Пещеры пустоши зовут»",
+        "en": "The Underhollow Beckons"
+      },
+      "subtitle": {
+        "ru": "Арт",
+        "en": "Art"
+      },
+      "description": {
+        "ru": "Арт к режиму Underhollow из боевого пропуска 2018 года. Учуяв редчайший сыр, Рошан проломился в лабиринт пещер под своим логовом — и герои, прихватив сыр, бегут от него по тёмным тоннелям.",
+        "en": "Art for the Underhollow mode from the 2018 Battle Pass. Lured by the rarest of cheeses, Roshan smashed his way into the cave maze beneath his lair — and the heroes, cheese in hand, run from him through the dark tunnels."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/newsentry/2882822214138792458"
+    },
+    {
+      "id": "artifact-omexe-arena",
+      "type": "image",
+      "src": {
+        "ru": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10183_large_russian.5b17e1b63eb15d58294f69cd3aef1f232d189f99.png",
+        "en": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10183_large_english.33db6236abb7949d27926d07a7eadefdb66c33f3.png"
+      },
+      "title": {
+        "ru": "«Арена Омекс»",
+        "en": "The Omexe Arena"
+      },
+      "subtitle": {
+        "ru": "Арт",
+        "en": "Art"
+      },
+      "description": {
+        "ru": "Карточка Artifact (Valve, 2018), иллюстрация — Dimitar Marinski. Ярусы трибун, забитые зрителями, и одинокий боец с топором на изрытой песчаной арене.",
+        "en": "Artifact card (Valve, 2018), illustrated by Dimitar Marinski. Tiers of packed stands and a lone axe-wielding fighter on the churned sand of the arena."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://store.steampowered.com/app/583950/"
+    },
+    {
+      "id": "artifact-tyler-estate",
+      "type": "image",
+      "src": {
+        "ru": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10154_large_russian.42759f6d5859f939c2466aa5572da9a0fbd20080.png",
+        "en": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10154_large_english.059a0207bb605b2094724a9380c901ac8eb3c7ef.png"
+      },
+      "title": {
+        "ru": "«Поместье Тайлер»",
+        "en": "The Tyler Estate"
+      },
+      "subtitle": {
+        "ru": "Арт",
+        "en": "Art"
+      },
+      "description": {
+        "ru": "Карточка Artifact (Valve, 2018), иллюстрация — Dimitar Marinski. Ночью за коваными воротами и заросшим садом светятся окна огромного особняка.",
+        "en": "Artifact card (Valve, 2018), illustrated by Dimitar Marinski. At night, behind wrought-iron gates and an overgrown garden, the windows of a vast mansion glow."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://store.steampowered.com/app/583950/"
+    },
+    {
+      "id": "artifact-iron-fog-goldmine",
+      "type": "image",
+      "src": {
+        "ru": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10165_large_russian.95e54b7d638209c67968b163f11bfee4d0f31e9a.png",
+        "en": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10165_large_english.9bd1a3b4ff1c07841fb1947d3cdaa21039ce8e2e.png"
+      },
+      "title": {
+        "ru": "«Рудник Железного тумана»",
+        "en": "Iron Fog Goldmine"
+      },
+      "subtitle": {
+        "ru": "Арт",
+        "en": "Art"
+      },
+      "description": {
+        "ru": "Карточка Artifact (Valve, 2018), иллюстрация — James Paick. В пещере закованные рудокопы долбят золотую жилу, а над ними стоит надсмотрщик в богатой шубе.",
+        "en": "Artifact card (Valve, 2018), illustrated by James Paick. In a cavern, chained miners hack at a vein of gold while an overseer in a rich fur coat looks down on them."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://store.steampowered.com/app/583950/"
+    },
+    {
+      "id": "artifact-roseleaf-wall",
+      "type": "image",
+      "src": {
+        "ru": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10120_large_russian.10e26909b20d3722a5aa78041ce25c7ae8fbc5c9.png",
+        "en": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10120_large_english.0c8b471008d0a538774ac8d62aa7b25496045d32.png"
+      },
+      "title": {
+        "ru": "«Стена Розолиста»",
+        "en": "Roseleaf Wall"
+      },
+      "subtitle": {
+        "ru": "Арт",
+        "en": "Art"
+      },
+      "description": {
+        "ru": "Карточка Artifact (Valve, 2018), иллюстрация — Pauline Voss. Живая стена из зелени и жёлтых роз, над которой порхают светящиеся бабочки.",
+        "en": "Artifact card (Valve, 2018), illustrated by Pauline Voss. A living wall of greenery and yellow roses with glowing butterflies drifting over it."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://store.steampowered.com/app/583950/"
+    },
+    {
+      "id": "artifact-stonehall-elite",
+      "type": "image",
+      "src": {
+        "ru": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10131_large_russian.53b5a17652450f84438420924f77e49152a53846.png",
+        "en": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10131_large_english.2ee44440f5038ffb3f7391d06feb68e6f87e05f9.png"
+      },
+      "title": {
+        "ru": "«Элитный воин Стоунхолла»",
+        "en": "Stonehall Elite"
+      },
+      "subtitle": {
+        "ru": "Арт",
+        "en": "Art"
+      },
+      "description": {
+        "ru": "Карточка Artifact (Valve, 2018), иллюстрация — Jason Kang. Воин в золочёных доспехах с рогатым шлемом и красным плащом держит на плече меч.",
+        "en": "Artifact card (Valve, 2018), illustrated by Jason Kang. A soldier in gilded armour, horned helmet and red cloak, a sword resting on his shoulder."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://store.steampowered.com/app/583950/"
+    },
+    {
+      "id": "artifact-pit-fighter-quoidge",
+      "type": "image",
+      "src": {
+        "ru": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10083_large_russian.b7b8afa2f31a7c08fcfa76c44ca9533a0e681a63.png",
+        "en": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10083_large_english.4ad7efe3f45ccebdd3f8536eeb3718bb368bed3a.png"
+      },
+      "title": {
+        "ru": "«Гладиатор из Квойджа»",
+        "en": "Pit Fighter of Quoidge"
+      },
+      "subtitle": {
+        "ru": "Арт",
+        "en": "Art"
+      },
+      "description": {
+        "ru": "Карточка Artifact (Valve, 2018), иллюстрация — Daarken. Сшитый из кусков бледный боец скалится в лунном свете — житель города нежити.",
+        "en": "Artifact card (Valve, 2018), illustrated by Daarken. A pale fighter stitched together from pieces snarls in the moonlight — a resident of the undead city."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://store.steampowered.com/app/583950/"
     }
   ]
 }

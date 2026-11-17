@@ -98,6 +98,175 @@
       },
       "credit": "Valve Corporation",
       "sourceUrl": "https://www.dota2.com/eminenceofristul"
+    },
+    {
+      "id": "ghastly-eyrie-ascension-day",
+      "type": "image",
+      "src": "https://clan.fastly.steamstatic.com/images/3703047/ba80108f618e691d184e7eb5579e56c33b9a811b.jpg",
+      "title": { "ru": "«День вознесения»", "en": "Ascension Day" },
+      "subtitle": { "ru": "Арт", "en": "Art" },
+      "description": {
+        "ru": "Арт Valve, которым в 2024 году анонсировали Crownfall: стеклянные купола и шпили Мрачного Гнездовья, столицы скайрасов, торчат из облаков. В день своего вознесения Шендельзару сбросили с самой высокой из этих башен — так начинается вся история.",
+        "en": "Valve art that announced Crownfall in 2024: the glass domes and spires of the Ghastly Eyrie, capital of the Skywrath, rising out of the clouds. On the day of her ascension Shendelzare was thrown from the tallest of these towers — that is where the whole story begins."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/newsentry/7428199535674663482"
+    },
+    {
+      "id": "crownfall-trailer",
+      "type": "youtube",
+      "youtubeId": "7QxnMnBYziA",
+      "title": { "ru": "Crownfall", "en": "Crownfall" },
+      "subtitle": { "ru": "Трейлер", "en": "Trailer" },
+      "description": {
+        "ru": "Короткий ролик к началу Crownfall (2024): Шен и Dragonus пробираются по людным улицам столицы скайрасов, чтобы вернуть трон.",
+        "en": "A short clip for the start of Crownfall (2024): Shen and Dragonus slip through the crowded streets of the Skywrath capital on their way to reclaiming the throne."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/crownfall"
+    },
+    {
+      "id": "crownfall-act-iv-trailer",
+      "type": "youtube",
+      "youtubeId": "In5C2HWaWk8",
+      "title": { "ru": "Crownfall: акт IV", "en": "Crownfall Act IV" },
+      "subtitle": { "ru": "Трейлер", "en": "Trailer" },
+      "description": {
+        "ru": "Ролик к четвёртому, последнему акту Crownfall «Шпили Скайрата» (2024). История возвращается в столицу скайрасов: пора свергнуть королеву Империю.",
+        "en": "Clip for the fourth and final act of Crownfall, \"The Spires of Skywrath\" (2024). The story comes back to the Skywrath capital, and Queen Imperia is finally to be toppled."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/newsentry/4446834797838336420"
+    },
+    {
+      "id": "crownfall-act-ii-trailer",
+      "type": "youtube",
+      "youtubeId": "gEF7eriHskE",
+      "title": { "ru": "Crownfall: акт II", "en": "Crownfall Act II" },
+      "subtitle": { "ru": "Трейлер", "en": "Trailer" },
+      "description": {
+        "ru": "Ролик ко второму акту Crownfall (2024): действие уходит в выжженные пески Друуда, где Skywrath Mage ищет союзников и следы ордена казураев.",
+        "en": "Clip for Crownfall Act II (2024): the action moves to the sun-scorched sands of Druud, where Skywrath Mage looks for allies and for traces of the Kazurai order."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/newsentry/5991554339562872856"
+    },
+    {
+      "id": "crownfall-act-iii-trailer",
+      "type": "youtube",
+      "youtubeId": "Majry-FXiK0",
+      "title": { "ru": "Crownfall: акт III", "en": "Crownfall Act III" },
+      "subtitle": { "ru": "Трейлер", "en": "Trailer" },
+      "description": {
+        "ru": "Ролик к третьему акту Crownfall «Морозы Айсрака» (2024): Vengeful Spirit на продуваемом всеми ветрами севере собирает местных героев, чтобы отбить деревню у дракона.",
+        "en": "Clip for Crownfall Act III, \"The Frosts of Icewrack\" (2024): on the wind-blasted northern heights Vengeful Spirit gathers the local heroes to save a village from a dragon."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/newsentry/4238531900078333321"
+    },
+    {
+      "id": "dark-reef-siltbreaker",
+      "type": "image",
+      "src": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/blogfiles/blog_siltbreakerrises.jpg",
+      "title": { "ru": "«Пробуждение Siltbreaker»", "en": "Siltbreaker Rises" },
+      "subtitle": { "ru": "Арт", "en": "Art" },
+      "description": {
+        "ru": "Арт кампании Siltbreaker из боевого пропуска 2017 года. В подводной тюрьме Тёмный риф просыпается древнее чудовище Siltbreaker, и защитники Пучины спускаются в глубину, чтобы его остановить.",
+        "en": "Art for the Siltbreaker campaign from the 2017 Battle Pass. Deep in the undersea prison of Dark Reef the ancient monster Siltbreaker wakes, and the defenders of the Brine dive down to stop him."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/newsentry/2882822214138800984"
+    },
+    {
+      "id": "underhollow-roshan",
+      "type": "image",
+      "src": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/blogfiles/bpti8_underhollow_blimxvi.jpg",
+      "title": { "ru": "«Пещеры пустоши зовут»", "en": "The Underhollow Beckons" },
+      "subtitle": { "ru": "Арт", "en": "Art" },
+      "description": {
+        "ru": "Арт к режиму Underhollow из боевого пропуска 2018 года. Учуяв редчайший сыр, Рошан проломился в лабиринт пещер под своим логовом — и герои, прихватив сыр, бегут от него по тёмным тоннелям.",
+        "en": "Art for the Underhollow mode from the 2018 Battle Pass. Lured by the rarest of cheeses, Roshan smashed his way into the cave maze beneath his lair — and the heroes, cheese in hand, run from him through the dark tunnels."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/newsentry/2882822214138792458"
+    },
+    {
+      "id": "artifact-omexe-arena",
+      "type": "image",
+      "src": { "ru": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10183_large_russian.5b17e1b63eb15d58294f69cd3aef1f232d189f99.png", "en": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10183_large_english.33db6236abb7949d27926d07a7eadefdb66c33f3.png" },
+      "title": { "ru": "«Арена Омекс»", "en": "The Omexe Arena" },
+      "subtitle": { "ru": "Арт", "en": "Art" },
+      "description": {
+        "ru": "Карточка Artifact (Valve, 2018), иллюстрация — Dimitar Marinski. Ярусы трибун, забитые зрителями, и одинокий боец с топором на изрытой песчаной арене.",
+        "en": "Artifact card (Valve, 2018), illustrated by Dimitar Marinski. Tiers of packed stands and a lone axe-wielding fighter on the churned sand of the arena."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://store.steampowered.com/app/583950/"
+    },
+    {
+      "id": "artifact-tyler-estate",
+      "type": "image",
+      "src": { "ru": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10154_large_russian.42759f6d5859f939c2466aa5572da9a0fbd20080.png", "en": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10154_large_english.059a0207bb605b2094724a9380c901ac8eb3c7ef.png" },
+      "title": { "ru": "«Поместье Тайлер»", "en": "The Tyler Estate" },
+      "subtitle": { "ru": "Арт", "en": "Art" },
+      "description": {
+        "ru": "Карточка Artifact (Valve, 2018), иллюстрация — Dimitar Marinski. Ночью за коваными воротами и заросшим садом светятся окна огромного особняка.",
+        "en": "Artifact card (Valve, 2018), illustrated by Dimitar Marinski. At night, behind wrought-iron gates and an overgrown garden, the windows of a vast mansion glow."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://store.steampowered.com/app/583950/"
+    },
+    {
+      "id": "artifact-iron-fog-goldmine",
+      "type": "image",
+      "src": { "ru": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10165_large_russian.95e54b7d638209c67968b163f11bfee4d0f31e9a.png", "en": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10165_large_english.9bd1a3b4ff1c07841fb1947d3cdaa21039ce8e2e.png" },
+      "title": { "ru": "«Рудник Железного тумана»", "en": "Iron Fog Goldmine" },
+      "subtitle": { "ru": "Арт", "en": "Art" },
+      "description": {
+        "ru": "Карточка Artifact (Valve, 2018), иллюстрация — James Paick. В пещере закованные рудокопы долбят золотую жилу, а над ними стоит надсмотрщик в богатой шубе.",
+        "en": "Artifact card (Valve, 2018), illustrated by James Paick. In a cavern, chained miners hack at a vein of gold while an overseer in a rich fur coat looks down on them."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://store.steampowered.com/app/583950/"
+    },
+    {
+      "id": "artifact-roseleaf-wall",
+      "type": "image",
+      "src": { "ru": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10120_large_russian.10e26909b20d3722a5aa78041ce25c7ae8fbc5c9.png", "en": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10120_large_english.0c8b471008d0a538774ac8d62aa7b25496045d32.png" },
+      "title": { "ru": "«Стена Розолиста»", "en": "Roseleaf Wall" },
+      "subtitle": { "ru": "Арт", "en": "Art" },
+      "description": {
+        "ru": "Карточка Artifact (Valve, 2018), иллюстрация — Pauline Voss. Живая стена из зелени и жёлтых роз, над которой порхают светящиеся бабочки.",
+        "en": "Artifact card (Valve, 2018), illustrated by Pauline Voss. A living wall of greenery and yellow roses with glowing butterflies drifting over it."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://store.steampowered.com/app/583950/"
+    },
+    {
+      "id": "artifact-stonehall-elite",
+      "type": "image",
+      "src": { "ru": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10131_large_russian.53b5a17652450f84438420924f77e49152a53846.png", "en": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10131_large_english.2ee44440f5038ffb3f7391d06feb68e6f87e05f9.png" },
+      "title": { "ru": "«Элитный воин Стоунхолла»", "en": "Stonehall Elite" },
+      "subtitle": { "ru": "Арт", "en": "Art" },
+      "description": {
+        "ru": "Карточка Artifact (Valve, 2018), иллюстрация — Jason Kang. Воин в золочёных доспехах с рогатым шлемом и красным плащом держит на плече меч.",
+        "en": "Artifact card (Valve, 2018), illustrated by Jason Kang. A soldier in gilded armour, horned helmet and red cloak, a sword resting on his shoulder."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://store.steampowered.com/app/583950/"
+    },
+    {
+      "id": "artifact-pit-fighter-quoidge",
+      "type": "image",
+      "src": { "ru": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10083_large_russian.b7b8afa2f31a7c08fcfa76c44ca9533a0e681a63.png", "en": "https://cdn.cloudflare.steamstatic.com/apps/583950/icons/set01/10083_large_english.4ad7efe3f45ccebdd3f8536eeb3718bb368bed3a.png" },
+      "title": { "ru": "«Гладиатор из Квойджа»", "en": "Pit Fighter of Quoidge" },
+      "subtitle": { "ru": "Арт", "en": "Art" },
+      "description": {
+        "ru": "Карточка Artifact (Valve, 2018), иллюстрация — Daarken. Сшитый из кусков бледный боец скалится в лунном свете — житель города нежити.",
+        "en": "Artifact card (Valve, 2018), illustrated by Daarken. A pale fighter stitched together from pieces snarls in the moonlight — a resident of the undead city."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://store.steampowered.com/app/583950/"
     }
   ]
 }

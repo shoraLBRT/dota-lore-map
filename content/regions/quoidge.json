@@ -12,6 +12,7 @@
     "ru": "На севере края стоит Квойдж — город, где нежить живёт вполне цивилизованно бок о бок с неопрятными мясниками. Говорят, его создал бог Марс, возможно на месте давней битвы, а из развлечений здесь в почёте разве что бои в ямах. В дне пути лежит Дымная Гавань — порт, где не задают лишних вопросов.\n\nДалеко на юге, между Хазадальскими пустошами и Друудом, тянутся Поля Вечной Бойни. Это проклятая земля: тела павших не гниют и не уходят в почву, как глубоко ни копай. Ночами здесь трудится Pudge — разделывает мёртвых, чтобы к рассвету поле было чистым, и давно уже не только разделывает.\n\nК этому краю мы отнесли и собор Румуска: его клирики совершили паломничество на Поля, чтобы очистить их от скверны Мёртвого бога. Из стен собора вышел Necrophos — монах, который подхватил чуму, но вместо того чтобы умереть, стал её пророком.",
     "en": "In the north stands Quoidge, a city where the undead lead perfectly civilised lives alongside slovenly butchers. The god Mars is said to have founded it, perhaps on the site of some old battle, and pit fighting is about the only sport in town. A day's journey away lies Smoke Harbor, a port that asks no questions.\n\nFar to the south, between the Hazhadal Barrens and Druud, stretch the Fields of Endless Carnage — a cursed land where the fallen never rot and never return to the soil, however deep the grave. Here Pudge works through the night, carving up the dead so the field is clear by dawn, and long ago acquired a taste for the job.\n\nWe also place the Cathedral of Rumusque here: its clerics once marched on the Fields to purge them of the Dead God's taint. The Necrophos rose from within its walls — a monk who caught the plague and, instead of dying, became its prophet."
   },
+  "media": ["artifact-pit-fighter-quoidge"],
   "places": {
     "Quoidge": {
       "name": { "ru": "Квойдж", "en": "Quoidge" },
@@ -19,7 +20,8 @@
       "description": {
         "ru": "Город цивилизованной нежити далеко к северу от Полей и к югу от Скайрата; по преданию, его основал Марс. Pudge охотно водит гостей по городу и мрачным окрестностям — от Равнин Нескончаемых Мук до Реки Скорби.",
         "en": "A city of civilised undead far north of the Fields and south of Skywrath, said to have been founded by Mars. Pudge happily gives tours of the city and its grim surroundings, from the Plains of Ceaseless Torment to the River of Woe."
-      }
+      },
+      "media": ["artifact-pit-fighter-quoidge"]
     },
     "Smoke Harbor": {
       "name": { "ru": "Дымная Гавань", "en": "Smoke Harbor" },
