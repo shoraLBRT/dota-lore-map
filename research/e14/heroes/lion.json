@@ -1,23 +1,19 @@
 {
   "hero": "lion",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore"
+  ],
   "links": [
     {
       "place": "Seven Hells",
-      "event": "death",
+      "event": "battle",
       "source": "liquipedia",
       "via": "lore",
       "url": "https://liquipedia.net/dota2/Lion/Lore",
-      "note": "Лион вернулся из ада изменённым: здесь произошло его перерождение",
-      "doubt": "В тексте лора сказано просто «ад»; название Seven Hells взято из инфобокса, соответствие наше"
-    },
-    {
-      "place": "Weeping Rose",
-      "event": "home",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Lion/Lore",
-      "doubt": "В инфобоксе место названо без типа связи; «home» — наше толкование: по тексту лора он сейчас живёт в уединении, а где именно, не сказано"
+      "note": "Lion спустился за предавшим его демоном в ад, убил его и забрал его руку; из ада он вышел преображённым.",
+      "doubt": "Биография говорит просто «ад»; название Seven Hells даёт инфобокс лор-страницы."
     }
   ],
   "profile": {
@@ -25,13 +21,16 @@
       "ru": "Lion — бывший Великий магистр школы демонической магии, который когда-то сражался на стороне света. Лесть и честолюбие сделали его уязвимым: демон сманил его на тёмный путь и потом предал. Lion отправился за ним в ад, расправился с ним и забрал его руку, но демонопластика изменила его тело до неузнаваемости. Теперь он живёт в уединении и карает тех, кто называет себя его учениками.",
       "en": "Lion is a former Grandmaster of the Demon Witch sorcery tradition who once fought for light and justice. Flattery and ambition made him vulnerable, and a demon lured him onto a dark path before betraying him. He chased the demon into hell and destroyed it, but the demonic transformation left his body unrecognizable. Now he lives in seclusion and punishes anyone who claims to be his student."
     },
-    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/lion.png"]
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/lion.png"
+    ]
   },
   "unconfirmed": [
     "Tyler Estate есть в инфобоксе лор-страницы, но ни биография, ни текст лора о нём не говорят; тип связи неясен, в links не записано.",
     "Инфобокс называет героев Nyx Assassin, Pangolier, Anti-Mage, Silencer и Lich; тип их связи с Lion из текста лора не выводится, в relations ничего не записано. Азагар в инфобоксе — персонаж, не герой.",
     "Связи из озвучки, разделов о союзниках и врагах, описаний предметов и карточек Artifact не использованы как основание.",
     "Родина героя не названа ни в одном источнике, поэтому origin не записан.",
-    "Путь (path) не заполнен: в источниках нет названий мест, между которыми он переходил."
+    "Путь (path) не заполнен: в источниках нет названий мест, между которыми он переходил.",
+    "Weeping Rose: в инфобоксе и на лор-странице связь с городом держится на реплике Pangolier и пересказе лора Artifact (убежище у Кворума) — не основание."
   ]
 }

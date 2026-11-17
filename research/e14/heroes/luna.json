@@ -1,6 +1,11 @@
 {
   "hero": "luna",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
   "links": [
     {
       "region": "uncharted",
@@ -18,55 +23,26 @@
       "note": "Теперь она хранительница Серебряных лесов; здесь же её приняли в Тёмную Луну."
     },
     {
-      "place": "Temple of Mene",
-      "event": "service",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Luna/Lore",
-      "doubt": "Сказано, что Луна, «вероятно», знакома с храмом и защищает его от Орды Тёмной Луны; служба здесь — наше толкование."
-    },
-    {
-      "place": "Shrine of Selemene",
-      "event": "mention",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Luna/Lore",
-      "note": "Святилище Селемене упомянуто в связи с реликвией Ордена, которую Луна хранит; сама там событий не описано."
-    },
-    {
       "place": "Selemene's Moon",
       "event": "mention",
       "source": "liquipedia",
       "via": "infobox",
       "url": "https://liquipedia.net/dota2/Luna/Lore",
-      "note": "Место указано в инфобоксе лор-страницы без события с участием героя."
+      "note": "Место указано в инфобоксе лор-страницы без события с участием героя.",
+      "doubt": "Место есть только в инфобоксе; в биографии Луна служит Селемене, но о самой луне богини речи нет."
     }
   ],
   "path": [
-    { "region": "uncharted" },
-    { "place": "Nightsilver Woods" }
-  ],
-  "relations": [
     {
-      "hero": "snapfire",
-      "type": "ally",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Luna/Lore",
-      "note": "Герой указан в инфобоксе; раздел отношений описывает, что в прежние годы они вместе вершили дела, то есть были союзниками."
+      "region": "uncharted"
     },
     {
-      "hero": "mirana",
-      "type": "ally",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Luna/Lore",
-      "doubt": "Инфобокс и текст лишь говорят, что обе связаны с культом Селемене; тип ally — наше толкование, Луна при этом недовольна высоким положением Мираны."
+      "place": "Nightsilver Woods"
     }
   ],
   "profile": {
     "summary": {
-      "ru": "Luna — бывшая предводительница степных набегов, которая после долгих скитаний вышла к древнему лесу и прошла испытание Селемене. Её приняли в Тёмную Луну, и она отреклась от кровавого прошлого, став Лунной наездницей. Теперь она охраняет Серебряные леса верхом на своём звере и защищает храм богини.",
+      "ru": "Luna когда-то наводила ужас на равнины во главе армии людей и зверей, но потеряла войско и, полубезумная от голода, забрела в древний лес. Там она, сама того не зная, прошла испытание богини Селемене. Ей предложили вступить в Тёмную Луну, и она отреклась от кровавого прошлого. Теперь она Лунная наездница и стражница Серебряных лесов.",
       "en": "Luna was once a feared raider who led armies across the plains before wandering half-starved into a forest. There she was tested by the goddess Selemene and admitted to the Dark Moon order. She gave up her violent past and became a Moon Rider, guarding the Nightsilver Woods from the back of her great feline mount."
     }
   },
@@ -86,6 +62,10 @@
     "Реплики озвучки (Pudge — о коте-маунте, Mars — о «баранах» Селемене, Legion Commander — о её смерти) — отдельные строки, связи по ним не записаны.",
     "Лор-страница: Dragon Knight не любит Луну, а Slyrak знает об этом — это чувство Dragon Knight, не отношение героя, и тип связи из него не выводится; не записано.",
     "Nova — маунт Луны, персонаж из «characters» инфобокса, не герой; связь с героем не записана.",
-    "Раздел Dragon's Blood и хероатлас Monster Hunter не использованы: они вне основного лора Dota 2 и не привязаны к карте."
+    "Раздел Dragon's Blood и хероатлас Monster Hunter не использованы: они вне основного лора Dota 2 и не привязаны к карте.",
+    "Temple of Mene: лор-страница лишь предполагает, что Luna его защищает, со ссылкой на режим Dark Moon — не основание.",
+    "Shrine of Selemene: упомянут только в описании предмета Moonfall — не основание.",
+    "Snapfire: в инфобоксе без типа связи, общее прошлое выведено из одной реплики Snapfire — не основание.",
+    "Mirana: в инфобоксе без типа; общая служба Селемене не даёт типа связи."
   ]
 }

@@ -1,15 +1,17 @@
 {
   "hero": "lina",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
   "links": [
     {
       "place": "Desert of Misrule",
-      "event": "origin",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Lina/Lore",
-      "note": "В инфобоксе лор-страницы родина указана как пустыня; в биографии сказано, что в детстве её отправили сюда к тётке, и здесь она выросла.",
-      "doubt": "Биография говорит о переезде в детстве, а не о рождении здесь; родина по инфобоксу — пустыня, но место рождения не названо."
+      "event": "home",
+      "source": "bio",
+      "note": "Родители отправили Lina к тётке на юг, в эту пустыню; здесь она живёт с детства. Где семья жила раньше, биография не называет."
     },
     {
       "place": "Scintillant Waste",
@@ -18,7 +20,7 @@
       "via": "infobox",
       "url": "https://liquipedia.net/dota2/Lina/Lore",
       "note": "Место стоит в инфобоксе рядом с пустыней Misrule.",
-      "doubt": "Что именно связано с героиней в этой местности, в тексте не описано, поэтому только mention."
+      "doubt": "Место есть только в инфобоксе лор-страницы, в тексте биографии его нет."
     }
   ],
   "relations": [
