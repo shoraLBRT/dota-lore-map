@@ -116,6 +116,32 @@
       "via": "infobox",
       "url": "https://liquipedia.net/dota2/Dark_Willow/Lore",
       "note": "Фейский мир, куда героиня может попасть в любой момент. В regions.json его нет; предполагаемый регион — planes, так как это отдельный план бытия. Решение за владельцем в #59."
+    },
+    {
+      "name": "Petrified City of Saraddel",
+      "hero": "huskar",
+      "region": "uncharted",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Huskar/Lore",
+      "note": "Название есть только в поле places инфобокса; ни биография, ни текст лора не говорят, где этот город и с какой связью с героем. Регион не назван, поэтому uncharted."
+    },
+    {
+      "name": "Cataract",
+      "hero": "kunkka",
+      "region": "planes",
+      "event": "mention",
+      "source": "bio",
+      "note": "Откуда пришёл демонический флот, и куда Катаракта уходит в пустоту; сама Катаракта на схеме не отмечена, регион предположен по упоминанию пустоты."
+    },
+    {
+      "name": "Murkroot Forest",
+      "hero": "largo",
+      "region": "fellstrath",
+      "event": "mention",
+      "source": "bio",
+      "note": "Только русская биография: изгнанники пришли из лесов Хмурых корней; в английской Murkroots — название народа, а не места. Это родина народа, а не самого Largo; регион не назван, fellstrath предположен по Velu'Mar."
     }
   ]
 }

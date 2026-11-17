@@ -1,0 +1,98 @@
+{
+  "hero": "enigma",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Fundamental Plane",
+      "event": "origin",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Enigma/Lore",
+      "note": "Поле origins инфобокса лор-страницы: Fundamental Plane, родной план Фундаменталов (так же у Chaos Knight).",
+      "doubt": "Биография происхождение не называет — только легенды; поле инфобокса опирается на реплику Elder Titan."
+    },
+    {
+      "region": "planes",
+      "event": "journey",
+      "source": "bio",
+      "note": "Биография называет его зверем между планами: после Fundamental Plane он странствует по планам, конкретный план не назван."
+    },
+    {
+      "place": "Heart of Nature",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Enigma/Lore",
+      "note": "Место есть только в поле places инфобокса; в тексте лор-страницы и биографии о нём нет.",
+      "doubt": "Связь с героем не подтверждена текстом, только полем инфобокса."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "chaos_knight",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Enigma/Lore",
+      "note": "По инфобоксу Enigma: старший брат-сиблинг из числа Фундаменталов."
+    },
+    {
+      "hero": "elder_titan",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Enigma/Lore",
+      "note": "Поле family инфобокса: Elder Titan назван создателем (creator) Enigma.",
+      "doubt": "Отдельного типа «создатель — создание» в модели нет; взят family как ближайший."
+    },
+    {
+      "hero": "keeper_of_the_light",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Enigma/Lore",
+      "note": "Поле family инфобокса: брат Enigma."
+    },
+    {
+      "hero": "wisp",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Enigma/Lore",
+      "note": "Поле family инфобокса: сиблинг Enigma (Io)."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "О прошлом Enigma ничего достоверного не известно — сохранились только противоречивые легенды. По одной, он был алхимиком, проклятым за гордыню; по другой — древним существом тяготения из тьмы, что была до первого света; по третьей — первой погибшей звездой, ставшей разумной чёрной дырой. Его описывают как силу, поглощающую миры, существо пустоты, которое скитается между планами, то обретая плоть, то теряя её.",
+      "en": "Nothing reliable is known about Enigma's past; only contradictory legends survive. One calls him an alchemist cursed for his pride, another an ancient being of gravity from the darkness before the first light, a third the first star to collapse into a thinking black hole. He is described as a force that devours worlds, a creature of the void wandering between the planes, at times solid and at times bodiless."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/enigma.png"
+    ]
+  },
+  "unconfirmed": [
+    "Ancient Apparition: есть только в поле heroes инфобокса, тип связи не указан; реплики «elemental to elemental» — не основание.",
+    "Alchemist: биография и лор описывают алхимика, которого Enigma обманул (The Summoning), но его связь с героем Alchemist не подтверждена отдельным текстом о герое; в данные не записано.",
+    "The Summoning (Liquipedia): комикса нет в content/media.json, поэтому запись comic:<id> не сделана.",
+    "Mireska, Cedric, Jovat Kazran: персонажи лора без ключа героя в heroes.json, в links и relations не записаны.",
+    "Реплики озвучки (Dark Willow, Pudge, Arc Warden, Bristleback, Earth Spirit, Monkey King, Legion Commander, Pugna, Tidehunter, Oracle и др.) — не основание для связей, только для unconfirmed.",
+    "Ресурсы из перечисления «Schism» и «Order», «Time», «Stars», «Elementals», «Alchemy» в инфобоксе — не места, в links не записаны.",
+    "Путь героя (path) не записан: лор говорит, что он вырвался из первичного плана, но не ясно, перемещение ли это между разными местами.",
+    "Сверка: Primordial Plane (exile) снят — раздел The Schism лор-страницы пересказывает монолог Void Spirit и реплики Elder Titan.",
+    "Сверка: The Void снят — биография называет его существом пустоты, это описание природы, а не место."
+  ],
+  "path": [
+    {
+      "place": "Fundamental Plane"
+    },
+    {
+      "region": "planes"
+    }
+  ]
+}

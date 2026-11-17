@@ -80,7 +80,7 @@
 | Верхний ярус | Небеса (The Heavens) | нейтрально (ярус) | 6 | 11 |
 | Верхний ярус | Семь планов и Пустота (The Seven Planes and the Void) | нейтрально (ярус) | 13 | 18 |
 | Материк и острова | Айсрак (Icewrack) | Radiant (карта S1) | 12 | 9 |
-| Материк и острова | Земля Сияющих (Land of the Radiant) | Radiant (карта S1) | 8 | 9 |
+| Материк и острова | Земля Сияющих (Land of the Radiant) | Radiant (карта S1) | 8 | 10 |
 | Материк и острова | Лес Найтсильвер (Nightsilver Woods) | Radiant (карта S1) | 3 | 3 |
 | Материк и острова | Стоунхолл (Stonehall) | Radiant (по схеме E2) | 24 | 5 |
 | Материк и острова | Вольные города (The Free Cities) | Radiant (по схеме E2) | 7 | 10 |
@@ -125,7 +125,7 @@
 
 Сторона: **нейтрально** (ярус). Иные планы бытия и измерения вне Terrene Plane (наш мир).
 
-Герои всего региона: Chaos Knight (путь), Elder Titan, Puck, Spectre
+Герои всего региона: Chaos Knight (путь), Elder Titan, Enigma (путь), Io (живёт), Puck, Spectre
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
@@ -135,11 +135,11 @@
 | Astral Plane | лор | Elder Titan (бывал) |  |
 | Fabric of Creation | лор | Weaver |  |
 | Claszureme | лор | Faceless Void, Puck (бывал) | мир вне времени |
-| The Void | лор | Ancient Apparition, Void Spirit |  |
+| The Void | лор | Ancient Apparition, Faceless Void (упоминание), Void Spirit |  |
 | The Outworld | лор | Outworld Destroyer | «мир на краю Бездны», у границы Пустоты |
 | Land Behind the Wall | лор | Dark Seer | родная реальность Dark Seer; страницы на Liquipedia нет |
 | Ivory Incubarium | лор | Oracle | в другой вселенной |
-| Heart of Nature | наше | Leshrac |  |
+| Heart of Nature | наше | Enigma (упоминание), Leshrac |  |
 | Light's Keep | наше | Keeper of the Light (связь) |  |
 | The Dream | наше | Bane* |  |
 
@@ -176,7 +176,7 @@
 | Violet Archives | карта S1 | Phoenix (упоминание), Templar Assassin (связь) |  |
 | Violet Plateau | лор | Tinker (живёт) | архивы находятся в нём или рядом |
 | Castle of the Fold | карта S1 | — |  |
-| Home of the Keen Folk | карта S1 | Alchemist*, Clockwerk* |  |
+| Home of the Keen Folk | карта S1 | Alchemist*, Clockwerk*, Gyrocopter* |  |
 | Knollen | наше | Sniper | горные долины кинов |
 | Dredger's Bight | наше | Techies | родина Techies (кины); страницы на Liquipedia нет |
 | Thousand Tarns | карта S1 | Axe (сражение) |  |
@@ -288,7 +288,7 @@
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
 | ★ Ruined City | карта S1 | Brewmaster, Storm Spirit (живёт) |  |
-| Fortress of Flares | лор | Ember Spirit (живёт) |  |
+| Fortress of Flares | лор | Ember Spirit |  |
 | Turstarkuri | карта S1 | Anti-Mage |  |
 | Mount Joerlak | карта S1 | Magnus |  |
 | Feral Road | карта S1 | Sven (связь)† |  |
@@ -331,10 +331,10 @@
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
 | ★ Cladd | лор | Kunkka |  |
-| Trembling Isle | лор | — |  |
+| Trembling Isle | лор | Kunkka (сражение) |  |
 | Sunken Isles | наше | Tidehunter |  |
-| Isle of Songs | наше | — |  |
-| Port Mignin | наше | — |  |
+| Isle of Songs | наше | Kunkka (упоминание) |  |
+| Port Mignin | наше | Kunkka (сражение) |  |
 | Narrow Channel | наше | — |  |
 
 #### Тропические острова · Tropic Isles
@@ -344,8 +344,8 @@
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
 | ★ Isle of Masks | лор | Juggernaut |  |
-| Temple of Masks | лор | — |  |
-| Ivory Isles | лор | — |  |
+| Temple of Masks | лор | Juggernaut (упоминание) |  |
+| Ivory Isles | лор | Juggernaut (упоминание) |  |
 | Jidi Isle | лор | — |  |
 | Acid Jungles | лор | Venomancer |  |
 | Bay of Fradj | лор | — |  |
@@ -484,7 +484,7 @@
 | Outer Hells | лор | Warlock (связь) |  |
 | Narrow Maze | лор | Razor (живёт), Visage (живёт) |  |
 | Underscape | лор | Razor (связь) |  |
-| Nothl Realm | лор | Dazzle (связь), Huskar (связь) |  |
+| Nothl Realm | лор | Dazzle (связь), Huskar (гибель) |  |
 
 ### Указатель: герой → места
 
@@ -522,21 +522,21 @@
 | Earth Spirit | The Upland (Стонущие горы) |
 | Earthshaker | Nishai (Ховен и Нишай); The Red Mountain (Ховен и Нишай) (служба) |
 | Elder Titan | весь регион «Семь планов и Пустота»; Astral Plane (Семь планов и Пустота) (бывал) |
-| Ember Spirit | Fortress of Flares (Стонущие горы) (живёт) |
+| Ember Spirit | Fortress of Flares (Стонущие горы) |
 | Enchantress | Nightsilver Woods (Лес Найтсильвер) (бывал) |
-| Enigma | Fundamental Plane (Семь планов и Пустота) |
-| Faceless Void | Claszureme (Семь планов и Пустота) |
+| Enigma | Fundamental Plane (Семь планов и Пустота); весь регион «Семь планов и Пустота» (путь); Heart of Nature (Семь планов и Пустота) (упоминание) |
+| Faceless Void | Claszureme (Семь планов и Пустота); The Void (Семь планов и Пустота) (упоминание) |
 | Grimstroke | Ashkavor (Феллстрат) |
-| Gyrocopter | Ash Archipelago (Тропические острова) (живёт) |
+| Gyrocopter | Home of the Keen Folk (Земля Сияющих)*; Ash Archipelago (Тропические острова) (живёт) |
 | Hoodwink | Krimwohl (Томо'кан и Окраины); Tomo'kan (Томо'кан и Окраины) (живёт) |
-| Huskar | Nothl Realm (Семь Преисподних и загробье) (связь) |
+| Huskar | Nothl Realm (Семь Преисподних и загробье) (гибель) |
 | Invoker | Ultimyr Academy (Срединные королевства) (сражение) |
-| Io | Fundamental Plane (Семь планов и Пустота) |
+| Io | Fundamental Plane (Семь планов и Пустота); весь регион «Семь планов и Пустота» (живёт) |
 | Jakiro | весь регион «Неизведанные земли»* |
-| Juggernaut | Isle of Masks (Тропические острова) |
+| Juggernaut | Isle of Masks (Тропические острова); Ivory Isles (Тропические острова) (упоминание); Temple of Masks (Тропические острова) (упоминание) |
 | Keeper of the Light | Fundamental Plane (Семь планов и Пустота); Light's Keep (Семь планов и Пустота) (связь) |
 | Kez | Ghastly Eyrie (Небеса); Icewrack (Айсрак) (живёт) |
-| Kunkka | Cladd (Кладд и острова) |
+| Kunkka | Cladd (Кладд и острова); Port Mignin (Кладд и острова) (сражение); Trembling Isle (Кладд и острова) (сражение); Isle of Songs (Кладд и острова) (упоминание) |
 | Largo | Velu'Mar (Феллстрат) |
 | Legion Commander | Qine (Стоунхолл); Stonehall (Стоунхолл) (живёт) |
 | Leshrac | Heart of Nature (Семь планов и Пустота) |

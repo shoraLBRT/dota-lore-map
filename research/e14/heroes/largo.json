@@ -1,0 +1,40 @@
+{
+  "hero": "largo",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore"
+  ],
+  "links": [
+    {
+      "place": "Velu'Mar",
+      "event": "origin",
+      "source": "bio",
+      "note": "Изгнанный народ Murkroot связан с островом Велу'Мар, где Ларго вырос среди бардов-шаманов"
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Largo принадлежит к изгнанному народу, который нашёл Велу'Мар, живой остров, говорящий только песнями. Он вырос среди бардов-шаманов, научившихся слышать остров и отвечать ему. Сейчас он странствует со стайкой юных лягушат-учеников и ищет новые мелодии, чтобы привезти их домой.",
+      "en": "Largo belongs to an exiled people who came to know Velu'Mar, a living island that communicates through song. He grew up among shaman bards trained to hear the island and answer it. Now he travels with a band of young frog followers, gathering fresh melodies he hopes to carry back to his people."
+    }
+  },
+  "candidates": [
+    {
+      "name": "Murkroot Forest",
+      "region": "fellstrath",
+      "event": "mention",
+      "source": "bio",
+      "note": "Только русская биография: изгнанники пришли из лесов Хмурых корней; в английской Murkroots — название народа, а не места. Это родина народа, а не самого Largo; регион не назван, fellstrath предположен по Velu'Mar."
+    }
+  ],
+  "unconfirmed": [
+    "Marsh Delta, Marunga River, Sacred Caverns: названы только в инфобоксе лор-страницы (поле places), без события и без текста, регион не назван",
+    "Путешествует по миру и ищет вдохновение: конкретных мест в биографии нет, маршрута нет",
+    "Moro: наставник из текста лора, но это персонаж, не герой в heroes.json; связь не записана",
+    "Largo's Disciples: ученики-лягушата, это семья (family) в инфобоксе, не герой в heroes.json",
+    "Реплики о Lina, Crystal Maiden, Viper (подколки при убийстве): голос, не основание для связи",
+    "Реплики о холоде, змеях и ураганах (предметы): голос, не место и не связь",
+    "Quillkin: интервью в хроники Monster Hunter-кроссовера, не герой и не место карты"
+  ]
+}

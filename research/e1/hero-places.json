@@ -1038,10 +1038,20 @@
       "links": [
         {
           "place": "Fortress of Flares",
-          "event": "home",
-          "source": "bio"
+          "event": "origin",
+          "source": "bio",
+          "note": "Учебная крепость Сина в Скулящих горах: здесь он три поколения учил последователей, здесь хранится его пепел и здесь же огонь вернул ему облик. Отдельная связь с регионом не нужна — крепость стоит в нём."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Син был воином-поэтом и три поколения учил последователей в горной крепости, пока соперники не одолели и не убили его. Ученики рассеялись, но его наставления веками передавались потомкам. Горящий небожитель, пытливое воплощение огня, разжёг пепел учителя, и из углей поднялся пылающий образ Сина. Теперь Ember Spirit снова готов учить каждого, кто ищет наставника.",
+          "en": "Xin was a warrior-poet who taught his followers in a mountain fortress for three generations until rivals overcame and killed him. His students scattered, yet his teachings were passed down for centuries. The Burning Celestial, a curious embodiment of fire, rekindled the teacher's ashes, and a blazing likeness of Xin rose from the embers. Now Ember Spirit is ready to teach again anyone who seeks guidance."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/ember_spirit.png"
+        ]
+      }
     },
     "Enchantress": {
       "links": [
@@ -1094,36 +1104,146 @@
           "place": "Fundamental Plane",
           "event": "origin",
           "source": "liquipedia",
-          "via": "infobox"
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Enigma/Lore",
+          "note": "Поле origins инфобокса лор-страницы: Fundamental Plane, родной план Фундаменталов (так же у Chaos Knight).",
+          "doubt": "Биография происхождение не называет — только легенды; поле инфобокса опирается на реплику Elder Titan."
+        },
+        {
+          "region": "planes",
+          "event": "journey",
+          "source": "bio",
+          "note": "Биография называет его зверем между планами: после Fundamental Plane он странствует по планам, конкретный план не назван."
+        },
+        {
+          "place": "Heart of Nature",
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Enigma/Lore",
+          "note": "Место есть только в поле places инфобокса; в тексте лор-страницы и биографии о нём нет.",
+          "doubt": "Связь с героем не подтверждена текстом, только полем инфобокса."
         }
-      ]
+      ],
+      "path": [
+        {
+          "place": "Fundamental Plane"
+        },
+        {
+          "region": "planes"
+        }
+      ],
+      "relations": [
+        {
+          "hero": "chaos_knight",
+          "type": "family",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Enigma/Lore",
+          "note": "По инфобоксу Enigma: старший брат-сиблинг из числа Фундаменталов."
+        },
+        {
+          "hero": "elder_titan",
+          "type": "family",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Enigma/Lore",
+          "note": "Поле family инфобокса: Elder Titan назван создателем (creator) Enigma.",
+          "doubt": "Отдельного типа «создатель — создание» в модели нет; взят family как ближайший."
+        },
+        {
+          "hero": "keeper_of_the_light",
+          "type": "family",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Enigma/Lore",
+          "note": "Поле family инфобокса: брат Enigma."
+        },
+        {
+          "hero": "wisp",
+          "type": "family",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Enigma/Lore",
+          "note": "Поле family инфобокса: сиблинг Enigma (Io)."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "О прошлом Enigma ничего достоверного не известно — сохранились только противоречивые легенды. По одной, он был алхимиком, проклятым за гордыню; по другой — древним существом тяготения из тьмы, что была до первого света; по третьей — первой погибшей звездой, ставшей разумной чёрной дырой. Его описывают как силу, поглощающую миры, существо пустоты, которое скитается между планами, то обретая плоть, то теряя её.",
+          "en": "Nothing reliable is known about Enigma's past; only contradictory legends survive. One calls him an alchemist cursed for his pride, another an ancient being of gravity from the darkness before the first light, a third the first star to collapse into a thinking black hole. He is described as a force that devours worlds, a creature of the void wandering between the planes, at times solid and at times bodiless."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/enigma.png"
+        ]
+      }
     },
     "Faceless Void": {
       "links": [
         {
           "place": "Claszureme",
           "event": "origin",
-          "source": "bio"
+          "source": "bio",
+          "note": "Биография называет его гостем из Claszureme, мира вне времени; инфобокс указывает то же место как origins."
+        },
+        {
+          "place": "The Void",
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Faceless_Void/Lore",
+          "doubt": "Связь держится на одном поле инфобокса; что связывает героя с этим местом, не сказано.",
+          "note": "The Void есть только в поле places инфобокса; в тексте лор-страницы и биографии о нём нет."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Дарктеррор, он же Faceless Void, пришёл из Класзурема, мира вне времени. Зачем ему понадобилось вмешаться в борьбу за камни Немезиды на нашем плане, остаётся загадкой; похоже, сдвиги в мироздании отзываются и в соседних измерениях. Время для него служит инструментом: оно помогает союзникам и мешает врагам. Отстранённый взгляд на космос делает его холодным, хотя в бою он умеет становиться лично вовлечённым.",
+          "en": "Darkterror, the Faceless Void, comes from Claszureme, a realm beyond time. Nobody knows exactly why he joined the fight for the Nemesis Stones on our plane, though disturbances here seem to ripple into neighboring dimensions. He treats time as a tool for helping allies and hindering foes, and his distant view of the cosmos makes him seem detached, even though he can get personal in combat."
+        }
+      }
     },
     "Grimstroke": {
       "links": [
         {
           "place": "Ashkavor",
           "event": "origin",
-          "source": "bio"
+          "source": "bio",
+          "note": "Родина героя и его народа: здесь он стал Вознесённым у рунного камня, здесь же погибли и были превращены в тени его соплеменники. Liquipedia в инфобоксе называет то же место."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Grimstroke должен был стать новым Вознесённым стражем Ашкавора и связать свою душу с душами народа. Всю жизнь он искал силы сверх дозволенного наставниками и ради этого нарушил запрет, добавив в чернила сукровицу. На обряде отравленные чернила начали поглощать его, и, чтобы выжить, он направил скверну по связи в свой народ. Он уцелел, а все жители Ашкавора превратились в тени из вязких чернил.",
+          "en": "Grimstroke was to become the new Ascended guardian of Ashkavor, binding his soul to the souls of his people. All his life he sought power beyond what his teachers allowed, and he broke the ban on enhancing the inks with ichor. During the rite the tainted ink began to swallow him, and to survive he forced the corruption back through the bond into his people. He lived, while every Ashkavoran was turned into a shade of thick ink."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/grimstroke.png"
+        ]
+      }
     },
     "Gyrocopter": {
       "links": [
         {
+          "place": "Home of the Keen Folk",
+          "event": "origin",
+          "source": "ours",
+          "note": "Раса героя по инфобоксу лор-страницы Liquipedia — Keen; родина этого народа на схеме — Home of the Keen Folk. В биографии место рождения Аурела не названо.",
+          "doubt": "Связь по народу, а не по тексту о самом герое. Реплики других героев называют его «малым кином»; возможно, это отдельная ветвь народа."
+        },
+        {
           "place": "Ash Archipelago",
           "event": "home",
-          "source": "bio"
+          "source": "bio",
+          "note": "Аурел удалился на отдых в Архипелаг Эш, там построил летательный аппарат и там же испытывал его и работал в мастерской. Инфобокс Liquipedia называет это место и происхождением героя."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Аурел — инженер, который отслужил всю жизнь в армии и ушёл в отставку с незавершённым чертежом первого в мире пилотируемого летательного аппарата без магии. Он поселился в тропическом Архипелаге Эш и годами строил прототипы, пока один из них не поднял его в воздух. Выстрел корабля сбил его машину, и он тут же взялся за новую, более тяжёлую.",
+          "en": "Aurel served as an engineer through a long career of conflicts before retiring with an unfinished plan for the first manned flying machine that needed no magic. He settled on a tropical archipelago and spent years on failed prototypes until one finally lifted him into the sky. A cannon strike brought his craft down, and he immediately began building a heavier one."
+        }
+      }
     },
     "Hoodwink": {
       "links": [
@@ -1143,10 +1263,20 @@
       "links": [
         {
           "place": "Nothl Realm",
-          "event": "link",
-          "source": "bio"
+          "event": "death",
+          "source": "bio",
+          "note": "Он был на краю гибели в мире Nothl, и жрец теней вернул его душу из вечности; тело и кровь изменились."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Huskar очнулся на пороге священного мира Nothl: жрец теней Dazzle, нарушив древние обряды ордена Dezun, вернул его дух из вечности. Возвращение изменило его — собственная кровь стала источником яростной силы. Спасение его разгневало: оно лишило его жертвы, что открыла бы ему место среди богов. Когда старейшины ордена захотели сделать его орудием своей кампании, он покинул родные края в поисках союзников и дела, достойного его силы.",
+          "en": "Huskar woke at the edge of the sacred Nothl Realm as the shadow priest Dazzle, defying the old rites of the Dezun Order, called his spirit back from eternity. The return changed him, turning his own blood into a source of fierce power. The rescue enraged him, because it robbed him of the sacrifice that would have earned him a place among the gods. When the order's elders wanted to use him as a weapon in their campaign, he left his ancestral home to find allies and a cause worthy of his power."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/huskar.png"
+        ]
+      }
     },
     "Invoker": {
       "links": [
@@ -1173,9 +1303,69 @@
           "place": "Fundamental Plane",
           "event": "origin",
           "source": "liquipedia",
-          "via": "infobox"
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Io/Lore",
+          "note": "Родной план Io: в поле origins инфобокса лор-страницы стоит Fundamental Plane, и там же сказано, что Фундаментал возвращается туда, а не гибнет окончательно.",
+          "doubt": "Биография план не называет; соответствие сделано по инфобоксу и по реплике Elder Titan про возвращение на план."
+        },
+        {
+          "region": "planes",
+          "event": "home",
+          "source": "bio",
+          "note": "По биографии Io одновременно существует на всех планах, а в физическом мире проявляется только малой частью себя. Связь с регионом планов, а не с одним местом."
         }
-      ]
+      ],
+      "path": [
+        {
+          "place": "Fundamental Plane"
+        },
+        {
+          "region": "planes"
+        }
+      ],
+      "relations": [
+        {
+          "hero": "elder_titan",
+          "type": "family",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Io/Lore",
+          "note": "Создатель Io по инфобоксу (creator). Отдельного типа «создатель» в модели нет, взят family."
+        },
+        {
+          "hero": "chaos_knight",
+          "type": "family",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Io/Lore",
+          "note": "Старший брат-сиблинг по инфобоксу лор-страницы Io; из биографии Chaos Knight тоже следует родство с Фундаменталами."
+        },
+        {
+          "hero": "keeper_of_the_light",
+          "type": "family",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Io/Lore",
+          "note": "Брат по инфобоксу лор-страницы Io."
+        },
+        {
+          "hero": "enigma",
+          "type": "family",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Io/Lore",
+          "note": "Сиблинг по инфобоксу лор-страницы Io."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Io — один из Фундаменталов вселенной, сила старше времени и странник из миров за гранью понимания смертных. Оно существует на всех планах сразу, а в физический мир проникает лишь малой частью себя, искривляя силовые линии, что связывают бытие. Враги зовут его великим разрушителем, учёные почитают, а цели его остаются неведомы.",
+          "en": "Io is one of the Fundamentals, a power that predates time itself and a wanderer from realms beyond mortal understanding. It exists on every plane at once and reaches the physical world only through a tiny part of itself, bending the lines of charge that hold existence together. Enemies call it the great unmaker, scholars revere it, and its aims remain unknown."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/wisp.png"
+        ]
+      }
     },
     "Jakiro": {
       "links": [
@@ -1218,9 +1408,36 @@
         {
           "place": "Isle of Masks",
           "event": "origin",
-          "source": "bio"
+          "source": "bio",
+          "note": "родной остров; отсюда изгнан за вызов коррумпированному лорду (exile по биографии), остров позже ушёл под воду"
+        },
+        {
+          "place": "Ivory Isles",
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Juggernaut/Lore",
+          "note": "Меч Defender, украденный с Ivory Isles, герой вернул, убив похитителей; где это было, не сказано.",
+          "doubt": "Единственная опора — описание предмета героя Defender of the Ivory Isles."
+        },
+        {
+          "place": "Temple of Masks",
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Juggernaut/Lore",
+          "note": "только в поле places инфобокса, в тексте лора герой здесь не описан"
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Юрнеро, Juggernaut, был изгнан с древнего острова Масок за то, что пошёл против продажного правителя, — и это спасло ему жизнь: вскоре остров ушёл под воду за одну ночь мстительной магии. Теперь он последний, кто хранит многовековую традицию острова, соединяющую ритуал и фехтование. Лица под маской никто не видел, а его цели так же непроницаемы. Дважды потеряв всё, он сражается так, будто победа уже за ним.",
+          "en": "Yurnero the Juggernaut was banished from the old Isle of Masks for standing against a corrupt lord, and the exile saved him: soon after, the island sank in a single night of vengeful magic. He is now the last keeper of the island's long tradition of ritual and swordplay. No one has seen the face under his mask, and his aims are just as hidden. Having lost everything twice, he fights as though victory is already his."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/juggernaut.png"
+        ]
+      }
     },
     "Keeper of the Light": {
       "links": [
@@ -1257,19 +1474,68 @@
         {
           "place": "Cladd",
           "event": "origin",
-          "source": "bio"
+          "source": "bio",
+          "note": "Адмирал кладдского флота, родом с островов Кладда, которые он должен был защищать."
+        },
+        {
+          "place": "Port Mignin",
+          "event": "battle",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Kunkka/Lore",
+          "note": "Ветеран был в битве за Порт-Миньин; в биографии этого места нет.",
+          "doubt": "Битва названа только в тексте лор-страницы, без собственной ссылки; в биографии её нет, порядок относительно Trembling Isle не известен."
+        },
+        {
+          "place": "Trembling Isle",
+          "event": "battle",
+          "source": "bio",
+          "note": "Последний бой флота против демонов и духов предков, в котором вмешался Мэльрон.",
+          "doubt": "Судьба героя после боя неизвестна: по биографии он мог погибнуть или остаться призраком, поэтому гибель здесь не записана."
+        },
+        {
+          "place": "Isle of Songs",
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Kunkka/Lore",
+          "note": "Принцесса с Острова Песен подарила ему шарф; сам он там не бывал.",
+          "doubt": "Опора — описание предмета героя Commodore's Sash; характер отношений с принцессой не ясен."
         }
-      ]
+      ],
+      "path": [
+        {
+          "place": "Cladd"
+        },
+        {
+          "place": "Trembling Isle"
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Kunkka был адмиралом кладдского флота и защищал родные острова, когда демоны Катаракты двинулись на земли людей. В решающей битве у Дрожащего острова маги Кладда призвали духов предков, и флот едва держался, пока из глубин не поднялся Мэльрон Щупальценосный и не смешал корабли в бурю. Что там произошло, никто не знает: Катаракта опустела, а Kunkka теперь командует одним призрачным кораблём. Погиб ли он, неизвестно даже Tidehunter.",
+          "en": "Kunkka was the admiral of the Claddish Navy, defending his home isles when the demons of the Cataract moved against the lands of men. In the decisive battle at the Trembling Isle the mages of Cladd summoned ancestral spirits and the fleet barely held, until Maelrawn the Tentacular rose from the depths and churned the ships into a storm. No one knows what happened there: the Cataract is deserted, and Kunkka now commands a single ghostly ship. Not even Tidehunter knows whether he died."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/kunkka.png"
+        ]
+      }
     },
     "Largo": {
       "links": [
         {
           "place": "Velu'Mar",
           "event": "origin",
-          "source": "liquipedia",
-          "via": "infobox"
+          "source": "bio",
+          "note": "Изгнанный народ Murkroot связан с островом Велу'Мар, где Ларго вырос среди бардов-шаманов"
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Largo принадлежит к изгнанному народу, который нашёл Велу'Мар, живой остров, говорящий только песнями. Он вырос среди бардов-шаманов, научившихся слышать остров и отвечать ему. Сейчас он странствует со стайкой юных лягушат-учеников и ищет новые мелодии, чтобы привезти их домой.",
+          "en": "Largo belongs to an exiled people who came to know Velu'Mar, a living island that communicates through song. He grew up among shaman bards trained to hear the island and answer it. Now he travels with a band of young frog followers, gathering fresh melodies he hopes to carry back to his people."
+        }
+      }
     },
     "Legion Commander": {
       "links": [

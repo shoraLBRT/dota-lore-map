@@ -1,0 +1,37 @@
+{
+  "hero": "grimstroke",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Ashkavor",
+      "event": "origin",
+      "source": "bio",
+      "note": "Родина героя и его народа: здесь он стал Вознесённым у рунного камня, здесь же погибли и были превращены в тени его соплеменники. Liquipedia в инфобоксе называет то же место."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Grimstroke должен был стать новым Вознесённым стражем Ашкавора и связать свою душу с душами народа. Всю жизнь он искал силы сверх дозволенного наставниками и ради этого нарушил запрет, добавив в чернила сукровицу. На обряде отравленные чернила начали поглощать его, и, чтобы выжить, он направил скверну по связи в свой народ. Он уцелел, а все жители Ашкавора превратились в тени из вязких чернил.",
+      "en": "Grimstroke was to become the new Ascended guardian of Ashkavor, binding his soul to the souls of his people. All his life he sought power beyond what his teachers allowed, and he broke the ban on enhancing the inks with ichor. During the rite the tainted ink began to swallow him, and to survive he forced the corruption back through the bond into his people. He lived, while every Ashkavoran was turned into a shade of thick ink."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/grimstroke.png"
+    ]
+  },
+  "candidates": [],
+  "unconfirmed": [
+    "Yaovhi: возлюбленная и родня по инфобоксу (family, lover), но это персонаж, а не герой из heroes.json; связь героя не записана",
+    "Shadow Demon, Rotund'jere, Balanar: лор-страница называет их «темными» фигурами, которыми герой восхищается; тип связи в тексте не назван, только реплики озвучки",
+    "Sylla: реплика озвучки «уже встречал друида»; без подтверждённой связи",
+    "Dead God и его Dirge: антипатия к Dirge из реплики озвучки; Dead God не в heroes.json",
+    "Mars: вышел в одном трейлере с героем (trivia), связь не подтверждена текстом лора",
+    "Ascended Ones, Ancients, Soulbind, Fortune of the Five Houses: факции и предметы, не места на карте; родина уже покрыта Ashkavor",
+    "Комикса с героем в content/media.json нет",
+    "Сверка: Ember Spirit, Earth Spirit, Storm Spirit (враги) сняты — ненависть к трём братьям-духам в лор-тексте держится на одной реплике озвучки, а соответствие Xin, Kaolin и Raijin героям лишь выведено."
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "hero": "juggernaut",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Isle of Masks",
+      "event": "origin",
+      "source": "bio",
+      "note": "родной остров; отсюда изгнан за вызов коррумпированному лорду (exile по биографии), остров позже ушёл под воду"
+    },
+    {
+      "place": "Ivory Isles",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Juggernaut/Lore",
+      "note": "Меч Defender, украденный с Ivory Isles, герой вернул, убив похитителей; где это было, не сказано.",
+      "doubt": "Единственная опора — описание предмета героя Defender of the Ivory Isles."
+    },
+    {
+      "place": "Temple of Masks",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Juggernaut/Lore",
+      "note": "только в поле places инфобокса, в тексте лора герой здесь не описан"
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Юрнеро, Juggernaut, был изгнан с древнего острова Масок за то, что пошёл против продажного правителя, — и это спасло ему жизнь: вскоре остров ушёл под воду за одну ночь мстительной магии. Теперь он последний, кто хранит многовековую традицию острова, соединяющую ритуал и фехтование. Лица под маской никто не видел, а его цели так же непроницаемы. Дважды потеряв всё, он сражается так, будто победа уже за ним.",
+      "en": "Yurnero the Juggernaut was banished from the old Isle of Masks for standing against a corrupt lord, and the exile saved him: soon after, the island sank in a single night of vengeful magic. He is now the last keeper of the island's long tradition of ritual and swordplay. No one has seen the face under his mask, and his aims are just as hidden. Having lost everything twice, he fights as though victory is already his."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/juggernaut.png"
+    ]
+  },
+  "unconfirmed": [
+    "axe: в лоре сказано, что он хочет обсудить с Axe проблему Sorla Khan, отношение не описано, тип не выводится",
+    "mars: только в поле heroes инфобокса без типа; реплики Mars — озвучка",
+    "monkey_king: реплики при встрече и убийстве — озвучка; вопрос о прошлом с Templar Assassin не подтверждён",
+    "pangolier, dark_willow, snapfire, dawnbreaker, hoodwink, crystal_maiden, grimstroke, void_spirit, sniper, leshrac, naga_siren, oracle: реплики озвучки, не основание для связи",
+    "Dota Underlords (fandom): ссылка на реплику в сноске не используется как источник",
+    "Сверка: Ember Spirit, Phantom Lancer, Templar Assassin, Sven сняты — разделы лор-страницы о них опираются только на реплики набора Bladeform Legacy, Pangolier, Monkey King и Dota Underlords."
+  ]
+}

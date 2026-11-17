@@ -1,0 +1,46 @@
+{
+  "hero": "huskar",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Nothl Realm",
+      "event": "death",
+      "source": "bio",
+      "note": "Он был на краю гибели в мире Nothl, и жрец теней вернул его душу из вечности; тело и кровь изменились."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Huskar очнулся на пороге священного мира Nothl: жрец теней Dazzle, нарушив древние обряды ордена Dezun, вернул его дух из вечности. Возвращение изменило его — собственная кровь стала источником яростной силы. Спасение его разгневало: оно лишило его жертвы, что открыла бы ему место среди богов. Когда старейшины ордена захотели сделать его орудием своей кампании, он покинул родные края в поисках союзников и дела, достойного его силы.",
+      "en": "Huskar woke at the edge of the sacred Nothl Realm as the shadow priest Dazzle, defying the old rites of the Dezun Order, called his spirit back from eternity. The return changed him, turning his own blood into a source of fierce power. The rescue enraged him, because it robbed him of the sacrifice that would have earned him a place among the gods. When the order's elders wanted to use him as a weapon in their campaign, he left his ancestral home to find allies and a cause worthy of his power."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/huskar.png"
+    ]
+  },
+  "candidates": [
+    {
+      "name": "Petrified City of Saraddel",
+      "region": "uncharted",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Huskar/Lore",
+      "note": "Название есть только в поле places инфобокса; ни биография, ни текст лора не говорят, где этот город и с какой связью с героем. Регион не назван, поэтому uncharted."
+    }
+  ],
+  "unconfirmed": [
+    "Родина героя (отчий дом) в биографии не названа, инфобокс места рождения не даёт; связь origin не записана.",
+    "Орден Dezun — фракция, а не место на схеме; его местонахождение в источниках не сказано.",
+    "Уважение к Bloodseeker и Witch Doctor за схожий взгляд на жизнь: тип связи из прозы не выводится.",
+    "Troll Warlord презирает героя за сходство: это пересказ реплики озвучки, тип связи не подтверждён.",
+    "Реплики озвучки от Monkey King, Bounty Hunter, Lifestealer, Lycan, Tiny, Visage, Brewmaster и Oracle — не основание для связей.",
+    "Народ героя напоминает коренные народы Нового Света, но место на схеме не названо: родину по народу не привязываю.",
+    "Сверка: Dazzle (двоюродный брат) снят — поле family инфобокса опирается на реплику озвучки. Биография называет Dazzle жрецом, спасшим Huskar вопреки обрядам, но тип связи из неё не выводится; проверить в партии Dazzle."
+  ]
+}
