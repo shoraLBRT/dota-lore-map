@@ -7,8 +7,8 @@ const PIXEL = Buffer.from(
 );
 
 /**
- * Сеть наружу заглушена: тесты не зависят от CDN Valve и Google Fonts.
- * Картинка — 1×1, стили — пустые, остальное — пустой ответ.
+ * Сеть наружу заглушена: тесты не зависят от CDN Valve. Шрифты свои (A8) и грузятся с localhost как есть.
+ * Картинка — 1×1, стили — пустые, внешний шрифт — обрыв, остальное — пустой ответ.
  */
 export async function stubNetwork(page: Page): Promise<void> {
   await page.route(
