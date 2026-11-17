@@ -29,6 +29,8 @@ interface Props {
   focusPlaces: Set<string> | null;
   /** Места героя под наведением: маркеры пульсируют (#66). */
   previewPlaces: Set<string> | null;
+  /** Строка места в панели региона под наведением или фокусом (#99): маркер выглядит как под наведением. */
+  litPlaceSlug?: string;
   /** Места региона, место под наведением или фокусом и его подсказка героев. */
   place: Pick<ReturnType<typeof usePlaceTooltip>, 'id' | 'spots' | 'spotId' | 'heroes' | 'setHover' | 'setFocus'>;
   onSelectPlace: (regionId: string, placeSlug: string) => void;
@@ -47,6 +49,7 @@ export function MarkersLayer({
   markerScale,
   focusPlaces,
   previewPlaces,
+  litPlaceSlug,
   place,
   onSelectPlace,
   onOpenMedia,
@@ -83,6 +86,7 @@ export function MarkersLayer({
             side === 'hidden' && styles.labelHidden,
             focusPlaces && (focusPlaces.has(`${regionId}/${p.slug}`) ? styles.heroSpot : styles.mutedMarker),
             previewed && styles.previewed,
+            p.slug === litPlaceSlug && styles.lit,
           ]
             .filter(Boolean)
             .join(' ')}
@@ -94,6 +98,7 @@ export function MarkersLayer({
           aria-current={isActive ? 'true' : undefined}
           aria-describedby={p.slug === spotId && place.heroes.length > 0 ? place.id : undefined}
           data-place={p.slug}
+          data-lit={p.slug === litPlaceSlug ? '' : undefined}
           data-significance={sig}
           onClick={(e) => {
             e.stopPropagation();

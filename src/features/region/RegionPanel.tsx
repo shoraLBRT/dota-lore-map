@@ -9,6 +9,7 @@ import { FeedbackLink } from '../feedback/FeedbackLink';
 import { regionBlock } from '../feedback/context';
 import { useHeroPick, useHeroPreview } from '../search/preview';
 import { MediaCards } from '../panel/MediaCards';
+import { PlaceList } from '../panel/PlaceList';
 import { panelStyles } from '../panel/Panel';
 import { Traits } from '../panel/Traits';
 
@@ -17,9 +18,16 @@ export const REGION_HEROES = 12;
 
 /**
  * Содержимое панели региона S2 (SPEC §5.4): название, подзаголовок, герои, разделитель,
- * характеристики 2×2, описание, «Подробнее ↗», медиа, строка «Нашли ошибку?» (§6.9). Крошка «‹ Мир» — в шапке панели (Breadcrumbs). Пустые блоки не рисуются.
+ * характеристики 2×2, описание, «Подробнее ↗», места (#99), медиа, строка «Нашли ошибку?» (§6.9). Крошка «‹ Мир» — в шапке панели (Breadcrumbs). Пустые блоки не рисуются.
  */
-export function RegionPanel({ region }: { region: Region }) {
+export function RegionPanel({
+  region,
+  onPreviewPlace,
+}: {
+  region: Region;
+  /** Строка места под наведением или фокусом: маркер на карте подсвечен (SPEC §5.4 п. 7). */
+  onPreviewPlace?: (slug: string | null) => void;
+}) {
   const { l, t } = useT();
   const { route, navigate } = useNavigation();
   const preview = useHeroPreview();
@@ -40,6 +48,7 @@ export function RegionPanel({ region }: { region: Region }) {
           {t('panel.more')}
         </a>
       )}
+      <PlaceList region={region} onPreview={onPreviewPlace} />
       <MediaCards
         title={t('panel.regionMedia')}
         items={region.media}

@@ -53,6 +53,8 @@ interface Props {
    * его регионы, в регионе и месте — пульсируют его маркеры, места за кадром получают метку у края.
    */
   preview?: Spot[];
+  /** Строка места в панели региона под наведением или фокусом (#99): маркер выглядит как под наведением. */
+  litPlace?: string;
   /** Нажат портрет в подсказке региона (#65): выбрать героя, не уходя из мира. Без него портреты не кликаются. */
   onPickHero?: (hero: Hero) => void;
   /** Клик по метке нити, ушедшей за край кадра. */
@@ -91,6 +93,7 @@ export function MapStage({
   threads,
   threadsKey,
   preview,
+  litPlace,
   onPickHero,
   onSelectSpot,
   onOpenMedia,
@@ -170,6 +173,7 @@ export function MapStage({
                   markerScale={frame.markerScale}
                   focusPlaces={focusPlaces}
                   previewPlaces={previewPlaces}
+                  litPlaceSlug={litPlace}
                   place={place}
                   onSelectPlace={onSelectPlace}
                   onOpenMedia={onOpenMedia}

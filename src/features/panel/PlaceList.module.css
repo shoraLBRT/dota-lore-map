@@ -1,0 +1,115 @@
+/* Блок «Места» панели региона (SPEC §5.4 п. 7, #99): строки-кнопки не ниже 44 px (цель касания на телефоне). */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.row,
+.all {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  min-height: 44px;
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--metal-dim);
+  background: var(--bg-2);
+  color: var(--text-1);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color var(--dur-hover) var(--ease-out);
+}
+
+.row:hover,
+.row:focus-visible,
+.all:hover,
+.all:focus-visible {
+  border-color: var(--metal-bright);
+}
+
+.all {
+  justify-content: center;
+  margin-top: var(--space-2);
+  color: var(--metal-bright);
+}
+
+/* Значок значимости — те же цвета, что у маркера (SPEC §6.3, MarkersLayer.module.css). */
+.icon {
+  flex: none;
+  width: 20px;
+  height: 20px;
+}
+
+.ring {
+  fill: var(--map-ink);
+  stroke: var(--metal-bright);
+  stroke-width: 2;
+}
+
+.dot {
+  fill: var(--metal-bright);
+}
+
+.icon[data-kind='capital'] .dot {
+  fill: var(--accent-bright);
+}
+
+.icon[data-kind='event'] .ring {
+  stroke: var(--marker-event);
+  stroke-width: 2.5;
+}
+
+.icon[data-kind='minor'] .ring {
+  stroke: var(--marker-minor);
+  stroke-width: 1.5;
+}
+
+.icon[data-kind='minor'] .dot {
+  fill: var(--marker-minor);
+}
+
+.text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.name {
+  font-weight: 600;
+}
+
+.type {
+  color: var(--text-2);
+  font-size: 0.8rem;
+}
+
+.heroes {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 3px;
+  color: var(--text-2);
+  font-size: 0.8rem;
+}
+
+.person {
+  width: 12px;
+  height: 12px;
+  fill: currentColor;
+}
+
+/* Значок медиа — квадратик-страница, как у маркера (#69, SPEC §6.3). */
+.media {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: var(--metal-bright);
+  stroke-width: 1.2;
+}
