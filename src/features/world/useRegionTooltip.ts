@@ -1,12 +1,17 @@
 import { useCallback, useEffect, useId, useMemo, useRef, useState, type KeyboardEvent, type RefObject } from 'react';
+import { cssPixels } from '../../app/motion';
 import { useSfx } from '../../app/sound';
 import type { Hero, Region } from '../../data/types';
 import { preloadRegionArt } from './art';
 import { focusAfter } from './focus';
 import { regionMediaBadge } from './mediaBadge';
+import type { Anchor } from './RegionTooltip';
 
 /** Задержка закрытия подсказки региона: успеть перевести мышь с региона на подсказку и обратно (#65), мс. */
 export const TOOLTIP_CLOSE_DELAY = 200;
+
+/** Правый край левой полосы (SPEC §6.1): подсказку левее не ставят (#101). */
+const railRight = () => cssPixels('--rail-width');
 
 interface Options {
   regions: Region[];
@@ -44,7 +49,11 @@ export function useRegionTooltip({ regions, inWorld, svgRef, heroesOf, withMedia
     if (!svg || !shown?.layout) return null;
     const rect = svg.getBoundingClientRect();
     const [x, y] = shown.layout.label;
-    return { x: rect.left + x * rect.width, y: rect.top + y * rect.height };
+    const anchor: Anchor = { x: rect.left + x * rect.width, y: rect.top + y * rect.height, minLeft: railRight() };
+    // #101: габарит полигона на экране — подсказка встанет рядом с регионом, а не на нём.
+    const box = svg.querySelector(`[data-region="${shown.id}"]`)?.getBoundingClientRect();
+    if (box && box.width > 0 && box.height > 0) anchor.box = { left: box.left, top: box.top, right: box.right, bottom: box.bottom };
+    return anchor;
   }, [shown, svgRef]);
 
   const cancelClose = () => clearTimeout(closeTimer.current);

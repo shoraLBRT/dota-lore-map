@@ -22,12 +22,36 @@ export interface Size {
 /** Отступ подсказки от края окна и от якоря, px. */
 const EDGE = 8;
 const GAP = 18;
+/** Зазор между подсказкой и габаритом региона (#101): мало — мышь проходит его быстрее, чем подсказка закроется. */
+const BOX_GAP = 6;
+
+/** Прямоугольник в координатах окна. */
+export interface Box {
+  left: number;
+  top: number;
+  right: number;
+  bottom: number;
+}
 
 /**
- * Позиция подсказки у якоря региона (клиентские координаты): по центру под названием,
- * если не помещается снизу — над ним; по горизонтали прижимается к краю окна (SPEC §5.3).
+ * Якорь подсказки в координатах окна. `box` — габарит полигона региона на экране (#101):
+ * подсказка встаёт рядом с ним, а не на нём; `minLeft` — левая граница (правый край левой полосы), подсказка не ближе `EDGE` к ней.
  */
-export function placeTooltip(anchor: { x: number; y: number }, tip: Size, view: Size): { left: number; top: number } {
+export interface Anchor {
+  x: number;
+  y: number;
+  box?: Box;
+  minLeft?: number;
+}
+
+/**
+ * Позиция подсказки (клиентские координаты). Есть габарит региона — рядом с ним: справа, слева, снизу, сверху,
+ * первая сторона, где подсказка целиком в окне и правее левой полосы (#101). Иначе — у якоря: по центру под названием,
+ * если не помещается снизу — над ним; прижимается к краю окна (SPEC §5.3, §6.2).
+ */
+export function placeTooltip(anchor: Anchor, tip: Size, view: Size): { left: number; top: number } {
+  const beside = anchor.box && besideBox(anchor, anchor.box, tip, view);
+  if (beside) return beside;
   const maxLeft = Math.max(EDGE, view.width - tip.width - EDGE);
   const left = Math.min(Math.max(anchor.x - tip.width / 2, EDGE), maxLeft);
   const below = anchor.y + GAP;
@@ -35,6 +59,27 @@ export function placeTooltip(anchor: { x: number; y: number }, tip: Size, view: 
   let top = below + tip.height + EDGE <= view.height ? below : above;
   top = Math.min(Math.max(top, EDGE), Math.max(EDGE, view.height - tip.height - EDGE));
   return { left: Math.round(left), top: Math.round(top) };
+}
+
+function besideBox(anchor: Anchor, box: Box, tip: Size, view: Size): { left: number; top: number } | null {
+  const minLeft = (anchor.minLeft ?? 0) + EDGE;
+  const clamp = (v: number, lo: number, hi: number) => Math.min(Math.max(v, lo), Math.max(lo, hi));
+  // Сбоку — на высоте названия, снизу и сверху — на его долготе: мышь идёт к подсказке от названия, а не от угла габарита.
+  const sideTop = clamp(anchor.y - tip.height / 2, EDGE, view.height - tip.height - EDGE);
+  const rowLeft = clamp(anchor.x - tip.width / 2, minLeft, view.width - tip.width - EDGE);
+  const sides = [
+    { left: box.right + BOX_GAP, top: sideTop },
+    { left: box.left - BOX_GAP - tip.width, top: sideTop },
+    { left: rowLeft, top: box.bottom + BOX_GAP },
+    { left: rowLeft, top: box.top - BOX_GAP - tip.height },
+  ];
+  const fits = (p: { left: number; top: number }) =>
+    p.left >= minLeft &&
+    p.left + tip.width + EDGE <= view.width &&
+    p.top >= EDGE &&
+    p.top + tip.height + EDGE <= view.height;
+  const pos = sides.find(fits);
+  return pos ? { left: Math.round(pos.left), top: Math.round(pos.top) } : null;
 }
 
 /** Подсказка выросла («+N» раскрыт): остаётся на месте и только сдвигается внутрь окна (#65). */
@@ -47,8 +92,8 @@ interface Props {
   id: string;
   region: Region;
   heroes: Hero[];
-  /** Якорь региона в координатах окна; null — неизвестен (до первой раскладки). */
-  getAnchor: () => { x: number; y: number } | null;
+  /** Якорь региона в координатах окна (с габаритом региона, #101); null — неизвестен (до первой раскладки). */
+  getAnchor: () => Anchor | null;
   /** Корень подсказки: карта переводит в неё фокус по Tab с региона (#65). */
   tipRef?: RefObject<HTMLDivElement>;
   /** Нажат портрет: герой выбран на карте (#65). Без него портреты не кликаются. */
@@ -70,7 +115,7 @@ interface Props {
  */
 export function useAnchoredPosition(
   ref: RefObject<HTMLElement | null>,
-  getAnchor: () => { x: number; y: number } | null,
+  getAnchor: () => Anchor | null,
   key: string,
   grow = '',
 ): { left: number; top: number } | null {

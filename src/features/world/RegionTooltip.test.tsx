@@ -73,6 +73,45 @@ describe('placeTooltip', () => {
   it('у нижнего края — над якорем', () => {
     expect(placeTooltip({ x: 500, y: 560 }, tip, view).top).toBe(442);
   });
+
+  describe('рядом с габаритом региона (#101)', () => {
+    const at = (box: { left: number; top: number; right: number; bottom: number }, x = 500, y = 300) =>
+      placeTooltip({ x, y, box, minLeft: 64 }, tip, view);
+    const overlaps = (p: { left: number; top: number }, b: { left: number; top: number; right: number; bottom: number }) =>
+      p.left < b.right && p.left + tip.width > b.left && p.top < b.bottom && p.top + tip.height > b.top;
+
+    it('справа, на высоте названия', () => {
+      const box = { left: 400, top: 200, right: 600, bottom: 400 };
+      expect(at(box)).toEqual({ left: 606, top: 250 });
+    });
+
+    it('у правого края — слева', () => {
+      const box = { left: 700, top: 200, right: 900, bottom: 400 };
+      expect(at(box, 800)).toEqual({ left: 494, top: 250 });
+    });
+
+    it('слева — левая полоса: снизу', () => {
+      const box = { left: 200, top: 100, right: 850, bottom: 300 };
+      const p = at(box, 500, 200);
+      expect(p).toEqual({ left: 400, top: 306 });
+      expect(overlaps(p, box)).toBe(false);
+    });
+
+    it('снизу не помещается — сверху', () => {
+      const box = { left: 200, top: 250, right: 850, bottom: 550 };
+      expect(at(box, 500, 400)).toEqual({ left: 400, top: 144 });
+    });
+
+    it('не правее левой полосы и не за краем окна', () => {
+      const box = { left: 100, top: 250, right: 850, bottom: 550 };
+      expect(at(box, 120, 400).left).toBe(72);
+    });
+
+    it('ни одна сторона не подошла — у якоря, как без габарита', () => {
+      const box = { left: 100, top: 50, right: 950, bottom: 550 };
+      expect(at(box)).toEqual(placeTooltip({ x: 500, y: 300 }, tip, view));
+    });
+  });
 });
 
 describe('clampTooltip', () => {
