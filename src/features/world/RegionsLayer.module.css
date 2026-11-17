@@ -1,0 +1,124 @@
+.region {
+  stroke: var(--border);
+  stroke-width: 2;
+  cursor: pointer;
+}
+
+.region:focus-visible {
+  outline: none;
+  stroke: var(--accent-bright);
+  stroke-width: 3;
+}
+
+.active.region {
+  stroke: var(--accent);
+  stroke-width: 3;
+}
+
+/* S1h (SPEC §5.3, §7.1 A2): заливка цветом стороны и светлая граница проявляются за 200 мс. */
+.tint {
+  fill: var(--hl-glow);
+  stroke: var(--hl);
+  stroke-width: 3;
+  stroke-linejoin: round;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--dur-hover) var(--ease-out);
+}
+
+.tint.lit {
+  opacity: 1;
+  filter: drop-shadow(0 0 10px var(--hl-glow));
+}
+
+/* Фокус с клавиатуры — кольцо цвета акцента (SPEC §7.2). */
+.tint.focused {
+  stroke: var(--accent-bright);
+}
+
+.label {
+  fill: var(--text-1);
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: var(--tracking-display);
+  font-size: 22px;
+  text-transform: uppercase;
+  pointer-events: none;
+  paint-order: stroke;
+  stroke: var(--map-ink);
+  stroke-width: 3px;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition:
+    transform var(--dur-hover) var(--ease-out),
+    filter var(--dur-hover) var(--ease-out),
+    fill var(--dur-hover) var(--ease-out);
+}
+
+/* Ярус — как регион, но с особым свечением: небесным или огненным (SPEC §6.3). */
+.tierLabel {
+  fill: var(--hl);
+  filter: drop-shadow(0 0 6px var(--hl-glow));
+}
+
+.label.lit {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 8px var(--hl)) drop-shadow(0 0 2px var(--hl-glow));
+}
+
+/* S2/S3 (SPEC §5.4): соседние регионы затемнены и не кликаются. */
+.dimmed {
+  pointer-events: none;
+  filter: brightness(0.4) saturate(0.6);
+  transition: filter var(--dur-camera) var(--ease-in-out);
+}
+
+.zoomed .region {
+  cursor: default;
+}
+
+/* A3: названия регионов исчезают в первой трети перелёта и возвращаются в последней (SPEC §7.1). */
+.label {
+  opacity: 1;
+}
+
+.labels .label {
+  transition:
+    transform var(--dur-hover) var(--ease-out),
+    filter var(--dur-hover) var(--ease-out),
+    fill var(--dur-hover) var(--ease-out),
+    opacity calc(var(--dur-camera) / 3) var(--ease-out) calc(var(--dur-camera) * 2 / 3);
+}
+
+.zoomed .labels .label {
+  opacity: 0;
+  transition-delay: 0s;
+}
+
+/* Выбран герой (SPEC §6.5): его регионы и места подсвечены, остальные приглушены. */
+.region.muted {
+  filter: brightness(0.45) saturate(0.5);
+  transition: filter var(--dur-fade) var(--ease-out);
+}
+
+.label.muted {
+  opacity: 0.35;
+}
+
+.label.heroRegion {
+  filter: drop-shadow(0 0 8px var(--hl)) drop-shadow(0 0 2px var(--hl-glow));
+}
+
+/* Регионы без геометрии — списком кнопок. */
+.list ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list button[aria-current='true'] {
+  border-color: var(--accent);
+}

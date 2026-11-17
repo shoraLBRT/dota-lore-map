@@ -69,7 +69,7 @@ describe('контраст WCAG AA (SPEC §14)', () => {
     expect(contrast(t['--marker-event']!, t['--bg-0']!)).toBeGreaterThan(contrast(t['--metal-bright']!, t['--bg-0']!));
     expect(contrast(t['--marker-minor']!, t['--bg-0']!)).toBeLessThan(contrast(t['--metal-bright']!, t['--bg-0']!));
     // Тусклость — цветом, не прозрачностью: иначе контраст выше не про то, что видно.
-    expect(css('features/world/MapStage.module.css')).not.toMatch(/\.minor[^{]*\{[^}]*opacity/);
+    expect(css('features/world/MarkersLayer.module.css')).not.toMatch(/\.minor[^{]*\{[^}]*opacity/);
   });
 
   it('красный --accent и тёмный металл не служат цветом текста', () => {
@@ -93,7 +93,7 @@ describe('prefers-reduced-motion (SPEC §7.1, §14)', () => {
     expect(moving.map((f) => f.path)).toEqual(
       expect.arrayContaining([
         'features/world/Clouds.module.css',
-        'features/world/MapStage.module.css',
+        'features/world/Threads.module.css',
         'features/panel/Panel.module.css',
         'features/gallery/Gallery.module.css',
       ]),
