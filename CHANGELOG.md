@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/shoraLBRT/dota-lore-map/compare/v0.2.0...v0.3.0) (2026-11-17)
+
+
+### Features
+
+* **content:** add official media for regions: Crownfall trailers, event and Artifact art ([#133](https://github.com/shoraLBRT/dota-lore-map/issues/133)) ([9ffc251](https://github.com/shoraLBRT/dota-lore-map/commit/9ffc251acf7bcf69b87a4180bb101a67da9a6c7b))
+
 ## [0.2.0](https://github.com/shoraLBRT/dota-lore-map/compare/v0.1.0...v0.2.0) (2026-11-17)
 
 
