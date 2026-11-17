@@ -4,7 +4,8 @@
     "bio.ru",
     "bio.en",
     "liquipedia-lore",
-    "liquipedia-hero"
+    "liquipedia-hero",
+    "comic:druud-hells-basin"
   ],
   "links": [
     {
@@ -36,5 +37,13 @@
     "Желание быть похороненным в Omexe — слова героя, а не событие: место смерти и погребения в лоре не подтверждено.",
     "Marrowfell Hunters — фракция из инфобокса и карточек Artifact, не место; на карту и в кандидаты не добавлено.",
     "Хронология переезда между Druud и Omexe в тексте не описана, поэтому path не записан."
+  ],
+  "relations": [
+    {
+      "hero": "axe",
+      "type": "ally",
+      "source": "comic:druud-hells-basin",
+      "note": "Вместе с ханом Сорлой готовят оборону Друуда против Бездонной орды."
+    }
   ]
 }

@@ -1,6 +1,12 @@
 {
   "hero": "medusa",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero",
+    "comic:sundered-moon-comic"
+  ],
   "links": [
     {
       "region": "uncharted",
@@ -15,6 +21,12 @@
       "via": "lore",
       "url": "https://liquipedia.net/dota2/Medusa/Lore",
       "note": "Герой здесь не бывал: в описании её лука упомянут вайпер из этих джунглей"
+    },
+    {
+      "place": "Sundered Moon",
+      "event": "visit",
+      "source": "comic:sundered-moon-comic",
+      "note": "Сидит за стойкой таверны Sundered Moon рядом с Zeus и подтрунивает над ним."
     }
   ],
   "profile": {
@@ -22,7 +34,9 @@
       "ru": "Medusa — младшая из трёх горгон, дочерей морской богини, и единственная из сестёр, рождённая смертной. Когда неизвестные похитили сестёр, она выпросила у матери силу в обмен на красоту и поклялась вернуть их и отомстить. С тех пор её принцип: ценна только сила.",
       "en": "Medusa is the youngest of three Gorgon sisters, daughters of a sea goddess, and the only one of them born mortal. After masked raiders abducted her sisters, she asked her mother for strength in exchange for her beauty, vowing to bring them back and avenge the wrong. Since then she has held that only power is worth having."
     },
-    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/medusa.png"]
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/medusa.png"
+    ]
   },
   "unconfirmed": [
     "Родина горгон: в биографии царство названо без имени, поэтому кандидатом на карту не вношу; регион остаётся uncharted, пока владелец не решит иначе.",

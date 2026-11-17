@@ -34,6 +34,12 @@
       "url": "https://liquipedia.net/dota2/Jakiro/Lore",
       "note": "Обратная запись к jakiro.json: в инфобоксе лор-страницы Jakiro она его кузина (поле family).",
       "doubt": "Сама она к Jakiro враждебна и жалеет, что не убила его до вылупления; о родстве говорит только сторона Jakiro."
+    },
+    {
+      "hero": "crystal_maiden",
+      "type": "ally",
+      "source": "comic:icewrack-new-neighbors",
+      "note": "Помирились после спора с жителями Icewrack: Crystal Maiden принимает дар дракона, концовка намекает на дружбу."
     }
   ],
   "profile": {

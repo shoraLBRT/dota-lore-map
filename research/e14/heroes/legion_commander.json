@@ -4,7 +4,9 @@
     "bio.ru",
     "bio.en",
     "liquipedia-lore",
-    "liquipedia-hero"
+    "liquipedia-hero",
+    "comic:milltown-dark-carnival",
+    "comic:tipofthespear"
   ],
   "links": [
     {
@@ -21,6 +23,12 @@
       "source": "bio",
       "doubt": "Инфобокс лор-страницы ставит Stonehall в origins с пометкой «потом». Здесь взято home: город — её база, где она командует легионом. Более ранний переезд отражён в path и в связи с Qine.",
       "note": "Тресдин командует Бронзовым легионом в Стоунхолле и собирает союзников для мести после нападения. Нападение бездны на город записано здесь же, отдельной связью battle не добавлялось: по правилу одно место — одна связь."
+    },
+    {
+      "place": "Milltown",
+      "event": "battle",
+      "source": "comic:milltown-dark-carnival",
+      "note": "В комиксе «Тёмный карнавал» ведёт легион в Милтаун после ночного налёта и берёт предводительницу налётчиков в плен."
     }
   ],
   "path": [
@@ -48,5 +56,29 @@
     "Dark Carnival: сюжетная реплика про образование в Stonehall, без события с героиней. Связь не записана.",
     "Roseleaf (бой с армией Red Mist): раздел лор-страницы держится только на репликах озвучки Pangolier и Dark Willow; связь снята при сверке.",
     "Quath, Seven Hells: только поле places инфобокса, событий с героиней в тексте нет; связи сняты при сверке."
+  ],
+  "candidates": [
+    {
+      "name": "Moerbeek",
+      "region": "stonehall",
+      "event": "battle",
+      "source": "comic:tipofthespear",
+      "note": "Город-крепость, который Бронзовый легион осаждал около семи месяцев; по тексту комикса лежит в землях Stonehall, на карте его нет."
+    },
+    {
+      "name": "Brille",
+      "region": "stonehall",
+      "event": "mention",
+      "source": "comic:tipofthespear",
+      "note": "Малый город, который легион собирается занять; только назван."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "hoodwink",
+      "type": "enemy",
+      "source": "comic:milltown-dark-carnival",
+      "note": "Берёт предводительницу налёта в плен и ведёт её на допрос."
+    }
   ]
 }

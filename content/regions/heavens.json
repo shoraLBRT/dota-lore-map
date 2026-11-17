@@ -12,7 +12,7 @@
     "ru": "Над облаками мир не кончается. Здесь, недосягаемые для бескрылых народов, парят крепости скайрасов, а ещё выше кружат светила, от которых зависит судьба всего, что лежит внизу.\n\nНебеса помнят Безумную Луну — тюрьму двух древних разумов, Радинтула и Дируулта. Когда она раскололась, её осколки дождём упали на землю, и с тех пор войны Сияющих и Тьмы ведутся за этот звёздный камень. Рядом всё так же светит Луна Селемены, богини, которой служат Mirana и Luna.\n\nОтсюда родом скайрас Драгонус (Skywrath Mage) и свергнутая принцесса Шендельзаре, ставшая Vengeful Spirit. С небесами связаны и боги-громовержцы, и дети звёзд — Phoenix и Dawnbreaker.",
     "en": "The world does not end at the clouds. Above them, out of reach of anything without wings, drift the fortresses of the Skywrath, and higher still wheel the celestial bodies whose fate shapes everything below.\n\nThe heavens remember the Mad Moon, a prison built for two ancient minds, Radinthul and Diruulth. When it cracked apart, its shards rained down on the earth, and the Radiant and the Dire have fought over that starstone ever since. Beside the ruin still glows the moon of Selemene, the goddess served by Mirana and Luna.\n\nThis is the home of Dragonus the Skywrath Mage and of Shendelzare, the deposed princess who became the Vengeful Spirit. Thunder gods and the children of stars, Phoenix and Valora, are bound to these skies as well."
   },
-  "media": ["ghastly-eyrie-ascension-day"],
+  "media": ["ghastly-eyrie-ascension-day", "kez-ascension-night"],
   "places": {
     "Ghastly Eyrie": {
       "name": { "ru": "Мрачное Гнездовье", "en": "Ghastly Eyrie" },
@@ -20,7 +20,8 @@
       "description": {
         "ru": "Столица скайрасов, поднятая так высоко, что другие народы почти не могут до неё добраться. Ею правит королева Гнезда Шипов: трон, предназначенный Шендельзаре, захватила её младшая сестра Империя, и с тех пор во дворце зреет заговор.",
         "en": "The Skywrath capital, perched so high that other races can barely reach it. It answers to the queen of the Nest of Thorns: the throne meant for Shendelzare was seized by her younger sister Imperia, and the palace has bred conspiracies ever since."
-      },
+      }
+,
       "media": ["ghastly-eyrie-ascension-day", "crownfall-act-iv-trailer", "crownfall-trailer"]
     },
     "Mad Moon": {

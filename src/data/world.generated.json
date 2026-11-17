@@ -49,7 +49,8 @@
         "en": "The world does not end at the clouds. Above them, out of reach of anything without wings, drift the fortresses of the Skywrath, and higher still wheel the celestial bodies whose fate shapes everything below.\n\nThe heavens remember the Mad Moon, a prison built for two ancient minds, Radinthul and Diruulth. When it cracked apart, its shards rained down on the earth, and the Radiant and the Dire have fought over that starstone ever since. Beside the ruin still glows the moon of Selemene, the goddess served by Mirana and Luna.\n\nThis is the home of Dragonus the Skywrath Mage and of Shendelzare, the deposed princess who became the Vengeful Spirit. Thunder gods and the children of stars, Phoenix and Valora, are bound to these skies as well."
       },
       "media": [
-        "ghastly-eyrie-ascension-day"
+        "ghastly-eyrie-ascension-day",
+        "kez-ascension-night"
       ],
       "layout": {
         "polygon": [
@@ -1972,6 +1973,9 @@
               "en": "A walled city besieged by the Bronze Legion and claimed for Stonehall. Fifteen-year-old Tresdin toiled here as a slave; after the siege she was taken as a recruit, and on the same ground she beat the Legion's commander of the day in a duel — though his title did not pass to her then."
             }
           },
+          "media": [
+            "tipofthespear"
+          ],
           "pos": [
             0.415,
             0.305
@@ -2727,7 +2731,7 @@
           "slug": "weeping-rose",
           "capital": false,
           "placement": "lore",
-          "significance": "minor",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Плачущая Роза",
@@ -2798,7 +2802,8 @@
             }
           },
           "media": [
-            "sundered-moon-comic"
+            "sundered-moon-comic",
+            "monkeyking-new-journey"
           ],
           "pos": [
             0.595,
@@ -6294,6 +6299,9 @@
               "en": "An ancient creature the size of an island that answered the song of the exiled Murkroots and became their home. For a thousand years the bard-monks have sung to it, while their head monk Largo roams the world for new melodies."
             }
           },
+          "media": [
+            "largo-island"
+          ],
           "pos": [
             0.21,
             0.79
@@ -7778,6 +7786,9 @@
               "en": "Cold, twisting, blade-lined passages that every new soul must travel. The maze sorts the dead by wit and persistence; Razor and Visage's familiars stand guard, and those who resist are cast into the herebetween forever. The Court of Ristul pulls the strings."
             }
           },
+          "media": [
+            "monkeyking-legends"
+          ],
           "pos": [
             0.55,
             0.96
@@ -7893,6 +7904,27 @@
           "event": "battle",
           "source": "comic:valhessi-the-last-castle",
           "note": "В комиксе The Last Castle Axe прорубается через гарнизон крепости, а на лор-странице говорится о разгроме сил Valhessi; крепость стоит в Hazhadal Barrens."
+        },
+        {
+          "regionId": "druud",
+          "placeSlug": "druud",
+          "event": "battle",
+          "source": "comic:druud-hells-basin",
+          "note": "Едет рядом с ханом Сорлой при подготовке к битве с Бездонной ордой в красных пустынях Друуда."
+        }
+      ],
+      "relations": [
+        {
+          "hero": "centaur",
+          "type": "ally",
+          "source": "comic:druud-hells-basin",
+          "note": "Вместе с ханом Сорлой готовят оборону Друуда против Бездонной орды."
+        },
+        {
+          "hero": "disruptor",
+          "type": "ally",
+          "source": "comic:druud-hells-basin",
+          "note": "Едут рядом с ханом Сорлой на совете и перед боем."
         }
       ],
       "profile": {
@@ -8034,6 +8066,12 @@
           "type": "family",
           "source": "bio",
           "note": "Lina — её старшая сестра (биография и инфобокс лор-страницы). В лоре между ними также описано соперничество, но тип связи один — family."
+        },
+        {
+          "hero": "winter_wyvern",
+          "type": "ally",
+          "source": "comic:icewrack-new-neighbors",
+          "note": "Помирились после спора с жителями Icewrack: Crystal Maiden принимает дар дракона, концовка намекает на дружбу."
         }
       ],
       "profile": {
@@ -8438,6 +8476,15 @@
           "note": "Сейчас он патрулирует Узкий лабиринт и следит за душами, которые через него проходят."
         }
       ],
+      "relations": [
+        {
+          "hero": "monkey_king",
+          "type": "enemy",
+          "source": "comic:monkeyking-legends",
+          "note": "В легенде Razor запирает Monkey King в лабиринте, тот побеждает его в бою.",
+          "doubt": "Легенда, пересказанная Илексой."
+        }
+      ],
       "profile": {
         "summary": {
           "ru": "Razor — призрак молний из Underscape, Lightning Revenant. Он парит над Узким лабиринтом, где души распределяются по уму, хитрости и упорству, и бьёт их электрической плетью: разряды подгоняют замешкавшихся к свету или к вечной тьме. Холоден и безличен в обращении с властью, но, судя по манерам, службу свою он ведёт с язвительным удовольствием.",
@@ -8631,6 +8678,13 @@
           "event": "origin",
           "source": "bio",
           "note": "Шенделзара — старшая принцесса скайрасов, первая в очереди на престол Жуткого гнезда; здесь же её лишили наследства. Что с ней случилось после ухода из гнезда, в биографии не описано."
+        },
+        {
+          "regionId": "icewrack",
+          "placeSlug": "frostreach",
+          "event": "visit",
+          "source": "comic:frostreach-the-dragon",
+          "note": "Прибывает морем в Frostreach и ищет в таверне проводника через ледяную пустошь."
         }
       ],
       "relations": [
@@ -9010,6 +9064,13 @@
           "source": "bio",
           "note": "Биография: Tidehunter особенно не жалует адмирала Kunkka, их вражда длится давно, причины утеряны (bio.en; в bio.ru то же).",
           "doubt": "Тип enemy — по словам биографии о ненависти и давнем противостоянии; в kunkka.json добавлена обратная запись."
+        },
+        {
+          "hero": "monkey_king",
+          "type": "enemy",
+          "source": "comic:monkeyking-legends",
+          "note": "В легенде Tidehunter обманом отправляет Monkey King к посоху.",
+          "doubt": "Легенда, пересказанная Илексой; враждебность вытекает из обмана."
         }
       ],
       "profile": {
@@ -9378,7 +9439,14 @@
           "event": "home",
           "source": "comic:hells-ascension",
           "note": "По описанию комикса Ascension, до Узкого лабиринта она была при дворе Ристула, сестрой Б'Кора. Двор Ристула на схеме не назван, поэтому указан только регион.",
-          "doubt": "Регион hells выведен по Узкому лабиринту и Ристулу, на схеме такого места нет; сам комикс смотрен только по описанию в media.json, изображения не просматривались."
+          "doubt": "Комикс «Восхождение» двор Ристула и Узкий лабиринт называет, а слово «ад» — нет; привязка двора к региону hells — наша."
+        },
+        {
+          "regionId": "free-cities",
+          "placeSlug": "weeping-rose",
+          "event": "journey",
+          "source": "comic:hells-ascension",
+          "note": "Накануне Narrow Maze идёт в Weeping Rose, находит там изгнанного принца Ногха и по сделке забирает его земли и клан."
         }
       ],
       "profile": {
@@ -10191,6 +10259,14 @@
           "event": "origin",
           "source": "bio",
           "note": "Родина героя: она веками растила потомство в лавовых туннелях под кратером этого вулкана; здесь же поклонялись её культу. Liquipedia в поле origins указывает то же место."
+        }
+      ],
+      "relations": [
+        {
+          "hero": "monkey_king",
+          "type": "enemy",
+          "source": "comic:monkeyking-new-journey",
+          "note": "В таверне Broodmother говорит, что мечтает убить его на настоящем поле боя."
         }
       ],
       "profile": {
@@ -11100,6 +11176,14 @@
           "note": "Родной край: высокие степи, где живёт его народ Oglodi."
         }
       ],
+      "relations": [
+        {
+          "hero": "axe",
+          "type": "ally",
+          "source": "comic:druud-hells-basin",
+          "note": "Едут рядом с ханом Сорлой на совете и перед боем."
+        }
+      ],
       "profile": {
         "summary": {
           "ru": "Disruptor — невысокий, но бесстрашный грозодел из народа Oglodi, живущего на плато Друуд. Он первым разобрался в летних бурях и, найдя в руинах предков древнюю катушку, научился вызывать молнии по своей воле. Его силу сородичи считают и даром, и бедой, а сам он применяет её против королевств с юга, которые теснят земли оглоди.",
@@ -11422,6 +11506,13 @@
           "via": "lore",
           "url": "https://liquipedia.net/dota2/Medusa/Lore",
           "note": "Герой здесь не бывал: в описании её лука упомянут вайпер из этих джунглей"
+        },
+        {
+          "regionId": "free-cities",
+          "placeSlug": "sundered-moon",
+          "event": "visit",
+          "source": "comic:sundered-moon-comic",
+          "note": "Сидит за стойкой таверны Sundered Moon рядом с Zeus и подтрунивает над ним."
         }
       ],
       "profile": {
@@ -11483,6 +11574,14 @@
           "event": "battle",
           "source": "bio",
           "note": "Древняя арена, где он перебил всех соперников, стал непобедимым чемпионом и получил пояс; Omexe также стоит в поле places инфобокса лор-страницы"
+        }
+      ],
+      "relations": [
+        {
+          "hero": "axe",
+          "type": "ally",
+          "source": "comic:druud-hells-basin",
+          "note": "Вместе с ханом Сорлой готовят оборону Друуда против Бездонной орды."
         }
       ],
       "profile": {
@@ -11660,6 +11759,13 @@
           "event": "battle",
           "source": "bio",
           "note": "В биографии Имир остался последним на ногах после драки в таверне, все соперники выбыли."
+        },
+        {
+          "regionId": "icewrack",
+          "placeSlug": "frostreach",
+          "event": "visit",
+          "source": "comic:frostreach-the-dragon",
+          "note": "Сидит в таверне Frostreach и подсказывает, куда ушёл разыскиваемый человек."
         }
       ],
       "relations": [
@@ -11863,6 +11969,13 @@
           "source": "bio",
           "note": "Тресдин командует Бронзовым легионом в Стоунхолле и собирает союзников для мести после нападения. Нападение бездны на город записано здесь же, отдельной связью battle не добавлялось: по правилу одно место — одна связь.",
           "doubt": "Инфобокс лор-страницы ставит Stonehall в origins с пометкой «потом». Здесь взято home: город — её база, где она командует легионом. Более ранний переезд отражён в path и в связи с Qine."
+        },
+        {
+          "regionId": "stonehall",
+          "placeSlug": "milltown",
+          "event": "battle",
+          "source": "comic:milltown-dark-carnival",
+          "note": "В комиксе «Тёмный карнавал» ведёт легион в Милтаун после ночного налёта и берёт предводительницу налётчиков в плен."
         }
       ],
       "path": [
@@ -11873,6 +11986,14 @@
         {
           "regionId": "stonehall",
           "placeSlug": "stonehall"
+        }
+      ],
+      "relations": [
+        {
+          "hero": "hoodwink",
+          "type": "enemy",
+          "source": "comic:milltown-dark-carnival",
+          "note": "Берёт предводительницу налёта в плен и ведёт её на допрос."
         }
       ],
       "profile": {
@@ -12171,6 +12292,12 @@
           "url": "https://liquipedia.net/dota2/Jakiro/Lore",
           "note": "Обратная запись к jakiro.json: в инфобоксе лор-страницы Jakiro она его кузина (поле family).",
           "doubt": "Сама она к Jakiro враждебна и жалеет, что не убила его до вылупления; о родстве говорит только сторона Jakiro."
+        },
+        {
+          "hero": "crystal_maiden",
+          "type": "ally",
+          "source": "comic:icewrack-new-neighbors",
+          "note": "Помирились после спора с жителями Icewrack: Crystal Maiden принимает дар дракона, концовка намекает на дружбу."
         }
       ],
       "profile": {
@@ -12291,6 +12418,51 @@
           "url": "https://liquipedia.net/dota2/Monkey_King/Lore",
           "note": "Инфобокс называет Белый шпиль текущим местом героя.",
           "doubt": "Основание — комикс A New Journey, которого нет в content/media.json; в биографии мест нет."
+        },
+        {
+          "regionId": "the-deep",
+          "placeSlug": "dark-reef",
+          "event": "visit",
+          "source": "comic:monkeyking-legends",
+          "note": "В легенде у костра достаёт посох со дна у тюрьмы Dark Reef и случайно пробивает её стену.",
+          "doubt": "Это пересказ легенды, который ведёт Илекса, а не прямое событие; о береговой привязке места сказано только «дно у тюрьмы»."
+        },
+        {
+          "regionId": "hells",
+          "placeSlug": "narrow-maze",
+          "event": "battle",
+          "source": "comic:monkeyking-legends",
+          "note": "В легенде побеждает Razor в Narrow Maze и вычёркивает своё имя из Книги жизни и смерти.",
+          "doubt": "Легенда, рассказанная Илексой, а не рассказ от автора."
+        },
+        {
+          "regionId": "free-cities",
+          "placeSlug": "sundered-moon",
+          "event": "visit",
+          "source": "comic:monkeyking-new-journey",
+          "note": "Встречает в таверне Sundered Moon Broodmother, которая ждёт войны Древних."
+        }
+      ],
+      "relations": [
+        {
+          "hero": "razor",
+          "type": "enemy",
+          "source": "comic:monkeyking-legends",
+          "note": "В легенде Razor запирает Monkey King в лабиринте, тот побеждает его в бою.",
+          "doubt": "Легенда, пересказанная Илексой."
+        },
+        {
+          "hero": "tidehunter",
+          "type": "enemy",
+          "source": "comic:monkeyking-legends",
+          "note": "В легенде Tidehunter обманом отправляет Monkey King к посоху.",
+          "doubt": "Легенда, пересказанная Илексой; враждебность вытекает из обмана."
+        },
+        {
+          "hero": "broodmother",
+          "type": "enemy",
+          "source": "comic:monkeyking-new-journey",
+          "note": "В таверне Broodmother говорит, что мечтает убить его на настоящем поле боя."
         }
       ],
       "profile": {
@@ -12486,6 +12658,14 @@
         {
           "regionId": "tomokan",
           "placeSlug": "tomokan"
+        }
+      ],
+      "relations": [
+        {
+          "hero": "legion_commander",
+          "type": "enemy",
+          "source": "comic:milltown-dark-carnival",
+          "note": "Берёт предводительницу налёта в плен и ведёт её на допрос."
         }
       ],
       "profile": {
@@ -13337,6 +13517,112 @@
       },
       "credit": "Valve Corporation",
       "sourceUrl": "https://store.steampowered.com/app/583950/"
+    },
+    {
+      "id": "monkeyking-legends",
+      "type": "image",
+      "src": "https://cdn.steamstatic.com/apps/dota2/images/comics/comic_monkeyking_arcana/en/010.png",
+      "excerpt": true,
+      "title": {
+        "ru": "«Легенды Царя обезьян»",
+        "en": "Legends of the Monkey King"
+      },
+      "subtitle": {
+        "ru": "Комикс",
+        "en": "Comic"
+      },
+      "description": {
+        "ru": "Комикс Valve к обновлению 7.00 (2016). У ночного костра Илекса рассказывает детям легенды о Monkey King: как он достал посох у тюрьмы Dark Reef и как победил Razor в Узком лабиринте.",
+        "en": "Valve's comic for the 7.00 update (2016). By a night campfire Ilexa tells children legends of the Monkey King: how he took his staff from beside the Dark Reef prison and how he beat Razor in the Narrow Maze."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/700/comic/arcana/"
+    },
+    {
+      "id": "monkeyking-new-journey",
+      "type": "image",
+      "src": "https://cdn.steamstatic.com/apps/dota2/images/comics/comic_monkeyking/en/010.png",
+      "excerpt": true,
+      "title": {
+        "ru": "«Новое путешествие»",
+        "en": "A New Journey"
+      },
+      "subtitle": {
+        "ru": "Комикс",
+        "en": "Comic"
+      },
+      "description": {
+        "ru": "Комикс Valve к обновлению 7.00 (2016). Monkey King дают постановочные бои на арене, а в таверне Sundered Moon он встречает Broodmother, которая ждёт настоящей войны.",
+        "en": "Valve's comic for the 7.00 update (2016). Monkey King performs staged fights in an arena; in the Sundered Moon tavern he meets Broodmother, who is waiting for a real war."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/700/comic/base/"
+    },
+    {
+      "id": "tipofthespear",
+      "type": "image",
+      "src": "https://cdn.steamstatic.com/apps/dota2/images/comics/comic_tipofthespear/en/02.jpg",
+      "excerpt": true,
+      "title": {
+        "ru": "«Острие копья»",
+        "en": "Tip of the Spear"
+      },
+      "subtitle": {
+        "ru": "Комикс",
+        "en": "Comic"
+      },
+      "description": {
+        "ru": "Комикс Valve 2016 года. Legion Commander вспоминает, как Бронзовый легион взял Цин, где она родилась рабыней, и ведёт кавалерию в решающий удар под стенами осаждённого Мёрбика.",
+        "en": "Valve's 2016 comic. Legion Commander recalls how the Bronze Legion took Qine, where she was born a slave, and leads the cavalry charge under the walls of besieged Moerbeek."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/tipofthespear"
+    },
+    {
+      "id": "kez-ascension-night",
+      "type": "image",
+      "src": {
+        "ru": "https://cdn.steamstatic.com/apps/dota2/images/crownfall/act4_ascension_night/russian/002.webp",
+        "en": "https://cdn.steamstatic.com/apps/dota2/images/crownfall/act4_ascension_night/english/002.webp"
+      },
+      "excerpt": true,
+      "title": {
+        "ru": "«Ночь вознесения»",
+        "en": "Ascension Night"
+      },
+      "subtitle": {
+        "ru": "Комикс",
+        "en": "Comic"
+      },
+      "description": {
+        "ru": "Комикс к Crownfall (2024). Kez, изгнанный из храма Shodo, в ночь Вознесения выводит узников из висячей тюрьмы Клетка и находит нового наставника в нижнем городе Мидгейт.",
+        "en": "Comic for Crownfall (2024). Kez, expelled from the Shodo temple, frees the prisoners of the hanging prison called the Cage on Ascension Night and finds a new teacher in the lower city of Midgate."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/kezcomic"
+    },
+    {
+      "id": "largo-island",
+      "type": "image",
+      "src": {
+        "ru": "https://cdn.steamstatic.com/apps/dota2/images/comics/largo/russian/001.webp",
+        "en": "https://cdn.steamstatic.com/apps/dota2/images/comics/largo/english/001.webp"
+      },
+      "excerpt": true,
+      "title": {
+        "ru": "«Остров, что приходит»",
+        "en": "The Island That Comes"
+      },
+      "subtitle": {
+        "ru": "Комикс",
+        "en": "Comic"
+      },
+      "description": {
+        "ru": "Комикс Valve (2025). Умирающий наставник рассказывает Largo, как лягушачий народ бежал по морю и нашёл дом на живом острове Velu'Mar; позже Largo пробуждает остров в его священных пещерах.",
+        "en": "Valve's comic (2025). A dying mentor tells Largo how the frog people fled across the sea and found a home on the living island of Velu'Mar; later Largo wakes the island in its sacred caverns."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/largocomic"
     }
   ]
 }

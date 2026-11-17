@@ -4,7 +4,8 @@
     "bio.ru",
     "bio.en",
     "liquipedia-lore",
-    "liquipedia-hero"
+    "liquipedia-hero",
+    "comic:monkeyking-legends"
   ],
   "links": [
     {
@@ -37,6 +38,13 @@
       "source": "bio",
       "note": "Биография: Tidehunter особенно не жалует адмирала Kunkka, их вражда длится давно, причины утеряны (bio.en; в bio.ru то же).",
       "doubt": "Тип enemy — по словам биографии о ненависти и давнем противостоянии; в kunkka.json добавлена обратная запись."
+    },
+    {
+      "hero": "monkey_king",
+      "type": "enemy",
+      "source": "comic:monkeyking-legends",
+      "note": "В легенде Tidehunter обманом отправляет Monkey King к посоху.",
+      "doubt": "Легенда, пересказанная Илексой; враждебность вытекает из обмана."
     }
   ],
   "profile": {

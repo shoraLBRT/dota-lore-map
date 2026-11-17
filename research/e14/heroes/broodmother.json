@@ -4,7 +4,8 @@
     "bio.ru",
     "bio.en",
     "liquipedia-lore",
-    "liquipedia-hero"
+    "liquipedia-hero",
+    "comic:monkeyking-new-journey"
   ],
   "links": [
     {
@@ -42,5 +43,13 @@
     "Комиксов для Broodmother в content/media.json нет, источник comic:<id> не использован.",
     "Сверка: Thorny Wastes убран — место знают только по описанию предмета, на схеме его нет.",
     "Сверка: вражда с Monkey King убрана — держится только на репликах."
+  ],
+  "relations": [
+    {
+      "hero": "monkey_king",
+      "type": "enemy",
+      "source": "comic:monkeyking-new-journey",
+      "note": "В таверне Broodmother говорит, что мечтает убить его на настоящем поле боя."
+    }
   ]
 }

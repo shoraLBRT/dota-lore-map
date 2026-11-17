@@ -110,7 +110,8 @@
       "description": {
         "ru": "Древнее существо размером с остров, которое откликнулось на песню изгнанников Муркрутов и стало им домом. Тысячу лет бард-монахи поют ему, а их глава Largo странствует в поисках новых мелодий.",
         "en": "An ancient creature the size of an island that answered the song of the exiled Murkroots and became their home. For a thousand years the bard-monks have sung to it, while their head monk Largo roams the world for new melodies."
-      }
+      },
+      "media": ["largo-island"]
     }
   }
 }

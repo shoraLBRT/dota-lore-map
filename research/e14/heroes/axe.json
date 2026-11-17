@@ -5,7 +5,8 @@
     "bio.en",
     "liquipedia-lore",
     "liquipedia-hero",
-    "comic:valhessi-the-last-castle"
+    "comic:valhessi-the-last-castle",
+    "comic:druud-hells-basin"
   ],
   "links": [
     {
@@ -19,6 +20,12 @@
       "event": "battle",
       "source": "comic:valhessi-the-last-castle",
       "note": "В комиксе The Last Castle Axe прорубается через гарнизон крепости, а на лор-странице говорится о разгроме сил Valhessi; крепость стоит в Hazhadal Barrens."
+    },
+    {
+      "place": "Druud",
+      "event": "battle",
+      "source": "comic:druud-hells-basin",
+      "note": "Едет рядом с ханом Сорлой при подготовке к битве с Бездонной ордой в красных пустынях Друуда."
     }
   ],
   "profile": {
@@ -41,5 +48,19 @@
     "Сверка: родство с Disruptor (кузен) убрано — оно известно только из реплик Disruptor.",
     "Сверка: путь в Fellstrath убран — в лор-тексте только «возможно».",
     "Сверка: связь «родина неизвестна» (uncharted) убрана — у героя есть места на схеме."
+  ],
+  "relations": [
+    {
+      "hero": "centaur",
+      "type": "ally",
+      "source": "comic:druud-hells-basin",
+      "note": "Вместе с ханом Сорлой готовят оборону Друуда против Бездонной орды."
+    },
+    {
+      "hero": "disruptor",
+      "type": "ally",
+      "source": "comic:druud-hells-basin",
+      "note": "Едут рядом с ханом Сорлой на совете и перед боем."
+    }
   ]
 }

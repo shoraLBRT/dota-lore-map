@@ -4,7 +4,8 @@
     "bio.ru",
     "bio.en",
     "liquipedia-lore",
-    "liquipedia-hero"
+    "liquipedia-hero",
+    "comic:druud-hells-basin"
   ],
   "links": [
     {
@@ -28,5 +29,22 @@
     "Axe: см. doubt у связи family — расхождение с axe.json для сверки главным агентом.",
     "Модель Thrall из Warcraft и заметки Trivia — метатекст, не лор; не записано.",
     "Сверка: родство с Axe (кузен) снято — поле family инфобокса ссылается только на реплики озвучки; так же решено в axe.json."
+  ],
+  "candidates": [
+    {
+      "name": "Gale Crater",
+      "region": "druud",
+      "event": "battle",
+      "source": "comic:druud-hells-basin",
+      "note": "Место боя в плане хана Сорлы; на карте его нет."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "axe",
+      "type": "ally",
+      "source": "comic:druud-hells-basin",
+      "note": "Едут рядом с ханом Сорлой на совете и перед боем."
+    }
   ]
 }
