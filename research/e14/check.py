@@ -1,8 +1,8 @@
 """Машинная проверка файлов героев E14 и слияние в данные карты (#45, флоу партии — #44).
 
 Файл героя — research/e14/heroes/<key>.json по шаблону research/e14/template.json, правила —
-research/e14/README.md и docs/ARCHITECTURE.md §A3. Проверка строже, чем у hero-places.json:
-  - у источника liquipedia обязательна ссылка url;
+research/e14/README.md и docs/ARCHITECTURE.md §A3. Модель связей (links, path, relations, profile) проверяет
+scripts/build-data.mjs --check-hero — строже, чем hero-places.json (url у liquipedia, note у ours); здесь — поля файла:
   - обязательны read (что прочитано, минимум обе биографии) и profile.summary;
   - если источники героя есть в кэше (research/e14/fetch.py), тексты исследователя — summary, note, doubt,
     unconfirmed — не должны повторять источник 8 словами подряд (тексты пишем своими словами).
@@ -12,19 +12,22 @@ research/e14/README.md и docs/ARCHITECTURE.md §A3. Проверка строж
   python research/e14/check.py <key> ...        только эти герои
   python research/e14/check.py --merge <key> ...  проверить и слить в research/e1/hero-places.json
                                                  и research/e1/place-candidates.json (запись героя заменяется целиком)
-Код выхода 1 — есть ошибки (при --merge тогда ничего не записывается).
+Код выхода 1 — есть ошибки (при --merge тогда ничего не записывается). Нужен node.
 """
 import json
 import re
+import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 E1 = ROOT / "research" / "e1"
 sys.path.insert(0, str(E1))
-import build  # noqa: E402  (research/e1/build.py — общие правила модели связей)
+import build  # noqa: E402  (research/e1/build.py — справочники и правила кандидатов в места)
 
+BUILD_DATA = ROOT / "scripts" / "build-data.mjs"
 HEROES_DIR = HERE / "heroes"
 CACHE = HERE / "cache"
 READ = ("bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero")
@@ -70,8 +73,40 @@ def own_texts(data):
     return out
 
 
-def check_hero_file(key, data, ctx, cache=CACHE):
-    """Ошибки файла героя E14. key — имя файла без .json."""
+def node_check(args, root=ROOT):
+    """build-data.mjs в режиме проверки: ошибки — строки stdout."""
+    r = subprocess.run(["node", str(BUILD_DATA), "--root", str(root), *args],
+                       capture_output=True, text=True, encoding="utf-8")
+    if r.returncode not in (0, 1):
+        return [f"build-data.mjs: {(r.stderr or r.stdout).strip() or 'сбой'}"]
+    return [line for line in r.stdout.splitlines() if line.strip()]
+
+
+def model_errors(files, root=ROOT):
+    """Ошибки модели связей файлов героев {key: data} — scripts/build-data.mjs --check-hero (один вызов node)."""
+    if not files:
+        return []
+    with tempfile.TemporaryDirectory() as d:
+        paths = []
+        for key, data in files.items():
+            path = Path(d) / f"{key}.json"
+            path.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+            paths.append(str(path))
+        return node_check(["--check-hero", *paths], root)
+
+
+def merged_errors(places, candidates, ctx, root=ROOT):
+    """Ошибки данных после слияния: мир целиком — build-data.mjs --check, кандидаты — build.py."""
+    with tempfile.TemporaryDirectory() as d:
+        path = Path(d) / "hero-places.json"
+        path.write_text(json.dumps(places, ensure_ascii=False), encoding="utf-8")
+        errors = node_check(["--check", "--hero-places", str(path)], root)
+    return errors + build.validate_candidates(candidates, ctx)
+
+
+def check_hero_file(key, data, ctx, cache=CACHE, model=None, root=ROOT):
+    """Ошибки файла героя E14. key — имя файла без .json; model — уже посчитанные ошибки модели связей
+    (нет — вызвать build-data.mjs для этого файла)."""
     where = f"heroes/{key}.json"
     if not isinstance(data, dict):
         return [f"{where}: ожидается объект"]
@@ -90,7 +125,7 @@ def check_hero_file(key, data, ctx, cache=CACHE):
         for r in REQUIRED_READ:
             if r not in read:
                 errors.append(f"{where}: read — нужно прочитать {r}")
-    errors += [f"{where}: {e}" for e in build.validate_hero_entry(key, data, ctx, strict=True)]
+    errors += model if model is not None else model_errors({key: data}, root)
     if not (data.get("profile") or {}).get("summary"):
         errors.append(f"{where}: нужен profile.summary — короткое описание RU/EN своими словами")
     for rel in data.get("relations") or []:
@@ -148,25 +183,28 @@ def main(argv):
         keys = sorted(p.stem for p in HEROES_DIR.glob("*.json"))
     heroes, regions = build.load("heroes.json"), build.load("regions.json")
     ctx = build.Ctx(heroes, regions, build.media_ids())
-    files, errors = {}, []
+    files, errors, read_errors = {}, [], []
     for key in keys:
         path = HEROES_DIR / f"{key}.json"
         if not path.exists():
-            errors.append(f"heroes/{key}.json: файла нет")
+            read_errors.append(f"heroes/{key}.json: файла нет")
             continue
         try:
             files[key] = json.loads(path.read_text(encoding="utf-8"))
         except ValueError as e:
-            errors.append(f"heroes/{key}.json: не JSON — {e}")
-            continue
-        errors += check_hero_file(key, files[key], ctx)
+            read_errors.append(f"heroes/{key}.json: не JSON — {e}")
+    model = model_errors(files)
+    errors = read_errors
+    for key, data in files.items():
+        own = [e for e in model if e.startswith(f"heroes/{key}.json:")]
+        errors += check_hero_file(key, data, ctx, model=own)
+    errors += [e for e in model if not any(e.startswith(f"heroes/{k}.json:") for k in files)]
     if not errors and do_merge:
         places = build.load("hero-places.json")
         candidates = build.load_optional(E1 / "place-candidates.json", {"candidates": []})
         name_of = {h["key"]: h["name"] for h in heroes["heroes"]}
         places, candidates = merge(keys, files, places, candidates, name_of)
-        merged_errors, _ = build.validate(heroes, regions, places, candidates)
-        errors += [f"после слияния: {e}" for e in merged_errors]
+        errors += [f"после слияния: {e}" for e in merged_errors(places, candidates, ctx)]
         if not errors:
             write_json(E1 / "hero-places.json", places)
             write_json(E1 / "place-candidates.json", candidates)
