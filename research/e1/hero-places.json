@@ -2072,11 +2072,33 @@
     "Naga Siren": {
       "links": [
         {
+          "region": "the-deep",
+          "event": "origin",
+          "source": "ours",
+          "note": "Родина героя не названа ни в одном источнике. Её народ Slithereen служит у Crey, а Crey лежит в the-deep.",
+          "doubt": "Место родины самой героини в тексте не указано, регион выведен из службы её народа."
+        },
+        {
           "place": "Crey",
-          "event": "home",
-          "source": "bio"
+          "event": "battle",
+          "source": "bio",
+          "note": "Последняя битва, в которой её отряд разбила армия левиантов. После неё героиню лишили ранга и изгнали из стражи."
+        },
+        {
+          "place": "Deep Vault",
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Naga_Siren/Lore",
+          "doubt": "Место указано в инфобоксе. В тексте сказано лишь, что она, вероятно, знает о хранилище и его стражах."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Naga Siren, в прошлом Слизис, была военачальницей стражи Slithereen, которая защищала Deep Ones и сокровища затонувших городов. В битве при Крее из сокровищницы пропала драгоценная чаша, и героиню изгнали с позором. Теперь она живёт вдали от своих, пока не вернёт похищенное.",
+          "en": "Naga Siren, once Slithice, commanded a battalion of the Slithereen Guard that guarded the Deep Ones and their sunken riches. After the lost battle at Crey, a jeweled chalice vanished from the treasury and she was cast out in disgrace. She must live apart from her people until she returns what was taken."
+        }
+      }
     },
     "Nature's Prophet": {
       "links": [
@@ -2108,10 +2130,29 @@
       "links": [
         {
           "place": "Cathedral of Rumusque",
-          "event": "origin",
-          "source": "bio"
+          "event": "service",
+          "source": "bio",
+          "note": "Здесь Ротунд'йер стал кардиналом и служил, пока не начал выманивать земли у знати. Родина в биографии не названа, поэтому это первое место по хронологии."
+        },
+        {
+          "place": "Underscape",
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Necrophos/Lore",
+          "note": "Место указано в поле places инфобокса лор-страницы; в тексте о нём не сказано.",
+          "doubt": "Есть только в инфобоксе: ни биография, ни текст лора не говорят, что герой там бывал."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Necrophos — бывший монах Ротунд'йер. В эпоху мора он неожиданно стал кардиналом, когда начальство вымерло, а затем обирал умирающих богачей, суля им духовное воздаяние. Осуждённый за ересь и отправленный к чумным, он выжил, и болезнь стала питать его силу: теперь Necrophos ходит по миру, сеет мор и крепнет с каждой сгинувшей деревней.",
+          "en": "Necrophos is the former monk Rotund'jere, who became a cardinal during a great plague only because his superiors had died, and then profited from dying nobles by promising them spiritual rewards. Condemned for heresy and sent to a plague ward, he survived the disease, which fed his power instead, and now wanders the world spreading plague and growing stronger with each village he destroys."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/necrolyte.png"
+        ]
+      }
     },
     "Night Stalker": {
       "links": [
@@ -2147,11 +2188,23 @@
       "links": [
         {
           "place": "Hidden Hive",
-          "event": "home",
+          "event": "origin",
           "source": "liquipedia",
-          "via": "infobox"
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Nyx_Assassin/Lore",
+          "note": "Родной улей колонии скарабеев; в биографии улей по имени не назван.",
+          "doubt": "Биография говорит о колонии и покоях королевы, но не называет Hidden Hive; место взято из поля origins инфобокса, которое опирается на описание набора самого героя."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Nyx Assassin — скарабей-фанатик, о чьём виде пишет старинная книга в архиве Ultimyr. Из множества личинок колонии богиня Никс выбрала его для особого превращения в покоях королевы. Он пережил обряд, получил телепатию, острые жвалы и когти и с тех пор живёт ради одного — убивать во имя богини.",
+          "en": "Nyx Assassin is a zealot scarab, a telepathic insect described in an old tome kept in the archive of Ultimyr. Of all the grubs in his colony, the goddess Nyx chose him for a special metamorphosis in the queen's chamber. He survived the rite with a telepathic mind, sharp mandibles and claws, and now exists only to kill for his goddess."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/nyx_assassin.png"
+        ]
+      }
     },
     "Ogre Magi": {
       "links": [
@@ -2173,29 +2226,69 @@
       "links": [
         {
           "place": "Emauracus",
-          "event": "home",
-          "source": "bio"
+          "event": "origin",
+          "source": "bio",
+          "note": "Утёсы Эмаураса — оплот ордена Всезнания, где герой вырос оруженосцем; после похода он вернулся сюда, и здесь ему открылось божество. В инфобоксе лора Emauracus тоже указан в origins.",
+          "doubt": "Биография не говорит прямо, что он здесь родился: «вернулся» и служба ордену с юности указывают на дом ордена."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Пурист Громобой, он же Omniknight, с юности служил ордену Всезнания и много лет воевал в его крестовом походе. Видя, как гибнут старшие рыцари, братья и оруженосцы, он усомнился в смысле своих клятв и вернулся к утёсам Emauracus, чтобы бросить вызов жрецам. Там божество открылось ему, и с тех пор он больше не сомневается в вере.",
+          "en": "Purist Thunderwrath, known as Omniknight, served the order of the Omniscience from youth and spent long years on its crusade. As his elders, brothers and squires died around him, he began to doubt his vows and went back to the cliffs of Emauracus to challenge the priests. There the god revealed itself to him, and he has not doubted his faith since."
+        }
+      }
     },
     "Oracle": {
       "links": [
         {
           "place": "Ivory Incubarium",
           "event": "origin",
-          "source": "bio"
+          "source": "bio",
+          "note": "Оракулов растили и обучали Бледные сивиллы в Ivory Incubarium; оттуда Нерифа отправили служить последнему Высеченному королю Cymurri. В той же вселенной была битва у дворца Ненасытного Сатрапа, после которой советники изгнали его из своей вселенной (лор-страница). Эти места названы в candidates."
+        },
+        {
+          "region": "the-deep",
+          "event": "battle",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Oracle/Lore",
+          "note": "Лор-страница: путь, который он сам себе предсказал, привёл его в затонувшие царства, и их глубоководные цивилизации были разрушены.",
+          "doubt": "Пункт опирается на описание набора самого героя (Alluvion Prophecy); «sunken realms» названы общо, the-deep выбран как ближайший регион."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Нериф — оракул из Ivory Incubarium, где Бледные сивиллы растили провидцев для королей Cymurri. Его пророчества не просто предсказывали будущее, а меняли его. Король заставлял его изрекать нужные победы, но в битве у дворца Ненасытного Сатрапа реальность раскололась, и оба войска обезумели. Советники Cymurri изгнали Нерифа из своей вселенной.",
+          "en": "Nerif is an oracle from the Ivory Incubarium, where the Pallid Sybils raised seers for the kings of Cymurri. His prophecies did not only foretell the future but changed it. The last Graven King made him voice the victories he wanted, until reality split apart in the battle before the Unsated Satrap's palace and both armies went mad. The Cymurri Advisors then banished Nerif from their universe."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/oracle.png"
+        ]
+      }
     },
     "Outworld Destroyer": {
       "links": [
         {
           "place": "The Outworld",
           "event": "origin",
-          "source": "liquipedia",
-          "via": "infobox"
+          "source": "bio",
+          "note": "Кристаллический мир на краю бездны, где герой — последний страж заставы; здесь он живёт и несёт дозор."
+        },
+        {
+          "place": "The Void",
+          "event": "visit",
+          "source": "bio",
+          "note": "Биография: он бродит по краю Пустоты, вглядываясь в ночь за звёздами.",
+          "doubt": "Пустота — соседняя бездна, а не жилище: живёт он на Outworld, поэтому visit, а не home."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Outworld Destroyer, или Harbinger, — из гордого и властного народа, последний страж заставы на кристаллическом мире у края Пустоты. Целую вечность он высматривал за звёздами зло, которое, как подсказывает живущее в нём подобие пророчества, однажды проснётся и обратится к нашему миру. Шум войны Древних и угроза изнутри заставили его прилететь к полям сражений, и само его появление считают дурным знаком.",
+          "en": "Outworld Destroyer, or Harbinger, belongs to a proud and lordly race and is the last sentry of an outpost on a crystal world at the edge of the Void. For ages he has watched the dark beyond the stars for an evil that a prophecy-like pattern in his mind says will one day wake and turn toward our world. The din of the Ancients' war and a threat from within drew him to the battlefields, and his coming is itself taken as a bad omen."
+        }
+      }
     },
     "Pangolier": {
       "links": [
@@ -2301,18 +2394,39 @@
           "place": "Tares",
           "event": "origin",
           "source": "liquipedia",
-          "via": "infobox"
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Phantom_Assassin/Lore",
+          "note": "Родина по инфобоксу и тексту лора: в раннем детстве её взяли в орден из купеческой семьи в Tares (интервью Hero Atlas). В официальной биографии места нет."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Мортред — убийца из Сестёр Вуали, ордена, который считает убийство священной частью естественного порядка. Цели сёстры находят в медитациях и пророчествах, заказов не берут, а их выбор кажется случайным. Воспитанные без собственного имени, Phantom Assassin заменяют друг друга, но эта иногда шепчет запретное — своё имя. По лору её ребёнком забрали в орден из купеческой семьи в Tares.",
+          "en": "Mortred serves the Veiled Sisters, who see killing as holy and part of how the world should work. They find their targets through meditation and prophecy, take no contracts, and seem to choose at random. Raised without a name of their own, the assassins are interchangeable, yet this one sometimes whispers her forbidden name. The lore says she was taken into the order as a child from a merchant family in Tares."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/phantom_assassin.png"
+        ]
+      }
     },
     "Phantom Lancer": {
       "links": [
         {
           "place": "Pole",
           "event": "origin",
-          "source": "bio"
+          "source": "bio",
+          "note": "Родная деревня, откуда Азурайт ушёл на войну; инфобокс подтверждает. По описанию его набора, после победы над Ворном он не возвращается сюда, хотя его бы приняли."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Phantom Lancer — Азурайт, рыбак-копейщик из далёкой деревни Pole, до которой войны королевства долго не доходили. Он ушёл с призывниками на войну против Тёмного мага Ворна; в последнем штурме из его родни выжил только он и один прорвался в крепость. В поединке он пронзил Ворна, и сила взорвавшегося мага наполнила его, создав толпу фантомов-двойников. Подошедшие солдаты увидели лишь очередной призрак.",
+          "en": "Phantom Lancer is Azwraith, a fisherman and spearman from the remote village of Pole, which long knew nothing of the kingdom's wars. He joined the conscripts marching against the Dread Magus Vorn; in the final assault he alone of his kin survived and broke into the fortress. He pierced Vorn in a duel, and the exploding wizard's power filled him, surrounding him with phantom copies of himself. The soldiers who arrived found only another phantom."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/phantom_lancer.png"
+        ]
+      }
     },
     "Phoenix": {
       "links": [
@@ -2368,12 +2482,48 @@
     "Primal Beast": {
       "links": [
         {
+          "region": "uncharted",
+          "event": "origin",
+          "source": "bio",
+          "note": "Родной мир — безымянное иное измерение, откуда его вытолкнули. На схеме такого места нет.",
+          "doubt": "Поле origins в инфобоксе Liquipedia называет Mistwood, но биография описывает приход извне; берём биографию."
+        },
+        {
           "place": "Tomo'kan",
-          "event": "home",
-          "source": "liquipedia",
-          "via": "infobox"
+          "event": "battle",
+          "source": "bio",
+          "note": "Тысячи лет Туманный лес был его угодьями: он опустошал его и охотился даже на дуран. Сейчас он далеко отсюда.",
+          "doubt": "Биография называет Mistwood; лор-страница Liquipedia отождествляет его с Tomo'kan."
         }
-      ]
+      ],
+      "path": [
+        {
+          "region": "uncharted"
+        },
+        {
+          "place": "Tomo'kan"
+        }
+      ],
+      "relations": [
+        {
+          "hero": "hoodwink",
+          "type": "enemy",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Primal_Beast/Lore",
+          "note": "Лор-страница: Hoodwink, защищая остатки своего дома в Tomo'kan, хитростью поймала его в Gleipnir и заперла в Continuum Vault; за это он её ненавидит.",
+          "doubt": "Биография не называет ловца по имени; что это Hoodwink, утверждает текст лор-страницы. Hoodwink — герой будущей партии, обратная запись не делается."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Primal Beast — дикий хищник, которого выбросило в наш мир из другого измерения. Вечная бойня сделала его вершиной пищевой цепи, а чувств у него осталось только на голод и боль. В туманной роще он крушил всё вокруг, пока Hoodwink не заперла его сначала в Gleipnir, а потом в Хранилище Континуума. Непредсказуемые силы Механизма Континуума выпустили его, и теперь он движется к населённым землям.",
+          "en": "Primal Beast is a feral predator flung into our world from another dimension. Endless bloodshed made him the apex hunter of his old home, leaving him driven only by hunger and pain. He tore through the Mistwood until Hoodwink trapped him in the Gleipnir and later sealed him in the Continuum Vault. Unpredictable forces of the Continuum Device set him loose, and he is now heading toward inhabited lands."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/primal_beast.png"
+        ]
+      }
     },
     "Puck": {
       "links": [
@@ -2420,9 +2570,31 @@
         {
           "place": "Nether Reaches",
           "event": "origin",
-          "source": "bio"
+          "source": "bio",
+          "note": "Биография: родился в краю у разломов Nether Reaches, где стоял монастырь Искусств Забвения, питавшийся их энергией."
         }
-      ]
+      ],
+      "relations": [
+        {
+          "hero": "viper",
+          "type": "servant",
+          "place": "Nether Reaches",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Pugna/Lore",
+          "note": "Биография Viper и лор-страница: уже старым Pugna поймал нетопыря Viper в пещерах Nether Reaches и держал его в клетке как питомца и подопытного.",
+          "doubt": "Viper сбежал и поклялся отомстить, так что теперь он скорее враг; Viper — герой будущей партии, обратная запись не делается."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Pugna — маг Забвения из Nether Reaches, которого жрецы монастыря признали перерождением умершего настоятеля. В тринадцать месяцев он сжёг двух детей-соперников изумрудным пламенем и забрал реликвии наставника, а через пять лет от самого храма остался пепел. Уже в старости он поймал нетопыря Viper, но тот сбежал и поклялся отомстить.",
+          "en": "Pugna is an Oblivion sorcerer from the Nether Reaches, reborn as the successor of a dead grandmaster of a monastery. At barely over a year old he burned two rival children to ash to claim the throne, and within five years the temple itself was reduced to rubble. Later he captured the netherdrake Viper, who escaped and swore revenge."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/pugna.png"
+        ]
+      }
     },
     "Queen of Pain": {
       "links": [

@@ -71,7 +71,7 @@
 ## 5. Регионы, места и герои
 
 <!-- GENERATED:BEGIN -->
-Регионов: **26**, мест: **172**, героев привязано: **127** из 127, из них в «Неизведанных землях»: **12**.
+Регионов: **26**, мест: **172**, героев привязано: **127** из 127, из них в «Неизведанных землях»: **13**.
 
 ### Сводка по регионам
 
@@ -90,7 +90,7 @@
 | Материк и острова | Сверкающая пустошь (Scintillant Waste) | Dire (карта S1) | 9 | 6 |
 | Материк и острова | Стонущие горы (Wailing Mountains) | Dire (карта S1) | 6 | 7 |
 | Материк и острова | Тенистый берег (Shadeshore) | Dire (по схеме E2) | 5 | 4 |
-| Материк и острова | Глубины (The Deep) | Dire (карта S1) | 7 | 3 |
+| Материк и острова | Глубины (The Deep) | Dire (карта S1) | 7 | 4 |
 | Материк и острова | Кладд и острова (Cladd and the Isles) | Radiant (по схеме E2) | 6 | 2 |
 | Материк и острова | Тропические острова (Tropic Isles) | Dire (по схеме E2) | 7 | 3 |
 | Материк и острова | Западные леса (Western Forests) | Radiant (по схеме E2) | 6 | 5 |
@@ -100,9 +100,9 @@
 | Материк и острова | Томо'кан и Окраины (Tomo'kan and the Outlands) | Dire (по схеме E2) | 6 | 5 |
 | Материк и острова | Империя Костей (Empire of Bone) | Dire (по схеме E2) | 3 | 1 |
 | Материк и острова | Срединные королевства (The Middle Kingdoms) | нейтрально (по схеме E2) | 11 | 13 |
-| Материк и острова | Неизведанные земли (The Uncharted Lands) | нейтрально (по схеме E2) | 0 | 12 |
+| Материк и острова | Неизведанные земли (The Uncharted Lands) | нейтрально (по схеме E2) | 0 | 13 |
 | Бездна | Подземье (The Underdark) | нейтрально (ярус) | 4 | 4 |
-| Бездна | Семь Преисподних и загробье (The Seven Hells and the Afterlife) | нейтрально (ярус) | 8 | 11 |
+| Бездна | Семь Преисподних и загробье (The Seven Hells and the Afterlife) | нейтрально (ярус) | 8 | 12 |
 
 ### Верхний ярус
 
@@ -135,7 +135,7 @@
 | Astral Plane | лор | Elder Titan (бывал) |  |
 | Fabric of Creation | лор | Weaver |  |
 | Claszureme | лор | Faceless Void, Puck (бывал) | мир вне времени |
-| The Void | лор | Ancient Apparition, Faceless Void (упоминание), Void Spirit |  |
+| The Void | лор | Ancient Apparition, Faceless Void (упоминание), Outworld Destroyer (бывал), Void Spirit |  |
 | The Outworld | лор | Outworld Destroyer | «мир на краю Бездны», у границы Пустоты |
 | Land Behind the Wall | лор | Dark Seer | родная реальность Dark Seer; страницы на Liquipedia нет |
 | Ivory Incubarium | лор | Oracle | в другой вселенной |
@@ -245,7 +245,7 @@
 | ★ Quoidge | лор | Mars (упоминание), Pudge (связь) |  |
 | Smoke Harbor | лор | — |  |
 | Fields of Endless Carnage | лор | Pudge (живёт) |  |
-| Cathedral of Rumusque | лор | Necrophos |  |
+| Cathedral of Rumusque | лор | Necrophos (служба) |  |
 
 #### Хазадальские пустоши · Hazhadal Barrens
 
@@ -312,11 +312,13 @@
 
 Сторона: **Dire** (карта S1). Затонувшие города на дне океана под охраной слизеринов; ещё глубже — Infernal Hollow. На карте Source 1 «The Slithereen» — в половине Dire.
 
+Герои всего региона: Naga Siren*, Oracle (сражение)
+
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
 | ★ Dark Reef | лор | Slark |  |
-| Crey | лор | Naga Siren (живёт) |  |
-| Deep Vault | лор | Slardar (живёт) | оно же Sunken Treasury |
+| Crey | лор | Naga Siren (сражение) |  |
+| Deep Vault | лор | Naga Siren (упоминание), Slardar (живёт) | оно же Sunken Treasury |
 | Coral Breach | лор | — |  |
 | Reef's Edge | лор | — |  |
 | Recluse Reef | лор | — |  |
@@ -404,7 +406,7 @@
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
-| ★ Tomo'kan | лор | Arc Warden (сражение), Hoodwink (живёт), Primal Beast (живёт), Ursa (живёт) |  |
+| ★ Tomo'kan | лор | Arc Warden (сражение), Hoodwink (живёт), Primal Beast (сражение), Ursa (живёт) |  |
 | Krimwohl | лор | Hoodwink |  |
 | Outlands | лор | — |  |
 | Nanarak | лор | Snapfire (живёт) |  |
@@ -431,10 +433,10 @@
 | Devarque | наше | Lifestealer (изгнание) |  |
 | Yoskreth | наше | — |  |
 | Ultimyr Academy | наше | Invoker (сражение), Warlock (живёт) |  |
-| Emauracus | наше | Omniknight (живёт) |  |
+| Emauracus | наше | Omniknight |  |
 | Font of Avernus | наше | Abaddon |  |
 | Hidden Temple | наше | Spectre (связь)†, Templar Assassin (живёт), Void Spirit (связь) |  |
-| Hidden Hive | наше | Nyx Assassin (живёт) |  |
+| Hidden Hive | наше | Nyx Assassin |  |
 | Mount Pyrotheos | наше | Broodmother |  |
 | Skirm | наше | Muerta | страницы на Liquipedia нет |
 | Solar Throne | наше | Mirana | трон империи Helio Imperium |
@@ -452,6 +454,7 @@
 | Medusa | Родина горгон: царство, куда напали незнакомцы в масках, в биографии не названо; на схеме такого места нет |
 | Morphling | Morphling родился там, где комета упала на поле битвы в войне Влой у пограничной реки; ни эта война, ни река на схеме не названы, других мест в биографии нет. |
 | Ogre Magi | Ни в биографии, ни на лор-странице Liquipedia не назван ни регион, ни место, где родился и вырос Ogre Magi. Инфобокс с полем places пуст. Род огров записан без привязки к земле, поэтому связь оставлена в неизведанных землях. |
+| Primal Beast | Родной мир — безымянное иное измерение, откуда его вытолкнули. На схеме такого места нет. |
 | Riki | Родина Riki в биографии не названа: сказано только, что он из династии Tahlin и что его народ предали в ночь гибели царского рода. Liquipedia упоминает безымянную родину с пряностями, но это реплика другого героя, не название места. Поэтому на схеме — Неизведанные земли; кандидата в места нет. |
 | Ringmaster | ни в биографии, ни в лоре на Liquipedia место не названо: история идёт в безымянных городках и в цирке Осберта Кеттла |
 | Rubick | В биографиях dota2.com и на лор-странице Liquipedia нет места рождения, учёбы или жизни героя; поле places инфобокса пусто. Родину не угадываем. |
@@ -483,7 +486,7 @@
 | Foulfell | лор | Terrorblade |  |
 | Outer Hells | лор | Warlock (связь) |  |
 | Narrow Maze | лор | Razor (живёт), Visage (живёт) |  |
-| Underscape | лор | Muerta (упоминание), Razor (связь) |  |
+| Underscape | лор | Muerta (упоминание), Necrophos (упоминание), Razor (связь) |  |
 | Nothl Realm | лор | Dazzle (связь), Huskar (гибель) |  |
 
 ### Указатель: герой → места
@@ -556,20 +559,20 @@
 | Monkey King | White Spire (Вольные города) (живёт) |
 | Morphling | весь регион «Неизведанные земли» |
 | Muerta | Skirm (Срединные королевства); Seven Hells (Семь Преисподних и загробье) (упоминание); Underscape (Семь Преисподних и загробье) (упоминание) |
-| Naga Siren | Crey (Глубины) (живёт) |
+| Naga Siren | весь регион «Глубины»*; Crey (Глубины) (сражение); Deep Vault (Глубины) (упоминание) |
 | Nature's Prophet | Manglewood Forest (Западные леса) (бывал); Endless Copse (Западные леса) (упоминание) |
-| Necrophos | Cathedral of Rumusque (Квойдж и Поля Бойни) |
+| Necrophos | Cathedral of Rumusque (Квойдж и Поля Бойни) (служба); Underscape (Семь Преисподних и загробье) (упоминание) |
 | Night Stalker | Selemene's Moon (Небеса) (упоминание) |
-| Nyx Assassin | Hidden Hive (Срединные королевства) (живёт) |
+| Nyx Assassin | Hidden Hive (Срединные королевства) |
 | Ogre Magi | весь регион «Неизведанные земли»* |
-| Omniknight | Emauracus (Срединные королевства) (живёт) |
-| Oracle | Ivory Incubarium (Семь планов и Пустота) |
-| Outworld Destroyer | The Outworld (Семь планов и Пустота) |
+| Omniknight | Emauracus (Срединные королевства) |
+| Oracle | Ivory Incubarium (Семь планов и Пустота); весь регион «Глубины» (сражение) |
+| Outworld Destroyer | The Outworld (Семь планов и Пустота); The Void (Семь планов и Пустота) (бывал) |
 | Pangolier | Revtel (Вольные города) (бывал); Qaldin (Сверкающая пустошь) (бывал); White Spire (Вольные города) (бывал); Icewrack (Айсрак) (упоминание) |
 | Phantom Assassin | Tares (Стоунхолл) |
 | Phantom Lancer | Pole (Земля Сияющих) |
 | Phoenix | The Sun (Небеса)*; Scintillant Waste (Сверкающая пустошь) (упоминание); Violet Archives (Земля Сияющих) (упоминание) |
-| Primal Beast | Tomo'kan (Томо'кан и Окраины) (живёт) |
+| Primal Beast | весь регион «Неизведанные земли»; Tomo'kan (Томо'кан и Окраины) (сражение) |
 | Puck | весь регион «Семь планов и Пустота»; Claszureme (Семь планов и Пустота) (бывал) |
 | Pudge | Fields of Endless Carnage (Квойдж и Поля Бойни) (живёт); Quoidge (Квойдж и Поля Бойни) (связь) |
 | Pugna | Nether Reaches (Подземье) |
