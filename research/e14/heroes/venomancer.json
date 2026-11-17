@@ -7,12 +7,6 @@
   ],
   "links": [
     {
-      "place": "Acid Jungles",
-      "event": "origin",
-      "source": "bio",
-      "note": "Кислотные джунгли — родина героя по биографии; там Лисайл впал в кому и там же возродился как Venomancer. Главное событие — родина, перерождение указано в тексте о том же месте."
-    },
-    {
       "place": "Bay of Fradj",
       "event": "journey",
       "source": "bio",
@@ -20,15 +14,21 @@
     },
     {
       "place": "Jidi Isle",
-      "event": "exile",
+      "event": "journey",
       "source": "bio",
-      "note": "Остров стал тесен для веноманта, и его тяга к новым ядам погнала героя прочь с острова Джиди."
+      "note": "Лисайл приплыл на остров за целебными вытяжками; позже остров стал тесен для Venomancer, и тяга к новым ядам увела его прочь. Изгнанием это не было."
+    },
+    {
+      "place": "Acid Jungles",
+      "event": "death",
+      "source": "bio",
+      "note": "Здесь травника Лисайла ужалил ящер; после самодельного противоядия он семнадцать лет пролежал в коме и поднялся уже Venomancer, новым хозяином джунглей. Родина самого Лисайла в биографии не названа: он пришёл сюда из-за залива."
     }
   ],
   "profile": {
     "summary": {
-      "ru": "Venomancer, он же Лисайл Смертоносный, в прошлом травник из Кислотных джунглей острова Джиди. Он переплыл залив Фраджи в поисках целебных экстрактов, но укус замаскированного ящера погрузил его в кому, в которой и совершилась его метаморфоза. Семнадцать лет спустя он очнулся иным существом, слитым с ядом рептилии и защитным покровом орхидеи, и стал властелином джунглей. Со временем остров сделался ему тесен, и тяга к новым ядам увела его оттуда.",
-      "en": "Venomancer, once the herbalist Lesale, came from the Acid Jungles of Jidi Isle. Searching for useful plant extracts, he crossed the Bay of Fradj, but a disguised reptile stung him and he fell into a coma while brewing an antidote. Seventeen years later he awoke changed, his body merged with the reptile's venom and an orchid's poisonous shell, and became the lord of the jungle. The island eventually felt too small for him, and a hunger for new poisons drove him away from Jidi."
+      "ru": "Venomancer когда-то был травником Лисайлом, который переплыл залив Фрадж в поисках целебных вытяжек на острове Джиди. В Кислотных джунглях его ужалил притаившийся ящер; Лисайл ввёл себе самодельное противоядие и впал в кому. Через семнадцать лет на том месте поднялось новое существо из яда рептилии и оболочки орхидеи, почти без прежнего разума. Вскоре остров стал ему тесен, и он ушёл искать новые яды.",
+      "en": "Venomancer was once Lesale, a herbalist who crossed the Bay of Fradj to look for useful plant extracts on Jidi Isle. In the Acid Jungles a hidden reptile stung him, and after taking a makeshift antidote he fell into a coma. Seventeen years later a new creature rose from that spot, made of the reptile's poison and the orchid's toxic skin, its old mind nearly gone. The island soon grew too small, and he left in search of new poisons."
     }
   },
   "unconfirmed": [
@@ -36,5 +36,16 @@
     "Культ Aktok (лор-страница, раздел Encounter with the Aktok cultists): событие без названного места, связано с богом Aktok, которого нет в списке героев.",
     "Реплики озвучки из раздела Friendships and Rivalries (Medusa, Monkey King, Sven, Viper и др.): связи по ним не записаны, только реплики.",
     "Liquipedia, infobox origins: Acid Jungles совпадает с биографией, отдельная запись не нужна."
+  ],
+  "path": [
+    {
+      "place": "Bay of Fradj"
+    },
+    {
+      "place": "Jidi Isle"
+    },
+    {
+      "place": "Acid Jungles"
+    }
   ]
 }
