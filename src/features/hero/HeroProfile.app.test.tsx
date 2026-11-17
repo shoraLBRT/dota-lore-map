@@ -23,10 +23,10 @@ describe('профиль героя', () => {
     const panel = profile('Tusk')!;
     const heading = within(panel).getByRole('heading', { level: 2, name: 'Tusk' });
     expect(heading).toHaveFocus();
-    // У Tusk нет описания — этого блока нет; связь с Bristleback пришла обратной записью из партии 04 (#49).
+    // Описание есть у всех героев после E14; связь с Bristleback пришла обратной записью из партии 04 (#49).
     expect(within(panel).getByRole('heading', { name: 'Связан с' })).toBeInTheDocument();
     expect(within(panel).getByRole('button', { name: /Bristleback/ })).toBeInTheDocument();
-    expect(panel.querySelector('p')).toBeNull();
+    expect(panel.querySelector('p')).not.toBeNull();
     expect(within(panel).getByRole('heading', { name: 'Арты' })).toBeInTheDocument();
     expect(within(panel).getByRole('link', { name: /^dota2.com: Tusk/ })).toHaveAttribute(
       'href',
@@ -104,23 +104,23 @@ describe('профиль героя', () => {
 
   it('место из профиля: камера к месту, панель места, герой выбран, чип возвращает профиль; EN', () => {
     window.localStorage.setItem('dota-lore-map.lang', 'en');
-    window.location.hash = '#/world?hero=tusk&profile';
+    window.location.hash = '#/world?hero=nevermore&profile';
     render(<App />);
-    const places = within(profile('Tusk')!).getByRole('navigation', { name: "Hero's places" });
+    const places = within(profile('Shadow Fiend')!).getByRole('navigation', { name: "Hero's places" });
     const [first, second] = within(places).getAllByRole('button');
     expect(first).toHaveTextContent('Homeland');
-    // Связь E1 без типа — не остановка пути (пунктир, как на карте).
+    // Упоминание — не остановка пути (пунктир, как на карте).
     expect(second!.className).toMatch(/offPath/);
     fireEvent.click(first!);
-    expect(window.location.hash).toBe('#/r/icewrack/cobalt?hero=tusk');
-    expect(profile('Tusk')).toBeNull();
-    const cobalt = placeName(getPlace('icewrack', 'cobalt')!, 'en');
-    expect(screen.getByRole('heading', { level: 2, name: cobalt })).toHaveFocus();
+    expect(window.location.hash).toBe('#/r/hells/abysm?hero=nevermore');
+    expect(profile('Shadow Fiend')).toBeNull();
+    const abysm = placeName(getPlace('hells', 'abysm')!, 'en');
+    expect(screen.getByRole('heading', { level: 2, name: abysm })).toHaveFocus();
     const badge = screen.getByRole('region', { name: 'Selected hero' });
     expect(within(badge).getByRole('button', { name: 'Clear hero selection' })).toBeInTheDocument();
-    fireEvent.click(within(badge).getByRole('button', { name: 'Tusk Hero profile' }));
-    expect(window.location.hash).toBe('#/r/icewrack/cobalt?hero=tusk&profile');
-    expect(within(profile('Tusk')!).getByRole('button', { name: 'Close profile' })).toBeInTheDocument();
+    fireEvent.click(within(badge).getByRole('button', { name: 'Shadow Fiend Hero profile' }));
+    expect(window.location.hash).toBe('#/r/hells/abysm?hero=nevermore&profile');
+    expect(within(profile('Shadow Fiend')!).getByRole('button', { name: 'Close profile' })).toBeInTheDocument();
   });
 
   it('выбран герой, профиль открыт: маркер, крошка и Esc ведут к панели экрана, герой остаётся (A15)', () => {
