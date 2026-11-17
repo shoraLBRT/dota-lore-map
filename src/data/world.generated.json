@@ -280,6 +280,7 @@
       ],
       "regionHeroes": [
         "doom_bringer",
+        "visage",
         "mars"
       ]
     },
@@ -5159,7 +5160,7 @@
           "slug": "jidi-isle",
           "capital": false,
           "placement": "lore",
-          "significance": "minor",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Остров Джиди",
@@ -5209,7 +5210,7 @@
           "slug": "bay-of-fradj",
           "capital": false,
           "placement": "lore",
-          "significance": "minor",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Залив Фрадж",
@@ -7300,6 +7301,7 @@
         "death_prophet",
         "luna",
         "jakiro",
+        "ursa",
         "ogre_magi",
         "undying",
         "rubick",
@@ -7828,7 +7830,9 @@
           ]
         }
       ],
-      "regionHeroes": []
+      "regionHeroes": [
+        "visage"
+      ]
     }
   ],
   "heroes": [
@@ -8528,9 +8532,27 @@
           "regionId": "heavens",
           "placeSlug": "ghastly-eyrie",
           "event": "origin",
-          "source": "bio"
+          "source": "bio",
+          "note": "Шенделзара — старшая принцесса скайрасов, первая в очереди на престол Жуткого гнезда; здесь же её лишили наследства. Что с ней случилось после ухода из гнезда, в биографии не описано."
         }
-      ]
+      ],
+      "relations": [
+        {
+          "hero": "skywrath_mage",
+          "type": "love",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Vengeful_Spirit/Lore",
+          "note": "В тексте лор-страницы: Dragonus назван тайным возлюбленным Шенделзары (ссылка на биографию Skywrath Mage).",
+          "doubt": "Чувство описано со стороны Skywrath Mage; в текстах не сказано, отвечала ли Шенделзара взаимностью. Тип записан по формулировке «тайный возлюбленный», взаимность не подтверждена."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Vengeful Spirit, в прошлом принцесса Шенделзара, была первой в очереди на престол скайрасов в Жутком гнезде, пока предательство сестры не лишило её и трона, и крыльев. Лишившись возможности летать, она заключила сделку с богиней Скри'Ок: отдала искалеченное тело и получила вечный дух, которым движет месть. Теперь её гнев направлен на сестру, занявшую её место.",
+          "en": "Vengeful Spirit, once the princess Shendelzare, was the first heir to the Skywrath throne in the Ghastly Eyrie until her sister's treachery cost her both the crown and her wings. Left unable to fly, she struck a bargain with the goddess Scree'Auk, giving up her broken body for a spirit powered by vengeance. Her anger now targets the sister who took her place."
+        }
+      }
     },
     {
       "key": "windrunner",
@@ -8551,9 +8573,25 @@
           "placeSlug": "zarukina",
           "event": "origin",
           "source": "liquipedia",
-          "via": "infobox"
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Windranger/Lore",
+          "note": "Лор-страница называет Zaru'Kina её деревней в Western Forests, разрушенной в ночь её рождения; биография говорит о доме семьи, не называя деревню.",
+          "doubt": "Название держится на наборе самой героини: монологи Compass of the Rising Gale и описание Zaru'Kina Protector's Hair. В биографии и без этих источников названия нет."
+        },
+        {
+          "regionId": "western-forests",
+          "placeSlug": "western-forests",
+          "event": "origin",
+          "source": "bio",
+          "note": "Биография начинается с западных лесов и называет героиню одной из их тайн, то есть родом оттуда."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Windranger, она же Лиралей, родом из западных лесов, где буря в ночь её рождения погубила всю семью. Ветер сам подобрал уцелевшую девочку в траве, перенёс её в соседнюю деревню и годами издалека следил за её обучением. Теперь она искусная лучница, будто ведомая ветром, и сам ветер, кажется, по-прежнему за ней присматривает.",
+          "en": "Windranger, born Lyralei, came from the western forests, where a storm wiped out her whole family on the night she was born. The wind itself found the surviving infant in the grass, carried her to a neighboring village, and kept an eye on her from afar as she trained. Today she is a master archer who seems carried by the breeze, one the gale itself appears to watch over."
+        }
+      }
     },
     {
       "key": "zuus",
@@ -9045,9 +9083,25 @@
           "regionId": "radiant-lands",
           "placeSlug": "violet-plateau",
           "event": "home",
-          "source": "bio"
+          "source": "bio",
+          "note": "Подземная лаборатория Боуша и его помощников под туманным плато; здесь открыли портал, случился Violet Plateau Incident, и отсюда он бежал один.",
+          "doubt": "В биографии лаборатория описана как прошлая база; где Боуш живёт сейчас, не сказано."
+        },
+        {
+          "regionId": "radiant-lands",
+          "placeSlug": "home-of-the-keen-folk",
+          "event": "origin",
+          "source": "ours",
+          "note": "О самом Боуше места рождения нет. Народ Keen указан в инфобоксе Liquipedia, а в биографии назван карликовым; родина народа есть на схеме, поэтому связь наша.",
+          "doubt": "Связь народа с конкретным местом — наше решение; в тексте лора родина Keen не названа."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Боуш, он же Tinker, родом из народа кинов, славящегося смекалкой и недоверием к магии. Он был видным учёным, изучавшим законы природы, и основал подземную лабораторию под туманным Фиолетовым плато. Однажды его команда открыла портал в неведомый мир, и на плато опустилась вечная тьма, полная ужасающих звуков. Боуш выбрался лишь со своими изобретениями и стал единственным уцелевшим после этой катастрофы.",
+          "en": "Boush, known as Tinker, comes from the Keen Folk, a small people prized for cleverness and wary of magic. He was a leading investigator of natural law and set up an underground laboratory beneath the misty Violet Plateau. One day his team tore open a portal to an unknown realm, and the plateau was swallowed by a permanent black gloom filled with horrors. Boush alone escaped with his inventions, the lone survivor of the disaster."
+        }
+      }
     },
     {
       "key": "sniper",
@@ -9202,11 +9256,46 @@
       "links": [
         {
           "regionId": "tropic-isles",
+          "placeSlug": "bay-of-fradj",
+          "event": "journey",
+          "source": "bio",
+          "note": "Травник Лисайл пересёк залив Фраджи на лодке, чтобы попасть на остров Джиди."
+        },
+        {
+          "regionId": "tropic-isles",
+          "placeSlug": "jidi-isle",
+          "event": "journey",
+          "source": "bio",
+          "note": "Лисайл приплыл на остров за целебными вытяжками; позже остров стал тесен для Venomancer, и тяга к новым ядам увела его прочь. Изгнанием это не было."
+        },
+        {
+          "regionId": "tropic-isles",
           "placeSlug": "acid-jungles",
-          "event": "origin",
-          "source": "bio"
+          "event": "death",
+          "source": "bio",
+          "note": "Здесь травника Лисайла ужалил ящер; после самодельного противоядия он семнадцать лет пролежал в коме и поднялся уже Venomancer, новым хозяином джунглей. Родина самого Лисайла в биографии не названа: он пришёл сюда из-за залива."
         }
-      ]
+      ],
+      "path": [
+        {
+          "regionId": "tropic-isles",
+          "placeSlug": "bay-of-fradj"
+        },
+        {
+          "regionId": "tropic-isles",
+          "placeSlug": "jidi-isle"
+        },
+        {
+          "regionId": "tropic-isles",
+          "placeSlug": "acid-jungles"
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Venomancer когда-то был травником Лисайлом, который переплыл залив Фрадж в поисках целебных вытяжек на острове Джиди. В Кислотных джунглях его ужалил притаившийся ящер; Лисайл ввёл себе самодельное противоядие и впал в кому. Через семнадцать лет на том месте поднялось новое существо из яда рептилии и оболочки орхидеи, почти без прежнего разума. Вскоре остров стал ему тесен, и он ушёл искать новые яды.",
+          "en": "Venomancer was once Lesale, a herbalist who crossed the Bay of Fradj to look for useful plant extracts on Jidi Isle. In the Acid Jungles a hidden reptile stung him, and after taking a makeshift antidote he fell into a coma. Seventeen years later a new creature rose from that spot, made of the reptile's poison and the orchid's toxic skin, its old mind nearly gone. The island soon grew too small, and he left in search of new poisons."
+        }
+      }
     },
     {
       "key": "faceless_void",
@@ -9416,9 +9505,16 @@
           "regionId": "underdark",
           "placeSlug": "nether-reaches",
           "event": "origin",
-          "source": "bio"
+          "source": "bio",
+          "note": "Родина его рода: низшие драконы миллионы лет жили в отрезанных от мира пещерах Nether Reaches. Биография говорит о роде, а не о рождении самого героя."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Viper — из низших драконов, что миллионы лет жили в светящихся пещерах Нижних пределов, отрезанных от мира сдвигом земной коры. Жестокий колдун поймал его, надеясь приручить, и Viper какое-то время изображал покорность, чтобы выведать его тёмную магию. Поняв, что его собственные яды страшнее любых чар, он разъел кислотой прутья клетки, плюнул ядом в глаза старому магу и улетел, чтобы мир узнал своего нового хозяина.",
+          "en": "Viper is a netherdrake, one of a race that lived for millions of years in the glowing caverns of the Nether Reaches after a shift of the earth cut them off. A cruel wizard captured him hoping to tame him, and for a while Viper played along to learn the wizard's dark magic. Realizing his own toxins were deadlier than any spell, he ate through his cage bars with acid, spat poison in the old mage's eyes, and flew off to show the world its new master."
+        }
+      }
     },
     {
       "key": "luna",
@@ -9948,10 +10044,16 @@
           "regionId": "planes",
           "placeSlug": "fabric-of-creation",
           "event": "origin",
-          "source": "liquipedia",
-          "via": "infobox"
+          "source": "bio",
+          "note": "Ткачи работают в ткани творения, там же Скитскур хранил свой участок; изгнание — стражи отрезали его владения от гобелена, но оставили в живых. Инфобокс Liquipedia называет то же место в поле origins и places."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Weaver, он же Скитскур, — ткач, который следил за прочностью ткани творения и латал её разрывы, чтобы миры не распадались. Мастер своего дела, он тяготился мыслью, что эпоха созидания осталась в прошлом, и начал ткать собственный мир. Его самовольные перемены привлекли внимание стражей, которые отрезали его владения от гобелена и оставили в живых. Теперь он одинок и свободен, и ради нового замысла хочет распустить старую ткань по швам.",
+          "en": "Weaver, known as Skitskurr, is a Weaver whose job was to keep the fabric of creation taut and mend its worn spots so that worlds did not come undone. Skilled at that work, he chafed at the idea that the age of making had already passed, and he began to shape a world of his own. When his bold changes drew suspicion, the guardians cut his domain out of the cosmic tapestry and left him alive and alone. Now free, he intends to unpick the old fabric along its stitching to make room for something new."
+        }
+      }
     },
     {
       "key": "jakiro",
@@ -10194,13 +10296,18 @@
       ],
       "links": [
         {
-          "regionId": "tomokan",
-          "placeSlug": "tomokan",
-          "event": "home",
-          "source": "liquipedia",
-          "via": "infobox"
+          "regionId": "uncharted",
+          "event": "origin",
+          "source": "ours",
+          "note": "Родина Ulfsaar в биографии не названа: только дикие леса его племени. Darkwoods из инфобокса Liquipedia держится на реплике Ursa и реплике из Artifact, поэтому на схеме — Неизведанные земли."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Ursa, Ulfsaar, — самый свирепый воин медвежьего племени, которое охраняет свои дикие леса и сородичей. Пока матери зимой спят с детёнышами, самцы обходят земли наверху. Когда до него дошли смутные слухи о растущем зле, он покинул родные края, чтобы найти угрозу и уничтожить её, пока она не добралась до его народа. Он горд и надёжен, верный союзник и защитник.",
+          "en": "Ursa, Ulfsaar, is the fiercest warrior of a bear-like tribe that guards its wild woodland and its people. While the mothers sleep through the winter with their cubs, the males patrol the land above. When faint but growing rumors of a spreading evil reached him, he left his homeland to find the threat and destroy it before it could reach his kin. He is proud and wholly dependable, a firm ally and protector."
+        }
+      }
     },
     {
       "key": "spirit_breaker",
@@ -10691,10 +10798,20 @@
         {
           "regionId": "western-forests",
           "placeSlug": "vale-of-augury",
-          "event": "home",
-          "source": "bio"
+          "event": "origin",
+          "source": "bio",
+          "doubt": "В биографии родина — горы за Долиной прорицаний; сами горы на схеме не названы, поэтому привязка к Долине (Vale of Augury), которую называет инфобокс лор-страницы."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Treant Protector, Руфтреллен, — один из древних великанов-деревьев, что стерегут скрытый священный лес в горах за Vale of Augury. Веками они почти не замечали внешнего мира, пока чужаки не стали приходить с топорами и огнём. После тысячи лет сомнений любопытство взяло верх, и одного Protector отправили странствовать. Он должен наблюдать за переменами и узнать, какие угрозы ждут их священную землю.",
+          "en": "Treant Protector, Rooftrellen, is one of the ancient tree giants who guard a hidden sacred forest in the high country past the Vale of Augury. For ages they paid little heed to the outside world, until outsiders came with axes and fire. After a thousand years of doubt, curiosity won, and one Protector was sent out to wander. He is to watch how the world changes and learn what dangers may threaten their sacred land."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/treant.png"
+        ]
+      }
     },
     {
       "key": "ogre_magi",
@@ -11002,10 +11119,31 @@
         {
           "regionId": "hells",
           "placeSlug": "narrow-maze",
-          "event": "home",
-          "source": "bio"
+          "event": "service",
+          "source": "bio",
+          "note": "Место, где стоят сторожевые гаргульи; сам герой — гаргулья, поэтому связь с этим входом выведена из текста о страже.",
+          "doubt": "В биографии у входа в Узкий лабиринт стоят гаргульи, а Visage назван гаргульей; что он несёт стражу именно там, прямо не сказано."
+        },
+        {
+          "regionId": "hells",
+          "event": "service",
+          "source": "bio",
+          "note": "Служба на благо загробного мира: герой возвращает беглецов из ада на их место; постоянного места жизни здесь не названо."
+        },
+        {
+          "regionId": "heavens",
+          "event": "service",
+          "source": "bio",
+          "note": "Беглецы, вырвавшиеся из небес, тоже входят в задачу героя.",
+          "doubt": "Текст называет беглецов из небес, но служба описана для загробного мира в целом, без отдельного упоминания небес."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Visage — каменная гаргулья, в которую заключён вечный дух Некро'лик. Гаргульи сидят над входом в Узкий лабиринт, и мимо них проходит каждая душа, ушедшая за грань смерти. Если какой-то дух хитростью или силой вырывается из своего ада или рая, за ним посылают Visage. Не зная ни усталости, ни смерти, он преследует беглеца, рушит любое его укрытие и рано или поздно возвращает даже воскресших туда, где им положено быть.",
+          "en": "Visage is a stone gargoyle that binds the eternal spirit Necro'lic. Gargoyles sit above the entrance to the Narrow Maze, and every soul that passes beyond death must go under their gaze. When a spirit slips out of its hell or heaven by skill or trickery, Visage is sent after it. Knowing neither weariness nor death, it hunts the fugitive, wrecks any place that hides it, and sooner or later returns even the revived to where they belong."
+        }
+      }
     },
     {
       "key": "slark",
@@ -11077,11 +11215,17 @@
         {
           "regionId": "hoven",
           "placeSlug": "the-hoven",
-          "event": "home",
-          "source": "liquipedia",
-          "via": "infobox"
+          "event": "origin",
+          "source": "bio",
+          "note": "Монгер-тролль из глубин Ховена; в инфобоксе Liquipedia Ховен указан как место обитания (home), это то же место, поэтому одна связь — origin."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Troll Warlord, он же Джа'ракал, родом из глубин Ховена и относится к монгерам. Собратья изгнали его за невыносимый нрав и жадность, но на следующий день он вернулся с оружием, перебил обидчиков и поклялся полагаться только на себя. С тех пор он бродит по свету в одиночку, и громкий титул повелителя троллей достаётся ему лишь потому, что армия у него из одного бойца.",
+          "en": "Troll Warlord, Jah'rakal, is a monger troll from the depths of the Hoven. His kin drove him out for his bitter, greedy temper, but he came back armed the next day, slew every one of them, and swore to rely on nothing but himself. Since then he has wandered the world alone, a self-styled lord of trolls whose only army is himself."
+        }
+      }
     },
     {
       "key": "centaur",
