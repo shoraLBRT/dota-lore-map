@@ -1,0 +1,58 @@
+{
+  "hero": "kez",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "region": "uncharted",
+      "event": "origin",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Kez/Lore",
+      "note": "Родина по инфобоксу лор-страницы — Skywrath (City). Такого места на схеме нет, поэтому место записано как uncharted; кандидат заведён в candidates.",
+      "doubt": "Ghastly Eyrie из текущей привязки в кэше не упоминается, в инфобоксе стоит Skywrath (City); соответствие Skywrath и региона heavens не подтверждено источниками."
+    },
+    {
+      "place": "Icewrack",
+      "event": "exile",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Kez/Lore",
+      "note": "В инфобоксе Icewrack указан как место, где он был в изгнании. В биографии сказано, что он долго пропадал в Айсреке, и теперь ему надо снова поднять цену за свою голову.",
+      "doubt": "Слово «изгнание» взято из инфобокса; сама биография говорит только о долгом отсутствии. Тип home из прошлой привязки снят: он покинул Icewrack, а не живёт там."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Kez, он же Kestrel, из бескрылых, родился с наградой за голову, которая росла вместе с его умением устраивать переполох; королева Империя раз за разом её повышала. Долгое время он провёл в изгнании в Icewrack, а теперь собирает армию Kazurai, чтобы свергнуть узурпаторшу. Сам Kez считает, что его цену нужно вернуть на достойный уровень.",
+      "en": "Kez, also known as Kestrel, is a Flightless warrior who was born with a bounty on his head. The bounty grew as he caused more trouble, and Queen Imperia kept raising it. After a long exile in Icewrack he set out to rebuild the Kazurai and overthrow the usurper queen, and he still wants his bounty brought back up to a respectable level."
+    }
+  },
+  "candidates": [
+    {
+      "name": "Skywrath",
+      "region": "heavens",
+      "event": "origin",
+      "source": "liquipedia",
+      "url": "https://liquipedia.net/dota2/Kez/Lore",
+      "note": "Skywrath (City) — родина по инфобоксу лор-страницы. Регион heavens предположен только по теме небесного города; в кэше источника о местоположении нет. Решение за владельцем (#59)."
+    }
+  ],
+  "unconfirmed": [
+    "Ghastly Eyrie (прежняя привязка origin по инфобоксу): в кэше этого названия нет ни в лоре, ни в биографии, инфобокс называет Skywrath (City). Связь не записана, см. candidates.",
+    "Midgate (инфобокс, places): места на схеме нет, регион в источниках не назван. Связь не записана.",
+    "Связи из инфобокса (heroes): Crystal Maiden, Vengeful Spirit, Winter Wyvern. Тип связи в источниках не назван, поэтому ни одна не записана.",
+    "Kraw (family, master) — персонаж, а не герой с ключом; запись связи невозможна.",
+    "Juggernaut: в сюжетной линии Crownfall он ищет этого мечника, но это диалог сюжета, не биография или инфобокс; связь не записана.",
+    "Oglodi (introduction update, инфобокс): группа воинов, с которой он идёт на Imperia; на схеме её нет, регион не назван.",
+    "Imperia — правительница Skywrath, не герой и не место на схеме; упомянута как противница.",
+    "Shodo Order и Kazurai Order — организации, не места на схеме; записи не делались.",
+    "Путь из Skywrath в Icewrack не записан: стартовая точка есть только как uncharted, без места на схеме.",
+    "Реплики озвучки (монолог, ответы героя, фразы в бою) — не основание для связей и мест."
+  ],
+  "relations": []
+}

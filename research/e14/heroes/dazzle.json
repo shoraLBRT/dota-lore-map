@@ -1,0 +1,32 @@
+{
+  "hero": "dazzle",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "place": "Nothl Realm",
+      "event": "journey",
+      "source": "bio",
+      "note": "Обряд теней проходит через мир Nothl; биография не называет родины героя, поэтому место путешествия — первое в списке."
+    },
+    {
+      "place": "Fellstrath",
+      "event": "visit",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Dazzle/Lore",
+      "doubt": "Поле places инфобокса Liquipedia; сам визит описан в тексте лор-страницы со ссылкой на описание предмета. Когда он был, не сказано, поэтому стоит visit, а не home."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Dazzle — юный послушник ордена Dezun, который добился обряда теней раньше, чем старейшины сочли его готовым. Путь через мир Nothl перевернул для него свет и тьму, и теперь он одинаково хорошо лечит и губит. Он использует этот дар против врагов и ради союзников.",
+      "en": "Dazzle is a young acolyte of the Dezun Order who pushed for the rite of shades before his elders thought him ready. The rite led him through the Nothl Realm, where light and dark trade places, and he came back able to heal and to harm alike. He turns that gift against enemies and on behalf of allies."
+    }
+  },
+  "unconfirmed": [
+    "Связь с Huskar (двоюродный брат): только поле family инфобокса Liquipedia и реплики озвучки. Биография Dazzle Huskar не называет, поэтому связь не записана. Инфобокс — решение владельца, записывать ли по нему.",
+    "Родина Dazzle и племя ордена Dezun: биография не называет места; раса Trolls и фракция Dezun Order из инфобокса на схеме не соответствуют местам, не записаны.",
+    "Реплики озвучки о Dazzle (Abaddon, Underlord, Monkey King, Death Prophet, Huskar, Lone Druid, Omniknight, Troll Warlord, Visage, Legion Commander, Leshrac, Ogre Magi, Bristleback, Oracle) — отдельные строки, связи не записаны.",
+    "Путешествие в джунгли Fellstrath: в лор-тексте сослано на описание предмета Delights of Petaluna. Записано только как visit по инфобоксу, без времени и без пути."
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "hero": "clinkz",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "place": "The Hoven",
+      "event": "origin",
+      "source": "bio",
+      "note": "Родина героя: лес у подножия холмов, он был его защитником. В инфобоксе Liquipedia то же место указано как origin."
+    },
+    {
+      "place": "Seven Hells",
+      "event": "battle",
+      "source": "bio",
+      "note": "Последний бой с демоном Мараксиформом у врат шестого ада.",
+      "doubt": "В биографии сказано только «шестой ад»; отнесён к Семи Преисподним по инфобоксу Liquipedia (places)."
+    },
+    {
+      "place": "Bleeding Hills",
+      "event": "mention",
+      "source": "bio",
+      "note": "Холмы названы как место, у подножия которых лежит Ховен. Сам герой там не назван."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "snapfire",
+      "type": "ally",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Clinkz/Lore",
+      "doubt": "Связь есть в инфобоксе (поле heroes), без типа; слово «союзник» взято из раздела Allies, а тот опирается на реплику озвучки."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Clinkz — лучник из Ховена, поклявшийся защищать эти земли. Он погиб в бою с демоном Мараксиформом, и королевское заклинание вернуло его в виде существа из костей и ярости, которое вечно горит и вечно страдает.",
+      "en": "Clinkz is an archer from the Hoven who swore to guard its lands. He died fighting the demon Maraxiform, and a king-mage's spell bound him afterwards as a skeletal being of rage that burns on forever."
+    }
+  },
+  "unconfirmed": [
+    "Maraxiform, Sutherex, дед героя (family в инфобоксе) и король-маг — персонажи, а не герои; в связи героя не пишутся.",
+    "Связи из реплик озвучки (Monkey King, Terrorblade, Pudge, Lina, Imperia и др.) не основание для связи — только в этом списке.",
+    "Подробность про рецепт печенья от Snapfire взята из реплики озвучки; мест и связей из неё не выводим.",
+    "Текущее место службы — Ховен (лор-текст Liquipedia и описания предметов): совпадает с origin, отдельная связь home не записана.",
+    "Преследование демона до врат ада — разовый эпизод боя, путь героя не записан."
+  ]
+}

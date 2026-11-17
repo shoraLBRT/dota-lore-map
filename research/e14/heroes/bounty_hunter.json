@@ -1,0 +1,60 @@
+{
+  "hero": "bounty_hunter",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "place": "Highseat",
+      "event": "battle",
+      "source": "bio",
+      "note": "по слухам из биографии он проник в лагерь повстанцев и доставил туда пойманного вора",
+      "doubt": "в биографии это слух, который авторы сами не подтверждают; место в регионе «Free Cities» помечено нашим решением"
+    },
+    {
+      "place": "Revtel",
+      "event": "visit",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Bounty_Hunter/Lore",
+      "doubt": "только поле places инфобокса; реплика озвучки о поездке в Revtel не записана как основание"
+    },
+    {
+      "place": "Qaldin",
+      "event": "visit",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Bounty_Hunter/Lore",
+      "doubt": "только поле places инфобокса; связи с ассасинами Qaldin идут из описаний предметов и в unconfirmed"
+    },
+    {
+      "place": "Scintillant Waste",
+      "event": "visit",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Bounty_Hunter/Lore",
+      "doubt": "только поле places инфобокса; восточная часть пустоши идёт из описания набора и в unconfirmed"
+    },
+    {
+      "place": "White Spire",
+      "event": "visit",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Bounty_Hunter/Lore",
+      "doubt": "только поле places инфобокса; тип «дом» не подтверждён, ставки на бегах в White Spire идут из реплики озвучки"
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Охотник за головами Гондар, известный в игре как Bounty Hunter, выслеживает любую цель за плату и забирает награду. Его происхождение остаётся загадкой: биография приводит несколько противоречивых слухов о его прошлом. Он действует из тени и почти не оставляет следов.",
+      "en": "Gondar, known in the game as Bounty Hunter, tracks down any target for a fee and collects the reward. His origins remain a mystery, and the official biography lists several contradictory rumors about his past. He works from the shadows and leaves few traces."
+    },
+    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/bounty_hunter.png"]
+  },
+  "unconfirmed": [
+    "Родина не названа: биография и инфобокс дают только расы (djinn, giants, ursine), а не место; место рождения и роль Soruq в обучении — слухи",
+    "Qaldin и Scintillant Waste: тесные связи, оружие ассасинов и поездка на восток пустоши — из описаний предметов и набора, не из текста лора",
+    "White Spire как дом и гонки в нём: только реплика озвучки Pangolier",
+    "Связи по репликам озвучки и инфобоксу без типа: Meepo и Pangolier (инфобокс heroes, тип не указан), Riki (соперничество из реплики), Dark Willow (реплики о Revtel и Roseleaf), Monkey King, Slark, Undying, Abaddon и другие враги и союзники из раздела реплик",
+    "Наставник Tybara и ученик второго ранга: из описания предмета и слухов; Tybara, Soruq и Goff в проекте не герои, связей героев не создают",
+    "Панголинская гильдия: принадлежность Gondar — только по описаниям предметов"
+  ]
+}

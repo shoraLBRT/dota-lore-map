@@ -1,0 +1,94 @@
+{
+  "hero": "keeper_of_the_light",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Fundamental Plane",
+      "event": "origin",
+      "source": "bio",
+      "note": "Родной план: биография говорит, что он вырвался из Фундаментального плана и отделился от связанных с ним древних сил."
+    },
+    {
+      "region": "planes",
+      "event": "journey",
+      "source": "bio",
+      "note": "Скачет по всем мирам одновременно, поэтому связь с регионом планов, а не с одним местом."
+    }
+  ],
+  "path": [
+    { "place": "Fundamental Plane" },
+    { "region": "planes" }
+  ],
+  "relations": [
+    {
+      "hero": "chaos_knight",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Keeper_of_the_Light/Lore",
+      "note": "Младший брат Chaos Knight; текст лор-страницы называет его антитезой брата. Охота Chaos Knight за ним записана в описании, отдельной связи врага не добавлено."
+    },
+    {
+      "hero": "elder_titan",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Keeper_of_the_Light/Lore",
+      "note": "Создатель: все Фундаменталы, включая его, дети Elder Titan. Тип «создатель» в модели не предусмотрен, записано как family."
+    },
+    {
+      "hero": "enigma",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Keeper_of_the_Light/Lore",
+      "note": "Брат-Фундамент из детей Elder Titan. В лоре описана и вражда Enigma к нему; в данных одна связь на пару, поэтому выбрано родство."
+    },
+    {
+      "hero": "wisp",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Keeper_of_the_Light/Lore",
+      "note": "Io (ключ wisp) — брат-Фундамент, один из детей Elder Titan по тексту лор-страницы."
+    },
+    {
+      "hero": "dawnbreaker",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Keeper_of_the_Light/Lore",
+      "note": "Потомок: в разделе о родне лор-страница называет Dawnbreaker одной из его детей-светил; в своей биографии она приходится ему правнучкой."
+    },
+    {
+      "hero": "phoenix",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Keeper_of_the_Light/Lore",
+      "note": "Далёкий потомок по тексту лор-страницы: Phoenix назван среди его детей-светил."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Keeper of the Light, он же Эзалор, — один из Фундаменталов: древняя сила порядка и света, пробудившаяся на заре вселенной. Он вырвался из родного плана и теперь скачет по всем мирам сразу, опережая брата Chaos Knight. Под видом дряхлого старика на бледном коне он прячет настоящую мощь, которая вспыхивает, когда он сталкивается с хаосом и тьмой.",
+      "en": "Keeper of the Light, also called Ezalor, is one of the Fundamentals: an ancient force of order and radiance that woke up at the dawn of the universe. He broke free of his home plane and now rides across every world at once, always just ahead of his brother Chaos Knight. Disguised as a frail old man on a pale horse, he hides real power that flares up whenever he faces chaos or darkness."
+    }
+  },
+  "unconfirmed": [
+    "Light's Keep (infobox origins, links, lore text): место держится только на репликах озвучки (он «происходит» оттуда, возвращается после смерти). Не записано в links, остаётся на схеме как уже привязанное в E1 — решение главного агента.",
+    "Wailing Mountains: легенда о старике-Keeper of the Northlight в ледяных деревнях — из описаний предметов набора, не из биографии. Не записано.",
+    "Nothl Realm: связь через Dazzle и chakra magic — прямо в лоре сказано, что это только предположение. Не записано.",
+    "Mars: лор-страница выводит родство (дед по мужу Dawnbreaker) из реплик Mars и из связи Dawnbreaker; это вывод, не записано.",
+    "Tiny: в инфобоксе перечислен среди героев, но связи не описаны, есть только реплика Enigma. Не записано.",
+    "Omniknight: сближение с Light и вражда Chaos Knight описаны по репликам озвучки и ответам Chaos Knight. Не записано.",
+    "Реплики озвучки без связи: Dark Willow, Monkey King, Snapfire, Pangolier, Void Spirit, Lina, Arc Warden, Bristleback, Rubick, Oracle, Legion Commander и другие. Тип связи не записан.",
+    "Solar Goddess и Children of Light — божество и фракция, не герои; в relations не попадают.",
+    "Omniscience, Wings of Daybreak, Staff и Stag of the Northlight, наборы предметов — описания предметов, не записаны."
+  ]
+}

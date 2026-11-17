@@ -1,0 +1,42 @@
+{
+  "hero": "antimage",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "place": "Turstarkuri",
+      "event": "origin",
+      "source": "bio",
+      "note": "Монастырь в горах, где он провёл юность и откуда бежал после гибели монахов.",
+      "doubt": "Биография не говорит, что он родился или вырос там: он пришёл пилигримом и не был принят в монастырь. Выбрано origin, потому что это единственное место его жизни до бегства; инфобокс Liquipedia тоже называет Turstarkuri родиной. Альтернатива — service (учился как послушник)."
+    },
+    {
+      "place": "Tyler Estate",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Anti-Mage/Lore",
+      "note": "Место указано в поле places инфобокса лор-страницы; события с участием героя там не описано.",
+      "doubt": "В биографии Tyler Estate не упоминается. Связь «работает на Tyler Estate» держится на карточке Artifact и репликах озвучки, поэтому в links не записана, см. unconfirmed."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Anti-Mage в юности был послушником горного монастыря Турстаркури. Когда легион Мертвого бога перебил монахов, он один уцелел и ушёл в другие земли. Поклявшись покончить с магией Мертвого бога и вообще с любым колдовством, он стал охотником на чародеев и сохранил монашескую выдержку.",
+      "en": "Anti-Mage was once a novice at the mountain monastery of Turstarkuri. When the Dead God's legion slaughtered the monks, he alone escaped and fled to distant lands. Vowing to end the Dead God's sorcery and magic itself, he hunts casters while keeping the monks' discipline."
+    }
+  },
+  "unconfirmed": [
+    "Yoskreth: Anti-Mage получил награду от правителя Yoskreth за победу над Sahsk. Это описание предмета Bracers of Yoskreth, связь с местом не записана.",
+    "Bakhwarren: участие в обороне Bakhwarren. Это описание предмета Fervent Conscript; место есть в поле places инфобокса, но региона на схеме нет, поэтому кандидат не заведён, решение за владельцем (#59).",
+    "Highsand Nomads: связь с кочевниками и возможное ученичество. Это описание предмета Initiate's Cut; фракция не место, в данных не используется.",
+    "Tyler Estate: работа на Tyler Estate (фракция в инфобоксе, реплики Silencer, Dark Willow, Juggernaut, карточка Artifact Collateral Damage, Hero Atlas). Тип связи (служба, дом) не подтверждён биографией и инфобоксом, поэтому записано только как mention.",
+    "Silencer: в инфобоксе указан в поле heroes без типа связи; из реплик следует «errand boy» и союз. Тип не выводится, связь не записана.",
+    "Wei: в инфобоксе указан как протеже (family). Wei — персонаж Hero Atlas и The Hunt, не key из heroes.json, поэтому связь героя не записана.",
+    "Hroth, Throsho, Sahsk: побеждённые противники. Это описания предметов (The Basher Blades, Pauldrons of the Shifting Sorcerer, Bracers of Yoskreth), они не герои в heroes.json; связи не записаны.",
+    "Pudge и Chains of Abscession: охота Chains на Anti-Mage и реплики Pudge. Основание только в реплики озвучки, связь не записана.",
+    "Terrorblade: в лоре сказано, что он задумывался братом Anti-Mage, но лор это, по словам самой страницы, убрал. Основание — реплика озвучки, связь не записана.",
+    "Storm Spirit, Zeus, Dark Willow, Monkey King, Pangolier, Queen of Pain, Huskar и другие: реплики озвучки (соперничество, союзы, фразы при убийстве). По правилу партии 01 связей из них не выведено.",
+    "Hero Atlas (Monster Hunter) и The Hunt: вне основного лора Dota 2, не привязаны к карте; Tyler Estate как родина из Hero Atlas не использована.",
+    "Artifact: карточка Collateral Damage описывает работу героя на Tyler Estate, не используется как основание."
+  ]
+}

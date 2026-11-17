@@ -1,0 +1,58 @@
+{
+  "hero": "skeleton_king",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "region": "empire-of-bone",
+      "event": "origin",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Wraith_King/Lore",
+      "note": "Королевство из костей, которым он правил с самого начала; в биографии это его империя",
+      "doubt": "родина по тексту не названа; это его первое королевство, возможно, здесь он и родился"
+    },
+    {
+      "place": "Levinthal",
+      "event": "battle",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Wraith_King/Lore",
+      "note": "Осада владений Герцога Левинта; Остарион убил герцога в поединке"
+    },
+    {
+      "place": "Throne of Bone",
+      "event": "home",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Wraith_King/Lore",
+      "note": "Светящийся трон во дворце, где он правит сейчас",
+      "doubt": "название места взято из инфобокса; в биографии сказано только о троне и дворце"
+    }
+  ],
+  "relations": [
+    {
+      "hero": "queenofpain",
+      "type": "love",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Wraith_King/Lore",
+      "note": "Остарион хочет сделать её своей королевой",
+      "doubt": "связь односторонняя: по тексту лора она отказала ему, тип отражает только его чувства"
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Остарион, древний король Империи костей, ради бессмертия прошёл обряд превращения в ночь призраков и возродился как Wraith King. Теперь он сам выходит на поле боя с мечом и требует верности, которая переживает смерть.",
+      "en": "Ostarion, an ancient king who ruled a realm built from bone, went through a transformation during the Wraith-Night rite in pursuit of immortality and rose again as the Wraith King. Now he fights in person with his sword and demands loyalty that outlasts death."
+    }
+  },
+  "unconfirmed": [
+    "Ivory Forest: место есть только в инфобоксе, в тексте не упомянуто, связь не записана.",
+    "Gleaming City: только в инфобоксе; отождествление с Levinthal сделано нами (regions.json), прямого текста в лоре нет, есть лишь описание предмета.",
+    "Место обряда Wraith-Night (превращения) в тексте не названо; записана только родина по империи.",
+    "Dreadknight, Magnoceros, Ambinderath, Chainbreaker, The Bloodletter, Shadow Fiend: связи только из описаний предметов и реплик озвучки, не записаны.",
+    "Поражение от Chainbreaker и The Bloodletter с помощью Silver Edge: из описания предмета в Underlords, не записано.",
+    "Реплики озвучки о встречах, победах и поражениях (Monkey King, Juggernaut, Lycan, Visage, Undying, Underlord, Ember Spirit и другие): связи не записаны.",
+    "Ostarion's Father: персонаж, не герой, в связях не используется."
+  ]
+}
