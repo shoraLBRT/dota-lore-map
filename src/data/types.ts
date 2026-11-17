@@ -62,10 +62,10 @@ export type Placement = 'lore' | 's1map' | 'ours';
 
 /**
  * Значимость места на карте (SPEC §6.3, ARCHITECTURE A3, #68), считает build-data:
- * `event` — тут событие героя или действие медиа (маркер ярче), `link` — только связь E1 без уточнения
- * (обычный маркер), `minor` — только упоминание или героев нет (маркер меньше и тусклее).
+ * `event` — тут событие героя, действие медиа или столица (маркер ярче), `minor` — только упоминание
+ * или героев нет (маркер меньше и тусклее).
  */
-export type Significance = 'event' | 'link' | 'minor';
+export type Significance = 'event' | 'minor';
 
 export interface Place {
   /** Имя из research/e1/regions.json (английское, служит ключом). */
@@ -73,7 +73,7 @@ export interface Place {
   slug: string;
   capital: boolean;
   placement: Placement;
-  /** Нет поля — как `link` (обычный маркер). */
+  /** Нет поля — как `event`. */
   significance?: Significance;
   /** Заметка исследования (по-русски, для разработчиков). */
   note?: string;
@@ -131,7 +131,7 @@ export interface Region {
   regionHeroes: string[];
 }
 
-/** Тип события связи герой–место (модель связей E14, ARCHITECTURE A3). `link` — из E1, тип не уточнён. */
+/** Тип события связи герой–место (модель связей E14, ARCHITECTURE A3). */
 export type HeroEvent =
   | 'origin'
   | 'home'
@@ -141,8 +141,7 @@ export type HeroEvent =
   | 'exile'
   | 'death'
   | 'visit'
-  | 'mention'
-  | 'link';
+  | 'mention';
 
 /** Откуда запись: официальная биография, Liquipedia, официальный комикс (`comic:<id медиа>`) или наше решение. */
 export type HeroSource = 'bio' | 'liquipedia' | 'ours' | `comic:${string}`;

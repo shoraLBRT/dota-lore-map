@@ -2,7 +2,7 @@
   "_legend": {
     "format": "Модель связей E14 — docs/ARCHITECTURE.md §A3 «Формат research/e1/hero-places.json». Герой (ключ — имя из heroes.json) → { links, path?, relations?, profile? }.",
     "links": "места героя по порядку: place (имя места из regions.json) или region (id региона целиком); event — тип события; source — откуда (bio | liquipedia | comic:<id> | ours), via — где на Liquipedia (infobox | lore | place); url, note, doubt — необязательно",
-    "event": "origin родина; home живёт; journey путь или переезд; battle сражение или нападение; service служба; exile изгнание или заточение; death гибель или перерождение; visit бывал; mention только упоминание; link — связь из E1 без уточнения (уточняется в партиях E14)",
+    "event": "origin родина; home живёт; journey путь или переезд; battle сражение или нападение; service служба; exile изгнание или заточение; death гибель или перерождение; visit бывал; mention только упоминание",
     "path": "путь героя: упорядоченные остановки { place } | { region } из его links, стрелка — от остановки к следующей",
     "relations": "связи с героями: hero (key), type — кем другой герой приходится этому (ally | enemy | rival | family | love | mentor | student | master | servant), place/region — необязательно, source",
     "profile": "summary { ru, en } — короткое описание своими словами; art — только официальные ссылки Valve (A6)",

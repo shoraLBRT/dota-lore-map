@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react';
-import { EVENT_PATHS, hasBadge } from '../../components/EventIcon';
+import { EVENT_PATHS } from '../../components/EventIcon';
 import type { HeroThreads } from '../search/threads';
 import styles from './Threads.module.css';
 import tones from './tones.module.css';
@@ -59,7 +59,7 @@ export function Threads({ threads, scale, obstacles = [], clip, compact = false 
           '--w': (2.2 * scale).toFixed(2),
         } as CSSProperties;
         const len = a.length / scale;
-        const badgeT = hasBadge(step.event) && len >= MIN_BADGE_LEN * m ? badgeAt(a, badgeR * scale, obstacles, clip) : null;
+        const badgeT = len >= MIN_BADGE_LEN * m ? badgeAt(a, badgeR * scale, obstacles, clip) : null;
         const arrowT =
           step.kind === 'path' && len >= MIN_ARROW_LEN
             ? badgeT === null
@@ -75,7 +75,7 @@ export function Threads({ threads, scale, obstacles = [], clip, compact = false 
           <g key={`${i}:${step.from.key}>${step.to.key}`} data-step={step.kind} data-event={step.event}>
             <path className={styles.threadCasing} d={a.d} style={style} />
             <path
-              className={[styles.thread, step.kind === 'link' && styles.threadLink].filter(Boolean).join(' ')}
+              className={[styles.thread, step.kind === 'aside' && styles.threadAside].filter(Boolean).join(' ')}
               d={a.d}
               style={style}
               data-thread=""
@@ -85,7 +85,7 @@ export function Threads({ threads, scale, obstacles = [], clip, compact = false 
                 <path className={styles.threadArrow} d="M-5 -4.5 4.5 0-5 4.5-2.5 0Z" data-arrow="" />
               </g>
             )}
-            {badgeT !== null && hasBadge(step.event) && (
+            {badgeT !== null && (
               <g transform={`${at(badgeT)} scale(${km})`} className={styles.threadBadge} data-badge={step.event}>
                 <circle r={BADGE_R} />
                 <svg x={-7.5} y={-7.5} width={15} height={15} viewBox="0 0 24 24">

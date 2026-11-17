@@ -9,11 +9,11 @@ import styles from './PlaceList.module.css';
 /** Сколько мест видно до кнопки «Все места (N)» (SPEC §5.4 п. 7). */
 export const PLACES_SHOWN = 8;
 
-export type Kind = 'capital' | 'event' | 'link' | 'minor';
+export type Kind = 'capital' | 'event' | 'minor';
 
 export const kindOf = (p: Place): Kind => (p.capital ? 'capital' : significance(p));
 
-const RANK: Record<Kind, number> = { capital: 0, event: 1, link: 2, minor: 3 };
+const RANK: Record<Kind, number> = { capital: 0, event: 1, minor: 2 };
 
 const KIND_LABEL: Partial<Record<Kind, MessageKey>> = {
   capital: 'places.capital',

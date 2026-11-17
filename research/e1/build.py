@@ -34,7 +34,6 @@ EVENTS = {
     "death": " (гибель)",       # гибель или перерождение
     "visit": " (бывал)",
     "mention": " (упоминание)",
-    "link": " (связь)",         # из E1, тип не уточнён; в файлах героев E14 запрещён
 }
 # Кем другой герой приходится этому (A3). Значение — обратный тип.
 RELATIONS = {
@@ -158,7 +157,7 @@ def check_localized(value, where, errors, limit=None):
 
 def validate_hero_entry(hero, entry, ctx, strict=False):
     """Запись героя модели связей: { links, path?, relations?, profile? }.
-    hero — имя или ключ для сообщений; strict — файл героя E14 (тип link запрещён, у Liquipedia нужна url)."""
+    hero — имя или ключ для сообщений; strict — файл героя E14 (у Liquipedia нужна url, у ours — note)."""
     errors = []
     if unknown_keys(entry, ENTRY_KEYS | ({"hero", "read", "candidates", "unconfirmed"} if strict else set()),
                     hero, errors):
@@ -174,8 +173,6 @@ def validate_hero_entry(hero, entry, ctx, strict=False):
             continue
         if link.get("event") not in EVENTS:
             errors.append(f"{w}: event — {' | '.join(EVENTS)}, а не {link.get('event')!r}")
-        elif strict and link["event"] == "link":
-            errors.append(f"{w}: event link (без уточнения) остался от E1 — выберите тип события")
         check_source(link, w, ctx, errors, strict)
         spot = spot_of(link, w, ctx, errors)
         if spot in spots:
@@ -254,8 +251,8 @@ def validate_candidate(cand, where, ctx):
         errors.append(f"{where}: неизвестный герой {cand['hero']!r}")
     if cand.get("region") not in ctx.region_ids:
         errors.append(f"{where}: region — предполагаемый регион, id из regions.json")
-    if cand.get("event") not in EVENTS or cand.get("event") == "link":
-        errors.append(f"{where}: event — тип события ({' | '.join(e for e in EVENTS if e != 'link')})")
+    if cand.get("event") not in EVENTS:
+        errors.append(f"{where}: event — тип события ({' | '.join(EVENTS)})")
     check_source(cand, where, ctx, errors, strict=True)
     return errors
 
@@ -449,8 +446,7 @@ def render(heroes, regions, places, loc_region):
 def summary(places, candidates):
     entries = places["heroes"].values()
     links = [l for e in entries for l in e["links"]]
-    unspecified = sum(1 for l in links if l["event"] == "link")
-    return (f"связей {len(links)} (без уточнения типа — {unspecified}), "
+    return (f"связей {len(links)}, "
             f"путей {sum(1 for e in entries if e.get('path'))}, "
             f"связей героев {sum(len(e.get('relations') or []) for e in entries)}, "
             f"профилей {sum(1 for e in entries if (e.get('profile') or {}).get('summary'))}, "

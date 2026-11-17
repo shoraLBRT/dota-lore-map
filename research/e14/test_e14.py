@@ -42,7 +42,7 @@ def ctx():
 def places():
     return {"heroes": {
         "Crystal Maiden": {"links": [{"place": "Blueheart Glacier", "event": "origin", "source": "bio"},
-                                     {"region": "icewrack", "event": "link", "source": "ours"}]},
+                                     {"region": "icewrack", "event": "visit", "source": "ours"}]},
         "Lina": {"links": [{"place": "Misrule", "event": "origin", "source": "liquipedia", "via": "infobox"}]},
         "Witch Doctor": {"links": [{"region": "uncharted", "event": "origin", "source": "ours", "note": "нет мест"}]},
     }}
@@ -114,12 +114,12 @@ class HeroEntry(unittest.TestCase):
                 self.assertIn(message, errors_of(entry))
 
     def test_strict_rules(self):
-        self.assertIn("event link", errors_of({"links": [{"place": "Icewrack", "event": "link", "source": "bio"}]}, True))
+        self.assertIn("event", errors_of({"links": [{"place": "Icewrack", "event": "link", "source": "bio"}]}))
         self.assertIn("нужна ссылка url", errors_of(
             {"links": [{"place": "Icewrack", "event": "home", "source": "liquipedia", "via": "lore"}]}, True))
         self.assertIn("ours нужна заметка", errors_of(
             {"links": [{"place": "Icewrack", "event": "home", "source": "ours"}]}, True))
-        self.assertEqual(errors_of({"links": [{"place": "Icewrack", "event": "link", "source": "ours"}]}), "")
+        self.assertEqual(errors_of({"links": [{"place": "Icewrack", "event": "home", "source": "ours"}]}), "")
 
     def test_relation_pairs(self):
         p = places()

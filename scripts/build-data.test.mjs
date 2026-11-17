@@ -64,7 +64,7 @@ function fixture() {
         'Crystal Maiden': {
           links: [
             { place: 'Blueheart Glacier', event: 'origin', source: 'bio' },
-            { region: 'icewrack', event: 'link', source: 'ours', note: 'сестра' },
+            { region: 'icewrack', event: 'visit', source: 'ours', note: 'сестра' },
           ],
         },
         "Nature's Prophet": { links: [{ place: "Tomo'kan", event: 'home', source: 'liquipedia', via: 'place' }] },
@@ -136,8 +136,6 @@ describe('buildWorld', () => {
     const sig = (events, extra = {}) => placeSignificance({ events, ...extra });
     for (const e of ['origin', 'home', 'journey', 'battle', 'service', 'exile', 'death', 'visit']) expect(sig([e])).toBe('event');
     expect(sig(['mention', 'home'])).toBe('event');
-    expect(sig(['link', 'mention'])).toBe('link');
-    expect(sig(['link'])).toBe('link');
     expect(sig(['mention'])).toBe('minor');
     expect(sig([])).toBe('minor');
     // Остановка пути героя и действие медиа — событие, даже если связь — только упоминание.
@@ -147,19 +145,19 @@ describe('buildWorld', () => {
     // Значимость и нити (A11) делят места на «событие» и «прочее» одинаково.
     expect([...OFF_PATH].sort()).toEqual([...OFF_PATH_EVENTS].sort());
     // Столицу не приглушаем.
-    expect(sig([], { capital: true })).toBe('link');
+    expect(sig([], { capital: true })).toBe('event');
 
     const f = fixture();
     f.regions.regions[0].locations.push({ name: 'Frost Cave', placement: 'ours' }, { name: 'Old Hut', placement: 'ours' });
     f.heroPlaces.heroes['Crystal Maiden'].links.push(
       { place: 'Frost Cave', event: 'mention', source: 'bio' },
-      { place: "Tomo'kan", event: 'link', source: 'ours' },
+      { place: "Tomo'kan", event: 'mention', source: 'ours' },
     );
     const { world, errors } = buildWorld(f);
     expect(errors).toEqual([]);
     const by = Object.fromEntries(world.regions.flatMap((r) => r.places.map((p) => [p.slug, p.significance])));
     expect(by).toEqual({
-      icewrack: 'link',
+      icewrack: 'event',
       'blueheart-glacier': 'event',
       'frost-cave': 'minor',
       'old-hut': 'minor',
@@ -176,7 +174,7 @@ describe('buildWorld', () => {
       slug: 'crystalmaiden',
       links: [
         { regionId: 'icewrack', placeSlug: 'blueheart-glacier', event: 'origin', source: 'bio' },
-        { regionId: 'icewrack', event: 'link', source: 'ours', note: 'сестра' },
+        { regionId: 'icewrack', event: 'visit', source: 'ours', note: 'сестра' },
       ],
     });
     expect(world.heroes.map((h) => h.key)).toEqual(['crystal_maiden', 'furion', 'alchemist']);

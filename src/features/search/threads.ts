@@ -4,14 +4,14 @@
 import type { Hero, HeroEvent } from '../../data/types';
 import type { Spot, Tone } from './search';
 
-/** `path` — шаг пути героя (сплошная, стрелка); `link` — прочая связь (пунктир). */
-export type StepKind = 'path' | 'link';
+/** `path` — шаг пути героя (сплошная, стрелка); `aside` — прочая связь (пунктир). */
+export type StepKind = 'path' | 'aside';
 
 export interface ThreadStep {
   from: Spot;
   to: Spot;
   kind: StepKind;
-  /** Значок шага — событие места, куда ведёт нить (A3). `link` — значка нет. */
+  /** Значок шага — событие места, куда ведёт нить (A3). */
   event: HeroEvent;
 }
 
@@ -22,17 +22,17 @@ export interface HeroThreads {
 }
 
 /**
- * События, при которых герой сам не был в месте или тип не уточнён: такие места — не остановки пути.
+ * События, при которых герой сам не был в месте: такие места — не остановки пути.
  * Тот же список — OFF_PATH_EVENTS в scripts/build-data.mjs (значимость мест, #68); совпадение проверяет тест.
  */
-export const OFF_PATH: ReadonlySet<HeroEvent> = new Set<HeroEvent>(['mention', 'link']);
+export const OFF_PATH: ReadonlySet<HeroEvent> = new Set<HeroEvent>(['mention']);
 
 const refKey = (r: { regionId: string; placeSlug?: string }) => (r.placeSlug ? `${r.regionId}/${r.placeSlug}` : r.regionId);
 
 /**
  * Нити героя по его местам `spots` (heroSpots — по порядку связей, то есть по хронологии).
- * Остановки пути: `hero.path`, если он есть; иначе — места по порядку, кроме `mention` и `link`
- * (герой там не был или тип связи ещё не уточнён партией E14). Соседние остановки — шаги пути.
+ * Остановки пути: `hero.path`, если он есть; иначе — места по порядку, кроме `mention`
+ * (герой там не был). Соседние остановки — шаги пути.
  * Остальные места — пунктир от ближайшей предшествующей остановки (нет такой — от первой);
  * если остановок нет совсем — пунктир цепочкой по порядку, как раньше.
  * Места без точки на карте пропускаются. Нитей нет — undefined.
@@ -64,7 +64,7 @@ export function heroThreads(hero: Hero, spots: Spot[]): HeroThreads | undefined 
     let from: Spot | undefined;
     for (let j = i - 1; j >= 0 && !from; j--) if (onPath.has(placed[j]!)) from = placed[j];
     from ??= stops[0] ?? placed[i - 1];
-    if (from) steps.push({ from, to: s, kind: 'link', event: s.event });
+    if (from) steps.push({ from, to: s, kind: 'aside', event: s.event });
   });
   return steps.length > 0 ? { steps, tone: placed[0]!.tone } : undefined;
 }

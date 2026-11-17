@@ -2,7 +2,6 @@
 
 Файл героя — research/e14/heroes/<key>.json по шаблону research/e14/template.json, правила —
 research/e14/README.md и docs/ARCHITECTURE.md §A3. Проверка строже, чем у hero-places.json:
-  - тип события `link` (без уточнения, остался от E1) запрещён;
   - у источника liquipedia обязательна ссылка url;
   - обязательны read (что прочитано, минимум обе биографии) и profile.summary;
   - если источники героя есть в кэше (research/e14/fetch.py), тексты исследователя — summary, note, doubt,

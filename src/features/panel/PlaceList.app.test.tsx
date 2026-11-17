@@ -24,17 +24,17 @@ describe('список мест в панели региона (#99)', () => {
     window.localStorage.setItem('dota-lore-map.lang', 'ru');
   });
 
-  it('порядок: столица, места событий, обычные, второстепенные; внутри — по алфавиту без кавычек', () => {
+  it('порядок: столица, места событий (и места без поля), второстепенные; внутри — по алфавиту без кавычек', () => {
     const list = [
       place('Delta', { significance: 'minor' }),
       place('Bravo'),
       place('Alpha', { significance: 'minor' }),
       place('Zulu', { capital: true }),
       place('Echo', { significance: 'event' }),
-      place('Charlie', { significance: 'link' }),
-      place('«Alpine»', { significance: 'link' }),
+      place('Charlie', { significance: 'event' }),
+      place('«Alpine»'),
     ];
-    expect(sortPlaces(list, 'en').map((p) => p.name)).toEqual(['Zulu', 'Echo', '«Alpine»', 'Bravo', 'Charlie', 'Alpha', 'Delta']);
+    expect(sortPlaces(list, 'en').map((p) => p.name)).toEqual(['Zulu', '«Alpine»', 'Bravo', 'Charlie', 'Echo', 'Alpha', 'Delta']);
   });
 
   it('Стоунхолл: первые 8 мест и «Все места (24)», раскрытие показывает все и ставит фокус на девятое', async () => {

@@ -2,10 +2,7 @@
 
 import type { HeroEvent } from '../data/types';
 
-/** У `link` (тип не уточнён) значка нет. */
-export type BadgeEvent = Exclude<HeroEvent, 'link'>;
-
-export const EVENT_PATHS: Record<BadgeEvent, string> = {
+export const EVENT_PATHS: Record<HeroEvent, string> = {
   // Родина — звезда.
   origin: 'M12 3.5 14 10l6.5 2-6.5 2-2 6.5-2-6.5-6.5-2 6.5-2Z',
   // Дом — домик.
@@ -26,10 +23,8 @@ export const EVENT_PATHS: Record<BadgeEvent, string> = {
   mention: 'M4.5 5.5h15v10h-8l-4 4v-4h-3Z',
 };
 
-export const hasBadge = (e: HeroEvent): e is BadgeEvent => e !== 'link';
-
 /** Значок события для HTML (плашка героя, легенда). Для SVG карты — EVENT_PATHS напрямую. */
-export function EventIcon({ event, className }: { event: BadgeEvent; className?: string }) {
+export function EventIcon({ event, className }: { event: HeroEvent; className?: string }) {
   return (
     <svg
       className={className}
