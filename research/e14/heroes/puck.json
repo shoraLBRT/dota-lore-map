@@ -8,12 +8,13 @@
   ],
   "links": [
     {
-      "region": "planes",
+      "place": "Fae Realm",
       "event": "origin",
       "source": "liquipedia",
       "via": "lore",
       "url": "https://liquipedia.net/dota2/Puck/Lore",
-      "doubt": "На лор-странице сказано, что Puck вылупился на ветке Undertree и пришёл из другого измерения. Undertree и измерение на схеме не отмечены; регион planes выбран по аналогии с Claszureme и решает владелец (кандидат Undertree)."
+      "doubt": "Лор-страница не называет измерение Puck миром фей: Undertree в Fae Realm — наше отождествление (#59).",
+      "note": "Вылупился на ветке Undertree и пришёл из другого измерения; в #59 Undertree отнесено к миру фей."
     },
     {
       "place": "Claszureme",
@@ -30,16 +31,7 @@
       "en": "Puck is a Faerie Dragon that acts like a mischievous child, yet it is an ancient, alien being from another dimension. It emerged on the Undertree and keeps its young form across millennia, which leaves its motives hard to read. Its playful surface might conceal a far more sinister agenda."
     }
   },
-  "candidates": [
-    {
-      "name": "Undertree",
-      "region": "planes",
-      "event": "origin",
-      "source": "liquipedia",
-      "url": "https://liquipedia.net/dota2/Puck/Lore",
-      "note": "Дерево, где вылупились все фейские дракончики, включая Puck. Не отмечено на схеме; регион предположительный, по аналогии с другим измерением."
-    }
-  ],
+  "candidates": [],
   "unconfirmed": [
     "Инфобокс лор-страницы перечисляет героев Io, Vengeful Spirit и Dark Willow, но тип связи не указан, а реплики Puck и Dark Willow не дают однозначного типа (rival, enemy и т. п.). Связи не записаны, пока не будет основания.",
     "Раздел «Allies meeting Puck» (Lone Druid, Monkey King, Rubick, Silencer) и «Enemies killing Puck» (Alchemist, Bane, Enigma, Jakiro, Legion Commander, Leshrac, Lifestealer, Monkey King, Pudge, Silencer, Storm Spirit, Tidehunter, Vengeful Spirit, Viper) — только строки озвучки; по решению партии 01 связи по ним не записаны.",

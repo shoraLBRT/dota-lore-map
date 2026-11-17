@@ -20,7 +20,7 @@
         "ru": "Небеса",
         "en": "The Heavens"
       },
-      "geo": "Небо над миром и небесные тела: столица скайрасов высоко над землёй, Безумная Луна (разрушена, её осколки — Radiant Ore и Direstone), Луна Селемены, Солнце.",
+      "geo": "Небо над миром и небесные тела: столица скайрасов высоко над землёй и нижний город Midgate под её скалой, царство колокола Vashundol, Безумная Луна (разрушена, её осколки — Radiant Ore и Direstone), Луна Селемены, Солнце.",
       "subtitle": {
         "ru": "Небесные престолы и павшие луны",
         "en": "Sky thrones and fallen moons"
@@ -276,6 +276,58 @@
           "pos": [
             0.39,
             0.088
+          ]
+        },
+        {
+          "name": "Midgate",
+          "slug": "midgate",
+          "capital": false,
+          "placement": "lore",
+          "significance": "event",
+          "note": "нижний город бескрылых под скалой Skywrath (комиксы Ascension Night и Ascension Day); внутри — тюрьма The Cage и крепость Spur (#59)",
+          "text": {
+            "name": {
+              "ru": "Мидгейт",
+              "en": "Midgate"
+            },
+            "type": {
+              "ru": "Нижний город",
+              "en": "Lower city"
+            },
+            "description": {
+              "ru": "Город бескрылых скайрасов у подножия скалы, на которой стоит Мрачное Гнездовье. Здесь живёт Kez: в ночь Вознесения он уходит отсюда выводить узников из висячей тюрьмы Клетка и возвращается уже с новым наставником. Неподалёку — крепость Шпора, где квартирует гвардия.",
+              "en": "The town of the Flightless at the foot of the cliff that holds up the Ghastly Eyrie. Kez lives here: on the night of Ascension he sets out to lead the prisoners out of the hanging jail called the Cage, and he comes back with a new teacher. The guard is quartered nearby, in the fortress of Spur."
+            }
+          },
+          "pos": [
+            0.11,
+            0.096
+          ]
+        },
+        {
+          "name": "Vashundol",
+          "slug": "vashundol",
+          "capital": false,
+          "placement": "ours",
+          "significance": "event",
+          "note": "перенесён из hells в #59: колокол отбивал наказания Doom до его падения из мира за светом (биография)",
+          "text": {
+            "name": {
+              "ru": "Вашундол",
+              "en": "Vashundol"
+            },
+            "type": {
+              "ru": "Царство колокола",
+              "en": "Realm of the bell"
+            },
+            "description": {
+              "ru": "Царство за светом, откуда низвергли Doom. Там висит огромный стальной колокол: он отбивал наказания Doom перед падением и звонит по тем, кому суждено пасть. Где лежит это царство, лор не говорит; мы помещаем его в Небеса, рядом с родиной Doom.",
+              "en": "A realm beyond the light from which Doom was cast down. A great steel bell hangs there: it tolled out Doom's punishments before his fall, and it rings for those who are fated to fall. The lore never says where the realm lies; we place it in the Heavens, next to Doom's homeland."
+            }
+          },
+          "pos": [
+            0.265,
+            0.082
           ]
         }
       ],
@@ -622,7 +674,7 @@
           "capital": false,
           "placement": "lore",
           "significance": "event",
-          "note": "в другой вселенной",
+          "note": "в другой вселенной, на вершинах Zealot's Range",
           "text": {
             "name": {
               "ru": "Костяной Инкубарий",
@@ -716,10 +768,61 @@
             0.85,
             0.09
           ]
+        },
+        {
+          "name": "Fae Realm",
+          "slug": "fae-realm",
+          "capital": false,
+          "placement": "ours",
+          "significance": "event",
+          "note": "мир фей; Undertree, где вылупился Puck, — наше отождествление (#59)",
+          "text": {
+            "name": {
+              "ru": "Мир фей",
+              "en": "Fae Realm"
+            },
+            "type": {
+              "ru": "Иное измерение",
+              "en": "Otherworld"
+            },
+            "description": {
+              "ru": "Скрытый мир фей, куда Dark Willow может ускользнуть в любой миг. Мы считаем, что здесь же растёт Undertree — дерево, на ветвях которого вылупляются фейские дракончики, и среди них Puck.",
+              "en": "The hidden world of the fae, where Dark Willow can slip away whenever she likes. We take it to be the home of the Undertree as well: the tree on whose branches faerie dragons hatch, Puck among them."
+            }
+          },
+          "pos": [
+            0.73,
+            0.088
+          ]
+        },
+        {
+          "name": "Great Seat of Cymurri",
+          "slug": "great-seat-of-cymurri",
+          "capital": false,
+          "placement": "ours",
+          "significance": "event",
+          "note": "в той же вселенной, что Ivory Incubarium; рядом — владения Unsated Satrap (#59)",
+          "text": {
+            "name": {
+              "ru": "Великий престол Симурри",
+              "en": "Great Seat of Cymurri"
+            },
+            "type": {
+              "ru": "Царство",
+              "en": "Kingdom"
+            },
+            "description": {
+              "ru": "Владение Высеченных королей в той же далёкой вселенной, что и Костяной Инкубарий. Сюда отправили служить Oracle, когда Бледные сивиллы закончили его обучение. Войско последнего короля Симурри сошло с ума у дворца соседнего правителя — Ненасытного сатрапа.",
+              "en": "The domain of the Carved Kings, in the same distant universe as the Ivory Incubarium. Oracle was sent here to serve once the Pale Sibyls had finished his training. The army of the last king of Cymurri went mad outside the palace of a neighbouring ruler, the Unsated Satrap."
+            }
+          },
+          "pos": [
+            0.64,
+            0.06
+          ]
         }
       ],
       "regionHeroes": [
-        "puck",
         "enigma",
         "chaos_knight",
         "keeper_of_the_light",
@@ -2549,6 +2652,32 @@
             0.47,
             0.358
           ]
+        },
+        {
+          "name": "Moerbeek",
+          "slug": "moerbeek",
+          "capital": false,
+          "placement": "lore",
+          "significance": "event",
+          "note": "город-крепость в землях Стоунхолла (комикс Tip of the Spear); сторона света не названа, точка — наша (#59)",
+          "text": {
+            "name": {
+              "ru": "Мёрбик",
+              "en": "Moerbeek"
+            },
+            "type": {
+              "ru": "Город-крепость",
+              "en": "Fortress town"
+            },
+            "description": {
+              "ru": "Укреплённый город в землях Стоунхолла, который Бронзовый легион держал в осаде около семи месяцев. Решающую атаку кавалерии под его стенами вела Legion Commander. Следующей целью легиона назван городок Брилле.",
+              "en": "A walled town in the lands of Stonehall that the Bronze Legion kept under siege for some seven months. Legion Commander led the cavalry charge that decided the fight beneath its walls. The small town of Brille is named as the legion's next target."
+            }
+          },
+          "pos": [
+            0.55,
+            0.352
+          ]
         }
       ],
       "regionHeroes": []
@@ -3500,6 +3629,32 @@
           "pos": [
             0.735,
             0.69
+          ]
+        },
+        {
+          "name": "Gale Crater",
+          "slug": "gale-crater",
+          "capital": false,
+          "placement": "lore",
+          "significance": "event",
+          "note": "место боя в плане хана Сорлы (комикс The Battle of Hell's Basin) (#59)",
+          "text": {
+            "name": {
+              "ru": "Кратер Ветров",
+              "en": "Gale Crater"
+            },
+            "type": {
+              "ru": "Кратер",
+              "en": "Crater"
+            },
+            "description": {
+              "ru": "Кратер в красных пустынях Друуда, который хан Сорла выбрал полем боя с Бездонной ордой, когда семь племён впервые встали под его знамя. В этой битве с ханом шёл Disruptor.",
+              "en": "A crater in the red deserts of Druud, chosen by Khan Sorla as the battleground against the Bottomless Horde when the seven tribes first rallied under his banner. Disruptor fought at the khan's side."
+            }
+          },
+          "pos": [
+            0.645,
+            0.7
           ]
         }
       ],
@@ -6453,8 +6608,8 @@
               "en": "Forest"
             },
             "description": {
-              "ru": "Туманный и тёмный лес к югу от Айсрака, дом для Ursa, Primal Beast и Hoodwink. Сюда заглядывают маги, оборотни и даже Arc Warden.",
-              "en": "A misty, shadowed forest south of Icewrack and home to Ursa, Primal Beast and Hoodwink. Wizards, shapeshifters and even Arc Warden have passed through."
+              "ru": "Туманный и тёмный лес к югу от Айсрака, дом для Primal Beast и Hoodwink. Сюда заглядывают маги, оборотни и даже Arc Warden.",
+              "en": "A misty, shadowed forest south of Icewrack and home to Primal Beast and Hoodwink. Wizards, shapeshifters and even Arc Warden have passed through."
             }
           },
           "pos": [
@@ -7213,6 +7368,32 @@
             0.548,
             0.512
           ]
+        },
+        {
+          "name": "Magnetic Ziggurat",
+          "slug": "magnetic-ziggurat",
+          "capital": false,
+          "placement": "ours",
+          "significance": "event",
+          "note": "зиккурат визиря Фолопталиса на склонах Mount Pyrotheos (биография Broodmother); регион — вслед за вулканом (#59)",
+          "text": {
+            "name": {
+              "ru": "Магнитный зиккурат",
+              "en": "Magnetic Ziggurat"
+            },
+            "type": {
+              "ru": "Зиккурат",
+              "en": "Ziggurat"
+            },
+            "description": {
+              "ru": "Ступенчатая башня визиря Фолопталиса на склонах горы Пиротеос. Broodmother однажды схватила визиря и спеленала его шёлком; было ли это у самого зиккурата, биография не уточняет.",
+              "en": "The stepped tower of the vizier Folopthalis on the slopes of Mount Pyrotheos. Broodmother once seized the vizier and wrapped him in silk; whether that happened at the ziggurat itself, the biography does not say."
+            }
+          },
+          "pos": [
+            0.502,
+            0.535
+          ]
         }
       ],
       "regionHeroes": []
@@ -7319,8 +7500,7 @@
         "medusa",
         "ringmaster",
         "marci",
-        "primal_beast",
-        "kez"
+        "primal_beast"
       ]
     },
     {
@@ -7544,7 +7724,7 @@
         "ru": "Семь Преисподних и загробье",
         "en": "The Seven Hells and the Afterlife"
       },
-      "geo": "Семь слоёв ада, тюрьма Foulfell, путь мёртвых душ (Narrow Maze → Underscape) и загробный мир Nothl.",
+      "geo": "Семь слоёв ада, тюрьма Foulfell, путь мёртвых душ (Narrow Maze → Underscape) под властью двора Ристула и загробный мир Nothl.",
       "subtitle": {
         "ru": "Пламя, цепи и путь душ",
         "en": "Flame, chains and the road of souls"
@@ -7667,28 +7847,29 @@
           ]
         },
         {
-          "name": "Vashundol",
-          "slug": "vashundol",
+          "name": "Court of Ristul",
+          "slug": "court-of-ristul",
           "capital": false,
-          "placement": "lore",
+          "placement": "ours",
           "significance": "event",
+          "note": "двор, при котором жила Акаша (комикс Ascension); заправляет Narrow Maze, поэтому здесь; слово «ад» комикс не использует (#59)",
           "text": {
             "name": {
-              "ru": "Вашундол",
-              "en": "Vashundol"
+              "ru": "Двор Ристула",
+              "en": "Court of Ristul"
             },
             "type": {
-              "ru": "Адское царство",
-              "en": "Infernal realm"
+              "ru": "Двор",
+              "en": "Court"
             },
             "description": {
-              "ru": "Царство, связанное с Doom и, вероятно, лежащее в одной из преисподних. О нём известно мало: там висит огромный стальной колокол, отзванивающий имена тех, кому суждено пасть.",
-              "en": "A realm tied to Doom, most likely somewhere within the Seven Hells. Little is known of it beyond its great steel bell, which tolls the names of those about to fall."
+              "ru": "Двор, которому подчиняется Узкий лабиринт. При нём жила Акаша (Queen of Pain), сестра Б'Кора, пока не решила уйти из-под влияния брата. Комикс не называет это место адом — к Преисподним его относим мы.",
+              "en": "The court that the Narrow Maze answers to. Akasha (Queen of Pain) lived here as the sister of B'Kor until she chose to step out of her brother's shadow. The comic never calls the place a hell; placing it among the Hells is our choice."
             }
           },
           "pos": [
-            0.6,
-            0.93
+            0.59,
+            0.925
           ]
         },
         {
@@ -7846,7 +8027,6 @@
         }
       ],
       "regionHeroes": [
-        "queenofpain",
         "visage"
       ]
     }
@@ -8376,11 +8556,13 @@
       "links": [
         {
           "regionId": "planes",
+          "placeSlug": "fae-realm",
           "event": "origin",
           "source": "liquipedia",
           "via": "lore",
           "url": "https://liquipedia.net/dota2/Puck/Lore",
-          "doubt": "На лор-странице сказано, что Puck вылупился на ветке Undertree и пришёл из другого измерения. Undertree и измерение на схеме не отмечены; регион planes выбран по аналогии с Claszureme и решает владелец (кандидат Undertree)."
+          "note": "Вылупился на ветке Undertree и пришёл из другого измерения; в #59 Undertree отнесено к миру фей.",
+          "doubt": "Лор-страница не называет измерение Puck миром фей: Undertree в Fae Realm — наше отождествление (#59)."
         },
         {
           "regionId": "planes",
@@ -8684,7 +8866,7 @@
           "placeSlug": "frostreach",
           "event": "visit",
           "source": "comic:frostreach-the-dragon",
-          "note": "Прибывает морем в Frostreach и ищет в таверне проводника через ледяную пустошь."
+          "note": "Прибывает морем в Frostreach и ищет в таверне проводника через ледяную пустошь. Разговор идёт в таверне The Severed Head."
         }
       ],
       "relations": [
@@ -9436,9 +9618,10 @@
         },
         {
           "regionId": "hells",
+          "placeSlug": "court-of-ristul",
           "event": "home",
           "source": "comic:hells-ascension",
-          "note": "По описанию комикса Ascension, до Узкого лабиринта она была при дворе Ристула, сестрой Б'Кора. Двор Ристула на схеме не назван, поэтому указан только регион.",
+          "note": "По комиксу Ascension до Узкого лабиринта она жила при дворе Ристула, сестрой Б'Кора.",
           "doubt": "Комикс «Восхождение» двор Ристула и Узкий лабиринт называет, а слово «ад» — нет; привязка двора к региону hells — наша."
         },
         {
@@ -10056,7 +10239,7 @@
           "placeSlug": "land-behind-the-wall",
           "event": "origin",
           "source": "bio",
-          "note": "Родина героя — мир за стеной, откуда он пришёл. Биография сама называет так свой край, инфобокс Liquipedia подтверждает то же место."
+          "note": "Родина героя — мир за стеной, откуда он пришёл. Биография сама называет так свой край, инфобокс Liquipedia подтверждает то же место. Инфобокс называет ещё Maze Between the Walls — лабиринт между стенами, куда он завёл и запечатал вражескую армию; в #59 он отнесён к этому месту, а не нанесён отдельно."
         }
       ],
       "profile": {
@@ -10259,6 +10442,14 @@
           "event": "origin",
           "source": "bio",
           "note": "Родина героя: она веками растила потомство в лавовых туннелях под кратером этого вулкана; здесь же поклонялись её культу. Liquipedia в поле origins указывает то же место."
+        },
+        {
+          "regionId": "middle-kingdoms",
+          "placeSlug": "magnetic-ziggurat",
+          "event": "battle",
+          "source": "bio",
+          "note": "Зиккурат визиря Фолопталиса на склонах Mount Pyrotheos; героиня схватила визиря и спеленала его шёлком.",
+          "doubt": "Биография не говорит, где именно она схватила визиря; связь с зиккуратом — по соседству с её вулканом."
         }
       ],
       "relations": [
@@ -10519,7 +10710,7 @@
           "doubt": "Биография говорит о мире без названия; связь с регионом Heavens — толкование."
         },
         {
-          "regionId": "hells",
+          "regionId": "heavens",
           "placeSlug": "vashundol",
           "event": "exile",
           "source": "bio",
@@ -11174,6 +11365,13 @@
           "event": "origin",
           "source": "bio",
           "note": "Родной край: высокие степи, где живёт его народ Oglodi."
+        },
+        {
+          "regionId": "druud",
+          "placeSlug": "gale-crater",
+          "event": "battle",
+          "source": "comic:druud-hells-basin",
+          "note": "Кратер — место боя в плане хана Сорлы против Бездонной орды; Disruptor идёт в битву вместе с ханом."
         }
       ],
       "relations": [
@@ -11210,6 +11408,14 @@
           "url": "https://liquipedia.net/dota2/Nyx_Assassin/Lore",
           "note": "Родной улей колонии скарабеев; в биографии улей по имени не назван.",
           "doubt": "Биография говорит о колонии и покоях королевы, но не называет Hidden Hive; место взято из поля origins инфобокса, которое опирается на описание набора самого героя."
+        },
+        {
+          "regionId": "middle-kingdoms",
+          "placeSlug": "ultimyr-academy",
+          "event": "mention",
+          "source": "bio",
+          "note": "Книга о скарабеях хранится в архиве Ultimyr; в #59 архив отнесён к академии. Сам герой там не был.",
+          "doubt": "Биография называет архив, а не академию; что это одно учреждение — наше решение (#59)."
         }
       ],
       "profile": {
@@ -11972,6 +12178,13 @@
         },
         {
           "regionId": "stonehall",
+          "placeSlug": "moerbeek",
+          "event": "battle",
+          "source": "comic:tipofthespear",
+          "note": "Бронзовый легион около семи месяцев осаждает этот город в землях Стоунхолла; Тресдин ведёт кавалерию в решающую атаку."
+        },
+        {
+          "regionId": "stonehall",
           "placeSlug": "milltown",
           "event": "battle",
           "source": "comic:milltown-dark-carnival",
@@ -12230,7 +12443,14 @@
           "placeSlug": "ivory-incubarium",
           "event": "origin",
           "source": "bio",
-          "note": "Оракулов растили и обучали Бледные сивиллы в Ivory Incubarium; оттуда Нерифа отправили служить последнему Высеченному королю Cymurri. В той же вселенной была битва у дворца Ненасытного Сатрапа, после которой советники изгнали его из своей вселенной (лор-страница). Эти места названы в candidates."
+          "note": "Оракулов растили и обучали Бледные сивиллы в Ivory Incubarium; оттуда Нерифа отправили служить последнему Высеченному королю Cymurri. В той же вселенной была битва у дворца Ненасытного Сатрапа, после которой советники изгнали его из своей вселенной (лор-страница). Эти места названы в candidates. Инкубарий стоит на вершинах Zealot's Range (#59: горы отнесены к нему, а не нанесены отдельно)."
+        },
+        {
+          "regionId": "planes",
+          "placeSlug": "great-seat-of-cymurri",
+          "event": "service",
+          "source": "bio",
+          "note": "Сюда его отправили служить последнему Высеченному королю. Войско короля сошло с ума у дворца Ненасытного сатрапа — его владения в #59 не нанесены отдельно."
         },
         {
           "regionId": "the-deep",
@@ -12497,6 +12717,15 @@
           "via": "lore",
           "url": "https://liquipedia.net/dota2/Dark_Willow/Lore",
           "note": "По вступлению к событию Wrath of the Mo'rokai героиня ищет реликвии в джунглях Fellstrath, находит руины Overgrown Empire и будит двух древних зверей."
+        },
+        {
+          "regionId": "planes",
+          "placeSlug": "fae-realm",
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Dark_Willow/Lore",
+          "note": "Фейский мир, куда героиня может уйти в любой момент; назван только в инфобоксе."
         }
       ],
       "path": [
@@ -13044,13 +13273,21 @@
       ],
       "links": [
         {
-          "regionId": "uncharted",
+          "regionId": "heavens",
+          "placeSlug": "ghastly-eyrie",
           "event": "origin",
           "source": "liquipedia",
           "via": "infobox",
           "url": "https://liquipedia.net/dota2/Kez/Lore",
-          "note": "Родина по инфобоксу лор-страницы — Skywrath (City). Такого места на схеме нет, поэтому место записано как uncharted; кандидат заведён в candidates.",
-          "doubt": "Ghastly Eyrie из текущей привязки в кэше не упоминается, в инфобоксе стоит Skywrath (City); соответствие Skywrath и региона heavens не подтверждено источниками."
+          "note": "Родина по инфобоксу лор-страницы — Skywrath (City); в #59 город скайрасов отождествлён с их столицей Ghastly Eyrie. По комиксу Ascension Night его изгнали из храма Shodo в том же городе.",
+          "doubt": "Skywrath (City) = Ghastly Eyrie — наше отождествление (#59): инфобокс называет город, а не столицу; комиксы Crownfall показывают Skywrath как целую страну с городами."
+        },
+        {
+          "regionId": "heavens",
+          "placeSlug": "midgate",
+          "event": "home",
+          "source": "comic:kez-ascension-night",
+          "note": "Нижний город бескрылых под скалой Skywrath: здесь Kez начинает и заканчивает историю. В ночь Вознесения выводит узников из висячей тюрьмы The Cage рядом с крепостью Spur."
         },
         {
           "regionId": "icewrack",
@@ -13083,7 +13320,7 @@
           "placeSlug": "velumar",
           "event": "origin",
           "source": "bio",
-          "note": "Изгнанный народ Murkroot связан с островом Велу'Мар, где Ларго вырос среди бардов-шаманов"
+          "note": "Изгнанный народ Murkroot связан с островом Велу'Мар, где Ларго вырос среди бардов-шаманов По комиксу The Island That Comes он пробуждает остров в его священных пещерах и открывает их для всех."
         }
       ],
       "profile": {

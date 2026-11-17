@@ -1,5 +1,5 @@
 {
-  "note": "Кандидаты в места: место из лора, которого нет на схеме мира (map/layout.json). На карту в партиях E14 не добавляются — решение в #59. Формат — docs/ARCHITECTURE.md §A3.",
+  "note": "Кандидаты в места: место из лора, которого нет на схеме мира (map/layout.json). Сверка #59 разобрала всех кандидатов партий и комиксов: принятые нанесены на схему или слиты с существующими местами, здесь остались отклонённые — решение и причина по каждому в PR #59. Кандидат возвращается на схему, когда найдётся источник его региона или события. Формат — docs/ARCHITECTURE.md §A3.",
   "candidates": [
     {
       "name": "Vuurcrag Mountains",
@@ -40,25 +40,6 @@
       "note": "Подземные пещеры, чей народ Jakiro однажды защитил (описание предмета Pyrexaec Flux); там до сих пор празднуют День костров. Регион не назван — решает владелец (#59)."
     },
     {
-      "name": "Undertree",
-      "hero": "puck",
-      "region": "planes",
-      "event": "origin",
-      "source": "liquipedia",
-      "url": "https://liquipedia.net/dota2/Puck/Lore",
-      "note": "Дерево, где вылупились все фейские дракончики, включая Puck. Не отмечено на схеме; регион предположительный, по аналогии с другим измерением."
-    },
-    {
-      "name": "Trell",
-      "hero": "ancient_apparition",
-      "region": "stonehall",
-      "event": "battle",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Ancient_Apparition/Lore",
-      "note": "Деревня внутри Coldbank Plains; Coldbank Plains лежит в регионе stonehall, поэтому кандидат привязан к нему."
-    },
-    {
       "name": "Ruined Keep",
       "hero": "chaos_knight",
       "region": "uncharted",
@@ -68,26 +49,6 @@
       "url": "https://liquipedia.net/dota2/Chaos_Knight/Lore",
       "note": "Здесь выкован тёмный шлем героя (снаряжение), работают слепые кузнецы; регион по источникам не установлен, поэтому временно uncharted. Решение владельца в #59.",
       "doubt": "Источник — описание предмета Dark Ruin Helm из набора самого героя, а не биография."
-    },
-    {
-      "name": "Maze Between the Walls",
-      "hero": "dark_seer",
-      "region": "planes",
-      "event": "battle",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Dark_Seer/Lore",
-      "note": "Лабиринт, куда герой завёл армию врагов, а затем запечатал их. По биографии это место за стенами, рядом с Land Behind the Wall, поэтому предположительно регион planes. Возможно, это отдельная местность, и владельцу #59 стоит решить это."
-    },
-    {
-      "name": "Fae Realm",
-      "hero": "dark_willow",
-      "region": "planes",
-      "event": "mention",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Dark_Willow/Lore",
-      "note": "Фейский мир, куда героиня может попасть в любой момент. В regions.json его нет; предполагаемый регион — planes, так как это отдельный план бытия. Решение за владельцем в #59."
     },
     {
       "name": "Petrified City of Saraddel",
@@ -129,14 +90,6 @@
       "doubt": "Единственное основание — описание набора героини."
     },
     {
-      "name": "Ultimyr Archives",
-      "hero": "nyx_assassin",
-      "region": "middle-kingdoms",
-      "event": "mention",
-      "source": "bio",
-      "note": "В биографии книга о скарабеях хранится в архиве Ultimyr; на схеме есть Ultimyr Academy в middle-kingdoms, но архив назван отдельно. Сам герой там не был."
-    },
-    {
       "name": "Cataract",
       "hero": "kunkka",
       "region": "planes",
@@ -155,30 +108,6 @@
       "note": "Стоит в поле places инфобокса: Elder Titan хранит у себя обломок этой кузницы среди собранных реликвий. Сам он там не бывал по тексту; регион не назван — решает владелец (#59)."
     },
     {
-      "name": "Great Seat of Cymurri",
-      "hero": "oracle",
-      "region": "planes",
-      "event": "service",
-      "source": "bio",
-      "note": "Симурри — владение, куда оракулов импортировали из Инкубатория; та же вселенная, что у Инкубатория."
-    },
-    {
-      "name": "Zealot's Range",
-      "hero": "oracle",
-      "region": "planes",
-      "event": "origin",
-      "source": "bio",
-      "note": "Горы, на вершинах которых стоит Инкубарий; рядом с ним, поэтому тот же регион."
-    },
-    {
-      "name": "Unsated Satrap's realm",
-      "hero": "oracle",
-      "region": "planes",
-      "event": "battle",
-      "source": "bio",
-      "note": "Сатрапия, у дворца которой войско Высеченного короля сошло с ума, — в той же вселенной, что Cymurri и Ivory Incubarium, поэтому planes."
-    },
-    {
       "name": "Continuum Vault",
       "hero": "primal_beast",
       "region": "planes",
@@ -189,101 +118,14 @@
       "note": "Хранилище, где Hoodwink заперла Зверя (в биографии — Vault). Место вне обычного пространства, поэтому регион — planes; решает владелец."
     },
     {
-      "name": "Magnetic Ziggurat",
-      "hero": "broodmother",
-      "region": "middle-kingdoms",
-      "event": "battle",
-      "source": "bio",
-      "note": "Зиккурат визиря Фолопталиса стоит на склонах Mount Pyrotheos, а сам вулкан в regions.json лежит в middle-kingdoms. Героиня схватила визиря и обернула его шёлком, но в тексте не сказано, где именно это произошло; место выбрано по соседству с горой."
-    },
-    {
-      "name": "Gale Crater",
-      "hero": "disruptor",
-      "region": "druud",
-      "event": "battle",
-      "source": "comic:druud-hells-basin",
-      "note": "Место боя в плане хана Сорлы; на карте его нет."
-    },
-    {
-      "name": "Skywrath",
-      "hero": "kez",
-      "region": "heavens",
-      "event": "origin",
+      "name": "Mt. Gorod",
+      "hero": "winter_wyvern",
+      "region": "icewrack",
+      "event": "mention",
       "source": "liquipedia",
-      "url": "https://liquipedia.net/dota2/Kez/Lore",
-      "note": "Skywrath (City) — родина по инфобоксу лор-страницы. Регион heavens предположен только по теме небесного города; в кэше источника о местоположении нет. Решение за владельцем (#59)."
-    },
-    {
-      "name": "Midgate",
-      "hero": "kez",
-      "region": "heavens",
-      "event": "home",
-      "source": "comic:kez-ascension-night",
-      "note": "Нижний город бескрылых под скалой Скайрата; Kez начинает и заканчивает историю там."
-    },
-    {
-      "name": "The Cage",
-      "hero": "kez",
-      "region": "heavens",
-      "event": "battle",
-      "source": "comic:kez-ascension-night",
-      "note": "Висячая тюрьма на шпиле, из которой Kez выводит узников."
-    },
-    {
-      "name": "Shodo temple",
-      "hero": "kez",
-      "region": "heavens",
-      "event": "exile",
-      "source": "comic:kez-ascension-night",
-      "note": "Храм, откуда Kez изгнан; перенесён на верхний уровень."
-    },
-    {
-      "name": "Spur",
-      "hero": "kez",
-      "region": "heavens",
-      "event": "mention",
-      "source": "comic:kez-ascension-night",
-      "note": "Крепость со штабом гвардии у стыка тюрьмы и материка."
-    },
-    {
-      "name": "Murkroot Forest",
-      "hero": "largo",
-      "region": "fellstrath",
-      "event": "mention",
-      "source": "bio",
-      "note": "Только русская биография: изгнанники пришли из лесов Хмурых корней; в английской Murkroots — название народа, а не места. Это родина народа, а не самого Largo; регион не назван, fellstrath предположен по Velu'Mar."
-    },
-    {
-      "name": "Sacred Caverns of Velu'Mar",
-      "hero": "largo",
-      "region": "fellstrath",
-      "event": "battle",
-      "source": "comic:largo-island",
-      "note": "Закрытые пещеры под островом, где живёт его «сердце»; Largo играет там и открывает их для всех."
-    },
-    {
-      "name": "Moerbeek",
-      "hero": "legion_commander",
-      "region": "stonehall",
-      "event": "battle",
-      "source": "comic:tipofthespear",
-      "note": "Город-крепость, который Бронзовый легион осаждал около семи месяцев; по тексту комикса лежит в землях Stonehall, на карте его нет."
-    },
-    {
-      "name": "Brille",
-      "hero": "legion_commander",
-      "region": "stonehall",
-      "event": "mention",
-      "source": "comic:tipofthespear",
-      "note": "Малый город, который легион собирается занять; только назван."
-    },
-    {
-      "name": "Court of Ristul",
-      "hero": "queenofpain",
-      "region": "hells",
-      "event": "home",
-      "source": "comic:hells-ascension",
-      "note": "Двор Ристула, при котором Акаша была сестрой Б'Кора; в регионах такого места нет, регион предположен по Узкому лабиринту в том же описании."
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Winter_Wyvern/Lore",
+      "note": "Лор-страница перечисляет Mt. Gorod в инфобоксе рядом с Icewrack, событие не описано. Регион предположительный: на схеме и в источниках не назван, решает владелец (#59)."
     },
     {
       "name": "Abyssal Plane",
@@ -302,12 +144,12 @@
       "note": "Измерение, где Ногха считают поучительным примером; только названо."
     },
     {
-      "name": "The Severed Head",
-      "hero": "vengefulspirit",
-      "region": "icewrack",
-      "event": "visit",
-      "source": "comic:frostreach-the-dragon",
-      "note": "Таверна в Frostreach, где идёт разговор о проводнике."
+      "name": "Brille",
+      "hero": "legion_commander",
+      "region": "stonehall",
+      "event": "mention",
+      "source": "comic:tipofthespear",
+      "note": "Малый город, который легион собирается занять; только назван."
     },
     {
       "name": "Snowcap Lake",
@@ -318,14 +160,12 @@
       "note": "Горная деревня недалеко от Barrier, куда ушёл разыскиваемый человек."
     },
     {
-      "name": "Mt. Gorod",
-      "hero": "winter_wyvern",
-      "region": "icewrack",
+      "name": "Murkroot Forest",
+      "hero": "largo",
+      "region": "fellstrath",
       "event": "mention",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Winter_Wyvern/Lore",
-      "note": "Лор-страница перечисляет Mt. Gorod в инфобоксе рядом с Icewrack, событие не описано. Регион предположительный: на схеме и в источниках не назван, решает владелец (#59)."
+      "source": "bio",
+      "note": "Только русская биография: изгнанники пришли из лесов Хмурых корней; в английской Murkroots — название народа, а не места. Это родина народа, а не самого Largo; регион не назван, fellstrath предположен по Velu'Mar."
     }
   ]
 }

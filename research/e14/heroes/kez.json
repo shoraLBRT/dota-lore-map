@@ -9,13 +9,19 @@
   ],
   "links": [
     {
-      "region": "uncharted",
+      "place": "Ghastly Eyrie",
       "event": "origin",
       "source": "liquipedia",
       "via": "infobox",
       "url": "https://liquipedia.net/dota2/Kez/Lore",
-      "note": "Родина по инфобоксу лор-страницы — Skywrath (City). Такого места на схеме нет, поэтому место записано как uncharted; кандидат заведён в candidates.",
-      "doubt": "Ghastly Eyrie из текущей привязки в кэше не упоминается, в инфобоксе стоит Skywrath (City); соответствие Skywrath и региона heavens не подтверждено источниками."
+      "note": "Родина по инфобоксу лор-страницы — Skywrath (City); в #59 город скайрасов отождествлён с их столицей Ghastly Eyrie. По комиксу Ascension Night его изгнали из храма Shodo в том же городе.",
+      "doubt": "Skywrath (City) = Ghastly Eyrie — наше отождествление (#59): инфобокс называет город, а не столицу; комиксы Crownfall показывают Skywrath как целую страну с городами."
+    },
+    {
+      "place": "Midgate",
+      "event": "home",
+      "source": "comic:kez-ascension-night",
+      "note": "Нижний город бескрылых под скалой Skywrath: здесь Kez начинает и заканчивает историю. В ночь Вознесения выводит узников из висячей тюрьмы The Cage рядом с крепостью Spur."
     },
     {
       "place": "Icewrack",
@@ -33,44 +39,7 @@
       "en": "Kez, also known as Kestrel, is a Flightless warrior who was born with a bounty on his head. The bounty grew as he caused more trouble, and Queen Imperia kept raising it. After a long exile in Icewrack he set out to rebuild the Kazurai and overthrow the usurper queen, and he still wants his bounty brought back up to a respectable level."
     }
   },
-  "candidates": [
-    {
-      "name": "Skywrath",
-      "region": "heavens",
-      "event": "origin",
-      "source": "liquipedia",
-      "url": "https://liquipedia.net/dota2/Kez/Lore",
-      "note": "Skywrath (City) — родина по инфобоксу лор-страницы. Регион heavens предположен только по теме небесного города; в кэше источника о местоположении нет. Решение за владельцем (#59)."
-    },
-    {
-      "name": "Midgate",
-      "region": "heavens",
-      "event": "home",
-      "source": "comic:kez-ascension-night",
-      "note": "Нижний город бескрылых под скалой Скайрата; Kez начинает и заканчивает историю там."
-    },
-    {
-      "name": "The Cage",
-      "region": "heavens",
-      "event": "battle",
-      "source": "comic:kez-ascension-night",
-      "note": "Висячая тюрьма на шпиле, из которой Kez выводит узников."
-    },
-    {
-      "name": "Shodo temple",
-      "region": "heavens",
-      "event": "exile",
-      "source": "comic:kez-ascension-night",
-      "note": "Храм, откуда Kez изгнан; перенесён на верхний уровень."
-    },
-    {
-      "name": "Spur",
-      "region": "heavens",
-      "event": "mention",
-      "source": "comic:kez-ascension-night",
-      "note": "Крепость со штабом гвардии у стыка тюрьмы и материка."
-    }
-  ],
+  "candidates": [],
   "unconfirmed": [
     "Ghastly Eyrie (прежняя привязка origin по инфобоксу): в кэше этого названия нет ни в лоре, ни в биографии, инфобокс называет Skywrath (City). Связь не записана, см. candidates.",
     "Midgate (инфобокс, places): места на схеме нет, регион в источниках не назван. Связь не записана.",

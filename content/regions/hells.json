@@ -22,14 +22,6 @@
         "en": "Seven layers of eternal dark, home to the demons. Each is sealed from the next by a membrane only Doom can pass. The deeper the layer, the crueler the punishment, and Nevermore schemes to take the seventh hell from Doom."
       }
     },
-    "Vashundol": {
-      "name": { "ru": "Вашундол", "en": "Vashundol" },
-      "type": { "ru": "Адское царство", "en": "Infernal realm" },
-      "description": {
-        "ru": "Царство, связанное с Doom и, вероятно, лежащее в одной из преисподних. О нём известно мало: там висит огромный стальной колокол, отзванивающий имена тех, кому суждено пасть.",
-        "en": "A realm tied to Doom, most likely somewhere within the Seven Hells. Little is known of it beyond its great steel bell, which tolls the names of those about to fall."
-      }
-    },
     "Abysm": {
       "name": { "ru": "Абисм", "en": "Abysm" },
       "type": { "ru": "Бездна", "en": "Abyss" },
@@ -77,6 +69,14 @@
       "description": {
         "ru": "Измерение, где всё вывернуто наизнанку: тьма здесь ослепительно сияет, а слабость оборачивается силой в мире живых. Путешествие сюда опасно — можно не вернуться или вернуться безумцем. Отсюда черпает силу Dazzle, а Huskar вернулся отсюда к жизни.",
         "en": "A dimension where everything is inverted: darkness shines blindingly, and whatever burdens you here becomes strength in the living world. The journey is perilous; travelers may never return, or come back mad. Dazzle draws his power from it, and Huskar came back from it to life."
+      }
+    },
+    "Court of Ristul": {
+      "name": { "ru": "Двор Ристула", "en": "Court of Ristul" },
+      "type": { "ru": "Двор", "en": "Court" },
+      "description": {
+        "ru": "Двор, которому подчиняется Узкий лабиринт. При нём жила Акаша (Queen of Pain), сестра Б'Кора, пока не решила уйти из-под влияния брата. Комикс не называет это место адом — к Преисподним его относим мы.",
+        "en": "The court that the Narrow Maze answers to. Akasha (Queen of Pain) lived here as the sister of B'Kor until she chose to step out of her brother's shadow. The comic never calls the place a hell; placing it among the Hells is our choice."
       }
     }
   }

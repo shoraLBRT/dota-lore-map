@@ -13,6 +13,13 @@
       "event": "origin",
       "source": "bio",
       "note": "Родина героя: она веками растила потомство в лавовых туннелях под кратером этого вулкана; здесь же поклонялись её культу. Liquipedia в поле origins указывает то же место."
+    },
+    {
+      "place": "Magnetic Ziggurat",
+      "event": "battle",
+      "source": "bio",
+      "note": "Зиккурат визиря Фолопталиса на склонах Mount Pyrotheos; героиня схватила визиря и спеленала его шёлком.",
+      "doubt": "Биография не говорит, где именно она схватила визиря; связь с зиккуратом — по соседству с её вулканом."
     }
   ],
   "profile": {
@@ -24,15 +31,7 @@
       "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/broodmother.png"
     ]
   },
-  "candidates": [
-    {
-      "name": "Magnetic Ziggurat",
-      "region": "middle-kingdoms",
-      "event": "battle",
-      "source": "bio",
-      "note": "Зиккурат визиря Фолопталиса стоит на склонах Mount Pyrotheos, а сам вулкан в regions.json лежит в middle-kingdoms. Героиня схватила визиря и обернула его шёлком, но в тексте не сказано, где именно это произошло; место выбрано по соседству с горой."
-    }
-  ],
+  "candidates": [],
   "unconfirmed": [
     "Ptholopthales (Фолопталис) — персонаж, а не герой, поэтому в relations не записан; его история связана с зиккуратом и записана только как кандидат.",
     "Nyx Assassin: в биографии DotA-версии паучата связаны с Anub'arak, но Liquipedia прямо пишет, что в Dota 2 такой связи нет. Не записано.",

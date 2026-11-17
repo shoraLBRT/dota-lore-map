@@ -13,6 +13,12 @@
       "event": "origin",
       "source": "bio",
       "note": "Родной край: высокие степи, где живёт его народ Oglodi."
+    },
+    {
+      "place": "Gale Crater",
+      "event": "battle",
+      "source": "comic:druud-hells-basin",
+      "note": "Кратер — место боя в плане хана Сорлы против Бездонной орды; Disruptor идёт в битву вместе с ханом."
     }
   ],
   "profile": {
@@ -30,15 +36,7 @@
     "Модель Thrall из Warcraft и заметки Trivia — метатекст, не лор; не записано.",
     "Сверка: родство с Axe (кузен) снято — поле family инфобокса ссылается только на реплики озвучки; так же решено в axe.json."
   ],
-  "candidates": [
-    {
-      "name": "Gale Crater",
-      "region": "druud",
-      "event": "battle",
-      "source": "comic:druud-hells-basin",
-      "note": "Место боя в плане хана Сорлы; на карте его нет."
-    }
-  ],
+  "candidates": [],
   "relations": [
     {
       "hero": "axe",

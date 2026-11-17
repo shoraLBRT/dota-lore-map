@@ -38,17 +38,7 @@
       "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/ancient_apparition.png"
     ]
   },
-  "candidates": [
-    {
-      "name": "Trell",
-      "region": "stonehall",
-      "event": "battle",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Ancient_Apparition/Lore",
-      "note": "Деревня внутри Coldbank Plains; Coldbank Plains лежит в регионе stonehall, поэтому кандидат привязан к нему."
-    }
-  ],
+  "candidates": [],
   "unconfirmed": [
     "Terrene Plane: в инфобоксе и в тексте сказано, что Калдр воплощается в нём; в regions.json это наш мир (geo), а не место на схеме, поэтому не записано.",
     "Hinterlands: упомянут в лоре как область, где лежит Coldbank Plains; в regions.json такого места нет, поэтому не записано ни как место, ни как кандидат.",

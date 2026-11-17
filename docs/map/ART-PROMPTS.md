@@ -64,24 +64,24 @@ No text, no letters, no labels, no runes, no frame, no watermark.
 
 | Регион | Сторона | Среда (biome) | Визуальные ориентиры для промпта |
 |---|---|---|---|
-| Небеса | ярус | sky | night sky with stars and nebula, a floating citadel among clouds, a pale moon and a silver moon, a shattered moon with glowing shards (one radiant gold, one dark red), a blazing sun forge, a celestial palace on clouds |
-| Семь планов и Пустота | ярус | void | layered translucent planes of existence, violet nebula, a black void with a rim of dim light, an alien world at the edge, a tall wall of light, an ivory egg-like incubator, a glowing tree heart, a dream mist |
+| Небеса | ярус | sky | night sky with stars and nebula, a floating citadel among clouds, a pale moon and a silver moon, a shattered moon with glowing shards (one radiant gold, one dark red), a blazing sun forge, a celestial palace on clouds, a lower town of the flightless at the foot of the citadel's cliff, a huge steel bell hanging in the void |
+| Семь планов и Пустота | ярус | void | layered translucent planes of existence, violet nebula, a black void with a rim of dim light, an alien world at the edge, a tall wall of light, an ivory egg-like incubator on mountain peaks, a carved-stone royal seat, a glowing tree heart, a hidden fae glade with a great old tree, a dream mist |
 | Айсрак | Radiant | snow | frozen tundra, blue glacier, jagged ice mountain range on the north coast, a fortified ice city, a steaming boiling sea, a northern harbor with ships in ice, pine forest, a black frozen pool |
 | Земля Сияющих | Radiant | plains | green rolling hills and meadows, a thousand small lakes, a peaceful village, a violet plateau with an ancient archive library, a castle on a fold of hills, mountain valleys of small inventors with workshops and a coastal bight |
 | Лес Найтсильвер | Radiant | forest | silver moonlit forest, glowing night flowers, a white moon temple, a shrine among ancient trees |
-| Стоунхолл | Radiant | city | great walled stone capital, farmland, rivers and mills, many towns and lakes around, a lake to the north, plains to the west |
+| Стоунхолл | Radiant | city | great walled stone capital, farmland, rivers and mills, many towns and lakes around, a lake to the north, plains to the west, a besieged fortress town on the eastern edge |
 | Вольные города | Radiant | city | a tall white spire city, a rose-covered city, merchant towns with mixed architecture, foggy iron foundry |
 | Кладд и острова | Radiant | islands | island kingdom with a fortified port, a trembling volcanic islet, half-sunken islands, a narrow channel between cliffs |
 | Западные леса | Radiant | forest | dense ancient forest on the west coast, a forest village, a sacred vale with a seer's grove, a bay, tangled mangrove wood |
 | Слом и Эльзе | Radiant | plains | two rival kingdoms with castles, a road with taverns between them, stony hills |
 | Квойдж и Поля Бойни | нейтрально | plains | a harbor city on the east coast, smoky port, a great cathedral, to the south a scarred endless battlefield with craters, broken weapons and banners |
 | Хазадальские пустоши | нейтрально | desert | grey-ochre badlands, nomad tribal camps, a dark fortress on a crag |
-| Срединные королевства | нейтрально | plains | patchwork of small kingdoms, an academy of magic, a hidden temple, a hidden insect hive, a fiery mountain, a sun throne palace, a sacred font |
+| Срединные королевства | нейтрально | plains | patchwork of small kingdoms, an academy of magic, a hidden temple, a hidden insect hive, a fiery mountain with a stepped ziggurat on its slope, a sun throne palace, a sacred font |
 | Неизведанные земли | нейтрально | fog | an island hidden in thick white fog, only vague silhouettes of cliffs and trees |
 | Ховен и Нишай | Dire | forest | a huge dark forest at the foot of bleeding red hills, black tar streams flowing down, a land of earthquakes with cracked ground, a red mountain |
 | Сверкающая пустошь | Dire | desert | vast golden desert glittering with crystal sand, dunes, ruins of a desert empire, ancient rift-shadow ruins, bone ruins, a singing canyon, an oasis city |
 | Империя Костей | Dire | desert | pale land where palace, towers, roads and even the forest are made of bone, ruins of a gleaming city |
-| Друуд | Dire | desert | red rocky desert plateau, centaur clan camps, arena ring |
+| Друуд | Dire | desert | red rocky desert plateau, centaur clan camps, arena ring, a wind-scoured crater battlefield |
 | Феллстрат | Dire | jungle | steaming tropical jungle with monsoon rain, overgrown ancient empire ruins, misty mountains, a jungle city, murky roots swamp |
 | Глубины | Dire | sea | deep dark ocean, sunken cities on the seabed, coral reefs, a sunken treasury, a glowing infernal hollow far below, bioluminescence |
 | Тропические острова | Dire | islands | tropical archipelago, an island of masks with a mask temple, ivory-white isles, a bay, acid-green jungles, ash-covered islets |
@@ -89,7 +89,7 @@ No text, no letters, no labels, no runes, no frame, no watermark.
 | Томо'кан и Окраины | Dire | swamp | misty dark forest, a dread marsh, a kingdom beyond the marsh, edge of a desert, fallen glowing stones |
 | Стонущие горы | Dire | mountains | dark wailing mountains with wind, a ruined city, a fortress of flares, mountain monasteries, a lone great mountain, a wild road, a jade upland |
 | Подземье | ярус | volcanic | underground caverns under magma, a city among volcano roots, emerald glowing abyss caves, tectonic depths |
-| Семь Преисподних и загробье | ярус | hell | seven layers of hell, a demon prison, a narrow maze of souls, an underscape, outer hells, a pale realm of the dead |
+| Семь Преисподних и загробье | ярус | hell | seven layers of hell, a demon prison, a narrow maze of souls overseen by a dark court, an underscape, outer hells, a pale realm of the dead |
 
 Цвета сред в `schema-base.svg` соответствуют этой таблице. Описания среды для интерфейса (`biome`, `ambient`) — в `content/regions/` (эпик E1), здесь — только указания для художника.
 

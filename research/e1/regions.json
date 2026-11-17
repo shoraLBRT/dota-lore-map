@@ -9,14 +9,16 @@
     {
       "id": "heavens", "tier": "upper", "side": "neutral", "sideBasis": "tier",
       "en": "The Heavens", "ru": "Небеса",
-      "geo": "Небо над миром и небесные тела: столица скайрасов высоко над землёй, Безумная Луна (разрушена, её осколки — Radiant Ore и Direstone), Луна Селемены, Солнце.",
+      "geo": "Небо над миром и небесные тела: столица скайрасов высоко над землёй и нижний город Midgate под её скалой, царство колокола Vashundol, Безумная Луна (разрушена, её осколки — Radiant Ore и Direstone), Луна Селемены, Солнце.",
       "locations": [
         { "name": "Ghastly Eyrie", "capital": true, "placement": "lore", "note": "столица расы скайрасов, «среди облаков и звёзд»" },
         { "name": "Mad Moon", "placement": "lore" },
         { "name": "Selemene's Moon", "placement": "lore", "note": "вместе с Demon Star" },
         { "name": "The Sun", "placement": "lore", "note": "Children of Light и солнечная кузня (страницы на Liquipedia нет)" },
         { "name": "Olympus", "placement": "ours", "note": "небесная обитель Зевса; страницы на Liquipedia нет" },
-        { "name": "Ultoria", "placement": "lore", "note": "небесное тело со своими лунами" }
+        { "name": "Ultoria", "placement": "lore", "note": "небесное тело со своими лунами" },
+        { "name": "Midgate", "placement": "lore", "note": "нижний город бескрылых под скалой Skywrath (комиксы Ascension Night и Ascension Day); внутри — тюрьма The Cage и крепость Spur (#59)" },
+        { "name": "Vashundol", "placement": "ours", "note": "перенесён из hells в #59: колокол отбивал наказания Doom до его падения из мира за светом (биография)" }
       ]
     },
     {
@@ -33,10 +35,12 @@
         { "name": "The Void", "placement": "lore" },
         { "name": "The Outworld", "placement": "lore", "note": "«мир на краю Бездны», у границы Пустоты" },
         { "name": "Land Behind the Wall", "placement": "lore", "note": "родная реальность Dark Seer; страницы на Liquipedia нет" },
-        { "name": "Ivory Incubarium", "placement": "lore", "note": "в другой вселенной" },
+        { "name": "Ivory Incubarium", "placement": "lore", "note": "в другой вселенной, на вершинах Zealot's Range" },
         { "name": "Heart of Nature", "placement": "ours" },
         { "name": "Light's Keep", "placement": "ours" },
-        { "name": "The Dream", "placement": "ours" }
+        { "name": "The Dream", "placement": "ours" },
+        { "name": "Fae Realm", "placement": "ours", "note": "мир фей; Undertree, где вылупился Puck, — наше отождествление (#59)" },
+        { "name": "Great Seat of Cymurri", "placement": "ours", "note": "в той же вселенной, что Ivory Incubarium; рядом — владения Unsated Satrap (#59)" }
       ]
     },
     {
@@ -111,7 +115,8 @@
         { "name": "Sloquoit", "placement": "lore" },
         { "name": "Coldbank Plains", "placement": "lore", "note": "к западу" },
         { "name": "Janau", "placement": "lore" },
-        { "name": "Leadbelly's", "placement": "lore", "note": "таверна в Стоунхолле" }
+        { "name": "Leadbelly's", "placement": "lore", "note": "таверна в Стоунхолле" },
+        { "name": "Moerbeek", "placement": "lore", "note": "город-крепость в землях Стоунхолла (комикс Tip of the Spear); сторона света не названа, точка — наша (#59)" }
       ]
     },
     {
@@ -154,7 +159,8 @@
       "geo": "Плоскогорье (Red Deserts of Druud) к югу от Fields of Endless Carnage. Земля кланов кентавров.",
       "locations": [
         { "name": "Druud", "capital": true, "placement": "lore" },
-        { "name": "Omexe", "placement": "lore" }
+        { "name": "Omexe", "placement": "lore" },
+        { "name": "Gale Crater", "placement": "lore", "note": "место боя в плане хана Сорлы (комикс The Battle of Hell's Basin) (#59)" }
       ]
     },
     {
@@ -324,7 +330,8 @@
         { "name": "Hidden Hive", "placement": "ours" },
         { "name": "Mount Pyrotheos", "placement": "ours" },
         { "name": "Skirm", "placement": "ours", "note": "страницы на Liquipedia нет" },
-        { "name": "Solar Throne", "placement": "ours", "note": "трон империи Helio Imperium" }
+        { "name": "Solar Throne", "placement": "ours", "note": "трон империи Helio Imperium" },
+        { "name": "Magnetic Ziggurat", "placement": "ours", "note": "зиккурат визиря Фолопталиса на склонах Mount Pyrotheos (биография Broodmother); регион — вслед за вулканом (#59)" }
       ]
     },
     {
@@ -347,10 +354,10 @@
     {
       "id": "hells", "tier": "abyss", "side": "neutral", "sideBasis": "tier",
       "en": "The Seven Hells and the Afterlife", "ru": "Семь Преисподних и загробье",
-      "geo": "Семь слоёв ада, тюрьма Foulfell, путь мёртвых душ (Narrow Maze → Underscape) и загробный мир Nothl.",
+      "geo": "Семь слоёв ада, тюрьма Foulfell, путь мёртвых душ (Narrow Maze → Underscape) под властью двора Ристула и загробный мир Nothl.",
       "locations": [
         { "name": "Seven Hells", "capital": true, "placement": "lore" },
-        { "name": "Vashundol", "placement": "lore" },
+        { "name": "Court of Ristul", "placement": "ours", "note": "двор, при котором жила Акаша (комикс Ascension); заправляет Narrow Maze, поэтому здесь; слово «ад» комикс не использует (#59)" },
         { "name": "Abysm", "placement": "lore" },
         { "name": "Foulfell", "placement": "lore" },
         { "name": "Outer Hells", "placement": "lore" },

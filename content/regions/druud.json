@@ -30,6 +30,14 @@
         "en": "An ancient arena where the centaur clans have met for millennia to fight to the last one standing. The victor is awarded the Great Belt of Omexe — now worn by Centaur Warrunner, who wishes to be buried in these grounds one day."
       },
       "media": ["artifact-omexe-arena"]
+    },
+    "Gale Crater": {
+      "name": { "ru": "Кратер Ветров", "en": "Gale Crater" },
+      "type": { "ru": "Кратер", "en": "Crater" },
+      "description": {
+        "ru": "Кратер в красных пустынях Друуда, который хан Сорла выбрал полем боя с Бездонной ордой, когда семь племён впервые встали под его знамя. В этой битве с ханом шёл Disruptor.",
+        "en": "A crater in the red deserts of Druud, chosen by Khan Sorla as the battleground against the Bottomless Horde when the seven tribes first rallied under his banner. Disruptor fought at the khan's side."
+      }
     }
   }
 }

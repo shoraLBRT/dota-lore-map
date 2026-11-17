@@ -17,7 +17,7 @@
       "place": "Frostreach",
       "event": "visit",
       "source": "comic:frostreach-the-dragon",
-      "note": "Прибывает морем в Frostreach и ищет в таверне проводника через ледяную пустошь."
+      "note": "Прибывает морем в Frostreach и ищет в таверне проводника через ледяную пустошь. Разговор идёт в таверне The Severed Head."
     }
   ],
   "relations": [
@@ -57,13 +57,6 @@
     "Раздел Friendships and Rivalries (союзники и враги по репликам озвучки, включая Luna, Monkey King, Legion Commander, Oracle и др.): связей не записано."
   ],
   "candidates": [
-    {
-      "name": "The Severed Head",
-      "region": "icewrack",
-      "event": "visit",
-      "source": "comic:frostreach-the-dragon",
-      "note": "Таверна в Frostreach, где идёт разговор о проводнике."
-    },
     {
       "name": "Snowcap Lake",
       "region": "icewrack",

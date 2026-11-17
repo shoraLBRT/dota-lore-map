@@ -116,6 +116,22 @@
         "ru": "Царство снов и кошмаров. Мы помещаем сюда родину Bane — ужаса, рождённого страхом спящей богини. Как место в лоре игры оно почти не описано.",
         "en": "The realm of dreams and nightmares. We place here the birthplace of Bane, a terror born of a sleeping goddess's fear. The game's lore barely describes it as a place."
       }
+    },
+    "Fae Realm": {
+      "name": { "ru": "Мир фей", "en": "Fae Realm" },
+      "type": { "ru": "Иное измерение", "en": "Otherworld" },
+      "description": {
+        "ru": "Скрытый мир фей, куда Dark Willow может ускользнуть в любой миг. Мы считаем, что здесь же растёт Undertree — дерево, на ветвях которого вылупляются фейские дракончики, и среди них Puck.",
+        "en": "The hidden world of the fae, where Dark Willow can slip away whenever she likes. We take it to be the home of the Undertree as well: the tree on whose branches faerie dragons hatch, Puck among them."
+      }
+    },
+    "Great Seat of Cymurri": {
+      "name": { "ru": "Великий престол Симурри", "en": "Great Seat of Cymurri" },
+      "type": { "ru": "Царство", "en": "Kingdom" },
+      "description": {
+        "ru": "Владение Высеченных королей в той же далёкой вселенной, что и Костяной Инкубарий. Сюда отправили служить Oracle, когда Бледные сивиллы закончили его обучение. Войско последнего короля Симурри сошло с ума у дворца соседнего правителя — Ненасытного сатрапа.",
+        "en": "The domain of the Carved Kings, in the same distant universe as the Ivory Incubarium. Oracle was sent here to serve once the Pale Sibyls had finished his training. The army of the last king of Cymurri went mad outside the palace of a neighbouring ruler, the Unsated Satrap."
+      }
     }
   }
 }

@@ -20,6 +20,14 @@
       "via": "lore",
       "url": "https://liquipedia.net/dota2/Dark_Willow/Lore",
       "note": "По вступлению к событию Wrath of the Mo'rokai героиня ищет реликвии в джунглях Fellstrath, находит руины Overgrown Empire и будит двух древних зверей."
+    },
+    {
+      "place": "Fae Realm",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Dark_Willow/Lore",
+      "note": "Фейский мир, куда героиня может уйти в любой момент; назван только в инфобоксе."
     }
   ],
   "profile": {
@@ -28,17 +36,7 @@
       "en": "Dark Willow is Mireska, a fae from a merchant family in Revtel. She slipped away from her home city, torched the family estate, and became a wandering con artist with her wisp Jex. Hired hunters chase her across several nations, so she rarely stays put for long."
     }
   },
-  "candidates": [
-    {
-      "name": "Fae Realm",
-      "region": "planes",
-      "event": "mention",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Dark_Willow/Lore",
-      "note": "Фейский мир, куда героиня может попасть в любой момент. В regions.json его нет; предполагаемый регион — planes, так как это отдельный план бытия. Решение за владельцем в #59."
-    }
-  ],
+  "candidates": [],
   "unconfirmed": [
     "Riki: в riki.json стоит ally. Лор-страница говорит только о том, что они разошлись (Riki вступил в Jasper Circle, она отказалась) и что могли бы подружиться. Дружбы или вражды не сказано, связь здесь не записана.",
     "Undying: в undying.json стоит rival. Источник говорит, что она ограбила его могилу и не возвращает вещи, но о соперничестве не сказано, связь здесь не записана.",
