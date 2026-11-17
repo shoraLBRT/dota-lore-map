@@ -17,6 +17,10 @@ const MIN_BADGE_LEN = 56;
 const MIN_ARROW_LEN = 24;
 /** Просвет между значком и стрелкой, экранные px. */
 const ARROW_GAP = 7;
+/** Радиус вспышки на конце нити, экранные px. */
+const FLASH_R = 12;
+/** Мир на телефоне (#102): регионы там ≈ 40 px, вспышки и значки в полный размер закрыли бы их подписи. */
+export const COMPACT_MARKS = 0.6;
 
 interface Props {
   threads: HeroThreads;
@@ -26,6 +30,8 @@ interface Props {
   obstacles?: Box[];
   /** Видимая часть кадра в координатах сцены — без панели, шторки и плашки героя: значок встаёт только в ней. */
   clip?: Box;
+  /** Мир на телефоне (#102): вспышки и значки — в COMPACT_MARKS размера. */
+  compact?: boolean;
 }
 
 const fixed = (n: number) => n.toFixed(1);
@@ -35,9 +41,13 @@ const fixed = (n: number) => n.toFixed(1);
  * Шаг пути — сплошная со стрелкой «откуда → куда»; прочая связь — пунктир, он течёт (reduced motion — нет).
  * У нити — значок события места, куда она ведёт (#67); на концах — вспышка.
  */
-export function Threads({ threads, scale, obstacles = [], clip }: Props) {
+export function Threads({ threads, scale, obstacles = [], clip, compact = false }: Props) {
   const { steps, tone } = threads;
   const k = scale.toFixed(4);
+  // Значки и вспышки: масштаб сцены, на телефоне в мире — ещё и меньше (#102).
+  const m = compact ? COMPACT_MARKS : 1;
+  const km = (scale * m).toFixed(4);
+  const badgeR = BADGE_R * m;
   const ends = new Map(steps.flatMap((s) => [s.from, s.to]).map((s) => [s.key, s]));
   return (
     <g className={[styles.threads, tones[tone]].join(' ')} aria-hidden="true" data-testid="threads">
@@ -49,12 +59,12 @@ export function Threads({ threads, scale, obstacles = [], clip }: Props) {
           '--w': (2.2 * scale).toFixed(2),
         } as CSSProperties;
         const len = a.length / scale;
-        const badgeT = hasBadge(step.event) && len >= MIN_BADGE_LEN ? badgeAt(a, BADGE_R * scale, obstacles, clip) : null;
+        const badgeT = hasBadge(step.event) && len >= MIN_BADGE_LEN * m ? badgeAt(a, badgeR * scale, obstacles, clip) : null;
         const arrowT =
           step.kind === 'path' && len >= MIN_ARROW_LEN
             ? badgeT === null
               ? 0.5
-              : Math.min(badgeT + ((BADGE_R + ARROW_GAP) * scale) / a.length, 0.88)
+              : Math.min(badgeT + ((badgeR + ARROW_GAP) * scale) / a.length, 0.88)
             : null;
         const at = (t: number) => {
           const [x, y] = a.stage(t);
@@ -76,7 +86,7 @@ export function Threads({ threads, scale, obstacles = [], clip }: Props) {
               </g>
             )}
             {badgeT !== null && hasBadge(step.event) && (
-              <g transform={`${at(badgeT)} scale(${k})`} className={styles.threadBadge} data-badge={step.event}>
+              <g transform={`${at(badgeT)} scale(${km})`} className={styles.threadBadge} data-badge={step.event}>
                 <circle r={BADGE_R} />
                 <svg x={-7.5} y={-7.5} width={15} height={15} viewBox="0 0 24 24">
                   <path d={EVENT_PATHS[step.event]} />
@@ -89,8 +99,8 @@ export function Threads({ threads, scale, obstacles = [], clip }: Props) {
       {[...ends.values()].map((s) => {
         const [x, y] = STAGE(s.point!);
         return (
-          <g key={s.key} transform={`translate(${fixed(x)} ${fixed(y)}) scale(${k})`}>
-            <circle className={styles.flash} r={12} />
+          <g key={s.key} transform={`translate(${fixed(x)} ${fixed(y)}) scale(${km})`}>
+            <circle className={styles.flash} r={FLASH_R} />
           </g>
         );
       })}
