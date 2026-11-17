@@ -1,0 +1,53 @@
+{
+  "hero": "visage",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Narrow Maze",
+      "event": "service",
+      "source": "bio",
+      "doubt": "В биографии у входа в Узкий лабиринт стоят гаргульи, а Visage назван гаргульей; что он несёт стражу именно там, прямо не сказано.",
+      "note": "Место, где стоят сторожевые гаргульи; сам герой — гаргулья, поэтому связь с этим входом выведена из текста о страже."
+    },
+    {
+      "region": "hells",
+      "event": "service",
+      "source": "bio",
+      "note": "Служба на благо загробного мира: герой возвращает беглецов из ада на их место; постоянного места жизни здесь не названо."
+    },
+    {
+      "region": "heavens",
+      "event": "service",
+      "source": "bio",
+      "doubt": "Текст называет беглецов из небес, но служба описана для загробного мира в целом, без отдельного упоминания небес.",
+      "note": "Беглецы, вырвавшиеся из небес, тоже входят в задачу героя."
+    },
+    {
+      "place": "Underscape",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Visage/Lore",
+      "note": "Заметка лор-страницы: Некро'лик связан с Underscape, как и Razor; сам герой там не назван."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Visage — гаргулья, воплощение вечного духа Некро'лика, который живёт внутри камня. Это безжалостный охотник за душами, сбежавшими из загробного мира. Гаргульи стерегут вход в Узкий лабиринт, ведущий за грань смерти. Когда беглец вырывается из ада или небес силой или хитростью, за ним отправляют Visage. Ни смерть, ни усталость его не останавливают, и он уничтожает любое укрытие, где прячется беглец. Даже воскрешённых он в конце концов находит и возвращает на их место.",
+      "en": "Visage is the gargoyle shape that the spirit Necro'lic is bound to, and it works as a relentless hunter of runaway souls. Gargoyles watch over the entrance to the Narrow Maze, the road into the afterlife. When a spirit escapes the hells or the heavens by force or guile, Visage is sent to drag it back. It feels neither death nor weariness, and it destroys whatever shelters the fugitive. Even the revived are never safe for long, since Visage tracks them down and returns them to their place."
+    }
+  },
+  "unconfirmed": [
+    "Razor: в инфобоксе указан без типа связи; заметка лор-страницы говорит только о том, что Некро'лик его знает и бранит за недосмотр, тип не назван.",
+    "Lion: заметка лор-страницы о том, что Некро'лик не раз отправлял его обратно в ад, без типа связи.",
+    "Shadow Fiend: заметка лор-страницы о том, что Некро'лик не одобряет захват душ, без типа связи.",
+    "Keeper of the Light, Medusa, Monkey King, Enigma, Vengeful Spirit, Viper, Oracle, Legion Commander: только реплики озвучки и раздел Friendships and Rivalries, связей не записано.",
+    "Gandalf и «You shall not pass!»: отсылка в trivia и реплика соперничества с Keeper of the Light, не основание для связи.",
+    "Familiars как стражи Narrow Maze: текст описания способности, не биография, место не записано отдельно."
+  ]
+}

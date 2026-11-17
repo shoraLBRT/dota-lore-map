@@ -1,0 +1,61 @@
+{
+  "hero": "treant",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Vale of Augury",
+      "event": "origin",
+      "source": "bio",
+      "doubt": "В биографии родина — горы за Долиной прорицаний; сами горы на схеме не названы, поэтому привязка к Долине (Vale of Augury), которую называет инфобокс лор-страницы."
+    },
+    {
+      "place": "Roseleaf",
+      "event": "visit",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Treant_Protector/Lore",
+      "note": "Совершил там значимое дело, какое именно — не описано; после этого ушёл."
+    }
+  ],
+  "path": [
+    {
+      "place": "Vale of Augury"
+    },
+    {
+      "place": "Roseleaf"
+    }
+  ],
+  "relations": [
+    {
+      "hero": "shredder",
+      "type": "rival",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Treant_Protector/Lore",
+      "doubt": "Соперничество вытекает из предположения лор-страницы, что нападение «ходячих деревьев» на Augury Bay было делом энтов; сам Treant в этом городе не отмечен."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Treant Protector, Руфтреллен, — единственный из древнего народа энтов-защитников, известный по имени, и единственный, кто покинул священный лес далеко на западе. Его сородичи веками хранили землю от чужаков, но вторжения людей заставили их отправить одного странника в большой мир, чтобы тот наблюдал за переменами. Вне леса он удивляется золоту и вещам, которых никогда не видел, а проходя через Roseleaf, совершил там нечто значимое и двинулся дальше.",
+      "en": "Treant Protector, Rooftrellen, is the only one of his ancient tree-guardian race who is known by name, and the only one who ever left their sacred forest far to the west. His kin spent ages shielding their land until outsiders pushed them to send a single wanderer into the wider world to watch how it changes. Out there he is puzzled by gold and unfamiliar objects, and on his travels he passed through Roseleaf, did something notable there, and moved on."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/treant.png"
+    ]
+  },
+  "unconfirmed": [
+    "Magnus (magnataur): в файле magnataur.json он союзник Treant в Roseleaf (бой с Vhoul). Собственные источники Treant этого не подтверждают: там сказано только о визите в Roseleaf. Связь одностороння, обратная запись не сделана.",
+    "Augury Bay: лор-страница называет вероятным, что Treant разведывал город перед нападением ходячих деревьев; это предположение, место не записано.",
+    "Раздел Allies meeting / Enemies killing и Friendships and Rivalries (Axe, Bristleback, Earth Spirit, Elder Titan, Lina, Meepo, Monkey King, Puck, Dark Willow, Pangolier, Grimstroke, Mars, Snapfire, Hoodwink, Nature's Prophet, Slark, Spectre, Storm Spirit, Troll Warlord и др.): связей нет, только реплики озвучки.",
+    "Dark Willow и Mireska: реплики о том, что уход из Roseleaf был ошибкой или наоборот достоин уважения; сама по себе реплика связи не даёт, Mireska в биографии не появляется.",
+    "Nature's Prophet: лор прямо говорит, что неизвестно, родственны ли Treant Protector деревьям treant Nature's Prophet; связи не записано.",
+    "Stuntwood Sanctuary: место из описания другой статьи, в биографии его нет и на схему оно не попадает; не записано.",
+    "Hero Atlas (Dota 2 X Monster Hunter) не читался: раздел лор-страницы, ссылающийся на него, не использован."
+  ]
+}

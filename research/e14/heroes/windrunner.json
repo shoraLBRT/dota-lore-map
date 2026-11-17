@@ -1,0 +1,62 @@
+{
+  "hero": "windrunner",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore"
+  ],
+  "links": [
+    {
+      "place": "Zaru'Kina",
+      "event": "origin",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Windranger/Lore",
+      "note": "Лор-страница прямо называет деревню родиной героини; в биографии деревня не названа, но дом семьи погиб в ту ночь, когда она родилась.",
+      "doubt": "Название деревни есть только в тексте лор-страницы, в официальной биографии его нет."
+    },
+    {
+      "place": "Western Forests",
+      "event": "origin",
+      "source": "bio",
+      "note": "Биография начинается с западных лесов и называет героиню одной из их тайн, то есть родом оттуда."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "drow_ranger",
+      "type": "rival",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Windranger/Lore",
+      "note": "Раздел Relationships лор-страницы называет Drow Ranger главной соперницей героини. Это подтверждает обратную запись из drow_ranger.json.",
+      "doubt": "Утверждение опирается на реплики Monkey King; общего события в тексте героини нет."
+    },
+    {
+      "hero": "lycan",
+      "type": "ally",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Windranger/Lore",
+      "note": "Лор-страница пишет, что героиня считала Banehallow другом и сожалеет, если придётся с ним биться. Lycan стоит в поле heroes инфобокса.",
+      "doubt": "Фраза в прошедшем времени, тип взят как ближайший из списка. Отождествление Banehallow с Lycan держится на инфобоксе и на файле lycan.json, прямого имени в тексте нет."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Windranger, она же Лиралей, родом из западных лесов, где буря в ночь её рождения погубила всю семью. Ветер сам подобрал уцелевшую девочку в траве, перенёс её в соседнюю деревню и годами издалека следил за её обучением. Теперь она искусная лучница, будто ведомая ветром, и сам ветер, кажется, по-прежнему за ней присматривает.",
+      "en": "Windranger, born Lyralei, came from the western forests, where a storm wiped out her whole family on the night she was born. The wind itself found the surviving infant in the grass, carried her to a neighboring village, and kept an eye on her from afar as she trained. Today she is a master archer who seems carried by the breeze, one the gale itself appears to watch over."
+    }
+  },
+  "unconfirmed": [
+    "Соседняя деревня, куда ветер перенёс младенца: в биографии и лоре не названа, место не записано.",
+    "Njord's Hearth: в поле places инфобокса и в описании набора предметов (Cloak of the Northern Wind), в биографии и лор-тексте героини его нет; связь не записана.",
+    "Conclave of the Brine: долг героини перед фракцией, а не место и не герой; источник — комикс Siltbreaker, которого нет в content/media.json.",
+    "Lina: в лоре сказано, что героиня любуется её волосами и медлит её убить; тип связи из текста не выводится, связь не записана.",
+    "Grimstroke и Phantom Spectre: фразы о народе героини и о том, что она «последняя из избранных», — только реплики озвучки.",
+    "Раздел Friendships and Rivalries (Monkey King, Clinkz, Drow Ranger, Shadow Fiend, Sniper, Terrorblade и другие): только реплики озвучки и списки знакомых, связей не записано.",
+    "Rising Gale responses (Naga Siren, Sven, Witch Doctor) и Wraith King, Ursa, Kunkka, Mirana, Luna: реплики и списки знакомых, связей не записано.",
+    "Zenok и Wren (поле characters): Zenok — из Underlords, Wren без текста; связей не записано.",
+    "Hero page (liquipedia-hero.wiki): инфобокса с местами нет, названные места совпадают с лор-страницей; проверен только по поиску, не целиком."
+  ]
+}

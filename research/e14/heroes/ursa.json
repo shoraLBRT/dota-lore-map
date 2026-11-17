@@ -1,0 +1,57 @@
+{
+  "hero": "ursa",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Tomo'kan",
+      "event": "origin",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Ursa/Lore",
+      "note": "Родной лес героя: биография говорит о его диком лесном краю, но не называет его. Название взято из поля origins инфобокса.",
+      "doubt": "Биография не называет родину по имени; Darkwoods из инфобокса соотнесён с Tomo'kan по описанию региона в regions.json, а не по лору героя. Упоминание Darkwoods в реплике и в Artifact-ответе на основание не берётся."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "enchantress",
+      "type": "ally",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Ursa/Lore",
+      "note": "Enchantress стоит в поле heroes инфобокса; обратная запись к enchantress.json.",
+      "doubt": "Тип ally не указан в инфобоксе; «хорошие отношения» на лор-странице опираются на реплику озвучки."
+    },
+    {
+      "hero": "pangolier",
+      "type": "ally",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Ursa/Lore",
+      "note": "Pangolier стоит в поле heroes инфобокса; обратная запись к pangolier.json.",
+      "doubt": "Тип ally не указан в инфобоксе; «работали вместе» в разделе Relationships опирается на реплику Pangolier."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Ursa, он же Ульфсаар, — самый свирепый воин медвежьего племени, который стоит на страже своих земель и народа. Пока самки спят зимой со своими детёнышами, самцы патрулируют окрестности, а когда до него дошли глухие, но растущие слухи о новом зле, он отправился за пределы родного леса, чтобы остановить угрозу у её истока. Гордый и стойкий, он славится верностью союзникам.",
+      "en": "Ursa, known as Ulfsaar, is the fiercest warrior of an ursine tribe that guards its wild homeland and people. While the females sleep through the winter with their cubs, the males keep watch over the land, and when faint but spreading rumors of a great evil reached him, he set out past the edge of his home forest to stop the threat at its root. He is a proud, steadfast fighter known for loyalty to his allies."
+    }
+  },
+  "unconfirmed": [
+    "Sylla (наставница, у которой Ursa учился, и которой он повредил палец): основание — реплики Lone Druid; Sylla не ключ героя, связь не записана.",
+    "Lone Druid (соперник, «кузен по медвежьей природе», дети героя): только реплики озвучки Lone Druid; связь не записана.",
+    "Pangolier и Enchantress: тип ally держится на поле heroes инфобокса без типа; записаны с doubt.",
+    "Donte Panlin (Pangolier): то же, что Pangolier, — раздел Relationships пересказывает реплику.",
+    "Monkey King, Lycan, Mirana, Legion Commander, Axe, Drow Ranger, Earth Spirit, Oracle, Ogre Magi, Outworld Destroyer, Windranger, Dark Seer: реплики озвучки, Friendships and Rivalries и Artifact — связи не записаны.",
+    "Roshan (вражда): только описание набора предметов и реплика; не связь героя.",
+    "Alchemy, Spirit Breaker, Sangstrath и Ravager/Razorwyrm/Cholgar: в тексте лора это предметы, виды или фракции, не места и не герои; записаны как не места.",
+    "Frozen mountains north of homeland и Ice Shaman («замёрзшая земля»): места без названия в биографии, основание — описания предметов; места не записаны.",
+    "Cubs (family в инфобоксе): не герой, связь не записана."
+  ]
+}
