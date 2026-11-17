@@ -1,0 +1,72 @@
+{
+  "hero": "snapfire",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "place": "Home of the Keen Folk",
+      "event": "origin",
+      "source": "ours",
+      "note": "Snapfire — кин (инфобокс лор-страницы, поле race). Родной город в источниках не назван, только «родной дом» и сёстры; родина народа кинов на схеме — Home of the Keen Folk, как у Alchemist.",
+      "doubt": "Связь по народу, а не по тексту о самом герое: о месте её детства в биографии ничего нет."
+    },
+    {
+      "place": "Dread Marsh",
+      "event": "journey",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Snapfire/Lore",
+      "note": "Ушла из дома, после ссоры с погоней перебралась через болото и не вернулась."
+    },
+    {
+      "place": "Outlands",
+      "event": "journey",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Snapfire/Lore",
+      "note": "Добралась до Чужеземья, где начала делать оружие на продажу и вступила в банду."
+    },
+    {
+      "place": "Nanarak",
+      "event": "home",
+      "source": "bio",
+      "note": "Живёт и странствует по пустынным дорогам и оазисам Нанарака."
+    }
+  ],
+  "path": [
+    { "place": "Home of the Keen Folk" },
+    { "place": "Dread Marsh" },
+    { "place": "Outlands" },
+    { "place": "Nanarak" }
+  ],
+  "relations": [
+    {
+      "hero": "shredder",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Snapfire/Lore",
+      "note": "Timbersaw — её племянник (поле family инфобокса: nephew)."
+    },
+    {
+      "hero": "luna",
+      "type": "ally",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Snapfire/Lore",
+      "note": "В молодости Snapfire была вместе с Luna в одной компании (текст лор-страницы; Luna в инфобоксе в поле heroes)."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Оружейница-кин Snapfire, которую знают под ласковым прозвищем, колесит по пустыням Нанарака вместе с драконьей жабой Мортимером. В молодости она сбежала из родных мест, пересекла болото, чтобы уйти от погони, и осела в Чужеземье, где начала торговать оружием и порохом. Сейчас она печёт печенье и раздаёт его тем, кто ей по душе.",
+      "en": "Snapfire is a keen gunsmith who goes by a fond nickname and roams the deserts of Nanarak with her dragon toad Mortimer. As a runaway in her youth she slipped across a marsh to shake off pursuers and then settled in the Outlands, where she began selling homemade guns and powder. These days she bakes cookies and hands them out to people she likes."
+    }
+  },
+  "unconfirmed": [
+    "Krimwohl и продажа пороха там: лор-страница ссылается только на реплику Hoodwink (голосовая строка), поэтому не записано.",
+    "Praxa'cia и Jidi Isle: упомянуты только в голосовых репликах Snapfire, не записаны.",
+    "Vale of Augury: место, где поселилась её сестра, упомянуто только в лор-тексте и в голосовой реплике без названия, поэтому не записано.",
+    "Kardel и Rattletrap — её давние враги из родных мест: в источниках не сказано, что это Sniper и Clockwerk, связи не записаны.",
+    "Друзья и знакомые (Boush, Auroth, Lanaya, тролли, Largo, Lina и др.) — основаны на репликах, не записаны."
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "hero": "shadow_shaman",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "place": "Bleeding Hills",
+      "event": "origin",
+      "source": "bio",
+      "note": "Родился здесь и рос голодным юнцом. Гибель наставника тоже связана с этими холмами, но это сказано только в тексте способности Shackles на Liquipedia, поэтому отдельной связью не записано."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Раста, он же Shadow Shaman, родился на Кровоточащих холмах и в детстве работал помощником бродячего шарлатана, который гадал и совершал обряды за деньги. Когда старика убили обманутые клиенты, юноша впервые обратил свой дар во зло и с тех пор использует его для защиты. Позже, скрываясь от гонений на шаманов, он был вынужден убить жреца-змея Глисса, который хотел завладеть его силой.",
+      "en": "Rhasta, known as Shadow Shaman, was born in the Bleeding Hills and grew up as the helper of a wandering fraud who sold fortunes and rituals. After the old man was killed by cheated customers, the young shaman first turned his gift toward destruction and has used it to defend himself ever since. Later, hiding from hunters of shamans, he was forced to kill the serpent priest Gliss, who had tried to take his power."
+    }
+  },
+  "unconfirmed": [
+    "Naga Siren и Dark Willow указаны в инфобоксе лор-страницы (поле heroes), но тип связи в тексте не назван; есть только реплики озвучки («старый друг», деловые отношения), по правилам они не основание для связи.",
+    "Mireska: деловые отношения из-за прошлого мошенников — только реплика озвучки Dark Willow; связь не записана.",
+    "Troll Warlord: презрение к холмовым троллям — только реплики озвучки; связь не записана.",
+    "Tang-Ki и Eki Bukaw названы как культы и фигуры, но не как места; в тексте нет ни региона, ни места, поэтому кандидатами не добавлены."
+  ]
+}

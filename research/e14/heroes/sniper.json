@@ -1,0 +1,43 @@
+{
+  "hero": "sniper",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore"],
+  "links": [
+    {
+      "place": "Knollen",
+      "event": "origin",
+      "source": "bio",
+      "note": "родился в горах Кноллена; выстрел в день посвящения принёс изгнание, но не перемещение, поэтому сюда же не добавлен exile"
+    }
+  ],
+  "relations": [
+    {
+      "hero": "rattletrap",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Sniper/Lore",
+      "note": "двоюродный брат по инфобоксу"
+    },
+    {
+      "hero": "tinker",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Sniper/Lore",
+      "doubt": "инфобокс: «cousin or cousin of a cousin», степень родства не определена"
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Sniper родом из горного Кноллена, где кины веками добывают пропитание охотой на крутых скалах. Кардел Остроглаз — лучший стрелок своего племени, но в день посвящения его выстрел попал в глаз зверя, и старейшины увидели в этом знак. Пророчество принесло ему и славу, и изгнание: вернуться домой он сможет лишь после легендарного подвига на поле боя.",
+      "en": "Sniper hails from the mountain valleys of Knollen, where the Keen Folk have long hunted cliff-dwelling beasts from afar. Kardel Sharpeye is the finest marksman of his people, but his coming-of-age shot struck the creature's central eye, and the elders read it as a prophecy. That sign promised him greatness and cast him out, leaving him unable to return home until he earns legendary status on a battlefield."
+    }
+  },
+  "unconfirmed": [
+    "Snapfire: инфобокс называет героя без типа связи; соперничество указано только в разделе Relationships, который пересказывает реплику озвучки Timbersaw",
+    "Bristleback: неприязнь к кинам — только реплика озвучки Bristleback",
+    "Frosted Winds Tribe: инфобокс указывает фракцию, но в тексте биографии её нет; контакт упомянут только в описании набора предметов",
+    "Brag Sharpeye (дедушка) и Gramma Sharpeye (бабушка): родственники из инфобокса, в списке героев не значатся; основание — описания предметов",
+    "Раздел Friendships and Rivalries (союзники и враги по репликам озвучки): связей не записано"
+  ]
+}

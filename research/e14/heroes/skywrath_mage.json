@@ -1,0 +1,47 @@
+{
+  "hero": "skywrath_mage",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Ghastly Eyrie",
+      "event": "origin",
+      "source": "bio",
+      "note": "Юность провёл при дворе Жуткого гнезда, здесь же позже служит магом престола.",
+      "doubt": "В биографии не сказано, где именно он родился; место записано по юности при дворе."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "vengefulspirit",
+      "type": "love",
+      "place": "Ghastly Eyrie",
+      "source": "bio",
+      "note": "Шенделзара, старшая принцесса скайрасов, стала Vengeful Spirit; по биографии Драгонус её любил и мечтает вернуть ей трон и здоровое тело.",
+      "doubt": "Ненависть Vengeful Spirit к нему в биографии дана как его собственное предположение, а не как факт; тип записан по любви."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Драгонус — высокопоставленный маг скайрасов при дворе Жуткого гнезда, связанный клятвой охранять того, кто занимает престол. Когда-то он любил старшую принцессу Шенделзару, но, поглощённый учёбой, проглядел заговор, после которого её сместила младшая сестра, и теперь мечтает вернуть ей трон и здоровое тело. Его магия служит лишь законному защитнику престола, поэтому он остаётся на посту, а тайные помыслы знает только богиня Скри'Ок.",
+      "en": "Dragonus is a senior mage at the court of the Ghastly Eyrie, bound by an oath to guard whoever holds the throne. He once loved the eldest princess Shendelzare, but he was absorbed in his studies and missed the plot that drove her from power, so he now dreams of restoring her to the throne and to a healthy body. His magic answers only to the rightful guardian of the throne, which keeps him at his post, and only the goddess Scree'Auk knows his hidden motives."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/skywrath_mage.png"
+    ]
+  },
+  "unconfirmed": [
+    "arc_warden.json: связь «ally» с Arc Warden и место Druud в его файле не подтверждены источниками Skywrath. В биографии и на лор-странице Skywrath Mage нет ни Arc Warden, ни Druud. Решение за главным агентом: убрать или подтвердить по кэшу Arc Warden.",
+    "Terrorblade: стоит в поле heroes инфобокса, но тип связи нигде, кроме реплик озвучки, не назван; не записано.",
+    "Imperia (void_spirit): на странице сказано, что при её правлении Драгонус был ей не по душе, но тип связи из этого не выводится, а остальное держится на реплике озвучки; не записано.",
+    "Mars и Dark Willow: намёки в репликах озвучки (сделка с Scree'Auk, «марионетка») — не основание для связей.",
+    "Anzua: инфобокс называет его местом, но из своих источников не видно, что это за место и где оно; регион не угадываю, не записано.",
+    "Академия, где учился Драгонус (комикс The Nomad Star, стр. 4): комикса нет в content/media.json, место не названо; не записано.",
+    "Scree'Auk's Talon: описание предмета, по правилам не основание.",
+    "Реплики озвучки (Monkey King, Legion Commander, Rubick, Wraith King, Silencer, Viper, Oracle и др.) — не основание для связей."
+  ]
+}

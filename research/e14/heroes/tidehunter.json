@@ -1,0 +1,53 @@
+{
+  "hero": "tidehunter",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "place": "Sunken Isles",
+      "event": "origin",
+      "source": "bio",
+      "note": "Был защитником Затонувших островов, пока не ушёл служить Мэльрону."
+    },
+    {
+      "place": "Trembling Isle",
+      "event": "battle",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Tidehunter/Lore",
+      "note": "Участвовал во второй битве у Дрожащего острова, где призвал Мэльрона."
+    },
+    {
+      "place": "Recluse Reef",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Tidehunter/Lore",
+      "doubt": "Место стоит только в поле places инфобокса, без текста о событии; тип mention выбран по этой причине."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "kunkka",
+      "type": "enemy",
+      "source": "bio",
+      "note": "Биография: Tidehunter особенно не жалует адмирала Kunkka, их вражда длится давно, причины утеряны (bio.en; в bio.ru то же).",
+      "doubt": "В kunkka.json связь записана как rival (партия прошлая, до этой сверки связь была снята). Текст говорит о ненависти и вражде, поэтому тип enemy. Главному агенту: добавить обратную запись в kunkka.json."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Левиафан когда-то был защитником Затонувших островов, но порвал со своим народом и стал служить глубоководному богу Мэльрону, охотясь на всех, кто заплывает на мелководье. Его давняя вражда с адмиралом Kunkka, причины которой потеряны на дне моря, — одна из самых злых в океане. В битве у Дрожащего острова он впервые призвал своего бога.",
+      "en": "Leviathan was once a champion of the Sunken Isles, but he turned his back on his people and took up service to the abyssal god Maelrawn, hunting anyone who strays into the shallows. His long-standing feud with Admiral Kunkka, whose cause has been lost to time, is among the bitterest in the sea. At the battle of the Trembling Isle he summoned his god for the first time."
+    },
+    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/tidehunter.png"]
+  },
+  "candidates": [],
+  "unconfirmed": [
+    "Западные воды (Western Sea): сказано «возможно», источник — комикс Legends of the Monkey King, стр. 5; комикса в кэше и в content/media.json нет, связь не записана, регион не угадывался.",
+    "Dark Willow и Kunkka в инфобоксе лор-страницы перечислены без типа связи; Dark Willow записана только по реплике озвучки («I'm hunted by Kunkka, thanks to you!»), связь с ней не записана.",
+    "Mireska: упомянута только в реплике озвучки Dark Willow; ключа героя нет, связь не записана.",
+    "Реплики озвучки, монологи и ответы (Maw of the Megalodon, враги и союзники в разделе Friendships and Rivalries, реплики Kunkka, Monkey King, Naga Siren и др.) — не основание для связей; не учитывались.",
+    "Предметы (Anchor Smash: якорь украден у флагмана Kunkka; Lucky Tooth Necklace) — описания предметов, не основание для связей.",
+    "Conclave of the Brine и Maelrawn — фракция и бог, не место и не герой в ключах; связи не записаны."
+  ]
+}

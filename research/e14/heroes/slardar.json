@@ -1,0 +1,44 @@
+{
+  "hero": "slardar",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore"
+  ],
+  "links": [
+    {
+      "region": "uncharted",
+      "event": "origin",
+      "source": "ours",
+      "note": "Родина в биографии названа только как глубоководная бездна и затонувший город; на схеме такого места нет. Liquipedia указывает Sunken Treasury, но его регион в источниках не назван.",
+      "doubt": "Регион не выводится по тексту; место из Liquipedia вынесено в unconfirmed."
+    },
+    {
+      "place": "Deep Vault",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Slardar/Lore",
+      "doubt": "Место указано только в инфобоксе. В тексте сказано, что страж охраняет тайные сокровищницы, но Deep Vault по имени не назван."
+    },
+    {
+      "place": "Coral Breach",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Slardar/Lore",
+      "doubt": "Место указано только в инфобоксе; в тексте лора о нём ничего не сказано."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Slardar, представитель змееногих из народа Deep Ones, служит Slithereen Guard и охраняет затонувшие города с сокровищами на морском дне. Молчаливый страж поднимается к мелководью, чтобы разведать угрозы, и преследует воров, которым удалось вынести что-то из Sunken Treasury. Долгая жизнь под давлением толщи воды сделала его невероятно сильным.",
+      "en": "Slardar is a Slithereen who serves in the Slithereen Guard, watching over sunken cities and their buried riches on the ocean floor. The taciturn guardian surfaces into shallow water to scout for threats and hunts down thieves who escape with goods from the Sunken Treasury. A life lived under crushing deep-sea pressure has made him extraordinarily powerful."
+    }
+  },
+  "unconfirmed": [
+    "Sunken Treasury (Liquipedia origins, биография): место на схеме не найдено, регион в источниках не назван. Кандидат не записан, чтобы не угадывать регион.",
+    "Naga Siren: указана в инфобоксе Liquipedia (heroes) без типа связи, в тексте биографии и лора не упомянута. Связь не записана, см. naga_siren.json.",
+    "Реплики озвучки (Naga Siren, Medusa, Alchemist, Slark, Tidehunter, Monkey King и др.) не основание связи по решению партии 01 (#46)."
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "hero": "terrorblade",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore"],
+  "links": [
+    {
+      "place": "Seven Hells",
+      "event": "origin",
+      "source": "bio",
+      "note": "Он демон, а законы семи адских кругов он нарушал как свои собственные.",
+      "doubt": "Биография не говорит прямо, где он родился; родина выведена из того, что он демон и был судим в этих кругах. Инфобокс называет Seven Hells только среди мест."
+    },
+    {
+      "place": "Foulfell",
+      "event": "exile",
+      "source": "bio",
+      "note": "Его заточили в Foulfell, скрытом измерении, где демоны держат своих; оттуда он вырвался.",
+      "doubt": "Инфобокс лор-страницы (поле origins) называет Foulfell его происхождением с пометкой escapee. По биографии это место заточения, поэтому записано изгнание, а не родина."
+    }
+  ],
+  "path": [
+    { "place": "Seven Hells" },
+    { "place": "Foulfell" }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Terrorblade — демон-мародёр, преступник, которого боялись даже собратья по аду. За свои деяния его заперли в Foulfell, фрактальной тюрьме-зеркале, где демоны вглядываются в искажённое отражение собственной души. Он подчинил свою тёмную сторону, разрушил стены темницы и вырвался на свободу.",
+      "en": "Terrorblade is a demon outlaw and thief whom even his own kind avoided, a rebel who defied the Demon Lords and the laws of Hell. He was locked away in Foulfell, a fractal mirror-prison where demons face their own twisted reflections, but he mastered his darker self and broke out. Now free, he spreads terror across creation."
+    }
+  },
+  "relations": [],
+  "unconfirmed": [
+    "Инфобокс лор-страницы (поле heroes) перечисляет Skywrath Mage, Enchantress и Warlock, но не даёт типа связи, а в тексте лора их роль не описана — связи не записаны.",
+    "Брат Anti-Mage — только неиспользуемые реплики (раздел «Unused responses»), на лор-странице прямо сказано, что связь разорвана; не записано.",
+    "Остальные связи в разделе Friendships and Rivalries и в отдельных пунктах лор-страницы опираются на реплики озвучки (союзники, враги, Pudge, Dragonus, Aiushtha, Demnok Lannik) и не записаны."
+  ]
+}

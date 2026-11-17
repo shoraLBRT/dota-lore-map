@@ -1,0 +1,49 @@
+{
+  "hero": "shredder",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore"],
+  "links": [
+    {
+      "place": "Augury Bay",
+      "event": "origin",
+      "source": "bio",
+      "note": "город, где он жил и работал в мастерской дяди; после нашествия деревьев он бежал оттуда"
+    },
+    {
+      "place": "Vale of Augury",
+      "event": "journey",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Timbersaw/Lore",
+      "doubt": "мать увезла его в долину и осела там; в тексте не сказано, сколько он там прожил и в каком порядке это было с Augury Bay"
+    },
+    {
+      "place": "Home of the Keen Folk",
+      "event": "origin",
+      "source": "ours",
+      "note": "по народу: в инфобоксе раса Smallkeen (Keen); сам герой на этом месте не назван",
+      "doubt": "о самом герое места нет, родина выведена из расы; может быть не первой родиной"
+    }
+  ],
+  "relations": [
+    {
+      "hero": "snapfire",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Timbersaw/Lore",
+      "note": "тётя по матери (aunt) в инфобоксе family"
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Timbersaw, он же Риззрак, родом из Бухты прорицаний. Когда деревья-ходоки захватили город, он заперся в мастерской дяди и несколько месяцев строил пил-костюм, чтобы справиться со страхом. Пережитое оставило след: он вечно настороже и слышит голоса в голове. Его тётя — Snapfire.",
+      "en": "Timbersaw, also called Rizzrack, comes from Augury Bay. After walking trees overran the city, he shut himself in his uncle's workshop and built a saw-suit to face his fear. The trauma left him constantly on edge and hearing voices, and he has little patience for the Treants. His aunt is Snapfire."
+    }
+  },
+  "unconfirmed": [
+    "Treant Protector и Nature's Prophet: в лоре сказано, что он их не жалует, но тип связи (enemy/rival) не назван, связь не записана; в инфобоксе Treant Protector стоит в поле heroes без типа",
+    "Порядок путей: переезд из долины и жизнь в бухте не разведены по времени, path не записан",
+    "Место гибели матери неизвестно: лор предполагает, но не подтверждает нападение на Augury Bay",
+    "Реплики Snapfire и Timbersaw (Artifact, озвучка, Friendships) не использованы как основание связей"
+  ]
+}
