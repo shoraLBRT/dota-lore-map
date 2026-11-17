@@ -1,0 +1,53 @@
+{
+  "hero": "sand_king",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore"
+  ],
+  "links": [
+    {
+      "place": "Scintillant Waste",
+      "event": "origin",
+      "source": "bio",
+      "note": "Родина: сам пустынный разум, из которого он вышел, и есть Искрящаяся пустыня"
+    },
+    {
+      "place": "Qaldin",
+      "event": "mention",
+      "source": "bio",
+      "note": "Здесь связь через джиннов, которые выковали его панцирь"
+    },
+    {
+      "place": "Desert of Misrule",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Sand_King/Lore",
+      "doubt": "Место есть в инфобоксе, но в описании героя не разобрано, что он там делал; связь держится только на инфобоксе"
+    },
+    {
+      "place": "El'Harath",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Sand_King/Lore",
+      "doubt": "Только описание предмета набора самого Sand King (Ancient Sovereign); в биографии места нет."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Пески Scintillant Waste живые и разумные: вся пустыня думает сама с собой. Чтобы говорить с теми, кто меньше её, она отделяет часть себя и вселяет её в магический панцирь работы джиннов Qaldin. Эта часть зовёт себя Crixalis, «Душа песка», а другие знают её как Sand King. Его облик огромного паукообразного повторяет мелких жителей пустыни; он её страж, воин и посол.",
+      "en": "The Scintillant Waste is a living, thinking desert whose sands reason among themselves. To speak with smaller beings it sets a fragment of itself free inside a magic carapace made by the Djinn of Qaldin. That fragment calls itself Crixalis, the Soul of the Sand, and others know it as Sand King. His huge arachnid shape echoes the desert's small creatures, and he serves it as guardian, warrior and envoy."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/sand_king.png"
+    ]
+  },
+  "unconfirmed": [
+    "Инфобокс лора называет героев Broodmother, Earthshaker, Nyx Assassin и Weaver, но тип связи в тексте не назван; разделы о них пересказывают реплики озвучки, поэтому связи не записаны",
+    "Ученик/наставник для Nyx Assassin и королева для Broodmother основаны только на репликах озвучки в разделе Feelings, не записаны",
+    "Знакомство с Lina и реплики о Morphling, Dark Willow, Pudge и других героях — реплики озвучки, не записаны",
+    "Отношения с Ancient Sovereign и Spire Mage — не герои, в relations не записываются"
+  ]
+}

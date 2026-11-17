@@ -1,0 +1,33 @@
+{
+  "hero": "silencer",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Hazhadal Barrens",
+      "event": "origin",
+      "source": "bio",
+      "note": "Нортром вырос в скрытом военном городке на холмах Хажадальских пустошей, где его готовил орден Эол Драйас. Там же позже он одолел своих насмешников и разобрался с местными беззаконниками (бой описан в лоре Liquipedia, это не меняет выбора главного события)."
+    }
+  ],
+  "relations": [],
+  "profile": {
+    "summary": {
+      "ru": "Nortrom — последний из семи поколений тщательно подобранной родословной ордена Aeol Drias, выведенный стать величайшим магом и оружием против Knights of the Fold. Его растили в скрытом лагере в холмах Hazhadal Barrens, но магия в нём так и не проявилась, и наставники с учениками над ним смеялись. В день испытания он лишил соперников магии и победил их одного за другим. Так он стал чемпионом ордена и исполнил пророчество.",
+      "en": "Nortrom is the last of seven generations of a carefully planned bloodline of the Aeol Drias order, bred to be the greatest mage and a weapon against the Knights of the Fold. He was raised in a hidden camp in the hills of the Hazhadal Barrens, but no magic showed in him, and his teachers and classmates mocked him. On the day of testing he silenced his rivals and beat them one by one. So he became the order's champion and fulfilled the prophecy."
+    }
+  },
+  "unconfirmed": [
+    "Рыцари Покрова (Knights of the Fold), заклятые враги ордена, упомянуты в биографии, но место их обитания в тексте не названо — к Castle of the Fold не привязываю.",
+    "Реплики озвучки о Monkey King, Omniknight, Abaddon, Zeus и других героях — не основание для связей по правилам партии 01.",
+    "Раздел Trivia на странице героя (Chen как соперник из-за Knights of the Fold) — не лор, в связи не записываю.",
+    "Различие методов с Anti-Mage (тюремное заточение вместо убийства) взято из комикса и артефактного описания, в файл не переношу.",
+    "Артефакты Oscilla (клинок и щит) и предметы-«тишина» не привязаны ни к одному месту на схеме.",
+    "Tyler Estate: «смотритель поместья» — пересказ реплики Silencer; связь не записана.",
+    "Anti-Mage: союз держится только на реплике Silencer; связь не записана."
+  ]
+}

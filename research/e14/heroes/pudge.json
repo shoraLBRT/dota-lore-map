@@ -1,0 +1,59 @@
+{
+  "hero": "pudge",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore"
+  ],
+  "links": [
+    {
+      "place": "Fields of Endless Carnage",
+      "event": "home",
+      "source": "bio",
+      "note": "Поле origins инфобокса лор-страницы называет это поле боя; по биографии Pudge там и работает ночами. Место лежит в регионе quoidge."
+    },
+    {
+      "place": "Quoidge",
+      "event": "mention",
+      "source": "bio",
+      "note": "Биография помещает поле боя далеко к югу от Квойджа. Сам Квойдж в тексте не описан, Pudge там не назван бывавшим."
+    },
+    {
+      "place": "Cathedral of Rumusque",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Pudge/Lore",
+      "note": "Место записано в поле places инфобокса. Лор говорит, что клирики Rumusque выковали Chains of Abscession и позже очистили Fields; сам Pudge в соборе не был.",
+      "doubt": "Инфобокс называет собор, а текст лора говорит о клириках Rumusque в целом; связь с конкретным собором — по инфобоксу."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "rubick",
+      "type": "rival",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Pudge/Lore",
+      "note": "В разделе Relationships лор-страницы Rubick назван главным соперником Pudge из-за давнего состязания. Зеркально к записи в файле rubick.",
+      "doubt": "Соперничество в тексте лор-страницы без источника (по сути голосование за аркану); дальше — только реплика. Оставлено ради взаимности с rubick.json."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Pudge работает на Fields of Endless Carnage, далеко к югу от Quoidge: ночами он разделывает павших, чтобы к рассвету поле было чистым. В этом проклятом краю ничто не гниёт, и мёртвые не возвращаются в землю. Его клинки становятся острее от работы, а со временем он пристрастился и к мясу, которое режет. Его боятся даже те, кто уже не боится смерти.",
+      "en": "Pudge works the Fields of Endless Carnage, far south of Quoidge, cutting up the fallen through the night so the field is clear by dawn. In that cursed land nothing decays, and the dead never return to the earth. His blades grow sharper the more he uses them, and over time he acquired a taste for the flesh he cuts. Even those who no longer fear death fear him."
+    }
+  },
+  "unconfirmed": [
+    "Место изгнания Pudge и место, где он нашёл Chains of Abscession, в источниках не названо: есть только описание мира, полного мёртвых.",
+    "Королевство короля Brandalon, при котором Pudge служил королевским мясником, не названо; персонаж в инфобоксе без места.",
+    "Plains of Ceaseless Torment, River of Woe и Shuddering Forest стоят в поле places инфобокса, но в тексте лора не описаны и в regions.json не найдены. Связь и кандидат не записаны: регион не определить по источникам.",
+    "Bane, Riki и Underlord упомянуты в репликах озвучки и разделе Relationships; основание только реплики, связи не записаны.",
+    "Lady Onshu и Dead God указаны как персонажи и боги, не герои: на связь героя не переводятся, на карте не отмечены.",
+    "Weeping Rose: только история косметического предмета The Toy Butcher (кукла Pudge), не лор героя; связь не записана.",
+    "Krimwohl: только история косметического предмета The Toy Butcher (кукла Pudge), не лор героя; связь не записана.",
+    "Drow Ranger: только поле heroes инфобокса, тип связи не назван. Запись pudge в drow_ranger.json остаётся односторонней.",
+    "Slark: только поле heroes инфобокса, тип связи не назван; связь не записана."
+  ]
+}

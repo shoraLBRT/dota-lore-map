@@ -1,0 +1,32 @@
+{
+  "hero": "spirit_breaker",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore"
+  ],
+  "links": [
+    {
+      "place": "Elemental Plane",
+      "event": "home",
+      "source": "bio",
+      "note": "Родная стихийная реальность Баратрума, откуда он пришёл в материальный мир."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Barathrum — властное стихийное существо из стихийного плана, своего дома. Он перешёл в мир материи, чтобы участвовать в событиях, отзвуки которых дойдут до его плана. Для этого он сам собрал себе тело из черт быка и обезьяны — рога, копыта и руки как знаки силы, скорости и хитрости. Кольцо в носу напоминает ему, что он служит скрытому хозяину.",
+      "en": "Barathrum is a lordly elemental being whose home is the elemental realm. He crossed over into the physical world to join events that will echo back on his own plane. He built himself a body from bull and ape traits, with horns, hooves and hands as signs of strength, speed and cunning. The ring in his nose reminds him that he serves a hidden master."
+    }
+  },
+  "candidates": [],
+  "unconfirmed": [
+    "Terrene Plane: по regions.json это наш мир, за пределами planes. Liquipedia говорит, что финальная битва будет там (со слов Elder Titan) — это пророчество, а не место Баратрума, связь не записана.",
+    "Earthshaker, Leshrac, Clinkz, Broodmother, Enchantress, Magnus, Sniper, Spectre, Storm Spirit: отношения (уважение, презрение, желание поквитаться и т. п.) выведены из реплик озвучки и пересказа раздела Relationships. Реплики — не основание, тип связи (ally, enemy, rival) не записан.",
+    "Grimstroke, Undying, Monkey King, Dark Willow, Earth Spirit, Snapfire и другие: союзнические реплики озвучки — не основание для ally.",
+    "Barathrum's Master: безымянный хозяин, которого нет в heroes.json как героя; связь не записана.",
+    "Nether Strike: в описании способности сказано, что он возвращается в «царство» своего происхождения. Место совпадает с кандидатом Nether Realm, на схему не привязано.",
+    "Регион planes (journey): только поле places инфобокса (The Seven Planes) и реплики; связь не записана.",
+    "Nether Realm: только описание способности Nether Strike; не место для схемы, кандидатом не записан."
+  ]
+}

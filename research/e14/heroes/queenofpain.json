@@ -1,0 +1,45 @@
+{
+  "hero": "queenofpain",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero", "comic:hells-ascension"],
+  "links": [
+    {
+      "place": "Elze",
+      "event": "service",
+      "source": "bio",
+      "note": "Короля Эльзе призвали демонологи из его темницы, и она служила ему, связанная рунами; здесь же она вышла на свободу после его гибели. Liquipedia в поле places называет то же место.",
+      "doubt": "Родной план или родина самой сущности в биографиях не названы; Эльзе выбрана как главное место по службе, а не по происхождению."
+    },
+    {
+      "region": "hells",
+      "event": "home",
+      "source": "comic:hells-ascension",
+      "note": "По описанию комикса Ascension, до Узкого лабиринта она была при дворе Ристула, сестрой Б'Кора. Двор Ристула на схеме не назван, поэтому указан только регион.",
+      "doubt": "Регион hells выведен по Узкому лабиринту и Ристулу, на схеме такого места нет; сам комикс смотрен только по описанию в media.json, изображения не просматривались."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Queen of Pain, известная как Акаша, — суккуб, которого демонологи призвали для короля Эльзе. Она мучила правителя, но руны держали её в повиновении и сохраняли ему жизнь. Когда его свергли и сбросили с башни, она обрела свободу и с тех пор сама выбирает, кому причинять страдания.",
+      "en": "Queen of Pain, called Akasha, is a succubus summoned by demonologists for the king of Elze. She tormented the ruler while runes kept her bound and kept him alive. After he was overthrown and cast from a tower, she gained her freedom and now picks her own victims."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/queenofpain.png"
+    ]
+  },
+  "candidates": [
+    {
+      "name": "Court of Ristul",
+      "region": "hells",
+      "event": "home",
+      "source": "comic:hells-ascension",
+      "note": "Двор Ристула, при котором Акаша была сестрой Б'Кора; в регионах такого места нет, регион предположен по Узкому лабиринту в том же описании."
+    }
+  ],
+  "relations": [],
+  "unconfirmed": [
+    "Wraith King (skeleton_king): в инфобоксе лор-страницы стоит поле heroes, а в заметках сказано о «сродстве», но тип связи не назван. Тип не выбран, связь не записана.",
+    "B'Kor (брат из поля family инфобокса): персонаж, а не герой из heroes.json. В связи не записан.",
+    "Реплики озвучки (Chen, Monkey King, Bane, Batrider, Naga Siren, Crystal Maiden и другие) и Artifact-карточки не являются основанием для связей.",
+    "Akasha в поле names и раса succubus не дают места на схеме."
+  ]
+}

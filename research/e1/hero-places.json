@@ -2073,30 +2073,69 @@
       "links": [
         {
           "place": "Riftshadow Ruins",
-          "event": "origin",
-          "source": "bio"
+          "event": "home",
+          "source": "bio",
+          "note": "Биография описывает его жизнь и ремесло в этих руинах; инфобокс называет их происхождением."
         },
         {
           "place": "Singer's Gulch",
-          "event": "link",
+          "event": "visit",
           "source": "liquipedia",
-          "via": "place"
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Meepo/Lore",
+          "note": "Годами копал там и вытащил гигантский резонирующий кристалл; место не родное, поэтому visit.",
+          "doubt": "Держится только на описаниях предметов набора самого Meepo; в биографии места нет."
+        },
+        {
+          "place": "Bone Ruins",
+          "event": "visit",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Meepo/Lore",
+          "note": "Исследовал руины, добыл ключ от входной арки и выгнал бандитов.",
+          "doubt": "Держится только на описаниях предметов набора самого Meepo; в биографии места нет."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Meepo живёт в Riftshadow Ruins, где даже еду найти трудно, а звери опасны. Он выживает ловушками и смекалкой и раскапывает обломки старого дворца, где когда-то проводили тёмные обряды и раскалывали души. Найденные резные камни и кристаллы Riftshadow он продаёт в городе. С кристаллами он обращается осторожно: они могут взорваться в руках.",
+          "en": "Meepo lives in the Riftshadow Ruins, where food is scarce and the beasts are dangerous. He survives by traps and wits and digs through the remains of an old palace where dark rites once split souls apart. He sells the carvings and Riftshadow crystals he finds in town. He handles the crystals with care, since they can go off in his hands."
+        }
+      }
     },
     "Mirana": {
       "links": [
         {
           "place": "Nightsilver Woods",
-          "event": "home",
-          "source": "bio"
+          "event": "service",
+          "source": "bio",
+          "note": "Родина по полю origins инфобокса лор-страницы; биография описывает её как хранительницу этого леса."
+        },
+        {
+          "place": "Temple of Mene",
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Mirana/Lore",
+          "note": "В лор-тексте она время от времени бывает в храме и там получает видения.",
+          "doubt": "Опора — одна строка лор-страницы; больше о храме в текстах Mirana нет."
         },
         {
           "place": "Solar Throne",
           "event": "origin",
-          "source": "bio"
+          "source": "bio",
+          "note": "Биография называет её первой претенденткой на Лучезарный трон, сама она там не была."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Mirana родилась в королевской семье и была наследницей Solar Throne, но отказалась от земель и титулов, чтобы служить Selemene, богине Луны. С тех пор её зовут Принцессой Луны. Верхом на огромном звере-фамильяре она обходит священные Nightsilver Woods и ловит тех, кто пытается украсть светящийся лотос из прудов богини. Её лук с наконечниками из лунной руды заряжает стрелы светом Луны.",
+          "en": "Mirana was born into a royal family as heir to the Solar Throne, but gave up her lands and titles to serve Selemene, goddess of the Moon. Since then she has been called the Princess of the Moon. Riding a huge feline familiar, she patrols the sacred Nightsilver Woods and hunts anyone who tries to steal the glowing lotus from the goddess's pools. Her bow, tipped with lunar ore, charges its arrows with moonlight."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/mirana.png"
+        ]
+      }
     },
     "Monkey King": {
       "links": [
@@ -2663,14 +2702,42 @@
         {
           "place": "Fields of Endless Carnage",
           "event": "home",
-          "source": "bio"
+          "source": "bio",
+          "note": "Поле origins инфобокса лор-страницы называет это поле боя; по биографии Pudge там и работает ночами. Место лежит в регионе quoidge."
         },
         {
           "place": "Quoidge",
-          "event": "link",
-          "source": "bio"
+          "event": "mention",
+          "source": "bio",
+          "note": "Биография помещает поле боя далеко к югу от Квойджа. Сам Квойдж в тексте не описан, Pudge там не назван бывавшим."
+        },
+        {
+          "place": "Cathedral of Rumusque",
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Pudge/Lore",
+          "note": "Место записано в поле places инфобокса. Лор говорит, что клирики Rumusque выковали Chains of Abscession и позже очистили Fields; сам Pudge в соборе не был.",
+          "doubt": "Инфобокс называет собор, а текст лора говорит о клириках Rumusque в целом; связь с конкретным собором — по инфобоксу."
         }
-      ]
+      ],
+      "relations": [
+        {
+          "hero": "rubick",
+          "type": "rival",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Pudge/Lore",
+          "note": "В разделе Relationships лор-страницы Rubick назван главным соперником Pudge из-за давнего состязания. Зеркально к записи в файле rubick.",
+          "doubt": "Соперничество в тексте лор-страницы без источника (по сути голосование за аркану); дальше — только реплика. Оставлено ради взаимности с rubick.json."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Pudge работает на Fields of Endless Carnage, далеко к югу от Quoidge: ночами он разделывает павших, чтобы к рассвету поле было чистым. В этом проклятом краю ничто не гниёт, и мёртвые не возвращаются в землю. Его клинки становятся острее от работы, а со временем он пристрастился и к мясу, которое режет. Его боятся даже те, кто уже не боится смерти.",
+          "en": "Pudge works the Fields of Endless Carnage, far south of Quoidge, cutting up the fallen through the night so the field is clear by dawn. In that cursed land nothing decays, and the dead never return to the earth. His blades grow sharper the more he uses them, and over time he acquired a taste for the flesh he cuts. Even those who no longer fear death fear him."
+        }
+      }
     },
     "Pugna": {
       "links": [
@@ -2707,30 +2774,52 @@
       "links": [
         {
           "place": "Elze",
-          "event": "link",
-          "source": "bio"
+          "event": "service",
+          "source": "bio",
+          "note": "Короля Эльзе призвали демонологи из его темницы, и она служила ему, связанная рунами; здесь же она вышла на свободу после его гибели. Liquipedia в поле places называет то же место.",
+          "doubt": "Родной план или родина самой сущности в биографиях не названы; Эльзе выбрана как главное место по службе, а не по происхождению."
         },
         {
-          "place": "Weeping Rose",
-          "event": "link",
-          "source": "liquipedia",
-          "via": "place"
+          "region": "hells",
+          "event": "home",
+          "source": "comic:hells-ascension",
+          "note": "По описанию комикса Ascension, до Узкого лабиринта она была при дворе Ристула, сестрой Б'Кора. Двор Ристула на схеме не назван, поэтому указан только регион.",
+          "doubt": "Регион hells выведен по Узкому лабиринту и Ристулу, на схеме такого места нет; сам комикс смотрен только по описанию в media.json, изображения не просматривались."
         }
-      ]
+      ],
+      "relations": [],
+      "profile": {
+        "summary": {
+          "ru": "Queen of Pain, известная как Акаша, — суккуб, которого демонологи призвали для короля Эльзе. Она мучила правителя, но руны держали её в повиновении и сохраняли ему жизнь. Когда его свергли и сбросили с башни, она обрела свободу и с тех пор сама выбирает, кому причинять страдания.",
+          "en": "Queen of Pain, called Akasha, is a succubus summoned by demonologists for the king of Elze. She tormented the ruler while runes kept her bound and kept him alive. After he was overthrown and cast from a tower, she gained her freedom and now picks her own victims."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/queenofpain.png"
+        ]
+      }
     },
     "Razor": {
       "links": [
         {
-          "place": "Narrow Maze",
-          "event": "home",
-          "source": "bio"
+          "place": "Underscape",
+          "event": "mention",
+          "source": "bio",
+          "note": "Лор-страница в поле origins называет Underscape вместе с Narrow Maze; биография говорит, что он один из могущественных обитателей этого мира."
         },
         {
-          "place": "Underscape",
-          "event": "link",
-          "source": "bio"
+          "place": "Narrow Maze",
+          "event": "home",
+          "source": "bio",
+          "note": "Сейчас он патрулирует Узкий лабиринт и следит за душами, которые через него проходят."
         }
-      ]
+      ],
+      "relations": [],
+      "profile": {
+        "summary": {
+          "ru": "Razor — призрак молний из Underscape, Lightning Revenant. Он парит над Узким лабиринтом, где души распределяются по уму, хитрости и упорству, и бьёт их электрической плетью: разряды подгоняют замешкавшихся к свету или к вечной тьме. Холоден и безличен в обращении с властью, но, судя по манерам, службу свою он ведёт с язвительным удовольствием.",
+          "en": "Razor, the Lightning Revenant of the Underscape, hovers over the Narrow Maze, where the dead are sorted by their wits, cunning and persistence. He lashes the souls with an electric whip, and the jolts hurry the hesitant toward light or toward endless darkness. Cold and impersonal in wielding his power, he seems to enjoy the work with a mocking pleasure."
+        }
+      }
     },
     "Riki": {
       "links": [
@@ -2806,14 +2895,41 @@
         {
           "place": "Scintillant Waste",
           "event": "origin",
-          "source": "bio"
+          "source": "bio",
+          "note": "Родина: сам пустынный разум, из которого он вышел, и есть Искрящаяся пустыня"
         },
         {
           "place": "Qaldin",
-          "event": "link",
-          "source": "bio"
+          "event": "mention",
+          "source": "bio",
+          "note": "Здесь связь через джиннов, которые выковали его панцирь"
+        },
+        {
+          "place": "Desert of Misrule",
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Sand_King/Lore",
+          "doubt": "Место есть в инфобоксе, но в описании героя не разобрано, что он там делал; связь держится только на инфобоксе"
+        },
+        {
+          "place": "El'Harath",
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Sand_King/Lore",
+          "doubt": "Только описание предмета набора самого Sand King (Ancient Sovereign); в биографии места нет."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Пески Scintillant Waste живые и разумные: вся пустыня думает сама с собой. Чтобы говорить с теми, кто меньше её, она отделяет часть себя и вселяет её в магический панцирь работы джиннов Qaldin. Эта часть зовёт себя Crixalis, «Душа песка», а другие знают её как Sand King. Его облик огромного паукообразного повторяет мелких жителей пустыни; он её страж, воин и посол.",
+          "en": "The Scintillant Waste is a living, thinking desert whose sands reason among themselves. To speak with smaller beings it sets a fragment of itself free inside a magic carapace made by the Djinn of Qaldin. That fragment calls itself Crixalis, the Soul of the Sand, and others know it as Sand King. His huge arachnid shape echoes the desert's small creatures, and he serves it as guardian, warrior and envoy."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/sand_king.png"
+        ]
+      }
     },
     "Shadow Demon": {
       "links": [
@@ -2899,15 +3015,17 @@
         {
           "place": "Hazhadal Barrens",
           "event": "origin",
-          "source": "bio"
-        },
-        {
-          "place": "Tyler Estate",
-          "event": "link",
-          "source": "liquipedia",
-          "via": "place"
+          "source": "bio",
+          "note": "Нортром вырос в скрытом военном городке на холмах Хажадальских пустошей, где его готовил орден Эол Драйас. Там же позже он одолел своих насмешников и разобрался с местными беззаконниками (бой описан в лоре Liquipedia, это не меняет выбора главного события)."
         }
-      ]
+      ],
+      "relations": [],
+      "profile": {
+        "summary": {
+          "ru": "Nortrom — последний из семи поколений тщательно подобранной родословной ордена Aeol Drias, выведенный стать величайшим магом и оружием против Knights of the Fold. Его растили в скрытом лагере в холмах Hazhadal Barrens, но магия в нём так и не проявилась, и наставники с учениками над ним смеялись. В день испытания он лишил соперников магии и победил их одного за другим. Так он стал чемпионом ордена и исполнил пророчество.",
+          "en": "Nortrom is the last of seven generations of a carefully planned bloodline of the Aeol Drias order, bred to be the greatest mage and a weapon against the Knights of the Fold. He was raised in a hidden camp in the hills of the Hazhadal Barrens, but no magic showed in him, and his teachers and classmates mocked him. On the day of testing he silenced his rivals and beat them one by one. So he became the order's champion and fulfilled the prophecy."
+        }
+      }
     },
     "Skywrath Mage": {
       "links": [
@@ -2968,15 +3086,37 @@
       "links": [
         {
           "place": "Dark Reef",
-          "event": "origin",
-          "source": "bio"
+          "event": "exile",
+          "source": "bio",
+          "note": "Его бросили в Темный риф за неизвестные прегрешения, и он провел там больше половины жизни. Оттуда же он и сбежал.",
+          "doubt": "Liquipedia в инфобоксе ставит Dark Reef как прежнюю родину (formerly), но биография говорит только о заточении; где он родился, не сказано, поэтому выбрано заточение, а не родина."
         },
         {
           "region": "shadeshore",
           "event": "home",
-          "source": "bio"
+          "source": "bio",
+          "note": "Сейчас он прячется в мангровых зарослях на южной оконечности Тенистого взморья.",
+          "doubt": "Биография не называет конкретное место внутри Тенистого взморья; записан регион, а не место на схеме."
         }
-      ]
+      ],
+      "path": [
+        {
+          "place": "Dark Reef"
+        },
+        {
+          "region": "shadeshore"
+        }
+      ],
+      "relations": [],
+      "profile": {
+        "summary": {
+          "ru": "Slark — единственный заключенный, которому удалось сбежать из подводной тюрьмы Темный риф. Большую часть жизни он провел там, никому не доверяя и держа свои планы при себе. Во время неудачного побега тринадцатый участник незаметно скрылся, и теперь он прячется в мангровых зарослях у Тенистого взморья.",
+          "en": "Slark is the only prisoner known to have escaped the sunken jail of Dark Reef. He spent most of his life there trusting no one and keeping his plans to himself. Slipping away unnoticed during a failed breakout, he now hides in the mangroves at the edge of Shadeshore."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/slark.png"
+        ]
+      }
     },
     "Snapfire": {
       "links": [
@@ -3031,46 +3171,34 @@
     "Spectre": {
       "links": [
         {
-          "region": "planes",
+          "region": "uncharted",
           "event": "origin",
-          "source": "liquipedia",
-          "via": "infobox"
-        },
-        {
-          "place": "Ruelands",
-          "event": "link",
-          "source": "liquipedia",
-          "via": "place"
-        },
-        {
-          "place": "Hidden Temple",
-          "event": "link",
-          "source": "liquipedia",
-          "via": "place"
+          "source": "ours",
+          "note": "Биография не называет ни одного места; «теневой план» на лор-странице держится на описании предмета."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Spectre — Меркуриал, существо с неистовой энергией, которое тянет к схваткам в материальном мире. Каждое воплощение стоит ей памяти о себе, но не цели; в бою её облик распадается на призрачные Haunt и снова собирается воедино. После победы или поражения она возвращается в вечную бесплотную форму.",
+          "en": "Spectre is Mercurial, a being of violent energy pulled toward fights in the physical world. Each time she takes a physical form she loses her sense of self but keeps her purpose, and in battle her identity splits into shadowy copies before it reassembles. When the fight ends she slips back into her eternal, unbounded form."
+        }
+      }
     },
     "Spirit Breaker": {
       "links": [
         {
           "place": "Elemental Plane",
-          "event": "origin",
-          "source": "liquipedia",
-          "via": "infobox"
-        },
-        {
-          "place": "Nether Reaches",
-          "event": "link",
-          "source": "liquipedia",
-          "via": "infobox"
-        },
-        {
-          "place": "Ultoria",
-          "event": "link",
-          "source": "liquipedia",
-          "via": "place"
+          "event": "home",
+          "source": "bio",
+          "note": "Родная стихийная реальность Баратрума, откуда он пришёл в материальный мир."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Barathrum — властное стихийное существо из стихийного плана, своего дома. Он перешёл в мир материи, чтобы участвовать в событиях, отзвуки которых дойдут до его плана. Для этого он сам собрал себе тело из черт быка и обезьяны — рога, копыта и руки как знаки силы, скорости и хитрости. Кольцо в носу напоминает ему, что он служит скрытому хозяину.",
+          "en": "Barathrum is a lordly elemental being whose home is the elemental realm. He crossed over into the physical world to join events that will echo back on his own plane. He built himself a body from bull and ape traits, with horns, hooves and hands as signs of strength, speed and cunning. The ring in his nose reminds him that he serves a hidden master."
+        }
+      }
     },
     "Storm Spirit": {
       "links": [
