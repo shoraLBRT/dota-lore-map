@@ -69,7 +69,7 @@ describe('поиск героя и нити', () => {
     expect(document.querySelector('[data-place="cobalt"]')?.getAttribute('class')).toMatch(/mutedMarker/);
 
     const icewrack = placeName(getPlace('icewrack', 'icewrack')!, 'ru');
-    fireEvent.click(within(plaque).getByRole('button', { name: `Закрыть профиль героя, назад: ${icewrack}` }));
+    fireEvent.click(within(plaque).getByRole('button', { name: 'Закрыть профиль' }));
     expect(profile('Crystal Maiden')).toBeNull();
     expect(window.location.hash).toBe('#/r/icewrack/icewrack?hero=crystal_maiden');
     // Под профилем была панель места — она и вернулась.

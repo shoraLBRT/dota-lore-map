@@ -37,7 +37,7 @@ describe('профиль героя', () => {
     expect(document.querySelectorAll('[data-testid="threads"] path[data-thread]').length).toBeGreaterThan(0);
 
     const region = getRegion('icewrack')!.name.ru;
-    fireEvent.click(within(panel).getByRole('button', { name: `Закрыть профиль героя, назад: ${region}` }));
+    fireEvent.click(within(panel).getByRole('button', { name: 'Закрыть профиль' }));
     expect(window.location.hash).toBe('#/r/icewrack?hero=tusk');
     expect(screen.getByRole('heading', { level: 2, name: region })).toHaveFocus();
     // Герой выбран: нити на месте, сверху чип — он открывает профиль снова.
@@ -51,8 +51,13 @@ describe('профиль героя', () => {
     window.location.hash = '#/world?hero=dawnbreaker&profile';
     render(<App />);
     const panel = profile('Dawnbreaker')!;
-    expect(within(panel).getByRole('button', { name: 'Закрыть профиль героя, назад: Мир' })).toBeInTheDocument();
+    expect(within(panel).getByRole('button', { name: 'Закрыть профиль' })).toBeInTheDocument();
     expect(panel).toHaveTextContent(getHero('dawnbreaker')!.profile!.summary!.ru.slice(0, 40));
+    // Места героя — сразу под описанием, выше артов и связей (#95).
+    const order = within(panel)
+      .getAllByRole('heading', { level: 3 })
+      .map((h) => h.textContent);
+    expect(order.slice(0, 3)).toEqual(['Места героя', 'Арты', 'Связан с']);
     const relations = within(panel).getByRole('heading', { name: 'Связан с' }).closest('section')!;
     // Свои связи по типу: родня, любовь, затем враги.
     const names = within(relations)
@@ -115,8 +120,7 @@ describe('профиль героя', () => {
     expect(within(badge).getByRole('button', { name: 'Clear hero selection' })).toBeInTheDocument();
     fireEvent.click(within(badge).getByRole('button', { name: 'Tusk Hero profile' }));
     expect(window.location.hash).toBe('#/r/icewrack/cobalt?hero=tusk&profile');
-    // Крошка профиля называет место под ним.
-    expect(within(profile('Tusk')!).getByRole('button', { name: `Close hero profile, back to ${cobalt}` })).toBeInTheDocument();
+    expect(within(profile('Tusk')!).getByRole('button', { name: 'Close profile' })).toBeInTheDocument();
   });
 
   it('выбран герой, профиль открыт: маркер, крошка и Esc ведут к панели экрана, герой остаётся (A15)', () => {

@@ -1,11 +1,10 @@
 import { fireEvent, render, screen, within } from '@testing-library/react';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { getMedia, getRegion } from '../data/world';
+import { getMedia } from '../data/world';
 import { App } from './App';
 
 // E8 (SPEC §12): переключение языка меняет все тексты без перезагрузки и без потери текущего экрана.
 
-const icewrack = getRegion('icewrack')!;
 const comic = getMedia('icewrack-new-neighbors')!;
 
 describe('переключение языка на лету', () => {
@@ -18,7 +17,7 @@ describe('переключение языка на лету', () => {
     window.location.hash = hash;
     render(<App />);
     expect(screen.getByRole('heading', { level: 2, name: 'Tusk' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: `Закрыть профиль героя, назад: ${icewrack.name.ru}` })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Закрыть профиль' })).toBeInTheDocument();
 
     fireEvent.click(screen.getByRole('button', { name: 'EN' }));
 
@@ -26,7 +25,7 @@ describe('переключение языка на лету', () => {
     expect(document.documentElement.lang).toBe('en');
     expect(document.title).toBe('Dota 2 World');
     expect(screen.getByRole('heading', { level: 2, name: 'Tusk' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: `Close hero profile, back to ${icewrack.name.en}` })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Close profile' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Collapse panel' })).toBeInTheDocument();
     const profile = screen.getByRole('complementary', { name: 'Tusk' });
     expect(within(profile).getByRole('navigation', { name: "Hero's places" })).toBeInTheDocument();

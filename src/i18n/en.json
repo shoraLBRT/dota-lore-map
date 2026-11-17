@@ -91,7 +91,7 @@
   "hero.selected": "Selected hero",
   "hero.clear": "Clear hero selection",
   "hero.openProfile": "{name}: open hero profile",
-  "hero.close": "Close hero profile, back to {name}",
+  "hero.close": "Close profile",
   "hero.arts": "Art",
   "hero.relations": "Connected to",
   "hero.openRelation": "{name}, {type}: open profile",

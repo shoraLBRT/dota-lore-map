@@ -91,7 +91,7 @@
   "hero.selected": "Выбранный герой",
   "hero.clear": "Снять выбор героя",
   "hero.openProfile": "{name}: открыть профиль героя",
-  "hero.close": "Закрыть профиль героя, назад: {name}",
+  "hero.close": "Закрыть профиль",
   "hero.arts": "Арты",
   "hero.relations": "Связан с",
   "hero.openRelation": "{name}, {type}: открыть профиль",
