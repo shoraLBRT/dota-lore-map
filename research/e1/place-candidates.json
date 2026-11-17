@@ -222,6 +222,14 @@
       "source": "liquipedia",
       "url": "https://liquipedia.net/dota2/Kez/Lore",
       "note": "Skywrath (City) — родина по инфобоксу лор-страницы. Регион heavens предположен только по теме небесного города; в кэше источника о местоположении нет. Решение за владельцем (#59)."
+    },
+    {
+      "name": "Court of Ristul",
+      "hero": "queenofpain",
+      "region": "hells",
+      "event": "home",
+      "source": "comic:hells-ascension",
+      "note": "Двор Ристула, при котором Акаша была сестрой Б'Кора; в регионах такого места нет, регион предположен по Узкому лабиринту в том же описании."
     }
   ]
 }

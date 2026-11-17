@@ -71,25 +71,25 @@
 ## 5. Регионы, места и герои
 
 <!-- GENERATED:BEGIN -->
-Регионов: **26**, мест: **172**, героев привязано: **127** из 127, из них в «Неизведанных землях»: **15**.
+Регионов: **26**, мест: **172**, героев привязано: **127** из 127, из них в «Неизведанных землях»: **16**.
 
 ### Сводка по регионам
 
 | Ярус | Регион | Сторона | Мест | Героев |
 |---|---|---|---|---|
-| Верхний ярус | Небеса (The Heavens) | нейтрально (ярус) | 6 | 12 |
-| Верхний ярус | Семь планов и Пустота (The Seven Planes and the Void) | нейтрально (ярус) | 13 | 18 |
+| Верхний ярус | Небеса (The Heavens) | нейтрально (ярус) | 6 | 11 |
+| Верхний ярус | Семь планов и Пустота (The Seven Planes and the Void) | нейтрально (ярус) | 13 | 17 |
 | Материк и острова | Айсрак (Icewrack) | Radiant (карта S1) | 12 | 9 |
 | Материк и острова | Земля Сияющих (Land of the Radiant) | Radiant (карта S1) | 8 | 10 |
 | Материк и острова | Лес Найтсильвер (Nightsilver Woods) | Radiant (карта S1) | 3 | 3 |
 | Материк и острова | Стоунхолл (Stonehall) | Radiant (по схеме E2) | 24 | 5 |
-| Материк и острова | Вольные города (The Free Cities) | Radiant (по схеме E2) | 7 | 9 |
+| Материк и острова | Вольные города (The Free Cities) | Radiant (по схеме E2) | 7 | 7 |
 | Материк и острова | Квойдж и Поля Бойни (Quoidge and the Fields of Carnage) | нейтрально (по схеме E2) | 4 | 3 |
 | Материк и острова | Хазадальские пустоши (Hazhadal Barrens) | нейтрально (по схеме E2) | 2 | 3 |
 | Материк и острова | Друуд (Druud) | Dire (по схеме E2) | 2 | 3 |
 | Материк и острова | Сверкающая пустошь (Scintillant Waste) | Dire (карта S1) | 9 | 6 |
 | Материк и острова | Стонущие горы (Wailing Mountains) | Dire (карта S1) | 6 | 7 |
-| Материк и острова | Тенистый берег (Shadeshore) | Dire (по схеме E2) | 5 | 4 |
+| Материк и острова | Тенистый берег (Shadeshore) | Dire (по схеме E2) | 5 | 3 |
 | Материк и острова | Глубины (The Deep) | Dire (карта S1) | 7 | 5 |
 | Материк и острова | Кладд и острова (Cladd and the Isles) | Radiant (по схеме E2) | 6 | 2 |
 | Материк и острова | Тропические острова (Tropic Isles) | Dire (по схеме E2) | 7 | 3 |
@@ -99,10 +99,10 @@
 | Материк и острова | Феллстрат (Fellstrath) | Dire (по схеме E2) | 6 | 6 |
 | Материк и острова | Томо'кан и Окраины (Tomo'kan and the Outlands) | Dire (по схеме E2) | 6 | 4 |
 | Материк и острова | Империя Костей (Empire of Bone) | Dire (по схеме E2) | 3 | 1 |
-| Материк и острова | Срединные королевства (The Middle Kingdoms) | нейтрально (по схеме E2) | 11 | 13 |
-| Материк и острова | Неизведанные земли (The Uncharted Lands) | нейтрально (по схеме E2) | 0 | 15 |
-| Бездна | Подземье (The Underdark) | нейтрально (ярус) | 4 | 4 |
-| Бездна | Семь Преисподних и загробье (The Seven Hells and the Afterlife) | нейтрально (ярус) | 8 | 13 |
+| Материк и острова | Срединные королевства (The Middle Kingdoms) | нейтрально (по схеме E2) | 11 | 12 |
+| Материк и острова | Неизведанные земли (The Uncharted Lands) | нейтрально (по схеме E2) | 0 | 16 |
+| Бездна | Подземье (The Underdark) | нейтрально (ярус) | 4 | 3 |
+| Бездна | Семь Преисподних и загробье (The Seven Hells and the Afterlife) | нейтрально (ярус) | 8 | 14 |
 
 ### Верхний ярус
 
@@ -119,19 +119,19 @@
 | Selemene's Moon | лор | Luna (упоминание), Night Stalker (упоминание) | вместе с Demon Star |
 | The Sun | лор | Dawnbreaker*, Phoenix* | Children of Light и солнечная кузня (страницы на Liquipedia нет) |
 | Olympus | наше | Zeus | небесная обитель Зевса; страницы на Liquipedia нет |
-| Ultoria | лор | Spirit Breaker (связь)† | небесное тело со своими лунами |
+| Ultoria | лор | — | небесное тело со своими лунами |
 
 #### Семь планов и Пустота · The Seven Planes and the Void
 
 Сторона: **нейтрально** (ярус). Иные планы бытия и измерения вне Terrene Plane (наш мир).
 
-Герои всего региона: Chaos Knight (путь), Elder Titan, Enigma (путь), Io (живёт), Keeper of the Light (путь), Puck, Spectre
+Герои всего региона: Chaos Knight (путь), Elder Titan, Enigma (путь), Io (живёт), Keeper of the Light (путь), Puck
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
 | Fundamental Plane | лор | Chaos Knight, Enigma, Io, Keeper of the Light |  |
 | Primordial Plane | лор | — |  |
-| Elemental Plane | лор | Dragon Knight (упоминание), Spirit Breaker |  |
+| Elemental Plane | лор | Dragon Knight (упоминание), Spirit Breaker (живёт) |  |
 | Astral Plane | лор | Elder Titan (бывал) |  |
 | Fabric of Creation | лор | Weaver |  |
 | Claszureme | лор | Faceless Void, Puck (бывал) | мир вне времени |
@@ -187,8 +187,8 @@
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
-| ★ Nightsilver Woods | лор | Enchantress (бывал), Luna (живёт), Mirana (живёт) |  |
-| Temple of Mene | карта S1 | — |  |
+| ★ Nightsilver Woods | лор | Enchantress (бывал), Luna (живёт), Mirana (служба) |  |
+| Temple of Mene | карта S1 | Mirana (упоминание) |  |
 | Shrine of Selemene | лор | — |  |
 
 #### Стоунхолл · Stonehall
@@ -230,8 +230,8 @@
 |---|---|---|---|
 | ★ White Spire | лор | Monkey King (живёт), Pangolier (бывал) |  |
 | Revtel | лор | Dark Willow, Pangolier (бывал) |  |
-| Weeping Rose | лор | Queen of Pain (связь)† |  |
-| Tyler Estate | лор | Silencer (связь)† | в Weeping Rose |
+| Weeping Rose | лор | — |  |
+| Tyler Estate | лор | — | в Weeping Rose |
 | Sundered Moon | лор | Arc Warden (бывал), Drow Ranger (бывал), Zeus (бывал) | таверна в White Spire |
 | Iron Fog | наше | — |  |
 | Highseat | наше | Bounty Hunter (сражение) |  |
@@ -242,10 +242,10 @@
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
-| ★ Quoidge | лор | Mars (упоминание), Pudge (связь) |  |
+| ★ Quoidge | лор | Mars (упоминание), Pudge (упоминание) |  |
 | Smoke Harbor | лор | — |  |
 | Fields of Endless Carnage | лор | Pudge (живёт) |  |
-| Cathedral of Rumusque | лор | Necrophos (служба) |  |
+| Cathedral of Rumusque | лор | Necrophos (служба), Pudge (упоминание) |  |
 
 #### Хазадальские пустоши · Hazhadal Barrens
 
@@ -272,14 +272,14 @@
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
 | ★ Scintillant Waste | лор | Lina (упоминание), Phoenix (упоминание), Sand King |  |
-| Desert of Misrule | карта S1 | Lina (живёт) |  |
-| Riftshadow Ruins | карта S1 | Meepo |  |
-| Qaldin | лор | Pangolier (бывал), Sand King (связь) |  |
-| El'Harath | лор | — |  |
+| Desert of Misrule | карта S1 | Lina (живёт), Sand King (упоминание) |  |
+| Riftshadow Ruins | карта S1 | Meepo (живёт) |  |
+| Qaldin | лор | Pangolier (бывал), Sand King (упоминание) |  |
+| El'Harath | лор | Sand King (упоминание) |  |
 | The Barrens | лор | — |  |
 | Halgalreh | наше | Templar Assassin (связь)† | руины пустынной империи |
-| Bone Ruins | наше | — |  |
-| Singer's Gulch | наше | Meepo (связь)† |  |
+| Bone Ruins | наше | Meepo (бывал) |  |
+| Singer's Gulch | наше | Meepo (бывал) |  |
 
 #### Стонущие горы · Wailing Mountains
 
@@ -306,7 +306,7 @@
 |---|---|---|---|
 | ★ Shadeshore Ruins | лор | Sven |  |
 | Tidemarsh | лор | — |  |
-| Ruelands | лор | Spectre (связь)†, Techies (связь)† |  |
+| Ruelands | лор | Techies (связь)† |  |
 | Vigil Keep | наше | Sven (связь) |  |
 | Inner Colonnade | наше | — | при Vigil Keep |
 
@@ -318,7 +318,7 @@
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
-| ★ Dark Reef | лор | Slark |  |
+| ★ Dark Reef | лор | Slark (изгнание) |  |
 | Crey | лор | Naga Siren (сражение) |  |
 | Deep Vault | лор | Naga Siren (упоминание), Slardar (живёт) | оно же Sunken Treasury |
 | Coral Breach | лор | Slardar (упоминание) |  |
@@ -375,7 +375,7 @@
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
 | ★ Slom | лор | Beastmaster, Lycan |  |
-| Elze | лор | Queen of Pain (связь) |  |
+| Elze | лор | Queen of Pain (служба) |  |
 | Stone Hills | наше | — |  |
 
 #### Ховен и Нишай · The Hoven and Nishai
@@ -439,7 +439,7 @@
 | Ultimyr Academy | наше | Invoker (сражение), Warlock (живёт) |  |
 | Emauracus | наше | Omniknight |  |
 | Font of Avernus | наше | Abaddon |  |
-| Hidden Temple | наше | Spectre (связь)†, Templar Assassin (живёт), Void Spirit (связь) |  |
+| Hidden Temple | наше | Templar Assassin (живёт), Void Spirit (связь) |  |
 | Hidden Hive | наше | Nyx Assassin |  |
 | Mount Pyrotheos | наше | Broodmother |  |
 | Skirm | наше | Muerta | страницы на Liquipedia нет |
@@ -463,6 +463,7 @@
 | Riki | Родина Riki в биографии не названа: сказано только, что он из династии Tahlin и что его народ предали в ночь гибели царского рода. Liquipedia упоминает безымянную родину с пряностями, но это реплика другого героя, не название места. Поэтому на схеме — Неизведанные земли; кандидата в места нет. |
 | Ringmaster | ни в биографии, ни в лоре на Liquipedia место не названо: история идёт в безымянных городках и в цирке Осберта Кеттла |
 | Rubick | В биографиях dota2.com и на лор-странице Liquipedia нет места рождения, учёбы или жизни героя; поле places инфобокса пусто. Родину не угадываем. |
+| Spectre | Биография не называет ни одного места; «теневой план» на лор-странице держится на описании предмета. |
 | Undying | В биографии и на лор-странице нет ни одного названного места: родина и прежнее имя героя остались неизвестны. Яма Мёртвого бога — не место из regions.json, поэтому записан uncharted. |
 | Ursa | Родина Ulfsaar в биографии не названа: только дикие леса его племени. Darkwoods из инфобокса Liquipedia держится на реплике Ursa и реплике из Artifact, поэтому на схеме — Неизведанные земли. |
 | Witch Doctor | По официальной биографии колдун несколько жизней копил знания в горах острова Arktura. На схеме такого острова нет — он записан кандидатом; пока герой в Неизведанных землях. |
@@ -476,7 +477,7 @@
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
 | ★ Aziyog | лор | Underlord (живёт) |  |
-| Nether Reaches | лор | Pugna, Spirit Breaker (связь), Viper |  |
+| Nether Reaches | лор | Pugna, Viper |  |
 | The Emerald Abyss | лор | — |  |
 | The Underhollow | лор | — |  |
 
@@ -484,7 +485,7 @@
 
 Сторона: **нейтрально** (ярус). Семь слоёв ада, тюрьма Foulfell, путь мёртвых душ (Narrow Maze → Underscape) и загробный мир Nothl.
 
-Герои всего региона: Visage (служба)
+Герои всего региона: Queen of Pain (живёт), Visage (служба)
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
@@ -494,7 +495,7 @@
 | Foulfell | лор | Terrorblade (изгнание) |  |
 | Outer Hells | лор | Warlock (связь) |  |
 | Narrow Maze | лор | Razor (живёт), Visage (служба) |  |
-| Underscape | лор | Muerta (упоминание), Necrophos (упоминание), Razor (связь) |  |
+| Underscape | лор | Muerta (упоминание), Necrophos (упоминание), Razor (упоминание) |  |
 | Nothl Realm | лор | Dazzle (путь), Huskar (гибель) |  |
 
 ### Указатель: герой → места
@@ -562,8 +563,8 @@
 | Marci | весь регион «Неизведанные земли»* |
 | Mars | весь регион «Небеса»; Quoidge (Квойдж и Поля Бойни) (упоминание) |
 | Medusa | весь регион «Неизведанные земли»; Yama Raskav Jungle (Феллстрат) (упоминание) |
-| Meepo | Riftshadow Ruins (Сверкающая пустошь); Singer's Gulch (Сверкающая пустошь) (связь)† |
-| Mirana | Nightsilver Woods (Лес Найтсильвер) (живёт); Solar Throne (Срединные королевства) |
+| Meepo | Riftshadow Ruins (Сверкающая пустошь) (живёт); Singer's Gulch (Сверкающая пустошь) (бывал); Bone Ruins (Сверкающая пустошь) (бывал) |
+| Mirana | Nightsilver Woods (Лес Найтсильвер) (служба); Temple of Mene (Лес Найтсильвер) (упоминание); Solar Throne (Срединные королевства) |
 | Monkey King | White Spire (Вольные города) (живёт) |
 | Morphling | весь регион «Неизведанные земли» |
 | Muerta | Skirm (Срединные королевства); Seven Hells (Семь Преисподних и загробье) (упоминание); Underscape (Семь Преисподних и загробье) (упоминание) |
@@ -582,25 +583,25 @@
 | Phoenix | The Sun (Небеса)*; Scintillant Waste (Сверкающая пустошь) (упоминание); Violet Archives (Земля Сияющих) (упоминание) |
 | Primal Beast | весь регион «Неизведанные земли»; Tomo'kan (Томо'кан и Окраины) (сражение) |
 | Puck | весь регион «Семь планов и Пустота»; Claszureme (Семь планов и Пустота) (бывал) |
-| Pudge | Fields of Endless Carnage (Квойдж и Поля Бойни) (живёт); Quoidge (Квойдж и Поля Бойни) (связь) |
+| Pudge | Fields of Endless Carnage (Квойдж и Поля Бойни) (живёт); Quoidge (Квойдж и Поля Бойни) (упоминание); Cathedral of Rumusque (Квойдж и Поля Бойни) (упоминание) |
 | Pugna | Nether Reaches (Подземье) |
-| Queen of Pain | Elze (Слом и Эльзе) (связь); Weeping Rose (Вольные города) (связь)† |
-| Razor | Narrow Maze (Семь Преисподних и загробье) (живёт); Underscape (Семь Преисподних и загробье) (связь) |
+| Queen of Pain | Elze (Слом и Эльзе) (служба); весь регион «Семь Преисподних и загробье» (живёт) |
+| Razor | Underscape (Семь Преисподних и загробье) (упоминание); Narrow Maze (Семь Преисподних и загробье) (живёт) |
 | Riki | весь регион «Неизведанные земли»* |
 | Ringmaster | весь регион «Неизведанные земли»* |
 | Rubick | весь регион «Неизведанные земли»* |
-| Sand King | Scintillant Waste (Сверкающая пустошь); Qaldin (Сверкающая пустошь) (связь) |
+| Sand King | Scintillant Waste (Сверкающая пустошь); Qaldin (Сверкающая пустошь) (упоминание); Desert of Misrule (Сверкающая пустошь) (упоминание); El'Harath (Сверкающая пустошь) (упоминание) |
 | Shadow Demon | Seven Hells (Семь Преисподних и загробье) |
 | Shadow Fiend | Abysm (Семь Преисподних и загробье); Seven Hells (Семь Преисподних и загробье) (упоминание) |
 | Shadow Shaman | Bleeding Hills (Ховен и Нишай) |
-| Silencer | Hazhadal Barrens (Хазадальские пустоши); Tyler Estate (Вольные города) (связь)† |
+| Silencer | Hazhadal Barrens (Хазадальские пустоши) |
 | Skywrath Mage | Ghastly Eyrie (Небеса) |
 | Slardar | Deep Vault (Глубины) (живёт); Coral Breach (Глубины) (упоминание) |
-| Slark | Dark Reef (Глубины); весь регион «Тенистый берег» (живёт) |
+| Slark | Dark Reef (Глубины) (изгнание); весь регион «Тенистый берег» (живёт) |
 | Snapfire | Nanarak (Томо'кан и Окраины) (живёт); Outlands (Томо'кан и Окраины) (бывал) |
 | Sniper | Knollen (Земля Сияющих) |
-| Spectre | весь регион «Семь планов и Пустота»; Ruelands (Тенистый берег) (связь)†; Hidden Temple (Срединные королевства) (связь)† |
-| Spirit Breaker | Elemental Plane (Семь планов и Пустота); Nether Reaches (Подземье) (связь); Ultoria (Небеса) (связь)† |
+| Spectre | весь регион «Неизведанные земли»* |
+| Spirit Breaker | Elemental Plane (Семь планов и Пустота) (живёт) |
 | Storm Spirit | весь регион «Стонущие горы»; Ruined City (Стонущие горы) (упоминание) |
 | Sven | Shadeshore Ruins (Тенистый берег); Vigil Keep (Тенистый берег) (связь); Feral Road (Стонущие горы) (связь)† |
 | Techies | Dredger's Bight (Земля Сияющих); Ruelands (Тенистый берег) (связь)† |
