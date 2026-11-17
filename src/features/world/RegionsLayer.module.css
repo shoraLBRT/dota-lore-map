@@ -10,8 +10,9 @@
   stroke-width: 3;
 }
 
+/* Рамка открытого региона — цвет его стороны или яруса (SPEC §8.3, #94), не красный акцент. */
 .active.region {
-  stroke: var(--accent);
+  stroke: var(--hl);
   stroke-width: 3;
 }
 

@@ -46,12 +46,13 @@ export function RegionsLayer({ drawn, activeId, inWorld, tip, litId, focusRegion
       <g>
         {drawn.map((r) => {
           const isActive = r.id === activeId;
-          // S2/S3: соседи затемнены и не кликаются, активный регион — «пустое место» карты (SPEC §5.4).
+          // S2/S3: соседи затемнены и не кликаются, активный регион — «пустое место» карты (SPEC §5.4)
+          // в рамке цвета своей стороны или яруса (SPEC §8.3, #94).
           if (!inWorld) {
             return (
               <polygon
                 key={r.id}
-                className={[styles.region, isActive ? styles.active : styles.dimmed].join(' ')}
+                className={[styles.region, isActive ? [styles.active, tones[highlight(r)]].join(' ') : styles.dimmed].join(' ')}
                 points={points(r.layout!.polygon)}
                 fill={biomeColor(r.biome)}
                 aria-hidden="true"

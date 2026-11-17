@@ -64,6 +64,12 @@ describe('контраст WCAG AA (SPEC §14)', () => {
     expect(css('styles/global.css')).toMatch(/:focus-visible\s*\{\s*outline:\s*2px solid var\(--accent-bright\)/);
   });
 
+  // #94: рамка открытого региона — тон стороны или яруса; вокруг неё затемнённые соседи на тёмной подложке.
+  it.each(['--radiant', '--dire', '--neutral', '--upper', '--abyss'])('рамка открытого региона %s — ≥ 3:1 к фонам (WCAG 1.4.11)', (tone) => {
+    for (const bg of backgrounds) expect(contrast(t[tone]!, t[bg]!), `${tone} на ${bg}`).toBeGreaterThanOrEqual(3);
+    expect(css('features/world/RegionsLayer.module.css')).toMatch(/\.active\.region\s*\{\s*stroke:\s*var\(--hl\)/);
+  });
+
   it('тусклый маркер второстепенного места --marker-minor — ≥ 3:1 к фонам (WCAG 1.4.11, #68)', () => {
     for (const bg of backgrounds) expect(contrast(t['--marker-minor']!, t[bg]!), `на ${bg}`).toBeGreaterThanOrEqual(3);
     expect(contrast(t['--marker-event']!, t['--bg-0']!)).toBeGreaterThan(contrast(t['--metal-bright']!, t['--bg-0']!));

@@ -102,6 +102,23 @@ describe('MapStage — наведение на регион (S1h)', () => {
     fireEvent.pointerEnter(document.querySelector('[data-region="a"]')!, { pointerType: 'mouse' });
     expect(screen.queryByRole('tooltip')).toBeNull();
   });
+
+  // #94: рамка открытого региона — тон его стороны или яруса (SPEC §8.3), а не красный акцент.
+  it.each([
+    ['radiant', 'continent', /radiant/],
+    ['dire', 'continent', /dire/],
+    ['neutral', 'continent', /neutral/],
+    ['neutral', 'upper', /upper/],
+    ['neutral', 'abyss', /abyss/],
+  ] as const)('в регионе (S2) у активного региона (%s, %s) — тон стороны или яруса', (side, tier, tone) => {
+    renderStage([{ ...region('a', true), side, tier }, { ...region('b', true), side: 'dire' }], 'a');
+    const active = document.querySelector('[data-region="a"]')!.getAttribute('class')!;
+    expect(active).toMatch(/active/);
+    expect(active).toMatch(tone);
+    for (const other of ['radiant', 'dire', 'neutral', 'upper', 'abyss'].filter((t) => !tone.test(t)))
+      expect(active).not.toMatch(new RegExp(other));
+    expect(document.querySelector('[data-region="b"]')!.getAttribute('class')).not.toMatch(/dire/);
+  });
 });
 
 describe('MapStage', () => {
