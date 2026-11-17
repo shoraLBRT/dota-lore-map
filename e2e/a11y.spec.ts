@@ -32,8 +32,11 @@ const screens: { name: string; hash: string; ready: (page: import('@playwright/t
 ];
 
 for (const screen of screens) {
-  test(`axe: ${screen.name}`, async ({ page, consoleErrors }) => {
+  test(`axe: ${screen.name}`, async ({ page, consoleErrors, browserName }) => {
     void consoleErrors;
+    // Firefox падает (Page crashed) в axe при открытом поле поиска — и до #100, с одной группой героев;
+    // сам поиск в Firefox работает (дымовой сценарий), разметку выдачи проверяют остальные движки.
+    test.skip(browserName === 'firefox' && screen.name === 'поиск', 'axe роняет страницу Firefox при открытом поиске');
     await page.goto(`./${screen.hash}`);
     await screen.ready(page);
     await page.waitForTimeout(1200); // посадка камеры и появление панели
