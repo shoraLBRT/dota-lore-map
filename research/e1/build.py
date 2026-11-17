@@ -1,16 +1,13 @@
-"""Проверка и сборка исследования E1 (модель связей — E14, docs/ARCHITECTURE.md §A3).
+"""Отчёт исследования E1 и проверка кандидатов в места (docs/ARCHITECTURE.md §A3).
 
-Проверяет, что каждый герой из официального списка (heroes.json) привязан к месту
-или региону (герои без места в лоре — к региону `uncharted` с пояснением),
-что все места, регионы, герои и медиа в связях существуют, и формат модели связей:
-тип события, источник, путь героя, связи герой–герой, профиль (hero-places.json),
-кандидаты в места (place-candidates.json). Проверяет алиасы поиска (hero-aliases.json).
-Затем генерирует таблицы в docs/research/E1-places.md (между маркерами).
+Генерирует таблицы в docs/research/E1-places.md (между маркерами) по regions.json и hero-places.json
+и проверяет place-candidates.json. Правила модели связей (hero-places.json, regions.json, алиасы,
+файлы героев E14) проверяет только scripts/build-data.mjs (npm run data; файлы E14 — --check-hero).
 
 Запуск из корня репозитория:  python research/e1/build.py
 Только проверка, без записи:   python research/e1/build.py --check
 
-Функции validate_hero_entry / validate_candidate использует и research/e14/check.py.
+Функцию validate_candidate использует и research/e14/check.py.
 """
 import json
 import re
@@ -35,24 +32,11 @@ EVENTS = {
     "visit": " (бывал)",
     "mention": " (упоминание)",
 }
-# Кем другой герой приходится этому (A3). Значение — обратный тип.
-RELATIONS = {
-    "ally": "ally", "enemy": "enemy", "rival": "rival", "family": "family", "love": "love",
-    "mentor": "student", "student": "mentor", "master": "servant", "servant": "master",
-}
 SOURCES = ("bio", "liquipedia", "ours")       # плюс comic:<id медиа>
 VIA = ("infobox", "lore", "place")            # где на Liquipedia; только у source = liquipedia
-LINK_KEYS = {"place", "region", "event", "source", "via", "url", "note", "doubt"}
-RELATION_KEYS = {"hero", "type", "place", "region", "source", "via", "url", "note", "doubt"}
-ENTRY_KEYS = {"links", "path", "relations", "profile"}
-PROFILE_KEYS = {"summary", "art"}
 CANDIDATE_KEYS = {"name", "hero", "region", "event", "source", "via", "url", "note", "doubt"}
-SUMMARY_MAX = 500
-# Арты профиля — только официальные ссылки Valve (A6).
-VALVE_ART = re.compile(r"^https://(www\.dota2\.com|([a-z0-9-]+\.)*steamstatic\.com|steamcdn-a\.akamaihd\.net)/\S+$")
 LIQUIPEDIA_URL = re.compile(r"^https://liquipedia\.net/dota2/\S+$")
 HTTPS = re.compile(r"^https://[^\s/]+\.[^\s]+$")
-CYRILLIC = re.compile(r"[А-Яа-яЁё]")
 
 PLACEMENT = {"lore": "лор", "s1map": "карта S1", "ours": "наше"}
 SIDE = {"radiant": "Radiant", "dire": "Dire", "neutral": "нейтрально"}
@@ -115,25 +99,6 @@ def check_source(rec, where, ctx, errors, strict=False):
             errors.append(f"{where}: {key} — непустая строка")
 
 
-def spot_of(rec, where, ctx, errors, required=True):
-    """Ровно одно из place / region → ключ места героя ('place:<name>' | 'region:<id>') или None."""
-    has_place, has_region = "place" in rec, "region" in rec
-    if has_place and has_region or required and not (has_place or has_region):
-        errors.append(f"{where}: нужно ровно одно из place/region")
-        return None
-    if has_place:
-        if rec["place"] not in ctx.loc_region:
-            errors.append(f"{where}: неизвестное место {rec['place']}")
-            return None
-        return "place:" + rec["place"]
-    if has_region:
-        if rec["region"] not in ctx.region_ids:
-            errors.append(f"{where}: неизвестный регион {rec['region']}")
-            return None
-        return "region:" + rec["region"]
-    return None
-
-
 def unknown_keys(rec, allowed, where, errors):
     if not isinstance(rec, dict):
         errors.append(f"{where}: ожидается объект")
@@ -141,101 +106,6 @@ def unknown_keys(rec, allowed, where, errors):
     for k in sorted(set(rec) - allowed):
         errors.append(f"{where}: неизвестный ключ {k}")
     return False
-
-
-def check_localized(value, where, errors, limit=None):
-    if not isinstance(value, dict) or set(value) != {"ru", "en"} or not all(is_text(value[k]) for k in ("ru", "en")):
-        errors.append(f"{where}: нужен объект {{ ru, en }} с непустыми строками")
-        return
-    if CYRILLIC.search(value["en"]):
-        errors.append(f"{where}: в en кириллица — текст не переведён?")
-    if limit:
-        for lang in ("ru", "en"):
-            if len(value[lang]) > limit:
-                errors.append(f"{where}.{lang}: длиннее {limit} знаков — нужно короткое описание")
-
-
-def validate_hero_entry(hero, entry, ctx, strict=False):
-    """Запись героя модели связей: { links, path?, relations?, profile? }.
-    hero — имя или ключ для сообщений; strict — файл героя E14 (у Liquipedia нужна url, у ours — note)."""
-    errors = []
-    if unknown_keys(entry, ENTRY_KEYS | ({"hero", "read", "candidates", "unconfirmed"} if strict else set()),
-                    hero, errors):
-        return errors
-    links = entry.get("links")
-    spots = {}
-    if not isinstance(links, list) or not links:
-        errors.append(f"{hero}: пустой список мест links")
-        links = []
-    for i, link in enumerate(links):
-        w = f"{hero}: links[{i}]"
-        if unknown_keys(link, LINK_KEYS, w, errors):
-            continue
-        if link.get("event") not in EVENTS:
-            errors.append(f"{w}: event — {' | '.join(EVENTS)}, а не {link.get('event')!r}")
-        check_source(link, w, ctx, errors, strict)
-        spot = spot_of(link, w, ctx, errors)
-        if spot in spots:
-            errors.append(f"{w}: место {spot.split(':', 1)[1]} уже есть в links — одно место, одна связь")
-        if spot:
-            spots[spot] = link.get("event")
-        if link.get("region") == "uncharted" and not link.get("note"):
-            errors.append(f"{w}: у героя «Неизведанных земель» нужна заметка note")
-
-    path = entry.get("path")
-    if path is not None:
-        if not isinstance(path, list) or len(path) < 2:
-            errors.append(f"{hero}: path — список из 2 и больше остановок")
-        else:
-            prev = None
-            for i, stop in enumerate(path):
-                w = f"{hero}: path[{i}]"
-                if unknown_keys(stop, {"place", "region"}, w, errors):
-                    continue
-                spot = spot_of(stop, w, ctx, errors)
-                if spot and spot not in spots:
-                    errors.append(f"{w}: остановки {spot.split(':', 1)[1]} нет в links героя")
-                elif spot and spots[spot] == "mention":
-                    errors.append(f"{w}: {spot.split(':', 1)[1]} только упомянуто (mention) — в путь не входит")
-                if spot and spot == prev:
-                    errors.append(f"{w}: остановка повторяет предыдущую")
-                prev = spot
-
-    relations = entry.get("relations")
-    if relations is not None:
-        if not isinstance(relations, list):
-            errors.append(f"{hero}: relations — список")
-            relations = []
-        seen = set()
-        for i, rel in enumerate(relations):
-            w = f"{hero}: relations[{i}]"
-            if unknown_keys(rel, RELATION_KEYS, w, errors):
-                continue
-            if rel.get("hero") not in ctx.hero_keys:
-                errors.append(f"{w}: неизвестный герой {rel.get('hero')!r} (нужен key из heroes.json)")
-            if rel.get("type") not in RELATIONS:
-                errors.append(f"{w}: type — {' | '.join(RELATIONS)}, а не {rel.get('type')!r}")
-            if (rel.get("hero"), rel.get("type")) in seen:
-                errors.append(f"{w}: связь {rel.get('hero')} / {rel.get('type')} повторяется")
-            seen.add((rel.get("hero"), rel.get("type")))
-            check_source(rel, w, ctx, errors, strict)
-            spot_of(rel, w, ctx, errors, required=False)
-
-    profile = entry.get("profile")
-    if profile is not None and not unknown_keys(profile, PROFILE_KEYS, f"{hero}: profile", errors):
-        if "summary" in profile:
-            check_localized(profile["summary"], f"{hero}: profile.summary", errors, SUMMARY_MAX)
-        art = profile.get("art")
-        if art is not None:
-            if not isinstance(art, list) or not art:
-                errors.append(f"{hero}: profile.art — непустой список ссылок")
-            else:
-                for a in art:
-                    if not isinstance(a, str) or not VALVE_ART.match(a):
-                        errors.append(f"{hero}: profile.art — только официальные ссылки Valve (A6): {a!r}")
-                if len(set(art)) != len(art):
-                    errors.append(f"{hero}: profile.art — ссылка повторяется")
-    return errors
 
 
 def validate_candidate(cand, where, ctx):
@@ -257,58 +127,9 @@ def validate_candidate(cand, where, ctx):
     return errors
 
 
-def validate_relations_pairs(entries, key_of):
-    """Противоречие между двумя героями: оба называют друг друга наставником (хозяином)."""
-    errors = []
-    types = {}
-    for hero, entry in entries.items():
-        for rel in entry.get("relations") or []:
-            types.setdefault((key_of[hero], rel.get("hero")), set()).add(rel.get("type"))
-    for (a, b), ts in sorted(types.items(), key=lambda kv: kv[0]):
-        if a < b:
-            for t in sorted(ts & types.get((b, a), set())):
-                if RELATIONS.get(t) != t:
-                    errors.append(f"связи {a} и {b}: оба называют друг друга {t} — у одного должно быть {RELATIONS[t]}")
-    return errors
-
-
-def validate(heroes, regions, places, candidates=None, media=None):
-    errors = []
-    official = {h["name"] for h in heroes["heroes"]}
-    placed, unplaced = set(places["heroes"]), set(places.get("unplaced", {}))
-    for name in sorted(official - placed - unplaced):
-        errors.append(f"герой не распределён: {name}")
-    for name in sorted((placed | unplaced) - official):
-        errors.append(f"нет в официальном списке: {name}")
-    for name in sorted(placed & unplaced):
-        errors.append(f"герой и привязан, и в unplaced: {name}")
-
-    loc_region = {}
-    for r in regions["regions"]:
-        if r["tier"] not in TIER or r["side"] not in SIDE:
-            errors.append(f"регион {r['id']}: неверный tier/side")
-        if r.get("sideBasis") not in SIDE_BASIS:
-            errors.append(f"регион {r['id']}: неверный sideBasis")
-        elif (r["tier"] != "continent") != (r["sideBasis"] == "tier"):
-            errors.append(f"регион {r['id']}: sideBasis «tier» — только у ярусов, и у ярусов — только он")
-        elif r["sideBasis"] == "tier" and r["side"] != "neutral":
-            errors.append(f"регион {r['id']}: ярус должен быть нейтральным")
-        if sum(1 for l in r["locations"] if l.get("capital")) > 1:
-            errors.append(f"регион {r['id']}: больше одной столицы")
-        for l in r["locations"]:
-            if l["name"] in loc_region:
-                errors.append(f"место в двух регионах: {l['name']}")
-            if l["placement"] not in PLACEMENT:
-                errors.append(f"место {l['name']}: неверный placement")
-            loc_region[l["name"]] = r["id"]
-
-    ctx = Ctx(heroes, regions, media if media is not None else media_ids())
-    for hero, entry in places["heroes"].items():
-        errors += validate_hero_entry(hero, entry, ctx)
-    key_of = {h["name"]: h["key"] for h in heroes["heroes"]}
-    errors += validate_relations_pairs({h: e for h, e in places["heroes"].items() if h in key_of}, key_of)
-
-    seen = set()
+def validate_candidates(candidates, ctx):
+    """place-candidates.json: каждый кандидат по правилам validate_candidate, с героем, без повторов."""
+    errors, seen = [], set()
     for i, cand in enumerate((candidates or {}).get("candidates", [])):
         where = f"place-candidates.json: candidates[{i}]"
         errors += validate_candidate(cand, where, ctx)
@@ -318,43 +139,7 @@ def validate(heroes, regions, places, candidates=None, media=None):
         if k in seen:
             errors.append(f"{where}: {cand.get('name')} у {cand.get('hero')} уже записан")
         seen.add(k)
-    return errors, loc_region
-
-
-def norm_alias(s):
-    """Ключ сравнения алиасов: регистр, ё/е и лишние пробелы не важны (как в поиске)."""
-    return " ".join(s.lower().replace("ё", "е").split())
-
-
-def validate_aliases(heroes, aliases):
-    """Ошибки: неизвестный герой, не список, пустая строка, повтор внутри героя или совпадение с именем.
-    Предупреждение: один и тот же алиас у двух героев."""
-    errors, warnings = [], []
-    names = {h["key"]: h["name"] for h in heroes["heroes"]}
-    owners = {}
-    for key, items in aliases.get("aliases", {}).items():
-        if key not in names:
-            errors.append(f"алиасы: неизвестный герой {key}")
-            continue
-        if not isinstance(items, list):
-            errors.append(f"алиасы {key}: ожидается список строк")
-            continue
-        seen = set()
-        for a in items:
-            if not isinstance(a, str) or not a.strip():
-                errors.append(f"алиасы {key}: пустой алиас")
-                continue
-            n = norm_alias(a)
-            if n in seen:
-                errors.append(f"алиасы {key}: повтор «{a}»")
-            elif n == norm_alias(names[key]):
-                errors.append(f"алиасы {key}: «{a}» совпадает с именем героя")
-            seen.add(n)
-            owners.setdefault(n, set()).add(key)
-    for n, keys in sorted(owners.items()):
-        if len(keys) > 1:
-            warnings.append(f"алиас «{n}» у нескольких героев: {', '.join(sorted(keys))}")
-    return errors, warnings
+    return errors
 
 
 def mark(link):
@@ -457,24 +242,19 @@ def main():
     sys.stdout.reconfigure(encoding="utf-8")
     heroes, regions, places = load("heroes.json"), load("regions.json"), load("hero-places.json")
     candidates = load_optional(HERE / "place-candidates.json", {"candidates": []})
-    errors, loc_region = validate(heroes, regions, places, candidates)
-    aliases = load("hero-aliases.json")
-    alias_errors, alias_warnings = validate_aliases(heroes, aliases)
-    errors += alias_errors
-    for w in alias_warnings:
-        print(f"ПРЕДУПРЕЖДЕНИЕ: {w}")
+    ctx = Ctx(heroes, regions, media_ids())
+    errors = validate_candidates(candidates, ctx)
     if errors:
         print("ОШИБКИ:\n" + "\n".join(f"  - {e}" for e in errors))
         sys.exit(1)
     print(f"OK: {len(places['heroes'])} из {len(heroes['heroes'])} героев привязаны; "
-          f"{len(loc_region)} мест в {len(regions['regions'])} регионах; "
-          f"алиасы у {len(aliases['aliases'])} героев; {summary(places, candidates)}")
+          f"{len(ctx.loc_region)} мест в {len(regions['regions'])} регионах; {summary(places, candidates)}")
     if "--check" in sys.argv:
         return
     doc = DOC.read_text(encoding="utf-8")
     head, rest = doc.split(BEGIN, 1)
     _, tail = rest.split(END, 1)
-    DOC.write_text(head + BEGIN + "\n" + render(heroes, regions, places, loc_region) + END + tail,
+    DOC.write_text(head + BEGIN + "\n" + render(heroes, regions, places, ctx.loc_region) + END + tail,
                    encoding="utf-8")
     print(f"обновлено: {DOC.relative_to(ROOT)}")
 

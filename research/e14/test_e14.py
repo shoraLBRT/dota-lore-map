@@ -1,9 +1,11 @@
-"""Тесты модели связей E14: research/e1/build.py, research/e14/check.py, research/e14/fetch.py (без сети).
+"""Тесты E14: research/e14/check.py (модель связей — через scripts/build-data.mjs), research/e1/build.py
+(отчёт и кандидаты), research/e14/fetch.py (без сети). Нужен node.
 
 Запуск из корня репозитория: python research/e14/test_e14.py   (входит в npm run check)
 """
 import copy
 import json
+import re
 import sys
 import tempfile
 import unittest
@@ -32,6 +34,30 @@ REGIONS = {"regions": [
      "en": "Uncharted", "geo": "", "locations": []},
 ]}
 MEDIA = {"ice-comic"}
+MEDIA_JSON = {"media": [{"id": "ice-comic", "type": "image", "src": "https://cdn.steamstatic.com/x.jpg",
+                         "title": {"ru": "Комикс", "en": "Comic"},
+                         "subtitle": {"ru": "Выпуск", "en": "Issue"}, "credit": "Valve Corporation",
+                         "sourceUrl": "https://www.dota2.com/comics/x"}]}
+FIXTURE = None  # корень с данными-образцами для build-data.mjs --root (setUpModule)
+
+
+def setUpModule():
+    global FIXTURE
+    FIXTURE = tempfile.TemporaryDirectory()
+    root = Path(FIXTURE.name)
+    (root / "research" / "e1").mkdir(parents=True)
+    (root / "content").mkdir()
+    for name, data in (("heroes.json", HEROES), ("regions.json", REGIONS), ("hero-places.json", places())):
+        (root / "research" / "e1" / name).write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+    (root / "content" / "media.json").write_text(json.dumps(MEDIA_JSON), encoding="utf-8")
+
+
+def tearDownModule():
+    FIXTURE.cleanup()
+
+
+def root():
+    return Path(FIXTURE.name)
 L = {"ru": "Короткий рассказ о герое.", "en": "A short note about the hero."}
 
 
@@ -66,18 +92,27 @@ def hero_file():
     }
 
 
+def merged(p, candidates=None):
+    return check.merged_errors(p, candidates or {"candidates": []}, ctx(), root())
+
+
 def errors_of(entry, strict=False):
-    return "\n".join(build.validate_hero_entry("X", entry, ctx(), strict))
+    """strict — как файл героя E14 (build-data.mjs --check-hero), иначе — как запись hero-places.json."""
+    if strict:
+        return "\n".join(check.model_errors({"x": entry}, root()))
+    p = places()
+    p["heroes"]["Witch Doctor"] = entry
+    return "\n".join(merged(p))
 
 
 class HeroEntry(unittest.TestCase):
     def test_migrated_shape_is_valid(self):
-        errors, _ = build.validate(HEROES, REGIONS, places(), {"candidates": []}, MEDIA)
-        self.assertEqual(errors, [])
+        self.assertEqual(merged(places()), [])
 
     def test_full_entry_is_valid(self):
         entry = check.entry_of(hero_file())
-        self.assertEqual(build.validate_hero_entry("X", entry, ctx()), [])
+        self.assertEqual(errors_of(entry), "")
+        self.assertEqual(check.model_errors({"witch_doctor": hero_file()}, root()), [])
 
     def test_errors(self):
         base = {"links": [{"place": "Icewrack", "event": "home", "source": "bio"}]}
@@ -125,15 +160,15 @@ class HeroEntry(unittest.TestCase):
         p = places()
         p["heroes"]["Lina"]["relations"] = [{"hero": "crystal_maiden", "type": "mentor", "source": "ours"}]
         p["heroes"]["Crystal Maiden"]["relations"] = [{"hero": "lina", "type": "mentor", "source": "ours"}]
-        errors, _ = build.validate(HEROES, REGIONS, p, None, MEDIA)
+        errors = merged(p)
         self.assertEqual(len(errors), 1)
         self.assertIn("student", errors[0])
         p["heroes"]["Crystal Maiden"]["relations"][0]["type"] = "student"
-        self.assertEqual(build.validate(HEROES, REGIONS, p, None, MEDIA)[0], [])
+        self.assertEqual(merged(p), [])
 
     def test_candidates(self):
         good = {"name": "Arktura", "hero": "witch_doctor", "region": "uncharted", "event": "origin", "source": "bio"}
-        self.assertEqual(build.validate(HEROES, REGIONS, places(), {"candidates": [good]}, MEDIA)[0], [])
+        self.assertEqual(build.validate_candidates({"candidates": [good]}, ctx()), [])
         cases = [
             ({**good, "name": "blueheart  glacier"}, "уже есть на схеме"),
             ({**good, "region": "atlantis"}, "region"),
@@ -143,9 +178,9 @@ class HeroEntry(unittest.TestCase):
         ]
         for cand, message in cases:
             with self.subTest(message=message):
-                errors, _ = build.validate(HEROES, REGIONS, places(), {"candidates": [cand]}, MEDIA)
+                errors = build.validate_candidates({"candidates": [cand]}, ctx())
                 self.assertIn(message, "\n".join(errors))
-        errors, _ = build.validate(HEROES, REGIONS, places(), {"candidates": [good, good]}, MEDIA)
+        errors = build.validate_candidates({"candidates": [good, good]}, ctx())
         self.assertIn("уже записан", "\n".join(errors))
 
     def test_render_marks_match_e1(self):
@@ -164,7 +199,7 @@ class HeroFile(unittest.TestCase):
         self.tmp.cleanup()
 
     def errors(self, data, key="witch_doctor"):
-        return "\n".join(check.check_hero_file(key, data, ctx(), self.cache))
+        return "\n".join(check.check_hero_file(key, data, ctx(), self.cache, root=root()))
 
     def test_valid_file(self):
         self.assertEqual(self.errors(hero_file()), "")
@@ -215,19 +250,26 @@ class HeroFile(unittest.TestCase):
         self.assertEqual([c["name"] for c in new_c["candidates"]], ["Keep", "Arktura"])
         self.assertEqual(new_c["candidates"][1]["hero"], "witch_doctor")
         self.assertEqual(new_c["note"], "n")
-        self.assertEqual(build.validate(HEROES, REGIONS, new_p, new_c, MEDIA)[0], [])
+        self.assertEqual(merged(new_p, new_c), [])
         self.assertEqual(p, places(), "вход не меняется")
 
     def test_template_documents_every_field(self):
         t = json.loads((HERE / "template.json").read_text(encoding="utf-8"))
         self.assertEqual(set(t), set(check.ENTRY) | {"hero", "read", "candidates", "unconfirmed"})
-        self.assertEqual(set().union(*(set(l) for l in t["links"])), build.LINK_KEYS)
+        self.assertEqual(set().union(*(set(l) for l in t["links"])), js_list("LINK_KEYS"))
         self.assertEqual(set().union(*(set(r) for r in t["relations"])) | {"region", "via", "url"},
-                         build.RELATION_KEYS)
-        self.assertEqual(set(t["profile"]), build.PROFILE_KEYS)
+                         js_list("RELATION_KEYS"))
+        self.assertEqual(set(t["profile"]), {"summary", "art"})
         self.assertEqual(set(t["read"]), set(check.READ))
         for link in t["links"]:
-            self.assertIn(link["event"], build.EVENTS)
+            self.assertIn(link["event"], js_list("EVENTS"))
+        self.assertEqual(set(build.EVENTS), js_list("EVENTS"), "пометки отчёта E1 — для каждого типа события")
+
+
+def js_list(name):
+    """Список-константа из scripts/build-data.mjs — правила модели связей живут там (A3)."""
+    m = re.search(rf"const {name} = \[([^\]]*)\]", check.BUILD_DATA.read_text(encoding="utf-8"))
+    return set(re.findall(r"'([^']+)'", m.group(1)))
 
 
 class Fetch(unittest.TestCase):
@@ -256,8 +298,7 @@ class RepoData(unittest.TestCase):
     def test_repository_data_valid(self):
         heroes, regions, p = build.load("heroes.json"), build.load("regions.json"), build.load("hero-places.json")
         cands = build.load_optional(build.HERE / "place-candidates.json", {"candidates": []})
-        errors, _ = build.validate(heroes, regions, p, cands)
-        self.assertEqual(errors, [])
+        self.assertEqual(check.merged_errors(p, cands, build.Ctx(heroes, regions, build.media_ids())), [])
         for name, entry in p["heroes"].items():
             for link in entry["links"]:
                 self.assertNotIn("role", link, name)

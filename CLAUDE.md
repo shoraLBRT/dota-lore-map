@@ -36,6 +36,6 @@
 - `npm run e2e` — Playwright: дымовой сценарий и axe в Chromium, Firefox, WebKit и на телефоне (в `check` не входит; браузеры — `npx playwright install chromium firefox webkit`). Один проект — `npx playwright test --project=firefox`.
 - `npm run shot -- <адрес> [ШxВ]` — снимок экрана в `e2e/shots/`.
 - Тесты одного файла: `npx vitest run src/features/world/labels.test.ts` — во время работы гонять их, а не весь `check`.
-- `python research/e1/build.py` — проверить данные исследования и перегенерировать `docs/research/E1-places.md`.
+- `python research/e1/build.py` — перегенерировать `docs/research/E1-places.md` и проверить `place-candidates.json` (правила модели — в `npm run data`).
 - `node map/check-layout.mjs` — геометрия `map/layout.json`; `node map/render-schema.mjs` — перерисовать `docs/map/schema.svg`.
 - E14: `python research/e14/fetch.py <key>…`, `python research/e14/check.py [--merge] <key>…`.
