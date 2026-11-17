@@ -1,0 +1,71 @@
+{
+  "hero": "slark",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore"],
+  "links": [
+    {
+      "place": "Dark Reef",
+      "event": "exile",
+      "source": "bio",
+      "note": "Его бросили в Темный риф за неизвестные прегрешения, и он провел там больше половины жизни. Оттуда же он и сбежал.",
+      "doubt": "Liquipedia в инфобоксе ставит Dark Reef как прежнюю родину (formerly), но биография говорит только о заточении; где он родился, не сказано, поэтому выбрано заточение, а не родина."
+    },
+    {
+      "region": "shadeshore",
+      "event": "home",
+      "source": "bio",
+      "note": "Сейчас он прячется в мангровых зарослях на южной оконечности Тенистого взморья.",
+      "doubt": "Биография не называет конкретное место внутри Тенистого взморья; записан регион, а не место на схеме."
+    }
+  ],
+  "path": [
+    { "place": "Dark Reef" },
+    { "region": "shadeshore" }
+  ],
+  "relations": [
+    {
+      "hero": "drow_ranger",
+      "type": "ally",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Slark/Lore",
+      "note": "Drow Ranger стоит в поле heroes инфобокса лор-страницы Slark; лор говорит, что у Slark может быть особая связь с Traxex и Pudge. Это подтверждает связь с обратной стороны.",
+      "doubt": "Тип не назван ни в инфобоксе, ни в тексте; ally выбран условно, как в файле drow_ranger. Упоминание в тексте опирается на реплику озвучки, поэтому основанием считается только инфобокс."
+    },
+    {
+      "hero": "pudge",
+      "type": "ally",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Slark/Lore",
+      "note": "Pudge стоит в поле heroes инфобокса лор-страницы Slark; та же «возможная» особая связь, что и с Drow Ranger.",
+      "doubt": "Тип не назван; ally выбран условно. Реплика озвучки, на которую ссылается текст, основанием не считается."
+    },
+    {
+      "hero": "naga_siren",
+      "type": "ally",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Slark/Lore",
+      "note": "Naga Siren стоит в поле heroes инфобокса лор-страницы Slark.",
+      "doubt": "Тип не назван. Лор-страница пишет только, что Slark знает Slithice (Naga Siren) и что-то о её пении; из знакомства тип не выводится, поэтому ally условно. Реплика озвучки и описание предмета основанием не считаются."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Slark — единственный заключенный, которому удалось сбежать из подводной тюрьмы Темный риф. Большую часть жизни он провел там, никому не доверяя и держа свои планы при себе. Во время неудачного побега тринадцатый участник незаметно скрылся, и теперь он прячется в мангровых зарослях у Тенистого взморья.",
+      "en": "Slark is the only prisoner known to have escaped the sunken jail of Dark Reef. He spent most of his life there trusting no one and keeping his plans to himself. Slipping away unnoticed during a failed breakout, he now hides in the mangroves at the edge of Shadeshore."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/slark.png"
+    ]
+  },
+  "unconfirmed": [
+    "Crey: биография и лор-страница упоминают визиты в подпольные гроты Crey (азартные игры и бои на арене), но этот текст опирается только на описание предмета Kindred of the Umizar Crawler. Описание предмета основанием связи не считается, поэтому связь не записана.",
+    "Dark Reef Escape: сноска о том, что Slark, возможно, сбежал, замаскировавшись под акулу, — статьи о побеге в прочитанных источниках нет, связь не записана.",
+    "Родина: по биографии место рождения не названо. Инфобокс ставит Dark Reef как прежнюю родину, но это не подтверждено биографией (см. doubt к Dark Reef).",
+    "Реплики озвучки (ссора с Naga Siren, фин-рот, наставник из Slithereen в Dark Reef, сокамерник, которого он съел, и др.) и фраза про Dark Pact — не основания для записи связей и мест.",
+    "Тип связи с Pudge, Drow Ranger и Naga Siren не назван в источниках; записан ally условно (см. doubt у каждой связи).",
+    "Dark Ones, Deep Ones, Meranths, Slithereen, Daggerfish, Umizar, Glow Conch и Skadi — фракции, расы, виды и боги, не места; на карту не добавлены.",
+    "Миссия в Dota 2 X Monster Hunter (Hero Atlas) и Slark/Old Abilities не читались, поскольку биография и лор-страница их не пересказывают."
+  ]
+}

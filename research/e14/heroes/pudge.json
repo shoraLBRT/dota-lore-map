@@ -1,0 +1,87 @@
+{
+  "hero": "pudge",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore"],
+  "links": [
+    {
+      "place": "Fields of Endless Carnage",
+      "event": "origin",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Pudge/Lore",
+      "note": "Поле origins инфобокса лор-страницы называет это поле боя; по биографии Pudge там и работает ночами. Место лежит в регионе quoidge."
+    },
+    {
+      "place": "Quoidge",
+      "event": "mention",
+      "source": "bio",
+      "note": "Биография помещает поле боя далеко к югу от Квойджа. Сам Квойдж в тексте не описан, Pudge там не назван бывавшим."
+    },
+    {
+      "place": "Cathedral of Rumusque",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Pudge/Lore",
+      "note": "Место записано в поле places инфобокса. Лор говорит, что клирики Rumusque выковали Chains of Abscession и позже очистили Fields; сам Pudge в соборе не был.",
+      "doubt": "Инфобокс называет собор, а текст лора говорит о клириках Rumusque в целом; связь с конкретным собором — по инфобоксу."
+    },
+    {
+      "place": "Weeping Rose",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Pudge/Lore",
+      "note": "Энчантер из Weeping Rose добыл сущность Pudge, из которой позже ожила кукла The Toy Butcher. Сам Pudge там не был."
+    },
+    {
+      "place": "Krimwohl",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Pudge/Lore",
+      "note": "В разделе The Toy Butcher кукла Pudge оживает в поместье Krimwohl. Сам Pudge там не был, место упомянуто в истории куклы.",
+      "doubt": "Основание — раздел лор-страницы с пересказом монологов куклы, не сама реплика; место в данных сейчас только как упоминание."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "drow_ranger",
+      "type": "ally",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Pudge/Lore",
+      "note": "Drow Ranger стоит в поле heroes инфобокса лор-страницы; зеркально к записи в файле drow_ranger.",
+      "doubt": "Тип не назван ни в инфобоксе, ни в тексте; ally выбран условно, как и в файле drow_ranger. Фраза о «возможной особой связи» держится на реплике Dark Willow и не учтена как основание."
+    },
+    {
+      "hero": "slark",
+      "type": "ally",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Pudge/Lore",
+      "note": "Slark стоит в поле heroes инфобокса лор-страницы; зеркально к записи в файле drow_ranger.",
+      "doubt": "Тип не назван; ally выбран условно, как и для Drow Ranger."
+    },
+    {
+      "hero": "rubick",
+      "type": "rival",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Pudge/Lore",
+      "note": "В разделе Relationships лор-страницы Rubick назван главным соперником Pudge из-за давнего состязания. Зеркально к записи в файле rubick."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Pudge — мясник с полей Вечной бойни. Ночами он разделывает павших, чтобы к рассвету поле было чисто. В этом проклятом мире ничего не гниёт, поэтому он сыт и не знает конца работе. Его клинки становятся острее при каждом использовании, а Chains of Abscession живут собственной волей, и Pudge не собирается их возвращать.",
+      "en": "Pudge is a butcher on the Fields of Endless Carnage who works through the night, clearing the dead before dawn. Nothing rots in that cursed land, so he never runs out of meat or work. His blades sharpen with use, and the Chains of Abscession he took keep a will of their own."
+    }
+  },
+  "unconfirmed": [
+    "Место изгнания Pudge и место, где он нашёл Chains of Abscession, в источниках не названо: есть только описание мира, полного мёртвых.",
+    "Королевство короля Brandalon, при котором Pudge служил королевским мясником, не названо; персонаж в инфобоксе без места.",
+    "Plains of Ceaseless Torment, River of Woe и Shuddering Forest стоят в поле places инфобокса, но в тексте лора не описаны и в regions.json не найдены. Связь и кандидат не записаны: регион не определить по источникам.",
+    "Bane, Riki и Underlord упомянуты в репликах озвучки и разделе Relationships; основание только реплики, связи не записаны.",
+    "Lady Onshu и Dead God указаны как персонажи и боги, не герои: на связь героя не переводятся, на карте не отмечены."
+  ]
+}

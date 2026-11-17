@@ -1,0 +1,30 @@
+{
+  "hero": "spectre",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "region": "planes",
+      "event": "origin",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Spectre/Lore",
+      "note": "Родной план Меркуриал, откуда приходит её энергия; конкретного места в биографии нет.",
+      "doubt": "Биография родной план не называет. «Shadow realm» есть в тексте лор-страницы, но опирается на описание предмета; регион «planes» — наше соответствие «Seven Planes» из инфобокса."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Spectre — Меркуриал, существо с неистовой энергией, которое тянет к схваткам в материальном мире. Каждое воплощение стоит ей памяти о себе, но не цели; в бою её облик распадается на призрачные Haunt и снова собирается воедино. После победы или поражения она возвращается в вечную бесплотную форму.",
+      "en": "Spectre is Mercurial, a being of violent energy pulled toward fights in the physical world. Each time she takes a physical form she loses her sense of self but keeps her purpose, and in battle her identity splits into shadowy copies before it reassembles. When the fight ends she slips back into her eternal, unbounded form."
+    }
+  },
+  "unconfirmed": [
+    "Hidden Temple, Fae Realm, Multiverse: есть только в поле places инфобокса лор-страницы, в тексте биографии и лора не упомянуты — не привязаны.",
+    "Физический мир, где идут схватки: назван в биографии, но не как место на схеме; не привязан.",
+    "Светлая вечная область («eternal light»): взята из описания предмета Plume of the Eternal Light — не основание.",
+    "Инфобокс heroes (Puck, Dark Willow, Void Spirit, Phantom Lancer, Meepo): тип связи не указан, в тексте лора нет — не записаны.",
+    "Inai, Azwraith, Imperia, Brewmaster, Keeper of the Light и прочие реплики озвучки: не основание для связей.",
+    "Ascendants и Transcendencies: группы сущностей, не места и не герои — не записаны.",
+    "Phantom Advent (отколовшаяся часть Haunt): описана без места, связь с регионом не выводится."
+  ]
+}

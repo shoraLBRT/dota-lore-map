@@ -1,0 +1,51 @@
+{
+  "hero": "meepo",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "place": "Riftshadow Ruins",
+      "event": "origin",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Meepo/Lore",
+      "note": "Биография описывает его жизнь и ремесло в этих руинах; инфобокс называет их происхождением."
+    },
+    {
+      "place": "Singer's Gulch",
+      "event": "visit",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Meepo/Lore",
+      "note": "Годами копал там и вытащил гигантский резонирующий кристалл; место не родное, поэтому visit."
+    },
+    {
+      "place": "Bone Ruins",
+      "event": "visit",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Meepo/Lore",
+      "note": "Исследовал руины, добыл ключ от входной арки и выгнал бандитов."
+    },
+    {
+      "place": "The Underhollow",
+      "event": "visit",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Meepo/Lore",
+      "doubt": "В тексте потерялся клон Meepo, а не основной герой; засчитано как визит клона."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Meepo — добытчик и геомант из большого неназванного рода. Промышляет в Riftshadow Ruins: откапывает резные обломки и кристаллы, продаёт их в городе и за щедрую плату водит путников по развалинам, храня их тайны. Его копание привело его и в Singer's Gulch, и в Bone Ruins.",
+      "en": "Meepo is a scavenging geomancer from a large, unnamed family. He makes his living in the Riftshadow Ruins, digging up carved fragments and crystals, selling them in town, and guiding travelers through the wastes for a generous tip. His digging also took him to Singer's Gulch and the Bone Ruins."
+    }
+  },
+  "unconfirmed": [
+    "Игровой сюжет о том, что Meepo любит азартные ставки на гонки в White Spire, подтверждён только репликой озвучки — не записан как место.",
+    "Долг перед Jasper Circle и охота Lorlin Lasan — персонажи и фракция, не герои из справочника; в связи герой–герой не записаны.",
+    "Infobox-поле heroes (Bounty Hunter, Rubick, Dark Willow) не задаёт тип связи; нужен владелец или текст лор-страницы, описывающий отношения.",
+    "Отношения с Mireska, Gondar, Lina, Monkey King, Phantom Lancer, Tusk и другими — только по репликам озвучки, связей не записано.",
+    "Кристалл Riftshadow и ‘Ущелье теней’ как отдельные места на схеме не требуются: это предметы, упомянутые в тексте, без собственного места."
+  ]
+}

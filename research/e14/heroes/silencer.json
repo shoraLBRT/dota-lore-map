@@ -1,0 +1,44 @@
+{
+  "hero": "silencer",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "place": "Hazhadal Barrens",
+      "event": "origin",
+      "source": "bio",
+      "note": "Нортром вырос в скрытом военном городке на холмах Хажадальских пустошей, где его готовил орден Эол Драйас. Там же позже он одолел своих насмешников и разобрался с местными беззаконниками (бой описан в лоре Liquipedia, это не меняет выбора главного события)."
+    },
+    {
+      "place": "Tyler Estate",
+      "event": "service",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Silencer/Lore",
+      "note": "По разделу Relationships лор-страницы он страж поместья (warden). В инфобоксе то же место указано в поле places.",
+      "doubt": "Биография Valve это место не называет; связь держится только на Liquipedia."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "antimage",
+      "type": "ally",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Silencer/Lore",
+      "note": "Работают вместе в поместье Tyler Estate с общей целью — контролировать использование магии. В инфобоксе лор-страницы герой указан в поле heroes."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Silencer — это Нортром, последний из семи поколений тщательно выведенной родословной ордена Эол Драйас. Орден растил в нём величайшего мага-пророчества, но магии в нём долго не находилось. На финальном испытании он один за другим одолел насмешников и стал чемпионом ордена. Позже он несёт службу стража в поместье Тайлер и вместе с Anti-Mage следит, чтобы магией никто не злоупотреблял.",
+      "en": "Silencer is Nortrom, the last of seven generations of a carefully planned bloodline from the Aeol Drias order. The order raised him to be a legendary mage of prophecy, yet no magic showed in him for years. On the final trial he beat his mocking classmates one by one and became the order's champion. Later he serves as warden of an estate called Tyler, working with Anti-Mage to keep magic from being abused."
+    }
+  },
+  "unconfirmed": [
+    "Рыцари Покрова (Knights of the Fold), заклятые враги ордена, упомянуты в биографии, но место их обитания в тексте не названо — к Castle of the Fold не привязываю.",
+    "Реплики озвучки о Monkey King, Omniknight, Abaddon, Zeus и других героях — не основание для связей по правилам партии 01.",
+    "Раздел Trivia на странице героя (Chen как соперник из-за Knights of the Fold) — не лор, в связи не записываю.",
+    "Различие методов с Anti-Mage (тюремное заточение вместо убийства) взято из комикса и артефактного описания, в файл не переношу.",
+    "Артефакты Oscilla (клинок и щит) и предметы-«тишина» не привязаны ни к одному месту на схеме."
+  ]
+}

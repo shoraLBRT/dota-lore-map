@@ -1,0 +1,46 @@
+{
+  "hero": "mirana",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "place": "Nightsilver Woods",
+      "event": "origin",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Mirana/Lore",
+      "note": "Родина по полю origins инфобокса лор-страницы; биография описывает её как хранительницу этого леса.",
+      "doubt": "Биография говорит о службе в лесу, а не о рождении там; родина взята из инфобокса, текст молчит."
+    },
+    {
+      "place": "Temple of Mene",
+      "event": "visit",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Mirana/Lore",
+      "note": "В лор-тексте она время от времени бывает в храме и там получает видения.",
+      "doubt": "Опора — одна строка лор-страницы; больше о храме в текстах Mirana нет."
+    },
+    {
+      "place": "Solar Throne",
+      "event": "mention",
+      "source": "bio",
+      "note": "Биография называет её первой претенденткой на Лучезарный трон, сама она там не была."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Mirana — наследница королевского рода и претендентка на Лучезарный трон, которая ради служения богине Луны Селемене отреклась от земных владений и титулов. Её называют принцессой Луны. Она объезжает Лес Найтсильвер на большом кошачьем спутнике Сэган и защищает священные лотосы от браконьеров. Её лук с лунной породой придаёт стрелам силу ночного светила.",
+      "en": "Mirana is a royal heir and former contender for the Solar Throne who gave up her worldly lands and titles to serve the moon goddess Selemene. She is known as the Princess of the Moon. She patrols the Nightsilver Woods on her great feline companion Sagan, guarding a sacred lotus from poachers. Her bow, reinforced with lunar ore, lets her arrows carry the light of the moon."
+    },
+    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/mirana.png"]
+  },
+  "unconfirmed": [
+    "Marci: Liquipedia-лор называет её телохранительницей Mirana, но опирается на сериал Dragon's Blood и твит; биография Mirana её не упоминает. Связь не записана. В marci.json стоит тип ally — расхождение (тип и основание) для владельца.",
+    "Luna: в инфобоксе Liquipedia без типа связи; в биографии и тексте лора связи нет (лор лишь сравнивает их по Dark Moon Order). Голосовая реплика — не основание. Связь не записана, как и в luna.json.",
+    "Demon Star: есть только в инфобоксе Liquipedia, в текстах Mirana не упоминается; не записано.",
+    "Selemene's Moon: только поле places инфобокса без текста о Mirana; не записано.",
+    "Metira и Axia of Metira: лор-текст говорит, что Axia унесла Mirana с поля боя, но места не называет; название Metira взято из описания предмета, не записано.",
+    "Грифон в Лесе Найтсильвер: основано на описании предмета, не записано.",
+    "Сюжет сериала Dragon's Blood (Hauptstadt, Dragon Hold, Solar Throne как трон Empress of the Sun и др.): медиа, не основание для записи мест и связей."
+  ]
+}

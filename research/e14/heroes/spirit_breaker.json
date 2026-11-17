@@ -1,0 +1,45 @@
+{
+  "hero": "spirit_breaker",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore"],
+  "links": [
+    {
+      "place": "Elemental Plane",
+      "event": "origin",
+      "source": "bio",
+      "note": "Родная стихийная реальность Баратрума, откуда он пришёл в материальный мир.",
+      "doubt": "В биографии место названо «стихийная реальность» без имени; Liquipedia пишет, что это вероятно Elemental Plane. Связь взята по смыслу."
+    },
+    {
+      "region": "planes",
+      "event": "journey",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Spirit_Breaker/Lore",
+      "note": "Лор-страница: он перемещается между The Seven Planes, поэтому его зовут Зверём всех миров. Место — регион planes целиком, отдельной точки в списке нет."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Spirit Breaker — Баратрум, стихийная сущность из Elemental Plane, которая шагнула в материальный мир ради дел, отголоски которых дойдут до его родины. Тело он собрал себе сам из черт быка и обезьяны. Кольцо в носу напоминает, что он служит тайному господину, а сам мир для него лишь тень настоящего.",
+      "en": "Spirit Breaker is Barathrum, an elemental being from the Elemental Plane who stepped into the material world to meddle in affairs whose echoes would reach his home. He built his body himself from bull and ape traits, and the ring in his nose is a reminder that he answers to a hidden master. He moves between planes, which is why some call him the walker of every world."
+    }
+  },
+  "candidates": [
+    {
+      "name": "Nether Realm",
+      "region": "planes",
+      "event": "origin",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Spirit_Breaker/Lore",
+      "note": "Инфобокс лор-страницы перечисляет его в origins рядом с Elemental Plane; на схеме места нет. Предполагаю planes, но возможно это Nether Reaches из underdark — решает владелец (#59)."
+    }
+  ],
+  "unconfirmed": [
+    "Terrene Plane: по regions.json это наш мир, за пределами planes. Liquipedia говорит, что финальная битва будет там (со слов Elder Titan) — это пророчество, а не место Баратрума, связь не записана.",
+    "Earthshaker, Leshrac, Clinkz, Broodmother, Enchantress, Magnus, Sniper, Spectre, Storm Spirit: отношения (уважение, презрение, желание поквитаться и т. п.) выведены из реплик озвучки и пересказа раздела Relationships. Реплики — не основание, тип связи (ally, enemy, rival) не записан.",
+    "Grimstroke, Undying, Monkey King, Dark Willow, Earth Spirit, Snapfire и другие: союзнические реплики озвучки — не основание для ally.",
+    "Barathrum's Master: безымянный хозяин, которого нет в heroes.json как героя; связь не записана.",
+    "Nether Strike: в описании способности сказано, что он возвращается в «царство» своего происхождения. Место совпадает с кандидатом Nether Realm, на схему не привязано."
+  ]
+}
