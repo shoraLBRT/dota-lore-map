@@ -1,0 +1,46 @@
+{
+  "hero": "pugna",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Nether Reaches",
+      "event": "origin",
+      "source": "bio",
+      "note": "Биография: родился в краю у разломов Nether Reaches, где стоял монастырь Искусств Забвения, питавшийся их энергией."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "viper",
+      "type": "servant",
+      "place": "Nether Reaches",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Pugna/Lore",
+      "note": "Биография Viper и лор-страница: уже старым Pugna поймал нетопыря Viper в пещерах Nether Reaches и держал его в клетке как питомца и подопытного.",
+      "doubt": "Viper сбежал и поклялся отомстить, так что теперь он скорее враг; Viper — герой будущей партии, обратная запись не делается."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Pugna — маг Забвения из Nether Reaches, которого жрецы монастыря признали перерождением умершего настоятеля. В тринадцать месяцев он сжёг двух детей-соперников изумрудным пламенем и забрал реликвии наставника, а через пять лет от самого храма остался пепел. Уже в старости он поймал нетопыря Viper, но тот сбежал и поклялся отомстить.",
+      "en": "Pugna is an Oblivion sorcerer from the Nether Reaches, reborn as the successor of a dead grandmaster of a monastery. At barely over a year old he burned two rival children to ash to claim the throne, and within five years the temple itself was reduced to rubble. Later he captured the netherdrake Viper, who escaped and swore revenge."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/pugna.png"
+    ]
+  },
+  "candidates": [],
+  "unconfirmed": [
+    "Tyler Estate и Weeping Rose: в поле places инфобокса, но нападение на них описано только в разделе Artifact — связи сняты.",
+    "Связи с Kanna, Prellex и Dire из инфобокса (characters) и раздела Allegiance относятся к Artifact, не к биографии и не к лору героя: не записаны.",
+    "Реплики озвучки о Clinkz, Dark Willow, Monkey King, Pangolier, Skywrath Mage, Snapfire и других героев не основание для связей (решение партии 01): не записаны.",
+    "Обитель монастыря Забвения, где он родился, в тексте не названа: отдельного места и кандидата нет.",
+    "Ix'yxa Destroyer — бог, не герой; связь «прокси» из раздела Allegiance не записана (Artifact и не герой)."
+  ]
+}

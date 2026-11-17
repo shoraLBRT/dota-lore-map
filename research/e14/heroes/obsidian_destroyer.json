@@ -1,0 +1,40 @@
+{
+  "hero": "obsidian_destroyer",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "The Outworld",
+      "event": "origin",
+      "source": "bio",
+      "note": "Кристаллический мир на краю бездны, где герой — последний страж заставы; здесь он живёт и несёт дозор."
+    },
+    {
+      "place": "The Void",
+      "event": "visit",
+      "source": "bio",
+      "note": "Биография: он бродит по краю Пустоты, вглядываясь в ночь за звёздами.",
+      "doubt": "Пустота — соседняя бездна, а не жилище: живёт он на Outworld, поэтому visit, а не home."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Outworld Destroyer, или Harbinger, — из гордого и властного народа, последний страж заставы на кристаллическом мире у края Пустоты. Целую вечность он высматривал за звёздами зло, которое, как подсказывает живущее в нём подобие пророчества, однажды проснётся и обратится к нашему миру. Шум войны Древних и угроза изнутри заставили его прилететь к полям сражений, и само его появление считают дурным знаком.",
+      "en": "Outworld Destroyer, or Harbinger, belongs to a proud and lordly race and is the last sentry of an outpost on a crystal world at the edge of the Void. For ages he has watched the dark beyond the stars for an evil that a prophecy-like pattern in his mind says will one day wake and turn toward our world. The din of the Ancients' war and a threat from within drew him to the battlefields, and his coming is itself taken as a bad omen."
+    }
+  },
+  "unconfirmed": [
+    "Kanna (поле heroes инфобокса): героя нет в heroes.json, он известен только по карточке Artifact; связь и роль при ней (слуга или наставник) не записаны.",
+    "Prellex: нет в heroes.json, только Artifact и лорный текст о вражде с Radiant; не записано.",
+    "Pugna: в лорном тексте «похоже, дружен», но формулировка неуверенная и опирается на реплики Artifact; не записано.",
+    "Earthshaker: в лоре назван чемпионом Kanna, а вопрос про приближающуюся угрозу взят из реплики Planetfall; связи с самим героем не записано.",
+    "Devourling (поле family): не герой, связь не записана; реплики озвучки и карточки предметов не использованы как основание связей.",
+    "Поля войны Древних, куда он прилетел, — в нашем мире и не названы: региона planes для них нет, связь не записана.",
+    "Lone Druid: пункт Trivia о том, что они «противоположности», — толкование редакторов, не связь; связь не записана.",
+    "Astral Plane: известна только из описания курьера Devourling (предмет) — место не записано."
+  ]
+}

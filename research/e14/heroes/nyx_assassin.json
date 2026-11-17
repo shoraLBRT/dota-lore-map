@@ -1,0 +1,44 @@
+{
+  "hero": "nyx_assassin",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Hidden Hive",
+      "event": "origin",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Nyx_Assassin/Lore",
+      "note": "Родной улей колонии скарабеев; в биографии улей по имени не назван.",
+      "doubt": "Биография говорит о колонии и покоях королевы, но не называет Hidden Hive; место взято из поля origins инфобокса, которое опирается на описание набора самого героя."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Nyx Assassin — скарабей-фанатик, о чьём виде пишет старинная книга в архиве Ultimyr. Из множества личинок колонии богиня Никс выбрала его для особого превращения в покоях королевы. Он пережил обряд, получил телепатию, острые жвалы и когти и с тех пор живёт ради одного — убивать во имя богини.",
+      "en": "Nyx Assassin is a zealot scarab, a telepathic insect described in an old tome kept in the archive of Ultimyr. Of all the grubs in his colony, the goddess Nyx chose him for a special metamorphosis in the queen's chamber. He survived the rite with a telepathic mind, sharp mandibles and claws, and now exists only to kill for his goddess."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/nyx_assassin.png"
+    ]
+  },
+  "candidates": [
+    {
+      "name": "Ultimyr Archives",
+      "region": "middle-kingdoms",
+      "event": "mention",
+      "source": "bio",
+      "note": "В биографии книга о скарабеях хранится в архиве Ultimyr; на схеме есть Ultimyr Academy в middle-kingdoms, но архив назван отдельно. Сам герой там не был."
+    }
+  ],
+  "unconfirmed": [
+    "Abaddon и Broodmother: вражда в разделе отношений лор-страницы держится только на репликах озвучки; в поле heroes инфобокса они без типа — связи не записаны.",
+    "Templar Assassin и Void Spirit есть в поле heroes инфобокса без типа связи; из биографии и текста лора тип не следует, связи не записаны.",
+    "Реплики озвучки (Monkey King, Legion Commander, Pangolier, Oracle, Weaver, Queen of Pain, Bounty Hunter) не использованы как основание связей (решение #46).",
+    "Kaktos, Lanaya и Donte упомянуты в лоре как персонажи, а не герои: связей с ними в данные не добавлено."
+  ]
+}
