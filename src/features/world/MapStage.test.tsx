@@ -448,6 +448,23 @@ describe('camera', () => {
     expect(edge.x).toBeGreaterThan(0.05);
     expect(edge.y).toBeGreaterThan(0.05);
   });
+  it('камера места не уводит регион из кадра больше, чем нужно (#96)', () => {
+    // Видимая часть: 1120 px слева от панели, zoom 3 → 2.1, т. е. 1/3 ширины мира.
+    const view = { width: 1600, height: 1000, layerWidth: 1600, layerHeight: 1000, inset: 480 };
+    const seen = 1120 / (1600 * 2.1);
+    // Регион шириной 0.3 помещается: центр, сдвинутый к месту, возвращается так, чтобы регион остался в кадре.
+    const fits = frameCamera({ x: 0.55, y: 0.3, zoom: 3 }, view, {
+      box: { left: 0.3, top: 0.2, right: 0.6, bottom: 0.4 },
+      place: [0.58, 0.3],
+    }).camera;
+    expect(fits.x - seen / 2).toBeLessThanOrEqual(0.3 + 1e-9);
+    expect(fits.x + seen / 2).toBeGreaterThanOrEqual(0.6 - 1e-9);
+    // Регион шириной 0.6 не помещается: вылезает поровну за оба края…
+    const box = { left: 0.2, top: 0.2, right: 0.8, bottom: 0.4 };
+    expect(frameCamera({ x: 0.7, y: 0.3, zoom: 3 }, view, { box, place: [0.55, 0.3] }).camera.x).toBeCloseTo(0.8 - seen / 2);
+    // …но место у края региона не уходит к краю кадра ближе чем на пятую часть видимой ширины.
+    expect(frameCamera({ x: 0.7, y: 0.3, zoom: 3 }, view, { box, place: [0.75, 0.3] }).camera.x).toBeCloseTo(0.75 - seen * 0.3);
+  });
   it('шторка снизу (телефон): центр выше на половину шторки; высокая рамка — zoom уменьшается до свободной высоты', () => {
     const camera = { x: 0.5, y: 0.5, zoom: 2 };
     // Телефон: слой 375×234, кадр 375×760, шторка 244 px — рамка помещается, zoom прежний.

@@ -56,6 +56,22 @@ describe('placeMarkerLabels — подписи маркеров не налез�
     expect(placeMarkerLabels([m('c', 300, 0)]).get('c')).toBe('top');
   });
 
+  it('маркер за видимой частью кадра — без подписи, даже если она сама влезла бы (#96)', () => {
+    const bounds = { left: -100, right: 100, top: -100, bottom: 100 };
+    // Центр чуть левее кадра: подпись справа целиком в кадре, но маркера рядом с ней не видно.
+    expect(placeMarkerLabels([m('a', -105, 0)], bounds).get('a')).toBe('hidden');
+    expect(placeMarkerLabels([m('a', -105, 0, { must: true })], bounds).get('a')).toBe('hidden');
+    // Выбранное место подпись не теряет.
+    expect(placeMarkerLabels([m('a', -105, 0, { must: true, selected: true })], bounds).get('a')).toBe('right');
+  });
+
+  it('обязательной подписи негде встать — первая сторона, где она не вылезает из кадра', () => {
+    const bounds = { left: -100, right: 100, top: -100, bottom: 100 };
+    // У правого края сверху, снизу и справа подпись вылезает, а слева мешает кольцо соседа.
+    const sides = placeMarkerLabels([m('c', 95, 0, { must: true }), m('w', 65, 0)], bounds);
+    expect(sides.get('c')).toBe('left');
+  });
+
   it('соседу сверху тесно — следующая сторона: снизу, справа, слева', () => {
     // b прямо над a: подпись a сверху налезла бы на кольцо b.
     const sides = placeMarkerLabels([m('b', 0, -30), m('a', 0, 0)]);

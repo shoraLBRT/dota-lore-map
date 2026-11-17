@@ -47,6 +47,8 @@ export interface MarkerLabel {
   ring: number;
   /** Подпись видна всегда (столица, выбранное место): нет свободной стороны — встаёт сверху. */
   must?: boolean;
+  /** Выбранное место: подпись остаётся, даже если центр маркера за видимой частью кадра. */
+  selected?: boolean;
 }
 
 export interface Box {
@@ -82,6 +84,8 @@ const SIDES = ['top', 'bottom', 'right', 'left'] as const;
 const overlap = (a: Box, b: Box) =>
   a.left < b.right + PAD && b.left < a.right + PAD && a.top < b.bottom + PAD && b.top < a.bottom + PAD;
 
+const inside = (b: Box, f: Box) => b.left >= f.left && b.right <= f.right && b.top >= f.top && b.bottom <= f.bottom;
+
 const shift = (b: Box, x: number, y: number): Box => ({
   left: b.left + x,
   right: b.right + x,
@@ -92,18 +96,23 @@ const shift = (b: Box, x: number, y: number): Box => ({
 /**
  * Жадная расстановка подписей маркеров: по порядку `items` (важные — первыми) каждая подпись
  * встаёт на первую свободную сторону — сверху, снизу, справа, слева. Мешают ей уже поставленные подписи
- * и кольца всех маркеров. Нет места — `hidden`, а обязательная подпись (`must`) — сверху.
- * `bounds` — видимая часть кадра в тех же единицах: подпись, вылезающая за неё, ищет другую сторону.
+ * и кольца всех маркеров. Нет места — `hidden`, а обязательная подпись (`must`) — на первую сторону в кадре или сверху.
+ * `bounds` — видимая часть кадра в тех же единицах: подпись, вылезающая за неё, ищет другую сторону;
+ * маркер, центр которого за её пределами, подписи не получает (кроме выбранного места, #96).
  */
 export function placeMarkerLabels(items: MarkerLabel[], bounds?: Box): Map<string, LabelSide> {
   const rings: Box[] = items.map((m) => ({ left: m.x - m.ring, right: m.x + m.ring, top: m.y - m.ring, bottom: m.y + m.ring }));
   const placed: Box[] = [];
   const result = new Map<string, LabelSide>();
   for (const m of items) {
+    if (bounds && !m.selected && (m.x < bounds.left || m.x > bounds.right || m.y < bounds.top || m.y > bounds.bottom)) {
+      result.set(m.key, 'hidden');
+      continue;
+    }
     let side: LabelSide = 'hidden';
     for (const s of SIDES) {
       const box = shift(labelBox(s, m), m.x, m.y);
-      if (bounds && (box.left < bounds.left || box.right > bounds.right || box.top < bounds.top || box.bottom > bounds.bottom)) continue;
+      if (bounds && !inside(box, bounds)) continue;
       if (placed.some((p) => overlap(p, box))) continue;
       if (rings.some((r, j) => items[j] !== m && overlap(r, box))) continue;
       side = s;
@@ -111,8 +120,9 @@ export function placeMarkerLabels(items: MarkerLabel[], bounds?: Box): Map<strin
       break;
     }
     if (side === 'hidden' && m.must) {
-      side = 'top';
-      placed.push(shift(labelBox('top', m), m.x, m.y));
+      // Обязательная подпись: первая сторона, где она хотя бы не вылезает из кадра, иначе — сверху.
+      side = SIDES.find((s) => !bounds || inside(shift(labelBox(s, m), m.x, m.y), bounds)) ?? 'top';
+      placed.push(shift(labelBox(side, m), m.x, m.y));
     }
     result.set(m.key, side);
   }

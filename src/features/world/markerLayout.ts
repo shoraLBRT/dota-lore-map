@@ -9,16 +9,18 @@ import type { Frame } from './useCamera';
 /** Отступ подписей маркеров от края видимой части кадра, px. */
 const LABEL_MARGIN = 4;
 
-/** Кегль подписей маркеров (MarkersLayer.module.css: .markerLabel, .capital .markerLabel, .minor .markerLabel), px. */
+/** Кегль подписей маркеров (MarkersLayer.module.css: .markerLabel, .capital и .current .markerLabel, .minor .markerLabel), px. */
 const MARKER_FONT = 13;
 const CAPITAL_FONT = 17;
 const MINOR_FONT = 12;
 
 /** Значимость места (#68, SPEC §6.3); нет поля — обычный маркер. */
 export const significance = (p: Place): Significance => p.significance ?? 'link';
-/** Радиус кольца маркера, px: столица, место, второстепенное место (меньше). */
-export const ringOf = (p: Place) => (p.capital ? 11 : significance(p) === 'minor' ? 7 : 9);
-export const fontOf = (p: Place) => (p.capital ? CAPITAL_FONT : significance(p) === 'minor' ? MINOR_FONT : MARKER_FONT);
+/** Радиус кольца маркера, px: выбранное место (крупнее всех, #96), столица, место, второстепенное место (меньше). */
+export const ringOf = (p: Place, selected = false) => (selected ? 13 : p.capital ? 11 : significance(p) === 'minor' ? 7 : 9);
+/** Кегль подписи: у выбранного места — как у столицы (MarkersLayer.module.css: .current .markerLabel). */
+export const fontOf = (p: Place, selected = false) =>
+  selected || p.capital ? CAPITAL_FONT : significance(p) === 'minor' ? MINOR_FONT : MARKER_FONT;
 /** Порядок подписей после текущего места, столицы и мест героя: события, связи E1, второстепенные (labels.ts). */
 const SIGNIFICANCE_RANK: Record<Significance, number> = { event: 3, link: 4, minor: 5 };
 
@@ -71,7 +73,8 @@ export function useMarkerLabels({ spots, activeId, activePlaceSlug, focusPlaces,
       .sort((a, b) => rank(a) - rank(b))
       .map((p) => {
         const [x, y] = toStage(p.pos!);
-        const size = fontOf(p);
+        const selected = p.slug === activePlaceSlug;
+        const size = fontOf(p, selected);
         return {
           key: p.slug,
           x: x / markerScale,
@@ -79,8 +82,9 @@ export function useMarkerLabels({ spots, activeId, activePlaceSlug, focusPlaces,
           // Без измерений — оценка по числу знаков.
           width: widths[`m:${p.slug}`] ?? placeName(p, lang).length * size * 0.6,
           size,
-          ring: ringOf(p),
+          ring: ringOf(p, selected),
           must: rank(p) < 2,
+          selected,
         };
       });
     return out;
