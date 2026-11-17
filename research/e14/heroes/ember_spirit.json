@@ -1,0 +1,77 @@
+{
+  "hero": "ember_spirit",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "region": "wailing-mountains",
+      "event": "origin",
+      "source": "bio",
+      "note": "Крепость затеряна в этих горах: биография называет их как место, где лежит родина героя Син."
+    },
+    {
+      "place": "Fortress of Flares",
+      "event": "origin",
+      "source": "bio",
+      "note": "Учебная крепость Сина: он обучал здесь три поколения учеников, здесь хранится его погребальный пепел, и здесь же образ героя возник заново. Инфобокс лор-страницы тоже указывает её как origin."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "void_spirit",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Ember_Spirit/Lore",
+      "note": "Поле family инфобокса: Void Spirit указан как старший брат."
+    },
+    {
+      "hero": "earth_spirit",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Ember_Spirit/Lore",
+      "note": "Поле family инфобокса: Earth Spirit указан как брат."
+    },
+    {
+      "hero": "storm_spirit",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Ember_Spirit/Lore",
+      "note": "Поле family инфобокса: Storm Spirit указан как брат."
+    },
+    {
+      "hero": "brewmaster",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Ember_Spirit/Lore",
+      "note": "Поле family инфобокса: Brewmaster указан как двоюродный брат."
+    },
+    {
+      "hero": "grimstroke",
+      "type": "enemy",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Ember_Spirit/Lore",
+      "doubt": "Раздел Relationships лор-страницы говорит, что Grimstroke презирает героя; тип «враг» выведен из этого, причина в тексте предположительная."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Син был воином-поэтом, который несколько поколений обучал учеников в горной крепости и погиб в зрелые годы. Спустя долгое время огненный аспект Горящего небожителя вернул его пеплу облик, и учитель снова готов наставлять. Теперь Ember Spirit несёт свои уроки в мир в обличье духа пламени.",
+      "en": "Xin was a warrior-poet who trained generations of students in a mountain fortress and was killed in his later years. Long after, the fire aspect of the Burning Celestial revived his ashes, and his likeness returned, ready to teach again. Now he carries his lessons into the world as a spirit of flame."
+    },
+    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/ember_spirit.png"]
+  },
+  "candidates": [],
+  "unconfirmed": [
+    "Yurnero: в разделе Relationships лор-страницы сказано, что Xin тренировался с ним в прошлой жизни, но Yurnero нет в heroes.json, связь не записана.",
+    "Juggernaut: назван только в поле heroes инфобокса без типа связи; реплика о совместных тренировках — озвучка, не основание.",
+    "Monkey King, Oracle, Viper, Spectre, Abaddon, Brewmaster и другие: реплики озвучки и раздел Friendships and Rivalries — не основания для связей.",
+    "Hidden Temple: упомянут в реплике Void Spirit; в биографии храм находится внутри крепости, отдельного места не выделено.",
+    "Sandstorm из описания предмета Order of the Wandering Flame: описание предмета не источник, на схеме места нет.",
+    "Место гибели Сина в биографии не названо; в links оставлена крепость как место основного события.",
+    "Ember (City): упоминается только в хатнот-подсказке страницы героя, к герою не относится."
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "hero": "faceless_void",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "place": "Claszureme",
+      "event": "origin",
+      "source": "bio",
+      "note": "родом из мира вне времени, куда он вернётся после сражения"
+    },
+    {
+      "place": "The Void",
+      "event": "home",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Faceless_Void/Lore",
+      "doubt": "Liquipedia указывает The Void среди мест героя, но из текста не ясно, совпадает ли это с Claszureme или нет; место проживания приписано по фразе о его жизни «в пустоте»"
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Дарктеррор, он же Faceless Void, пришёл из Класзурема, мира вне времени. Зачем ему понадобилось вмешаться в борьбу за Осколки на нашем плане, остаётся загадкой; похоже, сдвиги в мироздании отзываются и в соседних измерениях. Время для него служит инструментом: оно помогает союзникам и мешает врагам. Отстранённый взгляд на космос делает его холодным, хотя в бою он умеет становиться лично вовлечённым.",
+      "en": "Darkterror, the Faceless Void, comes from Claszureme, a realm beyond time. Nobody knows exactly why he joined the fight for the Nemesis Stones on our plane, though disturbances here seem to ripple into neighboring dimensions. He treats time as a tool for helping allies and hindering foes, and his distant view of the cosmos makes him seem detached, even though he can get personal in combat."
+    }
+  },
+  "candidates": [
+    {
+      "name": "Multiverse",
+      "region": "planes",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Faceless_Void/Lore",
+      "note": "указан в инфобоксе как место героя, но это не конкретный мир; ближе всего регион planes"
+    }
+  ],
+  "unconfirmed": [
+    "Наш мир (физический план из биографии, «asylum of our world» из лор-страницы): такого места нет в regions.json, это весь мир карты; не привязано к месту, решение за владельцем.",
+    "Void Spirit: в инфобоксе лор-страницы указан в поле heroes, но тип связи из источников не ясен (в тексте реплики о союзе и вражде); связь не записана.",
+    "Druud: упомянут в лор-странице как место вспышки Facets, где сам герой не участвовал; событие не связано с его перемещениями.",
+    "Ivory Incubarium, Nothl Realm, Stonehall: упомянуты только в разделе предметов и реплик, без связи с героем в тексте; не записаны.",
+    "Персонажи и герои из реплик (Arc Warden, Puck, Shadow Demon, Omniknight, Weaver, Monkey King, Dawnbreaker, Outworld Destroyer, Rubick, Mirana, Batrider): только реплики озвучки и разделы о знакомых, связи не записаны.",
+    "Clasz, Sapphire Archons (Pierpont, Vanessa): божество и фракция, героями не являются; карточки Artifact и вселенная Artifact не используются как источник."
+  ]
+}

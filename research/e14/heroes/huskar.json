@@ -1,0 +1,48 @@
+{
+  "hero": "huskar",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "place": "Nothl Realm",
+      "event": "death",
+      "source": "bio",
+      "note": "Он был на краю гибели в мире Nothl, и жрец теней вернул его душу из вечности; тело и кровь изменились."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "dazzle",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Huskar/Lore",
+      "note": "В инфобоксе и на лор-странице указано двоюродное родство; в биографии Dazzle назван жрецом, спасшим героя."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Huskar — воин ордена Dezun, которого жрец теней Dazzle вытащил из мира Nothl, спасив его душу от вечности. Возвращённая кровь стала источником огромной силы, но спасение оставило обиду: орден хотел сделать его орудием, а собственной жертвы у него отняли. Перед большой войной он ушёл из родных мест в поисках союзников и достойного дела. Секреты, которые он принёс из мира Nothl, теперь служат его собственным целям.",
+      "en": "Huskar is a warrior of the Dezun Order whose soul was pulled out of eternity by the shadow priest Dazzle after he had suffered in the Nothl Realm. Returned changed, his blood became a source of enormous power, yet the rescue left him bitter, since the order wanted to use him as a tool and denied him his own sacrifice. Before the great war he left his homeland to seek allies and a worthy cause. The secrets he brought back from the Nothl Realm now serve his own goals."
+    },
+    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/huskar.png"]
+  },
+  "candidates": [
+    {
+      "name": "Petrified City of Saraddel",
+      "region": "uncharted",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Huskar/Lore",
+      "note": "Название есть только в поле places инфобокса; ни биография, ни текст лора не говорят, где этот город и с какой связью с героем. Регион не назван, поэтому uncharted."
+    }
+  ],
+  "unconfirmed": [
+    "Родина героя (отчий дом) в биографии не названа, инфобокс места рождения не даёт; связь origin не записана.",
+    "Орден Dezun — фракция, а не место на схеме; его местонахождение в источниках не сказано.",
+    "Уважение к Bloodseeker и Witch Doctor за схожий взгляд на жизнь: тип связи из прозы не выводится.",
+    "Troll Warlord презирает героя за сходство: это пересказ реплики озвучки, тип связи не подтверждён.",
+    "Реплики озвучки от Monkey King, Bounty Hunter, Lifestealer, Lycan, Tiny, Visage, Brewmaster и Oracle — не основание для связей.",
+    "Народ героя напоминает коренные народы Нового Света, но место на схеме не названо: родину по народу не привязываю."
+  ]
+}

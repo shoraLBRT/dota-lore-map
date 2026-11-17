@@ -1,0 +1,44 @@
+{
+  "hero": "gyrocopter",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "place": "Home of the Keen Folk",
+      "event": "origin",
+      "source": "ours",
+      "note": "Раса героя по инфобоксу лор-страницы Liquipedia — Keen; родина этого народа на схеме — Home of the Keen Folk. В биографии место рождения Аурела не названо.",
+      "doubt": "Связь по народу, а не по тексту о самом герое. Реплики других героев называют его «малым кином»; возможно, это отдельная ветвь народа."
+    },
+    {
+      "place": "Ash Archipelago",
+      "event": "home",
+      "source": "bio",
+      "note": "Аурел удалился на отдых в Архипелаг Эш, там построил летательный аппарат и там же испытывал его и работал в мастерской. Инфобокс Liquipedia называет это место и происхождением героя."
+    },
+    {
+      "region": "middle-kingdoms",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Gyrocopter/Lore",
+      "note": "Инфобокс лор-страницы в поле places называет Ultimyr University; Аурел лишь связан с ним: этот университет создал для него двигатель. Сам герой там не был.",
+      "doubt": "В regions.json есть «Ultimyr Academy», но название не совпадает буква в букву; отнесено к региону, а не к месту. Связь основана на инфобоксе, а не на тексте биографии."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Аурел — инженер, который отслужил всю жизнь в армии и ушёл в отставку с незавершённым чертежом первого в мире пилотируемого летательного аппарата без магии. Он поселился в тропическом Архипелаге Эш и годами строил прототипы, пока один из них не поднял его в воздух. Выстрел корабля сбил его машину, и он тут же взялся за новую, более тяжёлую.",
+      "en": "Aurel served as an engineer through a long career of conflicts before retiring with an unfinished plan for the first manned flying machine that needed no magic. He settled on a tropical archipelago and spent years on failed prototypes until one finally lifted him into the sky. A cannon strike brought his craft down, and he immediately began building a heavier one."
+    }
+  },
+  "unconfirmed": [
+    "Раздел «Relationships» лор-страницы (Monkey King «ненавидит» Аурела) опирается на одну реплику озвучки — тип связи не подтверждён, связь не записана.",
+    "Лор-страница: Dragon Knight «знает», что его отец сделал бы с машиной Аурела; тип связи и ролевая связь с героем не названы — не записано.",
+    "Старый начальник Аурела («старый босс») назван только в реплике, без имени героя — не записано.",
+    "Все реплики союзников и врагов (Bristleback, Disruptor, Legion Commander, Earth Spirit, Troll Warlord и др.) — голосовые линии, а не основание для связей.",
+    "Инфобокс лор-страницы: поля heroes, family и characters пусты — связей героев из инфобокса нет.",
+    "Безымянный берег, куда Аурел доплыл после сбития, и корабль, давший залп, не названы в биографии — место не записано.",
+    "Мастерская Аурела и «военные» места (восстания, революции) в биографии не названы — места не записаны.",
+    "Atomic Ray Thrusters и описание двигателя — описание предмета, не источник; основание для связи с Ultimyr взято из инфобокса."
+  ]
+}

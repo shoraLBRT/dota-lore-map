@@ -1,0 +1,100 @@
+{
+  "hero": "kunkka",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Cladd",
+      "event": "origin",
+      "source": "bio",
+      "note": "Адмирал кладдского флота, родом с островов Кладда, которые он должен был защищать."
+    },
+    {
+      "place": "Port Mignin",
+      "event": "battle",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Kunkka/Lore",
+      "note": "Ветеран был в битве за Порт-Миньин; в биографии этого места нет.",
+      "doubt": "Порядок относительно боёв у Дрожащего острова выведен из порядка перечисления в лоре."
+    },
+    {
+      "place": "Trembling Isle",
+      "event": "battle",
+      "source": "bio",
+      "note": "Последний бой флота против демонов и духов предков, в котором вмешался Мэльрон.",
+      "doubt": "Судьба героя после боя неизвестна: по биографии он мог погибнуть или остаться призраком, поэтому гибель здесь не записана."
+    },
+    {
+      "region": "radiant-lands",
+      "event": "home",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Kunkka/Lore",
+      "note": "После боя у Дрожащего острова он очутился на берегу народа кинов и снова командовал флотом, где командой были кины.",
+      "doubt": "Лор называет только берег кинов, без конкретного места на схеме; сведения опираются на прозу лор-страницы, а описание предмета, приведённое там же как ссылка, не использовано."
+    },
+    {
+      "place": "Isle of Songs",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Kunkka/Lore",
+      "note": "Принцесса с Острова Песен подарила ему шарф; сам он там не бывал.",
+      "doubt": "Характер этих отношений в лоре прямо назван неясным."
+    }
+  ],
+  "path": [
+    {
+      "place": "Cladd"
+    },
+    {
+      "place": "Trembling Isle"
+    },
+    {
+      "region": "radiant-lands"
+    }
+  ],
+  "relations": [
+    {
+      "hero": "tidehunter",
+      "type": "rival",
+      "place": "Trembling Isle",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Kunkka/Lore",
+      "note": "Давняя вражда: Tidehunter вызвал Мэльрона на Дрожащем острове; при этом Kunkka уважает соперника."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Kunkka был адмиралом кладдского флота и защищал родные острова от демонов Катаракты. Последний бой у Дрожащего острова превратился в хаос, когда в него вмешался Мэльрон и смешал корабли в бурю. Судьба адмирала неизвестна: возможно, он погиб, а возможно, остался призраком на единственном корабле. Позднее, по слухам, он служил народу кин на их побережье.",
+      "en": "Kunkka was the admiral of the Claddish fleet, sent to defend his homeland's isles from the demons of the Cataract. His last battle at the Trembling Isle turned chaotic when a sea giant joined the fray and tangled the ships in a storm. Nobody knows whether he survived, or whether he lingers as a phantom on one ghostly vessel. Later accounts say he took command among the Keen folk on their shore."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/kunkka.png"
+    ]
+  },
+  "candidates": [
+    {
+      "name": "Cataract",
+      "region": "planes",
+      "event": "mention",
+      "source": "bio",
+      "note": "Откуда пришёл демонический флот, и куда Катаракта уходит в пустоту; сама Катаракта на схеме не отмечена, регион предположен по упоминанию пустоты."
+    }
+  ],
+  "unconfirmed": [
+    "Dark Willow: в инфобоксе лора указана в связанных героях, но тип связи и её основание в тексте не названы; реплика озвучки («преследует») — не основание.",
+    "Mireska: лор говорит, что Kunkka ненавидит её и охотится на неё, но Mireska не ключ героя и не место; связь записать нельзя.",
+    "Narrow Maze: по реплике озвучки Tidehunter команда Kunkka будто бы там; связь с местом не подтверждена, также в лоре сказано, что команда могла спастись.",
+    "Слух о том, что Kunkka рассёк щупальце Мэльрона Neptunian Sabre, и слух о мечах кийских мастеров из обломков Катаракты: сведения из описаний предметов и слухов.",
+    "Реплики озвучки (Monkey King, Legion Commander, Storm Spirit, Alchemist, Brewmaster, Slark, Naga Siren и др.) — не основание для связей.",
+    "Ключи от ворот столицы кинов не записаны: столица на схеме не отмечена, а сведение приведено со ссылкой на описание предмета.",
+    "Тайные секреты на морском дне, знакомые лорные мелочи (скорбут, пиратский ром) — без мест на схеме, не записаны."
+  ]
+}

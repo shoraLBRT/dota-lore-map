@@ -1,0 +1,80 @@
+{
+  "hero": "wisp",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore"],
+  "links": [
+    {
+      "place": "Fundamental Plane",
+      "event": "origin",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Io/Lore",
+      "note": "Родной план Io: в поле origins инфобокса лор-страницы стоит Fundamental Plane, и там же сказано, что Фундаментал возвращается туда, а не гибнет окончательно.",
+      "doubt": "Биография план не называет; соответствие сделано по инфобоксу и по реплике Elder Titan про возвращение на план."
+    },
+    {
+      "region": "planes",
+      "event": "home",
+      "source": "bio",
+      "note": "По биографии Io одновременно существует на всех планах, а в физическом мире проявляется только малой частью себя. Связь с регионом планов, а не с одним местом."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "elder_titan",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Io/Lore",
+      "note": "Создатель Io по инфобоксу (creator). Отдельного типа «создатель» в модели нет, взят family."
+    },
+    {
+      "hero": "chaos_knight",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Io/Lore",
+      "note": "Старший брат-сиблинг по инфобоксу лор-страницы Io; из биографии Chaos Knight тоже следует родство с Фундаменталами."
+    },
+    {
+      "hero": "keeper_of_the_light",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Io/Lore",
+      "note": "Брат по инфобоксу лор-страницы Io."
+    },
+    {
+      "hero": "enigma",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Io/Lore",
+      "note": "Сиблинг по инфобоксу лор-страницы Io."
+    },
+    {
+      "hero": "earthshaker",
+      "type": "ally",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Io/Lore",
+      "note": "Раздел Relationships лор-страницы Io: Earthshaker назван младшим другом, с которым Io общается и обсуждает дальние путешествия.",
+      "doubt": "Дружба описана в разделе, который опирается на реплики Earthshaker; других текстовых подтверждений нет."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Io — древнее проявление жизненной силы, старше самого времени, и одна из Фундаменталов вселенной. Оно существует на всех планах сразу, а в физическом мире присутствует лишь малой долей своего существа, искривляя силовые линии. Считается доброжелательной силой, связывающей существование воедино.",
+      "en": "Io is an ancient entity older than time, one of the Fundamentals that arose in the Schism. It exists on every plane at once and reaches the material world only through a small fraction of itself, bending the lines of force that hold reality together. Its aims remain unknown."
+    },
+    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/wisp.png"]
+  },
+  "unconfirmed": [
+    "Dawnbreaker (dawnbreaker.json): связь wisp → enemy (Io погасила её искру) — в лоре Io нет упоминаний Dawnbreaker, обратной записи нет; в файл Io не добавлена, нужна сверка по лору Dawnbreaker.",
+    "Puck: «bold» и союз с неизвестной силой, «отчасти согласен» — пересказ реплик Puck, не добавлено.",
+    "Реплики озвучки о союзниках и врагах (Arc Warden, Earth Spirit, Monkey King, Treant Protector, Winter Wyvern, Drow Ranger, Techies, Oracle, Legion Commander, Centaur Warrunner, Bloodseeker, Bristleback) — не основание для связей.",
+    "Enigma и Chaos Knight в репликах (брат, «ride with me») и Keeper of the Light (вражда) — кроме инфобокса, реплики не основание; вражда с Keeper из реплики не записана.",
+    "Physical/material plane: в биографии «физический план», в тексте лора назван Terrene Plane только ссылкой; такого места в regions.json нет, учтено регионом planes; кандидат не добавлен.",
+    "Schism — событие, а не место; в links не добавлено.",
+    "Hero Atlas (Monster Hunter) и liquipedia-hero не открыты полностью в этой партии: текст героя в кэше проверен выборочно, на связи и места не повлиял."
+  ]
+}

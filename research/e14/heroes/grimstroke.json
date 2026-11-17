@@ -1,0 +1,58 @@
+{
+  "hero": "grimstroke",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "place": "Ashkavor",
+      "event": "origin",
+      "source": "bio",
+      "note": "Родина героя и его народа: здесь он стал Вознесённым у рунного камня, здесь же погибли и были превращены в тени его соплеменники. Liquipedia в инфобоксе называет то же место."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "ember_spirit",
+      "type": "enemy",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Grimstroke/Lore",
+      "note": "Лор-страница называет трёх духов-братьев, к которым герой питает особую ненависть: Xin, Kaolin и Raijin. Инфобокс перечисляет героев Ember Spirit, Earth Spirit и Storm Spirit.",
+      "doubt": "Соответствие Xin, Kaolin и Raijin героям инфобокса не написано прямо: сопоставление сделано по инфобоксу и по упоминанию пламени Xin, а не по тексту. Нужна проверка владельцем."
+    },
+    {
+      "hero": "earth_spirit",
+      "type": "enemy",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Grimstroke/Lore",
+      "note": "См. запись про Ember Spirit: тот же раздел лор-страницы, отдельный герой из инфобокса.",
+      "doubt": "Соответствие Kaolin герою Earth Spirit выведено из инфобокса, в тексте не названо."
+    },
+    {
+      "hero": "storm_spirit",
+      "type": "enemy",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Grimstroke/Lore",
+      "note": "См. запись про Ember Spirit: тот же раздел лор-страницы, отдельный герой из инфобокса.",
+      "doubt": "Соответствие Raijin герою Storm Spirit выведено из инфобокса, в тексте не названо."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Grimstroke, последний из Вознесённых Ашкавора, был стражем своего народа, но при Вознесении загрязнённые чернила поглотили его и весь народ, превратив соплеменников в тени. Теперь он бродит по миру со своей кистью и строит масштабные замыслы, подчиняя себе тех, кого встречает. Единственная привязанность, о которой сказано в тексте, связана с его погибшей возлюбленной Яовхи, которая осталась рядом с ним в виде духа.",
+      "en": "Grimstroke, the last of the Ascended of Ashkavor, was meant to guard his people, but during his Ascension the tainted ink consumed him and every one of his kin, leaving them as shades. He now travels the world with an enchanted brush, pursuing grand designs and drawing others under his control. The only attachment the texts describe is to his lost beloved, Yaovhi, who remains at his side as a spirit."
+    },
+    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/grimstroke.png"]
+  },
+  "candidates": [],
+  "unconfirmed": [
+    "Yaovhi: возлюбленная и родня по инфобоксу (family, lover), но это персонаж, а не герой из heroes.json; связь героя не записана",
+    "Shadow Demon, Rotund'jere, Balanar: лор-страница называет их «темными» фигурами, которыми герой восхищается; тип связи в тексте не назван, только реплики озвучки",
+    "Sylla: реплика озвучки «уже встречал друида»; без подтверждённой связи",
+    "Dead God и его Dirge: антипатия к Dirge из реплики озвучки; Dead God не в heroes.json",
+    "Mars: вышел в одном трейлере с героем (trivia), связь не подтверждена текстом лора",
+    "Ascended Ones, Ancients, Soulbind, Fortune of the Five Houses: факции и предметы, не места на карте; родина уже покрыта Ashkavor",
+    "Комикса с героем в content/media.json нет"
+  ]
+}
