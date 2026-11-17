@@ -1,7 +1,7 @@
 import AxeBuilder from '@axe-core/playwright';
 import { test, expect, panelHeading } from './fixtures';
 
-// Доступность (#105, A14): axe на шести экранах без нарушений serious/critical
+// Доступность (#105, A14): axe на семи экранах без нарушений serious/critical
 // и reduced motion — после посадки камеры на странице нет бегущих анимаций.
 
 const screens: { name: string; hash: string; ready: (page: import('@playwright/test').Page) => Promise<void> }[] = [
@@ -19,11 +19,24 @@ const screens: { name: string; hash: string; ready: (page: import('@playwright/t
     hash: '#/world?hero=crystal_maiden&profile',
     ready: (p) => expect(panelHeading(p)).toHaveText('Crystal Maiden'),
   },
+  {
+    // Выдача с группами героев и регионов (#100).
+    name: 'поиск',
+    hash: '#/world',
+    ready: async (p) => {
+      await p.getByRole('button', { name: 'Поиск героя' }).click();
+      await p.getByRole('combobox', { name: 'Герой, регион или место' }).fill('a');
+      await expect(p.getByRole('group', { name: 'Регионы' })).toBeVisible();
+    },
+  },
 ];
 
 for (const screen of screens) {
-  test(`axe: ${screen.name}`, async ({ page, consoleErrors }) => {
+  test(`axe: ${screen.name}`, async ({ page, consoleErrors, browserName }) => {
     void consoleErrors;
+    // Firefox падает (Page crashed) в axe при открытом поле поиска — и до #100, с одной группой героев;
+    // сам поиск в Firefox работает (дымовой сценарий), разметку выдачи проверяют остальные движки.
+    test.skip(browserName === 'firefox' && screen.name === 'поиск', 'axe роняет страницу Firefox при открытом поиске');
     await page.goto(`./${screen.hash}`);
     await screen.ready(page);
     await page.waitForTimeout(1200); // посадка камеры и появление панели

@@ -1,9 +1,11 @@
 import type { Screen } from '../../app/router';
-import type { Hero, HeroEvent, Lang, Point, Region } from '../../data/types';
+import type { Hero, HeroEvent, Lang, Place, Point, Region } from '../../data/types';
 import { getPlace, getRegion, placeName, world } from '../../data/world';
 
 /** Сколько вариантов показывает автодополнение. */
 export const MAX_RESULTS = 8;
+/** Сколько героев остаётся в выдаче, даже если регионов и мест много (SPEC §6.5). */
+export const MIN_HEROES = 4;
 
 /** Сравнение без регистра, «ё» и знаков: «Nature's Prophet» = «natures prophet», «Рики» = «рики». */
 export function normalize(s: string): string {
@@ -53,6 +55,77 @@ export function searchHeroes(query: string, heroes: Hero[] = world.heroes): Hero
   }
   found.sort((a, b) => a.score - b.score || a.match.hero.name.localeCompare(b.match.hero.name));
   return found.slice(0, MAX_RESULTS).map((f) => f.match);
+}
+
+/** Вариант общего поиска (SPEC §6.5): герой, регион или место. */
+export type SearchMatch =
+  | ({ kind: 'hero' } & HeroMatch)
+  | { kind: 'region'; region: Region }
+  | { kind: 'place'; region: Region; place: Place };
+
+/** Лучший балл по набору названий; null — ни одно не подошло. */
+function bestScore(names: (string | undefined)[], q: string): number | null {
+  let best: number | null = null;
+  for (const name of names) {
+    if (!name) continue;
+    const s = score(normalize(name), q);
+    if (s !== null && (best === null || s < best)) best = s;
+  }
+  return best;
+}
+
+function rank<T>(items: { item: T; score: number; name: string }[], lang: Lang): T[] {
+  items.sort((a, b) => a.score - b.score || a.name.localeCompare(b.name, lang));
+  return items.map((i) => i.item);
+}
+
+/** Регионы по названию на обоих языках; при равенстве — по названию на языке интерфейса. */
+export function searchRegions(query: string, lang: Lang, regions: Region[] = world.regions): Region[] {
+  const q = normalize(query);
+  if (q === '') return [];
+  const found: { item: Region; score: number; name: string }[] = [];
+  for (const region of regions) {
+    const s = bestScore([region.name.ru, region.name.en], q);
+    if (s !== null) found.push({ item: region, score: s, name: region.name[lang] });
+  }
+  return rank(found, lang);
+}
+
+/** Места по названию на обоих языках и имени из исследования. */
+export function searchPlaces(
+  query: string,
+  lang: Lang,
+  regions: Region[] = world.regions,
+): { region: Region; place: Place }[] {
+  const q = normalize(query);
+  if (q === '') return [];
+  const found: { item: { region: Region; place: Place }; score: number; name: string }[] = [];
+  for (const region of regions) {
+    for (const place of region.places) {
+      const s = bestScore([place.name, place.text?.name?.ru, place.text?.name?.en], q);
+      if (s !== null) found.push({ item: { region, place }, score: s, name: placeName(place, lang) });
+    }
+  }
+  return rank(found, lang);
+}
+
+/**
+ * Общий поиск (SPEC §6.5): тот же порядок совпадений, варианты группами — герои, регионы, места.
+ * Всего не больше MAX_RESULTS; героев не меньше MIN_HEROES, если столько нашлось, остальное — регионам, затем местам,
+ * а не занятое ими место снова отдаётся героям.
+ */
+export function searchAll(query: string, lang: Lang): SearchMatch[] {
+  const heroes = searchHeroes(query);
+  const regions = searchRegions(query, lang);
+  const places = searchPlaces(query, lang);
+  const others = Math.min(regions.length + places.length, MAX_RESULTS - Math.min(heroes.length, MIN_HEROES));
+  const shownRegions = regions.slice(0, others);
+  const shownPlaces = places.slice(0, others - shownRegions.length);
+  return [
+    ...heroes.slice(0, MAX_RESULTS - others).map((m): SearchMatch => ({ kind: 'hero', ...m })),
+    ...shownRegions.map((region): SearchMatch => ({ kind: 'region', region })),
+    ...shownPlaces.map(({ region, place }): SearchMatch => ({ kind: 'place', region, place })),
+  ];
 }
 
 /** Тон подсветки (SPEC §8.3): ярусы — своё свечение, остальные — по стороне. */

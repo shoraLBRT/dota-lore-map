@@ -74,6 +74,62 @@
   font-size: 0.85rem;
 }
 
+.group {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.groupTitle {
+  display: block;
+  padding: var(--space-2) var(--space-4) var(--space-1);
+  color: var(--text-3);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Значок региона или места — в ширину портрета, чтобы имена стояли в одну колонку. */
+.optionIcon {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2rem;
+}
+
+/* Ромб цвета стороны (или яруса) региона, как подсветка на карте (SPEC §8.3). */
+.diamond {
+  width: 0.75rem;
+  height: 0.75rem;
+  transform: rotate(45deg);
+  border: 1px solid var(--metal-bright);
+  background: var(--neutral);
+}
+
+.diamond[data-tone='radiant'] {
+  background: var(--radiant);
+}
+
+.diamond[data-tone='dire'] {
+  background: var(--dire);
+}
+
+.diamond[data-tone='upper'] {
+  background: var(--upper);
+}
+
+.diamond[data-tone='abyss'] {
+  background: var(--abyss);
+}
+
+.optionText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
 .empty {
   padding: var(--space-2) var(--space-4);
   color: var(--text-2);

@@ -9,9 +9,9 @@ import styles from './PlaceList.module.css';
 /** Сколько мест видно до кнопки «Все места (N)» (SPEC §5.4 п. 7). */
 export const PLACES_SHOWN = 8;
 
-type Kind = 'capital' | 'event' | 'link' | 'minor';
+export type Kind = 'capital' | 'event' | 'link' | 'minor';
 
-const kindOf = (p: Place): Kind => (p.capital ? 'capital' : significance(p));
+export const kindOf = (p: Place): Kind => (p.capital ? 'capital' : significance(p));
 
 const RANK: Record<Kind, number> = { capital: 0, event: 1, link: 2, minor: 3 };
 
@@ -29,7 +29,7 @@ export function sortPlaces(places: Place[], lang: Lang): Place[] {
 }
 
 /** Значок значимости — как маркер на карте (SPEC §6.3): звезда, яркое кольцо, кольцо, малое тусклое кольцо. */
-function KindIcon({ kind }: { kind: Kind }) {
+export function KindIcon({ kind }: { kind: Kind }) {
   return (
     <svg className={styles.icon} data-kind={kind} viewBox="-10 -10 20 20" aria-hidden="true" focusable="false">
       <circle className={styles.ring} r={kind === 'minor' ? 5 : 7.5} />
