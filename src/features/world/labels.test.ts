@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { clampLabelX, EDGE_GAP, labelBox, placeEdgeLabels, placeMarkerLabels, splitLabel, type EdgeLabel, type MarkerLabel } from './labels';
+import { clampLabelX, EDGE_GAP, LABEL_PAD_X, LABEL_PAD_Y, labelBox, placeEdgeLabels, placeMarkerLabels, splitLabel, type EdgeLabel, type MarkerLabel } from './labels';
 
 describe('splitLabel — длинные названия регионов в две строки', () => {
   it('короткое и без пробела — одной строкой', () => {
@@ -97,6 +97,18 @@ describe('placeMarkerLabels — подписи маркеров не налез�
       const touchesRing = b.left < 9 && b.right > -9 && b.top < 9 && b.bottom > -9;
       expect(touchesRing, side).toBe(false);
     }
+  });
+});
+
+describe('labelBox — плашка подписи маркера (#98)', () => {
+  it('рамка — текст плюс поля плашки, у кольца с прежним зазором', () => {
+    const b = labelBox('top', { width: 60, size: 13, ring: 9 });
+    expect(b.right - b.left).toBe(60 + 2 * LABEL_PAD_X);
+    expect(b.bottom - b.top).toBe(13 + 2 * LABEL_PAD_Y);
+    expect(b.bottom).toBe(-12);
+    const r = labelBox('right', { width: 60, size: 13, ring: 9 });
+    expect(r.left).toBe(12);
+    expect(r.right).toBe(12 + 60 + 2 * LABEL_PAD_X);
   });
 });
 
