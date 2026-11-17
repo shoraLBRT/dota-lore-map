@@ -26,23 +26,16 @@
       "source": "bio",
       "doubt": "Текст называет беглецов из небес, но служба описана для загробного мира в целом, без отдельного упоминания небес.",
       "note": "Беглецы, вырвавшиеся из небес, тоже входят в задачу героя."
-    },
-    {
-      "place": "Underscape",
-      "event": "mention",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Visage/Lore",
-      "note": "Заметка лор-страницы: Некро'лик связан с Underscape, как и Razor; сам герой там не назван."
     }
   ],
   "profile": {
     "summary": {
-      "ru": "Visage — гаргулья, воплощение вечного духа Некро'лика, который живёт внутри камня. Это безжалостный охотник за душами, сбежавшими из загробного мира. Гаргульи стерегут вход в Узкий лабиринт, ведущий за грань смерти. Когда беглец вырывается из ада или небес силой или хитростью, за ним отправляют Visage. Ни смерть, ни усталость его не останавливают, и он уничтожает любое укрытие, где прячется беглец. Даже воскрешённых он в конце концов находит и возвращает на их место.",
-      "en": "Visage is the gargoyle shape that the spirit Necro'lic is bound to, and it works as a relentless hunter of runaway souls. Gargoyles watch over the entrance to the Narrow Maze, the road into the afterlife. When a spirit escapes the hells or the heavens by force or guile, Visage is sent to drag it back. It feels neither death nor weariness, and it destroys whatever shelters the fugitive. Even the revived are never safe for long, since Visage tracks them down and returns them to their place."
+      "ru": "Visage — каменная гаргулья, в которую заключён вечный дух Некро'лик. Гаргульи сидят над входом в Узкий лабиринт, и мимо них проходит каждая душа, ушедшая за грань смерти. Если какой-то дух хитростью или силой вырывается из своего ада или рая, за ним посылают Visage. Не зная ни усталости, ни смерти, он преследует беглеца, рушит любое его укрытие и рано или поздно возвращает даже воскресших туда, где им положено быть.",
+      "en": "Visage is a stone gargoyle that binds the eternal spirit Necro'lic. Gargoyles sit above the entrance to the Narrow Maze, and every soul that passes beyond death must go under their gaze. When a spirit slips out of its hell or heaven by skill or trickery, Visage is sent after it. Knowing neither weariness nor death, it hunts the fugitive, wrecks any place that hides it, and sooner or later returns even the revived to where they belong."
     }
   },
   "unconfirmed": [
+    "Underscape: заметка лор-страницы без сноски о том, что Некро'лик и Razor привязаны к Underscape и он бранит Razor за то, что тот его покинул; по смыслу это пересказ реплики при встрече. Место не записано.",
     "Razor: в инфобоксе указан без типа связи; заметка лор-страницы говорит только о том, что Некро'лик его знает и бранит за недосмотр, тип не назван.",
     "Lion: заметка лор-страницы о том, что Некро'лик не раз отправлял его обратно в ад, без типа связи.",
     "Shadow Fiend: заметка лор-страницы о том, что Некро'лик не одобряет захват душ, без типа связи.",
