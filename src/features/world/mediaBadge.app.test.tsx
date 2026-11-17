@@ -75,8 +75,8 @@ describe('значок медиа (#69)', () => {
     window.location.hash = '#/world';
     render(<App />);
     const tip = hoverRegion(icewrack.name.ru);
-    const badge = within(tip).getByRole('button', { name: 'Есть медиа: комикс' });
-    expect(badge).toHaveTextContent('комикс');
+    const badge = within(tip).getByRole('button', { name: 'Есть медиа: комикс, трейлер' });
+    expect(badge).toHaveTextContent('комикс, трейлер');
     // Tab с региона ведёт в подсказку: значок — первая кнопка.
     expect(within(tip).getAllByRole('button')[0]).toBe(badge);
     fireEvent.click(badge);

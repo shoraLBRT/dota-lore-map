@@ -26,7 +26,8 @@ describe('подсказка региона в мире', () => {
 
     const rest = all.length - TOOLTIP_HEROES;
     fireEvent.click(within(tip).getByRole('button', { name: `+${rest}: показать всех героев (${all.length})` }));
-    expect(within(tip).getAllByRole('button')).toHaveLength(all.length);
+    // Кнопки героев; значок медиа региона — отдельная кнопка.
+    expect(within(tip).getAllByRole('button', { name: /^(?!Есть медиа)/ })).toHaveLength(all.length);
 
     const last = all[all.length - 1]!;
     fireEvent.click(within(tip).getByRole('button', { name: last.name }));

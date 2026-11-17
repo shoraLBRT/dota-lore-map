@@ -208,7 +208,7 @@ describe('что показывает галерея', () => {
   it('медиа экрана, с которого открыта; чужое медиа — одно; неизвестное — ничего', () => {
     expect(galleryOf({ screen: { name: 'region', regionId: 'icewrack' } })).toBeNull();
     const region = galleryOf({ screen: { name: 'region', regionId: 'icewrack' }, media: 'icewrack-new-neighbors' });
-    expect(region?.items.map((m) => m.id)).toEqual(['icewrack-new-neighbors']);
+    expect(region?.items.map((m) => m.id)).toEqual(['icewrack-new-neighbors', 'crownfall-act-iii-trailer']);
     expect(region?.index).toBe(0);
     const place = galleryOf({ screen: { name: 'place', regionId: 'icewrack', placeSlug: 'frostreach' }, media: 'frostreach-the-dragon' });
     expect(place?.items.map((m) => m.id)).toEqual(['frostreach-the-dragon']);
