@@ -14,15 +14,15 @@ const MARKER_FONT = 13;
 const CAPITAL_FONT = 17;
 const MINOR_FONT = 12;
 
-/** Значимость места (#68, SPEC §6.3); нет поля — обычный маркер. */
-export const significance = (p: Place): Significance => p.significance ?? 'link';
+/** Значимость места (#68, SPEC §6.3); нет поля — как `event`. */
+export const significance = (p: Place): Significance => p.significance ?? 'event';
 /** Радиус кольца маркера, px: выбранное место (крупнее всех, #96), столица, место, второстепенное место (меньше). */
 export const ringOf = (p: Place, selected = false) => (selected ? 13 : p.capital ? 11 : significance(p) === 'minor' ? 7 : 9);
 /** Кегль подписи: у выбранного места — как у столицы (MarkersLayer.module.css: .current .markerLabel). */
 export const fontOf = (p: Place, selected = false) =>
   selected || p.capital ? CAPITAL_FONT : significance(p) === 'minor' ? MINOR_FONT : MARKER_FONT;
-/** Порядок подписей после текущего места, столицы и мест героя: события, связи E1, второстепенные (labels.ts). */
-const SIGNIFICANCE_RANK: Record<Significance, number> = { event: 3, link: 4, minor: 5 };
+/** Порядок подписей после текущего места, столицы и мест героя: события, второстепенные (labels.ts). */
+const SIGNIFICANCE_RANK: Record<Significance, number> = { event: 3, minor: 4 };
 
 /** Подпись маркера на стороне `side`: якорь и базовая линия текста внутри плашки (labels.ts: labelBox). */
 export function markerLabelAttrs(

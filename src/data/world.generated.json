@@ -6152,7 +6152,7 @@
           "slug": "fellstrath",
           "capital": true,
           "placement": "lore",
-          "significance": "link",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Феллстрат",

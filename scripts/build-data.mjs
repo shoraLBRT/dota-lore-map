@@ -31,26 +31,24 @@ const isHttps = (v) => typeof v === 'string' && /^https:\/\/[^\s/]+\.[^\s]+$/.te
 /** src картинки: https-ссылка или относительный путь без схемы (ARCHITECTURE A3). */
 const isMediaSrc = (v) => isHttps(v) || (isNonEmptyString(v) && !/^[a-z][a-z0-9+.-]*:|^\/\//i.test(v) && !/\s/.test(v));
 // Модель связей героя (E14, ARCHITECTURE A3). Те же правила проверяет research/e1/build.py.
-export const EVENTS = ['origin', 'home', 'journey', 'battle', 'service', 'exile', 'death', 'visit', 'mention', 'link'];
+export const EVENTS = ['origin', 'home', 'journey', 'battle', 'service', 'exile', 'death', 'visit', 'mention'];
 /**
- * События, при которых место — не остановка пути героя: `mention` — герой там не был, `link` — тип из E1 не уточнён.
+ * События, при которых место — не остановка пути героя: `mention` — герой там не был.
  * Тот же список — OFF_PATH в src/features/search/threads.ts (нити, A11); совпадение проверяет тест.
  */
-export const OFF_PATH_EVENTS = ['mention', 'link'];
-/** Значимость места на карте (SPEC §6.3, ARCHITECTURE A3, #68): событие, неуточнённая связь E1, второстепенное. */
-export const SIGNIFICANCE = ['event', 'link', 'minor'];
+export const OFF_PATH_EVENTS = ['mention'];
+/** Значимость места на карте (SPEC §6.3, ARCHITECTURE A3, #68): место события или второстепенное. */
+export const SIGNIFICANCE = ['event', 'minor'];
 
 /**
  * Значимость места — из данных, без ручной разметки (ARCHITECTURE A3, #68):
- * `event` — у героя тут событие пути (любое, кроме mention и link), место — остановка его `path`,
- * или тут происходит действие медиа места; `link` — только связи E1 без уточнения (или столица без событий);
- * `minor` — только упоминания или героев нет.
+ * `event` — у героя тут событие пути (любое не из OFF_PATH_EVENTS), место — остановка его `path`,
+ * тут происходит действие медиа места или место — столица; `minor` — только упоминания или героев нет.
  * @param {{ events: Iterable<string>, onPath?: boolean, media?: unknown[], capital?: boolean }} place
  */
 export function placeSignificance({ events, onPath = false, media, capital = false }) {
   const list = [...events];
-  if (onPath || (media?.length ?? 0) > 0 || list.some((e) => !OFF_PATH_EVENTS.includes(e))) return 'event';
-  return capital || list.includes('link') ? 'link' : 'minor';
+  return onPath || capital || (media?.length ?? 0) > 0 || list.some((e) => !OFF_PATH_EVENTS.includes(e)) ? 'event' : 'minor';
 }
 /** Кем другой герой приходится этому → обратный тип. */
 export const RELATIONS = {

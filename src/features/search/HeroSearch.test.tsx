@@ -257,17 +257,16 @@ describe('поиск героя и нити', () => {
     ]);
   });
 
-  it('легенда (#67): у Tidehunter — пунктир «другая связь», значка у связи без типа нет; EN', () => {
+  it('легенда (#67): у Tidehunter — пунктир «другая связь» без стрелки; EN', () => {
     window.localStorage.setItem('dota-lore-map.lang', 'en');
     window.location.hash = '#/world?hero=tidehunter&profile';
     render(<App />);
-    expect(document.querySelector('[data-testid="threads"] [data-step="link"] [data-arrow]')).toBeNull();
+    expect(document.querySelector('[data-testid="threads"] [data-step="aside"] [data-arrow]')).toBeNull();
     const plaque = screen.getByRole('complementary', { name: 'Tidehunter' });
     fireEvent.click(within(plaque).getByRole('button', { name: 'How to read the threads' }));
     const items = within(plaque).getAllByRole('listitem').map((li) => li.textContent);
-    expect(items).toContain('Other link: a mention, or the kind is not yet known');
+    expect(items).toContain('Other link: the place is only mentioned');
     expect(items).toContain('Homeland');
-    expect(items).not.toContain('Link, kind not yet known');
   });
 });
 

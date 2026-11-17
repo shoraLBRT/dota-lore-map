@@ -2,7 +2,7 @@ import { useId, useMemo, useState } from 'react';
 import { useNavigation } from '../../app/navigation';
 import { serializeRoute } from '../../app/router';
 import { DiamondButton } from '../../components/DiamondButton';
-import { EventIcon, hasBadge, type BadgeEvent } from '../../components/EventIcon';
+import { EventIcon } from '../../components/EventIcon';
 import { HeroPortrait } from '../../components/HeroPortrait';
 import { Paragraphs } from '../../components/Paragraphs';
 import type { Hero } from '../../data/types';
@@ -14,7 +14,7 @@ import crumbStyles from '../panel/Blocks.module.css';
 import { MediaCards } from '../panel/MediaCards';
 import { useHeroPreview } from '../search/preview';
 import { spotName, spotScreen, type Spot } from '../search/search';
-import type { HeroThreads } from '../search/threads';
+import type { HeroThreads, StepKind } from '../search/threads';
 import styles from './HeroProfile.module.css';
 import { heroMedia, heroRelations, profilePlaces } from './profile';
 
@@ -80,7 +80,7 @@ export function HeroProfile({ hero, spots, threads, onPick }: Props) {
                     onClick={() => open(screen)}
                   >
                     <span className={styles.placeIcon} aria-hidden="true">
-                      {hasBadge(spot.event) && <EventIcon event={spot.event} />}
+                      <EventIcon event={spot.event} />
                     </span>
                     <span className={styles.placeText}>
                       <span className={styles.placeName}>{spotName(spot, lang)}</span>
@@ -150,7 +150,7 @@ function Legend({ spots, threads }: { spots: Spot[]; threads?: HeroThreads }) {
   const steps = threads?.steps ?? [];
   if (steps.length === 0) return null;
   const kinds = new Set(steps.map((s) => s.kind));
-  const events = [...new Set(spots.map((s) => s.event))].filter(hasBadge);
+  const events = [...new Set(spots.map((s) => s.event))];
   return (
     <div className={styles.legend}>
       <button
@@ -170,13 +170,13 @@ function Legend({ spots, threads }: { spots: Spot[]; threads?: HeroThreads }) {
             {t('hero.legendPath')}
           </li>
         )}
-        {kinds.has('link') && (
+        {kinds.has('aside') && (
           <li>
-            <LineSample kind="link" />
-            {t('hero.legendLink')}
+            <LineSample kind="aside" />
+            {t('hero.legendAside')}
           </li>
         )}
-        {events.map((e: BadgeEvent) => (
+        {events.map((e) => (
           <li key={e}>
             <EventIcon event={e} className={styles.legendIcon} />
             {t(`hero.event.${e}`)}
@@ -189,10 +189,10 @@ function Legend({ spots, threads }: { spots: Spot[]; threads?: HeroThreads }) {
 }
 
 /** Образец линии для легенды: сплошная со стрелкой — путь, пунктир — прочая связь. */
-function LineSample({ kind }: { kind: 'path' | 'link' }) {
+function LineSample({ kind }: { kind: StepKind }) {
   return (
     <svg className={styles.legendLine} viewBox="0 0 28 12" width="28" height="12" aria-hidden="true" focusable="false">
-      <path d="M2 6h22" strokeDasharray={kind === 'link' ? '4 3' : undefined} />
+      <path d="M2 6h22" strokeDasharray={kind === 'aside' ? '4 3' : undefined} />
       {kind === 'path' && <path className={styles.legendArrow} d="M15 2.5 21 6l-6 3.5Z" />}
     </svg>
   );

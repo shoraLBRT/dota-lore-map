@@ -344,7 +344,7 @@ describe('MapStage — подписи и подсказки (аудит E13)', (
   });
 
   it('значимость (#68): место события ярче, второстепенное меньше; подпись события ставится раньше', () => {
-    const at = (slug: string, pos: [number, number], significance?: 'event' | 'link' | 'minor') => ({
+    const at = (slug: string, pos: [number, number], significance?: 'event' | 'minor') => ({
       name: slug.toUpperCase(),
       slug,
       capital: false,
@@ -352,23 +352,22 @@ describe('MapStage — подписи и подсказки (аудит E13)', (
       pos,
       ...(significance && { significance }),
     });
-    renderStage([{ ...region('a', true), places: [at('ev', [0.1, 0.1], 'event'), at('ln', [0.15, 0.1], 'link'), at('mi', [0.2, 0.1], 'minor'), at('old', [0.25, 0.1])] }], 'a');
+    renderStage([{ ...region('a', true), places: [at('ev', [0.1, 0.1], 'event'), at('mi', [0.2, 0.1], 'minor'), at('old', [0.25, 0.1])] }], 'a');
     const marker = (slug: string) => document.querySelector(`[data-place="${slug}"]`)!;
     const ring = (slug: string) => marker(slug).querySelector('circle:not([r="18"])')!.getAttribute('r');
     expect(marker('ev').getAttribute('data-significance')).toBe('event');
     expect(marker('ev').getAttribute('class')).toMatch(/event/);
     expect(marker('mi').getAttribute('class')).toMatch(/minor/);
-    expect(marker('ln').getAttribute('class')).not.toMatch(/event|minor/);
-    // Нет поля — как связь E1: обычный маркер.
-    expect(marker('old').getAttribute('data-significance')).toBe('link');
-    expect([ring('ev'), ring('ln'), ring('mi')]).toEqual(['9', '9', '7']);
+    // Нет поля — как место события.
+    expect(marker('old').getAttribute('data-significance')).toBe('event');
+    expect([ring('ev'), ring('old'), ring('mi')]).toEqual(['9', '9', '7']);
     // Второстепенное место не убираем — оно на карте и кликается.
     expect(screen.getByRole('button', { name: 'MI' })).toBeInTheDocument();
     cleanup();
 
-    // Тесно (пять мест в одной точке — сторон для подписей четыре): места со связью E1 идут в данных первыми,
+    // Тесно (пять мест в одной точке — сторон для подписей четыре): второстепенные места идут в данных первыми,
     // но подпись места события встаёт раньше них, прячется последняя из них.
-    const crowd = ['m1', 'm2', 'm3', 'm4'].map((slug) => at(slug, [0.2, 0.2], 'link'));
+    const crowd = ['m1', 'm2', 'm3', 'm4'].map((slug) => at(slug, [0.2, 0.2], 'minor'));
     renderStage([{ ...region('a', true), places: [...crowd, at('ev', [0.2, 0.2], 'event')] }], 'a');
     const side = (slug: string) => document.querySelector(`[data-place="${slug}"] text`)!.getAttribute('data-side');
     expect(side('ev')).toBe('top');

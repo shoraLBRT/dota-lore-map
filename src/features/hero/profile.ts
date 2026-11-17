@@ -95,7 +95,7 @@ export function heroMedia(hero: Hero): Media[] {
 
 export interface ProfilePlace {
   spot: Spot;
-  /** Остановка пути героя (там он был); иначе — прочая связь: упоминание или тип не уточнён (A11). */
+  /** Остановка пути героя (там он был); иначе — прочая связь: упоминание (A11). */
   onPath: boolean;
 }
 
@@ -104,7 +104,7 @@ const refKey = (r: { regionId: string; placeSlug?: string }) => (r.placeSlug ? `
 /**
  * Места героя по порядку пути (SPEC §6.8): остановки `path` по первому появлению, затем остальные места
  * по порядку связей. Пути нет — места по порядку связей (он и есть хронология, A3). Остановка — как у нитей (A11):
- * место из `path`, а без пути — любое, кроме `mention` и `link`.
+ * место из `path`, а без пути — любое, кроме `mention`.
  */
 export function profilePlaces(hero: Hero, spots: Spot[]): ProfilePlace[] {
   if (!hero.path) return spots.map((spot) => ({ spot, onPath: !OFF_PATH.has(spot.event) }));

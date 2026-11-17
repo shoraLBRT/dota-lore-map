@@ -25,7 +25,7 @@
 }
 
 /* #67: шаг пути — сплошная нить (выше); прочая связь — пунктир, после прорисовки течёт. */
-.threadLink {
+.threadAside {
   animation:
     thread-draw var(--dur-thread) var(--ease-out) forwards,
     thread-flow 2.4s linear var(--dur-thread) infinite;
@@ -122,7 +122,7 @@
     animation: none;
   }
 
-  .threadLink {
+  .threadAside {
     stroke-dasharray: var(--dash) var(--dash);
   }
 

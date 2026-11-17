@@ -43,12 +43,11 @@ describe('нити на карте (#67)', () => {
     expect(c.querySelectorAll('circle[class*="flash"]')).toHaveLength(2);
   });
 
-  it('прочая связь: пунктир без стрелки; у `link` значка нет, у упоминания — есть', () => {
-    const link = draw('link', 'link').querySelector('[data-step="link"]')!;
-    expect(link.querySelector('[data-thread]')!.getAttribute('class')).toMatch(/threadLink/);
-    expect(link.querySelector('[data-arrow]')).toBeNull();
-    expect(link.querySelector('[data-badge]')).toBeNull();
-    expect(draw('link', 'mention').querySelector('[data-badge="mention"]')).not.toBeNull();
+  it('прочая связь: пунктир без стрелки, со значком упоминания', () => {
+    const aside = draw('aside', 'mention').querySelector('[data-step="aside"]')!;
+    expect(aside.querySelector('[data-thread]')!.getAttribute('class')).toMatch(/threadAside/);
+    expect(aside.querySelector('[data-arrow]')).toBeNull();
+    expect(aside.querySelector('[data-badge="mention"]')).not.toBeNull();
   });
 
   it('короткая нить — без значка; подпись на всей нити — значок не встаёт поверх', () => {

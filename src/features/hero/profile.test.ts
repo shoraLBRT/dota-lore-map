@@ -80,7 +80,7 @@ describe('места по порядку пути (profilePlaces)', () => {
     const techies = getHero('techies')!;
     const places = profilePlaces(techies, heroSpots(techies));
     expect(places.map((p) => p.spot.key)).toEqual(heroSpots(techies).map((s) => s.key));
-    for (const p of places) expect(p.onPath).toBe(p.spot.event !== 'mention' && p.spot.event !== 'link');
+    for (const p of places) expect(p.onPath).toBe(p.spot.event !== 'mention');
   });
 
   it('с путём — сначала остановки по первому появлению, потом остальные места', () => {
