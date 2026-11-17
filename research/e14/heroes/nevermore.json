@@ -1,0 +1,42 @@
+{
+  "hero": "nevermore",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Abysm",
+      "event": "origin",
+      "source": "bio",
+      "note": "Биография называет Бездну, откуда он тянется за душами; инфобокс Liquipedia тоже ставит её в origins."
+    },
+    {
+      "place": "Seven Hells",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Shadow_Fiend/Lore",
+      "doubt": "Место стоит в поле places инфобокса, но ни биография, ни текст лор-страницы не описывают его связь с героем."
+    }
+  ],
+  "relations": [],
+  "profile": {
+    "summary": {
+      "ru": "Shadow Fiend, он же Nevermore, собирает души: говорят, их у него тысячи, и взяты они у людей любого звания — от нищих и рабов до императоров и героев. За добычей он тянется из Бездны, куда никто никогда не заглядывал. Что он делает с душами и не служит ли сам чьей-то чужой воле, остаётся загадкой.",
+      "en": "Shadow Fiend, also called Nevermore, collects souls: he is said to hold thousands, taken from people of every station, from beggars and slaves to emperors and heroes. He reaches for his prey from the Abysm, a place no one has ever looked into. What he does with the souls, and whether he answers to some other will, remains a mystery."
+    }
+  },
+  "unconfirmed": [
+    "Shadow Demon: в shadow_demon.json записан enemy по биографии Shadow Demon (Shadow Fiend вместе с Doom разгромил его культ) — запись односторонняя, источники Shadow Fiend этого не подтверждают. Инфобокс лора называет Shadow Demon его хозяином из-за долга душ, но все сноски к этому — реплики озвучки, связь не записана.",
+    "Биография лишь гадает, не марионетка ли он демонического кукловода, — ни имени, ни связи из этого не следует.",
+    "Doom: реплика озвучки о том, что Doom когда-то держал героя в яме, и инфобокс с полем heroes (Doom и Shadow Demon без типа связи). Тип связи не определён, запись не сделана.",
+    "Комикс hells-ascension: по лор-странице Shadow Fiend упомянут в комиксе при дворе Ристула, но описание в content/media.json его не называет, страницы комикса в кэше нет. Не проверено.",
+    "Court of Ristul, Umbral Pact и язык Ozkavosh — двор, пакт и язык, не места; в links не вошли.",
+    "Rix, Zo и материалы Artifact (Roseleaf, Knogh, Terrene Plane) — не записаны: Artifact вне E14.",
+    "Реплики озвучки о Monkey King, Terrorblade, Visage, Kunkka, Oracle и других героях — связи по ним не записаны.",
+    "Перемещений героя в биографии нет, path не записан."
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "hero": "storm_spirit",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "region": "wailing-mountains",
+      "event": "origin",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Storm_Spirit/Lore",
+      "note": "Текст лора: Райдзин жил в Скулящих горах и, ещё не покинув их, попал под заклинание Громокега; по биографии слияние случилось на равнинах за горами, сам Громокег — оттуда же.",
+      "doubt": "Равнины за горами не названы и на схеме не отмечены; регион гор взят как место, откуда вышел дух, а не как место слияния."
+    },
+    {
+      "place": "Ruined City",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Storm_Spirit/Lore",
+      "doubt": "Место только в поле places инфобокса; в биографии и тексте лора герой здесь не описан."
+    }
+  ],
+  "relations": [],
+  "profile": {
+    "summary": {
+      "ru": "Storm Spirit — сама стихия ветра и непогоды в человеческом облике, шумная и жизнерадостная. Когда-то за Скулящими горами люди гибли от засухи, и скромный маг Громокег рискнул применить запретные чары, чтобы выпросить у духа бури дождь. Разъярённый небожитель Райдзин стёр тот край ураганами и наводнением, и тогда маг ценой себя запер его в собственном теле. Из этого союза родился Райдзин Громокег — небожитель во плоти с добродушием смертного.",
+      "en": "Storm Spirit is wind and weather itself in human shape, loud and full of good cheer. Long ago, beyond the Wailing Mountains, people were dying in a drought, and a modest mage called Thunderkeg risked forbidden magic to beg the storm for rain. The furious Celestial Raijin scoured that land with gales and floods, until the mage sacrificed himself to lock the spirit inside his own body. Their union produced Raijin Thunderkeg, a Celestial in the flesh with a mortal's good humour."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/storm_spirit.png"
+    ]
+  },
+  "candidates": [],
+  "unconfirmed": [
+    "Ember Spirit, Earth Spirit и Void Spirit: биография братьев не называет. Текст лора говорит о «четырёх духах», о том, что братья пошли за Storm Spirit из гор (сноска — страница Three Spirits Update на dota2.com, в кэше её нет, не проверено), и называет Void Spirit старшим братом, подложившим заклинание (сноска — реплика Void Spirit). Связи не записаны, снятия в ember_spirit.json и earth_spirit.json остаются в силе.",
+    "Brewmaster (двоюродный брат) и «общие предки» из раздела Relationships: опираются только на реплики Brewmaster — не записано (как в brewmaster.json).",
+    "Razor (давняя вражда): основание — реплика Razor и описание предмета Storm-Stealer's Whip, предметы не источник — не записано.",
+    "Grimstroke (презрение): одна реплика озвучки — не записано. Zeus: только Artifact — не источник.",
+    "Равнины за Скулящими горами, где Райдзин опустошил землю по биографии: место не названо, регион не угадывается — кандидата и связи нет.",
+    "Куда Райдзин ушёл «в широкий мир» после гор: назначения в источниках нет, поэтому пути (path) нет — нужна вторая названная остановка.",
+    "Ruined City записан как mention только по полю places инфобокса; связи с событием нет (реплика Brewmaster о погребении Mangix относится к нему, а не к Storm Spirit).",
+    "Остальные встречи (Crystal Maiden, Dark Willow, Monkey King, Grimstroke и др.) — реплики озвучки и раздел Friendships and Rivalries; связи не записаны."
+  ]
+}

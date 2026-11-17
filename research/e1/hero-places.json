@@ -1511,6 +1511,15 @@
           "place": "Trembling Isle"
         }
       ],
+      "relations": [
+        {
+          "hero": "tidehunter",
+          "type": "enemy",
+          "source": "bio",
+          "note": "Обратная запись к tidehunter.json: по биографии Tidehunter адмирал Kunkka — его давний заклятый враг, причины вражды неизвестны.",
+          "doubt": "Биография Kunkka говорит только, что Мэльрона призвал Tidehunter; вражду подтверждает биография Tidehunter."
+        }
+      ],
       "profile": {
         "summary": {
           "ru": "Kunkka был адмиралом кладдского флота и защищал родные острова, когда демоны Катаракты двинулись на земли людей. В решающей битве у Дрожащего острова маги Кладда призвали духов предков, и флот едва держался, пока из глубин не поднялся Мэльрон Щупальценосный и не смешал корабли в бурю. Что там произошло, никто не знает: Катаракта опустела, а Kunkka теперь командует одним призрачным кораблём. Погиб ли он, неизвестно даже Tidehunter.",
@@ -2751,18 +2760,41 @@
         {
           "place": "Abysm",
           "event": "origin",
-          "source": "bio"
+          "source": "bio",
+          "note": "Биография называет Бездну, откуда он тянется за душами; инфобокс Liquipedia тоже ставит её в origins."
+        },
+        {
+          "place": "Seven Hells",
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Shadow_Fiend/Lore",
+          "doubt": "Место стоит в поле places инфобокса, но ни биография, ни текст лор-страницы не описывают его связь с героем."
         }
-      ]
+      ],
+      "relations": [],
+      "profile": {
+        "summary": {
+          "ru": "Shadow Fiend, он же Nevermore, собирает души: говорят, их у него тысячи, и взяты они у людей любого звания — от нищих и рабов до императоров и героев. За добычей он тянется из Бездны, куда никто никогда не заглядывал. Что он делает с душами и не служит ли сам чьей-то чужой воле, остаётся загадкой.",
+          "en": "Shadow Fiend, also called Nevermore, collects souls: he is said to hold thousands, taken from people of every station, from beggars and slaves to emperors and heroes. He reaches for his prey from the Abysm, a place no one has ever looked into. What he does with the souls, and whether he answers to some other will, remains a mystery."
+        }
+      }
     },
     "Shadow Shaman": {
       "links": [
         {
           "place": "Bleeding Hills",
           "event": "origin",
-          "source": "bio"
+          "source": "bio",
+          "note": "Родился здесь и рос голодным юнцом. Гибель наставника тоже связана с этими холмами, но это сказано только в тексте способности Shackles на Liquipedia, поэтому отдельной связью не записано."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Rhasta, он же Shadow Shaman, родился на Кровоточащих холмах и голодным ребёнком попал к бродячему шарлатану, который за медяки гадал, проводил обряды и насылал проклятия. Старик понял, что мальчик по-настоящему умеет то, что сам он лишь изображал, и вывел его к публике под именем Shadow Shaman. Однажды толпа обманутых клиентов настигла их и убила наставника, а Rhasta впервые обратил силу во тьму и перебил нападавших. С тех пор он уничтожает всякого, кто желает ему зла.",
+          "en": "Rhasta, known as Shadow Shaman, was born in the Bleeding Hills and as a starving child joined a travelling con-man who sold fortunes and curses. The old man saw that the boy could truly do what he only faked, and put him before the crowds as Shadow Shaman. When a mob of cheated clients killed his mentor, Rhasta first turned his power to darkness and slew them. Since then he destroys anyone who means him harm."
+        }
+      }
     },
     "Silencer": {
       "links": [
@@ -2784,19 +2816,55 @@
         {
           "place": "Ghastly Eyrie",
           "event": "origin",
-          "source": "bio"
+          "source": "bio",
+          "note": "Юность провёл при дворе Жуткого гнезда, здесь же позже служит магом престола.",
+          "doubt": "В биографии не сказано, где именно он родился; место записано по юности при дворе."
         }
-      ]
+      ],
+      "relations": [
+        {
+          "hero": "vengefulspirit",
+          "type": "love",
+          "place": "Ghastly Eyrie",
+          "source": "bio",
+          "note": "Шенделзара, старшая принцесса скайрасов, стала Vengeful Spirit; по биографии Драгонус её любил и мечтает вернуть ей трон и здоровое тело.",
+          "doubt": "Ненависть Vengeful Spirit к нему в биографии дана как его собственное предположение, а не как факт; тип записан по любви."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Драгонус — высокопоставленный маг скайрасов при дворе Жуткого гнезда, связанный клятвой охранять того, кто занимает престол. Когда-то он любил старшую принцессу Шенделзару, но, поглощённый учёбой, проглядел заговор, после которого её сместила младшая сестра, и теперь мечтает вернуть ей трон и здоровое тело. Его магия служит лишь законному защитнику престола, поэтому он остаётся на посту, а тайные помыслы знает только богиня Скри'Ок.",
+          "en": "Dragonus is a senior mage at the court of the Ghastly Eyrie, bound by an oath to guard whoever holds the throne. He once loved the eldest princess Shendelzare, but he was absorbed in his studies and missed the plot that drove her from power, so he now dreams of restoring her to the throne and to a healthy body. His magic answers only to the rightful guardian of the throne, which keeps him at his post, and only the goddess Scree'Auk knows his hidden motives."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/skywrath_mage.png"
+        ]
+      }
     },
     "Slardar": {
       "links": [
         {
           "place": "Deep Vault",
           "event": "home",
+          "source": "bio",
+          "note": "Биография: страж сокровищниц затонувших городов, преследует тех, кто унёс что-то из Sunken Treasury; на схеме Deep Vault — оно же Sunken Treasury (regions.json).",
+          "doubt": "Биография говорит о целой сети затонувших городов в глубинах; служба в Sunken Treasury записана как дом, места рождения источники не называют."
+        },
+        {
+          "place": "Coral Breach",
+          "event": "mention",
           "source": "liquipedia",
-          "via": "infobox"
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Slardar/Lore",
+          "doubt": "Место указано только в инфобоксе; в тексте лора о нём ничего не сказано."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Slardar — слизерин, один из Глубинных, страж сети затонувших городов и древних сокровищ, скрытых в них. В тёмных безднах океана Slithereen Guard охраняет тайные сокровищницы от воров, которых подсылают жадные колдуны с суши. Молчаливый и преданный, он поднимается к мелководью, несмотря на боль от света, — разведать угрозы и догнать тех немногих, кто сумел что-то унести из Sunken Treasury. Жизнь под огромным давлением толщи воды сделала его невероятно сильным.",
+          "en": "Slardar is one of the Slithereen, the Deep Ones, who guard drowned cities and the old treasures kept in them. In the dark ocean depths the Slithereen Guard protects hidden vaults from thieves sent by greedy dry-land sorcerers. Silent and loyal, he endures the painful light of the shallows to scout for threats and to chase anyone who escapes the Sunken Treasury with its goods. The crushing weight of the sea has made him immensely strong."
+        }
+      }
     },
     "Slark": {
       "links": [
@@ -2817,18 +2885,50 @@
         {
           "place": "Nanarak",
           "event": "home",
-          "source": "bio"
+          "source": "bio",
+          "note": "Живёт и странствует по пустынным дорогам и оазисам Нанарака."
+        },
+        {
+          "place": "Outlands",
+          "event": "visit",
+          "source": "bio",
+          "note": "Биография: Нанарак — ворота в Чужеземье, а по Чужеземью разбросаны кости бандитов, которые пытались её обидеть."
         }
-      ]
+      ],
+      "relations": [
+        {
+          "hero": "shredder",
+          "type": "family",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Snapfire/Lore",
+          "note": "Timbersaw — её племянник (поле family инфобокса; сноска — официальное вступительное видео героя и реплики).",
+          "doubt": "Кроме видео, основание — реплики озвучки; степень родства по видео не перепроверена."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Беатрикс Snapfire и её драконья жаба Мортимер — желанные гости для бедняков, живущих вдоль пустынных дорог и оазисов Нанарака, засушливых ворот в Чужеземье. Она славится как непревзойдённая оружейница, а ещё — житейской мудростью, весельем и печеньем, от которого буквально искры летят. До преклонных лет она дожила благодаря острому уму и ещё более быстрым ружьям. Бандиты, решившие, что маленькую добрую старушку легко обидеть, оставили свои кости по всему Чужеземью.",
+          "en": "Beatrix Snapfire travels with her dragon toad Mortimer, and the poor folk along the desert roads and oases of Nanarak, the dry gateway to the Outlands, are always glad to see them. She is famed as a peerless gunsmith, and just as much for her homespun wisdom, good humour and fiery cookies. She has lived to an old age thanks to a sharp mind and even faster guns. Bandits who took a small, kind old lady for an easy mark have left their bones all over the Outlands."
+        }
+      }
     },
     "Sniper": {
       "links": [
         {
           "place": "Knollen",
           "event": "origin",
-          "source": "bio"
+          "source": "bio",
+          "note": "Родился в горах Кноллена; изгнание из деревни — по пророчеству, куда он ушёл, источники не говорят."
         }
-      ]
+      ],
+      "relations": [],
+      "profile": {
+        "summary": {
+          "ru": "Sniper, он же Кардел Остроглаз, родом из гор Кноллена, где кины испокон веков охотятся на скальных зверей, стреляя по ним издалека. Он был одним из лучших стрелков деревни, и в день посвящения его пуля попала зверю прямо в сверкающий глаз. Старейшины увидели в этом начало мрачного пророчества о величии и изгнании. Теперь он живёт вдали от своего народа и не сможет вернуться, пока не прославится на поле битвы.",
+          "en": "Sniper, Kardel Sharpeye, comes from the mountains of Knollen, where the Keen Folk have always lived by shooting cliff beasts from afar. He was one of the best marksmen of his village, and on the day of his coming-of-age test his bullet struck a beast right in its glittering eye. The elders took it as the start of a dark prophecy of greatness and exile. He now lives apart from his people and may not return until he becomes a legend on the battlefield."
+        }
+      }
     },
     "Spectre": {
       "links": [
@@ -2877,11 +2977,33 @@
     "Storm Spirit": {
       "links": [
         {
+          "region": "wailing-mountains",
+          "event": "origin",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Storm_Spirit/Lore",
+          "note": "Текст лора: Райдзин жил в Скулящих горах и, ещё не покинув их, попал под заклинание Громокега; по биографии слияние случилось на равнинах за горами, сам Громокег — оттуда же.",
+          "doubt": "Равнины за горами не названы и на схеме не отмечены; регион гор взят как место, откуда вышел дух, а не как место слияния."
+        },
+        {
           "place": "Ruined City",
-          "event": "home",
-          "source": "bio"
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Storm_Spirit/Lore",
+          "doubt": "Место только в поле places инфобокса; в биографии и тексте лора герой здесь не описан."
         }
-      ]
+      ],
+      "relations": [],
+      "profile": {
+        "summary": {
+          "ru": "Storm Spirit — сама стихия ветра и непогоды в человеческом облике, шумная и жизнерадостная. Когда-то за Скулящими горами люди гибли от засухи, и скромный маг Громокег рискнул применить запретные чары, чтобы выпросить у духа бури дождь. Разъярённый небожитель Райдзин стёр тот край ураганами и наводнением, и тогда маг ценой себя запер его в собственном теле. Из этого союза родился Райдзин Громокег — небожитель во плоти с добродушием смертного.",
+          "en": "Storm Spirit is wind and weather itself in human shape, loud and full of good cheer. Long ago, beyond the Wailing Mountains, people were dying in a drought, and a modest mage called Thunderkeg risked forbidden magic to beg the storm for rain. The furious Celestial Raijin scoured that land with gales and floods, until the mage sacrificed himself to lock the spirit inside his own body. Their union produced Raijin Thunderkeg, a Celestial in the flesh with a mortal's good humour."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/storm_spirit.png"
+        ]
+      }
     },
     "Sven": {
       "links": [
@@ -2941,29 +3063,105 @@
     "Terrorblade": {
       "links": [
         {
-          "place": "Foulfell",
+          "place": "Seven Hells",
           "event": "origin",
-          "source": "bio"
+          "source": "bio",
+          "note": "Он демон, а законы семи адских кругов он нарушал как свои собственные.",
+          "doubt": "Биография не говорит прямо, где он родился; родина выведена из того, что он демон и был судим в этих кругах. Инфобокс называет Seven Hells только среди мест."
+        },
+        {
+          "place": "Foulfell",
+          "event": "exile",
+          "source": "bio",
+          "note": "Его заточили в Foulfell, скрытом измерении, где демоны держат своих; оттуда он вырвался.",
+          "doubt": "Инфобокс лор-страницы (поле origins) называет Foulfell его происхождением с пометкой escapee. По биографии это место заточения, поэтому записано изгнание, а не родина."
         }
-      ]
+      ],
+      "path": [
+        {
+          "place": "Seven Hells"
+        },
+        {
+          "place": "Foulfell"
+        }
+      ],
+      "relations": [],
+      "profile": {
+        "summary": {
+          "ru": "Terrorblade — демон-мародёр, преступник, которого боялись даже собратья по аду. За свои деяния его заперли в Foulfell, фрактальной тюрьме-зеркале, где демоны вглядываются в искажённое отражение собственной души. Он подчинил свою тёмную сторону, разрушил стены темницы и вырвался на свободу.",
+          "en": "Terrorblade is a demon outlaw and thief whom even his own kind avoided, a rebel who defied the Demon Lords and the laws of Hell. He was locked away in Foulfell, a fractal mirror-prison where demons face their own twisted reflections, but he mastered his darker self and broke out. Now free, he spreads terror across creation."
+        }
+      }
     },
     "Tidehunter": {
       "links": [
         {
           "place": "Sunken Isles",
           "event": "origin",
-          "source": "bio"
+          "source": "bio",
+          "note": "Был защитником Затонувших островов, пока не ушёл служить Мэльрону."
+        },
+        {
+          "place": "Trembling Isle",
+          "event": "battle",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Tidehunter/Lore",
+          "note": "Текст лора: был во второй битве у Дрожащего острова и призвал Мэльрона, погубившего и демонов Катаракты, и кладдский флот; биография Kunkka тоже говорит, что Мэльрона призвал Tidehunter."
+        },
+        {
+          "place": "Recluse Reef",
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Tidehunter/Lore",
+          "doubt": "Место стоит только в поле places инфобокса, без текста о событии; тип mention выбран по этой причине."
         }
-      ]
+      ],
+      "relations": [
+        {
+          "hero": "kunkka",
+          "type": "enemy",
+          "source": "bio",
+          "note": "Биография: Tidehunter особенно не жалует адмирала Kunkka, их вражда длится давно, причины утеряны (bio.en; в bio.ru то же).",
+          "doubt": "Тип enemy — по словам биографии о ненависти и давнем противостоянии; в kunkka.json добавлена обратная запись."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Tidehunter по имени Левиафан был когда-то защитником Затонувших островов, но его цели так же туманны, как и цели его народа, меранфов, веками воюющих за подводные пути. Устав от этих мелких распрей, он ушёл сам по себе и хранит верность лишь богу глубин Мэльрону Щупальценосному. Теперь он рыщет по мелководью, нападая на людей и меранфов, что попадутся на пути. Особенно он ненавидит адмирала Kunkka — их вражда тянется так давно, что причины её затерялись в морских глубинах.",
+          "en": "The Tidehunter called Leviathan was once a champion of the Sunken Isles, though his aims are as murky as those of his people, the Meranths, whose tribes have long fought over the lanes beneath the sea. Weary of their petty feuds, he left to go his own way, faithful only to the abyssal god Maelrawn the Tentacular. He now prowls the shallows, attacking any man or meranth who crosses his path. Above all he hates Admiral Kunkka, a feud so old that its cause has sunk out of memory."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/tidehunter.png"
+        ]
+      }
     },
     "Timbersaw": {
       "links": [
         {
           "place": "Augury Bay",
           "event": "origin",
-          "source": "bio"
+          "source": "bio",
+          "note": "Жил в городе и работал в мастерской дяди; после наводнения и нашествия деревьев город пал, и он бежал."
         }
-      ]
+      ],
+      "relations": [
+        {
+          "hero": "snapfire",
+          "type": "family",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Timbersaw/Lore",
+          "note": "Snapfire — его тётя (поле family инфобокса; сноска — официальное вступительное видео Snapfire и реплики)."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Rizzrack, он же Timbersaw, жил в Бухте прорицаний, пока наводнение не оставило за городскими стенами чудовищные заросли. Цветочная пыльца душила людей, лианы оплетали дома, а потом ходячие деревья выломали ворота и добили последних защитников города. Rizzrack бежал и месяцами без сна строил в мастерской дяди пилящий доспех. Едва живой от ужаса, он запустил машину, зная, что ему придётся встретить свой страх лицом к лицу.",
+          "en": "Rizzrack, known as Timbersaw, lived in Augury Bay until a flood left monstrous growth outside the city walls. Pollen choked people, vines wrapped around homes, and then walking trees broke the gates and crushed the city's last defenders. Rizzrack fled and spent sleepless months in his uncle's workshop building a bladed suit. Half mad with terror, he started the machine, knowing he would have to face his fear head on."
+        }
+      }
     },
     "Tinker": {
       "links": [

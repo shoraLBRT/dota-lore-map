@@ -1,0 +1,31 @@
+{
+  "hero": "sniper",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore"
+  ],
+  "links": [
+    {
+      "place": "Knollen",
+      "event": "origin",
+      "source": "bio",
+      "note": "Родился в горах Кноллена; изгнание из деревни — по пророчеству, куда он ушёл, источники не говорят."
+    }
+  ],
+  "relations": [],
+  "profile": {
+    "summary": {
+      "ru": "Sniper, он же Кардел Остроглаз, родом из гор Кноллена, где кины испокон веков охотятся на скальных зверей, стреляя по ним издалека. Он был одним из лучших стрелков деревни, и в день посвящения его пуля попала зверю прямо в сверкающий глаз. Старейшины увидели в этом начало мрачного пророчества о величии и изгнании. Теперь он живёт вдали от своего народа и не сможет вернуться, пока не прославится на поле битвы.",
+      "en": "Sniper, Kardel Sharpeye, comes from the mountains of Knollen, where the Keen Folk have always lived by shooting cliff beasts from afar. He was one of the best marksmen of his village, and on the day of his coming-of-age test his bullet struck a beast right in its glittering eye. The elders took it as the start of a dark prophecy of greatness and exile. He now lives apart from his people and may not return until he becomes a legend on the battlefield."
+    }
+  },
+  "unconfirmed": [
+    "Clockwerk (кузен) и Tinker («кузен или кузен кузена»): в инфобоксе, но все сноски — реплики озвучки Clockwerk; связи сняты.",
+    "Snapfire: инфобокс называет героя без типа связи; соперничество указано только в разделе Relationships, который пересказывает реплику озвучки Timbersaw",
+    "Bristleback: неприязнь к кинам — только реплика озвучки Bristleback",
+    "Frosted Winds Tribe: инфобокс указывает фракцию, но в тексте биографии её нет; контакт упомянут только в описании набора предметов",
+    "Brag Sharpeye (дедушка) и Gramma Sharpeye (бабушка): родственники из инфобокса, в списке героев не значатся; основание — описания предметов",
+    "Раздел Friendships and Rivalries (союзники и враги по репликам озвучки): связей не записано"
+  ]
+}

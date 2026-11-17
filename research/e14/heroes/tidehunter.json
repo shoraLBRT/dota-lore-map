@@ -1,0 +1,60 @@
+{
+  "hero": "tidehunter",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Sunken Isles",
+      "event": "origin",
+      "source": "bio",
+      "note": "Был защитником Затонувших островов, пока не ушёл служить Мэльрону."
+    },
+    {
+      "place": "Trembling Isle",
+      "event": "battle",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Tidehunter/Lore",
+      "note": "Текст лора: был во второй битве у Дрожащего острова и призвал Мэльрона, погубившего и демонов Катаракты, и кладдский флот; биография Kunkka тоже говорит, что Мэльрона призвал Tidehunter."
+    },
+    {
+      "place": "Recluse Reef",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Tidehunter/Lore",
+      "doubt": "Место стоит только в поле places инфобокса, без текста о событии; тип mention выбран по этой причине."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "kunkka",
+      "type": "enemy",
+      "source": "bio",
+      "note": "Биография: Tidehunter особенно не жалует адмирала Kunkka, их вражда длится давно, причины утеряны (bio.en; в bio.ru то же).",
+      "doubt": "Тип enemy — по словам биографии о ненависти и давнем противостоянии; в kunkka.json добавлена обратная запись."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Tidehunter по имени Левиафан был когда-то защитником Затонувших островов, но его цели так же туманны, как и цели его народа, меранфов, веками воюющих за подводные пути. Устав от этих мелких распрей, он ушёл сам по себе и хранит верность лишь богу глубин Мэльрону Щупальценосному. Теперь он рыщет по мелководью, нападая на людей и меранфов, что попадутся на пути. Особенно он ненавидит адмирала Kunkka — их вражда тянется так давно, что причины её затерялись в морских глубинах.",
+      "en": "The Tidehunter called Leviathan was once a champion of the Sunken Isles, though his aims are as murky as those of his people, the Meranths, whose tribes have long fought over the lanes beneath the sea. Weary of their petty feuds, he left to go his own way, faithful only to the abyssal god Maelrawn the Tentacular. He now prowls the shallows, attacking any man or meranth who crosses his path. Above all he hates Admiral Kunkka, a feud so old that its cause has sunk out of memory."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/tidehunter.png"
+    ]
+  },
+  "candidates": [],
+  "unconfirmed": [
+    "Западные воды (Western Sea): сказано «возможно», источник — комикс Legends of the Monkey King, стр. 5; комикса в кэше и в content/media.json нет, связь не записана, регион не угадывался.",
+    "Dark Willow и Kunkka в инфобоксе лор-страницы перечислены без типа связи; Dark Willow записана только по реплике озвучки («I'm hunted by Kunkka, thanks to you!»), связь с ней не записана.",
+    "Mireska: упомянута только в реплике озвучки Dark Willow; ключа героя нет, связь не записана.",
+    "Реплики озвучки, монологи и ответы (Maw of the Megalodon, враги и союзники в разделе Friendships and Rivalries, реплики Kunkka, Monkey King, Naga Siren и др.) — не основание для связей; не учитывались.",
+    "Предметы (Anchor Smash: якорь украден у флагмана Kunkka; Lucky Tooth Necklace) — описания предметов, не основание для связей.",
+    "Conclave of the Brine и Maelrawn — фракция и бог, не место и не герой в ключах; связи не записаны."
+  ]
+}

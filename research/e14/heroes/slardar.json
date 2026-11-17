@@ -1,0 +1,36 @@
+{
+  "hero": "slardar",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore"
+  ],
+  "links": [
+    {
+      "place": "Deep Vault",
+      "event": "home",
+      "source": "bio",
+      "note": "Биография: страж сокровищниц затонувших городов, преследует тех, кто унёс что-то из Sunken Treasury; на схеме Deep Vault — оно же Sunken Treasury (regions.json).",
+      "doubt": "Биография говорит о целой сети затонувших городов в глубинах; служба в Sunken Treasury записана как дом, места рождения источники не называют."
+    },
+    {
+      "place": "Coral Breach",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Slardar/Lore",
+      "doubt": "Место указано только в инфобоксе; в тексте лора о нём ничего не сказано."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Slardar — слизерин, один из Глубинных, страж сети затонувших городов и древних сокровищ, скрытых в них. В тёмных безднах океана Slithereen Guard охраняет тайные сокровищницы от воров, которых подсылают жадные колдуны с суши. Молчаливый и преданный, он поднимается к мелководью, несмотря на боль от света, — разведать угрозы и догнать тех немногих, кто сумел что-то унести из Sunken Treasury. Жизнь под огромным давлением толщи воды сделала его невероятно сильным.",
+      "en": "Slardar is one of the Slithereen, the Deep Ones, who guard drowned cities and the old treasures kept in them. In the dark ocean depths the Slithereen Guard protects hidden vaults from thieves sent by greedy dry-land sorcerers. Silent and loyal, he endures the painful light of the shallows to scout for threats and to chase anyone who escapes the Sunken Treasury with its goods. The crushing weight of the sea has made him immensely strong."
+    }
+  },
+  "unconfirmed": [
+    "Sunken Treasury из биографии записан как Deep Vault: в regions.json это одно место. Родина героя в источниках не названа.",
+    "Naga Siren: указана в инфобоксе Liquipedia (heroes) без типа связи, в тексте биографии и лора не упомянута. Связь не записана, см. naga_siren.json.",
+    "Реплики озвучки (Naga Siren, Medusa, Alchemist, Slark, Tidehunter, Monkey King и др.) не основание связи по решению партии 01 (#46)."
+  ]
+}

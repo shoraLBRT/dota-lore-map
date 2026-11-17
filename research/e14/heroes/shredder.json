@@ -1,0 +1,39 @@
+{
+  "hero": "shredder",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore"
+  ],
+  "links": [
+    {
+      "place": "Augury Bay",
+      "event": "origin",
+      "source": "bio",
+      "note": "Жил в городе и работал в мастерской дяди; после наводнения и нашествия деревьев город пал, и он бежал."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "snapfire",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Timbersaw/Lore",
+      "note": "Snapfire — его тётя (поле family инфобокса; сноска — официальное вступительное видео Snapfire и реплики)."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Rizzrack, он же Timbersaw, жил в Бухте прорицаний, пока наводнение не оставило за городскими стенами чудовищные заросли. Цветочная пыльца душила людей, лианы оплетали дома, а потом ходячие деревья выломали ворота и добили последних защитников города. Rizzrack бежал и месяцами без сна строил в мастерской дяди пилящий доспех. Едва живой от ужаса, он запустил машину, зная, что ему придётся встретить свой страх лицом к лицу.",
+      "en": "Rizzrack, known as Timbersaw, lived in Augury Bay until a flood left monstrous growth outside the city walls. Pollen choked people, vines wrapped around homes, and then walking trees broke the gates and crushed the city's last defenders. Rizzrack fled and spent sleepless months in his uncle's workshop building a bladed suit. Half mad with terror, he started the machine, knowing he would have to face his fear head on."
+    }
+  },
+  "unconfirmed": [
+    "Vale of Augury (мать увезла его в долину): на лор-странице держится только на реплике Snapfire, снято.",
+    "Home of the Keen Folk как родина: выведено из расы Smallkeen в инфобоксе, о самом герое не сказано — догадка, снято.",
+    "Treant Protector и Nature's Prophet: в лоре сказано, что он их не жалует, но тип связи (enemy/rival) не назван, связь не записана; в инфобоксе Treant Protector стоит в поле heroes без типа",
+    "Место гибели матери неизвестно: лор предполагает, но не подтверждает нападение на Augury Bay",
+    "Реплики Snapfire и Timbersaw (Artifact, озвучка, Friendships) не использованы как основание связей"
+  ]
+}
