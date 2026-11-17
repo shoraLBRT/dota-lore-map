@@ -1,28 +1,16 @@
 {
   "hero": "void_spirit",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore"
+  ],
   "links": [
-    {
-      "place": "The Void",
-      "event": "origin",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Void_Spirit/Lore",
-      "doubt": "Основание — поле origins инфобокса лор-страницы; подкреплено только репликой-монологом озвучки. В биографии Valve этого места нет."
-    },
     {
       "place": "Hidden Temple",
       "event": "home",
       "source": "bio",
       "note": "Живёт в Скрытом храме и выходит оттуда в мир; лор-страница добавляет, что храм построен для его тела. В поле origins инфобокса тоже указан, но родиной по тексту биографии он не назван."
-    },
-    {
-      "place": "Astral Plane",
-      "event": "battle",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Void_Spirit/Lore",
-      "note": "Прорывает разрывы в Астральном плане и снова и снова разрушает его."
     },
     {
       "place": "Nothl Realm",
@@ -31,33 +19,6 @@
       "via": "infobox",
       "url": "https://liquipedia.net/dota2/Void_Spirit/Lore",
       "doubt": "Только поле places инфобокса, без текстового упоминания рядом с героем."
-    }
-  ],
-  "relations": [
-    {
-      "hero": "earth_spirit",
-      "type": "family",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Void_Spirit/Lore",
-      "note": "Earth Spirit — младший брат Void Spirit по полю family инфобокса."
-    },
-    {
-      "hero": "storm_spirit",
-      "type": "family",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Void_Spirit/Lore",
-      "note": "Storm Spirit — младший брат Void Spirit по полю family инфобокса.",
-      "doubt": "Ранее связь с Storm Spirit была убрана как опирающаяся только на реплику озвучки. Сейчас опора — поле family инфобокса лор-страницы, а не реплика; решение за владельцем."
-    },
-    {
-      "hero": "ember_spirit",
-      "type": "family",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Void_Spirit/Lore",
-      "note": "Ember Spirit — младший брат Void Spirit по полю family инфобокса."
     }
   ],
   "profile": {
@@ -73,6 +34,10 @@
     "Spectre и Templar Assassin указаны в поле heroes инфобокса без текста о связи с Inai, не внесено.",
     "Mercurial служит Inai, но не всегда следует приказам, и Thunderkeg случайно нашёл его заклинание: оба — реплики озвучки, связь не внесена.",
     "Monks of Turstarkuri и Korumite: фракции, чьё учение связано с Inai. Это не места на схеме (Turstarkuri есть в regions.json, но связь с героем держится на названии ордена), не внесено.",
-    "Barathrum's Master: Inai искал его — реплика озвучки без текста, не внесено."
+    "Barathrum's Master: Inai искал его — реплика озвучки без текста, не внесено.",
+    "Сверка: The Void (origin) снят — поле origins инфобокса опирается на монолог озвучки.",
+    "Сверка: Astral Plane (battle) снят — основание только описание способности Astral Step.",
+    "Сверка: Earth Spirit, Storm Spirit, Ember Spirit (family) сняты — поле family инфобокса держится на репликах озвучки, как и в партиях 09 и ранее. Биография называет Inai старшим среди духов, но братьев по имени и тип родства не называет.",
+    "Сверка: Templar Assassin: в её файле связь master с Void Spirit снята той же сверкой (реплики); биография Void Spirit слуг по имени не называет."
   ]
 }

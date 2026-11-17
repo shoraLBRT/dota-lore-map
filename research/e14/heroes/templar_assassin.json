@@ -1,14 +1,12 @@
 {
   "hero": "templar_assassin",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
   "links": [
-    {
-      "place": "Home of the Keen Folk",
-      "event": "origin",
-      "source": "ours",
-      "note": "Раса Keen указана в инфобоксе лора; родина народа есть на схеме, а о месте рождения героя в тексте ничего нет.",
-      "doubt": "Биография говорит лишь о наблюдении за хранителями записей Keen; связь с родиной народа — наше решение, как у Alchemist."
-    },
     {
       "place": "Hidden Temple",
       "event": "service",
@@ -39,33 +37,14 @@
       "note": "Место указано в поле places инфобокса; поездка туда — см. unconfirmed."
     }
   ],
-  "relations": [
-    {
-      "hero": "juggernaut",
-      "type": "love",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Templar_Assassin/Lore",
-      "note": "Yurnero в тексте — имя Juggernaut; Juggernaut есть в поле heroes инфобокса.",
-      "doubt": "Роман и разрыв описаны в разделе Relationships; детали опираются на реплики, поэтому тип записан с оговоркой."
-    },
-    {
-      "hero": "void_spirit",
-      "type": "master",
-      "place": "Hidden Temple",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Templar_Assassin/Lore",
-      "note": "Void Spirit (Inai) она считает своим хозяином; Void Spirit есть в поле heroes инфобокса.",
-      "doubt": "Опора — раздел Relationships, подкреплённый репликой; в биографии Скрытые Тени названы без имени героя."
-    }
-  ],
   "profile": {
     "summary": {
-      "ru": "Ланайя, известная как Templar Assassin, в юности увлекалась законами природы, магией и алхимией, и её любопытство вывело на тайную дверь в храм. Там ждали её те, кто пообещал ответы в обмен на служение. Она дала клятву хранить их секреты и считает каждого побеждённого врага ещё одной загадкой, которую удалось разгадать. По лору её сила держится на обетах: нарушь их — и не останется ничего.",
-      "en": "Lanaya, the Templar Assassin, followed a scholar's curiosity from youth, studying natural law, magic and alchemy with a thief's patience. Her inquiries led her through a hidden door into a temple whose unseen masters offered deeper answers in return for loyalty. She now guards their mysteries and sees every foe she defeats as one more piece of the puzzle. According to the lore, her power rests on her vows, and breaking them would leave her with nothing."
+      "ru": "Ланайя, известная как Templar Assassin, в юности увлекалась законами природы, магией и алхимией, и её любопытство вывело на тайную дверь в храм. Там ждали её те, кто пообещал ответы в обмен на служение. Она дала клятву хранить их секреты и считает каждого побеждённого врага ещё одной загадкой, которую удалось разгадать.",
+      "en": "Lanaya, the Templar Assassin, followed a scholar's curiosity from youth, studying natural law, magic and alchemy with a thief's patience. Her inquiries led her through a hidden door into a temple whose unseen masters offered deeper answers in return for loyalty. She now guards their mysteries and sees every foe she defeats as one more piece of the puzzle."
     },
-    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/templar_assassin.png"]
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/templar_assassin.png"
+    ]
   },
   "unconfirmed": [
     "Визит в Violet Plateau и Violet Archives (раскопки после Violet Plateau Incident): утверждение лора опирается на описание предмета Focal Resonance; в инфобоксе место есть, событие не подтверждено.",
@@ -75,6 +54,8 @@
     "The Unseen Seven и The Three Shades — боги из описаний предметов и сетов, не места и не герои; в данные не записаны.",
     "Mireska's Father (Sunbreeze Family): только реплика Templar Assassin; персонаж, не герой с key.",
     "Реплики озвучки (встреча, убийство, ответы) с Monkey King, Omniknight, Grimstroke, Pangolier, Oracle, Batrider, Legion Commander, Queen of Pain, Keeper of the Light и Bounty Hunter — связи не записаны.",
-    "Отношение к войне Древних («ниже её») и знакомство с другими Ascended Ones: только реплики озвучки."
+    "Отношение к войне Древних («ниже её») и знакомство с другими Ascended Ones: только реплики озвучки.",
+    "Сверка: Home of the Keen Folk (origin) снят — вывод из расы Keen; биография говорит только о летописцах Keen, не о родине.",
+    "Сверка: Juggernaut (love) и Void Spirit (master) сняты — раздел Relationships лор-страницы опирается только на реплики озвучки; биография хозяев храма не называет."
   ]
 }
