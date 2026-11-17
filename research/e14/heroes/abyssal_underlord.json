@@ -1,0 +1,81 @@
+{
+  "hero": "abyssal_underlord",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "place": "Aziyog",
+      "event": "origin",
+      "source": "bio",
+      "note": "подземный обсидиановый город под магматическими полями, родина Vrogros и его Орды"
+    },
+    {
+      "place": "The Emerald Abyss",
+      "event": "visit",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Underlord/Lore",
+      "doubt": "связь выведена из раздела о физиологии (кристаллы на теле от жизни в подземье), а не из прямого описания визита; бой за Изумрудную бездну описан только в тексте предмета, он в unconfirmed"
+    },
+    {
+      "place": "Seven Hells",
+      "event": "service",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Underlord/Lore",
+      "doubt": "место Court of Ristul на схеме в лоре не названо; связь с Семью Преисподними — по инфобоксу (место двора), правление — по тексту о дворе Ristul со ссылкой на комикс"
+    },
+    {
+      "place": "Stonehall",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Underlord/Lore",
+      "doubt": "в лоре только враждебные намерения против Stonehall; сам поход описан лишь в карточке Artifact, поэтому герой там не записан как бывавший"
+    }
+  ],
+  "relations": [
+    {
+      "hero": "legion_commander",
+      "type": "enemy",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Underlord/Lore",
+      "note": "мстительная Legion Commander настроена против него из-за намерений против Stonehall",
+      "doubt": "основание — текст раздела о врагах; сами намерения против Stonehall спорны (см. unconfirmed)"
+    },
+    {
+      "hero": "queenofpain",
+      "type": "enemy",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Underlord/Lore",
+      "note": "оба претендуют на места при дворе Ristul, она хочет вернуть свой трон"
+    },
+    {
+      "hero": "nevermore",
+      "type": "ally",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Underlord/Lore",
+      "note": "вместе правят при дворе Ristul по соглашению о разделении власти"
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Underlord, он же Vrogros, — демонический владыка Орды бездны из подземного города Азийог. Он переносит себя и свою армию через Темный разлом, а первые отряды были лишь пробой сил поверхностного мира. Теперь он сам выходит на солнечный свет, чтобы подчинить всё, что встретит. При дворе Ristul он делит власть с Shadow Fiend.",
+      "en": "Underlord, also known as Vrogros, is a demonic warlord who commands the Abyssal Horde from the underground city of Aziyog. He bends space through the Dark Rift to move himself and his armies, and the first raiders were only scouts sent to test the surface nations. Now he walks into the sunlit world himself to subjugate whoever he meets. At the Court of Ristul he shares power with Shadow Fiend."
+    },
+    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/abyssal_underlord.png"]
+  },
+  "unconfirmed": [
+    "Artifact: план нападения на Stonehall и союз с Court of Ristul относятся к иной временной линии, в связи не записаны",
+    "Предмет Emerald Conquest: битва за средние течения Изумрудной бездны только в описании предмета, связь battle не записана",
+    "Предмет Abyssal Blade: описание предмета о том, что клинок был его, места не называет",
+    "Mars: враждебность и молитвы о смерти подтверждены только репликой озвучки, связь не записана",
+    "Siltbreaker: намерение убить его — реплика озвучки, персонаж без ключа героя",
+    "Реплики озвучки о встречах и стычках с Dark Willow, Dawnbreaker, Wraith King, Pangolier, Monkey King, Snapfire и другими не основания для связей",
+    "Карточка Artifact Ozkavosh Horror и культ фиендов, похожих на него: принадлежность к демонам не подтверждена, связь не записана",
+    "Путь на поверхность: место выхода в мир в лоре не названо, path не записан",
+    "Court of Ristul — двор, а не место на схеме: если нужен отдельный регион, это кандидат для владельца, в candidates не добавлен"
+  ]
+}

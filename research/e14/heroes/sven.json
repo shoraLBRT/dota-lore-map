@@ -1,0 +1,38 @@
+{
+  "hero": "sven",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "place": "Shadeshore Ruins",
+      "event": "origin",
+      "source": "bio",
+      "note": "вырос в руинах; по инфобоксу Liquipedia родился там же"
+    },
+    {
+      "place": "Vigil Keep",
+      "event": "service",
+      "source": "bio",
+      "note": "тринадцать лет учёбы в школе отца, затем уход из цитадели",
+      "doubt": "в биографии место учёбы не названо прямо; Vigil Keep назван в финале, когда герой уходит оттуда"
+    }
+  ],
+  "path": [
+    { "place": "Shadeshore Ruins" },
+    { "place": "Vigil Keep" }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Sven — внебрачный сын вигильского рыцаря и женщины из рода бледных мерансов, выросший в руинах Тенистого берега. Тринадцать лет он постигал орденскую науку, а в день присяги разбил священный шлем, сжёг кодекс и ушёл из цитадели в одиночку. С тех пор он не служит ни одной армии и не присягает никому, отвечая лишь перед самим собой.",
+      "en": "Sven is the illegitimate son of a Vigil knight and a woman of the pale Meranth people, who grew up among the ruins of Shadeshore. For thirteen years he trained in the Vigil order, and on the day of his oath he broke the Sacred Helm, burned the Codex and walked out of the keep alone. Since then he serves no army and swears no oath, living by his own code and accountable to nobody but himself."
+    },
+    "art": ["https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/sven.png"]
+  },
+  "unconfirmed": [
+    "Связь rival с Dragon Knight из dragon_knight.json: в разделе соперников лор-страницы Sven только реплики озвучки («I'm the better Knight»), текста о событии нет. Не записана.",
+    "Связь ally с Lone Druid из lone_druid.json: в лоре Sven уважает одиночек вроде Lone Druid, но сам говорит, что не обязательно союзничает с ними; опора — реплика озвучки. Тип в lone_druid.json расходится с источником Sven, решение нужно.",
+    "Crystal Maiden и Juggernaut стоят в поле heroes инфобокса без типа связи. Симпатия Crystal Maiden и благодарность Yurnero (набор Bladeform Legacy, Adjudicator's Blade) опираются на озвучку и описание набора — не записаны.",
+    "Реплики озвучки ко многим героям (Abaddon, Kunkka, Monkey King, Arc Warden, Enigma, Lina, Omniknight, Oracle, Legion Commander и др.) — не записаны по правилу партии 01.",
+    "Раздел Artifact (Sven воюет с Venomancer, Red Mist и Vhoul в альтернативной линии) не является источником; не записан.",
+    "Родина по линии матери (мерансы) в биографии без места; на схеме отдельного места нет, в links не добавлено."
+  ]
+}

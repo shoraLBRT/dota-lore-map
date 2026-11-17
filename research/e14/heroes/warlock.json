@@ -1,0 +1,51 @@
+{
+  "hero": "warlock",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "links": [
+    {
+      "place": "Ultimyr Academy",
+      "event": "home",
+      "source": "bio",
+      "note": "Демнок Лэнник и сейчас работает главным хранителем архивов академии; там же он учился магии и стал её сильнейшим чернокнижником. В биографии место названо как место службы и работы, поэтому выбрано событие home."
+    },
+    {
+      "place": "Outer Hells",
+      "event": "mention",
+      "source": "bio",
+      "note": "Духа для посоха Warlock призвал из Outer Hells, но по тексту сам туда не отправлялся."
+    },
+    {
+      "place": "Weeping Rose",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Warlock/Lore",
+      "doubt": "Место стоит только в инфобоксе лор-страницы, без пояснения. Стремление герой попасть в совет Weeping Rose взято из Underlords и в файл не записано."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Warlock, он же Демнок Лэнник, — главный хранитель и заведующий закупками архивов Ultimyr Academy, одержимый поиском редких и запретных книг. Чтобы добираться до опасных мест, он выучился магии и стал сильнейшим чернокнижником академии. Посох из дредвуда хранит призванного из Outer Hells демона, которого герой выпускает в бой. Сейчас он пишет собственный «Чёрный гримуар», чтобы собрать всё знание мира в одной книге.",
+      "en": "Warlock, also known as Demnok Lannik, is the chief curator of the archives at Ultimyr Academy, obsessed with hunting rare and forbidden books. To reach dangerous places he learned sorcery and became the strongest warlock the academy has seen. His Dreadwood staff holds a demon called up from the Outer Hells, which he releases in battle. Now he is writing his own Black Grimoire to gather all arcane knowledge in one book."
+    }
+  },
+  "candidates": [
+    {
+      "name": "Ultimyr Archives",
+      "region": "middle-kingdoms",
+      "event": "home",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Warlock/Lore",
+      "note": "Хранилище внутри Ultimyr Academy, отдельно названное в инфобоксе лор-страницы. Регион взят по самой академии (middle-kingdoms)."
+    }
+  ],
+  "unconfirmed": [
+    "Родина героя в источниках не названа: биография и лор-страница говорят о академии, но не о месте рождения, поэтому origin не записан. Раса Oglodi на схеме как место не значится.",
+    "Связи из инфобокса лор-страницы (поле heroes: Invoker, Axe, Disruptor, Rubick, Ogre Magi) без указания типа; в файл не записаны. Invoker, Axe, Disruptor и Ogre Magi описаны в основном репликами озвучки.",
+    "Соперничество с Rubick и роль наследника Aghanim взяты из Underlords, поэтому связь не записана.",
+    "Тип связи с Invoker (родство через предка) основан на реплике молодого Invoker, поэтому не записан.",
+    "Союзничество с Bristleback и Disruptor, а также враждебность Axe и Anessix основаны на репликах озвучки и на разделах, пересказывающих реплики или Underlords, поэтому связи не записаны.",
+    "Место Weeping Rose подтверждено только инфобоксом без описания; стремление герой войти в совет этого места взято из Underlords."
+  ]
+}

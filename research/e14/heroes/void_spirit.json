@@ -1,0 +1,78 @@
+{
+  "hero": "void_spirit",
+  "read": ["bio.ru", "bio.en", "liquipedia-lore"],
+  "links": [
+    {
+      "place": "The Void",
+      "event": "origin",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Void_Spirit/Lore",
+      "doubt": "Основание — поле origins инфобокса лор-страницы; подкреплено только репликой-монологом озвучки. В биографии Valve этого места нет."
+    },
+    {
+      "place": "Hidden Temple",
+      "event": "home",
+      "source": "bio",
+      "note": "Живёт в Скрытом храме и выходит оттуда в мир; лор-страница добавляет, что храм построен для его тела. В поле origins инфобокса тоже указан, но родиной по тексту биографии он не назван."
+    },
+    {
+      "place": "Astral Plane",
+      "event": "battle",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Void_Spirit/Lore",
+      "note": "Прорывает разрывы в Астральном плане и снова и снова разрушает его."
+    },
+    {
+      "place": "Nothl Realm",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Void_Spirit/Lore",
+      "doubt": "Только поле places инфобокса, без текстового упоминания рядом с героем."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "earth_spirit",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Void_Spirit/Lore",
+      "note": "Earth Spirit — младший брат Void Spirit по полю family инфобокса."
+    },
+    {
+      "hero": "storm_spirit",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Void_Spirit/Lore",
+      "note": "Storm Spirit — младший брат Void Spirit по полю family инфобокса.",
+      "doubt": "Ранее связь с Storm Spirit была убрана как опирающаяся только на реплику озвучки. Сейчас опора — поле family инфобокса лор-страницы, а не реплика; решение за владельцем."
+    },
+    {
+      "hero": "ember_spirit",
+      "type": "family",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Void_Spirit/Lore",
+      "note": "Ember Spirit — младший брат Void Spirit по полю family инфобокса."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Void Spirit, он же Инай, — старший из целестиалов, олицетворяющий пустоту. Он скрывается в Скрытом храме, исполняет волю через избранных слуг и выходит в материальный мир лишь тогда, когда считает, что направить реальность может только он сам. Теперь он покинул укрытие, чтобы решить исход битвы Древних и подготовить союзников к большему противостоянию.",
+      "en": "Void Spirit, known as Inai, is the eldest of the celestials and embodies the void. He stays hidden in his temple, works through chosen servants, and steps into the mortal world only when he judges that no one else can steer reality. Now he has stepped forth to settle the battle of the Ancients and ready his allies for a larger conflict."
+    }
+  },
+  "unconfirmed": [
+    "Brewmaster: в поле family инфобокса назван двоюродным младшим братом. Связь не внесена: герой не из списка этой партии, решение за владельцем.",
+    "Lanaya служит Inai в обмен на тайны (текст лор-страницы). Что Lanaya — это templar_assassin, в прочитанных источниках не сказано: ссылка на биографию Templar Assassin в кэш не входит.",
+    "Earthshaker: Inai обещает ему ответы — опирается только на реплику озвучки, связь не внесена.",
+    "Spectre и Templar Assassin указаны в поле heroes инфобокса без текста о связи с Inai, не внесено.",
+    "Mercurial служит Inai, но не всегда следует приказам, и Thunderkeg случайно нашёл его заклинание: оба — реплики озвучки, связь не внесена.",
+    "Monks of Turstarkuri и Korumite: фракции, чьё учение связано с Inai. Это не места на схеме (Turstarkuri есть в regions.json, но связь с героем держится на названии ордена), не внесено.",
+    "Barathrum's Master: Inai искал его — реплика озвучки без текста, не внесено."
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "hero": "tusk",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Cobalt",
+      "event": "origin",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Tusk/Lore",
+      "note": "Родина по инфобоксу лор-страницы и прозвищу «Снежный ком из Кобальта» в биографии.",
+      "doubt": "Инфобокс называет два места родины, Cobalt и The Barrier; какое из них главное, не сказано."
+    },
+    {
+      "place": "The Barrier",
+      "event": "origin",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Tusk/Lore",
+      "note": "Второе место родины по инфобоксу; в биографии Tusk назван «Ужасом из Барьера».",
+      "doubt": "Инфобокс называет два места родины, Cobalt и The Barrier; какое из них главное, не сказано."
+    },
+    {
+      "place": "Wolfsden Tavern",
+      "event": "battle",
+      "source": "bio",
+      "note": "В биографии Имир остался последним на ногах после драки в таверне, все соперники выбыли."
+    },
+    {
+      "place": "White Fields",
+      "event": "battle",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Tusk/Lore",
+      "note": "Место есть в инфобоксе лор-страницы; сам эпизод (завершение большой драки) описан в тексте способности Snowball на странице героя.",
+      "doubt": "Эпизод взят из описания способности на странице героя, а не из биографии или лор-страницы; что именно там произошло, из короткой фразы неясно."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "bristleback",
+      "type": "rival",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Tusk/Lore",
+      "note": "Лор-страница называет Bristleback главным соперником героя; в биографии Tusk единственный одолел этого бойца в честной схватке.",
+      "doubt": "Биография называет противника «Bristled Bruiser», имя Bristleback берётся из лор-страницы и вики-текста героя."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Tusk, он же Имир, — северный боец родом из Кобальта, которого называют Ужасом из Барьера и Снежным комом из Кобальта. Самая известная его история связана с таверной «Волчья дыра», где он остался последним на ногах и единственным одолел Bristleback. После этого трактирщик отправил его искать самую большую битву, где он должен был выжить и выиграть за сторону по своему выбору, а приз — выпивка.",
+      "en": "Tusk, also known as Ymir, is a northern fighter from Cobalt, nicknamed the Terror from the Barrier and the Snowball from Cobalt. His best-known story is a tavern brawl at Wolfsden Tavern, where he was the last one standing and the only one to have beaten Bristleback. The barkeep then sent him off to find the biggest war he could, to survive it and win for a side of his own choosing, with drinks as the prize."
+    }
+  },
+  "unconfirmed": [
+    "Icewrack указан в инфобоксе лор-страницы как место, но без события: ни биография, ни текст не говорят, был ли Tusk там родом, жил или бывал. Место пока не записано.",
+    "Связь с Crystal Maiden (Rylai): она есть в инфобоксе в поле heroes, но тип связи не назван. Текст лор-страницы опирается на реплики озвучки о «снежных боях» и знакомстве в прошлом, поэтому тип не выводим.",
+    "Фракции Frost Brigade и Frostiron Tribe, а также вид Odobenus и предмет Ancestor's Frozen Axe (родич Yzir) — это не места и не связи героев, и ни одна из биографий о них не говорит.",
+    "Реплики озвучки о других героях (Monkey King, Legion Commander, Underlord, Brewmaster, Earth Spirit, Winter Wyvern, Centaur Warrunner, Oracle, Bristleback в репликах «rival»/«ally») и подколки на основе них — не основание для связей.",
+    "Описания предметов (Piscean Pulverizer, Frostiron Raider Wrap, Frostiron Sorceress Cuffs) и карты Artifact (Bristleback Pick a Fight, Rising Anger) — не основание для мест или связей.",
+    "Путь: лор-страница говорит, что Tusk редко уходит на юг, но это подтверждается только репликой озвучки. Перемещение не записано."
+  ]
+}
