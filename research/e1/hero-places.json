@@ -3236,55 +3236,92 @@
         {
           "place": "Shadeshore Ruins",
           "event": "origin",
-          "source": "bio"
+          "source": "bio",
+          "note": "вырос в руинах; по инфобоксу Liquipedia родился там же"
         },
         {
           "place": "Vigil Keep",
-          "event": "link",
-          "source": "bio"
+          "event": "service",
+          "source": "bio",
+          "note": "тринадцать лет учёбы в школе отца, затем уход из цитадели",
+          "doubt": "в биографии место учёбы не названо прямо; Vigil Keep назван в финале, когда герой уходит оттуда"
+        }
+      ],
+      "path": [
+        {
+          "place": "Shadeshore Ruins"
         },
         {
-          "place": "Feral Road",
-          "event": "link",
-          "source": "liquipedia",
-          "via": "place"
+          "place": "Vigil Keep"
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Sven — внебрачный сын вигильского рыцаря и женщины из рода бледных мерансов, выросший в руинах Тенистого берега. Тринадцать лет он постигал орденскую науку, а в день присяги разбил священный шлем, сжёг кодекс и ушёл из цитадели в одиночку. С тех пор он не служит ни одной армии и не присягает никому, отвечая лишь перед самим собой.",
+          "en": "Sven is the illegitimate son of a Vigil knight and a woman of the pale Meranth people, who grew up among the ruins of Shadeshore. For thirteen years he trained in the Vigil order, and on the day of his oath he broke the Sacred Helm, burned the Codex and walked out of the keep alone. Since then he serves no army and swears no oath, living by his own code and accountable to nobody but himself."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/sven.png"
+        ]
+      }
     },
     "Techies": {
       "links": [
         {
           "place": "Dredger's Bight",
           "event": "origin",
-          "source": "bio"
-        },
-        {
-          "place": "Ruelands",
-          "event": "link",
-          "source": "liquipedia",
-          "via": "place"
+          "source": "bio",
+          "note": "Биография: троица подрывников работала в городе на Устричной бухте и здесь же взорвала собственную мастерскую; город ушёл в шахты под ним. Главное событие здесь — изобретение и первый взрыв, поэтому место записано как родина."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Techies — подрывники Скви, Сплин и Спун, которые придумали дистанционную кнопку для взрыва и при первом испытании разнесли собственную мастерскую в Устричной бухте. Город начал оседать в шахты, а там, где появлялись Techies, после них часто исчезали и другие поселения. Троица не раскаивалась и думала лишь о том, как устроить взрыв ещё мощнее.",
+          "en": "Techies are the pyrotechnic trio Squee, Spleen and Spoon, who invented a remote detonator and, during its first test, levelled their own workshop in Dredger's Bight. The whole district then sank into the mines, and wherever Techies showed up, other towns seemed to vanish after them. The trio felt no guilt and only wondered how to make the next blast even bigger."
+        }
+      }
     },
     "Templar Assassin": {
       "links": [
         {
           "place": "Hidden Temple",
-          "event": "home",
-          "source": "bio"
+          "event": "service",
+          "source": "bio",
+          "note": "Вход в храм открыл её призвание, и с тех пор она служит ему.",
+          "doubt": "Инфобокс Liquipedia называет храм происхождением (origins), но в биографии это место служения, а не родины."
         },
         {
           "place": "Violet Archives",
-          "event": "link",
-          "source": "bio"
+          "event": "mention",
+          "source": "bio",
+          "note": "Опыты по обугленным фрагментам архива — предмет, сам герой там не назван бывавшим."
+        },
+        {
+          "place": "Violet Plateau",
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Templar_Assassin/Lore",
+          "note": "Место указано в поле places инфобокса; визит туда — см. unconfirmed."
         },
         {
           "place": "Halgalreh",
-          "event": "link",
+          "event": "mention",
           "source": "liquipedia",
-          "via": "place"
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Templar_Assassin/Lore",
+          "note": "Место указано в поле places инфобокса; поездка туда — см. unconfirmed."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Ланайя, известная как Templar Assassin, в юности увлекалась законами природы, магией и алхимией, и её любопытство вывело на тайную дверь в храм. Там ждали её те, кто пообещал ответы в обмен на служение. Она дала клятву хранить их секреты и считает каждого побеждённого врага ещё одной загадкой, которую удалось разгадать.",
+          "en": "Lanaya, the Templar Assassin, followed a scholar's curiosity from youth, studying natural law, magic and alchemy with a thief's patience. Her inquiries led her through a hidden door into a temple whose unseen masters offered deeper answers in return for loyalty. She now guards their mysteries and sees every foe she defeats as one more piece of the puzzle."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/templar_assassin.png"
+        ]
+      }
     },
     "Terrorblade": {
       "links": [
@@ -3472,29 +3509,60 @@
         {
           "place": "Cobalt",
           "event": "origin",
-          "source": "bio"
+          "source": "bio",
+          "note": "Биография называет его «Снежным комом из Кобальта» и «Ужасом из Барьера».",
+          "doubt": "Оба прозвища указывают на происхождение; какое место родина, а какое — место славы, текст не уточняет."
+        },
+        {
+          "place": "The Barrier",
+          "event": "origin",
+          "source": "bio",
+          "note": "Биография называет его «Снежным комом из Кобальта» и «Ужасом из Барьера».",
+          "doubt": "Оба прозвища указывают на происхождение; какое место родина, а какое — место славы, текст не уточняет."
         },
         {
           "place": "Wolfsden Tavern",
-          "event": "link",
-          "source": "bio"
+          "event": "battle",
+          "source": "bio",
+          "note": "В биографии Имир остался последним на ногах после драки в таверне, все соперники выбыли."
         }
-      ]
+      ],
+      "relations": [
+        {
+          "hero": "bristleback",
+          "type": "rival",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Tusk/Lore",
+          "note": "Лор-страница называет Bristleback главным соперником героя; в биографии Tusk единственный одолел этого бойца в честной схватке.",
+          "doubt": "Биография называет противника «Bristled Bruiser», имя Bristleback берётся из лор-страницы и вики-текста героя."
+        }
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Tusk, он же Имир, — северный боец родом из Кобальта, которого называют Ужасом из Барьера и Снежным комом из Кобальта. Самая известная его история связана с таверной «Волчья дыра», где он остался последним на ногах и единственным одолел Bristleback. После этого трактирщик отправил его искать самую большую битву, где он должен был выжить и выиграть за сторону по своему выбору, а приз — выпивка.",
+          "en": "Tusk, also known as Ymir, is a northern fighter from Cobalt, nicknamed the Terror from the Barrier and the Snowball from Cobalt. His best-known story is a tavern brawl at Wolfsden Tavern, where he was the last one standing and the only one to have beaten Bristleback. The barkeep then sent him off to find the biggest war he could, to survive it and win for a side of his own choosing, with drinks as the prize."
+        }
+      }
     },
     "Underlord": {
       "links": [
         {
           "place": "Aziyog",
           "event": "home",
-          "source": "bio"
-        },
-        {
-          "place": "Stonehall",
-          "event": "link",
-          "source": "liquipedia",
-          "via": "place"
+          "source": "bio",
+          "note": "обсидиановый город под магматическими полями — владения Vrogros и его Орды; рождение там биография не называет"
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Underlord, он же Vrogros, — демонический владыка Орды бездны из подземного города Азийог. Он переносит себя и свою армию через Темный разлом, а первые отряды были лишь пробой сил поверхностного мира. Теперь он сам выходит на солнечный свет, чтобы подчинить всё, что встретит. Тем, кто встанет на его пути, остаётся склониться и платить дань — или погибнуть.",
+          "en": "Underlord, also known as Vrogros, is a demonic warlord who commands the Abyssal Horde from the underground city of Aziyog. He bends space through the Dark Rift to move himself and his armies, and the first raiders were only scouts sent to test the surface nations. Now he walks into the sunlit world himself to subjugate whoever he meets. Those he meets must bow and pay tribute or be crushed."
+        },
+        "art": [
+          "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/abyssal_underlord.png"
+        ]
+      }
     },
     "Undying": {
       "links": [
@@ -3654,31 +3722,48 @@
     "Void Spirit": {
       "links": [
         {
-          "place": "The Void",
-          "event": "origin",
-          "source": "liquipedia",
-          "via": "infobox"
+          "place": "Hidden Temple",
+          "event": "home",
+          "source": "bio",
+          "note": "Живёт в Скрытом храме и выходит оттуда в мир; лор-страница добавляет, что храм построен для его тела. В поле origins инфобокса тоже указан, но родиной по тексту биографии он не назван."
         },
         {
-          "place": "Hidden Temple",
-          "event": "link",
-          "source": "bio"
+          "place": "Nothl Realm",
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Void_Spirit/Lore",
+          "doubt": "Только поле places инфобокса, без текстового упоминания рядом с героем."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Void Spirit, он же Инай, — старший из целестиалов, олицетворяющий пустоту. Он скрывается в Скрытом храме, исполняет волю через избранных слуг и выходит в материальный мир лишь тогда, когда считает, что направить реальность может только он сам. Теперь он покинул укрытие, чтобы решить исход битвы Древних и подготовить союзников к большему противостоянию.",
+          "en": "Void Spirit, known as Inai, is the eldest of the celestials and embodies the void. He stays hidden in his temple, works through chosen servants, and steps into the mortal world only when he judges that no one else can steer reality. Now he has stepped forth to settle the battle of the Ancients and ready his allies for a larger conflict."
+        }
+      }
     },
     "Warlock": {
       "links": [
         {
           "place": "Ultimyr Academy",
           "event": "home",
-          "source": "bio"
+          "source": "bio",
+          "note": "Главный хранитель Тайных архивов академии; там же выучился магии. Архивы — часть академии, отдельным местом не выделены."
         },
         {
           "place": "Outer Hells",
-          "event": "link",
-          "source": "bio"
+          "event": "mention",
+          "source": "bio",
+          "note": "Духа для посоха Warlock призвал из Outer Hells, но по тексту сам туда не отправлялся."
         }
-      ]
+      ],
+      "profile": {
+        "summary": {
+          "ru": "Warlock, он же Демнок Лэнник, — главный хранитель и заведующий закупками архивов Ultimyr Academy, одержимый поиском редких и запретных книг. Чтобы добираться до опасных мест, он выучился магии и стал сильнейшим чернокнижником академии. Посох из дредвуда хранит призванного из Outer Hells демона, которого герой выпускает в бой. Сейчас он пишет собственный «Чёрный гримуар», чтобы собрать всё знание мира в одной книге.",
+          "en": "Warlock, also known as Demnok Lannik, is the chief curator of the archives at Ultimyr Academy, obsessed with hunting rare and forbidden books. To reach dangerous places he learned sorcery and became the strongest warlock the academy has seen. His Dreadwood staff holds a demon called up from the Outer Hells, which he releases in battle. Now he is writing his own Black Grimoire to gather all arcane knowledge in one book."
+        }
+      }
     },
     "Weaver": {
       "links": [

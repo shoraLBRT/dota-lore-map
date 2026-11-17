@@ -1,0 +1,41 @@
+{
+  "hero": "abyssal_underlord",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Aziyog",
+      "event": "home",
+      "source": "bio",
+      "note": "обсидиановый город под магматическими полями — владения Vrogros и его Орды; рождение там биография не называет"
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Underlord, он же Vrogros, — демонический владыка Орды бездны из подземного города Азийог. Он переносит себя и свою армию через Темный разлом, а первые отряды были лишь пробой сил поверхностного мира. Теперь он сам выходит на солнечный свет, чтобы подчинить всё, что встретит. Тем, кто встанет на его пути, остаётся склониться и платить дань — или погибнуть.",
+      "en": "Underlord, also known as Vrogros, is a demonic warlord who commands the Abyssal Horde from the underground city of Aziyog. He bends space through the Dark Rift to move himself and his armies, and the first raiders were only scouts sent to test the surface nations. Now he walks into the sunlit world himself to subjugate whoever he meets. Those he meets must bow and pay tribute or be crushed."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/abyssal_underlord.png"
+    ]
+  },
+  "unconfirmed": [
+    "Artifact: план нападения на Stonehall и союз с Court of Ristul относятся к иной временной линии, в связи не записаны",
+    "Предмет Emerald Conquest: битва за средние течения Изумрудной бездны только в описании предмета, связь battle не записана",
+    "Предмет Abyssal Blade: описание предмета о том, что клинок был его, места не называет",
+    "Mars: враждебность и молитвы о смерти подтверждены только репликой озвучки, связь не записана",
+    "Siltbreaker: намерение убить его — реплика озвучки, персонаж без ключа героя",
+    "Реплики озвучки о встречах и стычках с Dark Willow, Dawnbreaker, Wraith King, Pangolier, Monkey King, Snapfire и другими не основания для связей",
+    "Карточка Artifact Ozkavosh Horror и культ фиендов, похожих на него: принадлежность к демонам не подтверждена, связь не записана",
+    "Путь на поверхность: место выхода в мир в лоре не названо, path не записан",
+    "Court of Ristul — двор, а не место на схеме: если нужен отдельный регион, это кандидат для владельца, в candidates не добавлен",
+    "Сверка: Aziyog: origin → home — биография описывает его владения, а не место рождения.",
+    "Сверка: The Emerald Abyss (visit) снят — вывод из раздела о физиологии героя, визита в тексте нет.",
+    "Сверка: Stonehall (mention) и Legion Commander (enemy) сняты — замысел похода на Stonehall есть только в «другой линии времени» Artifact.",
+    "Сверка: Seven Hells (service), Shadow Fiend (ally), Queen of Pain (enemy) сняты — двор Ristul взят из комикса к аркане Queen of Pain (косметика); описание hells-ascension в content/media.json Vrogros не называет. Проверить в #60."
+  ]
+}

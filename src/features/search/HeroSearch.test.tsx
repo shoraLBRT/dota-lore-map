@@ -77,19 +77,19 @@ describe('поиск героя и нити', () => {
   });
 
   it('места в разных регионах: мир, остальные регионы приглушены, нити; список мест ведёт к месту, герой остаётся', () => {
-    window.location.hash = '#/world?hero=sven&profile';
+    window.location.hash = '#/world?hero=tidehunter&profile';
     render(<App />);
     expect(threads()).toHaveLength(2);
-    expect(document.querySelector('polygon[data-region="shadeshore"]')?.getAttribute('class')).not.toMatch(/muted/);
+    expect(document.querySelector('polygon[data-region="cladd"]')?.getAttribute('class')).not.toMatch(/muted/);
     expect(document.querySelector('polygon[data-region="icewrack"]')?.getAttribute('class')).toMatch(/muted/);
-    expect(document.querySelector('[data-tint="wailing-mountains"]')?.getAttribute('class')).toMatch(/lit/);
+    expect(document.querySelector('[data-tint="the-deep"]')?.getAttribute('class')).toMatch(/lit/);
 
-    const places = within(profile('Sven')!).getByRole('navigation', { name: 'Места героя' });
-    const feral = new RegExp(`^${placeName(getPlace('wailing-mountains', 'feral-road')!, 'ru')}`);
-    fireEvent.click(within(places).getByRole('button', { name: feral }));
-    expect(window.location.hash).toBe('#/r/wailing-mountains/feral-road?hero=sven');
+    const places = within(profile('Tidehunter')!).getByRole('navigation', { name: 'Места героя' });
+    const reef = new RegExp(`^${placeName(getPlace('the-deep', 'recluse-reef')!, 'ru')}`);
+    fireEvent.click(within(places).getByRole('button', { name: reef }));
+    expect(window.location.hash).toBe('#/r/the-deep/recluse-reef?hero=tidehunter');
     // Видна панель места, профиль закрыт; герой выбран — чип сверху.
-    expect(profile('Sven')).toBeNull();
+    expect(profile('Tidehunter')).toBeNull();
     expect(screen.getByRole('region', { name: 'Выбранный герой' })).toBeInTheDocument();
     expect(threads()).toHaveLength(2);
   });
@@ -117,7 +117,7 @@ describe('поиск героя и нити', () => {
     expect(getRegion('icewrack')).toBeDefined();
     const tusk = screen.getByRole('button', { name: /^Tusk: открыть профиль/ }).closest('li')!;
     fireEvent.pointerEnter(tusk);
-    expect(threads()).toHaveLength(1);
+    expect(threads()).toHaveLength(2);
     fireEvent.pointerLeave(tusk);
     expect(threads()).toHaveLength(0);
     // У героя с одним местом нитей нет.
@@ -150,14 +150,14 @@ describe('поиск героя и нити', () => {
     expect(pulse('pole')).not.toBeNull();
     fireEvent.blur(pl);
     expect(pulse('pole')).toBeNull();
-    // Techies — несколько мест: и нить, и маркер своего места.
-    fireEvent.pointerEnter(portrait('Techies'), { pointerType: 'mouse' });
+    // Gyrocopter — несколько мест: и нить, и маркер своего места.
+    fireEvent.pointerEnter(portrait('Gyrocopter'), { pointerType: 'mouse' });
     expect(threads()).toHaveLength(1);
-    expect(pulse('dredgers-bight')).not.toBeNull();
+    expect(pulse('home-of-the-keen-folk')).not.toBeNull();
     expect(pulse('pole')).toBeNull();
     // Из поиска фокус ушёл на портрет: поиск закрылся, а герой портрета остался на карте.
     const input = openSearch();
-    fireEvent.change(input, { target: { value: 'techies' } });
+    fireEvent.change(input, { target: { value: 'gyrocopter' } });
     fireEvent.blur(input, { relatedTarget: pl });
     fireEvent.focus(pl);
     expect(screen.queryByRole('combobox')).toBeNull();
@@ -169,12 +169,12 @@ describe('поиск героя и нити', () => {
     render(<App />);
     const lit = (id: string) => document.querySelector(`[data-tint="${id}"]`)!.getAttribute('class');
     const input = openSearch();
-    fireEvent.change(input, { target: { value: 'techies' } });
-    expect(lit('radiant-lands')).toMatch(/lit/);
-    expect(lit('shadeshore')).toMatch(/lit/);
+    fireEvent.change(input, { target: { value: 'zeus' } });
+    expect(lit('heavens')).toMatch(/lit/);
+    expect(lit('free-cities')).toMatch(/lit/);
     expect(lit('icewrack')).not.toMatch(/lit/);
     fireEvent.keyDown(input, { key: 'Escape' });
-    expect(lit('radiant-lands')).not.toMatch(/lit/);
+    expect(lit('heavens')).not.toMatch(/lit/);
   });
 
   it('регионы и места (#100): место с регионом в подписи, выбор открывает его экран, герой остаётся', () => {
@@ -257,12 +257,12 @@ describe('поиск героя и нити', () => {
     ]);
   });
 
-  it('легенда (#67): у Techies — пунктир «другая связь», значка у связи без типа нет; EN', () => {
+  it('легенда (#67): у Tidehunter — пунктир «другая связь», значка у связи без типа нет; EN', () => {
     window.localStorage.setItem('dota-lore-map.lang', 'en');
-    window.location.hash = '#/world?hero=techies&profile';
+    window.location.hash = '#/world?hero=tidehunter&profile';
     render(<App />);
     expect(document.querySelector('[data-testid="threads"] [data-step="link"] [data-arrow]')).toBeNull();
-    const plaque = screen.getByRole('complementary', { name: 'Techies' });
+    const plaque = screen.getByRole('complementary', { name: 'Tidehunter' });
     fireEvent.click(within(plaque).getByRole('button', { name: 'How to read the threads' }));
     const items = within(plaque).getAllByRole('listitem').map((li) => li.textContent);
     expect(items).toContain('Other link: a mention, or the kind is not yet known');

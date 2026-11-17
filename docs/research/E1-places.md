@@ -78,18 +78,18 @@
 | Ярус | Регион | Сторона | Мест | Героев |
 |---|---|---|---|---|
 | Верхний ярус | Небеса (The Heavens) | нейтрально (ярус) | 6 | 11 |
-| Верхний ярус | Семь планов и Пустота (The Seven Planes and the Void) | нейтрально (ярус) | 13 | 17 |
+| Верхний ярус | Семь планов и Пустота (The Seven Planes and the Void) | нейтрально (ярус) | 13 | 16 |
 | Материк и острова | Айсрак (Icewrack) | Radiant (карта S1) | 12 | 9 |
 | Материк и острова | Земля Сияющих (Land of the Radiant) | Radiant (карта S1) | 8 | 10 |
 | Материк и острова | Лес Найтсильвер (Nightsilver Woods) | Radiant (карта S1) | 3 | 3 |
-| Материк и острова | Стоунхолл (Stonehall) | Radiant (по схеме E2) | 24 | 5 |
+| Материк и острова | Стоунхолл (Stonehall) | Radiant (по схеме E2) | 24 | 4 |
 | Материк и острова | Вольные города (The Free Cities) | Radiant (по схеме E2) | 7 | 7 |
 | Материк и острова | Квойдж и Поля Бойни (Quoidge and the Fields of Carnage) | нейтрально (по схеме E2) | 4 | 3 |
 | Материк и острова | Хазадальские пустоши (Hazhadal Barrens) | нейтрально (по схеме E2) | 2 | 3 |
 | Материк и острова | Друуд (Druud) | Dire (по схеме E2) | 2 | 3 |
 | Материк и острова | Сверкающая пустошь (Scintillant Waste) | Dire (карта S1) | 9 | 6 |
-| Материк и острова | Стонущие горы (Wailing Mountains) | Dire (карта S1) | 6 | 7 |
-| Материк и острова | Тенистый берег (Shadeshore) | Dire (по схеме E2) | 5 | 3 |
+| Материк и острова | Стонущие горы (Wailing Mountains) | Dire (карта S1) | 6 | 6 |
+| Материк и острова | Тенистый берег (Shadeshore) | Dire (по схеме E2) | 5 | 2 |
 | Материк и острова | Глубины (The Deep) | Dire (карта S1) | 7 | 5 |
 | Материк и острова | Кладд и острова (Cladd and the Isles) | Radiant (по схеме E2) | 6 | 2 |
 | Материк и острова | Тропические острова (Tropic Isles) | Dire (по схеме E2) | 7 | 3 |
@@ -102,7 +102,7 @@
 | Материк и острова | Срединные королевства (The Middle Kingdoms) | нейтрально (по схеме E2) | 11 | 12 |
 | Материк и острова | Неизведанные земли (The Uncharted Lands) | нейтрально (по схеме E2) | 0 | 16 |
 | Бездна | Подземье (The Underdark) | нейтрально (ярус) | 4 | 3 |
-| Бездна | Семь Преисподних и загробье (The Seven Hells and the Afterlife) | нейтрально (ярус) | 8 | 14 |
+| Бездна | Семь Преисподних и загробье (The Seven Hells and the Afterlife) | нейтрально (ярус) | 8 | 15 |
 
 ### Верхний ярус
 
@@ -135,7 +135,7 @@
 | Astral Plane | лор | Elder Titan (бывал) |  |
 | Fabric of Creation | лор | Weaver |  |
 | Claszureme | лор | Faceless Void, Puck (бывал) | мир вне времени |
-| The Void | лор | Ancient Apparition, Faceless Void (упоминание), Outworld Destroyer (бывал), Void Spirit |  |
+| The Void | лор | Ancient Apparition, Faceless Void (упоминание), Outworld Destroyer (бывал) |  |
 | The Outworld | лор | Outworld Destroyer | «мир на краю Бездны», у границы Пустоты |
 | Land Behind the Wall | лор | Dark Seer | родная реальность Dark Seer; страницы на Liquipedia нет |
 | Ivory Incubarium | лор | Oracle | в другой вселенной |
@@ -154,13 +154,13 @@
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
 | ★ Icewrack | лор | Crystal Maiden (живёт), Kez (изгнание), Pangolier (упоминание), Winter Wyvern (живёт) |  |
-| The Barrier | лор | — |  |
+| The Barrier | лор | Tusk |  |
 | Blueheart Glacier | лор | Crystal Maiden (служба) |  |
 | Black Pool | лор | Lich (гибель) |  |
 | Cobalt | лор | Tusk |  |
 | Azura | лор | Tiny |  |
 | White Fields | лор | — |  |
-| Wolfsden Tavern | лор | Crystal Maiden (упоминание), Tusk (связь) |  |
+| Wolfsden Tavern | лор | Crystal Maiden (упоминание), Tusk (сражение) |  |
 | Njord's Hearth | лор | — |  |
 | Boiling Sea | лор | Crystal Maiden (бывал) |  |
 | Frostreach | лор | — | самый северный порт мира; страницы на Liquipedia нет |
@@ -173,8 +173,8 @@
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
 | Pole | карта S1 | Phantom Lancer |  |
-| Violet Archives | карта S1 | Phoenix (упоминание), Templar Assassin (связь) |  |
-| Violet Plateau | лор | Tinker (живёт) | архивы находятся в нём или рядом |
+| Violet Archives | карта S1 | Phoenix (упоминание), Templar Assassin (упоминание) |  |
+| Violet Plateau | лор | Templar Assassin (упоминание), Tinker (живёт) | архивы находятся в нём или рядом |
 | Castle of the Fold | карта S1 | — |  |
 | Home of the Keen Folk | карта S1 | Alchemist*, Clockwerk*, Gyrocopter*, Tinker* |  |
 | Knollen | наше | Sniper | горные долины кинов |
@@ -197,7 +197,7 @@
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
-| ★ Stonehall | лор | Legion Commander (живёт), Magnus (упоминание), Underlord (связь)† |  |
+| ★ Stonehall | лор | Legion Commander (живёт), Magnus (упоминание) |  |
 | Qine | лор | Legion Commander |  |
 | Quath | лор | — |  |
 | Tares | лор | Phantom Assassin | к югу от Стоунхолла |
@@ -277,7 +277,7 @@
 | Qaldin | лор | Pangolier (бывал), Sand King (упоминание) |  |
 | El'Harath | лор | Sand King (упоминание) |  |
 | The Barrens | лор | — |  |
-| Halgalreh | наше | Templar Assassin (связь)† | руины пустынной империи |
+| Halgalreh | наше | Templar Assassin (упоминание) | руины пустынной империи |
 | Bone Ruins | наше | Meepo (бывал) |  |
 | Singer's Gulch | наше | Meepo (бывал) |  |
 
@@ -293,7 +293,7 @@
 | Fortress of Flares | лор | Ember Spirit |  |
 | Turstarkuri | карта S1 | Anti-Mage |  |
 | Mount Joerlak | карта S1 | Magnus |  |
-| Feral Road | карта S1 | Sven (связь)† |  |
+| Feral Road | карта S1 | — |  |
 | The Upland | наше | Earth Spirit | нагорье священного нефрита |
 
 #### Тенистый берег · Shadeshore
@@ -306,8 +306,8 @@
 |---|---|---|---|
 | ★ Shadeshore Ruins | лор | Sven |  |
 | Tidemarsh | лор | — |  |
-| Ruelands | лор | Techies (связь)† |  |
-| Vigil Keep | наше | Sven (связь) |  |
+| Ruelands | лор | — |  |
+| Vigil Keep | наше | Sven (служба) |  |
 | Inner Colonnade | наше | — | при Vigil Keep |
 
 #### Глубины · The Deep
@@ -439,7 +439,7 @@
 | Ultimyr Academy | наше | Invoker (сражение), Warlock (живёт) |  |
 | Emauracus | наше | Omniknight |  |
 | Font of Avernus | наше | Abaddon |  |
-| Hidden Temple | наше | Templar Assassin (живёт), Void Spirit (связь) |  |
+| Hidden Temple | наше | Templar Assassin (служба), Void Spirit (живёт) |  |
 | Hidden Hive | наше | Nyx Assassin |  |
 | Mount Pyrotheos | наше | Broodmother |  |
 | Skirm | наше | Muerta | страницы на Liquipedia нет |
@@ -493,10 +493,10 @@
 | Vashundol | лор | Doom (изгнание) |  |
 | Abysm | лор | Shadow Fiend |  |
 | Foulfell | лор | Terrorblade (изгнание) |  |
-| Outer Hells | лор | Warlock (связь) |  |
+| Outer Hells | лор | Warlock (упоминание) |  |
 | Narrow Maze | лор | Razor (живёт), Visage (служба) |  |
 | Underscape | лор | Muerta (упоминание), Necrophos (упоминание), Razor (упоминание) |  |
-| Nothl Realm | лор | Dazzle (путь), Huskar (гибель) |  |
+| Nothl Realm | лор | Dazzle (путь), Huskar (гибель), Void Spirit (упоминание) |  |
 
 ### Указатель: герой → места
 
@@ -603,9 +603,9 @@
 | Spectre | весь регион «Неизведанные земли»* |
 | Spirit Breaker | Elemental Plane (Семь планов и Пустота) (живёт) |
 | Storm Spirit | весь регион «Стонущие горы»; Ruined City (Стонущие горы) (упоминание) |
-| Sven | Shadeshore Ruins (Тенистый берег); Vigil Keep (Тенистый берег) (связь); Feral Road (Стонущие горы) (связь)† |
-| Techies | Dredger's Bight (Земля Сияющих); Ruelands (Тенистый берег) (связь)† |
-| Templar Assassin | Hidden Temple (Срединные королевства) (живёт); Violet Archives (Земля Сияющих) (связь); Halgalreh (Сверкающая пустошь) (связь)† |
+| Sven | Shadeshore Ruins (Тенистый берег); Vigil Keep (Тенистый берег) (служба) |
+| Techies | Dredger's Bight (Земля Сияющих) |
+| Templar Assassin | Hidden Temple (Срединные королевства) (служба); Violet Archives (Земля Сияющих) (упоминание); Violet Plateau (Земля Сияющих) (упоминание); Halgalreh (Сверкающая пустошь) (упоминание) |
 | Terrorblade | Seven Hells (Семь Преисподних и загробье); Foulfell (Семь Преисподних и загробье) (изгнание) |
 | Tidehunter | Sunken Isles (Кладд и острова); Trembling Isle (Кладд и острова) (сражение); Recluse Reef (Глубины) (упоминание) |
 | Timbersaw | Augury Bay (Западные леса) |
@@ -613,16 +613,16 @@
 | Tiny | Azura (Айсрак) |
 | Treant Protector | Vale of Augury (Западные леса) |
 | Troll Warlord | The Hoven (Ховен и Нишай) |
-| Tusk | Cobalt (Айсрак); Wolfsden Tavern (Айсрак) (связь) |
-| Underlord | Aziyog (Подземье) (живёт); Stonehall (Стоунхолл) (связь)† |
+| Tusk | Cobalt (Айсрак); The Barrier (Айсрак); Wolfsden Tavern (Айсрак) (сражение) |
+| Underlord | Aziyog (Подземье) (живёт) |
 | Undying | весь регион «Неизведанные земли»* |
 | Ursa | весь регион «Неизведанные земли»* |
 | Vengeful Spirit | Ghastly Eyrie (Небеса) |
 | Venomancer | Bay of Fradj (Тропические острова) (путь); Jidi Isle (Тропические острова) (путь); Acid Jungles (Тропические острова) (гибель) |
 | Viper | Nether Reaches (Подземье) |
 | Visage | Narrow Maze (Семь Преисподних и загробье) (служба); весь регион «Семь Преисподних и загробье» (служба); весь регион «Небеса» (служба) |
-| Void Spirit | The Void (Семь планов и Пустота); Hidden Temple (Срединные королевства) (связь) |
-| Warlock | Ultimyr Academy (Срединные королевства) (живёт); Outer Hells (Семь Преисподних и загробье) (связь) |
+| Void Spirit | Hidden Temple (Срединные королевства) (живёт); Nothl Realm (Семь Преисподних и загробье) (упоминание) |
+| Warlock | Ultimyr Academy (Срединные королевства) (живёт); Outer Hells (Семь Преисподних и загробье) (упоминание) |
 | Weaver | Fabric of Creation (Семь планов и Пустота) |
 | Windranger | Zaru'Kina (Западные леса); Western Forests (Западные леса) |
 | Winter Wyvern | Icewrack (Айсрак) (живёт) |

@@ -1,0 +1,61 @@
+{
+  "hero": "templar_assassin",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Hidden Temple",
+      "event": "service",
+      "source": "bio",
+      "note": "Вход в храм открыл её призвание, и с тех пор она служит ему.",
+      "doubt": "Инфобокс Liquipedia называет храм происхождением (origins), но в биографии это место служения, а не родины."
+    },
+    {
+      "place": "Violet Archives",
+      "event": "mention",
+      "source": "bio",
+      "note": "Опыты по обугленным фрагментам архива — предмет, сам герой там не назван бывавшим."
+    },
+    {
+      "place": "Violet Plateau",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Templar_Assassin/Lore",
+      "note": "Место указано в поле places инфобокса; визит туда — см. unconfirmed."
+    },
+    {
+      "place": "Halgalreh",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Templar_Assassin/Lore",
+      "note": "Место указано в поле places инфобокса; поездка туда — см. unconfirmed."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Ланайя, известная как Templar Assassin, в юности увлекалась законами природы, магией и алхимией, и её любопытство вывело на тайную дверь в храм. Там ждали её те, кто пообещал ответы в обмен на служение. Она дала клятву хранить их секреты и считает каждого побеждённого врага ещё одной загадкой, которую удалось разгадать.",
+      "en": "Lanaya, the Templar Assassin, followed a scholar's curiosity from youth, studying natural law, magic and alchemy with a thief's patience. Her inquiries led her through a hidden door into a temple whose unseen masters offered deeper answers in return for loyalty. She now guards their mysteries and sees every foe she defeats as one more piece of the puzzle."
+    },
+    "art": [
+      "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/templar_assassin.png"
+    ]
+  },
+  "unconfirmed": [
+    "Визит в Violet Plateau и Violet Archives (раскопки после Violet Plateau Incident): утверждение лора опирается на описание предмета Focal Resonance; в инфобоксе место есть, событие не подтверждено.",
+    "Поездка в Halgalreh с местной одеждой: только описание предмета Dreaded Bravo's Scarf.",
+    "Redmoon Order и Western Wails — фракции: только описания предметов (у Western Wails сказано «возможно»); в данные не записаны.",
+    "Убийство королевы и шпилька как трофей: описание предмета Heirloom of the Temple Priestess; в данные не записано.",
+    "The Unseen Seven и The Three Shades — боги из описаний предметов и сетов, не места и не герои; в данные не записаны.",
+    "Mireska's Father (Sunbreeze Family): только реплика Templar Assassin; персонаж, не герой с key.",
+    "Реплики озвучки (встреча, убийство, ответы) с Monkey King, Omniknight, Grimstroke, Pangolier, Oracle, Batrider, Legion Commander, Queen of Pain, Keeper of the Light и Bounty Hunter — связи не записаны.",
+    "Отношение к войне Древних («ниже её») и знакомство с другими Ascended Ones: только реплики озвучки.",
+    "Сверка: Home of the Keen Folk (origin) снят — вывод из расы Keen; биография говорит только о летописцах Keen, не о родине.",
+    "Сверка: Juggernaut (love) и Void Spirit (master) сняты — раздел Relationships лор-страницы опирается только на реплики озвучки; биография хозяев храма не называет."
+  ]
+}

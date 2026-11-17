@@ -1,0 +1,31 @@
+{
+  "hero": "techies",
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
+  "links": [
+    {
+      "place": "Dredger's Bight",
+      "event": "origin",
+      "source": "bio",
+      "note": "Биография: троица подрывников работала в городе на Устричной бухте и здесь же взорвала собственную мастерскую; город ушёл в шахты под ним. Главное событие здесь — изобретение и первый взрыв, поэтому место записано как родина."
+    }
+  ],
+  "profile": {
+    "summary": {
+      "ru": "Techies — подрывники Скви, Сплин и Спун, которые придумали дистанционную кнопку для взрыва и при первом испытании разнесли собственную мастерскую в Устричной бухте. Город начал оседать в шахты, а там, где появлялись Techies, после них часто исчезали и другие поселения. Троица не раскаивалась и думала лишь о том, как устроить взрыв ещё мощнее.",
+      "en": "Techies are the pyrotechnic trio Squee, Spleen and Spoon, who invented a remote detonator and, during its first test, levelled their own workshop in Dredger's Bight. The whole district then sank into the mines, and wherever Techies showed up, other towns seemed to vanish after them. The trio felt no guilt and only wondered how to make the next blast even bigger."
+    }
+  },
+  "unconfirmed": [
+    "Toterin и Trapper Town: биография говорит, что эти города исчезли после появления Techies, а описание героя на Liquipedia называет Toterin разрушенным минами. Ни один источник не даёт их региона, на схеме их нет — кандидатами не записаны, нужен регион от владельца (#59). Связи со статусом «battle» не записаны: биография сама не называет Techies виновниками.",
+    "Раса Keen из инфобокса Liquipedia: родина народа — Home of the Keen Folk. О самом герое прямого текста нет, а родина уже записана через Dredger's Bight, поэтому второе место не добавлено.",
+    "Ruelands из E1 (ссылка со страницы места на Liquipedia): страницы места в кэше нет, подтвердить нельзя. Связь не записана.",
+    "Реплики озвучки о Techies (Monkey King, Legion Commander, Terrorblade, Tidehunter, Gyrocopter, Axe, Oracle, Slark и другие): отдельные строки без записи в инфобоксе или биографии, поэтому связей не дают.",
+    "Предмет Pachyderm Powderwagon (история про слона вместо повозки) и артефакт Remote Detonation: описания предмета и артефакта, не место и не связь.",
+    "Инфобокс Liquipedia указывает Science как традицию и Nilbog the Mad как косметику: это не место и не связь, в файл не записаны."
+  ]
+}

@@ -47,12 +47,12 @@ describe('поиск героя (SPEC §6.5)', () => {
 });
 
 describe('места героя', () => {
-  it('Sven: три места в двух регионах, точки и стороны; экран — мир', () => {
-    const spots = heroSpots(getHero('sven')!);
-    expect(spots.map((s) => s.key)).toEqual(['shadeshore/shadeshore-ruins', 'shadeshore/vigil-keep', 'wailing-mountains/feral-road']);
+  it('Tidehunter: три места в двух регионах, точки и стороны; экран — мир', () => {
+    const spots = heroSpots(getHero('tidehunter')!);
+    expect(spots.map((s) => s.key)).toEqual(['cladd/sunken-isles', 'cladd/trembling-isle', 'the-deep/recluse-reef']);
     expect(spots.every((s) => s.point)).toBe(true);
-    expect(spots[0]!.tone).toBe(toneOf(getRegion('shadeshore')!));
-    expect(heroScreen(getHero('sven')!)).toEqual({ name: 'world' });
+    expect(spots[0]!.tone).toBe(toneOf(getRegion('cladd')!));
+    expect(heroScreen(getHero('tidehunter')!)).toEqual({ name: 'world' });
   });
 
   it('одно место — к нему; все места в одном регионе — регион', () => {

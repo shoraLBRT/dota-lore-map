@@ -35,13 +35,6 @@ describe('нити героя (#67)', () => {
     ]);
   });
 
-  it('связь E1 без типа (`link`) — не остановка пути: пунктир от ближайшей предшествующей остановки', () => {
-    expect(short(lines('techies'))).toEqual(['radiant-lands/dredgers-bight>shadeshore/ruelands:link:link']);
-    expect(short(lines('sven'))).toEqual([
-      'shadeshore/shadeshore-ruins>shadeshore/vigil-keep:link:link',
-      'shadeshore/shadeshore-ruins>wailing-mountains/feral-road:link:link',
-    ]);
-  });
 
   it('упоминание — пунктир со значком «упоминание»', () => {
     expect(short(lines('dragon_knight'))).toEqual(['middle-kingdoms/candoness>planes/elemental-plane:link:mention']);
