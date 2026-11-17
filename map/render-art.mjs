@@ -750,7 +750,8 @@ async function rasterize(svg) {
 
 function check(svg) {
   const errors = [];
-  if (!existsSync(SVG_FILE) || readFileSync(SVG_FILE, 'utf8') !== svg) {
+  // Git на Windows может отдать файл с CRLF — сравниваем текст, а не байты.
+  if (!existsSync(SVG_FILE) || readFileSync(SVG_FILE, 'utf8').replaceAll('\r\n', '\n') !== svg) {
     errors.push('public/map/world.svg не совпадает с пересборкой — node map/render-art.mjs');
   }
   const lock = existsSync(LOCK_FILE) ? JSON.parse(readFileSync(LOCK_FILE, 'utf8')) : {};

@@ -11,12 +11,13 @@
     "build": "vite build",
     "preview": "vite preview",
     "data": "node scripts/build-data.mjs",
+    "map": "node map/render-art.mjs",
     "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.node.json",
     "lint": "eslint .",
     "test": "vitest run",
     "e2e": "playwright test",
     "shot": "node scripts/shot.mjs",
-    "check": "npm run data && npm run typecheck && npm run lint && npm run test && npm run build && node scripts/check-budget.mjs && node map/check-layout.mjs && python research/e1/build.py --check && python research/e14/test_e14.py"
+    "check": "npm run data && npm run typecheck && npm run lint && npm run test && npm run build && node scripts/check-budget.mjs && node map/check-layout.mjs && node map/render-art.mjs --check && python research/e1/build.py --check && python research/e14/test_e14.py"
   },
   "dependencies": {
     "react": "^18.3.1",
