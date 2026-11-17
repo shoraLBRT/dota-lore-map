@@ -1,6 +1,11 @@
 {
   "hero": "nevermore",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero"
+  ],
   "links": [
     {
       "place": "Abysm",
@@ -17,25 +22,16 @@
       "doubt": "Место стоит в поле places инфобокса, но ни биография, ни текст лор-страницы не описывают его связь с героем."
     }
   ],
-  "relations": [
-    {
-      "hero": "shadow_demon",
-      "type": "master",
-      "source": "liquipedia",
-      "via": "infobox",
-      "url": "https://liquipedia.net/dota2/Shadow_Fiend/Lore",
-      "note": "Инфобокс лора: Shadow Demon назван кредитором и хозяином, герой служит ему из-за долга душ.",
-      "doubt": "Обратная запись в shadow_demon.json — enemy по биографии Shadow Demon (разгром культа вместе с Doom). Здесь этого нет, см. unconfirmed."
-    }
-  ],
+  "relations": [],
   "profile": {
     "summary": {
-      "ru": "Shadow Fiend, он же Nevermore, собирает души: по слухам, их у него тысячи, и взяты они у людей всех сословий, включая героев. Он тянется за добычей из Бездны, но что делает с душами, никто не знает. По лору он в долгу перед Shadow Demon и служит ему.",
-      "en": "Shadow Fiend, also called Nevermore, hoards souls: rumour puts his collection in the thousands, drawn from every walk of life, heroes included. He reaches out for his prey from the Abysm, yet nobody knows what he does with what he takes. Lore also places him in debt to Shadow Demon, whom he serves."
+      "ru": "Shadow Fiend, он же Nevermore, собирает души: говорят, их у него тысячи, и взяты они у людей любого звания — от нищих и рабов до императоров и героев. За добычей он тянется из Бездны, куда никто никогда не заглядывал. Что он делает с душами и не служит ли сам чьей-то чужой воле, остаётся загадкой.",
+      "en": "Shadow Fiend, also called Nevermore, collects souls: he is said to hold thousands, taken from people of every station, from beggars and slaves to emperors and heroes. He reaches for his prey from the Abysm, a place no one has ever looked into. What he does with the souls, and whether he answers to some other will, remains a mystery."
     }
   },
   "unconfirmed": [
-    "Shadow Demon в shadow_demon.json записан как enemy по биографии Shadow Demon: будто Shadow Fiend вместе с Doom разгромил его культ. Биография Shadow Fiend и лор-страница этого не подтверждают, в них нет ни Doom, ни культа. Здесь записано master по инфобоксу; расхождение передано главному агенту.",
+    "Shadow Demon: в shadow_demon.json записан enemy по биографии Shadow Demon (Shadow Fiend вместе с Doom разгромил его культ) — запись односторонняя, источники Shadow Fiend этого не подтверждают. Инфобокс лора называет Shadow Demon его хозяином из-за долга душ, но все сноски к этому — реплики озвучки, связь не записана.",
+    "Биография лишь гадает, не марионетка ли он демонического кукловода, — ни имени, ни связи из этого не следует.",
     "Doom: реплика озвучки о том, что Doom когда-то держал героя в яме, и инфобокс с полем heroes (Doom и Shadow Demon без типа связи). Тип связи не определён, запись не сделана.",
     "Комикс hells-ascension: по лор-странице Shadow Fiend упомянут в комиксе при дворе Ристула, но описание в content/media.json его не называет, страницы комикса в кэше нет. Не проверено.",
     "Court of Ristul, Umbral Pact и язык Ozkavosh — двор, пакт и язык, не места; в links не вошли.",
