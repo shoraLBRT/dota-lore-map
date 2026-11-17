@@ -186,6 +186,7 @@ export function MapStage({
                   scale={frame.threadScale}
                   obstacles={threadLayout.obstacles}
                   clip={threadLayout.clip}
+                  compact={Boolean(listLayout)}
                 />
               )}
             </svg>

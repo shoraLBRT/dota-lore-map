@@ -21,6 +21,7 @@ import { heroThreads } from '../search/threads';
 import { MOBILE_QUERY } from './camera';
 import { focusLost, restoreFocus } from './focus';
 import { MapStage } from './MapStage';
+import { SideLegend } from './SideLegend';
 import { useWorldHint, WorldHint } from './WorldHint';
 import styles from './WorldScreen.module.css';
 
@@ -132,6 +133,8 @@ export function WorldScreen({ screen, veiled = false }: Props) {
   // Телефон (#39): в мире под картой список регионов — он сам и есть подсказка, строка внизу кадра не нужна.
   const mobile = useMediaQuery(MOBILE_QUERY);
   const showHint = !veiled && screen.name === 'world' && !searchOpen && !hero && !mobile;
+  // Легенда сторон (#102): в мире на широком экране; не под интро и не при открытом профиле.
+  const showLegend = !veiled && screen.name === 'world' && !profileOpen && !mobile;
 
   // Поле поиска или чип героя сверху кадра: метки «нить за краем» встают под них (#64),
   // на телефоне карта со списком регионов — под чип.
@@ -218,6 +221,7 @@ export function WorldScreen({ screen, veiled = false }: Props) {
           />
         </main>
         {showHint && <WorldHint state={hint.state} />}
+        {showLegend && <SideLegend />}
         {!veiled && (searchOpen || showChip) && (
           <div
             ref={barRef}
