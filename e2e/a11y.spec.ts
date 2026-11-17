@@ -1,7 +1,7 @@
 import AxeBuilder from '@axe-core/playwright';
 import { test, expect, panelHeading } from './fixtures';
 
-// Доступность (#105, A14): axe на шести экранах без нарушений serious/critical
+// Доступность (#105, A14): axe на семи экранах без нарушений serious/critical
 // и reduced motion — после посадки камеры на странице нет бегущих анимаций.
 
 const screens: { name: string; hash: string; ready: (page: import('@playwright/test').Page) => Promise<void> }[] = [
@@ -18,6 +18,16 @@ const screens: { name: string; hash: string; ready: (page: import('@playwright/t
     name: 'профиль',
     hash: '#/world?hero=crystal_maiden&profile',
     ready: (p) => expect(panelHeading(p)).toHaveText('Crystal Maiden'),
+  },
+  {
+    // Выдача с группами героев и регионов (#100).
+    name: 'поиск',
+    hash: '#/world',
+    ready: async (p) => {
+      await p.getByRole('button', { name: 'Поиск героя' }).click();
+      await p.getByRole('combobox', { name: 'Герой, регион или место' }).fill('a');
+      await expect(p.getByRole('group', { name: 'Регионы' })).toBeVisible();
+    },
   },
 ];
 
