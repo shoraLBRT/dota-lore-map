@@ -267,6 +267,112 @@
       },
       "credit": "Valve Corporation",
       "sourceUrl": "https://store.steampowered.com/app/583950/"
+    },
+    {
+      "id": "monkeyking-legends",
+      "type": "image",
+      "excerpt": true,
+      "src": "https://cdn.steamstatic.com/apps/dota2/images/comics/comic_monkeyking_arcana/en/010.png",
+      "title": {
+        "ru": "«Легенды Царя обезьян»",
+        "en": "Legends of the Monkey King"
+      },
+      "subtitle": {
+        "ru": "Комикс",
+        "en": "Comic"
+      },
+      "description": {
+        "ru": "Комикс Valve к обновлению 7.00 (2016). У ночного костра Илекса рассказывает детям легенды о Monkey King: как он достал посох у тюрьмы Dark Reef и как победил Razor в Узком лабиринте.",
+        "en": "Valve's comic for the 7.00 update (2016). By a night campfire Ilexa tells children legends of the Monkey King: how he took his staff from beside the Dark Reef prison and how he beat Razor in the Narrow Maze."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/700/comic/arcana/"
+    },
+    {
+      "id": "monkeyking-new-journey",
+      "type": "image",
+      "excerpt": true,
+      "src": "https://cdn.steamstatic.com/apps/dota2/images/comics/comic_monkeyking/en/010.png",
+      "title": {
+        "ru": "«Новое путешествие»",
+        "en": "A New Journey"
+      },
+      "subtitle": {
+        "ru": "Комикс",
+        "en": "Comic"
+      },
+      "description": {
+        "ru": "Комикс Valve к обновлению 7.00 (2016). Monkey King дают постановочные бои на арене, а в таверне Sundered Moon он встречает Broodmother, которая ждёт настоящей войны.",
+        "en": "Valve's comic for the 7.00 update (2016). Monkey King performs staged fights in an arena; in the Sundered Moon tavern he meets Broodmother, who is waiting for a real war."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/700/comic/base/"
+    },
+    {
+      "id": "tipofthespear",
+      "type": "image",
+      "excerpt": true,
+      "src": "https://cdn.steamstatic.com/apps/dota2/images/comics/comic_tipofthespear/en/02.jpg",
+      "title": {
+        "ru": "«Острие копья»",
+        "en": "Tip of the Spear"
+      },
+      "subtitle": {
+        "ru": "Комикс",
+        "en": "Comic"
+      },
+      "description": {
+        "ru": "Комикс Valve 2016 года. Legion Commander вспоминает, как Бронзовый легион взял Цин, где она родилась рабыней, и ведёт кавалерию в решающий удар под стенами осаждённого Мёрбика.",
+        "en": "Valve's 2016 comic. Legion Commander recalls how the Bronze Legion took Qine, where she was born a slave, and leads the cavalry charge under the walls of besieged Moerbeek."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/tipofthespear"
+    },
+    {
+      "id": "kez-ascension-night",
+      "type": "image",
+      "excerpt": true,
+      "src": {
+        "ru": "https://cdn.steamstatic.com/apps/dota2/images/crownfall/act4_ascension_night/russian/002.webp",
+        "en": "https://cdn.steamstatic.com/apps/dota2/images/crownfall/act4_ascension_night/english/002.webp"
+      },
+      "title": {
+        "ru": "«Ночь вознесения»",
+        "en": "Ascension Night"
+      },
+      "subtitle": {
+        "ru": "Комикс",
+        "en": "Comic"
+      },
+      "description": {
+        "ru": "Комикс к Crownfall (2024). Kez, изгнанный из храма Shodo, в ночь Вознесения выводит узников из висячей тюрьмы Клетка и находит нового наставника в нижнем городе Мидгейт.",
+        "en": "Comic for Crownfall (2024). Kez, expelled from the Shodo temple, frees the prisoners of the hanging prison called the Cage on Ascension Night and finds a new teacher in the lower city of Midgate."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/kezcomic"
+    },
+    {
+      "id": "largo-island",
+      "type": "image",
+      "excerpt": true,
+      "src": {
+        "ru": "https://cdn.steamstatic.com/apps/dota2/images/comics/largo/russian/001.webp",
+        "en": "https://cdn.steamstatic.com/apps/dota2/images/comics/largo/english/001.webp"
+      },
+      "title": {
+        "ru": "«Остров, что приходит»",
+        "en": "The Island That Comes"
+      },
+      "subtitle": {
+        "ru": "Комикс",
+        "en": "Comic"
+      },
+      "description": {
+        "ru": "Комикс Valve (2025). Умирающий наставник рассказывает Largo, как лягушачий народ бежал по морю и нашёл дом на живом острове Velu'Mar; позже Largo пробуждает остров в его священных пещерах.",
+        "en": "Valve's comic (2025). A dying mentor tells Largo how the frog people fled across the sea and found a home on the living island of Velu'Mar; later Largo wakes the island in its sacred caverns."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/largocomic"
     }
   ]
 }

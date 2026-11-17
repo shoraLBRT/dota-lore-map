@@ -4,7 +4,8 @@
     "bio.ru",
     "bio.en",
     "liquipedia-lore",
-    "liquipedia-hero"
+    "liquipedia-hero",
+    "comic:milltown-dark-carnival"
   ],
   "links": [
     {
@@ -43,5 +44,13 @@
     "Nishai: инфобокс лора перечисляет его среди мест героя без типа события; в биографии нет. Не записано (в regions.json есть как место региона hoven).",
     "Списки Liquipedia (Puck, Sniper, Chen, Leshrac, Sagan, Snapfire, Krimwohl в роли врага и др., дядя, Witch Doctor, Night Stalker) основаны на репликах озвучки. Не записаны по правилу партии 01.",
     "Enchantress (тётя): поле family инфобокса опирается только на реплику озвучки («Auntie A»); биография родню не называет. Связь снята при сверке; запись hoodwink в enchantress.json остаётся односторонней."
+  ],
+  "relations": [
+    {
+      "hero": "legion_commander",
+      "type": "enemy",
+      "source": "comic:milltown-dark-carnival",
+      "note": "Берёт предводительницу налёта в плен и ведёт её на допрос."
+    }
   ]
 }

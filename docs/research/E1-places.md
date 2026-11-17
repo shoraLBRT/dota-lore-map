@@ -79,18 +79,18 @@
 |---|---|---|---|---|
 | Верхний ярус | Небеса (The Heavens) | нейтрально (ярус) | 6 | 11 |
 | Верхний ярус | Семь планов и Пустота (The Seven Planes and the Void) | нейтрально (ярус) | 13 | 16 |
-| Материк и острова | Айсрак (Icewrack) | Radiant (карта S1) | 12 | 9 |
+| Материк и острова | Айсрак (Icewrack) | Radiant (карта S1) | 12 | 10 |
 | Материк и острова | Земля Сияющих (Land of the Radiant) | Radiant (карта S1) | 8 | 10 |
 | Материк и острова | Лес Найтсильвер (Nightsilver Woods) | Radiant (карта S1) | 3 | 3 |
 | Материк и острова | Стоунхолл (Stonehall) | Radiant (по схеме E2) | 24 | 4 |
-| Материк и острова | Вольные города (The Free Cities) | Radiant (по схеме E2) | 7 | 7 |
+| Материк и острова | Вольные города (The Free Cities) | Radiant (по схеме E2) | 7 | 9 |
 | Материк и острова | Квойдж и Поля Бойни (Quoidge and the Fields of Carnage) | нейтрально (по схеме E2) | 4 | 3 |
 | Материк и острова | Хазадальские пустоши (Hazhadal Barrens) | нейтрально (по схеме E2) | 2 | 3 |
-| Материк и острова | Друуд (Druud) | Dire (по схеме E2) | 2 | 3 |
+| Материк и острова | Друуд (Druud) | Dire (по схеме E2) | 2 | 4 |
 | Материк и острова | Сверкающая пустошь (Scintillant Waste) | Dire (карта S1) | 9 | 6 |
 | Материк и острова | Стонущие горы (Wailing Mountains) | Dire (карта S1) | 6 | 6 |
 | Материк и острова | Тенистый берег (Shadeshore) | Dire (по схеме E2) | 5 | 2 |
-| Материк и острова | Глубины (The Deep) | Dire (карта S1) | 7 | 5 |
+| Материк и острова | Глубины (The Deep) | Dire (карта S1) | 7 | 6 |
 | Материк и острова | Кладд и острова (Cladd and the Isles) | Radiant (по схеме E2) | 6 | 2 |
 | Материк и острова | Тропические острова (Tropic Isles) | Dire (по схеме E2) | 7 | 3 |
 | Материк и острова | Западные леса (Western Forests) | Radiant (по схеме E2) | 6 | 5 |
@@ -102,7 +102,7 @@
 | Материк и острова | Срединные королевства (The Middle Kingdoms) | нейтрально (по схеме E2) | 11 | 12 |
 | Материк и острова | Неизведанные земли (The Uncharted Lands) | нейтрально (по схеме E2) | 0 | 16 |
 | Бездна | Подземье (The Underdark) | нейтрально (ярус) | 4 | 3 |
-| Бездна | Семь Преисподних и загробье (The Seven Hells and the Afterlife) | нейтрально (ярус) | 8 | 15 |
+| Бездна | Семь Преисподних и загробье (The Seven Hells and the Afterlife) | нейтрально (ярус) | 8 | 16 |
 
 ### Верхний ярус
 
@@ -163,7 +163,7 @@
 | Wolfsden Tavern | лор | Crystal Maiden (упоминание), Tusk (сражение) |  |
 | Njord's Hearth | лор | — |  |
 | Boiling Sea | лор | Crystal Maiden (бывал) |  |
-| Frostreach | лор | — | самый северный порт мира; страницы на Liquipedia нет |
+| Frostreach | лор | Tusk (бывал), Vengeful Spirit (бывал) | самый северный порт мира; страницы на Liquipedia нет |
 | Onyx Grove | лор | Lone Druid (живёт) | в северных сосновых лесах |
 
 #### Земля Сияющих · Land of the Radiant
@@ -204,7 +204,7 @@
 | Roseleaf | лор | Magnus (сражение) |  |
 | Tarrin | лор | — | к юго-западу |
 | Sashire | лор | — | к югу |
-| Milltown | лор | — | к западу, на реке между Roseleaf и Tarrin |
+| Milltown | лор | Legion Commander (сражение) | к западу, на реке между Roseleaf и Tarrin |
 | Ember (City) | лор | — | к западу |
 | Redmaw | лор | — | к западу от Roseleaf |
 | Lormount | лор | — |  |
@@ -230,9 +230,9 @@
 |---|---|---|---|
 | ★ White Spire | лор | Monkey King (живёт), Pangolier (бывал) |  |
 | Revtel | лор | Dark Willow, Pangolier (бывал) |  |
-| Weeping Rose | лор | — |  |
+| Weeping Rose | лор | Queen of Pain (путь) |  |
 | Tyler Estate | лор | — | в Weeping Rose |
-| Sundered Moon | лор | Arc Warden (бывал), Drow Ranger (бывал), Zeus (бывал) | таверна в White Spire |
+| Sundered Moon | лор | Arc Warden (бывал), Drow Ranger (бывал), Medusa (бывал), Monkey King (бывал), Zeus (бывал) | таверна в White Spire |
 | Iron Fog | наше | — |  |
 | Highseat | наше | Bounty Hunter (сражение) |  |
 
@@ -262,7 +262,7 @@
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
-| ★ Druud | лор | Arc Warden (бывал), Centaur Warrunner, Disruptor |  |
+| ★ Druud | лор | Arc Warden (бывал), Axe (сражение), Centaur Warrunner, Disruptor |  |
 | Omexe | лор | Centaur Warrunner (сражение) |  |
 
 #### Сверкающая пустошь · Scintillant Waste
@@ -318,7 +318,7 @@
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
-| ★ Dark Reef | лор | Slark (изгнание) |  |
+| ★ Dark Reef | лор | Monkey King (бывал), Slark (изгнание) |  |
 | Crey | лор | Naga Siren (сражение) |  |
 | Deep Vault | лор | Naga Siren (упоминание), Slardar (живёт) | оно же Sunken Treasury |
 | Coral Breach | лор | Slardar (упоминание) |  |
@@ -494,7 +494,7 @@
 | Abysm | лор | Shadow Fiend |  |
 | Foulfell | лор | Terrorblade (изгнание) |  |
 | Outer Hells | лор | Warlock (упоминание) |  |
-| Narrow Maze | лор | Razor (живёт), Visage (служба) |  |
+| Narrow Maze | лор | Monkey King (сражение), Razor (живёт), Visage (служба) |  |
 | Underscape | лор | Muerta (упоминание), Necrophos (упоминание), Razor (упоминание) |  |
 | Nothl Realm | лор | Dazzle (путь), Huskar (гибель), Void Spirit (упоминание) |  |
 
@@ -507,7 +507,7 @@
 | Ancient Apparition | The Void (Семь планов и Пустота); Coldbank Plains (Стоунхолл) (сражение) |
 | Anti-Mage | Turstarkuri (Стонущие горы) |
 | Arc Warden | Mad Moon (Небеса) (служба); Sundered Moon (Вольные города) (бывал); Druud (Друуд) (бывал); Tomo'kan (Томо'кан и Окраины) (сражение) |
-| Axe | Thousand Tarns (Земля Сияющих) (сражение); Fortress of Valhessi (Хазадальские пустоши) (сражение) |
+| Axe | Thousand Tarns (Земля Сияющих) (сражение); Fortress of Valhessi (Хазадальские пустоши) (сражение); Druud (Друуд) (сражение) |
 | Bane | The Dream (Семь планов и Пустота)* |
 | Batrider | Yama Raskav Jungle (Феллстрат) |
 | Beastmaster | Slom (Слом и Эльзе) |
@@ -550,7 +550,7 @@
 | Kez | весь регион «Неизведанные земли»; Icewrack (Айсрак) (изгнание) |
 | Kunkka | Cladd (Кладд и острова); Port Mignin (Кладд и острова) (сражение); Trembling Isle (Кладд и острова) (сражение); Isle of Songs (Кладд и острова) (упоминание) |
 | Largo | Velu'Mar (Феллстрат) |
-| Legion Commander | Qine (Стоунхолл); Stonehall (Стоунхолл) (живёт) |
+| Legion Commander | Qine (Стоунхолл); Stonehall (Стоунхолл) (живёт); Milltown (Стоунхолл) (сражение) |
 | Leshrac | Heart of Nature (Семь планов и Пустота) |
 | Lich | весь регион «Айсрак» (служба); Black Pool (Айсрак) (гибель) |
 | Lifestealer | Devarque (Срединные королевства) (изгнание) |
@@ -562,10 +562,10 @@
 | Magnus | Mount Joerlak (Стонущие горы); Roseleaf (Стоунхолл) (сражение); Stonehall (Стоунхолл) (упоминание) |
 | Marci | весь регион «Неизведанные земли»* |
 | Mars | весь регион «Небеса»; Quoidge (Квойдж и Поля Бойни) (упоминание) |
-| Medusa | весь регион «Неизведанные земли»; Yama Raskav Jungle (Феллстрат) (упоминание) |
+| Medusa | весь регион «Неизведанные земли»; Yama Raskav Jungle (Феллстрат) (упоминание); Sundered Moon (Вольные города) (бывал) |
 | Meepo | Riftshadow Ruins (Сверкающая пустошь) (живёт); Singer's Gulch (Сверкающая пустошь) (бывал); Bone Ruins (Сверкающая пустошь) (бывал) |
 | Mirana | Nightsilver Woods (Лес Найтсильвер) (служба); Temple of Mene (Лес Найтсильвер) (упоминание); Solar Throne (Срединные королевства) |
-| Monkey King | White Spire (Вольные города) (живёт) |
+| Monkey King | White Spire (Вольные города) (живёт); Dark Reef (Глубины) (бывал); Narrow Maze (Семь Преисподних и загробье) (сражение); Sundered Moon (Вольные города) (бывал) |
 | Morphling | весь регион «Неизведанные земли» |
 | Muerta | Skirm (Срединные королевства); Seven Hells (Семь Преисподних и загробье) (упоминание); Underscape (Семь Преисподних и загробье) (упоминание) |
 | Naga Siren | весь регион «Глубины»*; Crey (Глубины) (сражение); Deep Vault (Глубины) (упоминание) |
@@ -585,7 +585,7 @@
 | Puck | весь регион «Семь планов и Пустота»; Claszureme (Семь планов и Пустота) (бывал) |
 | Pudge | Fields of Endless Carnage (Квойдж и Поля Бойни) (живёт); Quoidge (Квойдж и Поля Бойни) (упоминание); Cathedral of Rumusque (Квойдж и Поля Бойни) (упоминание) |
 | Pugna | Nether Reaches (Подземье) |
-| Queen of Pain | Elze (Слом и Эльзе) (служба); весь регион «Семь Преисподних и загробье» (живёт) |
+| Queen of Pain | Elze (Слом и Эльзе) (служба); весь регион «Семь Преисподних и загробье» (живёт); Weeping Rose (Вольные города) (путь) |
 | Razor | Underscape (Семь Преисподних и загробье) (упоминание); Narrow Maze (Семь Преисподних и загробье) (живёт) |
 | Riki | весь регион «Неизведанные земли»* |
 | Ringmaster | весь регион «Неизведанные земли»* |
@@ -613,11 +613,11 @@
 | Tiny | Azura (Айсрак) |
 | Treant Protector | Vale of Augury (Западные леса) |
 | Troll Warlord | The Hoven (Ховен и Нишай) |
-| Tusk | Cobalt (Айсрак); The Barrier (Айсрак); Wolfsden Tavern (Айсрак) (сражение) |
+| Tusk | Cobalt (Айсрак); The Barrier (Айсрак); Wolfsden Tavern (Айсрак) (сражение); Frostreach (Айсрак) (бывал) |
 | Underlord | Aziyog (Подземье) (живёт) |
 | Undying | весь регион «Неизведанные земли»* |
 | Ursa | весь регион «Неизведанные земли»* |
-| Vengeful Spirit | Ghastly Eyrie (Небеса) |
+| Vengeful Spirit | Ghastly Eyrie (Небеса); Frostreach (Айсрак) (бывал) |
 | Venomancer | Bay of Fradj (Тропические острова) (путь); Jidi Isle (Тропические острова) (путь); Acid Jungles (Тропические острова) (гибель) |
 | Viper | Nether Reaches (Подземье) |
 | Visage | Narrow Maze (Семь Преисподних и загробье) (служба); весь регион «Семь Преисподних и загробье» (служба); весь регион «Небеса» (служба) |

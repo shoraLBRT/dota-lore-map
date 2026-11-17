@@ -59,6 +59,12 @@
       "type": "family",
       "source": "bio",
       "note": "Lina — её старшая сестра (биография и инфобокс лор-страницы). В лоре между ними также описано соперничество, но тип связи один — family."
+    },
+    {
+      "hero": "winter_wyvern",
+      "type": "ally",
+      "source": "comic:icewrack-new-neighbors",
+      "note": "Помирились после спора с жителями Icewrack: Crystal Maiden принимает дар дракона, концовка намекает на дружбу."
     }
   ],
   "profile": {

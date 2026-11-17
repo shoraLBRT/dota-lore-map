@@ -20,7 +20,8 @@
       "description": {
         "ru": "Столица империи и дом Бронзового легиона; по её улицам ходит элитная королевская стража, а местные школы славятся на всю округу. После прорыва Бездны большая часть города лежит в руинах, но Стоунхолл устоял.",
         "en": "Capital of the empire and home of the Bronze Legion, patrolled by an elite royal guard and known for its fine schools. Much of the city still lies in ruins after the abyssal breach, but Stonehall did not fall."
-      },
+      }
+,
       "media": ["artifact-stonehall-elite"]
     },
     "Qine": {
@@ -29,7 +30,8 @@
       "description": {
         "ru": "Обнесённый стенами город, который Бронзовый легион осадил и присоединил к Стоунхоллу. Пятнадцатилетняя Трездин была здесь рабыней; после штурма её забрали в рекруты, и здесь же она одолела в поединке тогдашнего командира легиона — хотя его звание тогда так и не получила.",
         "en": "A walled city besieged by the Bronze Legion and claimed for Stonehall. Fifteen-year-old Tresdin toiled here as a slave; after the siege she was taken as a recruit, and on the same ground she beat the Legion's commander of the day in a duel — though his title did not pass to her then."
-      }
+      },
+      "media": ["tipofthespear"]
     },
     "Quath": {
       "name": { "ru": "Кват", "en": "Quath" },
@@ -53,7 +55,8 @@
       "description": {
         "ru": "Город вхулов, ставший полем битвы: Бронзовый легион устроил здесь засаду на армию Красного Тумана, а горожане восстали против обеих сторон. Для Трездин сражение закончилось катастрофой, и позже Миреска подобрала в руинах знамя легиона.",
         "en": "A vhoul city turned battlefield: the Bronze Legion laid an ambush here for the Red Mist army while the townsfolk rose up against both. The battle went disastrously for Tresdin, and Mireska later picked a Legion banner out of the ruins."
-      },
+      }
+,
       "media": ["artifact-roseleaf-wall"]
     },
     "Tarrin": {

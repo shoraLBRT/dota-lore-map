@@ -3,7 +3,8 @@
   "read": [
     "bio.ru",
     "bio.en",
-    "liquipedia-lore"
+    "liquipedia-lore",
+    "comic:largo-island"
   ],
   "links": [
     {
@@ -26,6 +27,13 @@
       "event": "mention",
       "source": "bio",
       "note": "Только русская биография: изгнанники пришли из лесов Хмурых корней; в английской Murkroots — название народа, а не места. Это родина народа, а не самого Largo; регион не назван, fellstrath предположен по Velu'Mar."
+    },
+    {
+      "name": "Sacred Caverns of Velu'Mar",
+      "region": "fellstrath",
+      "event": "battle",
+      "source": "comic:largo-island",
+      "note": "Закрытые пещеры под островом, где живёт его «сердце»; Largo играет там и открывает их для всех."
     }
   ],
   "unconfirmed": [

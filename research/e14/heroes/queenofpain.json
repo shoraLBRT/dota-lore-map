@@ -1,6 +1,12 @@
 {
   "hero": "queenofpain",
-  "read": ["bio.ru", "bio.en", "liquipedia-lore", "liquipedia-hero", "comic:hells-ascension"],
+  "read": [
+    "bio.ru",
+    "bio.en",
+    "liquipedia-lore",
+    "liquipedia-hero",
+    "comic:hells-ascension"
+  ],
   "links": [
     {
       "place": "Elze",
@@ -14,7 +20,13 @@
       "event": "home",
       "source": "comic:hells-ascension",
       "note": "По описанию комикса Ascension, до Узкого лабиринта она была при дворе Ристула, сестрой Б'Кора. Двор Ристула на схеме не назван, поэтому указан только регион.",
-      "doubt": "Регион hells выведен по Узкому лабиринту и Ристулу, на схеме такого места нет; сам комикс смотрен только по описанию в media.json, изображения не просматривались."
+      "doubt": "Комикс «Восхождение» двор Ристула и Узкий лабиринт называет, а слово «ад» — нет; привязка двора к региону hells — наша."
+    },
+    {
+      "place": "Weeping Rose",
+      "event": "journey",
+      "source": "comic:hells-ascension",
+      "note": "Накануне Narrow Maze идёт в Weeping Rose, находит там изгнанного принца Ногха и по сделке забирает его земли и клан."
     }
   ],
   "profile": {
@@ -33,6 +45,20 @@
       "event": "home",
       "source": "comic:hells-ascension",
       "note": "Двор Ристула, при котором Акаша была сестрой Б'Кора; в регионах такого места нет, регион предположен по Узкому лабиринту в том же описании."
+    },
+    {
+      "name": "Abyssal Plane",
+      "region": "planes",
+      "event": "mention",
+      "source": "comic:hells-ascension",
+      "note": "Измерение, где растёт влияние брата Акаши; только названо."
+    },
+    {
+      "name": "Umbral Plane",
+      "region": "planes",
+      "event": "mention",
+      "source": "comic:hells-ascension",
+      "note": "Измерение, где Ногха считают поучительным примером; только названо."
     }
   ],
   "relations": [],

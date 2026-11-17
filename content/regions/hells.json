@@ -60,7 +60,8 @@
       "description": {
         "ru": "Холодные извилистые ходы с лезвиями в стенах, через которые проходит каждая новая душа. Лабиринт сортирует мёртвых по уму и упорству; Razor и фамильяры Visage следят за ним, а сопротивляющихся навсегда отправляют в межмирье. Всем здесь заправляет Двор Ристула.",
         "en": "Cold, twisting, blade-lined passages that every new soul must travel. The maze sorts the dead by wit and persistence; Razor and Visage's familiars stand guard, and those who resist are cast into the herebetween forever. The Court of Ristul pulls the strings."
-      }
+      },
+      "media": ["monkeyking-legends"]
     },
     "Underscape": {
       "name": { "ru": "Андерскейп", "en": "Underscape" },

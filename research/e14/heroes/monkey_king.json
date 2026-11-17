@@ -4,7 +4,9 @@
     "bio.ru",
     "bio.en",
     "liquipedia-lore",
-    "liquipedia-hero"
+    "liquipedia-hero",
+    "comic:monkeyking-legends",
+    "comic:monkeyking-new-journey"
   ],
   "links": [
     {
@@ -15,6 +17,26 @@
       "url": "https://liquipedia.net/dota2/Monkey_King/Lore",
       "note": "Инфобокс называет Белый шпиль текущим местом героя.",
       "doubt": "Основание — комикс A New Journey, которого нет в content/media.json; в биографии мест нет."
+    },
+    {
+      "place": "Dark Reef",
+      "event": "visit",
+      "source": "comic:monkeyking-legends",
+      "note": "В легенде у костра достаёт посох со дна у тюрьмы Dark Reef и случайно пробивает её стену.",
+      "doubt": "Это пересказ легенды, который ведёт Илекса, а не прямое событие; о береговой привязке места сказано только «дно у тюрьмы»."
+    },
+    {
+      "place": "Narrow Maze",
+      "event": "battle",
+      "source": "comic:monkeyking-legends",
+      "note": "В легенде побеждает Razor в Narrow Maze и вычёркивает своё имя из Книги жизни и смерти.",
+      "doubt": "Легенда, рассказанная Илексой, а не рассказ от автора."
+    },
+    {
+      "place": "Sundered Moon",
+      "event": "visit",
+      "source": "comic:monkeyking-new-journey",
+      "note": "Встречает в таверне Sundered Moon Broodmother, которая ждёт войны Древних."
     }
   ],
   "profile": {
@@ -31,5 +53,27 @@
     "Служение богам и спутник-аколит в биографии: боги и аколит не герои карты, связь не записана.",
     "Narrow Maze, Nightsilver Woods, Palace of Hurra'agdu: на лор-странице все три держатся только на репликах озвучки — не основание.",
     "Комикс A New Journey (Белый шпиль) в content/media.json отсутствует, поэтому источник comic:<id> не использован."
+  ],
+  "relations": [
+    {
+      "hero": "razor",
+      "type": "enemy",
+      "source": "comic:monkeyking-legends",
+      "note": "В легенде Razor запирает Monkey King в лабиринте, тот побеждает его в бою.",
+      "doubt": "Легенда, пересказанная Илексой."
+    },
+    {
+      "hero": "tidehunter",
+      "type": "enemy",
+      "source": "comic:monkeyking-legends",
+      "note": "В легенде Tidehunter обманом отправляет Monkey King к посоху.",
+      "doubt": "Легенда, пересказанная Илексой; враждебность вытекает из обмана."
+    },
+    {
+      "hero": "broodmother",
+      "type": "enemy",
+      "source": "comic:monkeyking-new-journey",
+      "note": "В таверне Broodmother говорит, что мечтает убить его на настоящем поле боя."
+    }
   ]
 }

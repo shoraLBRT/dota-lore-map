@@ -4,7 +4,8 @@
     "bio.ru",
     "bio.en",
     "liquipedia-lore",
-    "liquipedia-hero"
+    "liquipedia-hero",
+    "comic:kez-ascension-night"
   ],
   "links": [
     {
@@ -40,6 +41,34 @@
       "source": "liquipedia",
       "url": "https://liquipedia.net/dota2/Kez/Lore",
       "note": "Skywrath (City) — родина по инфобоксу лор-страницы. Регион heavens предположен только по теме небесного города; в кэше источника о местоположении нет. Решение за владельцем (#59)."
+    },
+    {
+      "name": "Midgate",
+      "region": "heavens",
+      "event": "home",
+      "source": "comic:kez-ascension-night",
+      "note": "Нижний город бескрылых под скалой Скайрата; Kez начинает и заканчивает историю там."
+    },
+    {
+      "name": "The Cage",
+      "region": "heavens",
+      "event": "battle",
+      "source": "comic:kez-ascension-night",
+      "note": "Висячая тюрьма на шпиле, из которой Kez выводит узников."
+    },
+    {
+      "name": "Shodo temple",
+      "region": "heavens",
+      "event": "exile",
+      "source": "comic:kez-ascension-night",
+      "note": "Храм, откуда Kez изгнан; перенесён на верхний уровень."
+    },
+    {
+      "name": "Spur",
+      "region": "heavens",
+      "event": "mention",
+      "source": "comic:kez-ascension-night",
+      "note": "Крепость со штабом гвардии у стыка тюрьмы и материка."
     }
   ],
   "unconfirmed": [
