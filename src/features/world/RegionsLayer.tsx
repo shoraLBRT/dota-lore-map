@@ -99,6 +99,7 @@ export function RegionsLayer({ drawn, activeId, inWorld, tip, litId, focusRegion
             key={r.id}
             className={[
               styles.tint,
+              onArt,
               tones[highlight(r)],
               (r.id === shownId || r.id === litId || (inWorld && (focusRegions?.has(r.id) || previewRegions?.has(r.id)))) &&
                 styles.lit,

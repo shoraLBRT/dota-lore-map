@@ -66,6 +66,24 @@
   opacity: 0;
 }
 
+/* Края мира поверх арта (#112): облака в тон ночному небу рисунка и реже, чем пелена. */
+.drift .cloud {
+  --cloud: var(--cloud-edge);
+  --cloud-shade: var(--cloud-edge-shade);
+}
+
+.drift .layer1 {
+  --cloud-opacity: 0.25;
+}
+
+.drift .layer2 {
+  --cloud-opacity: 0.35;
+}
+
+.drift .layer3 {
+  --cloud-opacity: 0.45;
+}
+
 /* A7: медленный дрейф по кругу ~60 с. */
 .drift .cloud {
   animation: drift var(--drift-time) ease-in-out var(--phase) infinite alternate;
