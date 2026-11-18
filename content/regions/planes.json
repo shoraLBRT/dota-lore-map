@@ -132,6 +132,22 @@
         "ru": "Владение Высеченных королей в той же далёкой вселенной, что и Костяной Инкубарий. Сюда отправили служить Oracle, когда Бледные сивиллы закончили его обучение. Войско последнего короля Симурри сошло с ума у дворца соседнего правителя — Ненасытного сатрапа.",
         "en": "The domain of the Carved Kings, in the same distant universe as the Ivory Incubarium. Oracle was sent here to serve once the Pale Sibyls had finished his training. The army of the last king of Cymurri went mad outside the palace of a neighbouring ruler, the Unsated Satrap."
       }
+    },
+    "Cataract": {
+      "name": { "ru": "Катаракта", "en": "Cataract" },
+      "type": { "ru": "Водопад в пустоту", "en": "Falls into the void" },
+      "description": {
+        "ru": "Край, откуда приплыл демонический флот, против которого вышел кладдский флот Kunkka; по биографии воды Катаракты обрываются прямо в пустоту. Сам Kunkka туда не плавал — он лишь встретил её флот. Где она лежит, лор не говорит; мы ставим её у границы Пустоты.",
+        "en": "The place the demon fleet sailed from when it met Kunkka's Claddish navy; according to the biography, the waters of the Cataract pour straight down into the void. Kunkka never sailed there himself, he only faced its fleet. The lore does not say where it lies, so we put it at the edge of the Void."
+      }
+    },
+    "Continuum Vault": {
+      "name": { "ru": "Хранилище Континуума", "en": "Continuum Vault" },
+      "type": { "ru": "Темница", "en": "Prison vault" },
+      "description": {
+        "ru": "Хранилище вне обычного пространства, в котором Hoodwink заперла Primal Beast — зверя, веками опустошавшего Туманный лес. Где стоит хранилище, лор не говорит; мы относим его к иным планам.",
+        "en": "A vault outside ordinary space, where Hoodwink locked away Primal Beast, the creature that ravaged the Mistwood for ages. The lore does not say where the vault stands; we count it among the other planes."
+      }
     }
   }
 }

@@ -96,6 +96,10 @@
 <text x="1174.0" y="90.5" font-size="7.5" fill="#f5ecd6" stroke="#10151c" stroke-width="2" paint-order="stroke" opacity="0.9">Fae Realm</text>
 <circle cx="1024.0" cy="60.0" r="2.6" fill="#f5e9c8" stroke="#2a1a08" stroke-width="0.8"/>
 <text x="1030.0" y="62.5" font-size="7.5" fill="#f5ecd6" stroke="#10151c" stroke-width="2" paint-order="stroke" opacity="0.9">Great Seat of Cymurri</text>
+<circle cx="1544.0" cy="85.0" r="2.6" fill="#f5e9c8" stroke="#2a1a08" stroke-width="0.8"/>
+<text x="1550.0" y="87.5" font-size="7.5" fill="#f5ecd6" stroke="#10151c" stroke-width="2" paint-order="stroke" opacity="0.9">Cataract</text>
+<circle cx="1216.0" cy="60.0" r="2.6" fill="#f5e9c8" stroke="#2a1a08" stroke-width="0.8"/>
+<text x="1222.0" y="62.5" font-size="7.5" fill="#f5ecd6" stroke="#10151c" stroke-width="2" paint-order="stroke" opacity="0.9">Continuum Vault</text>
 <path d="M736.0 217.0 l5 5 l-5 5 l-5 -5 z" fill="#ffd98a" stroke="#2a1a08" stroke-width="1"/>
 <text x="742.0" y="224.5" font-size="7.5" fill="#f5ecd6" stroke="#10151c" stroke-width="2" paint-order="stroke" opacity="0.9">Icewrack</text>
 <circle cx="640.0" cy="178.0" r="2.6" fill="#f5e9c8" stroke="#2a1a08" stroke-width="0.8"/>

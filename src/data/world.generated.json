@@ -820,6 +820,58 @@
             0.64,
             0.06
           ]
+        },
+        {
+          "name": "Cataract",
+          "slug": "cataract",
+          "capital": false,
+          "placement": "ours",
+          "significance": "minor",
+          "note": "откуда пришёл демонический флот (биография Kunkka), уходит в пустоту; положение — наше, у The Void (#59)",
+          "text": {
+            "name": {
+              "ru": "Катаракта",
+              "en": "Cataract"
+            },
+            "type": {
+              "ru": "Водопад в пустоту",
+              "en": "Falls into the void"
+            },
+            "description": {
+              "ru": "Край, откуда приплыл демонический флот, против которого вышел кладдский флот Kunkka; по биографии воды Катаракты обрываются прямо в пустоту. Сам Kunkka туда не плавал — он лишь встретил её флот. Где она лежит, лор не говорит; мы ставим её у границы Пустоты.",
+              "en": "The place the demon fleet sailed from when it met Kunkka's Claddish navy; according to the biography, the waters of the Cataract pour straight down into the void. Kunkka never sailed there himself, he only faced its fleet. The lore does not say where it lies, so we put it at the edge of the Void."
+            }
+          },
+          "pos": [
+            0.965,
+            0.085
+          ]
+        },
+        {
+          "name": "Continuum Vault",
+          "slug": "continuum-vault",
+          "capital": false,
+          "placement": "ours",
+          "significance": "event",
+          "note": "хранилище вне обычного пространства, где Hoodwink заперла Primal Beast; положение — наше (#59)",
+          "text": {
+            "name": {
+              "ru": "Хранилище Континуума",
+              "en": "Continuum Vault"
+            },
+            "type": {
+              "ru": "Темница",
+              "en": "Prison vault"
+            },
+            "description": {
+              "ru": "Хранилище вне обычного пространства, в котором Hoodwink заперла Primal Beast — зверя, веками опустошавшего Туманный лес. Где стоит хранилище, лор не говорит; мы относим его к иным планам.",
+              "en": "A vault outside ordinary space, where Hoodwink locked away Primal Beast, the creature that ravaged the Mistwood for ages. The lore does not say where the vault stands; we count it among the other planes."
+            }
+          },
+          "pos": [
+            0.76,
+            0.06
+          ]
         }
       ],
       "regionHeroes": [
@@ -9037,6 +9089,14 @@
           "url": "https://liquipedia.net/dota2/Kunkka/Lore",
           "note": "Принцесса с Острова Песен подарила ему шарф; сам он там не бывал.",
           "doubt": "Опора — описание предмета героя Commodore's Sash; характер отношений с принцессой не ясен."
+        },
+        {
+          "regionId": "planes",
+          "placeSlug": "cataract",
+          "event": "mention",
+          "source": "bio",
+          "note": "Отсюда пришёл демонический флот, с которым бился его флот; по биографии Катаракта уходит в пустоту. Сам он там не был.",
+          "doubt": "Положение Катаракты в лоре не названо: регион planes у границы Пустоты — наш (#59, решение владельца)."
         }
       ],
       "path": [
@@ -13194,6 +13254,16 @@
           "source": "bio",
           "note": "Тысячи лет Туманный лес был его угодьями: он опустошал его и охотился даже на дуран. Сейчас он далеко отсюда.",
           "doubt": "Биография называет Mistwood; лор-страница Liquipedia отождествляет его с Tomo'kan."
+        },
+        {
+          "regionId": "planes",
+          "placeSlug": "continuum-vault",
+          "event": "exile",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Primal_Beast/Lore",
+          "note": "Hoodwink запирает Зверя в хранилище вне обычного пространства (в биографии — просто Vault).",
+          "doubt": "Положение хранилища в лоре не названо: регион planes — наш (#59, решение владельца)."
         }
       ],
       "path": [
@@ -13203,6 +13273,10 @@
         {
           "regionId": "tomokan",
           "placeSlug": "tomokan"
+        },
+        {
+          "regionId": "planes",
+          "placeSlug": "continuum-vault"
         }
       ],
       "profile": {

@@ -90,14 +90,6 @@
       "doubt": "Единственное основание — описание набора героини."
     },
     {
-      "name": "Cataract",
-      "hero": "kunkka",
-      "region": "planes",
-      "event": "mention",
-      "source": "bio",
-      "note": "Откуда пришёл демонический флот, и куда Катаракта уходит в пустоту; сама Катаракта на схеме не отмечена, регион предположен по упоминанию пустоты."
-    },
-    {
       "name": "Wyrmforge",
       "hero": "elder_titan",
       "region": "uncharted",
@@ -106,16 +98,6 @@
       "via": "infobox",
       "url": "https://liquipedia.net/dota2/Elder_Titan/Lore",
       "note": "Стоит в поле places инфобокса: Elder Titan хранит у себя обломок этой кузницы среди собранных реликвий. Сам он там не бывал по тексту; регион не назван — решает владелец (#59)."
-    },
-    {
-      "name": "Continuum Vault",
-      "hero": "primal_beast",
-      "region": "planes",
-      "event": "exile",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Primal_Beast/Lore",
-      "note": "Хранилище, где Hoodwink заперла Зверя (в биографии — Vault). Место вне обычного пространства, поэтому регион — planes; решает владелец."
     },
     {
       "name": "Mt. Gorod",

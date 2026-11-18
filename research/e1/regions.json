@@ -40,7 +40,9 @@
         { "name": "Light's Keep", "placement": "ours" },
         { "name": "The Dream", "placement": "ours" },
         { "name": "Fae Realm", "placement": "ours", "note": "мир фей; Undertree, где вылупился Puck, — наше отождествление (#59)" },
-        { "name": "Great Seat of Cymurri", "placement": "ours", "note": "в той же вселенной, что Ivory Incubarium; рядом — владения Unsated Satrap (#59)" }
+        { "name": "Great Seat of Cymurri", "placement": "ours", "note": "в той же вселенной, что Ivory Incubarium; рядом — владения Unsated Satrap (#59)" },
+        { "name": "Cataract", "placement": "ours", "note": "откуда пришёл демонический флот (биография Kunkka), уходит в пустоту; положение — наше, у The Void (#59)" },
+        { "name": "Continuum Vault", "placement": "ours", "note": "хранилище вне обычного пространства, где Hoodwink заперла Primal Beast; положение — наше (#59)" }
       ]
     },
     {
