@@ -30,6 +30,15 @@
 .tint.lit {
   opacity: 1;
   filter: drop-shadow(0 0 10px var(--hl-glow));
+  /* SPEC §7.5: проявившаяся подсветка «дышит» — медленно тускнеет и разгорается. Задержка — на проявление:
+     до неё работает переход opacity, анимация его не перебивает. */
+  animation: breathe var(--dur-breathe) ease-in-out var(--dur-hover) infinite;
+}
+
+@keyframes breathe {
+  50% {
+    opacity: 0.6;
+  }
 }
 
 /* Фокус с клавиатуры — кольцо цвета акцента (SPEC §7.2). */
@@ -145,4 +154,11 @@
 /* Подсветка S1h поверх арта (#112): заливка вдвое прозрачнее токена, чтобы рисунок под ней оставался виден. */
 .tint.onArt {
   fill-opacity: 0.5;
+}
+
+/* SPEC §7.5: при reduced motion подсветка горит ровно. */
+@media (prefers-reduced-motion: reduce) {
+  .tint.lit {
+    animation: none;
+  }
 }

@@ -21,3 +21,9 @@ export function cssPixels(token: string): number {
   if (raw.endsWith('rem')) return value * (parseFloat(root.fontSize) || 16);
   return raw.endsWith('px') ? value : 0;
 }
+
+/** Кривая из токена (`--ease-in-out`) для WAAPI: JS-анимации идут по тем же кривым, что и CSS (SPEC §7.5). */
+export function cssEasing(token: string, fallback: string): string {
+  if (typeof window === 'undefined') return fallback;
+  return window.getComputedStyle(document.documentElement).getPropertyValue(token).trim() || fallback;
+}

@@ -6,6 +6,16 @@ import styles from './Sheet.module.css';
 
 /** Сдвиг пальца, после которого это перетаскивание, а не тап, px. */
 const DRAG_MIN = 6;
+/** Скорость броска, px/мс: отпустили быстрее — шторка уходит по направлению броска, а не к ближайшему положению. */
+const FLICK = 0.5;
+/** Окно, по которому считается скорость в конце перетаскивания, мс. */
+const FLICK_WINDOW = 100;
+
+/** Куда встать после перетаскивания: бросок решает направление, медленное движение — ближайшее положение. */
+export function settleFull(height: number, viewport: number, velocity: number): boolean {
+  if (Math.abs(velocity) >= FLICK) return velocity < 0;
+  return height > ((SHEET_PEEK + SHEET_FULL) / 2) * viewport;
+}
 
 interface Props {
   id: string;
@@ -17,7 +27,8 @@ interface Props {
 
 /**
  * Нижняя шторка вместо правой панели на телефоне (SPEC §13): свёрнута ~30 % высоты, развёрнута ~90 %.
- * Ручка: тап переключает, «потянуть» меняет высоту, отпустили — шторка встаёт в ближайшее положение.
+ * Ручка: тап переключает, «потянуть» меняет высоту, отпустили — шторка встаёт в ближайшее положение
+ * или, если её бросили, — по направлению броска (инерция, SPEC §7.5).
  * Новый регион или место — снова свёрнута, чтобы была видна карта.
  */
 export function Sheet({ id, label, contentKey, header, children }: Props) {
@@ -25,7 +36,7 @@ export function Sheet({ id, label, contentKey, header, children }: Props) {
   const [state, setState] = useState<{ key: string; full: boolean }>({ key: contentKey, full: false });
   const full = state.key === contentKey && state.full;
   const [drag, setDrag] = useState<number | null>(null);
-  const start = useRef<{ y: number; h: number; moved: boolean } | null>(null);
+  const start = useRef<{ y: number; h: number; moved: boolean; trail: { y: number; t: number }[] } | null>(null);
   /** Только что тянули: следующий click — конец перетаскивания, а не тап. */
   const dragged = useRef(false);
 
@@ -39,13 +50,19 @@ export function Sheet({ id, label, contentKey, header, children }: Props) {
 
   const onPointerDown = (e: PointerEvent<HTMLButtonElement>) => {
     const vh = window.innerHeight || 1;
-    start.current = { y: e.clientY, h: (full ? SHEET_FULL : SHEET_PEEK) * vh, moved: false };
+    start.current = {
+      y: e.clientY,
+      h: (full ? SHEET_FULL : SHEET_PEEK) * vh,
+      moved: false,
+      trail: [{ y: e.clientY, t: e.timeStamp }],
+    };
     e.currentTarget.setPointerCapture?.(e.pointerId);
   };
   const onPointerMove = (e: PointerEvent<HTMLButtonElement>) => {
     const s = start.current;
     if (!s) return;
     const dy = e.clientY - s.y;
+    s.trail = [...s.trail.filter((p) => e.timeStamp - p.t <= FLICK_WINDOW), { y: e.clientY, t: e.timeStamp }];
     if (!s.moved && Math.abs(dy) < DRAG_MIN) return;
     s.moved = true;
     const vh = window.innerHeight || 1;
@@ -59,8 +76,10 @@ export function Sheet({ id, label, contentKey, header, children }: Props) {
       return;
     }
     dragged.current = true;
-    const vh = window.innerHeight || 1;
-    set(drag > ((SHEET_PEEK + SHEET_FULL) / 2) * vh);
+    const first = s.trail[0]!;
+    const last = s.trail[s.trail.length - 1]!;
+    const velocity = last.t > first.t ? (last.y - first.y) / (last.t - first.t) : 0;
+    set(settleFull(drag, window.innerHeight || 1, velocity));
     setDrag(null);
   };
 

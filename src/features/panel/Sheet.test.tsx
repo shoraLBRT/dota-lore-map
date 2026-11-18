@@ -4,6 +4,7 @@ import { App } from '../../app/App';
 import { useMediaQuery } from '../../app/media';
 import { getRegion } from '../../data/world';
 import { MOBILE_QUERY } from '../world/camera';
+import { settleFull } from './Sheet';
 
 // Телефон (SPEC §13): правая панель — нижняя шторка, свёрнута ~30 %, развёрнута ~90 %, «потянуть».
 
@@ -100,5 +101,18 @@ describe('нижняя шторка', () => {
     mobile = false;
     act(() => listeners.forEach((l) => l()));
     expect(result.current).toBe(false);
+  });
+});
+
+describe('settleFull: инерция шторки (SPEC §7.5)', () => {
+  const vh = 800;
+  it('медленно отпустили — ближайшее положение', () => {
+    expect(settleFull(vh * 0.4, vh, -0.1)).toBe(false);
+    expect(settleFull(vh * 0.7, vh, 0.1)).toBe(true);
+  });
+
+  it('бросили — по направлению броска, даже не дотянув до середины', () => {
+    expect(settleFull(vh * 0.35, vh, -0.8)).toBe(true);
+    expect(settleFull(vh * 0.85, vh, 0.8)).toBe(false);
   });
 });

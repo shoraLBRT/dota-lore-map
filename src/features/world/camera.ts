@@ -5,6 +5,7 @@
 // Правая панель лежит поверх карты (ARCHITECTURE A4): камера региона и места кадрирует
 // свободную часть кадра слева от панели — `frameCamera` и сдвиг `offset` в cameraTransform.
 
+import { cssEasing } from '../../app/motion';
 import type { Camera, Point } from '../../data/types';
 import { world } from '../../data/world';
 
@@ -256,7 +257,8 @@ export function animateCamera(el: HTMLElement, from: string, target: string, dur
     : [{ transform: from }, { transform: target }];
   const animation = el.animate(keyframes, {
     duration,
-    easing: 'ease-in-out',
+    // Кривая перелёта — токен --ease-in-out, как у CSS-переходов карты (SPEC §7.5).
+    easing: cssEasing('--ease-in-out', 'ease-in-out'),
     fill: 'forwards',
   });
   animation.finished

@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import { useT } from '../../i18n';
 import type { FreeCameraControls } from './freeCamera';
 import styles from './ZoomControls.module.css';
@@ -7,7 +8,7 @@ export function ZoomControls({ controls, right }: { controls: FreeCameraControls
   const { t } = useT();
   const stop = (e: { stopPropagation: () => void }) => e.stopPropagation();
   return (
-    <div className={styles.controls} role="group" aria-label={t('world.zoom')} style={{ right: right + 16 }} onClick={stop}>
+    <div className={styles.controls} role="group" aria-label={t('world.zoom')} style={{ '--shift': `${right}px` } as CSSProperties} onClick={stop}>
       <button type="button" className={styles.button} aria-label={t('world.zoomIn')} title={t('world.zoomIn')} onClick={controls.zoomIn}>
         <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10" /></svg>
       </button>

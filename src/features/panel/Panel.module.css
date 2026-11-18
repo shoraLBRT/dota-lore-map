@@ -9,8 +9,9 @@
   flex-direction: column;
   width: min(var(--panel-width), calc(100% - 2 * var(--space-7)));
   pointer-events: none;
-  transition: transform var(--dur-panel) var(--ease-out);
-  animation: panel-in var(--dur-panel) var(--ease-out);
+  /* SPEC §7.5: панель выезжает и сворачивается с инерцией — лёгкий перелёт и возврат. */
+  transition: transform var(--dur-panel) var(--ease-spring);
+  animation: panel-in var(--dur-panel) var(--ease-spring);
 }
 
 /* Свёрнута: уехала за правый край, кнопка-ромб остаётся на виду. Карта не двигается — панель её не толкает. */
@@ -36,9 +37,30 @@
   pointer-events: auto;
 }
 
-/* A4: содержимое панели — кроссфейд 250 мс при смене региона или места. */
-.content {
-  animation: content-in var(--dur-fade) var(--ease-out);
+/* A4: содержимое панели — кроссфейд при смене региона или места; блоки проявляются каскадом
+   (SPEC §7.5): каждый следующий — на шаг --dur-stagger позже и чуть снизу, не больше шести шагов. */
+.content > * {
+  animation: content-rise calc(var(--dur-fade) * 1.4) var(--ease-out) calc(var(--step, 0) * var(--dur-stagger)) both;
+}
+
+.content > :nth-child(2) {
+  --step: 1;
+}
+
+.content > :nth-child(3) {
+  --step: 2;
+}
+
+.content > :nth-child(4) {
+  --step: 3;
+}
+
+.content > :nth-child(5) {
+  --step: 4;
+}
+
+.content > :nth-child(n + 6) {
+  --step: 5;
 }
 
 .content h2 {
@@ -88,10 +110,21 @@
   }
 }
 
+@keyframes content-rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
 /* SPEC §14: при reduced motion — без сдвигов и масштаба: панель появляется и сворачивается без выезда. */
 @media (prefers-reduced-motion: reduce) {
   .dock {
     transition: none;
     animation: none;
+  }
+
+  .content > * {
+    animation-name: content-in;
   }
 }

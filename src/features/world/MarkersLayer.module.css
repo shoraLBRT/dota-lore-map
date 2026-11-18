@@ -1,12 +1,26 @@
 /* Маркеры мест (SPEC §6.3): точка в кольце, столица — звезда в кольце и подпись крупнее.
-   A3: появляются по очереди с шагом 40 мс в последней трети перелёта. */
+   A3: появляются по очереди с шагом --dur-stagger (40 мс) в последней трети перелёта. */
 .marker {
   cursor: pointer;
-  animation: marker-in var(--dur-hover) var(--ease-out) calc(var(--dur-camera) * 2 / 3 + var(--i, 0) * 40ms) both;
+  animation: marker-in var(--dur-hover) var(--ease-out) calc(var(--dur-camera) * 2 / 3 + var(--i, 0) * var(--dur-stagger)) both;
 }
 
 .hit {
   fill: transparent;
+}
+
+/* SPEC §7.5: кольцо вырастает из точки с лёгким перелётом вместе с проявлением маркера. */
+.pin {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pin-in calc(var(--dur-hover) * 2) var(--ease-spring)
+    calc(var(--dur-camera) * 2 / 3 + var(--i, 0) * var(--dur-stagger)) both;
+}
+
+/* Наведение и фокус — кольцо подпрыгивает один раз и встаёт на место. */
+.marker:hover .hop,
+.marker:focus-visible .hop {
+  animation: marker-hop calc(var(--dur-hover) * 2.5) var(--ease-out);
 }
 
 .ring {
@@ -106,7 +120,7 @@
    появляется вместе с маркером. Этот угол маркера отдан значку медиа. */
 .mediaBadge {
   cursor: pointer;
-  animation: marker-in var(--dur-hover) var(--ease-out) calc(var(--dur-camera) * 2 / 3 + var(--i, 0) * 40ms) both;
+  animation: marker-in var(--dur-hover) var(--ease-out) calc(var(--dur-camera) * 2 / 3 + var(--i, 0) * var(--dur-stagger)) both;
 }
 
 .badgeFrame {
@@ -149,6 +163,22 @@
   font-weight: 700;
   letter-spacing: var(--tracking-display);
   fill: var(--text-1);
+}
+
+@keyframes pin-in {
+  from {
+    transform: scale(0.4);
+  }
+}
+
+@keyframes marker-hop {
+  35% {
+    transform: translateY(-6px);
+  }
+
+  70% {
+    transform: translateY(1px);
+  }
 }
 
 @keyframes marker-in {
@@ -240,8 +270,14 @@
   }
 }
 
-/* SPEC §14: при reduced motion — без пульса. */
+/* SPEC §14, §7.5: при reduced motion — без пульса; маркер только проявляется, без масштаба и подпрыгивания. */
 @media (prefers-reduced-motion: reduce) {
+  .pin,
+  .marker:hover .hop,
+  .marker:focus-visible .hop {
+    animation: none;
+  }
+
   /* Герой под наведением (#66): без пульса, только подсветка маркера. */
   .pulse {
     display: none;
