@@ -156,7 +156,7 @@ export function MapStage({
               aria-label={t('world.map')}
               style={{ '--map-text': frame.textScale } as CSSProperties}
             >
-              <WorldArt />
+              <WorldArt layerRef={layerRef} viewportRef={viewportRef} />
               <RegionsLayer
                 drawn={drawn}
                 activeId={active?.id}

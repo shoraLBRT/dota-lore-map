@@ -15,6 +15,8 @@ export const BUNDLE_BUDGET = 600 * 1024;
 export const TOTAL_BUDGET = 3 * 1024 * 1024;
 /** Одна картинка мира: полная 4096×4096 WebP не тяжелее этого. */
 export const ART_BUDGET = 1.5 * 1024 * 1024;
+/** Один тайл пирамиды арта (#164): WebP 512×512 не тяжелее этого. */
+export const TILE_BUDGET = 256 * 1024;
 
 function walk(dir) {
   return readdirSync(dir, { withFileTypes: true }).flatMap((e) =>
@@ -55,6 +57,37 @@ export function measureArt(dist) {
   return { files, total: files.reduce((s, f) => s + f.size, 0) };
 }
 
+/**
+ * Пирамида тайлов арта (#164, ARCHITECTURE A10): dist/map/tiles/{z}/{x}_{y}.webp. Тайлы грузятся лениво,
+ * только при сильном приближении, поэтому в бюджет до мира не входят — считаются отдельно.
+ * `levels` — уровни из манифеста `src/features/world/tiles.json`: на уровне z должно быть ровно (2^z)² тайлов.
+ */
+export function measureTiles(dist, levels = []) {
+  const dir = join(dist, 'map', 'tiles');
+  const files = existsSync(dir)
+    ? walk(dir)
+        .filter((f) => f.endsWith('.webp'))
+        .map((f) => ({ file: relative(dist, f).replaceAll('\\', '/'), size: statSync(f).size }))
+    : [];
+  const errors = [];
+  for (const z of levels) {
+    const n = 2 ** z;
+    for (let y = 0; y < n; y++) {
+      for (let x = 0; x < n; x++) {
+        if (!existsSync(join(dir, String(z), `${x}_${y}.webp`))) {
+          errors.push(`нет тайла map/tiles/${z}/${x}_${y}.webp из манифеста — node map/art/tiles.mjs pyramid`);
+          break;
+        }
+      }
+      if (errors.length) break;
+    }
+  }
+  const stray = files.filter((f) => !levels.includes(Number(f.file.split('/')[2])));
+  if (stray.length) errors.push(`тайлы ${stray[0].file} и др. (${stray.length}) не в манифесте tiles.json`);
+  for (const f of files) if (f.size > TILE_BUDGET) errors.push(`${f.file} ${kb(f.size)} > ${kb(TILE_BUDGET)}`);
+  return { files, total: files.reduce((s, f) => s + f.size, 0), errors };
+}
+
 const kb = (n) => `${(n / 1024).toFixed(1)} КБ`;
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
@@ -62,10 +95,13 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
   const { files, total } = measure(dist);
   const fonts = measureFonts(dist);
   const art = measureArt(dist);
+  const manifest = JSON.parse(readFileSync(resolve(fileURLToPath(new URL('..', import.meta.url)), 'src/features/world/tiles.json'), 'utf8'));
+  const tiles = measureTiles(dist, manifest.levels);
   for (const f of files) console.log(`  ${f.file}: ${kb(f.gzip)}`);
   console.log(`  fonts/*.woff2 (${fonts.files.length}): ${kb(fonts.total)}`);
   for (const f of art.files) console.log(`  ${f.file}: ${kb(f.size)}`);
-  const errors = [];
+  console.log(`  map/tiles (${tiles.files.length}, лениво, вне бюджета до мира): ${kb(tiles.total)}`);
+  const errors = [...tiles.errors];
   if (files.length === 0) errors.push('dist пуст — сначала npm run build');
   if (fonts.files.length === 0) errors.push('в dist/fonts нет woff2 — шрифты должны быть в public/fonts');
   if (total > BUNDLE_BUDGET) errors.push(`бандл ${kb(total)} > бюджета ${kb(BUNDLE_BUDGET)}`);

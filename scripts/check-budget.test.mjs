@@ -3,7 +3,7 @@ import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
-import { measure, measureArt, measureFonts } from './check-budget.mjs';
+import { measure, measureArt, measureFonts, measureTiles, TILE_BUDGET } from './check-budget.mjs';
 
 // Бюджет загрузки до мира (SPEC §14, ARCHITECTURE A14).
 
@@ -49,5 +49,22 @@ describe('check-budget', () => {
     const { files, total } = measureArt(dir);
     expect(files.map((f) => f.file).sort()).toEqual(['art/world-1024.webp', 'art/world-4096.webp']);
     expect(total).toBe(1000);
+  });
+
+  it('тайлы пирамиды (#164) — отдельно от арта мира; полный уровень из манифеста, без лишних и тяжёлых', () => {
+    dir = mkdtempSync(join(tmpdir(), 'budget-'));
+    expect(measureTiles(dir, [])).toEqual({ files: [], total: 0, errors: [] });
+    mkdirSync(join(dir, 'map', 'tiles', '1'), { recursive: true });
+    for (const n of ['0_0', '1_0', '0_1', '1_1']) writeFileSync(join(dir, 'map', 'tiles', '1', `${n}.webp`), Buffer.alloc(100));
+    const ok = measureTiles(dir, [1]);
+    expect(ok.files).toHaveLength(4);
+    expect(ok.total).toBe(400);
+    expect(ok.errors).toEqual([]);
+    // Уровня 2 из манифеста нет, а уровня 1 нет в манифесте.
+    expect(measureTiles(dir, [2]).errors).toHaveLength(2);
+    writeFileSync(join(dir, 'map', 'tiles', '1', '1_1.webp'), Buffer.alloc(TILE_BUDGET + 1));
+    expect(measureTiles(dir, [1]).errors[0]).toMatch(/1_1\.webp/);
+    // Арт мира тайлы не считает.
+    expect(measureArt(dir).files).toEqual([]);
   });
 });
