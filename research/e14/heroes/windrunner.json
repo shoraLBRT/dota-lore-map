@@ -3,7 +3,8 @@
   "read": [
     "bio.ru",
     "bio.en",
-    "liquipedia-lore"
+    "liquipedia-lore",
+    "comic:darkpurpose"
   ],
   "links": [
     {
@@ -40,5 +41,13 @@
     "Rising Gale responses (Naga Siren, Sven, Witch Doctor) и Wraith King, Ursa, Kunkka, Mirana, Luna: реплики и списки знакомых, связей не записано.",
     "Zenok и Wren (поле characters): Zenok — из Underlords, Wren без текста; связей не записано.",
     "Hero page (liquipedia-hero.wiki): инфобокса с местами нет, названные места совпадают с лор-страницей; проверен только по поиску, не целиком."
+  ],
+  "relations": [
+    {
+      "hero": "antimage",
+      "type": "ally",
+      "source": "comic:darkpurpose",
+      "note": "Встречаются у трупа некроманта и вместе встречают его восставшим."
+    }
   ]
 }

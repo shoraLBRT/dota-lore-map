@@ -12,7 +12,7 @@
     "ru": "Скайрат — королевство крылатых скайрасов, и стоит оно не в небе, а на земле: города поднимаются по отвесным утёсам и каменным шпилям северо-восточного побережья, к северу от Квойджа. На самых высоких шпилях — дворец Мрачного Гнездовья, а внизу, под скалой, теснится Мидгейт, город бескрылых, которым путь наверх закрыт.\n\nТрон, обещанный принцессе Шендельзаре, заняла её младшая сестра Империя, и с тех пор заговоры в королевстве не утихают. В дни Падения короны армия Красной Мглы подошла к Нижним воротам, взяла сторожевую башню Южного шпиля и вошла в город.\n\nОтсюда родом Skywrath Mage и Vengeful Spirit, а бескрылый Kez собирает здесь изгнанников-казураев против королевы.",
     "en": "Skywrath is the kingdom of the winged Skywrath, and it stands on the ground rather than in the sky: its towns climb sheer cliffs and stone spires along the north-eastern coast, north of Quoidge. The palace of the Ghastly Eyrie crowns the highest spires, while Midgate, the town of the Flightless who may never go up, huddles beneath the cliff.\n\nThe throne promised to Princess Shendelzare was taken by her younger sister Imperia, and the kingdom has not been free of plots since. During Crownfall the army of the Red Mist reached the Lowland Gate, took the South Spire watchtower and marched into the city.\n\nSkywrath Mage and Vengeful Spirit were born here, and the Flightless Kez gathers the exiled Kazurai here to rise against the queen."
   },
-  "media": ["ghastly-eyrie-ascension-day", "kez-ascension-night"],
+  "media": ["ghastly-eyrie-ascension-day", "kez-ascension-night", "crownfall-siege"],
   "places": {
     "Ghastly Eyrie": {
       "name": { "ru": "Мрачное Гнездовье", "en": "Ghastly Eyrie" },

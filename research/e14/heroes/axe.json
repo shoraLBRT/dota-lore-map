@@ -6,7 +6,8 @@
     "liquipedia-lore",
     "liquipedia-hero",
     "comic:valhessi-the-last-castle",
-    "comic:druud-hells-basin"
+    "comic:druud-hells-basin",
+    "comic:crownfall-siege"
   ],
   "links": [
     {
@@ -26,6 +27,13 @@
       "event": "battle",
       "source": "comic:druud-hells-basin",
       "note": "Едет рядом с ханом Сорлой при подготовке к битве с Бездонной ордой в красных пустынях Друуда."
+    },
+    {
+      "place": "Ghastly Eyrie",
+      "event": "battle",
+      "source": "comic:crownfall-siege",
+      "note": "Во главе армии Красной Мглы берёт сторожевую башню у Нижних ворот Скайрата, после чего армия входит в город.",
+      "doubt": "Комикс называет город Скайратом, башню South Spire и ворота Lowland Gate; привязка к месту Ghastly Eyrie (столица) — наша."
     }
   ],
   "profile": {
@@ -61,6 +69,22 @@
       "type": "ally",
       "source": "comic:druud-hells-basin",
       "note": "Едут рядом с ханом Сорлой на совете и перед боем."
+    }
+  ],
+  "candidates": [
+    {
+      "name": "South Spire",
+      "region": "skywrath",
+      "event": "battle",
+      "source": "comic:crownfall-siege",
+      "note": "Сторожевая башня королевской гвардии у Нижних ворот Скайрата; Axe и Centaur берут её за десять минут."
+    },
+    {
+      "name": "Lowland Gate",
+      "region": "skywrath",
+      "event": "battle",
+      "source": "comic:crownfall-siege",
+      "note": "Ворота Скайрата для тех, кто не умеет летать; Axe открывает их рычагом."
     }
   ]
 }

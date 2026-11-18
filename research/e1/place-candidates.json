@@ -134,20 +134,52 @@
       "note": "Малый город, который легион собирается занять; только назван."
     },
     {
-      "name": "Snowcap Lake",
-      "hero": "vengefulspirit",
-      "region": "icewrack",
-      "event": "mention",
-      "source": "comic:frostreach-the-dragon",
-      "note": "Горная деревня недалеко от Barrier, куда ушёл разыскиваемый человек."
-    },
-    {
       "name": "Murkroot Forest",
       "hero": "largo",
       "region": "fellstrath",
       "event": "mention",
       "source": "bio",
       "note": "Только русская биография: изгнанники пришли из лесов Хмурых корней; в английской Murkroots — название народа, а не места. Это родина народа, а не самого Largo; регион не назван, fellstrath предположен по Velu'Mar."
+    },
+    {
+      "name": "South Spire",
+      "hero": "axe",
+      "region": "skywrath",
+      "event": "battle",
+      "source": "comic:crownfall-siege",
+      "note": "Сторожевая башня королевской гвардии у Нижних ворот Скайрата; Axe и Centaur берут её за десять минут."
+    },
+    {
+      "name": "Lowland Gate",
+      "hero": "axe",
+      "region": "skywrath",
+      "event": "battle",
+      "source": "comic:crownfall-siege",
+      "note": "Ворота Скайрата для тех, кто не умеет летать; Axe открывает их рычагом."
+    },
+    {
+      "name": "Maduvari Forest",
+      "hero": "antimage",
+      "region": "western-forests",
+      "event": "battle",
+      "source": "comic:darkpurpose",
+      "note": "Мёртвый лес с каменным алтарём, где убивают некроманта; положение не названо, регион — предположение."
+    },
+    {
+      "name": "Purehide Tannery",
+      "hero": "antimage",
+      "region": "uncharted",
+      "event": "battle",
+      "source": "comic:darkpurpose",
+      "note": "Кожевня, где Anti-Mage допрашивает прислужника некроманта; положение не названо."
+    },
+    {
+      "name": "Snowcap Lake",
+      "hero": "vengefulspirit",
+      "region": "icewrack",
+      "event": "mention",
+      "source": "comic:frostreach-the-dragon",
+      "note": "Горная деревня недалеко от Barrier, куда ушёл разыскиваемый человек."
     }
   ]
 }

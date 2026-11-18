@@ -3,7 +3,8 @@
   "read": [
     "bio.ru",
     "bio.en",
-    "liquipedia-lore"
+    "liquipedia-lore",
+    "comic:crownfall-smoke-harbor"
   ],
   "links": [
     {
@@ -26,6 +27,12 @@
       "url": "https://liquipedia.net/dota2/Pudge/Lore",
       "note": "Место записано в поле places инфобокса. Лор говорит, что клирики Rumusque выковали Chains of Abscession и позже очистили Fields; сам Pudge в соборе не был.",
       "doubt": "Инфобокс называет собор, а текст лора говорит о клириках Rumusque в целом; связь с конкретным собором — по инфобоксу."
+    },
+    {
+      "place": "Smoke Harbor",
+      "event": "visit",
+      "source": "comic:crownfall-smoke-harbor",
+      "note": "Едет с гостями в повозке и садится на корабль."
     }
   ],
   "relations": [

@@ -373,6 +373,72 @@
       },
       "credit": "Valve Corporation",
       "sourceUrl": "https://www.dota2.com/largocomic"
+    },
+    {
+      "id": "crownfall-siege",
+      "type": "image",
+      "excerpt": true,
+      "src": {
+        "ru": "https://cdn.steamstatic.com/apps/dota2/images/crownfall/act4_intro/russian/003.webp",
+        "en": "https://cdn.steamstatic.com/apps/dota2/images/crownfall/act4_intro/english/003.webp"
+      },
+      "title": {
+        "ru": "«Крепость»",
+        "en": "Crownfall"
+      },
+      "subtitle": {
+        "ru": "Комикс",
+        "en": "Comic"
+      },
+      "description": {
+        "ru": "Пролог четвёртого акта Crownfall (2024). Красная Мгла берёт сторожевую башню Саут-Спайр у Нижних ворот Скайрата: скучающего стража пленят Axe и Centaur, и армия входит в город.",
+        "en": "Prologue to Crownfall Act IV (2024). The Red Mist army takes South Spire, a watch post by Skywrath's Lowland Gate: a bored guard is captured by Axe and Centaur, and the army pours into the city."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/crownfall/comic4"
+    },
+    {
+      "id": "darkpurpose",
+      "type": "image",
+      "excerpt": true,
+      "src": "https://cdn.steamstatic.com/apps/dota2/images/comics/comic_darkpurpose/en/02.jpg",
+      "title": {
+        "ru": "«Тёмная цель»",
+        "en": "A Dark Purpose Served"
+      },
+      "subtitle": {
+        "ru": "Комикс",
+        "en": "Comic"
+      },
+      "description": {
+        "ru": "Комикс Valve 2016 года. Anti-Mage выслеживает некроманта и в мёртвом лесу встречает Windranger: вместе они убивают его, но тело снова поднимается.",
+        "en": "Valve's 2016 comic. Anti-Mage hunts a necromancer and meets Windranger in a dead forest; together they kill him, but the corpse rises again."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/darkpurpose/"
+    },
+    {
+      "id": "crownfall-smoke-harbor",
+      "type": "image",
+      "excerpt": true,
+      "src": {
+        "ru": "https://cdn.steamstatic.com/apps/dota2/images/crownfall/act1_smoke_harbor/russian/002.webp",
+        "en": "https://cdn.steamstatic.com/apps/dota2/images/crownfall/act1_smoke_harbor/english/002.webp"
+      },
+      "title": {
+        "ru": "«Дымная Гавань»",
+        "en": "Smoke Harbor"
+      },
+      "subtitle": {
+        "ru": "Комикс",
+        "en": "Comic"
+      },
+      "description": {
+        "ru": "Комикс из первого акта Crownfall (2024; внутри игры). В порту Дымной Гавани Kunkka снаряжает призрачный корабль, Shen уплывает на нём, а Dragonus остаётся на берегу.",
+        "en": "Comic from Crownfall Act I (2024; in-game). At Smoke Harbor Kunkka readies a ghost ship; Shen sails off on it while Dragonus stays ashore."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/crownfall"
     }
   ]
 }

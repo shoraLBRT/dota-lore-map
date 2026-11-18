@@ -4,7 +4,8 @@
     "bio.ru",
     "bio.en",
     "liquipedia-lore",
-    "comic:frostreach-the-dragon"
+    "comic:frostreach-the-dragon",
+    "comic:crownfall-smoke-harbor"
   ],
   "links": [
     {
@@ -18,6 +19,12 @@
       "event": "visit",
       "source": "comic:frostreach-the-dragon",
       "note": "Прибывает морем в Frostreach и ищет в таверне проводника через ледяную пустошь. Разговор идёт в таверне The Severed Head."
+    },
+    {
+      "place": "Smoke Harbor",
+      "event": "visit",
+      "source": "comic:crownfall-smoke-harbor",
+      "note": "Прибывает в порт и уплывает на корабле Kunkka к Icewrack."
     }
   ],
   "relations": [
@@ -39,6 +46,12 @@
       "url": "https://liquipedia.net/dota2/Winter_Wyvern/Lore",
       "note": "Лор-страница Winter Wyvern: во время событий Crownfall она помогла Vengeful Spirit в Icewrack.",
       "doubt": "Подтверждается одним пунктом лор-страницы Winter Wyvern; биография и лор-страница Vengeful Spirit её не называют."
+    },
+    {
+      "hero": "kunkka",
+      "type": "ally",
+      "source": "comic:crownfall-smoke-harbor",
+      "note": "Тёплая встреча старых знакомых и посадка на его корабль."
     }
   ],
   "profile": {
