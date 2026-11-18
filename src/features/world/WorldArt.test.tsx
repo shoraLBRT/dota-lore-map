@@ -28,7 +28,7 @@ describe('WorldArt', () => {
     const tiles = c.querySelectorAll('[data-world-tiles] image');
     expect(tiles.length).toBeGreaterThan(0);
     expect(tiles.length).toBeLessThanOrEqual(30);
-    const first = tiles[0];
+    const first = tiles[0]!;
     expect(first.getAttribute('href')).toMatch(/map\/tiles\/4\/\d+_\d+\.webp$/);
     expect(first.getAttribute('width')).toBe('100');
     const loadedBefore = first.getAttribute('class');
