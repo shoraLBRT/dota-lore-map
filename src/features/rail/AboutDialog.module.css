@@ -45,7 +45,8 @@
   padding-left: var(--space-5);
 }
 
-.disclaimer {
+.disclaimer,
+.version {
   color: var(--text-2);
   font-size: 0.8rem;
 }

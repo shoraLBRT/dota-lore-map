@@ -83,6 +83,9 @@ describe('Rail — левая панель (SPEC §6.1)', () => {
     const dialog = screen.getByRole('dialog', { name: 'О проекте' });
     expect(within(dialog).getByText(dictionaries.ru.disclaimer)).toBeInTheDocument();
     expect(within(dialog).getByText(dictionaries.en.disclaimer)).toBeInTheDocument();
+    expect(within(dialog).getByText(dictionaries.ru['about.license'])).toBeInTheDocument();
+    expect(within(dialog).getByText(/^Версия сборки: \S+/)).toBeInTheDocument();
+    expect(within(dialog).getByRole('link', { name: /dota2\.com и Steam/ })).toHaveAttribute('href', 'https://www.dota2.com/comics');
     expect(within(dialog).getByRole('button', { name: 'Закрыть' })).toHaveFocus();
 
     fireEvent.keyDown(dialog, { key: 'Escape' });

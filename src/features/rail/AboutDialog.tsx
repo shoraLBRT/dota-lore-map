@@ -4,16 +4,17 @@ import { DiamondButton } from '../../components/DiamondButton';
 import { Disclaimer } from '../../components/Disclaimer';
 import { Divider } from '../../components/Divider';
 import { trapTab } from '../../components/focusTrap';
-import { REPO_URL } from '../../app/project';
+import { BUILD_VERSION, REPO_URL } from '../../app/project';
 import { useT, type MessageKey } from '../../i18n';
 import styles from './AboutDialog.module.css';
 
 const SOURCES: { key: MessageKey; href: string }[] = [
   { key: 'about.source.official', href: 'https://www.dota2.com/heroes' },
   { key: 'about.source.wikis', href: 'https://liquipedia.net/dota2/' },
+  { key: 'about.source.media', href: 'https://www.dota2.com/comics' },
 ];
 
-/** Окно «О проекте» (SPEC §6.1, §15): описание, источники, благодарности, дисклеймер. Esc и × закрывают. */
+/** Окно «О проекте» (SPEC §6.1, §15): описание, источники, благодарности, лицензия, версия сборки, дисклеймер. Esc и × закрывают. */
 export function AboutDialog({ onClose }: { onClose: () => void }) {
   const { t } = useT();
   const titleId = useId();
@@ -64,12 +65,14 @@ export function AboutDialog({ onClose }: { onClose: () => void }) {
         <h3>{t('about.thanks')}</h3>
         <p>{t('about.thanksText')}</p>
         <p>{t('about.fonts')}</p>
+        <p>{t('about.license')}</p>
         <p>{t('about.feedback')}</p>
         <p>
           <a href={REPO_URL} target="_blank" rel="noopener noreferrer">
             {t('about.code')} ↗
           </a>
         </p>
+        <p className={styles.version}>{t('about.version', { version: BUILD_VERSION })}</p>
         <Divider />
         <Disclaimer className={styles.disclaimer} />
       </div>
