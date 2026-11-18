@@ -1,6 +1,7 @@
 // Камера карты (ARCHITECTURE A4): CSS transform на слое карты + Web Animations API.
 // Слой карты имеет пропорции мира (`world.aspect`, SPEC §4: квадрат) и transform-origin: 0 0, поэтому
 // нормированные координаты камеры напрямую переводятся в проценты размера слоя.
+// Слой покрывает кадр (cover, #165): за краем мира пустоты нет, камеру можно тянуть и приближать (freeCamera.ts).
 // Правая панель лежит поверх карты (ARCHITECTURE A4): камера региона и места кадрирует
 // свободную часть кадра слева от панели — `frameCamera` и сдвиг `offset` в cameraTransform.
 
@@ -55,20 +56,52 @@ export const SHEET_FULL = 0.9;
 /** Телефон: правая панель становится нижней шторкой (SPEC §13). */
 export const MOBILE_QUERY = '(max-width: 767px)';
 
-/** Сколько пустоты (доля мира) допускается за краем картинки при кадрировании под панель. */
-const EDGE_MARGIN = 0.05;
 /** Камера места: ближе какой доли видимой части к её краю не встаёт выбранное место (#96). */
 const PLACE_MARGIN = 0.2;
+/** Камеры регионов из layout.json — чуть дальше задуманного (отзыв владельца, #165). */
+export const REGION_DISTANCE = 0.85;
+/** Пикселей арта по стороне мира с запасом на приближение: ближе картинка уже расплывается. */
+export const ART_PIXELS = 4096 * 1.5;
 
 export const UNMEASURED: View = { width: 0, height: 0, layerWidth: 0, layerHeight: 0, inset: 0 };
 
+const measured = (view: View) => view.layerWidth > 0 && view.layerHeight > 0 && view.width > 0 && view.height > 0;
+
 /**
- * Камера с учётом панели: рамка региона (1/zoom ширины мира) должна поместиться в свободную часть кадра,
- * поэтому zoom уменьшается в (ширина − панель) / ширина слоя раз; больше задуманного не приближаем.
- * Центр затем сдвигается к середине мира настолько, чтобы за краем картинки было как можно меньше пустоты;
- * рамка региона при этом остаётся в кадре. `keep` — рамка региона и точка места (доли мира) у камеры места:
- * центр сдвигается не дальше, чем нужно, чтобы регион остался в видимой части кадра, а если не помещается —
- * вылезал из неё как можно меньше, не уводя к краю само место (#96).
+ * Слой карты покрывает кадр (cover, #165): zoom 1 — мир во весь кадр без пустоты вокруг.
+ * `containScale` — во сколько раз слой надо уменьшить, чтобы мир целиком вписался в кадр (≤ 1).
+ */
+export function containScale(view: View): number {
+  return measured(view) ? Math.min(1, view.width / view.layerWidth, view.height / view.layerHeight) : 1;
+}
+
+/** Наибольшее приближение: 1 px экрана ≈ 1 px арта (с запасом ART_PIXELS), не меньше 2. */
+export function maxZoom(view: View): number {
+  return view.layerWidth > 0 ? Math.max(2, ART_PIXELS / view.layerWidth) : 8;
+}
+
+/**
+ * Камера без пустоты за краем мира (#165): zoom в [1, maxZoom], а центр кадра — с учётом сдвигов `offset`/`offsetY`
+ * (cameraTransform) — так, чтобы кадр целиком лежал на картинке. Без измерений — как есть.
+ */
+export function clampCamera(camera: Camera, view: View, offset = 0, offsetY = 0): Camera {
+  if (!measured(view)) return camera;
+  const zoom = Math.min(Math.max(camera.zoom, 1), maxZoom(view));
+  const kx = view.layerWidth * zoom;
+  const ky = view.layerHeight * zoom;
+  const fit = (c: number, seen: number) => (seen >= 1 ? 0.5 : Math.min(Math.max(c, seen / 2), 1 - seen / 2));
+  const cx = fit(camera.x + offset / kx, view.width / kx);
+  const cy = fit(camera.y + offsetY / ky, view.height / ky);
+  return { x: cx - offset / kx, y: cy - offsetY / ky, zoom };
+}
+
+/**
+ * Камера с учётом панели: рамка региона (1/zoom мира, вписанного в кадр) должна поместиться в свободную часть кадра,
+ * поэтому zoom уменьшается в (ширина − панель) / размер вписанного мира раз; больше задуманного не приближаем,
+ * камеры регионов — дальше в REGION_DISTANCE раз. Камера мира (zoom 1) — весь кадр.
+ * `keep` — рамка региона и точка места (доли мира) у камеры места: центр сдвигается не дальше, чем нужно, чтобы регион
+ * остался в видимой части кадра, а если не помещается — вылезал из неё как можно меньше, не уводя к краю само место (#96).
+ * В конце камера прижимается к картинке (`clampCamera`): за краем мира пустоты нет.
  * Возвращает камеру и сдвиг центра для cameraTransform.
  */
 export function frameCamera(
@@ -76,22 +109,17 @@ export function frameCamera(
   view: View,
   keep?: { box: WorldBox; place: Point },
 ): { camera: Camera; offset: number; offsetY?: number } {
+  if (!measured(view)) return { camera, offset: 0 };
   const bottom = view.insetBottom ?? 0;
-  if ((view.inset <= 0 && bottom <= 0) || view.layerWidth <= 0 || view.layerHeight <= 0) return { camera, offset: 0 };
-  const free = view.inset > 0 ? Math.max(view.width - view.inset, view.layerWidth * 0.25) : view.width;
-  // Шторка снизу: рамка региона (1/zoom высоты мира) должна поместиться над ней.
-  const freeY = bottom > 0 ? Math.max(view.height - bottom, view.layerHeight * 0.25) : view.height;
-  const zoom = camera.zoom * Math.min(1, free / view.layerWidth, freeY / view.layerHeight);
-  // Видимая часть мира (в долях) по осям.
-  const seenX = free / (view.layerWidth * zoom);
-  const seenY = Math.max(freeY, view.layerHeight) / (view.layerHeight * zoom);
-  // Центр — как можно ближе к задуманному, но так, чтобы край мира не уходил вглубь кадра дальше чем на EDGE_MARGIN
-  // (небольшой запас нужен ярусам: их места у самого края картинки, подписи — над точками).
-  const clamp = (c: number, seen: number) => {
-    const lo = Math.min(seen / 2, 1 - seen / 2) - EDGE_MARGIN;
-    const hi = Math.max(seen / 2, 1 - seen / 2) + EDGE_MARGIN;
-    return Math.min(Math.max(c, lo), hi);
-  };
+  const inset = Math.max(view.inset, 0);
+  const contain = containScale(view);
+  const fitted = view.layerWidth * contain;
+  const free = inset > 0 ? Math.max(view.width - inset, fitted * 0.25) : view.width;
+  const freeY = bottom > 0 ? Math.max(view.height - bottom, fitted * 0.25) : view.height;
+  const zoom =
+    camera.zoom <= 1
+      ? 1
+      : Math.max(1, camera.zoom * REGION_DISTANCE * contain * Math.min(1, free / fitted, freeY / fitted));
   // Рамка региона держит центр так, чтобы за видимую часть (`size` — её доля мира) уходило не больше, чем нужно:
   // помещается — целиком в кадре; не помещается — вылезает поровну за оба края, но само место остаётся
   // не ближе PLACE_MARGIN видимой части к её краю (рядом с ним — подпись).
@@ -101,16 +129,17 @@ export function frameCamera(
     const reach = size / 2 - size * PLACE_MARGIN;
     return Math.min(Math.max(even, place - reach), place + reach);
   };
-  let x = clamp(camera.x, seenX);
-  let y = clamp(camera.y, seenY);
+  let { x, y } = camera;
   if (keep) {
-    x = hold(x, keep.box.left, keep.box.right, seenX, keep.place[0]);
+    x = hold(x, keep.box.left, keep.box.right, free / (view.layerWidth * zoom), keep.place[0]);
     y = hold(y, keep.box.top, keep.box.bottom, freeY / (view.layerHeight * zoom), keep.place[1]);
   }
+  const offset = inset / 2;
+  const offsetY = bottom / 2;
   return {
-    camera: { x, y, zoom },
-    offset: Math.max(view.inset, 0) / 2,
-    ...(bottom > 0 ? { offsetY: bottom / 2 } : {}),
+    camera: clampCamera({ x, y, zoom }, view, offset, offsetY),
+    offset,
+    ...(bottom > 0 ? { offsetY } : {}),
   };
 }
 
@@ -138,34 +167,41 @@ export interface Rect {
 }
 
 /**
- * Мир на телефоне со списком регионов (#39, SPEC §13): карта целиком прижимается к верху кадра
- * (ниже `top` — плашки героя), а список занимает пустое место под ней. Если кадр шире, чем нужно карте
- * (телефон боком), карта прижимается влево, список — справа. Возвращает сдвиг камеры мира для cameraTransform,
- * рамку карты и рамку списка. Без измерений (jsdom) — без сдвига, список на весь кадр.
+ * Мир на телефоне со списком регионов (#39, SPEC §13): мир целиком (слой уменьшен до вписанного размера)
+ * прижимается к верху кадра (ниже `top` — плашки героя), а список занимает пустое место под ним. Если кадр шире,
+ * чем выше (телефон боком), карта прижимается влево, список — справа. Возвращает камеру мира и сдвиг для
+ * cameraTransform, рамку карты и рамку списка. Без измерений (jsdom) — без сдвига, список на весь кадр.
  */
-export function worldListLayout(view: View, top = 0): { offset: number; offsetY: number; map: Rect; list: Rect } {
-  const { width, height, layerWidth, layerHeight } = view;
-  if (width <= 0 || height <= 0 || layerWidth <= 0 || layerHeight <= 0) {
+export function worldListLayout(
+  view: View,
+  top = 0,
+): { camera: Camera; offset: number; offsetY: number; map: Rect; list: Rect } {
+  const { width, height } = view;
+  if (!measured(view)) {
     const box = { top: 0, left: 0, width, height };
-    return { offset: 0, offsetY: 0, map: box, list: box };
+    return { camera: WORLD_CAMERA, offset: 0, offsetY: 0, map: box, list: box };
   }
-  const freeX = width - layerWidth;
-  const freeY = height - layerHeight;
-  if (freeX > freeY) {
-    // Слой по центру кадра: сдвиг на половину свободной ширины ставит его к левому краю.
+  const size = Math.min(width, height);
+  const camera = { x: 0.5, y: 0.5, zoom: size / view.layerWidth };
+  if (width > height) {
+    // Карта у левого края: её центр левее центра кадра на половину свободной ширины.
+    const freeX = width - size;
     return {
+      camera,
       offset: freeX / 2,
       offsetY: 0,
-      map: { top: freeY / 2, left: 0, width: layerWidth, height: layerHeight },
-      list: { top: 0, left: layerWidth, width: freeX, height },
+      map: { top: 0, left: 0, width: size, height: size },
+      list: { top: 0, left: size, width: freeX, height },
     };
   }
+  const freeY = height - size;
   const mapTop = Math.min(Math.max(top, 0), freeY);
   return {
+    camera,
     offset: 0,
     offsetY: freeY / 2 - mapTop,
-    map: { top: mapTop, left: freeX / 2, width: layerWidth, height: layerHeight },
-    list: { top: mapTop + layerHeight, left: 0, width, height: height - mapTop - layerHeight },
+    map: { top: mapTop, left: 0, width: size, height: size },
+    list: { top: mapTop + size, left: 0, width, height: height - mapTop - size },
   };
 }
 

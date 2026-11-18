@@ -4,6 +4,8 @@ import type { Camera, Region } from '../../data/types';
 import {
   animateCamera,
   cameraTransform,
+  clampCamera,
+  containScale,
   DURATION,
   frameCamera,
   MOBILE_QUERY,
@@ -16,6 +18,7 @@ import {
   worldListLayout,
   type View,
 } from './camera';
+import { centered, useFreeCamera } from './freeCamera';
 
 /** Кадр «мир слева от панели» — отдельный кадр для анимации, хотя камера та же (#97). */
 const WORLD_PANEL_SHOT = 'world-panel' as const;
@@ -40,6 +43,8 @@ export interface Frame {
   regionZoom: number;
   markerScale: number;
   threadScale: number;
+  /** Масштаб подписей регионов: их экранный размер не растёт вместе с приближением (#165). */
+  textScale: number;
 }
 
 interface Options {
@@ -65,6 +70,8 @@ export function useCamera({ active, activePlaceSlug, panel, regionList, topInset
   const [view, setView] = useState<View>(UNMEASURED);
   /** Камера летит: подсказки ждут посадки, иначе встают у якоря, посчитанного на старте (аудит E13). */
   const [flying, setFlying] = useState(false);
+  /** Свободная камера (#165): куда пользователь утянул карту в текущем кадре `shot`. */
+  const [free, setFree] = useState<{ shot: unknown; camera: Camera } | null>(null);
   const inWorld = !active;
 
   // Кадр и панель: измеряем, чтобы камера региона не уходила под панель.
@@ -110,9 +117,14 @@ export function useCamera({ active, activePlaceSlug, panel, regionList, topInset
     const place = active?.places.find((p) => p.slug === activePlaceSlug)?.pos;
     return active?.layout && place ? { box: polygonBox(active.layout.polygon), place } : undefined;
   }, [active, activePlaceSlug]);
+  const shot = worldPanel ? WORLD_PANEL_SHOT : camera;
+  const freeCamera = free && free.shot === shot ? free.camera : null;
   const framed = useMemo(
-    () => frameCamera(camera, { ...view, inset, insetBottom }, keep),
-    [camera, view, inset, insetBottom, keep],
+    () =>
+      freeCamera
+        ? { camera: clampCamera(freeCamera, view), offset: 0 }
+        : frameCamera(camera, { ...view, inset, insetBottom }, keep),
+    [freeCamera, camera, view, inset, insetBottom, keep],
   );
   // Мир со списком регионов: карта прижата к верху (или влево, если телефон боком), список — в пустом месте.
   const listLayout = useMemo(
@@ -120,17 +132,18 @@ export function useCamera({ active, activePlaceSlug, panel, regionList, topInset
     [regionList, inWorld, hasMap, view, topInset],
   );
   const target = listLayout
-    ? cameraTransform(WORLD_CAMERA, listLayout.offset, listLayout.offsetY)
+    ? cameraTransform(listLayout.camera, listLayout.offset, listLayout.offsetY)
     : cameraTransform(framed.camera, framed.offset, framed.offsetY);
   /** Маркеры и подписи — в экранных пикселях, независимо от приближения и размера окна (1 единица SVG = 1 px). */
   const regionZoom = active?.layout ? frameCamera(active.layout.camera, { ...view, inset, insetBottom }).camera.zoom : 1;
-  const markerScale = (view.layerWidth > 0 ? STAGE_WIDTH / view.layerWidth : 1) / regionZoom;
+  const markerScale = (view.layerWidth > 0 ? STAGE_WIDTH / view.layerWidth : 1) / (freeCamera?.zoom ?? regionZoom);
   /** Нити — тоже в экранных px, но при любом приближении (в мире zoom 1). */
   const threadScale = (view.layerWidth > 0 ? STAGE_WIDTH / view.layerWidth : 1) / framed.camera.zoom;
+  /** Подписи регионов — как у мира, вписанного в кадр, при любом приближении. */
+  const textScale = containScale(view) / (listLayout ? listLayout.camera.zoom : framed.camera.zoom);
 
   // Анимация камеры (A3, A4). Пока она идёт, навигация занята: клики ставятся в очередь.
   // Кадр — камера, а в мире ещё и панель: открыли или свернули профиль — карта переезжает (#97).
-  const shot = worldPanel ? WORLD_PANEL_SHOT : camera;
   const shownCamera = useRef<Camera | typeof WORLD_PANEL_SHOT>(shot);
   const shownTarget = useRef(target);
   const shownRegion = useRef(active?.id);
@@ -185,8 +198,43 @@ export function useCamera({ active, activePlaceSlug, panel, regionList, topInset
     // eslint-disable-next-line react-hooks/exhaustive-deps -- анимируем только смену кадра, не размер окна
   }, [shot]);
 
+  // Свободная камера двигает тот же кадр: следующий перелёт начинается с того места, куда карту утянули.
+  useLayoutEffect(() => {
+    if (!running.current) shownTarget.current = target;
+  }, [target]);
+
   useEffect(() => () => running.current?.cancel(), []);
 
-  const frame: Frame = { view, framed, inset, cover, insetBottom, regionZoom, markerScale, threadScale };
-  return { viewportRef, layerRef, flying, listLayout, target, frame };
+  // Жесты свободной камеры (#165). React узнаёт о камере не чаще раза в кадр анимации.
+  const latest = useRef({ framed, view, shot });
+  useLayoutEffect(() => {
+    latest.current = { framed, view, shot };
+  });
+  const pending = useRef<Camera | null>(null);
+  const controls = useFreeCamera({
+    viewportRef,
+    layerRef,
+    view,
+    attached: hasMap,
+    enabled: hasMap && !listLayout && !flying,
+    resetKey: shot,
+    home: WORLD_CAMERA,
+    current: () => {
+      const { framed: f, view: v } = latest.current;
+      return clampCamera(centered(f.camera, v, f.offset, f.offsetY ?? 0), v);
+    },
+    onChange: (c) => {
+      if (pending.current === null && typeof requestAnimationFrame === 'function') {
+        requestAnimationFrame(() => {
+          const next = pending.current;
+          pending.current = null;
+          if (next) setFree({ shot: latest.current.shot, camera: next });
+        });
+      }
+      pending.current = c;
+    },
+  });
+
+  const frame: Frame = { view, framed, inset, cover, insetBottom, regionZoom, markerScale, threadScale, textScale };
+  return { viewportRef, layerRef, flying, listLayout, target, frame, controls, free: freeCamera !== null };
 }
