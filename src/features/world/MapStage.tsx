@@ -17,6 +17,7 @@ import type { MediaBadge } from './mediaBadge';
 import { PlaceTooltip } from './PlaceTooltip';
 import { RegionArt } from './RegionArt';
 import { WorldArt } from './WorldArt';
+import { ZoomControls } from './ZoomControls';
 import { RegionList } from './RegionList';
 import { RegionsLayer, UnmappedRegions, zoomedClass } from './RegionsLayer';
 import { RegionTooltip } from './RegionTooltip';
@@ -125,7 +126,7 @@ export function MapStage({
   const previewPlaces = useMemo(() => (preview ? new Set(preview.map((s) => s.key)) : null), [preview]);
 
   const cam = useCamera({ active, activePlaceSlug, panel, regionList, topInset, hasMap, onCameraBusy });
-  const { viewportRef, layerRef, listLayout, flying, target, frame } = cam;
+  const { viewportRef, layerRef, listLayout, flying, target, frame, controls } = cam;
 
   // Ширины подписей: при смене языка, региона и после загрузки шрифтов (подписи не выходят за край и не налезают).
   const fontsTick = useFontsTick();
@@ -151,6 +152,7 @@ export function MapStage({
               viewBox={`0 0 ${STAGE_WIDTH} ${STAGE_HEIGHT}`}
               role="group"
               aria-label={t('world.map')}
+              style={{ '--map-text': frame.textScale } as CSSProperties}
             >
               <WorldArt />
               <RegionsLayer
@@ -224,6 +226,7 @@ export function MapStage({
               style={rectStyle(listLayout.list)}
             />
           )}
+          {!listLayout && <ZoomControls controls={controls} right={frame.cover} />}
         </div>
       )}
       {shown && !flying && (

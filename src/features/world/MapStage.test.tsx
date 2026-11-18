@@ -2,7 +2,7 @@ import { act, cleanup, fireEvent, render, screen, within } from '@testing-librar
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { Hero, Region } from '../../data/types';
 import { I18nProvider } from '../../i18n';
-import { cameraTransform, frameCamera, placeCamera, UNMEASURED, worldListLayout } from './camera';
+import { cameraTransform, frameCamera, placeCamera, REGION_DISTANCE, UNMEASURED, worldListLayout } from './camera';
 import { MapStage, TOOLTIP_CLOSE_DELAY } from './MapStage';
 
 const region = (id: string, withLayout: boolean): Region => ({
@@ -458,7 +458,8 @@ describe('MapStage — мир с открытой панелью (#97)', () => {
     const layer = () => container.querySelector<HTMLElement>('svg')!.parentElement!;
     expect(layer().style.transform).toBe('translate(0%, 0%) scale(1)');
     rerender(stage(true));
-    expect(layer().style.transform).toBe('translate(calc(15% - 240px), 15%) scale(0.7)');
+    // Слой покрывает кадр (#165): мир не ужимается, сдвиг под панель гасится прижатием к краю картинки.
+    expect(layer().style.transform).toBe('translate(calc(15% - 240px), 0%) scale(1)');
     expect(Element.prototype.animate).toHaveBeenCalledTimes(1);
     expect(vi.mocked(Element.prototype.animate).mock.calls[0]?.[1]).toMatchObject({ duration: 700 });
     rerender(stage(false));
@@ -477,23 +478,25 @@ describe('camera', () => {
   it('сдвиг под панель: центр кадра левее на половину ширины панели', () => {
     expect(cameraTransform({ x: 0.25, y: 0.5, zoom: 2 }, 240)).toBe('translate(calc(0% - 240px), -50%) scale(2)');
   });
-  it('рамка региона под панелью: zoom уменьшается до свободной ширины, без панели — без изменений', () => {
+  it('рамка региона под панелью: zoom — от вписанного мира, до свободной ширины, дальше в REGION_DISTANCE раз', () => {
     const camera = { x: 0.5, y: 0.5, zoom: 3 };
     expect(frameCamera(camera, UNMEASURED)).toEqual({ camera, offset: 0 });
-    const view = { width: 1600, height: 1000, layerWidth: 1600, layerHeight: 1000, inset: 480 };
+    // Кадр 1600×1000, слой покрывает его: 1600×1600; вписанный мир — 1000 px, свободно 1120 px.
+    const view = { width: 1600, height: 1000, layerWidth: 1600, layerHeight: 1600, inset: 480 };
     const framed = frameCamera(camera, view);
     expect(framed.offset).toBe(240);
-    expect(framed.camera.zoom).toBeCloseTo(3 * (1120 / 1600));
+    expect(framed.camera.zoom).toBeCloseTo(3 * REGION_DISTANCE * (1000 / 1600));
     expect(framed.camera.x).toBeCloseTo(0.5);
-    // У края мира центр сдвигается внутрь, чтобы за картинкой не было пустоты.
+    // У края мира центр сдвигается внутрь: за картинкой пустоты нет.
     const edge = frameCamera({ x: 0.05, y: 0.05, zoom: 3 }, view).camera;
-    expect(edge.x).toBeGreaterThan(0.05);
-    expect(edge.y).toBeGreaterThan(0.05);
+    const k = 1600 * edge.zoom;
+    expect(edge.x + 240 / k - 1600 / k / 2).toBeCloseTo(0);
+    expect(edge.y - 1000 / k / 2).toBeCloseTo(0);
   });
   it('камера места не уводит регион из кадра больше, чем нужно (#96)', () => {
-    // Видимая часть: 1120 px слева от панели, zoom 3 → 2.1, т. е. 1/3 ширины мира.
-    const view = { width: 1600, height: 1000, layerWidth: 1600, layerHeight: 1000, inset: 480 };
-    const seen = 1120 / (1600 * 2.1);
+    const view = { width: 1600, height: 1000, layerWidth: 1600, layerHeight: 1600, inset: 480 };
+    const zoom = 3 * REGION_DISTANCE * (1000 / 1600);
+    const seen = 1120 / (1600 * zoom);
     // Регион шириной 0.3 помещается: центр, сдвинутый к месту, возвращается так, чтобы регион остался в кадре.
     const fits = frameCamera({ x: 0.55, y: 0.3, zoom: 3 }, view, {
       box: { left: 0.3, top: 0.2, right: 0.6, bottom: 0.4 },
@@ -505,52 +508,51 @@ describe('camera', () => {
     const box = { left: 0.2, top: 0.2, right: 0.8, bottom: 0.4 };
     expect(frameCamera({ x: 0.7, y: 0.3, zoom: 3 }, view, { box, place: [0.55, 0.3] }).camera.x).toBeCloseTo(0.8 - seen / 2);
     // …но место у края региона не уходит к краю кадра ближе чем на пятую часть видимой ширины.
-    expect(frameCamera({ x: 0.7, y: 0.3, zoom: 3 }, view, { box, place: [0.75, 0.3] }).camera.x).toBeCloseTo(0.75 - seen * 0.3);
+    expect(frameCamera({ x: 0.7, y: 0.3, zoom: 3 }, view, { box, place: [0.72, 0.3] }).camera.x).toBeCloseTo(0.72 - seen * 0.3);
   });
-  it('шторка снизу (телефон): центр выше на половину шторки; высокая рамка — zoom уменьшается до свободной высоты', () => {
-    const camera = { x: 0.5, y: 0.5, zoom: 2 };
-    // Телефон: слой 375×234, кадр 375×760, шторка 244 px — рамка помещается, zoom прежний.
-    const phone = { width: 375, height: 760, layerWidth: 375, layerHeight: 234, inset: 0, insetBottom: 244 };
-    const framed = frameCamera(camera, phone);
+  it('шторка снизу (телефон): центр выше на половину шторки; zoom не меньше 1 — карта всегда во весь кадр', () => {
+    // Телефон: кадр 375×760, слой 760×760, вписанный мир — 375 px, шторка 244 px.
+    const phone = { width: 375, height: 760, layerWidth: 760, layerHeight: 760, inset: 0, insetBottom: 244 };
+    const framed = frameCamera({ x: 0.5, y: 0.5, zoom: 4 }, phone);
     expect(framed.offset).toBe(0);
     expect(framed.offsetY).toBe(122);
-    expect(framed.camera.zoom).toBe(2);
-    expect(cameraTransform(framed.camera, framed.offset, framed.offsetY)).toMatch(/^translate\(-?[\d.]+%, calc\(-?[\d.]+% - 122px\)\) scale\(2\)$/);
-    // Альбомная ориентация: свободной высоты меньше слоя — zoom уменьшается.
-    const landscape = { width: 760, height: 360, layerWidth: 576, layerHeight: 360, inset: 0, insetBottom: 108 };
-    expect(frameCamera(camera, landscape).camera.zoom).toBeCloseTo(2 * (252 / 360));
+    expect(framed.camera.zoom).toBeCloseTo(4 * REGION_DISTANCE * (375 / 760));
+    expect(cameraTransform(framed.camera, framed.offset, framed.offsetY)).toMatch(/^translate\(-?[\d.]+%, calc\(-?[\d.]+% - 122px\)\) scale\([\d.]+\)$/);
+    expect(frameCamera({ x: 0.5, y: 0.5, zoom: 2 }, phone).camera.zoom).toBe(1);
+    // Альбомная ориентация: свободной высоты меньше вписанного мира — zoom уменьшается.
+    const landscape = { width: 760, height: 360, layerWidth: 760, layerHeight: 760, inset: 0, insetBottom: 108 };
+    expect(frameCamera({ x: 0.5, y: 0.5, zoom: 4 }, landscape).camera.zoom).toBeCloseTo(4 * REGION_DISTANCE * (360 / 760) * (252 / 360));
   });
-  it('мир под панелью (#97): карта целиком в свободной части слева от панели', () => {
-    // 1440×900, панель 492 px: свободно 948 px, мир ужимается до 948/1440 и встаёт в её середину.
-    const view = { width: 1440, height: 900, layerWidth: 1440, layerHeight: 900, inset: 492 };
+  it('мир под панелью (#97): карта остаётся во весь кадр, под панелью — тоже арт', () => {
+    const view = { width: 1440, height: 900, layerWidth: 1440, layerHeight: 1440, inset: 492 };
     const framed = frameCamera({ x: 0.5, y: 0.5, zoom: 1 }, view);
-    expect(framed.camera).toEqual({ x: 0.5, y: 0.5, zoom: 948 / 1440 });
     expect(framed.offset).toBe(246);
-    // Широкое окно: мир помещается в свободную часть без уменьшения.
-    expect(frameCamera({ x: 0.5, y: 0.5, zoom: 1 }, { ...view, width: 2400 }).camera.zoom).toBe(1);
+    expect(framed.camera.zoom).toBe(1);
+    expect(framed.camera.x).toBeCloseTo(0.5 - 246 / 1440);
   });
   it('отрицательный сдвиг по вертикали — вниз', () => {
     expect(cameraTransform({ x: 0.5, y: 0.5, zoom: 1 }, 0, -40)).toBe('translate(0%, calc(0% + 40px)) scale(1)');
   });
-  it('мир со списком регионов (#39): телефон — карта у верха, список под ней; боком — карта слева, список справа', () => {
-    // 375×812: кадр под полосой 375×760, слой 375×234.
-    const portrait = { width: 375, height: 760, layerWidth: 375, layerHeight: 234, inset: 0 };
+  it('мир со списком регионов (#39): мир вписан и прижат к верху, список под ним; боком — карта слева, список справа', () => {
+    // 375×812: кадр под полосой 375×760, слой покрывает его — 760×760.
+    const portrait = { width: 375, height: 760, layerWidth: 760, layerHeight: 760, inset: 0 };
     const p = worldListLayout(portrait);
+    expect(p.camera.zoom).toBeCloseTo(375 / 760);
     expect(p.offset).toBe(0);
-    expect(p.offsetY).toBe(263);
-    expect(p.map).toEqual({ top: 0, left: 0, width: 375, height: 234 });
-    expect(p.list).toEqual({ top: 234, left: 0, width: 375, height: 526 });
+    expect(p.offsetY).toBe(192.5);
+    expect(p.map).toEqual({ top: 0, left: 0, width: 375, height: 375 });
+    expect(p.list).toEqual({ top: 375, left: 0, width: 375, height: 385 });
     // Плашка героя сверху: карта встаёт под неё, сдвиг меньше.
     const withBar = worldListLayout(portrait, 150);
-    expect(withBar.offsetY).toBe(113);
-    expect(withBar.list).toEqual({ top: 384, left: 0, width: 375, height: 376 });
+    expect(withBar.offsetY).toBe(42.5);
+    expect(withBar.list).toEqual({ top: 525, left: 0, width: 375, height: 235 });
     // Плашка выше свободного места — карта у низа кадра, список пустой.
     expect(worldListLayout(portrait, 900).list.height).toBe(0);
-    // 667×375 боком: кадр 667×323, слой 517×323.
-    const landscape = worldListLayout({ width: 667, height: 323, layerWidth: 517, layerHeight: 323, inset: 0 });
-    expect(landscape.offset).toBe(75);
+    // 667×375 боком: кадр 667×323, слой 667×667.
+    const landscape = worldListLayout({ width: 667, height: 323, layerWidth: 667, layerHeight: 667, inset: 0 });
+    expect(landscape.offset).toBe(172);
     expect(landscape.offsetY).toBe(0);
-    expect(landscape.list).toEqual({ top: 0, left: 517, width: 150, height: 323 });
+    expect(landscape.list).toEqual({ top: 0, left: 323, width: 344, height: 323 });
     // Без измерений — без сдвига.
     expect(worldListLayout(UNMEASURED)).toMatchObject({ offset: 0, offsetY: 0 });
   });
