@@ -1,0 +1,9 @@
+/* Тайл пирамиды арта (#164, ARCHITECTURE A10): проявляется, когда загружен, поверх world-4096. */
+.tile {
+  opacity: 0;
+  transition: opacity var(--dur-fade) var(--ease-out);
+}
+
+.loaded {
+  opacity: 1;
+}

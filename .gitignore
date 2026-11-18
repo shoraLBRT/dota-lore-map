@@ -22,3 +22,8 @@ research/e14/cache/
 e2e/shots/
 e2e/results/
 playwright-report/
+
+# Плитки арта (#164, map/art/tiles.mjs): нарезка, дорисовка владельца и мастер ×2 — сотни МБ, не коммитятся
+map/art/tiles/cut/
+map/art/tiles/refined/
+map/art/tiles/master.png
