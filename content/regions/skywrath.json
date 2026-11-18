@@ -1,0 +1,36 @@
+{
+  "id": "skywrath",
+  "subtitle": { "ru": "Королевство на шпилях", "en": "A kingdom on the spires" },
+  "biome": "mountains",
+  "ambient": { "type": "fog", "density": 0.4 },
+  "traits": {
+    "rule": { "ru": "Королева-узурпатор", "en": "A usurper queen" },
+    "magic": { "ru": "Служит престолу", "en": "Serves the throne" },
+    "biome": { "ru": "Утёсы и шпили", "en": "Cliffs and spires" }
+  },
+  "description": {
+    "ru": "Скайрат — королевство крылатых скайрасов, и стоит оно не в небе, а на земле: города поднимаются по отвесным утёсам и каменным шпилям северо-восточного побережья, к северу от Квойджа. На самых высоких шпилях — дворец Мрачного Гнездовья, а внизу, под скалой, теснится Мидгейт, город бескрылых, которым путь наверх закрыт.\n\nТрон, обещанный принцессе Шендельзаре, заняла её младшая сестра Империя, и с тех пор заговоры в королевстве не утихают. В дни Падения короны армия Красной Мглы подошла к Нижним воротам, взяла сторожевую башню Южного шпиля и вошла в город.\n\nОтсюда родом Skywrath Mage и Vengeful Spirit, а бескрылый Kez собирает здесь изгнанников-казураев против королевы.",
+    "en": "Skywrath is the kingdom of the winged Skywrath, and it stands on the ground rather than in the sky: its towns climb sheer cliffs and stone spires along the north-eastern coast, north of Quoidge. The palace of the Ghastly Eyrie crowns the highest spires, while Midgate, the town of the Flightless who may never go up, huddles beneath the cliff.\n\nThe throne promised to Princess Shendelzare was taken by her younger sister Imperia, and the kingdom has not been free of plots since. During Crownfall the army of the Red Mist reached the Lowland Gate, took the South Spire watchtower and marched into the city.\n\nSkywrath Mage and Vengeful Spirit were born here, and the Flightless Kez gathers the exiled Kazurai here to rise against the queen."
+  },
+  "media": ["ghastly-eyrie-ascension-day", "kez-ascension-night"],
+  "places": {
+    "Ghastly Eyrie": {
+      "name": { "ru": "Мрачное Гнездовье", "en": "Ghastly Eyrie" },
+      "type": { "ru": "Столица на шпилях", "en": "Spire capital" },
+      "description": {
+        "ru": "Столица скайрасов на вершинах шпилей, поднятая так высоко, что бескрылые почти не могут до неё добраться. Ею правит королева Гнезда Шипов: трон, предназначенный Шендельзаре, захватила её младшая сестра Империя, и с тех пор во дворце зреет заговор.",
+        "en": "The Skywrath capital, perched on top of the spires so high that the Flightless can barely reach it. It answers to the queen of the Nest of Thorns: the throne meant for Shendelzare was seized by her younger sister Imperia, and the palace has bred conspiracies ever since."
+      }
+,
+      "media": ["ghastly-eyrie-ascension-day", "crownfall-act-iv-trailer", "crownfall-trailer"]
+    },
+    "Midgate": {
+      "name": { "ru": "Мидгейт", "en": "Midgate" },
+      "type": { "ru": "Нижний город", "en": "Lower city" },
+      "description": {
+        "ru": "Город бескрылых скайрасов у подножия скалы, на которой стоит Мрачное Гнездовье. Здесь живёт Kez: в ночь Вознесения он уходит отсюда выводить узников из висячей тюрьмы Клетка и возвращается уже с новым наставником. Неподалёку — крепость Шпора, где квартирует гвардия.",
+        "en": "The town of the Flightless at the foot of the cliff that holds up the Ghastly Eyrie. Kez lives here: on the night of Ascension he sets out to lead the prisoners out of the hanging jail called the Cage, and he comes back with a new teacher. The guard is quartered nearby, in the fortress of Spur."
+      }
+    }
+  }
+}

@@ -9,15 +9,13 @@
     {
       "id": "heavens", "tier": "upper", "side": "neutral", "sideBasis": "tier",
       "en": "The Heavens", "ru": "Небеса",
-      "geo": "Небо над миром и небесные тела: столица скайрасов высоко над землёй и нижний город Midgate под её скалой, царство колокола Vashundol, Безумная Луна (разрушена, её осколки — Radiant Ore и Direstone), Луна Селемены, Солнце.",
+      "geo": "Небо над миром и небесные тела (королевство скайрасов — на земле, регион skywrath, #158): царство колокола Vashundol, обители богов, Безумная Луна (разрушена, её осколки — Radiant Ore и Direstone), Луна Селемены, Солнце.",
       "locations": [
-        { "name": "Ghastly Eyrie", "capital": true, "placement": "lore", "note": "столица расы скайрасов, «среди облаков и звёзд»" },
         { "name": "Mad Moon", "placement": "lore" },
         { "name": "Selemene's Moon", "placement": "lore", "note": "вместе с Demon Star" },
         { "name": "The Sun", "placement": "lore", "note": "Children of Light и солнечная кузня (страницы на Liquipedia нет)" },
         { "name": "Olympus", "placement": "ours", "note": "небесная обитель Зевса; страницы на Liquipedia нет" },
         { "name": "Ultoria", "placement": "lore", "note": "небесное тело со своими лунами" },
-        { "name": "Midgate", "placement": "lore", "note": "нижний город бескрылых под скалой Skywrath (комиксы Ascension Night и Ascension Day); внутри — тюрьма The Cage и крепость Spur (#59)" },
         { "name": "Vashundol", "placement": "ours", "note": "перенесён из hells в #59: колокол отбивал наказания Doom до его падения из мира за светом (биография)" }
       ]
     },
@@ -87,6 +85,15 @@
         { "name": "Nightsilver Woods", "capital": true, "placement": "lore" },
         { "name": "Temple of Mene", "placement": "s1map" },
         { "name": "Shrine of Selemene", "placement": "lore" }
+      ]
+    },
+    {
+      "id": "skywrath", "tier": "continent", "side": "radiant", "sideBasis": "position",
+      "en": "Skywrath", "ru": "Скайрат",
+      "geo": "Королевство скайрасов на утёсах и шпилях северо-восточного побережья, к северу от Квойджа (Квойдж «к югу от Skywrath»). По комиксам Crownfall оно на земле: армия подходит к Lowland Gate и берёт сторожевую башню South Spire, под скалой столицы лежит нижний город Midgate. Отделено от Небес в #158.",
+      "locations": [
+        { "name": "Ghastly Eyrie", "capital": true, "placement": "lore", "note": "столица скайрасов на вершинах шпилей, «среди облаков и звёзд»; дворец The Nest, руины храма Scree'Auk, Lowland Gate и South Spire — в её черте (комиксы Crownfall)" },
+        { "name": "Midgate", "placement": "lore", "note": "нижний город бескрылых под скалой столицы (комиксы Ascension Night и Ascension Day); внутри — тюрьма The Cage и крепость Spur" }
       ]
     },
     {

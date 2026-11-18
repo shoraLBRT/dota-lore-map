@@ -1,7 +1,7 @@
 import { act, fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { App } from '../../app/App';
-import { getPlace, getRegion, placeName } from '../../data/world';
+import { getPlace, getRegion, placeName, world } from '../../data/world';
 import { MOBILE_QUERY } from './camera';
 
 // Мир на телефоне (#39): список регионов под картой ведёт туда же, куда тап по карте.
@@ -99,7 +99,7 @@ describe('список регионов на телефоне', () => {
     expect(screen.getByRole('button', { name: /^Templar Assassin/ })).toBeInTheDocument();
     const marked = list()!.querySelectorAll('[class*="heroRegion"]');
     expect(marked.length).toBeGreaterThan(1);
-    expect(list()!.querySelectorAll('[class*="muted"]').length).toBe(26 - marked.length);
+    expect(list()!.querySelectorAll('[class*="muted"]').length).toBe(world.regions.length - marked.length);
   });
 
   it('компьютер и планшет (≥ 768): списка нет, подсказка мира — как раньше; поворот телефона включает список', () => {
