@@ -115,10 +115,9 @@ describe('prefers-reduced-motion (SPEC §7.1, §14)', () => {
       const keyframes = [...text.matchAll(/@keyframes[^{]+\{([\s\S]*?)\n\}/g)].map((m) => m[1]!).join('\n');
       return /infinite/.test(text) || /transform|scale|translate/.test(keyframes);
     });
-    // Проверка видит файлы: движение есть как минимум в облаках, нитях, панели и галерее.
+    // Проверка видит файлы: движение есть как минимум в нитях, панели и галерее (облака над миром — canvas, ниже).
     expect(moving.map((f) => f.path)).toEqual(
       expect.arrayContaining([
-        'features/world/Clouds.module.css',
         'features/world/Threads.module.css',
         'features/panel/Panel.module.css',
         'features/gallery/Gallery.module.css',
@@ -126,6 +125,14 @@ describe('prefers-reduced-motion (SPEC §7.1, §14)', () => {
     );
     const missing = moving.filter((f) => !f.text.includes('@media (prefers-reduced-motion: reduce)'));
     expect(missing.map((f) => f.path)).toEqual([]);
+  });
+
+  it('canvas с движением спрашивает prefers-reduced-motion (частицы, постэффекты карты #167)', () => {
+    const canvases = TSX.filter(({ text }) => text.includes('requestAnimationFrame') && text.includes('<canvas'));
+    expect(canvases.map((f) => f.path)).toEqual(
+      expect.arrayContaining(['features/atmosphere/AmbientCanvas.tsx', 'features/world/MapAtmosphere.tsx']),
+    );
+    expect(canvases.filter((f) => !f.text.includes('prefersReducedMotion()')).map((f) => f.path)).toEqual([]);
   });
 
   it('global.css укорачивает длительности-токены', () => {

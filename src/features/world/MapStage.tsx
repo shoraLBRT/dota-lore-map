@@ -7,9 +7,8 @@ import type { Spot } from '../search/search';
 import type { HeroThreads } from '../search/threads';
 import { preloadRegionArt } from './art';
 import { STAGE_HEIGHT, STAGE_WIDTH, WORLD_ASPECT, type Rect } from './camera';
-import { EDGE_CLOUDS } from './cloudSets';
-import { Clouds } from './Clouds';
 import { EdgeLabels } from './EdgeLabels';
+import { MapAtmosphere } from './MapAtmosphere';
 import styles from './MapStage.module.css';
 import { useMarkerLabels } from './markerLayout';
 import { MarkersLayer } from './MarkersLayer';
@@ -195,6 +194,9 @@ export function MapStage({
               )}
             </svg>
           </div>
+          <div className={styles.cloudBox} style={listLayout ? rectStyle(listLayout.map) : undefined}>
+            <MapAtmosphere layerRef={layerRef} activeId={active?.id} />
+          </div>
           {active && <AmbientCanvas key={active.id} ambient={active.ambient} />}
           <div className={styles.vignette} style={listLayout ? rectStyle(listLayout.map) : undefined} aria-hidden="true" />
           <EdgeLabels
@@ -207,9 +209,6 @@ export function MapStage({
             fontsTick={fontsTick}
             onSelectSpot={onSelectSpot}
           />
-          <div className={styles.cloudBox} style={listLayout ? rectStyle(listLayout.map) : undefined}>
-            <Clouds clouds={EDGE_CLOUDS} mode="drift" hidden={!inWorld} />
-          </div>
           {listLayout && (
             <RegionList
               regions={drawn}
