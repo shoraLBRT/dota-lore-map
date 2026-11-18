@@ -13,7 +13,7 @@ const OUT_BASE = join(ROOT, 'docs/map/schema-base.svg');
 const layout = JSON.parse(readFileSync(join(ROOT, 'map/layout.json'), 'utf8'));
 const { regions } = JSON.parse(readFileSync(join(ROOT, 'research/e1/regions.json'), 'utf8'));
 
-const W = 1600, H = 1000;
+const W = 1600, H = Math.round(1600 / layout.aspect);
 const X = (x) => (x * W).toFixed(1), Y = (y) => (y * H).toFixed(1);
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
@@ -70,14 +70,16 @@ out.push(`<defs>
   </pattern>
 </defs>`);
 out.push(`<rect width="${W}" height="${H}" fill="url(#sea)"/><rect width="${W}" height="${H}" fill="url(#waves)"/>`);
-const [, u1] = layout.bands.upper, [a0] = layout.bands.abyss;
-out.push(`<rect width="${W}" height="${Y(u1)}" fill="url(#sky)"/>`);
-out.push(`<rect y="${Y(a0)}" width="${W}" height="${(H - a0 * H).toFixed(1)}" fill="url(#fire)"/>`);
-// экватор — граница правила В10
-out.push(`<line x1="0" y1="${Y(0.5)}" x2="${W}" y2="${Y(0.5)}" stroke="#f0e6d2" stroke-width="1" stroke-dasharray="6 8" opacity="0.35"/>`);
-out.push(`<text x="${X(0.995)}" y="${Y(0.494)}" font-size="12" fill="#f0e6d2" opacity="0.6" text-anchor="end">экватор</text>`);
-out.push(`<text x="${X(0.995)}" y="${Y(0.47)}" font-size="12" fill="#b5d67a" opacity="0.8" text-anchor="end">▲ RADIANT</text>`);
-out.push(`<text x="${X(0.995)}" y="${Y(0.535)}" font-size="12" fill="#e07a5f" opacity="0.8" text-anchor="end">▼ DIRE</text>`);
+// ярусы — в углах (SPEC §4): небо и Планы справа вверху, Подземье и Преисподние слева внизу
+for (const r of regions.filter((x) => x.tier !== 'continent')) {
+  const L = layout.regions[r.id];
+  if (L) out.push(`<polygon points="${pts(L.polygon)}" fill="url(#${r.tier === 'upper' ? 'sky' : 'fire'})"/>`);
+}
+// пролив между материками: север — Radiant и центр, юг — Dire (SPEC §4)
+out.push(`<line x1="0" y1="${Y(0.535)}" x2="${W}" y2="${Y(0.535)}" stroke="#f0e6d2" stroke-width="1" stroke-dasharray="6 8" opacity="0.35"/>`);
+out.push(`<text x="${X(0.995)}" y="${Y(0.529)}" font-size="12" fill="#f0e6d2" opacity="0.6" text-anchor="end">пролив</text>`);
+out.push(`<text x="${X(0.995)}" y="${Y(0.515)}" font-size="12" fill="#b5d67a" opacity="0.8" text-anchor="end">▲ RADIANT</text>`);
+out.push(`<text x="${X(0.995)}" y="${Y(0.555)}" font-size="12" fill="#e07a5f" opacity="0.8" text-anchor="end">▼ DIRE</text>`);
 
 for (const r of regions) {
   const L = layout.regions[r.id];

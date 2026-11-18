@@ -6,7 +6,7 @@ import { AmbientCanvas } from '../atmosphere/AmbientCanvas';
 import type { Spot } from '../search/search';
 import type { HeroThreads } from '../search/threads';
 import { preloadRegionArt } from './art';
-import { STAGE_HEIGHT, STAGE_WIDTH, type Rect } from './camera';
+import { STAGE_HEIGHT, STAGE_WIDTH, WORLD_ASPECT, type Rect } from './camera';
 import { EDGE_CLOUDS } from './cloudSets';
 import { Clouds } from './Clouds';
 import { EdgeLabels } from './EdgeLabels';
@@ -16,6 +16,7 @@ import { MarkersLayer } from './MarkersLayer';
 import type { MediaBadge } from './mediaBadge';
 import { PlaceTooltip } from './PlaceTooltip';
 import { RegionArt } from './RegionArt';
+import { WorldArt } from './WorldArt';
 import { RegionList } from './RegionList';
 import { RegionsLayer, UnmappedRegions, zoomedClass } from './RegionsLayer';
 import { RegionTooltip } from './RegionTooltip';
@@ -74,7 +75,7 @@ const noop = () => () => {};
 const rectStyle = (r: Rect): CSSProperties => ({ top: r.top, left: r.left, width: r.width, height: r.height });
 
 /**
- * Слой карты (ARCHITECTURE A4): SVG в координатах 1600×1000 под камерой — сборка слоёв.
+ * Слой карты (ARCHITECTURE A4): картинка мира и SVG в координатах сцены под камерой — сборка слоёв.
  * Мир (S1): наведение и фокус подсвечивают регион и показывают подсказку (S1h).
  * Регион и место (S2/S3): соседи затемнены и не кликаются, маркеры мест с подсказкой героев.
  * Регионы без геометрии в map/layout.json показываются списком кнопок.
@@ -143,7 +144,7 @@ export function MapStage({
     <div className={[styles.stage, active && zoomedClass].filter(Boolean).join(' ')}>
       {hasMap && (
         <div ref={viewportRef} className={styles.viewport} onClick={onBackground}>
-          <div ref={layerRef} className={styles.layer} style={{ transform: target }}>
+          <div ref={layerRef} className={styles.layer} style={{ transform: target, '--aspect': WORLD_ASPECT } as CSSProperties}>
             <svg
               ref={svgRef}
               className={styles.svg}
@@ -151,6 +152,7 @@ export function MapStage({
               role="group"
               aria-label={t('world.map')}
             >
+              <WorldArt />
               <RegionsLayer
                 drawn={drawn}
                 activeId={active?.id}

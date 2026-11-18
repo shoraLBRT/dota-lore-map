@@ -5,59 +5,54 @@
 ## Общие требования
 
 - **Никакого текста на картинке**: ни названий, ни букв, ни рун, ни картушей, ни легенды, ни розы ветров с буквами. Все подписи накладываются в HTML (RU/EN).
-- **16:10**. Мир — не меньше **4096 × 2560 px**, детальные картинки регионов — не меньше **2560 × 1600 px**.
-- **Стиль**: нарисованная фэнтези-карта с рельефом (горы, леса, реки, побережья видны объёмно, вид сверху под небольшим углом), в духе Dota 2: тёмная палитра, холодный камень, сталь и бронза, тёплый свет в важных местах. Не копируем чужую карту (официальную карту Source 1, фанатские карты, карту League of Legends) — только настроение.
-- **Ярусы**: сверху — полоса небес и космоса (звёзды, туманность, луны), снизу — огненный разлом (лава, трещины, багровый дым). Обе — во всю ширину, у верхних и нижних 13 % картинки.
+- **1:1** (решение владельца 2026-11-18, #163). Мир — не меньше **4096 × 4096 px**, детальные картинки регионов — не меньше **2560 px** по большей стороне.
+- **Стиль**: реалистичный рельеф, как с орбиты (вид строго сверху, горы, леса, реки и побережья читаются объёмно); города — в масштабе карты, а не крупными значками. Настроение Dota 2: тёмная палитра, холодный камень, сталь и бронза, тёплый свет в важных местах. Не копируем чужую карту (официальную карту Source 1, фанатские карты, карту League of Legends) — только настроение.
+- **Два материка** с проливом между ними с запада на восток: северный — Radiant и центр, южный — Dire.
+- **Ярусы — в углах**: правый верхний — ближе к миру небо и облака, в самом углу — космос (звёзды, туманность); левый нижний — ближе к миру пещеры (зелёное свечение), в самом углу — ад и загробье (лава, трещины, багровый дым). Два других угла — открытое море. **Лун на картинке нет**: Безумная Луна и Луна Селемены будут отдельным слоем (уровень A).
 - **Место под подписи**: в каждом регионе — относительно спокойные участки (равнина, вода, поляна), без мелкого шума по всей площади.
-- **Север — Radiant, юг — Dire**: к северу краски светлее и холоднее (зелень, золото, лёд), к югу — темнее и горячее (охра, багрянец, пепел). Переход мягкий, без линии.
+- **Север — Radiant, юг — Dire**: к северу краски светлее и холоднее (зелень, золото, лёд), к югу — темнее и горячее (охра, багрянец, пепел).
 
-## Как использовать схему
+## Как использовать основу
 
-[`schema-base.svg`](schema-base.svg) — та же геометрия, что в [`map/layout.json`](../../map/layout.json), но без текста и маркеров: регионы залиты цветом среды. Это основа для генерации, чтобы готовая картинка совпала с разметкой.
+Основа текущего арта — [`map/art/base/schema-base-v5.svg`](../../map/art/base/schema-base-v5.svg) (1:1, построена скриптом `map/art/base/scripts/base5.cjs` из разметки до #163, README там же): материки залиты приглушённым цветом среды, пролив прорезан, ярусы — градиентами в углах. Вариант с номерами регионов — `base-v5-1x1-numbers.png`. Сейчас `map/layout.json` уже подогнан под готовый арт, поэтому для перегенерации основу лучше строить заново из него (`docs/map/schema-base.svg`, `node map/render-schema.mjs`).
 
-1. Перевести в PNG нужного размера, например:
-   `chrome --headless=new --hide-scrollbars --window-size=4096,2560 --screenshot=base.png docs/map/schema-base.svg`
-   (или открыть SVG в браузере / Inkscape и экспортировать).
-2. **Stable Diffusion (рекомендуется)**: img2img с `base.png`, denoising 0.55–0.7, плюс ControlNet — `seg` или `lineart` (контуры берутся из той же картинки) с весом 0.6–0.8. Генерировать в 1/2 размера и апскейлить до 4096 (Tiled upscale / Ultimate SD Upscale), чтобы рельеф не «плыл».
-3. **Midjourney**: загрузить `base.png` как image prompt (`--iw 1.5–2`) и указать `--ar 16:10 --no text, letters, labels, watermark, frame`. Контуры будут соблюдены приблизительно — после генерации проверить и при необходимости подвинуть полигоны в `layout.json`.
-4. **DALL·E / редакторы с inpaint**: генерировать мир целиком по промпту ниже, затем дорабатывать отдельные регионы через выделение области и inpaint.
-5. **Сверка**: наложить `docs/map/schema.svg` поверх результата с прозрачностью 50 %. Береговая линия и крупные хребты должны совпадать с границами регионов ± 1–2 % ширины. Если арт ушёл сильно — проще поправить `layout.json` (и прогнать `node map/check-layout.mjs`), чем перегенерировать.
-6. **Ручная доработка**: убрать случайные буквы и знаки, выровнять швы между ярусами и материком, сохранить в `map/art/world.png` (исходник), оптимизация в WebP/AVIF — отдельная задача (SPEC §9 п. 5).
+1. Перевести основу в PNG нужного размера (браузер, Inkscape или `chrome --headless=new --window-size=4096,4096 --screenshot=base.png <svg>`).
+2. **Stable Diffusion**: img2img с `base.png`, denoising 0.55–0.7, плюс ControlNet `seg` или `lineart` с весом 0.6–0.8; генерировать в 1/2 размера и апскейлить до 4096+.
+3. **Midjourney / ChatGPT**: загрузить `base.png` как образ (`--iw 1.5–2`, `--ar 1:1 --no text, letters, labels, watermark, frame, moon`). Контуры соблюдаются приблизительно — после генерации подогнать разметку.
+4. **Сверка**: береговая линия и пролив должны совпадать с границами регионов в пределах 1 % ширины. Разметку под готовый арт подгоняют скрипты `map/art/fit/` (маска суши → контур → полигоны) и затем `node map/check-layout.mjs`; наложение для проверки — как [`e2-163/overlay.webp`](e2-163/overlay.webp).
+5. **Ручная доработка**: убрать случайные буквы и знаки. Исходник — `map/art/world.jpg`, для сайта — `public/art/world-4096.webp` и превью `world-1024.webp` (ffmpeg, libwebp, качество ~78/75).
 
 ## Промпт: карта мира
 
 ```
-A hand-painted fantasy world map, top-down view with gentle 3D relief, 16:10 wide.
-One large continent in the middle of a dark sea, with three island groups: a misty fog-shrouded
-island in the far north-east corner, a green island state in the eastern sea, a tropical
-archipelago off the south-west coast. In the south-east sea, glowing ruins of sunken cities
-visible through deep dark water.
-North of the continent: frozen tundra, glaciers and a jagged ice mountain range on the northern coast;
-green meadows and hills with many small lakes in the north-west; a silvery moonlit forest in the north-east;
-in the center-north, farmland, rivers and walled cities of a great empire.
-Center: plains and small kingdoms, grey barren badlands, a scarred battlefield plain.
-West: dense ancient forests along the coast. South-west: steaming tropical jungle with overgrown ruins,
-a pale land where trees and towers are made of bone, a misty dark forest and marshes.
-South: a vast golden equatorial desert with ancient ruins, red rocky plateau of the centaur clans,
-dark wailing mountains with monasteries, a gloomy coastline with tidal marshes.
-Top edge: a band of night sky and cosmos — stars, nebula, moons, a shattered moon, a celestial palace.
-Bottom edge: a band of the abyss — a fiery rift, lava rivers, glowing cracks, crimson smoke.
-Style: dark fantasy, Dota 2 inspired, dark stone and steel, bronze accents, warm light in key places,
-the north brighter and colder (green, gold, ice), the south darker and hotter (ochre, crimson, ash).
-Painterly, detailed relief, clear coastlines, calm areas for overlay labels.
-No text, no letters, no labels, no runes, no legend, no compass, no frame, no border, no watermark.
+A realistic fantasy world seen from orbit, strictly top-down, square 1:1 composition, rich natural relief.
+Two continents separated by a winding west-to-east strait, surrounded by a dark sea.
+Northern continent: frozen glaciers and a jagged ice range on the north coast; green meadows and lakes
+in the north-west; a dark moonlit forest in the north-east; in the center, farmland, rivers and a great
+walled imperial city at map scale; grey badlands and a volcano near the strait; cliffs and spires on the
+north-east coast.
+Southern continent: dense jungle and overgrown ruins in the south-west, a pale bone-white land, a vast
+golden desert with ancient ruins, a red rocky plateau, dark jagged mountains, a gloomy marshy coast.
+Islands: a tropical archipelago off the west coast, a green island state and a fog-shrouded island in
+the east, a deep dark oceanic rift east of the continents.
+Top-right corner: clouds and sky near the world, fading into deep space with stars and a nebula in the corner.
+Bottom-left corner: caverns with green glow near the world, fading into a hellscape of lava rivers,
+glowing cracks and crimson smoke in the corner. The other two corners are open sea.
+Style: photoreal relief like satellite imagery with a dark fantasy mood, Dota 2 inspired palette,
+the north brighter and colder, the south darker and hotter. Cities at map scale. Calm areas for labels.
+No moons, no text, no letters, no labels, no runes, no legend, no compass, no frame, no border, no watermark.
 ```
 
-Negative prompt (SD): `text, letters, words, labels, typography, runes, signature, watermark, compass rose, legend, frame, border, grid, ui, modern, photo, blurry`.
+Negative prompt (SD): `text, letters, words, labels, typography, runes, signature, watermark, compass rose, legend, frame, border, grid, ui, moon, blurry`.
 
 ## Детальные картинки регионов
 
 Шаблон (подставить строку из таблицы ниже). Основа — тот же регион, вырезанный из готовой картинки мира по `camera` из `layout.json` и увеличенный (img2img, denoising 0.4–0.55): так детальная картинка совпадает со стилем и рельефом мира.
 
 ```
-A detailed hand-painted fantasy map region, top-down view with gentle 3D relief, 16:10, 2560 px wide.
+A detailed realistic fantasy region seen from orbit, strictly top-down, natural relief, 2560 px on the long side.
 <БИОМ И ОРИЕНТИРЫ>.
-Dark fantasy, Dota 2 inspired, dark stone and steel, bronze accents, painterly, detailed relief,
+Dark fantasy mood, Dota 2 inspired palette, cities at map scale, detailed relief,
 calm open areas for overlay labels and markers.
 No text, no letters, no labels, no runes, no frame, no watermark.
 ```

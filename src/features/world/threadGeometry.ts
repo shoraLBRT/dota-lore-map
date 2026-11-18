@@ -1,4 +1,4 @@
-// Нити между местами героя (SPEC §6.6, A5): дуги в координатах сцены 1600×1000 под камерой.
+// Нити между местами героя (SPEC §6.6, A5): дуги в координатах сцены под камерой.
 
 import type { Camera, Point } from '../../data/types';
 import { STAGE_HEIGHT, STAGE_WIDTH, type View } from './camera';
@@ -91,7 +91,7 @@ export function badgeAt(a: Arc, r: number, obstacles: Box[], clip?: Box): number
 
 /**
  * Нормированная точка мира → px в кадре карты при камере `camera` и сдвиге `offset` (cameraTransform):
- * слой 16:10 стоит по центру кадра (flex), transform-origin 0 0.
+ * слой карты стоит по центру кадра (flex), transform-origin 0 0.
  */
 export function toScreen([x, y]: Point, camera: Camera, offset: number, view: View, offsetY = 0): XY {
   return [

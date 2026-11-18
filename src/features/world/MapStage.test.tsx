@@ -2,7 +2,6 @@ import { act, cleanup, fireEvent, render, screen, within } from '@testing-librar
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { Hero, Region } from '../../data/types';
 import { I18nProvider } from '../../i18n';
-import { BIOME_COLORS } from './biomes';
 import { cameraTransform, frameCamera, placeCamera, UNMEASURED, worldListLayout } from './camera';
 import { MapStage, TOOLTIP_CLOSE_DELAY } from './MapStage';
 
@@ -128,8 +127,10 @@ describe('MapStage', () => {
     const { onSelectRegion } = renderStage([region('a', true), region('b', false)]);
     const polygon = screen.getByRole('button', { name: 'a en' });
     expect(polygon.tagName.toLowerCase()).toBe('polygon');
-    expect(polygon).toHaveAttribute('points', '160,100 480,100 320,300');
-    expect(polygon).toHaveAttribute('fill', BIOME_COLORS.snow);
+    expect(polygon).toHaveAttribute('points', '160,160 480,160 320,480');
+    // Поверх картинки мира (A10) полигон прозрачный: чёрная заливка нужна только для затемнения соседей.
+    expect(polygon).toHaveAttribute('fill', '#000');
+    expect(document.querySelector('[data-world-art] image:last-child')).toHaveAttribute('href', expect.stringMatching(/art\/world-4096\.webp$/));
     expect(screen.getByRole('navigation').textContent).toBe('b en');
 
     fireEvent.click(polygon);

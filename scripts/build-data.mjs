@@ -13,7 +13,7 @@ import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 export const OUTPUT = 'src/data/world.generated.json';
-export const ASPECT = 1.6;
+export const ASPECT = 1;
 
 export const BIOMES = [
   'snow', 'forest', 'jungle', 'desert', 'mountains', 'plains', 'swamp', 'sea',
@@ -306,7 +306,7 @@ function buildMedia(media, errors) {
 
 function buildLayout(layout, regionById, placeRegion, errors) {
   const where = 'map/layout.json';
-  const out = { regions: new Map(), places: new Map(), bands: undefined };
+  const out = { regions: new Map(), places: new Map() };
   if (!isObject(layout)) {
     errors.push(`${where}: ожидается объект`);
     return out;
@@ -315,13 +315,7 @@ function buildLayout(layout, regionById, placeRegion, errors) {
     errors.push(`${where}: aspect должен быть ${ASPECT}`);
   }
   if (layout.bands !== undefined) {
-    const b = layout.bands;
-    const band = (v) => Array.isArray(v) && v.length === 2 && v.every(isUnit) && v[0] <= v[1];
-    if (!isObject(b) || !band(b.upper) || !band(b.abyss)) {
-      errors.push(`${where}: bands — нужен { upper: [y0, y1], abyss: [y0, y1] } в [0, 1]`);
-    } else {
-      out.bands = { upper: [b.upper[0], b.upper[1]], abyss: [b.abyss[0], b.abyss[1]] };
-    }
+    errors.push(`${where}: bands больше нет — ярусы лежат полигонами в углах мира (SPEC §4)`);
   }
   for (const [id, r] of Object.entries(layout.regions ?? {})) {
     const w = `${where}: regions["${id}"]`;
@@ -792,7 +786,6 @@ export function buildWorld({ heroes, regions, heroPlaces, heroAliases, contents 
 
   const world = compact({
     aspect: ASPECT,
-    bands: map?.bands,
     regions: worldRegions,
     heroes: heroList,
     media: mediaInfo.byId.size > 0 ? [...mediaInfo.byId.values()] : undefined,

@@ -91,8 +91,7 @@ const content = () => ({
 });
 
 const layout = () => ({
-  aspect: 1.6,
-  bands: { upper: [0, 0.13], abyss: [0.87, 1] },
+  aspect: 1,
   regions: {
     icewrack: { polygon: [[0.1, 0.1], [0.3, 0.1], [0.2, 0.3]], label: [0.2, 0.2], camera: { x: 0.2, y: 0.2, zoom: 3 } },
   },
@@ -116,7 +115,7 @@ describe('buildWorld', () => {
   it('собирает мир только из исследования, без content и map', () => {
     const { world, errors } = buildWorld(fixture());
     expect(errors).toEqual([]);
-    expect(world.aspect).toBe(1.6);
+    expect(world.aspect).toBe(1);
     const ice = world.regions[0];
     expect(ice).toMatchObject({ id: 'icewrack', side: 'radiant', name: { ru: 'Ледяная пустошь', en: 'Icewrack' } });
     expect(ice.description).toBeUndefined();
@@ -194,7 +193,13 @@ describe('buildWorld', () => {
     expect(ice.places[1].text).toEqual({ name: L('glacier'), type: L('type'), description: L('pdesc') });
     expect(ice.places[1].pos).toEqual([0.22, 0.18]);
     expect(ice.places[0].pos).toBeUndefined();
-    expect(world.bands).toEqual({ upper: [0, 0.13], abyss: [0.87, 1] });
+    expect('bands' in world).toBe(false);
+  });
+
+  it('ошибка на старые полосы ярусов и не квадратный мир (SPEC §4)', () => {
+    const { errors } = buildWorld({ ...fixture(), layout: { ...layout(), aspect: 1.6, bands: { upper: [0, 0.1], abyss: [0.9, 1] } } });
+    expect(errors.join('\n')).toMatch(/aspect должен быть 1/);
+    expect(errors.join('\n')).toMatch(/bands больше нет/);
   });
 
   it('ошибка на неизвестный регион и место в content', () => {
