@@ -15,6 +15,13 @@
       "url": "https://liquipedia.net/dota2/Nyx_Assassin/Lore",
       "note": "Родной улей колонии скарабеев; в биографии улей по имени не назван.",
       "doubt": "Биография говорит о колонии и покоях королевы, но не называет Hidden Hive; место взято из поля origins инфобокса, которое опирается на описание набора самого героя."
+    },
+    {
+      "place": "Ultimyr Academy",
+      "event": "mention",
+      "source": "bio",
+      "note": "Книга о скарабеях хранится в архиве Ultimyr; в #59 архив отнесён к академии. Сам герой там не был.",
+      "doubt": "Биография называет архив, а не академию; что это одно учреждение — наше решение (#59)."
     }
   ],
   "profile": {
@@ -26,15 +33,7 @@
       "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/nyx_assassin.png"
     ]
   },
-  "candidates": [
-    {
-      "name": "Ultimyr Archives",
-      "region": "middle-kingdoms",
-      "event": "mention",
-      "source": "bio",
-      "note": "В биографии книга о скарабеях хранится в архиве Ultimyr; на схеме есть Ultimyr Academy в middle-kingdoms, но архив назван отдельно. Сам герой там не был."
-    }
-  ],
+  "candidates": [],
   "unconfirmed": [
     "Abaddon и Broodmother: вражда в разделе отношений лор-страницы держится только на репликах озвучки; в поле heroes инфобокса они без типа — связи не записаны.",
     "Templar Assassin и Void Spirit есть в поле heroes инфобокса без типа связи; из биографии и текста лора тип не следует, связи не записаны.",

@@ -100,6 +100,14 @@
         "ru": "Престол Гелио-империи, власть которого простирается над огромным королевством. Наследница Mirana оставила его ради служения богине Селемене, и трон уже много лет пустует.",
         "en": "The seat of the Helio Imperium, its sway reaching across a vast realm. Its heir, Mirana, turned her back on it to serve the goddess Selemene, and the throne has waited for her for many years."
       }
+    },
+    "Magnetic Ziggurat": {
+      "name": { "ru": "Магнитный зиккурат", "en": "Magnetic Ziggurat" },
+      "type": { "ru": "Зиккурат", "en": "Ziggurat" },
+      "description": {
+        "ru": "Ступенчатая башня визиря Фолопталиса на склонах горы Пиротеос. Broodmother однажды схватила визиря и спеленала его шёлком; было ли это у самого зиккурата, биография не уточняет.",
+        "en": "The stepped tower of the vizier Folopthalis on the slopes of Mount Pyrotheos. Broodmother once seized the vizier and wrapped him in silk; whether that happened at the ziggurat itself, the biography does not say."
+      }
     }
   }
 }

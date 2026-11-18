@@ -63,6 +63,22 @@
         "ru": "Далёкий мир со своими лунами, чей цикл длится целый год. Известно лишь, что там шла важная битва, куда хозяин послал Баратрума (Spirit Breaker).",
         "en": "A distant world with moons of its own, whose cycle takes a full year. All that is known is that a great battle was fought there, and Barathrum the Spirit Breaker was sent by his master to intervene."
       }
+    },
+    "Midgate": {
+      "name": { "ru": "Мидгейт", "en": "Midgate" },
+      "type": { "ru": "Нижний город", "en": "Lower city" },
+      "description": {
+        "ru": "Город бескрылых скайрасов у подножия скалы, на которой стоит Мрачное Гнездовье. Здесь живёт Kez: в ночь Вознесения он уходит отсюда выводить узников из висячей тюрьмы Клетка и возвращается уже с новым наставником. Неподалёку — крепость Шпора, где квартирует гвардия.",
+        "en": "The town of the Flightless at the foot of the cliff that holds up the Ghastly Eyrie. Kez lives here: on the night of Ascension he sets out to lead the prisoners out of the hanging jail called the Cage, and he comes back with a new teacher. The guard is quartered nearby, in the fortress of Spur."
+      }
+    },
+    "Vashundol": {
+      "name": { "ru": "Вашундол", "en": "Vashundol" },
+      "type": { "ru": "Царство колокола", "en": "Realm of the bell" },
+      "description": {
+        "ru": "Царство за светом, откуда низвергли Doom. Там висит огромный стальной колокол: он отбивал наказания Doom перед падением и звонит по тем, кому суждено пасть. Где лежит это царство, лор не говорит; мы помещаем его в Небеса, рядом с родиной Doom.",
+        "en": "A realm beyond the light from which Doom was cast down. A great steel bell hangs there: it tolled out Doom's punishments before his fall, and it rings for those who are fated to fall. The lore never says where the realm lies; we place it in the Heavens, next to Doom's homeland."
+      }
     }
   }
 }

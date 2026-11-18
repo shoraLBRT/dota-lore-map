@@ -211,6 +211,14 @@
         "ru": "Таверна в Стоунхолле, знаменитая медовым элем; его особенно любят Маркус и Рикс.",
         "en": "A Stonehall tavern famous for its honey ale, a favourite of Marcus and Rix."
       }
+    },
+    "Moerbeek": {
+      "name": { "ru": "Мёрбик", "en": "Moerbeek" },
+      "type": { "ru": "Город-крепость", "en": "Fortress town" },
+      "description": {
+        "ru": "Укреплённый город в землях Стоунхолла, который Бронзовый легион держал в осаде около семи месяцев. Решающую атаку кавалерии под его стенами вела Legion Commander. Следующей целью легиона назван городок Брилле.",
+        "en": "A walled town in the lands of Stonehall that the Bronze Legion kept under siege for some seven months. Legion Commander led the cavalry charge that decided the fight beneath its walls. The small town of Brille is named as the legion's next target."
+      }
     }
   }
 }

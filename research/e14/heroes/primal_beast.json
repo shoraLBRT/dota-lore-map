@@ -20,6 +20,15 @@
       "source": "bio",
       "note": "Тысячи лет Туманный лес был его угодьями: он опустошал его и охотился даже на дуран. Сейчас он далеко отсюда.",
       "doubt": "Биография называет Mistwood; лор-страница Liquipedia отождествляет его с Tomo'kan."
+    },
+    {
+      "place": "Continuum Vault",
+      "event": "exile",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Primal_Beast/Lore",
+      "note": "Hoodwink запирает Зверя в хранилище вне обычного пространства (в биографии — просто Vault).",
+      "doubt": "Положение хранилища в лоре не названо: регион planes — наш (#59, решение владельца)."
     }
   ],
   "path": [
@@ -28,6 +37,9 @@
     },
     {
       "place": "Tomo'kan"
+    },
+    {
+      "place": "Continuum Vault"
     }
   ],
   "profile": {
@@ -39,17 +51,7 @@
       "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/primal_beast.png"
     ]
   },
-  "candidates": [
-    {
-      "name": "Continuum Vault",
-      "region": "planes",
-      "event": "exile",
-      "source": "liquipedia",
-      "via": "lore",
-      "url": "https://liquipedia.net/dota2/Primal_Beast/Lore",
-      "note": "Хранилище, где Hoodwink заперла Зверя (в биографии — Vault). Место вне обычного пространства, поэтому регион — planes; решает владелец."
-    }
-  ],
+  "candidates": [],
   "unconfirmed": [
     "Текущее положение: биография говорит о «населённых землях» без названия — ни место, ни регион не подтверждены.",
     "Aghanim — персонаж, а не герой; опасения и захват его двойников в связи не записаны.",
