@@ -82,10 +82,10 @@
 | Материк и острова | Айсрак (Icewrack) | Radiant (карта S1) | 12 | 10 |
 | Материк и острова | Земля Сияющих (Land of the Radiant) | Radiant (карта S1) | 8 | 10 |
 | Материк и острова | Лес Найтсильвер (Nightsilver Woods) | Radiant (карта S1) | 3 | 3 |
-| Материк и острова | Скайрат (Skywrath) | Radiant (по схеме E2) | 2 | 3 |
+| Материк и острова | Скайрат (Skywrath) | Radiant (по схеме E2) | 2 | 5 |
 | Материк и острова | Стоунхолл (Stonehall) | Radiant (по схеме E2) | 25 | 4 |
 | Материк и острова | Вольные города (The Free Cities) | Radiant (по схеме E2) | 7 | 9 |
-| Материк и острова | Квойдж и Поля Бойни (Quoidge and the Fields of Carnage) | нейтрально (по схеме E2) | 4 | 3 |
+| Материк и острова | Квойдж и Поля Бойни (Quoidge and the Fields of Carnage) | нейтрально (по схеме E2) | 4 | 6 |
 | Материк и острова | Хазадальские пустоши (Hazhadal Barrens) | нейтрально (по схеме E2) | 2 | 3 |
 | Материк и острова | Друуд (Druud) | Dire (по схеме E2) | 3 | 4 |
 | Материк и острова | Сверкающая пустошь (Scintillant Waste) | Dire (карта S1) | 9 | 6 |
@@ -202,7 +202,7 @@
 
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
-| ★ Ghastly Eyrie | лор | Kez, Skywrath Mage, Vengeful Spirit | столица скайрасов на вершинах шпилей, «среди облаков и звёзд»; дворец The Nest, руины храма Scree'Auk, Lowland Gate и South Spire — в её черте (комиксы Crownfall) |
+| ★ Ghastly Eyrie | лор | Axe (сражение), Centaur Warrunner (сражение), Kez, Skywrath Mage, Vengeful Spirit | столица скайрасов на вершинах шпилей, «среди облаков и звёзд»; дворец The Nest, руины храма Scree'Auk, Lowland Gate и South Spire — в её черте (комиксы Crownfall) |
 | Midgate | лор | Kez (живёт) | нижний город бескрылых под скалой столицы (комиксы Ascension Night и Ascension Day); внутри — тюрьма The Cage и крепость Spur |
 
 #### Стоунхолл · Stonehall
@@ -258,7 +258,7 @@
 | Место | Расположение | Герои | Заметка |
 |---|---|---|---|
 | ★ Quoidge | лор | Mars (упоминание), Pudge (упоминание) |  |
-| Smoke Harbor | лор | — |  |
+| Smoke Harbor | лор | Kunkka (бывал), Pudge (бывал), Skywrath Mage (бывал), Vengeful Spirit (бывал) |  |
 | Fields of Endless Carnage | лор | Pudge (живёт) |  |
 | Cathedral of Rumusque | лор | Necrophos (служба), Pudge (упоминание) |  |
 
@@ -523,7 +523,7 @@
 | Ancient Apparition | The Void (Семь планов и Пустота); Coldbank Plains (Стоунхолл) (сражение) |
 | Anti-Mage | Turstarkuri (Стонущие горы) |
 | Arc Warden | Mad Moon (Небеса) (служба); Sundered Moon (Вольные города) (бывал); Druud (Друуд) (бывал); Tomo'kan (Томо'кан и Окраины) (сражение) |
-| Axe | Thousand Tarns (Земля Сияющих) (сражение); Fortress of Valhessi (Хазадальские пустоши) (сражение); Druud (Друуд) (сражение) |
+| Axe | Thousand Tarns (Земля Сияющих) (сражение); Fortress of Valhessi (Хазадальские пустоши) (сражение); Druud (Друуд) (сражение); Ghastly Eyrie (Скайрат) (сражение) |
 | Bane | The Dream (Семь планов и Пустота)* |
 | Batrider | Yama Raskav Jungle (Феллстрат) |
 | Beastmaster | Slom (Слом и Эльзе) |
@@ -532,7 +532,7 @@
 | Brewmaster | Ruined City (Стонущие горы) |
 | Bristleback | весь регион «Слом и Эльзе» (бывал) |
 | Broodmother | Mount Pyrotheos (Срединные королевства); Magnetic Ziggurat (Срединные королевства) (сражение) |
-| Centaur Warrunner | Druud (Друуд); Omexe (Друуд) (сражение) |
+| Centaur Warrunner | Druud (Друуд); Omexe (Друуд) (сражение); Ghastly Eyrie (Скайрат) (сражение) |
 | Chaos Knight | Fundamental Plane (Семь планов и Пустота); весь регион «Семь планов и Пустота» (путь) |
 | Chen | Hazhadal Barrens (Хазадальские пустоши) |
 | Clinkz | The Hoven (Ховен и Нишай); Seven Hells (Семь Преисподних и загробье) (сражение); Bleeding Hills (Ховен и Нишай) (упоминание) |
@@ -564,7 +564,7 @@
 | Juggernaut | Isle of Masks (Тропические острова); Ivory Isles (Тропические острова) (упоминание); Temple of Masks (Тропические острова) (упоминание) |
 | Keeper of the Light | Fundamental Plane (Семь планов и Пустота); весь регион «Семь планов и Пустота» (путь) |
 | Kez | Ghastly Eyrie (Скайрат); Midgate (Скайрат) (живёт); Icewrack (Айсрак) (изгнание) |
-| Kunkka | Cladd (Кладд и острова); Port Mignin (Кладд и острова) (сражение); Trembling Isle (Кладд и острова) (сражение); Isle of Songs (Кладд и острова) (упоминание); Cataract (Семь планов и Пустота) (упоминание) |
+| Kunkka | Cladd (Кладд и острова); Port Mignin (Кладд и острова) (сражение); Trembling Isle (Кладд и острова) (сражение); Isle of Songs (Кладд и острова) (упоминание); Cataract (Семь планов и Пустота) (упоминание); Smoke Harbor (Квойдж и Поля Бойни) (бывал) |
 | Largo | Velu'Mar (Феллстрат) |
 | Legion Commander | Qine (Стоунхолл); Stonehall (Стоунхолл) (живёт); Moerbeek (Стоунхолл) (сражение); Milltown (Стоунхолл) (сражение) |
 | Leshrac | Heart of Nature (Семь планов и Пустота) |
@@ -599,7 +599,7 @@
 | Phoenix | The Sun (Небеса)*; Scintillant Waste (Сверкающая пустошь) (упоминание); Violet Archives (Земля Сияющих) (упоминание) |
 | Primal Beast | весь регион «Неизведанные земли»; Tomo'kan (Томо'кан и Окраины) (сражение); Continuum Vault (Семь планов и Пустота) (изгнание) |
 | Puck | Fae Realm (Семь планов и Пустота); Claszureme (Семь планов и Пустота) (бывал) |
-| Pudge | Fields of Endless Carnage (Квойдж и Поля Бойни) (живёт); Quoidge (Квойдж и Поля Бойни) (упоминание); Cathedral of Rumusque (Квойдж и Поля Бойни) (упоминание) |
+| Pudge | Fields of Endless Carnage (Квойдж и Поля Бойни) (живёт); Quoidge (Квойдж и Поля Бойни) (упоминание); Cathedral of Rumusque (Квойдж и Поля Бойни) (упоминание); Smoke Harbor (Квойдж и Поля Бойни) (бывал) |
 | Pugna | Nether Reaches (Подземье) |
 | Queen of Pain | Elze (Слом и Эльзе) (служба); Court of Ristul (Семь Преисподних и загробье) (живёт); Weeping Rose (Вольные города) (путь) |
 | Razor | Underscape (Семь Преисподних и загробье) (упоминание); Narrow Maze (Семь Преисподних и загробье) (живёт) |
@@ -611,7 +611,7 @@
 | Shadow Fiend | Abysm (Семь Преисподних и загробье); Seven Hells (Семь Преисподних и загробье) (упоминание) |
 | Shadow Shaman | Bleeding Hills (Ховен и Нишай) |
 | Silencer | Hazhadal Barrens (Хазадальские пустоши) |
-| Skywrath Mage | Ghastly Eyrie (Скайрат) |
+| Skywrath Mage | Ghastly Eyrie (Скайрат); Smoke Harbor (Квойдж и Поля Бойни) (бывал) |
 | Slardar | Deep Vault (Глубины) (живёт); Coral Breach (Глубины) (упоминание) |
 | Slark | Dark Reef (Глубины) (изгнание); весь регион «Тенистый берег» (живёт) |
 | Snapfire | Nanarak (Томо'кан и Окраины) (живёт); Outlands (Томо'кан и Окраины) (бывал) |
@@ -633,7 +633,7 @@
 | Underlord | Aziyog (Подземье) (живёт) |
 | Undying | весь регион «Неизведанные земли»* |
 | Ursa | весь регион «Неизведанные земли»* |
-| Vengeful Spirit | Ghastly Eyrie (Скайрат); Frostreach (Айсрак) (бывал) |
+| Vengeful Spirit | Ghastly Eyrie (Скайрат); Frostreach (Айсрак) (бывал); Smoke Harbor (Квойдж и Поля Бойни) (бывал) |
 | Venomancer | Bay of Fradj (Тропические острова) (путь); Jidi Isle (Тропические острова) (путь); Acid Jungles (Тропические острова) (гибель) |
 | Viper | Nether Reaches (Подземье) |
 | Visage | Narrow Maze (Семь Преисподних и загробье) (служба); весь регион «Семь Преисподних и загробье» (служба); весь регион «Небеса» (служба) |

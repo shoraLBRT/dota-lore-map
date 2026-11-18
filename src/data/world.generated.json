@@ -1892,7 +1892,8 @@
       },
       "media": [
         "ghastly-eyrie-ascension-day",
-        "kez-ascension-night"
+        "kez-ascension-night",
+        "crownfall-siege"
       ],
       "layout": {
         "polygon": [
@@ -3356,7 +3357,7 @@
           "slug": "smoke-harbor",
           "capital": false,
           "placement": "lore",
-          "significance": "minor",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Дымная Гавань",
@@ -3371,6 +3372,9 @@
               "en": "A port a day's journey from Quoidge where the Claddish Navy, pirate brigands, leviathans and ghost ships all drop anchor without judgment. A marooned Kunkka helped Vengeful Spirit escape from here to the frozen wastes of Icewrack, and shadow sharks prowl the nearby waters."
             }
           },
+          "media": [
+            "crownfall-smoke-harbor"
+          ],
           "pos": [
             0.775,
             0.375
@@ -7589,6 +7593,9 @@
         "ru": "Не всякий путь можно проследить до начала. У многих героев есть биография, но нет родины: лор рассказывает, кем они стали, и молчит о том, откуда пришли.\n\nДля них на краю карты лежат Неизведанные земли — остров, затянутый туманом. Это не место из лора, а честное «неизвестно»: мы не выдумываем героям родину, пока её не назовёт сама история. Отдельных мест здесь нет — герои привязаны к острову целиком.\n\nЗдесь ждут своей карты Alchemist, Death Prophet, Enchantress, Jakiro, Marci, Ogre Magi, Riki, Ringmaster, Rubick, Tiny, Undying и Witch Doctor.",
         "en": "Not every road can be traced back to where it began. Many heroes have a story but no homeland: the lore tells us who they became and stays silent about where they came from.\n\nFor them, at the edge of the map, lie the Uncharted Lands, an island lost in mist. It is not a place from the lore but an honest unknown: we do not invent homelands until the story itself names them. There are no places inside; these heroes belong to the island as a whole.\n\nAlchemist, Death Prophet, Enchantress, Jakiro, Marci, Ogre Magi, Riki, Ringmaster, Rubick, Tiny, Undying and Witch Doctor are still waiting here for a map of their own."
       },
+      "media": [
+        "darkpurpose"
+      ],
       "layout": {
         "polygon": [
           [
@@ -8208,6 +8215,14 @@
           "doubt": "Биография не говорит, что он родился или вырос там: он пришёл пилигримом и не был принят в монастырь. Выбрано origin, потому что это единственное место его жизни до бегства; инфобокс Liquipedia тоже называет Turstarkuri родиной. Альтернатива — service (учился как послушник)."
         }
       ],
+      "relations": [
+        {
+          "hero": "windrunner",
+          "type": "ally",
+          "source": "comic:darkpurpose",
+          "note": "Встречаются у трупа некроманта и вместе встречают его восставшим."
+        }
+      ],
       "profile": {
         "summary": {
           "ru": "Юный пилигрим пришёл в горный монастырь Turstarkuri за мудростью и прислуживал монахам, ещё не будучи принятым в орден. Легион Мёртвого бога бросил на монастырь кости павших армий, обитель пала за две недели, а убитых монахов подняли жрецами Мёртвого бога. Уцелел только он и бежал в другие земли с несколькими свитками. Он поклялся покончить и с магами Мёртвого бога, и со всякой магией вообще.",
@@ -8245,6 +8260,14 @@
           "event": "battle",
           "source": "comic:druud-hells-basin",
           "note": "Едет рядом с ханом Сорлой при подготовке к битве с Бездонной ордой в красных пустынях Друуда."
+        },
+        {
+          "regionId": "skywrath",
+          "placeSlug": "ghastly-eyrie",
+          "event": "battle",
+          "source": "comic:crownfall-siege",
+          "note": "Во главе армии Красной Мглы берёт сторожевую башню у Нижних ворот Скайрата, после чего армия входит в город.",
+          "doubt": "Комикс называет город Скайратом, башню South Spire и ворота Lowland Gate; привязка к месту Ghastly Eyrie (столица) — наша."
         }
       ],
       "relations": [
@@ -8768,6 +8791,13 @@
           "url": "https://liquipedia.net/dota2/Pudge/Lore",
           "note": "Место записано в поле places инфобокса. Лор говорит, что клирики Rumusque выковали Chains of Abscession и позже очистили Fields; сам Pudge в соборе не был.",
           "doubt": "Инфобокс называет собор, а текст лора говорит о клириках Rumusque в целом; связь с конкретным собором — по инфобоксу."
+        },
+        {
+          "regionId": "quoidge",
+          "placeSlug": "smoke-harbor",
+          "event": "visit",
+          "source": "comic:crownfall-smoke-harbor",
+          "note": "Едет с гостями в повозке и садится на корабль."
         }
       ],
       "relations": [
@@ -9021,6 +9051,13 @@
           "event": "visit",
           "source": "comic:frostreach-the-dragon",
           "note": "Прибывает морем в Frostreach и ищет в таверне проводника через ледяную пустошь. Разговор идёт в таверне The Severed Head."
+        },
+        {
+          "regionId": "quoidge",
+          "placeSlug": "smoke-harbor",
+          "event": "visit",
+          "source": "comic:crownfall-smoke-harbor",
+          "note": "Прибывает в порт и уплывает на корабле Kunkka к Icewrack."
         }
       ],
       "relations": [
@@ -9043,6 +9080,12 @@
           "url": "https://liquipedia.net/dota2/Winter_Wyvern/Lore",
           "note": "Лор-страница Winter Wyvern: во время событий Crownfall она помогла Vengeful Spirit в Icewrack.",
           "doubt": "Подтверждается одним пунктом лор-страницы Winter Wyvern; биография и лор-страница Vengeful Spirit её не называют."
+        },
+        {
+          "hero": "kunkka",
+          "type": "ally",
+          "source": "comic:crownfall-smoke-harbor",
+          "note": "Тёплая встреча старых знакомых и посадка на его корабль."
         }
       ],
       "profile": {
@@ -9082,6 +9125,14 @@
           "event": "origin",
           "source": "bio",
           "note": "Биография начинается с западных лесов и называет героиню одной из их тайн, то есть родом оттуда."
+        }
+      ],
+      "relations": [
+        {
+          "hero": "antimage",
+          "type": "ally",
+          "source": "comic:darkpurpose",
+          "note": "Встречаются у трупа некроманта и вместе встречают его восставшим."
         }
       ],
       "profile": {
@@ -9199,6 +9250,13 @@
           "source": "bio",
           "note": "Отсюда пришёл демонический флот, с которым бился его флот; по биографии Катаракта уходит в пустоту. Сам он там не был.",
           "doubt": "Положение Катаракты в лоре не названо: регион planes у границы Пустоты — наш (#59, решение владельца)."
+        },
+        {
+          "regionId": "quoidge",
+          "placeSlug": "smoke-harbor",
+          "event": "visit",
+          "source": "comic:crownfall-smoke-harbor",
+          "note": "Снаряжает призрачный корабль в порту и встречает гостей."
         }
       ],
       "path": [
@@ -9218,6 +9276,12 @@
           "source": "bio",
           "note": "Обратная запись к tidehunter.json: по биографии Tidehunter адмирал Kunkka — его давний заклятый враг, причины вражды неизвестны.",
           "doubt": "Биография Kunkka говорит только, что Мэльрона призвал Tidehunter; вражду подтверждает биография Tidehunter."
+        },
+        {
+          "hero": "vengefulspirit",
+          "type": "ally",
+          "source": "comic:crownfall-smoke-harbor",
+          "note": "Тёплая встреча старых знакомых и посадка на его корабль."
         }
       ],
       "profile": {
@@ -11942,6 +12006,14 @@
           "event": "battle",
           "source": "bio",
           "note": "Древняя арена, где он перебил всех соперников, стал непобедимым чемпионом и получил пояс; Omexe также стоит в поле places инфобокса лор-страницы"
+        },
+        {
+          "regionId": "skywrath",
+          "placeSlug": "ghastly-eyrie",
+          "event": "battle",
+          "source": "comic:crownfall-siege",
+          "note": "Во главе армии Красной Мглы берёт сторожевую башню у Нижних ворот Скайрата, после чего армия входит в город.",
+          "doubt": "Комикс называет город Скайратом, башню South Spire и ворота Lowland Gate; привязка к месту Ghastly Eyrie (столица) — наша."
         }
       ],
       "relations": [
@@ -12172,6 +12244,13 @@
           "source": "bio",
           "note": "Юность провёл при дворе Жуткого гнезда, здесь же позже служит магом престола.",
           "doubt": "В биографии не сказано, где именно он родился; место записано по юности при дворе."
+        },
+        {
+          "regionId": "quoidge",
+          "placeSlug": "smoke-harbor",
+          "event": "visit",
+          "source": "comic:crownfall-smoke-harbor",
+          "note": "Провожает Shen в порту и остаётся на берегу."
         }
       ],
       "relations": [
@@ -14036,6 +14115,72 @@
       },
       "credit": "Valve Corporation",
       "sourceUrl": "https://www.dota2.com/largocomic"
+    },
+    {
+      "id": "crownfall-siege",
+      "type": "image",
+      "src": {
+        "ru": "https://cdn.steamstatic.com/apps/dota2/images/crownfall/act4_intro/russian/003.webp",
+        "en": "https://cdn.steamstatic.com/apps/dota2/images/crownfall/act4_intro/english/003.webp"
+      },
+      "excerpt": true,
+      "title": {
+        "ru": "«Крепость»",
+        "en": "Crownfall"
+      },
+      "subtitle": {
+        "ru": "Комикс",
+        "en": "Comic"
+      },
+      "description": {
+        "ru": "Пролог четвёртого акта Crownfall (2024). Красная Мгла берёт сторожевую башню Саут-Спайр у Нижних ворот Скайрата: скучающего стража пленят Axe и Centaur, и армия входит в город.",
+        "en": "Prologue to Crownfall Act IV (2024). The Red Mist army takes South Spire, a watch post by Skywrath's Lowland Gate: a bored guard is captured by Axe and Centaur, and the army pours into the city."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/crownfall/comic4"
+    },
+    {
+      "id": "darkpurpose",
+      "type": "image",
+      "src": "https://cdn.steamstatic.com/apps/dota2/images/comics/comic_darkpurpose/en/02.jpg",
+      "excerpt": true,
+      "title": {
+        "ru": "«Тёмная цель»",
+        "en": "A Dark Purpose Served"
+      },
+      "subtitle": {
+        "ru": "Комикс",
+        "en": "Comic"
+      },
+      "description": {
+        "ru": "Комикс Valve 2016 года. Anti-Mage выслеживает некроманта и в мёртвом лесу встречает Windranger: вместе они убивают его, но тело снова поднимается.",
+        "en": "Valve's 2016 comic. Anti-Mage hunts a necromancer and meets Windranger in a dead forest; together they kill him, but the corpse rises again."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/darkpurpose/"
+    },
+    {
+      "id": "crownfall-smoke-harbor",
+      "type": "image",
+      "src": {
+        "ru": "https://cdn.steamstatic.com/apps/dota2/images/crownfall/act1_smoke_harbor/russian/002.webp",
+        "en": "https://cdn.steamstatic.com/apps/dota2/images/crownfall/act1_smoke_harbor/english/002.webp"
+      },
+      "excerpt": true,
+      "title": {
+        "ru": "«Дымная Гавань»",
+        "en": "Smoke Harbor"
+      },
+      "subtitle": {
+        "ru": "Комикс",
+        "en": "Comic"
+      },
+      "description": {
+        "ru": "Комикс из первого акта Crownfall (2024; внутри игры). В порту Дымной Гавани Kunkka снаряжает призрачный корабль, Shen уплывает на нём, а Dragonus остаётся на берегу.",
+        "en": "Comic from Crownfall Act I (2024; in-game). At Smoke Harbor Kunkka readies a ghost ship; Shen sails off on it while Dragonus stays ashore."
+      },
+      "credit": "Valve Corporation",
+      "sourceUrl": "https://www.dota2.com/crownfall"
     }
   ]
 }

@@ -4,7 +4,8 @@
     "bio.ru",
     "bio.en",
     "liquipedia-lore",
-    "liquipedia-hero"
+    "liquipedia-hero",
+    "comic:darkpurpose"
   ],
   "links": [
     {
@@ -35,5 +36,29 @@
     "Hero Atlas (Monster Hunter) и The Hunt: вне основного лора Dota 2, не привязаны к карте; Tyler Estate как родина из Hero Atlas не использована.",
     "Artifact: карточка Collateral Damage описывает работу героя на Tyler Estate, не используется как основание.",
     "Tyler Estate: только поле places инфобокса, которое опирается на карточку Artifact и реплики озвучки; в биографии места нет. Связь снята при сверке."
+  ],
+  "candidates": [
+    {
+      "name": "Maduvari Forest",
+      "region": "western-forests",
+      "event": "battle",
+      "source": "comic:darkpurpose",
+      "note": "Мёртвый лес с каменным алтарём, где убивают некроманта; положение не названо, регион — предположение."
+    },
+    {
+      "name": "Purehide Tannery",
+      "region": "uncharted",
+      "event": "battle",
+      "source": "comic:darkpurpose",
+      "note": "Кожевня, где Anti-Mage допрашивает прислужника некроманта; положение не названо."
+    }
+  ],
+  "relations": [
+    {
+      "hero": "windrunner",
+      "type": "ally",
+      "source": "comic:darkpurpose",
+      "note": "Встречаются у трупа некроманта и вместе встречают его восставшим."
+    }
   ]
 }

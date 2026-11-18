@@ -4,7 +4,8 @@
     "bio.ru",
     "bio.en",
     "liquipedia-lore",
-    "liquipedia-hero"
+    "liquipedia-hero",
+    "comic:crownfall-smoke-harbor"
   ],
   "links": [
     {
@@ -44,6 +45,12 @@
       "source": "bio",
       "note": "Отсюда пришёл демонический флот, с которым бился его флот; по биографии Катаракта уходит в пустоту. Сам он там не был.",
       "doubt": "Положение Катаракты в лоре не названо: регион planes у границы Пустоты — наш (#59, решение владельца)."
+    },
+    {
+      "place": "Smoke Harbor",
+      "event": "visit",
+      "source": "comic:crownfall-smoke-harbor",
+      "note": "Снаряжает призрачный корабль в порту и встречает гостей."
     }
   ],
   "path": [
@@ -82,6 +89,12 @@
       "source": "bio",
       "note": "Обратная запись к tidehunter.json: по биографии Tidehunter адмирал Kunkka — его давний заклятый враг, причины вражды неизвестны.",
       "doubt": "Биография Kunkka говорит только, что Мэльрона призвал Tidehunter; вражду подтверждает биография Tidehunter."
+    },
+    {
+      "hero": "vengefulspirit",
+      "type": "ally",
+      "source": "comic:crownfall-smoke-harbor",
+      "note": "Тёплая встреча старых знакомых и посадка на его корабль."
     }
   ]
 }

@@ -5,7 +5,8 @@
     "bio.en",
     "liquipedia-lore",
     "liquipedia-hero",
-    "comic:druud-hells-basin"
+    "comic:druud-hells-basin",
+    "comic:crownfall-siege"
   ],
   "links": [
     {
@@ -19,6 +20,13 @@
       "event": "battle",
       "source": "bio",
       "note": "Древняя арена, где он перебил всех соперников, стал непобедимым чемпионом и получил пояс; Omexe также стоит в поле places инфобокса лор-страницы"
+    },
+    {
+      "place": "Ghastly Eyrie",
+      "event": "battle",
+      "source": "comic:crownfall-siege",
+      "note": "Во главе армии Красной Мглы берёт сторожевую башню у Нижних ворот Скайрата, после чего армия входит в город.",
+      "doubt": "Комикс называет город Скайратом, башню South Spire и ворота Lowland Gate; привязка к месту Ghastly Eyrie (столица) — наша."
     }
   ],
   "profile": {

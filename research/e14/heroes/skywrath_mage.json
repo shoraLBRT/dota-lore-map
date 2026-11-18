@@ -4,7 +4,8 @@
     "bio.ru",
     "bio.en",
     "liquipedia-lore",
-    "liquipedia-hero"
+    "liquipedia-hero",
+    "comic:crownfall-smoke-harbor"
   ],
   "links": [
     {
@@ -13,6 +14,12 @@
       "source": "bio",
       "note": "Юность провёл при дворе Жуткого гнезда, здесь же позже служит магом престола.",
       "doubt": "В биографии не сказано, где именно он родился; место записано по юности при дворе."
+    },
+    {
+      "place": "Smoke Harbor",
+      "event": "visit",
+      "source": "comic:crownfall-smoke-harbor",
+      "note": "Провожает Shen в порту и остаётся на берегу."
     }
   ],
   "relations": [
