@@ -18,6 +18,24 @@
       "event": "journey",
       "source": "bio",
       "note": "Скачет по всем мирам одновременно, поэтому связь с регионом планов, а не с одним местом."
+    },
+    {
+      "place": "The Sun",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Keeper_of_the_Light/Lore",
+      "note": "Лор-страница: Ezalor зажёг множество звёзд; в биографиях Dawnbreaker и Phoenix первое солнце названо светом Keeper.",
+      "doubt": "Герой не живёт на Солнце, он лишь создатель света; в его собственной биографии Солнце не названо."
+    },
+    {
+      "place": "Light's Keep",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Keeper_of_the_Light/Lore",
+      "note": "Инфобокс называет Light's Keep местом его происхождения.",
+      "doubt": "Основание — только реплики озвучки и инфобокс; в тексте биографии места нет."
     }
   ],
   "path": [
@@ -68,6 +86,6 @@
     "Реплики озвучки без связи: Dark Willow, Monkey King, Snapfire, Pangolier, Void Spirit, Lina, Arc Warden, Bristleback, Rubick, Oracle, Legion Commander и другие. Тип связи не записан.",
     "Solar Goddess и Children of Light — божество и фракция, не герои; в relations не попадают.",
     "Omniscience, Wings of Daybreak, Staff и Stag of the Northlight, наборы предметов — описания предметов, не записаны.",
-    "Elder Titan (создатель), Enigma и Io (братья-Фундаменталы), Dawnbreaker и Phoenix (потомки): в лор-странице держатся только на репликах озвучки (монологи Void Spirit и Dawnbreaker, реплики Elder Titan); биография Keeper of the Light их не называет. Связи сняты при сверке; записи keeper_of_the_light в elder_titan.json, enigma.json, wisp.json, dawnbreaker.json и phoenix.json остаются односторонними."
+    "Elder Titan (создатель), Enigma и Io (братья-Фундаменталы): в лор-странице держатся только на репликах озвучки (монологи Void Spirit, реплики Elder Titan); биография Keeper их не называет. Связи сняты и в файлах elder_titan.json, enigma.json, wisp.json (#150). Dawnbreaker и Phoenix (потомки) записаны по их биографиям, обратные записи есть."
   ]
 }

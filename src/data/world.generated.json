@@ -130,8 +130,8 @@
               "en": "Shattered moon"
             },
             "description": {
-              "ru": "Сияющая хрустальная сфера, в которую Зет (Arc Warden) заточил двух враждующих Древних. Борьба внутри, приливы и удар уснувшей Валоры (Dawnbreaker) расшатали её, пока она не разлетелась на куски, осыпав мир Сияющей рудой и Камнем Тьмы.",
-              "en": "A glowing crystal sphere in which Zet, the Arc Warden, sealed two warring Ancients. Their struggle within, tidal strain and the impact of the dormant Valora wore it down until it burst apart, showering the world with Radiant Ore and Direstone."
+              "ru": "Сияющая хрустальная сфера, в которую Зет (Arc Warden) заточил двух враждующих Древних. Борьба внутри и приливное напряжение расшатали её, пока она не разлетелась на куски, осыпав мир Сияющей рудой и Камнем Тьмы.",
+              "en": "A glowing crystal sphere in which Zet, the Arc Warden, sealed two warring Ancients. Their struggle within and tidal strain wore it down until it burst apart, showering the world with Radiant Ore and Direstone."
             }
           },
           "pos": [
@@ -208,8 +208,8 @@
               "en": "Abode of the gods"
             },
             "description": {
-              "ru": "Небесный дом пантеона, к которому принадлежат Zeus и его сын Mars. Zeus изгнан оттуда и теперь живёт на горной вершине в смертном мире, а Mars мечтает опрокинуть отцовский пантеон. В лоре Олимп почти не описан.",
-              "en": "The celestial home of the pantheon that Zeus and his son Mars belong to. Zeus was cast out and now lives on a mountaintop in the mortal world, while Mars dreams of toppling his father's pantheon. The lore says little about the place itself."
+              "ru": "Небесный дом пантеона, к которому принадлежит Zeus. Zeus изгнан оттуда и теперь живёт на горной вершине в смертном мире. В лоре Олимп почти не описан.",
+              "en": "The celestial home of the pantheon that Zeus belongs to. Zeus was cast out and now lives on a mountaintop in the mortal world. The lore says little about the place itself."
             }
           },
           "pos": [
@@ -222,7 +222,7 @@
           "slug": "ultoria",
           "capital": false,
           "placement": "lore",
-          "significance": "minor",
+          "significance": "event",
           "note": "небесное тело со своими лунами",
           "text": {
             "name": {
@@ -420,8 +420,8 @@
               "en": "Plane of existence"
             },
             "description": {
-              "ru": "Один из Семи планов. О нём известно мало: по словам Elder Titan, сюда, возможно, уходят существа после смерти.",
-              "en": "One of the Seven Planes, and one of the least known. The Elder Titan hints that it may be where beings go after they die."
+              "ru": "Один из Семи планов. О нём известно мало.",
+              "en": "One of the Seven Planes, and one of the least known."
             }
           },
           "pos": [
@@ -546,8 +546,8 @@
               "en": "Primordial nothingness"
             },
             "description": {
-              "ru": "Ничто, которое было до начала всего и молча наблюдало рождение мира. Оно темнее простого отсутствия света и есть в каждой вещи, как всё сущее есть в нём. С Пустотой связаны Инай (Void Spirit), Кальдр (Ancient Apparition) и Night Stalker.",
-              "en": "The nothing that existed before anything began and silently watched the world come into being. It is darker than the mere absence of light, and it dwells in every thing just as every thing dwells in it. Inai, Kaldr the Ancient Apparition and the Night Stalker are bound to it."
+              "ru": "Ничто, которое было до начала всего и молча наблюдало рождение мира. Оно темнее простого отсутствия света и есть в каждой вещи, как всё сущее есть в нём. С Пустотой связаны Инай (Void Spirit) и Кальдр (Ancient Apparition).",
+              "en": "The nothing that existed before anything began and silently watched the world come into being. It is darker than the mere absence of light, and it dwells in every thing just as every thing dwells in it. Inai and Kaldr the Ancient Apparition are bound to it."
             }
           },
           "pos": [
@@ -803,8 +803,8 @@
               "en": "Prison vault"
             },
             "description": {
-              "ru": "Хранилище вне обычного пространства, в котором Hoodwink заперла Primal Beast — зверя, веками опустошавшего Туманный лес. Где стоит хранилище, лор не говорит; мы относим его к иным планам.",
-              "en": "A vault outside ordinary space, where Hoodwink locked away Primal Beast, the creature that ravaged the Mistwood for ages. The lore does not say where the vault stands; we count it among the other planes."
+              "ru": "Хранилище вне обычного пространства, в котором заперли Primal Beast — зверя, веками опустошавшего Туманный лес. Где стоит хранилище, лор не говорит; мы относим его к иным планам.",
+              "en": "A vault outside ordinary space, where Primal Beast, the creature that ravaged the Mistwood for ages, was locked away. The lore does not say where the vault stands; we count it among the other planes."
             }
           },
           "pos": [
@@ -1131,7 +1131,7 @@
           "slug": "white-fields",
           "capital": false,
           "placement": "lore",
-          "significance": "minor",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Белоснежные поля",
@@ -1181,7 +1181,7 @@
           "slug": "njords-hearth",
           "capital": false,
           "placement": "lore",
-          "significance": "minor",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Очаг Ньорда",
@@ -1791,8 +1791,8 @@
               "en": "Sacred forest"
             },
             "description": {
-              "ru": "Сердце владений Селемены: светящиеся пруды, лотосы и тропы, по которым ездят Luna и Mirana. Посторонним здесь не рады, хотя Monkey King иногда проводит в лесу лето.",
-              "en": "The heart of Selemene's domain — glowing pools, sacred lotuses and moonlit trails patrolled by Luna and Mirana. Outsiders are unwelcome, though Monkey King sometimes spends his summers here."
+              "ru": "Сердце владений Селемены: светящиеся пруды, лотосы и тропы, по которым ездят Luna и Mirana. Посторонним здесь не рады.",
+              "en": "The heart of Selemene's domain — glowing pools, sacred lotuses and moonlit trails patrolled by Luna and Mirana. Outsiders are unwelcome."
             }
           },
           "pos": [
@@ -2306,8 +2306,8 @@
               "en": "Ruined city"
             },
             "description": {
-              "ru": "Город вхулов, ставший полем битвы: Бронзовый легион устроил здесь засаду на армию Красного Тумана, а горожане восстали против обеих сторон. Для Трездин сражение закончилось катастрофой, и позже Миреска подобрала в руинах знамя легиона.",
-              "en": "A vhoul city turned battlefield: the Bronze Legion laid an ambush here for the Red Mist army while the townsfolk rose up against both. The battle went disastrously for Tresdin, and Mireska later picked a Legion banner out of the ruins."
+              "ru": "Город вхулов, ставший полем битвы: Бронзовый легион устроил здесь засаду на армию Красного Тумана, а горожане восстали против обеих сторон. Для легиона сражение закончилось катастрофой.",
+              "en": "A vhoul city turned battlefield: the Bronze Legion laid an ambush here for the Red Mist army while the townsfolk rose up against both. The battle went disastrously for the Legion."
             }
           },
           "media": [
@@ -2361,8 +2361,8 @@
               "en": "Town"
             },
             "description": {
-              "ru": "Небольшой город к югу от столицы, сдавшийся Бронзовому легиону почти без боя. По словам Трездин, храбро сражался лишь один защитник — Овин.",
-              "en": "A small town south of the capital that fell to the Bronze Legion with barely a fight. By Tresdin's account, only one defender, Owine, showed any real courage."
+              "ru": "Небольшой город к югу от столицы, сдавшийся Бронзовому легиону почти без боя. По одному из рассказов, храбро сражался лишь один защитник — Овин.",
+              "en": "A small town south of the capital that fell to the Bronze Legion with barely a fight. By one account, only one defender, Owine, showed any real courage."
             }
           },
           "pos": [
@@ -2976,8 +2976,8 @@
               "en": "Free city"
             },
             "description": {
-              "ru": "«Город коварных наслаждений», поделённый на кварталы между главарями преступного мира — Энно, Анессикс, Джуллом и Хобгеном. Порядок здесь держался на Мамаше Иб, пока её не убили; теперь за её место дерутся соперники, а в город съезжаются герои, чтобы сразиться в Битве Древних. Здесь живут Monkey King, Pangolier и Bounty Hunter — последний не прочь сжульничать за игорным столом.",
-              "en": "The City of Dastardly Delights, carved into districts by crime lords — Enno, Anessix, Jull and Hobgen. Momma Eeb kept the peace until someone murdered her; now rivals scramble for her place while heroes pour in to fight in the Battle of the Ancients. Monkey King, Pangolier and Bounty Hunter all live here, the last of them known to cheat at the gambling tables."
+              "ru": "«Город коварных наслаждений», поделённый на кварталы между главарями преступного мира — Энно, Анессикс, Джуллом и Хобгеном. Порядок здесь держался на Мамаше Иб, пока её не убили; теперь за её место дерутся соперники, а в город съезжаются герои, чтобы сразиться в Битве Древних. Здесь живут Monkey King и Pangolier.",
+              "en": "The City of Dastardly Delights, carved into districts by crime lords — Enno, Anessix, Jull and Hobgen. Momma Eeb kept the peace until someone murdered her; now rivals scramble for her place while heroes pour in to fight in the Battle of the Ancients. Monkey King and Pangolier both live here."
             }
           },
           "pos": [
@@ -3001,8 +3001,8 @@
               "en": "Fae nation"
             },
             "description": {
-              "ru": "Сказочно богатое государство фейри, где за изысканным этикетом скрываются безжалостные интриги, а убийство — дело обычное; к столу здесь подают даже мясо драконов. Правят им три короля-купца — одного из них, Квертиаса, убила Phantom Assassin. Здесь выросла Dark Willow, Миреска Санбриз, которая сожгла родовое поместье и сбежала из дома.",
-              "en": "A fabulously rich fae nation where exquisite etiquette masks ruthless scheming and murder is routine; even dragon meat is served at its tables. Three merchant kings rule it — or did, until Phantom Assassin killed one of them, Kwerthias. Dark Willow, born Mireska Sunbreeze, grew up here before burning down her family estate and running away."
+              "ru": "Сказочно богатое государство фейри, где за изысканным этикетом скрываются безжалостные интриги, а убийство — дело обычное; к столу здесь подают даже мясо драконов. Правят им три короля-купца — или правили, пока одного из них, Квертиаса, не убили. Здесь выросла Dark Willow, Миреска Санбриз, которая сожгла родовое поместье и сбежала из дома.",
+              "en": "A fabulously rich fae nation where exquisite etiquette masks ruthless scheming and murder is routine; even dragon meat is served at its tables. Three merchant kings rule it — or did, until one of them, Kwerthias, was murdered. Dark Willow, born Mireska Sunbreeze, grew up here before burning down her family estate and running away."
             }
           },
           "pos": [
@@ -3026,8 +3026,8 @@
               "en": "City of wizards"
             },
             "description": {
-              "ru": "Город чародеев, окутанный вечной ночью. Им правит Кворум — совет тридцати одного мага, готовый даровать что угодно, но всегда за плату; местные мастера торгуют редкими книгами и големами. Lion ищет здесь убежища, а Queen of Pain приходила сюда к изгнанному демону-принцу Ногу за его правом рождения.",
-              "en": "A city of sorcerers wrapped in perpetual night. It is governed by the Quorum, a senate of thirty-one wizards who will grant almost any favour — for a price — while local artificers sell rare tomes and forged golems. Lion has come seeking asylum, and Queen of Pain once visited the exiled demon prince Knogh here to take over his birthright."
+              "ru": "Город чародеев, окутанный вечной ночью. Им правит Кворум — совет тридцати одного мага, готовый даровать что угодно, но всегда за плату; местные мастера торгуют редкими книгами и големами. Queen of Pain приходила сюда к изгнанному демону-принцу Ногу за его правом рождения.",
+              "en": "A city of sorcerers wrapped in perpetual night. It is governed by the Quorum, a senate of thirty-one wizards who will grant almost any favour — for a price — while local artificers sell rare tomes and forged golems. Queen of Pain once visited the exiled demon prince Knogh here to take over his birthright."
             }
           },
           "pos": [
@@ -3052,8 +3052,8 @@
               "en": "Asylum for mages"
             },
             "description": {
-              "ru": "Лечебница-тюрьма для магов-преступников, которая следит за немногими, но непреложными законами Плачущей Розы. Над узниками ставят опыты, а беглецов выслеживают агенты поместья — среди них Anti-Mage и Silencer.",
-              "en": "An asylum for the criminally wizardous that enforces Weeping Rose's few but absolute laws. Inmates are experimented upon, and escapees are hunted down by the Estate's agents — Anti-Mage and Silencer among them."
+              "ru": "Лечебница-тюрьма для магов-преступников, которая следит за немногими, но непреложными законами Плачущей Розы. Над узниками ставят опыты, а беглецов выслеживают агенты поместья.",
+              "en": "An asylum for the criminally wizardous that enforces Weeping Rose's few but absolute laws. Inmates are experimented upon, and escapees are hunted down by the Estate's agents."
             }
           },
           "media": [
@@ -3110,8 +3110,8 @@
               "en": "City of machines"
             },
             "description": {
-              "ru": "Город машин и механизмов под властью Медного Глашатая, одного из королей-купцов Ревтела. Хозяин гордится его точностью и порядком, но Миреска говорит, что с людьми там творят страшные вещи. Где он находится, неизвестно — мы поместили его рядом с Ревтелом.",
-              "en": "A city of industry and machinery run by the Brass Herald, one of Revtel's merchant kings. He boasts of its precision; Mireska says terrible things are done to people there. Its location is unknown — we placed it near Revtel."
+              "ru": "Город машин и механизмов под властью Медного Глашатая, одного из королей-купцов Ревтела. Хозяин гордится его точностью и порядком, но говорят, что с людьми там творят страшные вещи. Где он находится, неизвестно — мы поместили его рядом с Ревтелом.",
+              "en": "A city of industry and machinery run by the Brass Herald, one of Revtel's merchant kings. He boasts of its precision, yet terrible things are said to be done to people there. Its location is unknown — we placed it near Revtel."
             }
           },
           "media": [
@@ -4434,7 +4434,7 @@
           "slug": "feral-road",
           "capital": false,
           "placement": "s1map",
-          "significance": "minor",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Дикая дорога",
@@ -4662,8 +4662,8 @@
               "en": "Wasteland"
             },
             "description": {
-              "ru": "Песчаная каменистая земля, пропитанная кровью. По старым преданиям, три королевства разорились в войне за сокровища, которых под ней не оказалось. Здесь впервые явилась в этот мир Spectre, а летописица Гудкайнд встретила тут Techies.",
-              "en": "Sandy, rocky ground soaked in blood. Old tales say three kingdoms ruined themselves fighting for riches that turned out never to be there. Spectre first appeared in this world here, and the chronicler Goodkind found Techies on these sands."
+              "ru": "Песчаная каменистая земля, пропитанная кровью. По старым преданиям, три королевства разорились в войне за сокровища, которых под ней не оказалось.",
+              "en": "Sandy, rocky ground soaked in blood. Old tales say three kingdoms ruined themselves fighting for riches that turned out never to be there."
             }
           },
           "pos": [
@@ -5000,7 +5000,7 @@
           "slug": "infernal-hollow",
           "capital": false,
           "placement": "lore",
-          "significance": "minor",
+          "significance": "event",
           "note": "страницы на Liquipedia нет",
           "text": {
             "name": {
@@ -5275,8 +5275,8 @@
               "en": "Strait"
             },
             "description": {
-              "ru": "Пролив, через который шёл корабль с сокровищами некоего принца. Kunkka как-то добыл с него церемониальную рапиру.",
-              "en": "A strait once crossed by a prince's treasure ship. Somehow Kunkka relieved it of a ceremonial rapier."
+              "ru": "Пролив, через который шёл корабль с сокровищами некоего принца. С него каким-то образом исчезла церемониальная рапира.",
+              "en": "A strait once crossed by a prince's treasure ship. Somehow it was relieved of a ceremonial rapier."
             }
           },
           "pos": [
@@ -5489,8 +5489,8 @@
               "en": "Island"
             },
             "description": {
-              "ru": "Большой остров, знаменитый ядовитыми джунглями. Отсюда родом зачарованное манго, а туристы, говорят, приезжают сюда охотно. Snapfire бывала здесь и мечтает вернуться.",
-              "en": "A large island famous for its venomous jungle. The Enchanted Mango comes from here, and visitors are said to flock to it anyway. Snapfire has been and would love to go back."
+              "ru": "Большой остров, знаменитый ядовитыми джунглями. Отсюда родом зачарованное манго, а туристы, говорят, приезжают сюда охотно.",
+              "en": "A large island famous for its venomous jungle. The Enchanted Mango comes from here, and visitors are said to flock to it anyway."
             }
           },
           "pos": [
@@ -6791,8 +6791,8 @@
               "en": "Kingdom"
             },
             "description": {
-              "ru": "Королевство на Окраинах, к югу от Томо'кана. Получив порох, который продала им Snapfire, его жители вырубили окрестный лес ради дерева и руды, а лесной народ, к которому принадлежит Hoodwink, загнали в трудовые лагеря.",
-              "en": "A kingdom in the Outlands, south of Tomo'kan. Once Snapfire sold them gunpowder, its people felled the surrounding forest for timber and ore and drove Hoodwink's folk into labor camps."
+              "ru": "Королевство на Окраинах, к югу от Томо'кана. Раздобыв порох, его жители вырубили окрестный лес ради дерева и руды, а лесной народ, к которому принадлежит Hoodwink, загнали в трудовые лагеря.",
+              "en": "A kingdom in the Outlands, south of Tomo'kan. Once it had gunpowder, its people felled the surrounding forest for timber and ore and drove Hoodwink's folk into labor camps."
             }
           },
           "pos": [
@@ -6866,8 +6866,8 @@
               "en": "Marsh"
             },
             "description": {
-              "ru": "Болото с ядовитой водой у самого порога Окраин. Snapfire однажды ушла через него от погони.",
-              "en": "A marsh of poisoned water at the threshold of the Outlands. Snapfire once fled through it to shake off her pursuers."
+              "ru": "Болото с ядовитой водой у самого порога Окраин.",
+              "en": "A marsh of poisoned water at the threshold of the Outlands."
             }
           },
           "pos": [
@@ -7081,7 +7081,7 @@
           "slug": "levinthal",
           "capital": false,
           "placement": "ours",
-          "significance": "minor",
+          "significance": "event",
           "note": "возможно, то же, что Gleaming City",
           "text": {
             "name": {
@@ -7305,7 +7305,7 @@
           "slug": "yoskreth",
           "capital": false,
           "placement": "ours",
-          "significance": "minor",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Йоскрет",
@@ -7825,7 +7825,7 @@
           "slug": "the-emerald-abyss",
           "capital": false,
           "placement": "lore",
-          "significance": "minor",
+          "significance": "event",
           "text": {
             "name": {
               "ru": "Изумрудная бездна",
@@ -8213,6 +8213,16 @@
           "source": "bio",
           "note": "Монастырь в горах, где он провёл юность и откуда бежал после гибели монахов.",
           "doubt": "Биография не говорит, что он родился или вырос там: он пришёл пилигримом и не был принят в монастырь. Выбрано origin, потому что это единственное место его жизни до бегства; инфобокс Liquipedia тоже называет Turstarkuri родиной. Альтернатива — service (учился как послушник)."
+        },
+        {
+          "regionId": "middle-kingdoms",
+          "placeSlug": "yoskreth",
+          "event": "battle",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Anti-Mage/Lore",
+          "note": "Лор-страница: Anti-Mage одолел чародея Sahsk, мучившего Yoskreth, и получил награду от правителя.",
+          "doubt": "Название места стоит в описании набора самого героя на лор-странице; в биографии его нет."
         }
       ],
       "relations": [
@@ -8977,6 +8987,16 @@
           "source": "bio",
           "note": "тринадцать лет учёбы в школе отца, затем уход из цитадели",
           "doubt": "в биографии место учёбы не названо прямо; Vigil Keep назван в финале, когда герой уходит оттуда"
+        },
+        {
+          "regionId": "wailing-mountains",
+          "placeSlug": "feral-road",
+          "event": "battle",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Sven/Lore",
+          "note": "Лор-страница: Sven насадил напавшего огра на шипы своих доспехов на Feral Road.",
+          "doubt": "Название места стоит в описании набора самого героя на лор-странице; в биографии его нет."
         }
       ],
       "path": [
@@ -9125,6 +9145,16 @@
           "event": "origin",
           "source": "bio",
           "note": "Биография начинается с западных лесов и называет героиню одной из их тайн, то есть родом оттуда."
+        },
+        {
+          "regionId": "icewrack",
+          "placeSlug": "njords-hearth",
+          "event": "visit",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Windranger/Lore",
+          "note": "Поле places инфобокса и описание набора героя: Windranger когда-то спасла лес в Njord's Hearth от неизвестной угрозы.",
+          "doubt": "Название места стоит в описании набора самого героя на лор-странице; в биографии его нет."
         }
       ],
       "relations": [
@@ -9356,6 +9386,16 @@
           "url": "https://liquipedia.net/dota2/Lion/Lore",
           "note": "Lion спустился за предавшим его демоном в ад, убил его и забрал его руку; из ада он вышел преображённым.",
           "doubt": "Биография говорит просто «ад»; название Seven Hells даёт инфобокс лор-страницы."
+        },
+        {
+          "regionId": "the-deep",
+          "placeSlug": "infernal-hollow",
+          "event": "battle",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Lion/Lore",
+          "note": "Лор-страница: Lion спустился в Infernal Hollow, победил демона Buki'vak the Corrupted и забрал его руку для пересадки.",
+          "doubt": "Название места стоит в описании набора самого героя на лор-странице; в биографии его нет."
         }
       ],
       "profile": {
@@ -9990,6 +10030,16 @@
           "url": "https://liquipedia.net/dota2/Wraith_King/Lore",
           "note": "Светящийся трон во дворце, где он правит сейчас",
           "doubt": "название места взято из инфобокса; в биографии сказано только о троне и дворце"
+        },
+        {
+          "regionId": "empire-of-bone",
+          "placeSlug": "levinthal",
+          "event": "battle",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Wraith_King/Lore",
+          "note": "Лор-страница: армии Ostarion осаждали город герцога Levinthal; герцог пал в поединке, а его меч достался герою.",
+          "doubt": "Название места стоит в описании набора самого героя на лор-странице; в биографии его нет."
         }
       ],
       "profile": {
@@ -10087,7 +10137,7 @@
           "via": "lore",
           "url": "https://liquipedia.net/dota2/Pugna/Lore",
           "note": "Биография Viper и лор-страница: уже старым Pugna поймал нетопыря Viper в пещерах Nether Reaches и держал его в клетке как питомца и подопытного.",
-          "doubt": "Viper сбежал и поклялся отомстить, так что теперь он скорее враг; Viper — герой будущей партии, обратная запись не делается."
+          "doubt": "Viper сбежал и поклялся отомстить, так что теперь он скорее враг; обратная запись в viper.json добавлена (#150)."
         }
       ],
       "profile": {
@@ -11015,6 +11065,16 @@
           "event": "home",
           "source": "bio",
           "note": "Родная стихийная реальность Баратрума, откуда он пришёл в материальный мир."
+        },
+        {
+          "regionId": "heavens",
+          "placeSlug": "ultoria",
+          "event": "battle",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Spirit_Breaker/Lore",
+          "note": "Описание набора Echoes of Ultoria: Barathrum вмешался в большую битву на этой планете по приказу хозяина.",
+          "doubt": "Название места стоит в описании набора самого героя на лор-странице; в биографии его нет."
         }
       ],
       "profile": {
@@ -11721,6 +11781,26 @@
           "event": "journey",
           "source": "bio",
           "note": "Скачет по всем мирам одновременно, поэтому связь с регионом планов, а не с одним местом."
+        },
+        {
+          "regionId": "heavens",
+          "placeSlug": "the-sun",
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Keeper_of_the_Light/Lore",
+          "note": "Лор-страница: Ezalor зажёг множество звёзд; в биографиях Dawnbreaker и Phoenix первое солнце названо светом Keeper.",
+          "doubt": "Герой не живёт на Солнце, он лишь создатель света; в его собственной биографии Солнце не названо."
+        },
+        {
+          "regionId": "planes",
+          "placeSlug": "lights-keep",
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Keeper_of_the_Light/Lore",
+          "note": "Инфобокс называет Light's Keep местом его происхождения.",
+          "doubt": "Основание — только реплики озвучки и инфобокс; в тексте биографии места нет."
         }
       ],
       "path": [
@@ -12143,6 +12223,16 @@
           "event": "visit",
           "source": "bio",
           "note": "Дрался в придорожных тавернах между Slom и Elze; что это его дом, источники не говорят."
+        },
+        {
+          "regionId": "icewrack",
+          "placeSlug": "wolfsden-tavern",
+          "event": "battle",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Bristleback/Lore",
+          "note": "Биография Tusk зовёт его противника по драке в таверне «Свирепым драчуном» (Bristled Bruiser); лор-страница Bristleback отождествляет это прозвище с ним.",
+          "doubt": "Таверна названа в биографии Tusk, а не в биографии Bristleback; тот выступает там под прозвищем."
         }
       ],
       "relations": [
@@ -12206,6 +12296,16 @@
           "event": "visit",
           "source": "comic:frostreach-the-dragon",
           "note": "Сидит в таверне Frostreach и подсказывает, куда ушёл разыскиваемый человек."
+        },
+        {
+          "regionId": "icewrack",
+          "placeSlug": "white-fields",
+          "event": "battle",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Tusk/Lore",
+          "note": "Поле places инфобокса и описание набора героя: дикая выходка Tusk положила конец большой драке на этих полях.",
+          "doubt": "Название места стоит в описании набора самого героя на лор-странице; в биографии его нет."
         }
       ],
       "relations": [
@@ -12554,6 +12654,16 @@
           "event": "home",
           "source": "bio",
           "note": "обсидиановый город под магматическими полями — владения Vrogros и его Орды; рождение там биография не называет"
+        },
+        {
+          "regionId": "underdark",
+          "placeSlug": "the-emerald-abyss",
+          "event": "battle",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Underlord/Lore",
+          "note": "Лор-страница: Vrogros взял клинок Emerald Conquest трофеем после боя за средние глубины Изумрудной бездны.",
+          "doubt": "Название места стоит в описании набора самого героя на лор-странице; в биографии его нет."
         }
       ],
       "profile": {
@@ -13173,6 +13283,26 @@
           "via": "infobox",
           "url": "https://liquipedia.net/dota2/Void_Spirit/Lore",
           "doubt": "Только поле places инфобокса, без текстового упоминания рядом с героем."
+        },
+        {
+          "regionId": "planes",
+          "placeSlug": "the-void",
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Void_Spirit/Lore",
+          "note": "Инфобокс называет The Void его происхождением и местом.",
+          "doubt": "Основание — монолог озвучки и инфобокс; биография говорит лишь о «непостижимой точке обзора»."
+        },
+        {
+          "regionId": "planes",
+          "placeSlug": "astral-plane",
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Void_Spirit/Lore",
+          "note": "Лор-страница и инфобокс: герой рвёт пространство Astral Plane, чтобы пройти сквозь него.",
+          "doubt": "Описание опирается на способности и инфобокс; биография Astral Plane не называет."
         }
       ],
       "profile": {

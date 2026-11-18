@@ -61,7 +61,6 @@
     }
   },
   "unconfirmed": [
-    "Winter Wyvern (ally, Icewrack): связь записана в winter_wyvern.json по лор-странице Winter Wyvern; в кэше Vengeful Spirit (биография, лор-страница) ни Winter Wyvern, ни Icewrack не упомянуты, поэтому обратная запись не добавлена. Не подтверждено со стороны Vengeful Spirit.",
     "Puck (восхищение крыльями): единственная опора — реплика озвучки Puck (vo_puck_puck_rival_07), связь не записана.",
     "Imperia (младшая сестра, infobox family): Imperia нет в heroes.json, поэтому связь героев не записана; сестра из биографии — безымянная, личность определена только по инфобоксу Crownfall.",
     "Phantom Assassin (сестра в Trivia): заметка о DotA, которая прямо отвергнута для Dota 2 на той же странице; связь не записана.",

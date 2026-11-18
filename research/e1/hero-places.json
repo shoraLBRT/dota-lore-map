@@ -89,6 +89,15 @@
           "source": "bio",
           "note": "Монастырь в горах, где он провёл юность и откуда бежал после гибели монахов.",
           "doubt": "Биография не говорит, что он родился или вырос там: он пришёл пилигримом и не был принят в монастырь. Выбрано origin, потому что это единственное место его жизни до бегства; инфобокс Liquipedia тоже называет Turstarkuri родиной. Альтернатива — service (учился как послушник)."
+        },
+        {
+          "place": "Yoskreth",
+          "event": "battle",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Anti-Mage/Lore",
+          "note": "Лор-страница: Anti-Mage одолел чародея Sahsk, мучившего Yoskreth, и получил награду от правителя.",
+          "doubt": "Название места стоит в описании набора самого героя на лор-странице; в биографии его нет."
         }
       ],
       "relations": [
@@ -354,6 +363,15 @@
           "event": "visit",
           "source": "bio",
           "note": "Дрался в придорожных тавернах между Slom и Elze; что это его дом, источники не говорят."
+        },
+        {
+          "place": "Wolfsden Tavern",
+          "event": "battle",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Bristleback/Lore",
+          "note": "Биография Tusk зовёт его противника по драке в таверне «Свирепым драчуном» (Bristled Bruiser); лор-страница Bristleback отождествляет это прозвище с ним.",
+          "doubt": "Таверна названа в биографии Tusk, а не в биографии Bristleback; тот выступает там под прозвищем."
         }
       ],
       "relations": [
@@ -1504,6 +1522,24 @@
           "event": "journey",
           "source": "bio",
           "note": "Скачет по всем мирам одновременно, поэтому связь с регионом планов, а не с одним местом."
+        },
+        {
+          "place": "The Sun",
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Keeper_of_the_Light/Lore",
+          "note": "Лор-страница: Ezalor зажёг множество звёзд; в биографиях Dawnbreaker и Phoenix первое солнце названо светом Keeper.",
+          "doubt": "Герой не живёт на Солнце, он лишь создатель света; в его собственной биографии Солнце не названо."
+        },
+        {
+          "place": "Light's Keep",
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Keeper_of_the_Light/Lore",
+          "note": "Инфобокс называет Light's Keep местом его происхождения.",
+          "doubt": "Основание — только реплики озвучки и инфобокс; в тексте биографии места нет."
         }
       ],
       "path": [
@@ -1846,6 +1882,15 @@
           "url": "https://liquipedia.net/dota2/Lion/Lore",
           "note": "Lion спустился за предавшим его демоном в ад, убил его и забрал его руку; из ада он вышел преображённым.",
           "doubt": "Биография говорит просто «ад»; название Seven Hells даёт инфобокс лор-страницы."
+        },
+        {
+          "place": "Infernal Hollow",
+          "event": "battle",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Lion/Lore",
+          "note": "Лор-страница: Lion спустился в Infernal Hollow, победил демона Buki'vak the Corrupted и забрал его руку для пересадки.",
+          "doubt": "Название места стоит в описании набора самого героя на лор-странице; в биографии его нет."
         }
       ],
       "profile": {
@@ -2851,7 +2896,7 @@
           "via": "lore",
           "url": "https://liquipedia.net/dota2/Pugna/Lore",
           "note": "Биография Viper и лор-страница: уже старым Pugna поймал нетопыря Viper в пещерах Nether Reaches и держал его в клетке как питомца и подопытного.",
-          "doubt": "Viper сбежал и поклялся отомстить, так что теперь он скорее враг; Viper — герой будущей партии, обратная запись не делается."
+          "doubt": "Viper сбежал и поклялся отомстить, так что теперь он скорее враг; обратная запись в viper.json добавлена (#150)."
         }
       ],
       "profile": {
@@ -3312,6 +3357,15 @@
           "event": "home",
           "source": "bio",
           "note": "Родная стихийная реальность Баратрума, откуда он пришёл в материальный мир."
+        },
+        {
+          "place": "Ultoria",
+          "event": "battle",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Spirit_Breaker/Lore",
+          "note": "Описание набора Echoes of Ultoria: Barathrum вмешался в большую битву на этой планете по приказу хозяина.",
+          "doubt": "Название места стоит в описании набора самого героя на лор-странице; в биографии его нет."
         }
       ],
       "profile": {
@@ -3366,6 +3420,15 @@
           "source": "bio",
           "note": "тринадцать лет учёбы в школе отца, затем уход из цитадели",
           "doubt": "в биографии место учёбы не названо прямо; Vigil Keep назван в финале, когда герой уходит оттуда"
+        },
+        {
+          "place": "Feral Road",
+          "event": "battle",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Sven/Lore",
+          "note": "Лор-страница: Sven насадил напавшего огра на шипы своих доспехов на Feral Road.",
+          "doubt": "Название места стоит в описании набора самого героя на лор-странице; в биографии его нет."
         }
       ],
       "path": [
@@ -3659,6 +3722,15 @@
           "event": "visit",
           "source": "comic:frostreach-the-dragon",
           "note": "Сидит в таверне Frostreach и подсказывает, куда ушёл разыскиваемый человек."
+        },
+        {
+          "place": "White Fields",
+          "event": "battle",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Tusk/Lore",
+          "note": "Поле places инфобокса и описание набора героя: дикая выходка Tusk положила конец большой драке на этих полях.",
+          "doubt": "Название места стоит в описании набора самого героя на лор-странице; в биографии его нет."
         }
       ],
       "relations": [
@@ -3686,6 +3758,15 @@
           "event": "home",
           "source": "bio",
           "note": "обсидиановый город под магматическими полями — владения Vrogros и его Орды; рождение там биография не называет"
+        },
+        {
+          "place": "The Emerald Abyss",
+          "event": "battle",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Underlord/Lore",
+          "note": "Лор-страница: Vrogros взял клинок Emerald Conquest трофеем после боя за средние глубины Изумрудной бездны.",
+          "doubt": "Название места стоит в описании набора самого героя на лор-странице; в биографии его нет."
         }
       ],
       "profile": {
@@ -3897,6 +3978,24 @@
           "via": "infobox",
           "url": "https://liquipedia.net/dota2/Void_Spirit/Lore",
           "doubt": "Только поле places инфобокса, без текстового упоминания рядом с героем."
+        },
+        {
+          "place": "The Void",
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Void_Spirit/Lore",
+          "note": "Инфобокс называет The Void его происхождением и местом.",
+          "doubt": "Основание — монолог озвучки и инфобокс; биография говорит лишь о «непостижимой точке обзора»."
+        },
+        {
+          "place": "Astral Plane",
+          "event": "mention",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Void_Spirit/Lore",
+          "note": "Лор-страница и инфобокс: герой рвёт пространство Astral Plane, чтобы пройти сквозь него.",
+          "doubt": "Описание опирается на способности и инфобокс; биография Astral Plane не называет."
         }
       ],
       "profile": {
@@ -3960,6 +4059,15 @@
           "event": "origin",
           "source": "bio",
           "note": "Биография начинается с западных лесов и называет героиню одной из их тайн, то есть родом оттуда."
+        },
+        {
+          "place": "Njord's Hearth",
+          "event": "visit",
+          "source": "liquipedia",
+          "via": "infobox",
+          "url": "https://liquipedia.net/dota2/Windranger/Lore",
+          "note": "Поле places инфобокса и описание набора героя: Windranger когда-то спасла лес в Njord's Hearth от неизвестной угрозы.",
+          "doubt": "Название места стоит в описании набора самого героя на лор-странице; в биографии его нет."
         }
       ],
       "relations": [
@@ -4056,6 +4164,15 @@
           "url": "https://liquipedia.net/dota2/Wraith_King/Lore",
           "note": "Светящийся трон во дворце, где он правит сейчас",
           "doubt": "название места взято из инфобокса; в биографии сказано только о троне и дворце"
+        },
+        {
+          "place": "Levinthal",
+          "event": "battle",
+          "source": "liquipedia",
+          "via": "lore",
+          "url": "https://liquipedia.net/dota2/Wraith_King/Lore",
+          "note": "Лор-страница: армии Ostarion осаждали город герцога Levinthal; герцог пал в поединке, а его меч достался герою.",
+          "doubt": "Название места стоит в описании набора самого героя на лор-странице; в биографии его нет."
         }
       ],
       "profile": {

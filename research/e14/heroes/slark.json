@@ -47,7 +47,7 @@
     "Тип связи с Pudge, Drow Ranger и Naga Siren не назван в источниках; записан ally условно (см. doubt у каждой связи).",
     "Dark Ones, Deep Ones, Meranths, Slithereen, Daggerfish, Umizar, Glow Conch и Skadi — фракции, расы, виды и боги, не места; на карту не добавлены.",
     "Миссия в Dota 2 X Monster Hunter (Hero Atlas) и Slark/Old Abilities не читались, поскольку биография и лор-страница их не пересказывают.",
-    "Drow Ranger: только поле heroes инфобокса и «возможно» в тексте, тип не назван. Запись slark в drow_ranger.json остаётся односторонней.",
+    "Drow Ranger: только поле heroes инфобокса и «возможно» в тексте, тип связи не назван; запись снята и в drow_ranger.json (#150).",
     "Pudge: только поле heroes инфобокса, тип связи не назван; связь не записана.",
     "Naga Siren: «знает Slithice» — знакомство, тип связи не выводится; связь не записана."
   ]

@@ -52,8 +52,8 @@
         "en": "Kingdom"
       },
       "description": {
-        "ru": "Королевство на Окраинах, к югу от Томо'кана. Получив порох, который продала им Snapfire, его жители вырубили окрестный лес ради дерева и руды, а лесной народ, к которому принадлежит Hoodwink, загнали в трудовые лагеря.",
-        "en": "A kingdom in the Outlands, south of Tomo'kan. Once Snapfire sold them gunpowder, its people felled the surrounding forest for timber and ore and drove Hoodwink's folk into labor camps."
+        "ru": "Королевство на Окраинах, к югу от Томо'кана. Раздобыв порох, его жители вырубили окрестный лес ради дерева и руды, а лесной народ, к которому принадлежит Hoodwink, загнали в трудовые лагеря.",
+        "en": "A kingdom in the Outlands, south of Tomo'kan. Once it had gunpowder, its people felled the surrounding forest for timber and ore and drove Hoodwink's folk into labor camps."
       }
     },
     "Outlands": {
@@ -94,8 +94,8 @@
         "en": "Marsh"
       },
       "description": {
-        "ru": "Болото с ядовитой водой у самого порога Окраин. Snapfire однажды ушла через него от погони.",
-        "en": "A marsh of poisoned water at the threshold of the Outlands. Snapfire once fled through it to shake off her pursuers."
+        "ru": "Болото с ядовитой водой у самого порога Окраин.",
+        "en": "A marsh of poisoned water at the threshold of the Outlands."
       }
     },
     "Praxa'cia": {
