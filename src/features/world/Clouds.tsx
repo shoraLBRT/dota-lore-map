@@ -4,8 +4,8 @@ import styles from './Clouds.module.css';
 
 interface Props {
   clouds: Cloud[];
-  /** veil — пелена интро; drift — дрейф по краям мира (A7). */
-  mode: 'veil' | 'drift';
+  /** veil — пелена интро (облака над миром — MapAtmosphere, #167). */
+  mode: 'veil';
   /** A1: облака разъезжаются к краям и тают. */
   parting?: boolean;
   hidden?: boolean;
@@ -29,8 +29,6 @@ export function Clouds({ clouds, mode, parting = false, hidden = false, classNam
           '--w': c.w,
           '--dx': dx,
           '--dy': dy,
-          // Сдвиг фазы дрейфа, чтобы облака одного слоя не двигались строем.
-          '--phase': `${-(i * 7) % 40}s`,
         };
         return <span key={i} className={`${styles.cloud} ${styles[`layer${c.layer}`]}`} style={style} />;
       })}

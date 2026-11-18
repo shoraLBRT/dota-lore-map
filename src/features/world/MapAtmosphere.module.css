@@ -1,0 +1,30 @@
+/* Постэффекты карты (#167, ARCHITECTURE A9): холст облаков, тумана и свечения, поверх — зерно. */
+.atmosphere {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Зерно: статичный шум, сила (--grain, 0…1) растёт с приближением и прячет мягкость картинки вблизи. */
+.grain {
+  position: absolute;
+  inset: 0;
+  opacity: calc(var(--grain, 0) * var(--atmo-grain));
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+
+/* Телефон — облегчённый вариант: без зерна (наложение во весь кадр на каждом кадре дорого). */
+@media (max-width: 767px) {
+  .grain {
+    display: none;
+  }
+}

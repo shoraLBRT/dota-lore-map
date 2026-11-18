@@ -1,4 +1,4 @@
-/* Облака (SPEC §7.1 A1, A7; ARCHITECTURE A9). Положение — через --x/--y/--w из clouds.ts. */
+/* Пелена интро (SPEC §7.1 A1; ARCHITECTURE A9). Положение — через --x/--y/--w из clouds.ts. */
 .clouds {
   position: absolute;
   inset: 0;
@@ -28,23 +28,17 @@
   will-change: transform;
 }
 
-/* Параллакс: ближний слой крупнее, плотнее и движется быстрее и дальше. */
+/* Ближний слой плотнее. */
 .layer1 {
   --cloud-opacity: 0.35;
-  --drift: 1.5vw;
-  --drift-time: 84s;
 }
 
 .layer2 {
   --cloud-opacity: 0.5;
-  --drift: 2.5vw;
-  --drift-time: 64s;
 }
 
 .layer3 {
   --cloud-opacity: 0.65;
-  --drift: 4vw;
-  --drift-time: 48s;
 }
 
 /* Интро: пелена плотнее. */
@@ -66,49 +60,8 @@
   opacity: 0;
 }
 
-/* Края мира поверх арта (#112): облака в тон ночному небу рисунка и реже, чем пелена. */
-.drift .cloud {
-  --cloud: var(--cloud-edge);
-  --cloud-shade: var(--cloud-edge-shade);
-}
-
-.drift .layer1 {
-  --cloud-opacity: 0.25;
-}
-
-.drift .layer2 {
-  --cloud-opacity: 0.35;
-}
-
-.drift .layer3 {
-  --cloud-opacity: 0.45;
-}
-
-/* A7: медленный дрейф по кругу ~60 с. */
-.drift .cloud {
-  animation: drift var(--drift-time) ease-in-out var(--phase) infinite alternate;
-}
-
-@keyframes drift {
-  from {
-    transform: translate(calc(var(--drift) * -1), 0);
-  }
-
-  50% {
-    transform: translate(0, calc(var(--drift) * 0.25));
-  }
-
-  to {
-    transform: translate(var(--drift), 0);
-  }
-}
-
-/* SPEC §7.1: при reduced motion дрейф выключен, A1 — только растворение. */
+/* SPEC §7.1: при reduced motion A1 — только растворение. */
 @media (prefers-reduced-motion: reduce) {
-  .drift .cloud {
-    animation: none;
-  }
-
   .parting .cloud {
     transform: none;
   }
