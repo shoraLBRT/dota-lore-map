@@ -92,13 +92,14 @@
 /* Бегущая точка: одна «капля» штриха бежит по шагу, когда он прорисован, с паузой между пробегами. */
 .runner {
   fill: none;
-  stroke: var(--hl-glow);
+  stroke: color-mix(in srgb, var(--hl-glow) 35%, #fff);
   stroke-width: var(--run-w);
   stroke-linecap: round;
-  stroke-dasharray: 0 var(--len2);
+  /* pathLength = 100 (Threads.tsx): ключевые кадры без var() — с ним Chrome не интерполирует, а прыгает. */
+  stroke-dasharray: 0 200;
   stroke-dashoffset: 0;
   opacity: 0;
-  filter: drop-shadow(0 0 3px var(--hl-glow));
+  filter: drop-shadow(0 0 2px var(--hl-glow)) drop-shadow(0 0 6px var(--hl));
   animation:
     thread-run 3.6s var(--ease-in-out) calc(var(--dur-thread) * (var(--d) + var(--s)) + 300ms) infinite,
     thread-run-fade 3.6s linear calc(var(--dur-thread) * (var(--d) + var(--s)) + 300ms) infinite;
@@ -130,7 +131,7 @@
 
   75%,
   100% {
-    stroke-dashoffset: calc(var(--len) * -1);
+    stroke-dashoffset: -100;
   }
 }
 

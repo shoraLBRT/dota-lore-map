@@ -101,13 +101,12 @@ function NewStep({ step, i, a, timing, scale, m, badgeT, badge, maskId, variant 
     '--d': timing.delay.toFixed(3),
     '--s': timing.dur.toFixed(3),
     '--len': reveal.length.toFixed(1),
-    '--len2': (reveal.length * 2 + 10).toFixed(1),
     '--w': px(2.2).toFixed(2),
     '--dot': px(1.8).toFixed(2),
     '--gap': px(5.5).toFixed(2),
     '--dash': px(6).toFixed(2),
     '--dash-gap': px(4.5).toFixed(2),
-    '--run-w': px(5 * (m === 1 ? 1 : 0.8)).toFixed(2),
+    '--run-w': px(12 * (m === 1 ? 1 : 0.75)).toFixed(2),
     '--i': i,
   } as CSSProperties;
   const [tx, ty] = a.stage(t1);
@@ -170,7 +169,7 @@ function NewStep({ step, i, a, timing, scale, m, badgeT, badge, maskId, variant 
         <path className={styles.reveal} d={reveal.d} style={{ strokeWidth: px(16) }} />
       </mask>
       <g mask={`url(#${maskId})`}>{body}</g>
-      {path && <path className={styles.runner} d={reveal.d} data-runner="" />}
+      {path && <path className={styles.runner} d={reveal.d} pathLength={100} data-runner="" />}
       {tip && (
         <g transform={`translate(${fixed(tx)} ${fixed(ty)}) rotate(${tipAngle}) scale(${(scale * tipM).toFixed(4)})`}>
           <g className={[styles.tip, styles.pop].join(' ')} data-arrow="">
