@@ -48,6 +48,7 @@
   paint-order: stroke;
   stroke: var(--map-ink);
   stroke-width: calc(3px * var(--map-text, 1));
+  filter: var(--map-halo-filter);
   transform-box: fill-box;
   transform-origin: center;
   transition:
@@ -59,12 +60,12 @@
 /* Ярус — как регион, но с особым свечением: небесным или огненным (SPEC §6.3). */
 .tierLabel {
   fill: var(--hl);
-  filter: drop-shadow(0 0 6px var(--hl-glow));
+  filter: var(--map-halo-filter) drop-shadow(0 0 6px var(--hl-glow));
 }
 
 .label.lit {
   transform: scale(1.05);
-  filter: drop-shadow(0 0 8px var(--hl)) drop-shadow(0 0 2px var(--hl-glow));
+  filter: var(--map-halo-filter) drop-shadow(0 0 8px var(--hl)) drop-shadow(0 0 2px var(--hl-glow));
 }
 
 /* S2/S3 (SPEC §5.4): соседние регионы затемнены и не кликаются. */
@@ -107,7 +108,7 @@
 }
 
 .label.heroRegion {
-  filter: drop-shadow(0 0 8px var(--hl)) drop-shadow(0 0 2px var(--hl-glow));
+  filter: var(--map-halo-filter) drop-shadow(0 0 8px var(--hl)) drop-shadow(0 0 2px var(--hl-glow));
 }
 
 /* Регионы без геометрии — списком кнопок. */
@@ -139,4 +140,9 @@
 
 .region.onArt.active {
   stroke-opacity: 1;
+}
+
+/* Подсветка S1h поверх арта (#112): заливка вдвое прозрачнее токена, чтобы рисунок под ней оставался виден. */
+.tint.onArt {
+  fill-opacity: 0.5;
 }

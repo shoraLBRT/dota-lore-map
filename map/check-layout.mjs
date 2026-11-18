@@ -4,6 +4,7 @@
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { regionCamera } from './cameras.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const layout = JSON.parse(readFileSync(join(ROOT, 'map/layout.json'), 'utf8'));
@@ -105,6 +106,9 @@ for (const r of regions) {
   else {
     if (!inUnit([c.x, c.y])) err(`регион ${r.id}: camera вне [0, 1]`);
     if (c.zoom < 1 || c.zoom > 8) err(`регион ${r.id}: camera.zoom ${c.zoom} вне [1, 8]`);
+    const rule = regionCamera(poly);
+    if (rule.x !== c.x || rule.y !== c.y || rule.zoom !== c.zoom)
+      err(`регион ${r.id}: camera не по правилу кадра (${JSON.stringify(rule)}) — node map/cameras.mjs`);
   }
 }
 

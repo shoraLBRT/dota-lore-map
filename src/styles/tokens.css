@@ -35,6 +35,9 @@
 
   /* Карта: обводка подписей, виньетка, облака (SPEC §5.2, §5.3, §7.1 A1/A7) */
   --map-ink: rgb(0 0 0 / 0.65);
+  /* Мягкая подложка-свечение под названиями регионов: читаются на снегу и облаках арта (#112). */
+  --map-halo: rgb(6 7 10 / 0.9);
+  --map-halo-filter: drop-shadow(0 0 1px var(--map-halo)) drop-shadow(0 0 3px var(--map-halo)) drop-shadow(0 0 8px var(--map-halo)) drop-shadow(0 0 14px var(--map-halo));
   --vignette: rgb(6 7 10 / 0.9);
   --veil: rgb(11 13 17 / 0.45);
   --veil-strong: rgb(6 7 10 / 0.88);
@@ -53,6 +56,9 @@
   --particle-sand: rgb(214 182 122);
   --cloud: rgb(206 212 222 / 0.9);
   --cloud-shade: rgb(96 106 122 / 0.55);
+  /* Облака по краям мира — в тон ночному небу арта (#112), пелена интро остаётся светлой. */
+  --cloud-edge: rgb(132 146 166 / 0.8);
+  --cloud-edge-shade: rgb(24 32 46 / 0.5);
   --map-blur: 6px;
 
   /* Текст: тёплый светлый → приглушённый → служебный.

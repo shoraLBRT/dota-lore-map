@@ -58,8 +58,6 @@ export const MOBILE_QUERY = '(max-width: 767px)';
 
 /** Камера места: ближе какой доли видимой части к её краю не встаёт выбранное место (#96). */
 const PLACE_MARGIN = 0.2;
-/** Камеры регионов из layout.json — чуть дальше задуманного (отзыв владельца, #165). */
-export const REGION_DISTANCE = 0.85;
 /** Пикселей арта по стороне мира с запасом на приближение: ближе картинка уже расплывается. */
 export const ART_PIXELS = 4096 * 1.5;
 
@@ -82,23 +80,38 @@ export function maxZoom(view: View): number {
 
 /**
  * Камера без пустоты за краем мира (#165): zoom в [1, maxZoom], а центр кадра — с учётом сдвигов `offset`/`offsetY`
- * (cameraTransform) — так, чтобы кадр целиком лежал на картинке. Без измерений — как есть.
+ * (cameraTransform) — так, чтобы **видимая часть** кадра целиком лежала на картинке. Видимая часть — кадр без панели
+ * справа (`view.inset`) и шторки снизу (`view.insetBottom`): под ними мир может кончиться, зато регион у края мира
+ * встаёт в свободную часть, а не под панель (#112). Без измерений — как есть.
  */
 export function clampCamera(camera: Camera, view: View, offset = 0, offsetY = 0): Camera {
   if (!measured(view)) return camera;
   const zoom = Math.min(Math.max(camera.zoom, 1), maxZoom(view));
   const kx = view.layerWidth * zoom;
   const ky = view.layerHeight * zoom;
-  const fit = (c: number, seen: number) => (seen >= 1 ? 0.5 : Math.min(Math.max(c, seen / 2), 1 - seen / 2));
-  const cx = fit(camera.x + offset / kx, view.width / kx);
-  const cy = fit(camera.y + offsetY / ky, view.height / ky);
+  // c — точка мира в центре всего кадра (size px); видимая часть — [0, seen] px от левого (верхнего) края.
+  const fit = (c: number, size: number, seen: number, k: number) => {
+    const before = size / 2 / k;
+    const after = (seen - size / 2) / k;
+    if (seen / k >= 1) return 0.5 + (before - after) / 2;
+    return Math.min(Math.max(c, before), 1 - after);
+  };
+  const seenX = Math.max(view.width - Math.max(view.inset, 0), 1);
+  const seenY = Math.max(view.height - Math.max(view.insetBottom ?? 0, 0), 1);
+  const cx = fit(camera.x + offset / kx, view.width, seenX, kx);
+  const cy = fit(camera.y + offsetY / ky, view.height, seenY, ky);
   return { x: cx - offset / kx, y: cy - offsetY / ky, zoom };
+}
+
+/** Кадр без панели и шторки: камера держит на картинке его целиком. */
+export function wholeFrame(view: View): View {
+  return { ...view, inset: 0, insetBottom: 0 };
 }
 
 /**
  * Камера с учётом панели: рамка региона (1/zoom мира, вписанного в кадр) должна поместиться в свободную часть кадра,
- * поэтому zoom уменьшается в (ширина − панель) / размер вписанного мира раз; больше задуманного не приближаем,
- * камеры регионов — дальше в REGION_DISTANCE раз. Камера мира (zoom 1) — весь кадр.
+ * поэтому zoom уменьшается в (ширина − панель) / размер вписанного мира раз; больше задуманного не приближаем
+ * (правило кадра — map/cameras.mjs, #112). Камера мира (zoom 1) — весь кадр.
  * `keep` — рамка региона и точка места (доли мира) у камеры места: центр сдвигается не дальше, чем нужно, чтобы регион
  * остался в видимой части кадра, а если не помещается — вылезал из неё как можно меньше, не уводя к краю само место (#96).
  * В конце камера прижимается к картинке (`clampCamera`): за краем мира пустоты нет.
@@ -119,7 +132,7 @@ export function frameCamera(
   const zoom =
     camera.zoom <= 1
       ? 1
-      : Math.max(1, camera.zoom * REGION_DISTANCE * contain * Math.min(1, free / fitted, freeY / fitted));
+      : Math.max(1, camera.zoom * contain * Math.min(1, free / fitted, freeY / fitted));
   // Рамка региона держит центр так, чтобы за видимую часть (`size` — её доля мира) уходило не больше, чем нужно:
   // помещается — целиком в кадре; не помещается — вылезает поровну за оба края, но само место остаётся
   // не ближе PLACE_MARGIN видимой части к её краю (рядом с ним — подпись).
@@ -137,7 +150,8 @@ export function frameCamera(
   const offset = inset / 2;
   const offsetY = bottom / 2;
   return {
-    camera: clampCamera({ x, y, zoom }, view, offset, offsetY),
+    // Камера мира (#97) держит на картинке весь кадр, и под панелью — тоже арт; кадр региона — только видимую часть.
+    camera: clampCamera({ x, y, zoom }, camera.zoom > 1 ? view : wholeFrame(view), offset, offsetY),
     offset,
     ...(bottom > 0 ? { offsetY } : {}),
   };
