@@ -68,6 +68,15 @@
   transform: translateY(-48px);
 }
 
+/* SPEC §7.5: уходят каскадом, а не разом — текст, затем подвал, затем верхняя строка. */
+.leaving .footer {
+  transition-delay: calc(var(--dur-stagger) * 2);
+}
+
+.leaving .top {
+  transition-delay: calc(var(--dur-stagger) * 4);
+}
+
 .kicker {
   margin: 0;
   color: var(--text-2);

@@ -133,6 +133,8 @@ button:hover {
     --dur-place: 200ms;
     --dur-camera: 200ms;
     --dur-intro: 200ms;
+    --dur-stagger: 0ms;
+    --ease-spring: var(--ease-out);
   }
 
   *,

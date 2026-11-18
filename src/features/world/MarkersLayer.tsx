@@ -116,12 +116,18 @@ export function MarkersLayer({
         >
           <circle className={styles.hit} r={18} />
           {previewed && <circle className={styles.pulse} r={ring} data-pulse="" />}
-          <circle className={styles.ring} r={ring} />
-          {p.capital ? (
-            <polygon className={styles.dot} points={STAR} transform="scale(7)" />
-          ) : (
-            <circle className={styles.dot} r={sig === 'minor' ? 3 : 4} />
-          )}
+          {/* Кольцо с точкой: .pin — мягкое появление с масштабом, .hop — подпрыгивание при наведении (SPEC §7.5).
+              Два слоя, а не один: у каждого своя CSS-анимация transform, и transform-атрибут маркера они не трогают. */}
+          <g className={styles.pin}>
+            <g className={styles.hop}>
+              <circle className={styles.ring} r={ring} />
+              {p.capital ? (
+                <polygon className={styles.dot} points={STAR} transform="scale(7)" />
+              ) : (
+                <circle className={styles.dot} r={sig === 'minor' ? 3 : 4} />
+              )}
+            </g>
+          </g>
           <g className={styles.label}>
             <rect
               className={styles.plate}

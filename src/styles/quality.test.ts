@@ -137,6 +137,42 @@ describe('prefers-reduced-motion (SPEC §7.1, §14)', () => {
   });
 });
 
+describe('правило движения (SPEC §7.5)', () => {
+  // Свойства, анимация которых пересчитывает раскладку на каждом кадре. Двигаем transform, проявляем opacity.
+  const LAYOUT = /^(top|right|bottom|left|inset|width|height|min-width|min-height|max-width|max-height|margin(-\w+)?|padding(-\w+)?|font-size|line-height|letter-spacing|border-width|flex(-basis)?|grid-template-\w+)$/;
+
+  it('переходы и ключевые кадры не анимируют свойства раскладки', () => {
+    const bad: string[] = [];
+    for (const { path, text } of CSS) {
+      const plain = text.replace(/\/\*[\s\S]*?\*\//g, '');
+      for (const m of plain.matchAll(/transition(?:-property)?\s*:\s*([^;]+);/g)) {
+        for (const part of m[1]!.split(',')) {
+          const [prop, ...rest] = part.trim().split(/\s+/);
+          // Нулевая длительность — скачок по задержке, а не анимация (поле шторки, Sheet.module.css).
+          if (prop && LAYOUT.test(prop) && rest[0] !== '0s') bad.push(`${path}: transition ${prop}`);
+        }
+      }
+      for (const m of plain.matchAll(/@keyframes\s+([\w-]+)\s*\{([\s\S]*?)\n\}/g)) {
+        for (const d of m[2]!.matchAll(/([\w-]+)\s*:/g)) {
+          if (LAYOUT.test(d[1]!)) bad.push(`${path}: @keyframes ${m[1]} ${d[1]}`);
+        }
+      }
+    }
+    expect(bad).toEqual([]);
+  });
+
+  it('кривые и шаг каскада — токены', () => {
+    const t = css('styles/tokens.css');
+    for (const token of ['--ease-out', '--ease-in-out', '--ease-spring', '--dur-stagger', '--dur-breathe']) {
+      expect(t).toContain(`${token}:`);
+    }
+    const global = css('styles/global.css');
+    const block = global.slice(global.indexOf('@media (prefers-reduced-motion: reduce)'));
+    expect(block).toContain('--dur-stagger: 0ms');
+    expect(block).toContain('--ease-spring: var(--ease-out)');
+  });
+});
+
 describe('alt у картинок (SPEC §14)', () => {
   it('каждый <img> в разметке — с alt', () => {
     const imgs = TSX.flatMap((f) => [...f.text.matchAll(/<img\b[\s\S]*?\/>/g)].map((m) => ({ path: f.path, tag: m[0] })));

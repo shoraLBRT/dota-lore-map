@@ -1,5 +1,11 @@
-/* Нижняя шторка на телефоне (SPEC §13): высота — --sheet-h при перетаскивании, иначе 30 % или 90 % окна. */
+/* Нижняя шторка на телефоне (SPEC §13): видимая высота — --sheet-h при перетаскивании, иначе 30 % или 90 % окна.
+   Высота блока постоянная (весь экран), шторка выдвигается сдвигом transform — без перерасчёта раскладки
+   на каждом кадре (SPEC §7.5). Невидимая часть снизу — поле margin у рамки, чтобы прокрутка доходила
+   до конца текста над краем экрана; поле меняется скачком: при развороте сразу, при сворачивании — после сдвига. */
 .sheet {
+  --visible: var(--sheet-h, 30dvh);
+  --hidden: 70dvh;
+
   position: fixed;
   right: 0;
   bottom: 0;
@@ -7,19 +13,29 @@
   z-index: 15;
   display: flex;
   flex-direction: column;
-  height: var(--sheet-h, 30vh);
-  height: var(--sheet-h, 30dvh);
-  transition: height var(--dur-panel) var(--ease-out);
+  height: 100vh;
+  height: 100dvh;
+  transform: translateY(calc(100dvh - var(--visible)));
+  transition: transform var(--dur-panel) var(--ease-spring);
   animation: sheet-in var(--dur-panel) var(--ease-out);
 }
 
 .full {
-  height: var(--sheet-h, 90vh);
-  height: var(--sheet-h, 90dvh);
+  --visible: var(--sheet-h, 90dvh);
+  --hidden: 10dvh;
 }
 
+.full .frame {
+  transition-delay: 0s;
+}
+
+/* Тянут пальцем: сдвиг идёт за пальцем без сглаживания, рамка на весь блок — под ней нет пустоты. */
 .dragging {
   transition: none;
+}
+
+.dragging .frame {
+  margin-bottom: 0;
 }
 
 /* Ручка «потянуть»: на всю ширину, чтобы попасть пальцем. */
@@ -57,6 +73,8 @@
 .frame {
   flex: 1 1 auto;
   min-height: 0;
+  margin-bottom: var(--hidden);
+  transition: margin-bottom 0s linear var(--dur-panel);
   clip-path: none;
   filter: none;
 }
@@ -69,7 +87,8 @@
 
 /* SPEC §14: при reduced motion — без сдвигов и масштаба: шторка появляется и меняет высоту без выезда. */
 @media (prefers-reduced-motion: reduce) {
-  .sheet {
+  .sheet,
+  .frame {
     transition: none;
     animation: none;
   }
