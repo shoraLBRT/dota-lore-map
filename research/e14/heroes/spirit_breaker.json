@@ -11,6 +11,15 @@
       "event": "home",
       "source": "bio",
       "note": "Родная стихийная реальность Баратрума, откуда он пришёл в материальный мир."
+    },
+    {
+      "place": "Ultoria",
+      "event": "battle",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Spirit_Breaker/Lore",
+      "note": "Описание набора Echoes of Ultoria: Barathrum вмешался в большую битву на этой планете по приказу хозяина.",
+      "doubt": "Название места стоит в описании набора самого героя на лор-странице; в биографии его нет."
     }
   ],
   "profile": {

@@ -19,6 +19,24 @@
       "via": "infobox",
       "url": "https://liquipedia.net/dota2/Void_Spirit/Lore",
       "doubt": "Только поле places инфобокса, без текстового упоминания рядом с героем."
+    },
+    {
+      "place": "The Void",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Void_Spirit/Lore",
+      "note": "Инфобокс называет The Void его происхождением и местом.",
+      "doubt": "Основание — монолог озвучки и инфобокс; биография говорит лишь о «непостижимой точке обзора»."
+    },
+    {
+      "place": "Astral Plane",
+      "event": "mention",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Void_Spirit/Lore",
+      "note": "Лор-страница и инфобокс: герой рвёт пространство Astral Plane, чтобы пройти сквозь него.",
+      "doubt": "Описание опирается на способности и инфобокс; биография Astral Plane не называет."
     }
   ],
   "profile": {

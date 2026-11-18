@@ -117,7 +117,7 @@ describe('поиск героя и нити', () => {
     expect(getRegion('icewrack')).toBeDefined();
     const tusk = screen.getByRole('button', { name: /^Tusk: открыть профиль/ }).closest('li')!;
     fireEvent.pointerEnter(tusk);
-    expect(threads()).toHaveLength(3);
+    expect(threads()).toHaveLength(4);
     fireEvent.pointerLeave(tusk);
     expect(threads()).toHaveLength(0);
     // У героя с одним местом нитей нет.

@@ -77,9 +77,9 @@
 
 | Ярус | Регион | Сторона | Мест | Героев |
 |---|---|---|---|---|
-| Верхний ярус | Небеса (The Heavens) | нейтрально (ярус) | 6 | 9 |
-| Верхний ярус | Семь планов и Пустота (The Seven Planes and the Void) | нейтрально (ярус) | 17 | 19 |
-| Материк и острова | Айсрак (Icewrack) | Radiant (карта S1) | 12 | 10 |
+| Верхний ярус | Небеса (The Heavens) | нейтрально (ярус) | 6 | 11 |
+| Верхний ярус | Семь планов и Пустота (The Seven Planes and the Void) | нейтрально (ярус) | 17 | 20 |
+| Материк и острова | Айсрак (Icewrack) | Radiant (карта S1) | 12 | 12 |
 | Материк и острова | Земля Сияющих (Land of the Radiant) | Radiant (карта S1) | 8 | 10 |
 | Материк и острова | Лес Найтсильвер (Nightsilver Woods) | Radiant (карта S1) | 3 | 3 |
 | Материк и острова | Скайрат (Skywrath) | Radiant (по схеме E2) | 2 | 5 |
@@ -89,9 +89,9 @@
 | Материк и острова | Хазадальские пустоши (Hazhadal Barrens) | нейтрально (по схеме E2) | 2 | 3 |
 | Материк и острова | Друуд (Druud) | Dire (по схеме E2) | 3 | 4 |
 | Материк и острова | Сверкающая пустошь (Scintillant Waste) | Dire (карта S1) | 9 | 6 |
-| Материк и острова | Стонущие горы (Wailing Mountains) | Dire (карта S1) | 6 | 6 |
+| Материк и острова | Стонущие горы (Wailing Mountains) | Dire (карта S1) | 6 | 7 |
 | Материк и острова | Тенистый берег (Shadeshore) | Dire (по схеме E2) | 5 | 2 |
-| Материк и острова | Глубины (The Deep) | Dire (карта S1) | 7 | 6 |
+| Материк и острова | Глубины (The Deep) | Dire (карта S1) | 7 | 7 |
 | Материк и острова | Кладд и острова (Cladd and the Isles) | Radiant (по схеме E2) | 6 | 2 |
 | Материк и острова | Тропические острова (Tropic Isles) | Dire (по схеме E2) | 7 | 3 |
 | Материк и острова | Западные леса (Western Forests) | Radiant (по схеме E2) | 6 | 5 |
@@ -100,7 +100,7 @@
 | Материк и острова | Феллстрат (Fellstrath) | Dire (по схеме E2) | 6 | 6 |
 | Материк и острова | Томо'кан и Окраины (Tomo'kan and the Outlands) | Dire (по схеме E2) | 6 | 4 |
 | Материк и острова | Империя Костей (Empire of Bone) | Dire (по схеме E2) | 3 | 1 |
-| Материк и острова | Срединные королевства (The Middle Kingdoms) | нейтрально (по схеме E2) | 12 | 12 |
+| Материк и острова | Срединные королевства (The Middle Kingdoms) | нейтрально (по схеме E2) | 12 | 13 |
 | Материк и острова | Неизведанные земли (The Uncharted Lands) | нейтрально (по схеме E2) | 0 | 15 |
 | Бездна | Подземье (The Underdark) | нейтрально (ярус) | 4 | 3 |
 | Бездна | Семь Преисподних и загробье (The Seven Hells and the Afterlife) | нейтрально (ярус) | 8 | 16 |
@@ -117,9 +117,9 @@
 |---|---|---|---|
 | Mad Moon | лор | Arc Warden (служба) |  |
 | Selemene's Moon | лор | Luna (упоминание), Night Stalker (упоминание) | вместе с Demon Star |
-| The Sun | лор | Dawnbreaker*, Phoenix* | Children of Light и солнечная кузня (страницы на Liquipedia нет) |
+| The Sun | лор | Dawnbreaker*, Keeper of the Light (упоминание), Phoenix* | Children of Light и солнечная кузня (страницы на Liquipedia нет) |
 | Olympus | наше | Zeus | небесная обитель Зевса; страницы на Liquipedia нет |
-| Ultoria | лор | — | небесное тело со своими лунами |
+| Ultoria | лор | Spirit Breaker (сражение) | небесное тело со своими лунами |
 | Vashundol | наше | Doom (изгнание) | перенесён из hells в #59: колокол отбивал наказания Doom до его падения из мира за светом (биография) |
 
 #### Семь планов и Пустота · The Seven Planes and the Void
@@ -133,15 +133,15 @@
 | Fundamental Plane | лор | Chaos Knight, Enigma, Io, Keeper of the Light |  |
 | Primordial Plane | лор | — |  |
 | Elemental Plane | лор | Dragon Knight (упоминание), Spirit Breaker (живёт) |  |
-| Astral Plane | лор | Elder Titan (бывал) |  |
+| Astral Plane | лор | Elder Titan (бывал), Void Spirit (упоминание) |  |
 | Fabric of Creation | лор | Weaver |  |
 | Claszureme | лор | Faceless Void, Puck (бывал) | мир вне времени |
-| The Void | лор | Ancient Apparition, Faceless Void (упоминание), Outworld Destroyer (бывал) |  |
+| The Void | лор | Ancient Apparition, Faceless Void (упоминание), Outworld Destroyer (бывал), Void Spirit (упоминание) |  |
 | The Outworld | лор | Outworld Destroyer | «мир на краю Бездны», у границы Пустоты |
 | Land Behind the Wall | лор | Dark Seer | родная реальность Dark Seer; страницы на Liquipedia нет |
 | Ivory Incubarium | лор | Oracle | в другой вселенной, на вершинах Zealot's Range |
 | Heart of Nature | наше | Enigma (упоминание), Leshrac |  |
-| Light's Keep | наше | — |  |
+| Light's Keep | наше | Keeper of the Light (упоминание) |  |
 | The Dream | наше | Bane* |  |
 | Fae Realm | наше | Dark Willow (упоминание), Puck | мир фей; Undertree, где вылупился Puck, — наше отождествление (#59) |
 | Great Seat of Cymurri | наше | Oracle (служба) | в той же вселенной, что Ivory Incubarium; рядом — владения Unsated Satrap (#59) |
@@ -164,9 +164,9 @@
 | Black Pool | лор | Lich (гибель) |  |
 | Cobalt | лор | Tusk |  |
 | Azura | лор | Tiny |  |
-| White Fields | лор | — |  |
-| Wolfsden Tavern | лор | Crystal Maiden (упоминание), Tusk (сражение) |  |
-| Njord's Hearth | лор | — |  |
+| White Fields | лор | Tusk (сражение) |  |
+| Wolfsden Tavern | лор | Bristleback (сражение), Crystal Maiden (упоминание), Tusk (сражение) |  |
+| Njord's Hearth | лор | Windranger (бывал) |  |
 | Boiling Sea | лор | Crystal Maiden (бывал) |  |
 | Frostreach | лор | Tusk (бывал), Vengeful Spirit (бывал) | самый северный порт мира; страницы на Liquipedia нет |
 | Onyx Grove | лор | Lone Druid (живёт) | в северных сосновых лесах |
@@ -309,7 +309,7 @@
 | Fortress of Flares | лор | Ember Spirit |  |
 | Turstarkuri | карта S1 | Anti-Mage |  |
 | Mount Joerlak | карта S1 | Magnus |  |
-| Feral Road | карта S1 | — |  |
+| Feral Road | карта S1 | Sven (сражение) |  |
 | The Upland | наше | Earth Spirit | нагорье священного нефрита |
 
 #### Тенистый берег · Shadeshore
@@ -340,7 +340,7 @@
 | Coral Breach | лор | Slardar (упоминание) |  |
 | Reef's Edge | лор | — |  |
 | Recluse Reef | лор | Tidehunter (упоминание) |  |
-| Infernal Hollow | лор | — | страницы на Liquipedia нет |
+| Infernal Hollow | лор | Lion (сражение) | страницы на Liquipedia нет |
 
 #### Кладд и острова · Cladd and the Isles
 
@@ -441,7 +441,7 @@
 |---|---|---|---|
 | ★ Throne of Bone | лор | Wraith King (живёт) |  |
 | Ivory Forest | лор | — |  |
-| Levinthal | наше | — | возможно, то же, что Gleaming City |
+| Levinthal | наше | Wraith King (сражение) | возможно, то же, что Gleaming City |
 
 #### Срединные королевства · The Middle Kingdoms
 
@@ -451,7 +451,7 @@
 |---|---|---|---|
 | Candoness | наше | Dragon Knight (сражение) |  |
 | Devarque | наше | Lifestealer (изгнание) |  |
-| Yoskreth | наше | — |  |
+| Yoskreth | наше | Anti-Mage (сражение) |  |
 | Ultimyr Academy | наше | Invoker (сражение), Nyx Assassin (упоминание), Warlock (живёт) |  |
 | Emauracus | наше | Omniknight |  |
 | Font of Avernus | наше | Abaddon |  |
@@ -494,7 +494,7 @@
 |---|---|---|---|
 | ★ Aziyog | лор | Underlord (живёт) |  |
 | Nether Reaches | лор | Pugna, Viper |  |
-| The Emerald Abyss | лор | — |  |
+| The Emerald Abyss | лор | Underlord (сражение) |  |
 | The Underhollow | лор | — |  |
 
 #### Семь Преисподних и загробье · The Seven Hells and the Afterlife
@@ -521,7 +521,7 @@
 | Abaddon | Font of Avernus (Срединные королевства) |
 | Alchemist | Home of the Keen Folk (Земля Сияющих)* |
 | Ancient Apparition | The Void (Семь планов и Пустота); Coldbank Plains (Стоунхолл) (сражение) |
-| Anti-Mage | Turstarkuri (Стонущие горы) |
+| Anti-Mage | Turstarkuri (Стонущие горы); Yoskreth (Срединные королевства) (сражение) |
 | Arc Warden | Mad Moon (Небеса) (служба); Sundered Moon (Вольные города) (бывал); Druud (Друуд) (бывал); Tomo'kan (Томо'кан и Окраины) (сражение) |
 | Axe | Thousand Tarns (Земля Сияющих) (сражение); Fortress of Valhessi (Хазадальские пустоши) (сражение); Druud (Друуд) (сражение); Ghastly Eyrie (Скайрат) (сражение) |
 | Bane | The Dream (Семь планов и Пустота)* |
@@ -530,7 +530,7 @@
 | Bloodseeker | Xhacatocatl (Феллстрат) |
 | Bounty Hunter | Highseat (Вольные города) (сражение) |
 | Brewmaster | Ruined City (Стонущие горы) |
-| Bristleback | весь регион «Слом и Эльзе» (бывал) |
+| Bristleback | весь регион «Слом и Эльзе» (бывал); Wolfsden Tavern (Айсрак) (сражение) |
 | Broodmother | Mount Pyrotheos (Срединные королевства); Magnetic Ziggurat (Срединные королевства) (сражение) |
 | Centaur Warrunner | Druud (Друуд); Omexe (Друуд) (сражение); Ghastly Eyrie (Скайрат) (сражение) |
 | Chaos Knight | Fundamental Plane (Семь планов и Пустота); весь регион «Семь планов и Пустота» (путь) |
@@ -562,7 +562,7 @@
 | Io | Fundamental Plane (Семь планов и Пустота); весь регион «Семь планов и Пустота» (живёт) |
 | Jakiro | весь регион «Неизведанные земли»* |
 | Juggernaut | Isle of Masks (Тропические острова); Ivory Isles (Тропические острова) (упоминание); Temple of Masks (Тропические острова) (упоминание) |
-| Keeper of the Light | Fundamental Plane (Семь планов и Пустота); весь регион «Семь планов и Пустота» (путь) |
+| Keeper of the Light | Fundamental Plane (Семь планов и Пустота); весь регион «Семь планов и Пустота» (путь); The Sun (Небеса) (упоминание); Light's Keep (Семь планов и Пустота) (упоминание) |
 | Kez | Ghastly Eyrie (Скайрат); Midgate (Скайрат) (живёт); Icewrack (Айсрак) (изгнание) |
 | Kunkka | Cladd (Кладд и острова); Port Mignin (Кладд и острова) (сражение); Trembling Isle (Кладд и острова) (сражение); Isle of Songs (Кладд и острова) (упоминание); Cataract (Семь планов и Пустота) (упоминание); Smoke Harbor (Квойдж и Поля Бойни) (бывал) |
 | Largo | Velu'Mar (Феллстрат) |
@@ -571,7 +571,7 @@
 | Lich | весь регион «Айсрак» (служба); Black Pool (Айсрак) (гибель) |
 | Lifestealer | Devarque (Срединные королевства) (изгнание) |
 | Lina | Desert of Misrule (Сверкающая пустошь) (живёт); Scintillant Waste (Сверкающая пустошь) (упоминание) |
-| Lion | Seven Hells (Семь Преисподних и загробье) (сражение) |
+| Lion | Seven Hells (Семь Преисподних и загробье) (сражение); Infernal Hollow (Глубины) (сражение) |
 | Lone Druid | Onyx Grove (Айсрак) (живёт) |
 | Luna | весь регион «Неизведанные земли»; Nightsilver Woods (Лес Найтсильвер) (живёт); Selemene's Moon (Небеса) (упоминание) |
 | Lycan | Slom (Слом и Эльзе); Western Forests (Западные леса) (бывал) |
@@ -617,9 +617,9 @@
 | Snapfire | Nanarak (Томо'кан и Окраины) (живёт); Outlands (Томо'кан и Окраины) (бывал) |
 | Sniper | Knollen (Земля Сияющих) |
 | Spectre | весь регион «Неизведанные земли»* |
-| Spirit Breaker | Elemental Plane (Семь планов и Пустота) (живёт) |
+| Spirit Breaker | Elemental Plane (Семь планов и Пустота) (живёт); Ultoria (Небеса) (сражение) |
 | Storm Spirit | весь регион «Стонущие горы»; Ruined City (Стонущие горы) (упоминание) |
-| Sven | Shadeshore Ruins (Тенистый берег); Vigil Keep (Тенистый берег) (служба) |
+| Sven | Shadeshore Ruins (Тенистый берег); Vigil Keep (Тенистый берег) (служба); Feral Road (Стонущие горы) (сражение) |
 | Techies | Dredger's Bight (Земля Сияющих) |
 | Templar Assassin | Hidden Temple (Срединные королевства) (служба); Violet Archives (Земля Сияющих) (упоминание); Violet Plateau (Земля Сияющих) (упоминание); Halgalreh (Сверкающая пустошь) (упоминание) |
 | Terrorblade | Seven Hells (Семь Преисподних и загробье); Foulfell (Семь Преисподних и загробье) (изгнание) |
@@ -629,21 +629,21 @@
 | Tiny | Azura (Айсрак) |
 | Treant Protector | Vale of Augury (Западные леса) |
 | Troll Warlord | The Hoven (Ховен и Нишай) |
-| Tusk | Cobalt (Айсрак); The Barrier (Айсрак); Wolfsden Tavern (Айсрак) (сражение); Frostreach (Айсрак) (бывал) |
-| Underlord | Aziyog (Подземье) (живёт) |
+| Tusk | Cobalt (Айсрак); The Barrier (Айсрак); Wolfsden Tavern (Айсрак) (сражение); Frostreach (Айсрак) (бывал); White Fields (Айсрак) (сражение) |
+| Underlord | Aziyog (Подземье) (живёт); The Emerald Abyss (Подземье) (сражение) |
 | Undying | весь регион «Неизведанные земли»* |
 | Ursa | весь регион «Неизведанные земли»* |
 | Vengeful Spirit | Ghastly Eyrie (Скайрат); Frostreach (Айсрак) (бывал); Smoke Harbor (Квойдж и Поля Бойни) (бывал) |
 | Venomancer | Bay of Fradj (Тропические острова) (путь); Jidi Isle (Тропические острова) (путь); Acid Jungles (Тропические острова) (гибель) |
 | Viper | Nether Reaches (Подземье) |
 | Visage | Narrow Maze (Семь Преисподних и загробье) (служба); весь регион «Семь Преисподних и загробье» (служба); весь регион «Небеса» (служба) |
-| Void Spirit | Hidden Temple (Срединные королевства) (живёт); Nothl Realm (Семь Преисподних и загробье) (упоминание) |
+| Void Spirit | Hidden Temple (Срединные королевства) (живёт); Nothl Realm (Семь Преисподних и загробье) (упоминание); The Void (Семь планов и Пустота) (упоминание); Astral Plane (Семь планов и Пустота) (упоминание) |
 | Warlock | Ultimyr Academy (Срединные королевства) (живёт); Outer Hells (Семь Преисподних и загробье) (упоминание) |
 | Weaver | Fabric of Creation (Семь планов и Пустота) |
-| Windranger | Zaru'Kina (Западные леса); Western Forests (Западные леса) |
+| Windranger | Zaru'Kina (Западные леса); Western Forests (Западные леса); Njord's Hearth (Айсрак) (бывал) |
 | Winter Wyvern | Icewrack (Айсрак) (живёт) |
 | Witch Doctor | весь регион «Неизведанные земли»* |
-| Wraith King | весь регион «Империя Костей»; Throne of Bone (Империя Костей) (живёт) |
+| Wraith King | весь регион «Империя Костей»; Throne of Bone (Империя Костей) (живёт); Levinthal (Империя Костей) (сражение) |
 | Zeus | Olympus (Небеса); Sundered Moon (Вольные города) (бывал) |
 <!-- GENERATED:END -->
 

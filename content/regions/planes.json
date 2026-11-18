@@ -25,8 +25,8 @@
       "name": { "ru": "Изначальный мир", "en": "Primordial Plane" },
       "type": { "ru": "План бытия", "en": "Plane of existence" },
       "description": {
-        "ru": "Один из Семи планов. О нём известно мало: по словам Elder Titan, сюда, возможно, уходят существа после смерти.",
-        "en": "One of the Seven Planes, and one of the least known. The Elder Titan hints that it may be where beings go after they die."
+        "ru": "Один из Семи планов. О нём известно мало.",
+        "en": "One of the Seven Planes, and one of the least known."
       }
     },
     "Elemental Plane": {
@@ -65,8 +65,8 @@
       "name": { "ru": "Пустота", "en": "The Void" },
       "type": { "ru": "Изначальное ничто", "en": "Primordial nothingness" },
       "description": {
-        "ru": "Ничто, которое было до начала всего и молча наблюдало рождение мира. Оно темнее простого отсутствия света и есть в каждой вещи, как всё сущее есть в нём. С Пустотой связаны Инай (Void Spirit), Кальдр (Ancient Apparition) и Night Stalker.",
-        "en": "The nothing that existed before anything began and silently watched the world come into being. It is darker than the mere absence of light, and it dwells in every thing just as every thing dwells in it. Inai, Kaldr the Ancient Apparition and the Night Stalker are bound to it."
+        "ru": "Ничто, которое было до начала всего и молча наблюдало рождение мира. Оно темнее простого отсутствия света и есть в каждой вещи, как всё сущее есть в нём. С Пустотой связаны Инай (Void Spirit) и Кальдр (Ancient Apparition).",
+        "en": "The nothing that existed before anything began and silently watched the world come into being. It is darker than the mere absence of light, and it dwells in every thing just as every thing dwells in it. Inai and Kaldr the Ancient Apparition are bound to it."
       }
     },
     "The Outworld": {
@@ -145,8 +145,8 @@
       "name": { "ru": "Хранилище Континуума", "en": "Continuum Vault" },
       "type": { "ru": "Темница", "en": "Prison vault" },
       "description": {
-        "ru": "Хранилище вне обычного пространства, в котором Hoodwink заперла Primal Beast — зверя, веками опустошавшего Туманный лес. Где стоит хранилище, лор не говорит; мы относим его к иным планам.",
-        "en": "A vault outside ordinary space, where Hoodwink locked away Primal Beast, the creature that ravaged the Mistwood for ages. The lore does not say where the vault stands; we count it among the other planes."
+        "ru": "Хранилище вне обычного пространства, в котором заперли Primal Beast — зверя, веками опустошавшего Туманный лес. Где стоит хранилище, лор не говорит; мы относим его к иным планам.",
+        "en": "A vault outside ordinary space, where Primal Beast, the creature that ravaged the Mistwood for ages, was locked away. The lore does not say where the vault stands; we count it among the other planes."
       }
     }
   }

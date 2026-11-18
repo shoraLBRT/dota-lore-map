@@ -14,6 +14,15 @@
       "url": "https://liquipedia.net/dota2/Lion/Lore",
       "note": "Lion спустился за предавшим его демоном в ад, убил его и забрал его руку; из ада он вышел преображённым.",
       "doubt": "Биография говорит просто «ад»; название Seven Hells даёт инфобокс лор-страницы."
+    },
+    {
+      "place": "Infernal Hollow",
+      "event": "battle",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Lion/Lore",
+      "note": "Лор-страница: Lion спустился в Infernal Hollow, победил демона Buki'vak the Corrupted и забрал его руку для пересадки.",
+      "doubt": "Название места стоит в описании набора самого героя на лор-странице; в биографии его нет."
     }
   ],
   "profile": {

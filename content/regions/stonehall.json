@@ -53,8 +53,8 @@
       "name": { "ru": "Розолист", "en": "Roseleaf" },
       "type": { "ru": "Разорённый город", "en": "Ruined city" },
       "description": {
-        "ru": "Город вхулов, ставший полем битвы: Бронзовый легион устроил здесь засаду на армию Красного Тумана, а горожане восстали против обеих сторон. Для Трездин сражение закончилось катастрофой, и позже Миреска подобрала в руинах знамя легиона.",
-        "en": "A vhoul city turned battlefield: the Bronze Legion laid an ambush here for the Red Mist army while the townsfolk rose up against both. The battle went disastrously for Tresdin, and Mireska later picked a Legion banner out of the ruins."
+        "ru": "Город вхулов, ставший полем битвы: Бронзовый легион устроил здесь засаду на армию Красного Тумана, а горожане восстали против обеих сторон. Для легиона сражение закончилось катастрофой.",
+        "en": "A vhoul city turned battlefield: the Bronze Legion laid an ambush here for the Red Mist army while the townsfolk rose up against both. The battle went disastrously for the Legion."
       }
 ,
       "media": ["artifact-roseleaf-wall"]
@@ -71,8 +71,8 @@
       "name": { "ru": "Сашир", "en": "Sashire" },
       "type": { "ru": "Город", "en": "Town" },
       "description": {
-        "ru": "Небольшой город к югу от столицы, сдавшийся Бронзовому легиону почти без боя. По словам Трездин, храбро сражался лишь один защитник — Овин.",
-        "en": "A small town south of the capital that fell to the Bronze Legion with barely a fight. By Tresdin's account, only one defender, Owine, showed any real courage."
+        "ru": "Небольшой город к югу от столицы, сдавшийся Бронзовому легиону почти без боя. По одному из рассказов, храбро сражался лишь один защитник — Овин.",
+        "en": "A small town south of the capital that fell to the Bronze Legion with barely a fight. By one account, only one defender, Owine, showed any real courage."
       }
     },
     "Milltown": {

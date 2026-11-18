@@ -12,6 +12,15 @@
       "event": "visit",
       "source": "bio",
       "note": "Дрался в придорожных тавернах между Slom и Elze; что это его дом, источники не говорят."
+    },
+    {
+      "place": "Wolfsden Tavern",
+      "event": "battle",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Bristleback/Lore",
+      "note": "Биография Tusk зовёт его противника по драке в таверне «Свирепым драчуном» (Bristled Bruiser); лор-страница Bristleback отождествляет это прозвище с ним.",
+      "doubt": "Таверна названа в биографии Tusk, а не в биографии Bristleback; тот выступает там под прозвищем."
     }
   ],
   "relations": [

@@ -33,6 +33,15 @@
       "event": "visit",
       "source": "comic:frostreach-the-dragon",
       "note": "Сидит в таверне Frostreach и подсказывает, куда ушёл разыскиваемый человек."
+    },
+    {
+      "place": "White Fields",
+      "event": "battle",
+      "source": "liquipedia",
+      "via": "infobox",
+      "url": "https://liquipedia.net/dota2/Tusk/Lore",
+      "note": "Поле places инфобокса и описание набора героя: дикая выходка Tusk положила конец большой драке на этих полях.",
+      "doubt": "Название места стоит в описании набора самого героя на лор-странице; в биографии его нет."
     }
   ],
   "relations": [

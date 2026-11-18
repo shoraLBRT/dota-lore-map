@@ -12,6 +12,15 @@
       "event": "home",
       "source": "bio",
       "note": "обсидиановый город под магматическими полями — владения Vrogros и его Орды; рождение там биография не называет"
+    },
+    {
+      "place": "The Emerald Abyss",
+      "event": "battle",
+      "source": "liquipedia",
+      "via": "lore",
+      "url": "https://liquipedia.net/dota2/Underlord/Lore",
+      "note": "Лор-страница: Vrogros взял клинок Emerald Conquest трофеем после боя за средние глубины Изумрудной бездны.",
+      "doubt": "Название места стоит в описании набора самого героя на лор-странице; в биографии его нет."
     }
   ],
   "profile": {

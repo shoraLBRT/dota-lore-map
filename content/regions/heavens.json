@@ -17,8 +17,8 @@
       "name": { "ru": "Безумная Луна", "en": "Mad Moon" },
       "type": { "ru": "Разрушенная луна", "en": "Shattered moon" },
       "description": {
-        "ru": "Сияющая хрустальная сфера, в которую Зет (Arc Warden) заточил двух враждующих Древних. Борьба внутри, приливы и удар уснувшей Валоры (Dawnbreaker) расшатали её, пока она не разлетелась на куски, осыпав мир Сияющей рудой и Камнем Тьмы.",
-        "en": "A glowing crystal sphere in which Zet, the Arc Warden, sealed two warring Ancients. Their struggle within, tidal strain and the impact of the dormant Valora wore it down until it burst apart, showering the world with Radiant Ore and Direstone."
+        "ru": "Сияющая хрустальная сфера, в которую Зет (Arc Warden) заточил двух враждующих Древних. Борьба внутри и приливное напряжение расшатали её, пока она не разлетелась на куски, осыпав мир Сияющей рудой и Камнем Тьмы.",
+        "en": "A glowing crystal sphere in which Zet, the Arc Warden, sealed two warring Ancients. Their struggle within and tidal strain wore it down until it burst apart, showering the world with Radiant Ore and Direstone."
       }
     },
     "Selemene's Moon": {
@@ -41,8 +41,8 @@
       "name": { "ru": "Олимп", "en": "Olympus" },
       "type": { "ru": "Обитель богов", "en": "Abode of the gods" },
       "description": {
-        "ru": "Небесный дом пантеона, к которому принадлежат Zeus и его сын Mars. Zeus изгнан оттуда и теперь живёт на горной вершине в смертном мире, а Mars мечтает опрокинуть отцовский пантеон. В лоре Олимп почти не описан.",
-        "en": "The celestial home of the pantheon that Zeus and his son Mars belong to. Zeus was cast out and now lives on a mountaintop in the mortal world, while Mars dreams of toppling his father's pantheon. The lore says little about the place itself."
+        "ru": "Небесный дом пантеона, к которому принадлежит Zeus. Zeus изгнан оттуда и теперь живёт на горной вершине в смертном мире. В лоре Олимп почти не описан.",
+        "en": "The celestial home of the pantheon that Zeus belongs to. Zeus was cast out and now lives on a mountaintop in the mortal world. The lore says little about the place itself."
       }
     },
     "Ultoria": {
