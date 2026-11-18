@@ -40,7 +40,7 @@ West: dense ancient forests along the coast. South-west: steaming tropical jungl
 a pale land where trees and towers are made of bone, a misty dark forest and marshes.
 South: a vast golden equatorial desert with ancient ruins, red rocky plateau of the centaur clans,
 dark wailing mountains with monasteries, a gloomy coastline with tidal marshes.
-Top edge: a band of night sky and cosmos — stars, nebula, moons, a shattered moon, floating sky citadel.
+Top edge: a band of night sky and cosmos — stars, nebula, moons, a shattered moon, a celestial palace.
 Bottom edge: a band of the abyss — a fiery rift, lava rivers, glowing cracks, crimson smoke.
 Style: dark fantasy, Dota 2 inspired, dark stone and steel, bronze accents, warm light in key places,
 the north brighter and colder (green, gold, ice), the south darker and hotter (ochre, crimson, ash).
@@ -64,10 +64,11 @@ No text, no letters, no labels, no runes, no frame, no watermark.
 
 | Регион | Сторона | Среда (biome) | Визуальные ориентиры для промпта |
 |---|---|---|---|
-| Небеса | ярус | sky | night sky with stars and nebula, a floating citadel among clouds, a pale moon and a silver moon, a shattered moon with glowing shards (one radiant gold, one dark red), a blazing sun forge, a celestial palace on clouds, a lower town of the flightless at the foot of the citadel's cliff, a huge steel bell hanging in the void |
+| Небеса | ярус | sky | night sky with stars and nebula, a pale moon and a silver moon, a shattered moon with glowing shards (one radiant gold, one dark red), a blazing sun forge, a celestial palace on clouds, a huge steel bell hanging in the void |
 | Семь планов и Пустота | ярус | void | layered translucent planes of existence, violet nebula, a black void with a rim of dim light, an alien world at the edge, a tall wall of light, an ivory egg-like incubator on mountain peaks, a carved-stone royal seat, a glowing tree heart, a hidden fae glade with a great old tree, a sea cascade pouring into the void, a sealed vault floating outside space, a dream mist |
 | Айсрак | Radiant | snow | frozen tundra, blue glacier, jagged ice mountain range on the north coast, a fortified ice city, a steaming boiling sea, a northern harbor with ships in ice, pine forest, a black frozen pool |
 | Земля Сияющих | Radiant | plains | green rolling hills and meadows, a thousand small lakes, a peaceful village, a violet plateau with an ancient archive library, a castle on a fold of hills, mountain valleys of small inventors with workshops and a coastal bight |
+| Скайрат | Radiant | mountains | sheer coastal cliffs and tall stone spires above the clouds, a palace citadel on the highest spire, a crowded lower town at the foot of the cliff, a fortified lowland gate with a watchtower, a hanging prison cage on a spire |
 | Лес Найтсильвер | Radiant | forest | silver moonlit forest, glowing night flowers, a white moon temple, a shrine among ancient trees |
 | Стоунхолл | Radiant | city | great walled stone capital, farmland, rivers and mills, many towns and lakes around, a lake to the north, plains to the west, a besieged fortress town on the eastern edge |
 | Вольные города | Radiant | city | a tall white spire city, a rose-covered city, merchant towns with mixed architecture, foggy iron foundry |

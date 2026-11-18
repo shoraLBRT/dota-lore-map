@@ -30,7 +30,7 @@ const groupNames = (nav: HTMLElement, title: string) =>
     .map((b) => b.querySelector('[class*="name"]')!.textContent);
 
 describe('RegionList', () => {
-  it('все 26 регионов по группам сверху вниз, как на карте; внутри группы — по алфавиту', () => {
+  it('все 27 регионов по группам сверху вниз, как на карте; внутри группы — по алфавиту', () => {
     renderList('ru');
     const nav = screen.getByRole('navigation', { name: 'Регионы' });
     expect(within(nav).getAllByRole('button')).toHaveLength(world.regions.length);
@@ -43,7 +43,7 @@ describe('RegionList', () => {
     ]);
     expect(groupNames(nav, 'Верхний ярус')).toEqual(['Небеса', 'Семь планов и Пустота']);
     const radiant = groupNames(nav, 'Radiant');
-    expect(radiant).toHaveLength(8);
+    expect(radiant).toHaveLength(9);
     expect(radiant).toEqual([...radiant].sort((a, b) => a!.localeCompare(b!, 'ru')));
     expect(groupNames(nav, 'Dire')).toHaveLength(10);
     expect(groupNames(nav, 'Нейтральные земли')).toHaveLength(4);

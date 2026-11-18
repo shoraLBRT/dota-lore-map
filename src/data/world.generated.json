@@ -20,7 +20,7 @@
         "ru": "Небеса",
         "en": "The Heavens"
       },
-      "geo": "Небо над миром и небесные тела: столица скайрасов высоко над землёй и нижний город Midgate под её скалой, царство колокола Vashundol, Безумная Луна (разрушена, её осколки — Radiant Ore и Direstone), Луна Селемены, Солнце.",
+      "geo": "Небо над миром и небесные тела (королевство скайрасов — на земле, регион skywrath, #158): царство колокола Vashundol, обители богов, Безумная Луна (разрушена, её осколки — Radiant Ore и Direstone), Луна Селемены, Солнце.",
       "subtitle": {
         "ru": "Небесные престолы и павшие луны",
         "en": "Sky thrones and fallen moons"
@@ -45,13 +45,9 @@
         }
       },
       "description": {
-        "ru": "Над облаками мир не кончается. Здесь, недосягаемые для бескрылых народов, парят крепости скайрасов, а ещё выше кружат светила, от которых зависит судьба всего, что лежит внизу.\n\nНебеса помнят Безумную Луну — тюрьму двух древних разумов, Радинтула и Дируулта. Когда она раскололась, её осколки дождём упали на землю, и с тех пор войны Сияющих и Тьмы ведутся за этот звёздный камень. Рядом всё так же светит Луна Селемены, богини, которой служат Mirana и Luna.\n\nОтсюда родом скайрас Драгонус (Skywrath Mage) и свергнутая принцесса Шендельзаре, ставшая Vengeful Spirit. С небесами связаны и боги-громовержцы, и дети звёзд — Phoenix и Dawnbreaker.",
-        "en": "The world does not end at the clouds. Above them, out of reach of anything without wings, drift the fortresses of the Skywrath, and higher still wheel the celestial bodies whose fate shapes everything below.\n\nThe heavens remember the Mad Moon, a prison built for two ancient minds, Radinthul and Diruulth. When it cracked apart, its shards rained down on the earth, and the Radiant and the Dire have fought over that starstone ever since. Beside the ruin still glows the moon of Selemene, the goddess served by Mirana and Luna.\n\nThis is the home of Dragonus the Skywrath Mage and of Shendelzare, the deposed princess who became the Vengeful Spirit. Thunder gods and the children of stars, Phoenix and Valora, are bound to these skies as well."
+        "ru": "Над облаками мир не кончается. Здесь кружат светила, от которых зависит судьба всего, что лежит внизу, и стоят обители богов.\n\nНебеса помнят Безумную Луну — тюрьму двух древних разумов, Радинтула и Дируулта. Когда она раскололась, её осколки дождём упали на землю, и с тех пор войны Сияющих и Тьмы ведутся за этот звёздный камень. Рядом всё так же светит Луна Селемены, богини, которой служат Mirana и Luna.\n\nС небесами связаны боги-громовержцы, дети звёзд — Phoenix и Dawnbreaker — и Doom, низвергнутый из царства за светом. Скайрасы, вопреки имени, живут не здесь: их королевство Скайрат стоит на земле, на шпилях северо-восточного побережья.",
+        "en": "The world does not end at the clouds. Above them wheel the celestial bodies whose fate shapes everything below, and the gods keep their halls.\n\nThe heavens remember the Mad Moon, a prison built for two ancient minds, Radinthul and Diruulth. When it cracked apart, its shards rained down on the earth, and the Radiant and the Dire have fought over that starstone ever since. Beside the ruin still glows the moon of Selemene, the goddess served by Mirana and Luna.\n\nThunder gods, the children of stars Phoenix and Valora, and Doom, cast down from a realm beyond the light, are all bound to these skies. Despite their name, the Skywrath do not live here: their kingdom stands on the ground, on the spires of the north-eastern coast."
       },
-      "media": [
-        "ghastly-eyrie-ascension-day",
-        "kez-ascension-night"
-      ],
       "layout": {
         "polygon": [
           [
@@ -118,37 +114,6 @@
         }
       },
       "places": [
-        {
-          "name": "Ghastly Eyrie",
-          "slug": "ghastly-eyrie",
-          "capital": true,
-          "placement": "lore",
-          "significance": "event",
-          "note": "столица расы скайрасов, «среди облаков и звёзд»",
-          "text": {
-            "name": {
-              "ru": "Мрачное Гнездовье",
-              "en": "Ghastly Eyrie"
-            },
-            "type": {
-              "ru": "Небесная столица",
-              "en": "Sky capital"
-            },
-            "description": {
-              "ru": "Столица скайрасов, поднятая так высоко, что другие народы почти не могут до неё добраться. Ею правит королева Гнезда Шипов: трон, предназначенный Шендельзаре, захватила её младшая сестра Империя, и с тех пор во дворце зреет заговор.",
-              "en": "The Skywrath capital, perched so high that other races can barely reach it. It answers to the queen of the Nest of Thorns: the throne meant for Shendelzare was seized by her younger sister Imperia, and the palace has bred conspiracies ever since."
-            }
-          },
-          "media": [
-            "ghastly-eyrie-ascension-day",
-            "crownfall-act-iv-trailer",
-            "crownfall-trailer"
-          ],
-          "pos": [
-            0.12,
-            0.065
-          ]
-        },
         {
           "name": "Mad Moon",
           "slug": "mad-moon",
@@ -276,32 +241,6 @@
           "pos": [
             0.39,
             0.088
-          ]
-        },
-        {
-          "name": "Midgate",
-          "slug": "midgate",
-          "capital": false,
-          "placement": "lore",
-          "significance": "event",
-          "note": "нижний город бескрылых под скалой Skywrath (комиксы Ascension Night и Ascension Day); внутри — тюрьма The Cage и крепость Spur (#59)",
-          "text": {
-            "name": {
-              "ru": "Мидгейт",
-              "en": "Midgate"
-            },
-            "type": {
-              "ru": "Нижний город",
-              "en": "Lower city"
-            },
-            "description": {
-              "ru": "Город бескрылых скайрасов у подножия скалы, на которой стоит Мрачное Гнездовье. Здесь живёт Kez: в ночь Вознесения он уходит отсюда выводить узников из висячей тюрьмы Клетка и возвращается уже с новым наставником. Неподалёку — крепость Шпора, где квартирует гвардия.",
-              "en": "The town of the Flightless at the foot of the cliff that holds up the Ghastly Eyrie. Kez lives here: on the night of Ascension he sets out to lead the prisoners out of the hanging jail called the Cage, and he comes back with a new teacher. The guard is quartered nearby, in the fortress of Spur."
-            }
-          },
-          "pos": [
-            0.11,
-            0.096
           ]
         },
         {
@@ -1908,6 +1847,169 @@
           },
           "pos": [
             0.665,
+            0.255
+          ]
+        }
+      ],
+      "regionHeroes": []
+    },
+    {
+      "id": "skywrath",
+      "tier": "continent",
+      "side": "radiant",
+      "sideBasis": "position",
+      "name": {
+        "ru": "Скайрат",
+        "en": "Skywrath"
+      },
+      "geo": "Королевство скайрасов на утёсах и шпилях северо-восточного побережья, к северу от Квойджа (Квойдж «к югу от Skywrath»). По комиксам Crownfall оно на земле: армия подходит к Lowland Gate и берёт сторожевую башню South Spire, под скалой столицы лежит нижний город Midgate. Отделено от Небес в #158.",
+      "subtitle": {
+        "ru": "Королевство на шпилях",
+        "en": "A kingdom on the spires"
+      },
+      "biome": "mountains",
+      "ambient": {
+        "type": "fog",
+        "density": 0.4
+      },
+      "traits": {
+        "rule": {
+          "ru": "Королева-узурпатор",
+          "en": "A usurper queen"
+        },
+        "magic": {
+          "ru": "Служит престолу",
+          "en": "Serves the throne"
+        },
+        "biome": {
+          "ru": "Утёсы и шпили",
+          "en": "Cliffs and spires"
+        }
+      },
+      "description": {
+        "ru": "Скайрат — королевство крылатых скайрасов, и стоит оно не в небе, а на земле: города поднимаются по отвесным утёсам и каменным шпилям северо-восточного побережья, к северу от Квойджа. На самых высоких шпилях — дворец Мрачного Гнездовья, а внизу, под скалой, теснится Мидгейт, город бескрылых, которым путь наверх закрыт.\n\nТрон, обещанный принцессе Шендельзаре, заняла её младшая сестра Империя, и с тех пор заговоры в королевстве не утихают. В дни Падения короны армия Красной Мглы подошла к Нижним воротам, взяла сторожевую башню Южного шпиля и вошла в город.\n\nОтсюда родом Skywrath Mage и Vengeful Spirit, а бескрылый Kez собирает здесь изгнанников-казураев против королевы.",
+        "en": "Skywrath is the kingdom of the winged Skywrath, and it stands on the ground rather than in the sky: its towns climb sheer cliffs and stone spires along the north-eastern coast, north of Quoidge. The palace of the Ghastly Eyrie crowns the highest spires, while Midgate, the town of the Flightless who may never go up, huddles beneath the cliff.\n\nThe throne promised to Princess Shendelzare was taken by her younger sister Imperia, and the kingdom has not been free of plots since. During Crownfall the army of the Red Mist reached the Lowland Gate, took the South Spire watchtower and marched into the city.\n\nSkywrath Mage and Vengeful Spirit were born here, and the Flightless Kez gathers the exiled Kazurai here to rise against the queen."
+      },
+      "media": [
+        "ghastly-eyrie-ascension-day",
+        "kez-ascension-night"
+      ],
+      "layout": {
+        "polygon": [
+          [
+            0.75,
+            0.188
+          ],
+          [
+            0.78,
+            0.22
+          ],
+          [
+            0.797,
+            0.262
+          ],
+          [
+            0.785,
+            0.3
+          ],
+          [
+            0.803,
+            0.345
+          ],
+          [
+            0.83,
+            0.33
+          ],
+          [
+            0.855,
+            0.3
+          ],
+          [
+            0.865,
+            0.26
+          ],
+          [
+            0.855,
+            0.22
+          ],
+          [
+            0.835,
+            0.185
+          ],
+          [
+            0.8,
+            0.165
+          ],
+          [
+            0.77,
+            0.165
+          ]
+        ],
+        "label": [
+          0.825,
+          0.295
+        ],
+        "camera": {
+          "x": 0.8075,
+          "y": 0.255,
+          "zoom": 3.9
+        }
+      },
+      "places": [
+        {
+          "name": "Ghastly Eyrie",
+          "slug": "ghastly-eyrie",
+          "capital": true,
+          "placement": "lore",
+          "significance": "event",
+          "note": "столица скайрасов на вершинах шпилей, «среди облаков и звёзд»; дворец The Nest, руины храма Scree'Auk, Lowland Gate и South Spire — в её черте (комиксы Crownfall)",
+          "text": {
+            "name": {
+              "ru": "Мрачное Гнездовье",
+              "en": "Ghastly Eyrie"
+            },
+            "type": {
+              "ru": "Столица на шпилях",
+              "en": "Spire capital"
+            },
+            "description": {
+              "ru": "Столица скайрасов на вершинах шпилей, поднятая так высоко, что бескрылые почти не могут до неё добраться. Ею правит королева Гнезда Шипов: трон, предназначенный Шендельзаре, захватила её младшая сестра Империя, и с тех пор во дворце зреет заговор.",
+              "en": "The Skywrath capital, perched on top of the spires so high that the Flightless can barely reach it. It answers to the queen of the Nest of Thorns: the throne meant for Shendelzare was seized by her younger sister Imperia, and the palace has bred conspiracies ever since."
+            }
+          },
+          "media": [
+            "ghastly-eyrie-ascension-day",
+            "crownfall-act-iv-trailer",
+            "crownfall-trailer"
+          ],
+          "pos": [
+            0.82,
+            0.21
+          ]
+        },
+        {
+          "name": "Midgate",
+          "slug": "midgate",
+          "capital": false,
+          "placement": "lore",
+          "significance": "event",
+          "note": "нижний город бескрылых под скалой столицы (комиксы Ascension Night и Ascension Day); внутри — тюрьма The Cage и крепость Spur",
+          "text": {
+            "name": {
+              "ru": "Мидгейт",
+              "en": "Midgate"
+            },
+            "type": {
+              "ru": "Нижний город",
+              "en": "Lower city"
+            },
+            "description": {
+              "ru": "Город бескрылых скайрасов у подножия скалы, на которой стоит Мрачное Гнездовье. Здесь живёт Kez: в ночь Вознесения он уходит отсюда выводить узников из висячей тюрьмы Клетка и возвращается уже с новым наставником. Неподалёку — крепость Шпора, где квартирует гвардия.",
+              "en": "The town of the Flightless at the foot of the cliff that holds up the Ghastly Eyrie. Kez lives here: on the night of Ascension he sets out to lead the prisoners out of the hanging jail called the Cage, and he comes back with a new teacher. The guard is quartered nearby, in the fortress of Spur."
+            }
+          },
+          "pos": [
+            0.815,
             0.255
           ]
         }
@@ -8907,7 +9009,7 @@
       ],
       "links": [
         {
-          "regionId": "heavens",
+          "regionId": "skywrath",
           "placeSlug": "ghastly-eyrie",
           "event": "origin",
           "source": "bio",
@@ -12064,7 +12166,7 @@
       ],
       "links": [
         {
-          "regionId": "heavens",
+          "regionId": "skywrath",
           "placeSlug": "ghastly-eyrie",
           "event": "origin",
           "source": "bio",
@@ -12076,7 +12178,7 @@
         {
           "hero": "vengefulspirit",
           "type": "love",
-          "regionId": "heavens",
+          "regionId": "skywrath",
           "placeSlug": "ghastly-eyrie",
           "source": "bio",
           "note": "Шенделзара, старшая принцесса скайрасов, стала Vengeful Spirit; по биографии Драгонус её любил и мечтает вернуть ей трон и здоровое тело.",
@@ -13347,7 +13449,7 @@
       ],
       "links": [
         {
-          "regionId": "heavens",
+          "regionId": "skywrath",
           "placeSlug": "ghastly-eyrie",
           "event": "origin",
           "source": "liquipedia",
@@ -13357,7 +13459,7 @@
           "doubt": "Skywrath (City) = Ghastly Eyrie — наше отождествление (#59): инфобокс называет город, а не столицу; комиксы Crownfall показывают Skywrath как целую страну с городами."
         },
         {
-          "regionId": "heavens",
+          "regionId": "skywrath",
           "placeSlug": "midgate",
           "event": "home",
           "source": "comic:kez-ascension-night",

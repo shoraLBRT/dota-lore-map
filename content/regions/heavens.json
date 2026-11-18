@@ -9,21 +9,10 @@
     "biome": { "ru": "Небо и светила", "en": "Sky and celestial bodies" }
   },
   "description": {
-    "ru": "Над облаками мир не кончается. Здесь, недосягаемые для бескрылых народов, парят крепости скайрасов, а ещё выше кружат светила, от которых зависит судьба всего, что лежит внизу.\n\nНебеса помнят Безумную Луну — тюрьму двух древних разумов, Радинтула и Дируулта. Когда она раскололась, её осколки дождём упали на землю, и с тех пор войны Сияющих и Тьмы ведутся за этот звёздный камень. Рядом всё так же светит Луна Селемены, богини, которой служат Mirana и Luna.\n\nОтсюда родом скайрас Драгонус (Skywrath Mage) и свергнутая принцесса Шендельзаре, ставшая Vengeful Spirit. С небесами связаны и боги-громовержцы, и дети звёзд — Phoenix и Dawnbreaker.",
-    "en": "The world does not end at the clouds. Above them, out of reach of anything without wings, drift the fortresses of the Skywrath, and higher still wheel the celestial bodies whose fate shapes everything below.\n\nThe heavens remember the Mad Moon, a prison built for two ancient minds, Radinthul and Diruulth. When it cracked apart, its shards rained down on the earth, and the Radiant and the Dire have fought over that starstone ever since. Beside the ruin still glows the moon of Selemene, the goddess served by Mirana and Luna.\n\nThis is the home of Dragonus the Skywrath Mage and of Shendelzare, the deposed princess who became the Vengeful Spirit. Thunder gods and the children of stars, Phoenix and Valora, are bound to these skies as well."
+    "ru": "Над облаками мир не кончается. Здесь кружат светила, от которых зависит судьба всего, что лежит внизу, и стоят обители богов.\n\nНебеса помнят Безумную Луну — тюрьму двух древних разумов, Радинтула и Дируулта. Когда она раскололась, её осколки дождём упали на землю, и с тех пор войны Сияющих и Тьмы ведутся за этот звёздный камень. Рядом всё так же светит Луна Селемены, богини, которой служат Mirana и Luna.\n\nС небесами связаны боги-громовержцы, дети звёзд — Phoenix и Dawnbreaker — и Doom, низвергнутый из царства за светом. Скайрасы, вопреки имени, живут не здесь: их королевство Скайрат стоит на земле, на шпилях северо-восточного побережья.",
+    "en": "The world does not end at the clouds. Above them wheel the celestial bodies whose fate shapes everything below, and the gods keep their halls.\n\nThe heavens remember the Mad Moon, a prison built for two ancient minds, Radinthul and Diruulth. When it cracked apart, its shards rained down on the earth, and the Radiant and the Dire have fought over that starstone ever since. Beside the ruin still glows the moon of Selemene, the goddess served by Mirana and Luna.\n\nThunder gods, the children of stars Phoenix and Valora, and Doom, cast down from a realm beyond the light, are all bound to these skies. Despite their name, the Skywrath do not live here: their kingdom stands on the ground, on the spires of the north-eastern coast."
   },
-  "media": ["ghastly-eyrie-ascension-day", "kez-ascension-night"],
   "places": {
-    "Ghastly Eyrie": {
-      "name": { "ru": "Мрачное Гнездовье", "en": "Ghastly Eyrie" },
-      "type": { "ru": "Небесная столица", "en": "Sky capital" },
-      "description": {
-        "ru": "Столица скайрасов, поднятая так высоко, что другие народы почти не могут до неё добраться. Ею правит королева Гнезда Шипов: трон, предназначенный Шендельзаре, захватила её младшая сестра Империя, и с тех пор во дворце зреет заговор.",
-        "en": "The Skywrath capital, perched so high that other races can barely reach it. It answers to the queen of the Nest of Thorns: the throne meant for Shendelzare was seized by her younger sister Imperia, and the palace has bred conspiracies ever since."
-      }
-,
-      "media": ["ghastly-eyrie-ascension-day", "crownfall-act-iv-trailer", "crownfall-trailer"]
-    },
     "Mad Moon": {
       "name": { "ru": "Безумная Луна", "en": "Mad Moon" },
       "type": { "ru": "Разрушенная луна", "en": "Shattered moon" },
@@ -62,14 +51,6 @@
       "description": {
         "ru": "Далёкий мир со своими лунами, чей цикл длится целый год. Известно лишь, что там шла важная битва, куда хозяин послал Баратрума (Spirit Breaker).",
         "en": "A distant world with moons of its own, whose cycle takes a full year. All that is known is that a great battle was fought there, and Barathrum the Spirit Breaker was sent by his master to intervene."
-      }
-    },
-    "Midgate": {
-      "name": { "ru": "Мидгейт", "en": "Midgate" },
-      "type": { "ru": "Нижний город", "en": "Lower city" },
-      "description": {
-        "ru": "Город бескрылых скайрасов у подножия скалы, на которой стоит Мрачное Гнездовье. Здесь живёт Kez: в ночь Вознесения он уходит отсюда выводить узников из висячей тюрьмы Клетка и возвращается уже с новым наставником. Неподалёку — крепость Шпора, где квартирует гвардия.",
-        "en": "The town of the Flightless at the foot of the cliff that holds up the Ghastly Eyrie. Kez lives here: on the night of Ascension he sets out to lead the prisoners out of the hanging jail called the Cage, and he comes back with a new teacher. The guard is quartered nearby, in the fortress of Spur."
       }
     },
     "Vashundol": {
