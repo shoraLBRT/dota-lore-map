@@ -1,5 +1,6 @@
 import type { Region } from '../../data/types';
 import { useT } from '../../i18n';
+import { WORLD_ART } from './art';
 import { biomeColor } from './biomes';
 import { clampLabelX, splitLabel } from './labels';
 import styles from './RegionsLayer.module.css';
@@ -36,6 +37,9 @@ interface Props {
  */
 export function RegionsLayer({ drawn, activeId, inWorld, tip, litId, focusRegions, previewRegions, widths, onSelectRegion }: Props) {
   const { l } = useT();
+  // Есть арт — полигоны прозрачны поверх картинки и только затемняют соседей; нет — заглушка цветом биома.
+  const onArt = WORLD_ART ? styles.onArt : undefined;
+  const fillOf = (r: Region) => (WORLD_ART ? '#000' : biomeColor(r.biome));
   const { shownId, focusId, tooltipId, region: on } = tip;
   /** Класс приглушения или подсветки при выбранном герое. */
   const heroClass = (regionId: string) =>
@@ -55,9 +59,9 @@ export function RegionsLayer({ drawn, activeId, inWorld, tip, litId, focusRegion
             return (
               <polygon
                 key={r.id}
-                className={[styles.region, isActive ? [styles.active, tones[highlight(r)]].join(' ') : styles.dimmed].join(' ')}
+                className={[styles.region, onArt, isActive ? [styles.active, tones[highlight(r)]].join(' ') : styles.dimmed].filter(Boolean).join(' ')}
                 points={points(r.layout!.polygon)}
-                fill={biomeColor(r.biome)}
+                fill={fillOf(r)}
                 aria-hidden="true"
                 data-region={r.id}
               />
@@ -66,9 +70,9 @@ export function RegionsLayer({ drawn, activeId, inWorld, tip, litId, focusRegion
           return (
             <polygon
               key={r.id}
-              className={[styles.region, heroClass(r.id)].filter(Boolean).join(' ')}
+              className={[styles.region, onArt, heroClass(r.id)].filter(Boolean).join(' ')}
               points={points(r.layout!.polygon)}
-              fill={biomeColor(r.biome)}
+              fill={fillOf(r)}
               role="button"
               tabIndex={0}
               aria-label={l(r.name)}

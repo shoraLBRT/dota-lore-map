@@ -11,7 +11,7 @@ describe('нити: геометрия (SPEC §6.6)', () => {
     expect(a.point(1)).toEqual([0.75, 0.5]);
     expect(a.point(0.5)[1]).toBeLessThan(0.5);
     expect(a.length).toBeGreaterThan(800);
-    expect(a.d).toMatch(/^M400 500 Q800 \d+(\.\d)? 1200 500$/);
+    expect(a.d).toMatch(/^M400 800 Q800 \d+(\.\d)? 1200 800$/);
     // В обратную сторону — тоже вверх.
     expect(arc([0.75, 0.5], [0.25, 0.5]).point(0.5)[1]).toBeLessThan(0.5);
   });
@@ -58,7 +58,7 @@ describe('нити: геометрия (SPEC §6.6)', () => {
     expect(a.angle(0)).toBeLessThan(0);
     expect(a.angle(0.5)).toBeCloseTo(0);
     expect(a.angle(1)).toBeGreaterThan(0);
-    expect(a.stage(0)).toEqual([400, 500]);
+    expect(a.stage(0)).toEqual([400, 800]);
   });
 
   it('значок события (#67): середина дуги, если свободна; иначе ближайшая свободная точка; занято всё — null', () => {

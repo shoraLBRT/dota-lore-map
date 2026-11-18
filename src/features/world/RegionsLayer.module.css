@@ -123,3 +123,20 @@
 .list button[aria-current='true'] {
   border-color: var(--accent);
 }
+
+/* Поверх картинки мира (A10): полигон прозрачный, граница едва видна; затемнение соседей и приглушение — заливкой. */
+.region.onArt {
+  fill-opacity: 0;
+  stroke-opacity: 0.3;
+  transition: fill-opacity var(--dur-camera) var(--ease-in-out);
+}
+
+.region.onArt.dimmed,
+.region.onArt.muted {
+  filter: none;
+  fill-opacity: 0.6;
+}
+
+.region.onArt.active {
+  stroke-opacity: 1;
+}

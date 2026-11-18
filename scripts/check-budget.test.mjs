@@ -3,7 +3,7 @@ import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
-import { measure, measureFonts } from './check-budget.mjs';
+import { measure, measureArt, measureFonts } from './check-budget.mjs';
 
 // Бюджет загрузки до мира (SPEC §14, ARCHITECTURE A14).
 
@@ -39,5 +39,15 @@ describe('check-budget', () => {
   it('без dist/fonts — пусто', () => {
     dir = mkdtempSync(join(tmpdir(), 'budget-'));
     expect(measureFonts(dir)).toEqual({ files: [], total: 0 });
+  });
+
+  it('арт мира — размер webp из dist/art (A10)', () => {
+    dir = mkdtempSync(join(tmpdir(), 'budget-'));
+    mkdirSync(join(dir, 'art'));
+    writeFileSync(join(dir, 'art', 'world-1024.webp'), Buffer.alloc(300));
+    writeFileSync(join(dir, 'art', 'world-4096.webp'), Buffer.alloc(700));
+    const { files, total } = measureArt(dir);
+    expect(files.map((f) => f.file).sort()).toEqual(['art/world-1024.webp', 'art/world-4096.webp']);
+    expect(total).toBe(1000);
   });
 });

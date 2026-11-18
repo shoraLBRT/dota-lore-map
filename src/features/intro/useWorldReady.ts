@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { preloadImage, WORLD_ART } from '../world/art';
+import { preloadImage, WORLD_PREVIEW } from '../world/art';
 
-// Готовность мира для кнопки «Начать» (SPEC §5.2): шрифты дизайн-системы и картинка мира.
+// Готовность мира для кнопки «Начать» (SPEC §5.2): шрифты дизайн-системы и превью картинки мира.
 // Данные мира собраны в бандл (world.generated.json) и готовы сразу.
 
 /** Шрифты, без которых подписи карты «прыгнут» при появлении (ARCHITECTURE A8). */
@@ -18,13 +18,13 @@ function fontsApi(): FontFaceSet | undefined {
 export function worldReadyNow(): boolean {
   const fonts = fontsApi();
   const fontsReady = !fonts || WORLD_FONTS.every((f) => fonts.check(f));
-  return fontsReady && !WORLD_ART;
+  return fontsReady && !WORLD_PREVIEW;
 }
 
-/** Ждёт шрифты и картинку мира; никогда не отклоняется и не ждёт дольше READY_TIMEOUT. */
+/** Ждёт шрифты и превью мира; никогда не отклоняется и не ждёт дольше READY_TIMEOUT. */
 export function waitForWorld(timeout = READY_TIMEOUT): Promise<void> {
   const fonts = fontsApi();
-  const tasks: Promise<unknown>[] = [preloadImage(WORLD_ART)];
+  const tasks: Promise<unknown>[] = [preloadImage(WORLD_PREVIEW)];
   if (fonts) tasks.push(...WORLD_FONTS.map((f) => fonts.load(f)), fonts.ready);
   const all = Promise.all(tasks.map((p) => p.catch(() => undefined))).then(() => undefined);
   const limit = new Promise<void>((resolve) => setTimeout(resolve, timeout));

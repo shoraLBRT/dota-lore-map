@@ -56,9 +56,12 @@ const isPoint = (p) => Array.isArray(p) && p.length === 2 && p.every((v) => type
 const inUnit = (p) => p.every((v) => v >= 0 && v <= 1);
 
 // --- верхний уровень
-if (layout.aspect !== 1.6) err(`aspect должен быть 1.6, сейчас ${layout.aspect}`);
-const bands = layout.bands || {};
-for (const k of ['upper', 'abyss']) if (!Array.isArray(bands[k]) || bands[k].length !== 2) err(`bands.${k}: нужен [y0, y1]`);
+// Мир квадратный (SPEC §4): ярусы — в углах. Верхний ярус (небо, Планы) — в правом верхнем углу,
+// бездна (Подземье, Преисподние) — в левом нижнем; два других угла — открытое море.
+if (layout.aspect !== 1) err(`aspect должен быть 1, сейчас ${layout.aspect}`);
+if ('bands' in layout) err('bands больше нет: ярусы — полигоны в углах');
+const CORNER = { upper: [1, 0], abyss: [0, 1] };
+const TIER_REACH = 0.75; // вершины яруса не дальше этого от своего угла по каждой оси
 
 const known = new Map(regions.map((r) => [r.id, r]));
 for (const id of Object.keys(layout.regions || {})) if (!known.has(id)) err(`регион ${id} есть в layout, но нет в regions.json`);
@@ -85,13 +88,12 @@ for (const r of regions) {
     }
   }
 
-  // ярус: полигон в своей полосе
-  const ys = poly.map((p) => p[1]);
-  const [y0, y1] = [Math.min(...ys), Math.max(...ys)];
-  if (r.tier === 'upper' && bands.upper && y1 > bands.upper[1] + EPS) err(`регион ${r.id}: выходит из полосы upper (y до ${y1})`);
-  if (r.tier === 'abyss' && bands.abyss && y0 < bands.abyss[0] - EPS) err(`регион ${r.id}: выходит из полосы abyss (y от ${y0})`);
-  if (r.tier === 'continent' && bands.upper && bands.abyss && (y0 < bands.upper[1] || y1 > bands.abyss[0]))
-    err(`регион ${r.id}: материк заходит в полосу яруса (y ${y0}–${y1})`);
+  // ярус: полигон в своём углу и касается его; материк — не в углах ярусов
+  const corner = CORNER[r.tier];
+  if (corner) {
+    if (!poly.every(([x, y]) => Math.abs(x - corner[0]) <= TIER_REACH && Math.abs(y - corner[1]) <= TIER_REACH))
+      err(`регион ${r.id}: ярус ${r.tier} выходит из своего угла`);
+  }
 
   // подпись
   if (!isPoint(L.label) || !inUnit(L.label)) err(`регион ${r.id}: label — [x, y] в [0, 1]`);

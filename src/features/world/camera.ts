@@ -1,13 +1,16 @@
 // Камера карты (ARCHITECTURE A4): CSS transform на слое карты + Web Animations API.
-// Слой карты имеет соотношение сторон 16:10 и transform-origin: 0 0, поэтому
+// Слой карты имеет пропорции мира (`world.aspect`, SPEC §4: квадрат) и transform-origin: 0 0, поэтому
 // нормированные координаты камеры напрямую переводятся в проценты размера слоя.
 // Правая панель лежит поверх карты (ARCHITECTURE A4): камера региона и места кадрирует
 // свободную часть кадра слева от панели — `frameCamera` и сдвиг `offset` в cameraTransform.
 
 import type { Camera, Point } from '../../data/types';
+import { world } from '../../data/world';
 
+/** Ширина мира к высоте — из `map/layout.json` (SPEC §4). */
+export const WORLD_ASPECT = world.aspect;
 export const STAGE_WIDTH = 1600;
-export const STAGE_HEIGHT = 1000;
+export const STAGE_HEIGHT = Math.round(STAGE_WIDTH / WORLD_ASPECT);
 
 /** Весь мир в кадре. */
 export const WORLD_CAMERA: Camera = { x: 0.5, y: 0.5, zoom: 1 };
@@ -36,7 +39,7 @@ export interface View {
   /** Размер кадра (viewport). */
   width: number;
   height: number;
-  /** Размер слоя карты 16:10 без камеры. */
+  /** Размер слоя карты (пропорции мира) без камеры. */
   layerWidth: number;
   layerHeight: number;
   /** Сколько px справа закрывает панель. */

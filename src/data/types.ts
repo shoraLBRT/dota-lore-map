@@ -24,7 +24,7 @@ export type Biome =
   | 'fog';
 export type AmbientType = 'snow' | 'ash' | 'embers' | 'fog' | 'rain' | 'sparkles' | 'stars' | 'leaves' | 'sand' | 'none';
 
-/** Нормированная точка: x, y ∈ [0, 1] относительно картинки мира 16:10. */
+/** Нормированная точка: x, y ∈ [0, 1] относительно картинки мира (квадрат, SPEC §4). */
 export type Point = [number, number];
 
 export interface Camera {
@@ -211,8 +211,8 @@ export interface Hero {
 }
 
 export interface World {
+  /** Ширина мира к высоте (SPEC §4: мир квадратный, 1). */
   aspect: number;
-  bands?: { upper: [number, number]; abyss: [number, number] };
   regions: Region[];
   heroes: Hero[];
   /** Все медиа; регионы и места ссылаются на них по id. Нет медиа — поля нет. */

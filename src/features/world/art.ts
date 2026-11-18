@@ -1,12 +1,15 @@
 // Арт карты и его предзагрузка (SPEC §14, ARCHITECTURE A4, A10).
-// Пока нарисованного арта нет (E2), карта — процедурная заглушка: адресов картинок нет,
-// и все функции ниже безопасно ничего не делают. Когда арт появится, достаточно заполнить
-// WORLD_ART и поле `layout.art` регионов — интро и наведение начнут его грузить сами.
+// Картинка мира — растровый арт 1:1 (#163, исходник — map/art/world.jpg, файлы — public/art/).
+// Детальных картинок регионов пока нет: поле `layout.art` пустое, и их функции ничего не делают.
 
 import type { Region } from '../../data/types';
 
-/** Картинка мира целиком для интро и S1. `undefined` — арта ещё нет. */
-export const WORLD_ART: string | undefined = undefined;
+const BASE = import.meta.env.BASE_URL;
+
+/** Картинка мира целиком (S1, приближение региона). `undefined` — арта нет, карта — процедурная заглушка. */
+export const WORLD_ART: string | undefined = `${BASE}art/world-4096.webp`;
+/** Лёгкое превью мира: его ждёт кнопка «Начать», пока полная картинка догружается. */
+export const WORLD_PREVIEW: string | undefined = `${BASE}art/world-1024.webp`;
 
 /** Детальная картинка региона для приближения (A3). */
 export function regionArt(region: Region): string | undefined {
