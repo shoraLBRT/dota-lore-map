@@ -10,6 +10,8 @@ import {
   pulse,
   sizeFade,
   strength,
+  approachVeil,
+  PATH_VEIL,
   visible,
   zoomOf,
   type Box,
@@ -101,6 +103,8 @@ interface Props {
   layerRef: RefObject<HTMLDivElement | null>;
   /** Открытый регион: его туман реже, облака тоньше. */
   activeId?: string;
+  /** На карте путь героя (#168): облака и туман расходятся до PATH_VEIL, чтобы нить читалась. */
+  clear?: boolean;
 }
 
 /**
@@ -109,16 +113,22 @@ interface Props {
  * Положение мира каждый кадр берётся из `getBoundingClientRect` слоя — так эффекты идут и за жестами,
  * и за анимацией перелёта камеры. Телефон — облегчённый вариант; reduced motion — без дрейфа, пульса и параллакса.
  */
-export function MapAtmosphere({ layerRef, activeId }: Props) {
+export function MapAtmosphere({ layerRef, activeId, clear = false }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const grainRef = useRef<HTMLDivElement>(null);
   const active = useRef(activeId);
   const dirty = useRef(true);
+  const veilTarget = useRef(clear ? PATH_VEIL : 1);
 
   useEffect(() => {
     active.current = activeId;
     dirty.current = true;
   }, [activeId]);
+
+  useEffect(() => {
+    veilTarget.current = clear ? PATH_VEIL : 1;
+    dirty.current = true;
+  }, [clear]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -151,10 +161,14 @@ export function MapAtmosphere({ layerRef, activeId }: Props) {
     let skip = 0;
     let frame = 0;
     const t0 = performance.now();
+    let veil = veilTarget.current;
+    let lastNow = t0;
 
     const draw = (rect: WorldRect, homeSize: number, t: number) => {
       const zoom = zoomOf(rect, homeSize);
       const s = strength(zoom, active.current !== undefined);
+      s.clouds *= veil;
+      s.fog *= veil;
       ctx.setTransform(res, 0, 0, res, 0, 0);
       ctx.clearRect(0, 0, box.width, box.height);
 
@@ -231,7 +245,13 @@ export function MapAtmosphere({ layerRef, activeId }: Props) {
       const cr = canvas.getBoundingClientRect();
       const rect: WorldRect = { left: lr.left - cr.left, top: lr.top - cr.top, size: lr.width };
       const key = `${Math.round(rect.left * 2)}|${Math.round(rect.top * 2)}|${Math.round(rect.size * 2)}`;
-      const moved = key !== lastKey || dirty.current;
+      // Путь героя (#168): облака расходятся плавно; reduced motion — сразу.
+      const dt = (now - lastNow) / 1000;
+      lastNow = now;
+      const wasVeil = veil;
+      veil = reduced ? veilTarget.current : approachVeil(veil, veilTarget.current, dt);
+
+      const moved = key !== lastKey || dirty.current || veil !== wasVeil;
       lastKey = key;
       dirty.current = false;
       // Без движения перерисовываем, только когда сдвинулась камера; на телефоне дрейф — 30 кадров в секунду.
