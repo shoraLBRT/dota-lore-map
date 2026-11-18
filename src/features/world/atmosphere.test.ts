@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import layout from '../../../map/layout.json';
 import {
+  approachVeil,
+  PATH_VEIL,
   cloudsFor,
   drift,
   FOG_PATCHES,
@@ -94,5 +96,17 @@ describe('постэффекты карты (#167)', () => {
     }
     for (const p of FOG_PATCHES) if (p.region) expect(ids.has(p.region)).toBe(true);
     expect(new Set(FOG_PATCHES.map((p) => p.region).filter(Boolean))).toEqual(new Set(['uncharted', 'the-deep', 'underdark']));
+  });
+});
+
+describe('облака расходятся под путём героя (#168)', () => {
+  it('плавно к цели, без перелёта; близко — ровно цель', () => {
+    const step = approachVeil(1, PATH_VEIL, 1 / 60);
+    expect(step).toBeLessThan(1);
+    expect(step).toBeGreaterThan(PATH_VEIL);
+    let v = 1;
+    for (let i = 0; i < 180; i++) v = approachVeil(v, PATH_VEIL, 1 / 60);
+    expect(v).toBe(PATH_VEIL);
+    expect(approachVeil(PATH_VEIL, 1, 10)).toBe(1);
   });
 });

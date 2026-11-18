@@ -21,6 +21,7 @@ import { RegionList } from './RegionList';
 import { RegionsLayer, UnmappedRegions, zoomedClass } from './RegionsLayer';
 import { RegionTooltip } from './RegionTooltip';
 import { Threads } from './Threads';
+import { threadStyleFrom } from './threadStyle';
 import { useCamera } from './useCamera';
 import { useFontsTick, useMeasuredLabels } from './useMeasuredLabels';
 import { usePlaceTooltip } from './usePlaceTooltip';
@@ -126,6 +127,8 @@ export function MapStage({
 
   const cam = useCamera({ active, activePlaceSlug, panel, regionList, topInset, hasMap, onCameraBusy });
   const { viewportRef, layerRef, listLayout, flying, target, frame, controls } = cam;
+  // Рисунок пути (#168): `?threads=<вариант>` до `#` — сравнение вариантов для владельца.
+  const [threadVariant] = useState(() => threadStyleFrom(typeof location === 'undefined' ? '' : location.search));
 
   // Ширины подписей: при смене языка, региона и после загрузки шрифтов (подписи не выходят за край и не налезают).
   const fontsTick = useFontsTick();
@@ -190,12 +193,13 @@ export function MapStage({
                   obstacles={threadLayout.obstacles}
                   clip={threadLayout.clip}
                   compact={Boolean(listLayout)}
+                  variant={threadVariant}
                 />
               )}
             </svg>
           </div>
           <div className={styles.cloudBox} style={listLayout ? rectStyle(listLayout.map) : undefined}>
-            <MapAtmosphere layerRef={layerRef} activeId={active?.id} />
+            <MapAtmosphere layerRef={layerRef} activeId={active?.id} clear={Boolean(threads)} />
           </div>
           {active && <AmbientCanvas key={active.id} ambient={active.ambient} />}
           <div className={styles.vignette} style={listLayout ? rectStyle(listLayout.map) : undefined} aria-hidden="true" />

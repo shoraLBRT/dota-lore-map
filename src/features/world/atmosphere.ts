@@ -131,6 +131,18 @@ export function strength(zoom: number, inRegion = false): Strength {
   };
 }
 
+/** Доля облаков и тумана, пока на карте путь героя (#168): облака расходятся, нить читается поверх арта. */
+export const PATH_VEIL = 0.35;
+
+/** За сколько секунд облака расходятся или сходятся (до 1/e расстояния). */
+const VEIL_TAU = 0.35;
+
+/** Шаг плавного перехода `veil` к `target` за dt секунд: экспонента, без рывка; почти дошли — ровно target. */
+export function approachVeil(veil: number, target: number, dt: number): number {
+  const next = target + (veil - target) * Math.exp(-Math.max(0, dt) / VEIL_TAU);
+  return Math.abs(next - target) < 0.005 ? target : next;
+}
+
 /** Где мир на экране: левый верхний угол и сторона квадрата, px от левого верхнего угла холста. */
 export interface WorldRect {
   left: number;
