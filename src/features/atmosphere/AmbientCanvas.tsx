@@ -1,6 +1,7 @@
-import { useEffect, useRef } from 'react';
-import type { Ambient } from '../../data/types';
-import { prefersReducedMotion } from '../world/camera';
+import { useEffect, useRef, type RefObject } from 'react';
+import type { Ambient, Point } from '../../data/types';
+import { polygonBox, prefersReducedMotion, STAGE_WIDTH } from '../world/camera';
+import { smoothPath } from '../world/stage';
 import styles from './AmbientCanvas.module.css';
 import { particleCount, spawn, step, twinkle, type Kind, type Particle } from './particles';
 
@@ -80,15 +81,35 @@ function draw(ctx: CanvasRenderingContext2D, kind: Kind, ps: Particle[], t: numb
   ctx.globalAlpha = 1;
 }
 
+/** Регион на экране: где сейчас слой карты и форма региона в долях мира. */
+export interface AmbientRegion {
+  layerRef: RefObject<HTMLElement | null>;
+  polygon: Point[];
+}
+
+/** Рамка габарита региона на холсте, px. */
+interface Area {
+  left: number;
+  top: number;
+  width: number;
+  height: number;
+  /** px холста на единицу сцены (STAGE_WIDTH). */
+  k: number;
+}
+
 /**
  * Частицы региона на canvas поверх карты (SPEC §7.3), только в S2/S3. Тип и плотность — `ambient` из данных.
+ * С `region` (#192) частицы живут только над регионом: летят в рамке его габарита на экране (она идёт за камерой),
+ * обрезаны по его форме, а их число — от площади этой рамки. Без `region` — весь кадр.
  * Не рисуется при prefers-reduced-motion; на скрытой вкладке цикл стоит.
  */
-export function AmbientCanvas({ ambient }: { ambient: Ambient | undefined }) {
+export function AmbientCanvas({ ambient, region }: { ambient: Ambient | undefined; region?: AmbientRegion }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const kind = ambientKind(ambient);
   const density = ambient?.density ?? 0.5;
   const reduced = prefersReducedMotion();
+  const layerRef = region?.layerRef;
+  const polygon = region?.polygon;
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -96,23 +117,61 @@ export function AmbientCanvas({ ambient }: { ambient: Ambient | undefined }) {
     if (!canvas || !ctx || !kind) return;
     const color = getComputedStyle(document.documentElement).getPropertyValue(COLOR_TOKEN[kind]).trim() || '#fff';
     const sprite = kind === 'fog' ? fogSprite(color) : null;
-    let w = 0;
-    let h = 0;
+    const box = polygon ? polygonBox(polygon) : null;
+    const shape = polygon && typeof Path2D !== 'undefined' ? new Path2D(smoothPath(polygon)) : null;
+    let dpr = 1;
+    let cw = 0;
+    let ch = 0;
+    /** Область, где летят частицы: весь холст или рамка региона. */
+    let area: Area = { left: 0, top: 0, width: 0, height: 0, k: 1 };
     let particles: Particle[] = [];
 
+    const fill = () => {
+      const n = particleCount(kind, density, area.width, area.height);
+      particles = particles.slice(0, n);
+      while (particles.length < n) particles.push(spawn(kind, area.width, area.height));
+    };
+    /** Рамка региона на холсте сейчас; камера двигается — частицы растягиваются вместе с ней. */
+    const follow = () => {
+      const layer = layerRef?.current;
+      if (!box || !layer) return;
+      const lr = layer.getBoundingClientRect();
+      const cr = canvas.getBoundingClientRect();
+      const next: Area = {
+        left: lr.left - cr.left + box.left * lr.width,
+        top: lr.top - cr.top + box.top * lr.height,
+        width: (box.right - box.left) * lr.width,
+        height: (box.bottom - box.top) * lr.height,
+        k: lr.width / STAGE_WIDTH,
+      };
+      if (next.width !== area.width || next.height !== area.height) {
+        const sx = area.width > 0 ? next.width / area.width : 1;
+        const sy = area.height > 0 ? next.height / area.height : 1;
+        for (const p of particles) {
+          p.x *= sx;
+          p.y *= sy;
+        }
+        const was = area.width * area.height;
+        area = next;
+        // Число частиц — от площади региона на экране; пересчёт при заметной перемене, не каждый кадр.
+        if (was <= 0 || Math.abs(next.width * next.height - was) / was > 0.15) fill();
+      } else area = next;
+    };
+
     const resize = () => {
-      const dpr = Math.min(2, window.devicePixelRatio || 1);
-      w = canvas.clientWidth;
-      h = canvas.clientHeight;
-      canvas.width = Math.round(w * dpr);
-      canvas.height = Math.round(h * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      dpr = Math.min(2, window.devicePixelRatio || 1);
+      cw = canvas.clientWidth;
+      ch = canvas.clientHeight;
+      canvas.width = Math.round(cw * dpr);
+      canvas.height = Math.round(ch * dpr);
       ctx.fillStyle = color;
       ctx.strokeStyle = color;
       ctx.lineWidth = 1;
-      const n = particleCount(kind, density, w, h);
-      particles = particles.slice(0, n);
-      while (particles.length < n) particles.push(spawn(kind, w, h));
+      if (box) follow();
+      else {
+        area = { left: 0, top: 0, width: cw, height: ch, k: 1 };
+        fill();
+      }
     };
     resize();
 
@@ -124,9 +183,19 @@ export function AmbientCanvas({ ambient }: { ambient: Ambient | undefined }) {
       const dt = Math.min(0.05, (now - last) / 1000);
       last = now;
       t += dt;
-      for (const p of particles) step(p, kind, dt, t, w, h);
-      ctx.clearRect(0, 0, w, h);
+      if (box) follow();
+      for (const p of particles) step(p, kind, dt, t, area.width, area.height);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, cw, ch);
+      ctx.save();
+      if (shape) {
+        // Маска по форме региона: путь в единицах сцены, переведённый в px холста.
+        ctx.setTransform(dpr * area.k, 0, 0, dpr * area.k, dpr * (area.left - box!.left * STAGE_WIDTH * area.k), dpr * (area.top - box!.top * STAGE_WIDTH * area.k));
+        ctx.clip(shape);
+      }
+      ctx.setTransform(dpr, 0, 0, dpr, dpr * area.left, dpr * area.top);
       draw(ctx, kind, particles, t, sprite);
+      ctx.restore();
       frame = requestAnimationFrame(tick);
     };
     const start = () => {
@@ -149,7 +218,7 @@ export function AmbientCanvas({ ambient }: { ambient: Ambient | undefined }) {
       document.removeEventListener('visibilitychange', onVisibility);
       observer?.disconnect();
     };
-  }, [kind, density]);
+  }, [kind, density, layerRef, polygon]);
 
   if (!kind || reduced) return null;
   return <canvas ref={canvasRef} className={styles.canvas} aria-hidden="true" data-ambient={kind} />;

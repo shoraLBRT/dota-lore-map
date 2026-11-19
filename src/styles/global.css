@@ -131,6 +131,7 @@ button:hover {
     --dur-hl-out: 0ms;
     --dur-fade: 200ms;
     --dur-panel: 0ms;
+    --dur-panel-in: 0ms;
     --dur-thread: 0ms;
     --dur-place: 200ms;
     --dur-camera: 200ms;

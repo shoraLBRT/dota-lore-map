@@ -138,7 +138,7 @@ describe('prefers-reduced-motion (SPEC §7.1, §14)', () => {
   it('global.css укорачивает длительности-токены', () => {
     const global = css('styles/global.css');
     const block = global.slice(global.indexOf('@media (prefers-reduced-motion: reduce)'));
-    for (const token of ['--dur-hover', '--dur-panel', '--dur-thread', '--dur-camera', '--dur-intro']) {
+    for (const token of ['--dur-hover', '--dur-panel', '--dur-panel-in', '--dur-thread', '--dur-camera', '--dur-intro']) {
       expect(block).toContain(token);
     }
   });

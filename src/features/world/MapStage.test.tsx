@@ -8,6 +8,8 @@ import {
   frameCamera,
   PLACE_ZOOM,
   placeCamera,
+  REGION_FILL,
+  regionFrame,
   REGION_ZOOM_MAX,
   UNMEASURED,
   worldListLayout,
@@ -593,14 +595,44 @@ describe('camera', () => {
   });
   it('кадр самого маленького региона не ближе REGION_ZOOM_MAX, места — ×PLACE_ZOOM (#179)', () => {
     const view = { width: 1440, height: 900, layerWidth: 1440, layerHeight: 1440, inset: 0 };
-    const region = { x: 0.5, y: 0.5, zoom: 5 };
-    expect(frameCamera(region, view).camera.zoom).toBe(REGION_ZOOM_MAX);
-    const place = placeCamera(region, [0.5, 0.5]);
-    const box = { left: 0.45, top: 0.45, right: 0.55, bottom: 0.55 };
-    expect(frameCamera(place, view, { box, place: [0.5, 0.5] }).camera.zoom).toBeCloseTo(REGION_ZOOM_MAX * PLACE_ZOOM);
-    // Телефон: вписанный мир уже кадра, потолок не достигается.
-    const phone = { width: 375, height: 812, layerWidth: 812, layerHeight: 812, inset: 0 };
-    expect(frameCamera(region, phone).camera.zoom).toBeCloseTo(5 * (375 / 812));
+    const box = { left: 0.47, top: 0.47, right: 0.53, bottom: 0.53 };
+    expect(regionFrame(box, view).camera.zoom).toBe(REGION_ZOOM_MAX);
+    expect(regionFrame(box, view, [0.5, 0.5]).camera.zoom).toBeCloseTo(REGION_ZOOM_MAX * PLACE_ZOOM);
+  });
+  it('кадр региона (#192): габарит занимает REGION_FILL свободной области по ведущей стороне', () => {
+    // 1440×900, слой 1440×1440, панель 492 — свободно 948×900.
+    const view = { width: 1440, height: 900, layerWidth: 1440, layerHeight: 1440, inset: 492 };
+    const wide = { left: 0.3, top: 0.4, right: 0.6, bottom: 0.5 };
+    const w = regionFrame(wide, view);
+    expect(w.offset).toBe(246);
+    expect(0.3 * 1440 * w.camera.zoom).toBeCloseTo(948 * REGION_FILL);
+    expect(w.camera.x).toBeCloseTo(0.45);
+    // Высокий регион — по высоте.
+    const tall = { left: 0.4, top: 0.3, right: 0.5, bottom: 0.6 };
+    expect(0.3 * 1440 * regionFrame(tall, view).camera.zoom).toBeCloseTo(900 * REGION_FILL);
+    // Телефон: шторка снизу — свободно 375×568.
+    const phone = { width: 375, height: 812, layerWidth: 812, layerHeight: 812, inset: 0, insetBottom: 244 };
+    const p = regionFrame(tall, phone);
+    expect(p.offsetY).toBe(122);
+    expect(0.1 * 812 * p.camera.zoom).toBeLessThanOrEqual(375 * REGION_FILL + 1e-9);
+    expect(0.3 * 812 * p.camera.zoom).toBeCloseTo(568 * REGION_FILL);
+    // Регион больше свободной области — не дальше zoom 1: за краем мира пустоты нет.
+    expect(regionFrame({ left: 0, top: 0, right: 1, bottom: 0.3 }, view).camera.zoom).toBe(1);
+    // Без измерений — центр рамки.
+    const raw = regionFrame(wide, UNMEASURED);
+    expect(raw.offset).toBe(0);
+    expect(raw.camera.zoom).toBe(1);
+    expect(raw.camera.x).toBeCloseTo(0.45);
+  });
+  it('кадр места (#192): место — в центре свободной области, на ступень ближе региона', () => {
+    const view = { width: 1440, height: 900, layerWidth: 1440, layerHeight: 1440, inset: 492 };
+    const box = { left: 0.3, top: 0.4, right: 0.6, bottom: 0.5 };
+    const region = regionFrame(box, view);
+    const place = regionFrame(box, view, [0.35, 0.48]);
+    expect(place.camera.zoom).toBeCloseTo(region.camera.zoom * PLACE_ZOOM);
+    expect(place.camera.x).toBeCloseTo(0.35);
+    expect(place.camera.y).toBeCloseTo(0.48);
+    expect(place.offset).toBe(region.offset);
   });
 
   it('рамка региона под панелью: zoom — от вписанного мира, до свободной ширины', () => {
@@ -630,23 +662,6 @@ describe('camera', () => {
     expect(free.x).toBeCloseTo(camera.x + offset / k);
     // Без панели — прижимается весь кадр.
     expect(clampCamera({ x: 0.95, y: 0.5, zoom: camera.zoom }, { ...view, inset: 0 }).x).toBeCloseTo(1 - 800 / k);
-  });
-  it('камера места не уводит регион из кадра больше, чем нужно (#96)', () => {
-    const view = { width: 1600, height: 1000, layerWidth: 1600, layerHeight: 1600, inset: 480 };
-    const zoom = 3 * (1000 / 1600);
-    const seen = 1120 / (1600 * zoom);
-    // Регион шириной 0.3 помещается: центр, сдвинутый к месту, возвращается так, чтобы регион остался в кадре.
-    const fits = frameCamera({ x: 0.55, y: 0.3, zoom: 3 }, view, {
-      box: { left: 0.3, top: 0.2, right: 0.6, bottom: 0.4 },
-      place: [0.58, 0.3],
-    }).camera;
-    expect(fits.x - seen / 2).toBeLessThanOrEqual(0.3 + 1e-9);
-    expect(fits.x + seen / 2).toBeGreaterThanOrEqual(0.6 - 1e-9);
-    // Регион шириной 0.6 не помещается: вылезает поровну за оба края…
-    const box = { left: 0.2, top: 0.2, right: 0.8, bottom: 0.4 };
-    expect(frameCamera({ x: 0.7, y: 0.3, zoom: 3 }, view, { box, place: [0.55, 0.3] }).camera.x).toBeCloseTo(0.8 - seen / 2);
-    // …но место у края региона не уходит к краю кадра ближе чем на пятую часть видимой ширины.
-    expect(frameCamera({ x: 0.7, y: 0.3, zoom: 3 }, view, { box, place: [0.76, 0.3] }).camera.x).toBeCloseTo(0.76 - seen * 0.3);
   });
   it('шторка снизу (телефон): центр выше на половину шторки; zoom не меньше 1 — карта всегда во весь кадр', () => {
     // Телефон: кадр 375×760, слой 760×760, вписанный мир — 375 px, шторка 244 px.
@@ -694,11 +709,8 @@ describe('camera', () => {
     // Без измерений — без сдвига.
     expect(worldListLayout(UNMEASURED)).toMatchObject({ offset: 0, offsetY: 0 });
   });
-  it('камера места — между регионом и местом, чуть ближе', () => {
-    const c = placeCamera({ x: 0.2, y: 0.2, zoom: 2 }, [0.4, 0.6]);
-    expect(c.x).toBeCloseTo(0.3);
-    expect(c.y).toBeCloseTo(0.4);
-    expect(c.zoom).toBeCloseTo(2.3);
+  it('ключ кадра места — точка места, чуть ближе', () => {
+    expect(placeCamera({ x: 0.2, y: 0.2, zoom: 2 }, [0.4, 0.6])).toEqual({ x: 0.4, y: 0.6, zoom: 2 * PLACE_ZOOM });
   });
 });
 

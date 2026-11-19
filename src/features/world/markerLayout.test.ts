@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { Lang, Region } from '../../data/types';
 import { world } from '../../data/world';
-import { frameCamera, SHEET_PEEK, STAGE_WIDTH, WORLD_ASPECT, type View } from './camera';
+import { polygonBox, regionFrame, SHEET_PEEK, STAGE_WIDTH, WORLD_ASPECT, type View } from './camera';
 import { labelBox, placeMarkerLabels, type Box } from './labels';
 import { kindOf, labelBounds, markerLabelItems } from './markerLayout';
 
@@ -22,7 +22,7 @@ function view(width: number, height: number): View {
 /** Подписи мест региона на экране этого размера: сторона и рамка каждой показанной подписи, px. */
 function layout(region: Region, size: [number, number], lang: Lang) {
   const stage = view(...size);
-  const framed = frameCamera(region.layout!.camera, stage);
+  const framed = regionFrame(polygonBox(region.layout!.polygon), stage);
   const regionZoom = framed.camera.zoom;
   const markerScale = STAGE_WIDTH / stage.layerWidth / regionZoom;
   const spots = region.places.filter((p) => p.pos);

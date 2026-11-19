@@ -115,6 +115,11 @@
   fill-opacity: 0.55;
 }
 
+/* Чужой ярус в кадре региона гаснет целиком (#192): цвет фона, край растушёван маской. */
+.tierShade {
+  fill: var(--bg-0);
+}
+
 @keyframes veil-in {
   from {
     opacity: 0;

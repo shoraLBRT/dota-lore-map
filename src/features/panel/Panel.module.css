@@ -11,7 +11,8 @@
   pointer-events: none;
   /* SPEC §7.5: панель выезжает и сворачивается с инерцией — лёгкий перелёт и возврат. */
   transition: transform var(--dur-panel) var(--ease-spring);
-  animation: panel-in var(--dur-panel) var(--ease-spring);
+  /* Появление — одно движение с перелётом камеры (#192, SPEC §7.1 A3). */
+  animation: panel-in var(--dur-panel-in) var(--ease-in-out);
 }
 
 /* Свёрнута: уехала за правый край, кнопка-ромб остаётся на виду. Карта не двигается — панель её не толкает. */
