@@ -130,7 +130,7 @@ describe('MapStage', () => {
     expect(polygon).toHaveAttribute('points', '160,160 480,160 320,480');
     // Поверх картинки мира (A10) полигон прозрачный: чёрная заливка нужна только для затемнения соседей.
     expect(polygon).toHaveAttribute('fill', '#000');
-    expect(document.querySelector('[data-world-art] image:last-child')).toHaveAttribute('href', expect.stringMatching(/art\/world-4096\.webp$/));
+    expect(document.querySelector('[data-world-art] img:last-of-type')).toHaveAttribute('src', expect.stringMatching(/art\/world-4096\.webp$/));
     expect(screen.getByRole('navigation').textContent).toBe('b en');
 
     fireEvent.click(polygon);

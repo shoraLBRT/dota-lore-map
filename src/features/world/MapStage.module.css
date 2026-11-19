@@ -25,6 +25,7 @@
 }
 
 .layer {
+  position: relative;
   flex: none;
   width: max(100cqw, calc(100cqh * var(--aspect, 1)));
   aspect-ratio: var(--aspect, 1);
@@ -34,6 +35,7 @@
 }
 
 .svg {
+  position: relative;
   display: block;
   width: 100%;
   height: 100%;

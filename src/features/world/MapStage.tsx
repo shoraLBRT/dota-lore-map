@@ -148,6 +148,7 @@ export function MapStage({
       {hasMap && (
         <div ref={viewportRef} className={styles.viewport} onClick={onBackground}>
           <div ref={layerRef} className={styles.layer} style={{ transform: target, '--aspect': WORLD_ASPECT } as CSSProperties}>
+            <WorldArt layerRef={layerRef} viewportRef={viewportRef} />
             <svg
               ref={svgRef}
               className={styles.svg}
@@ -156,7 +157,6 @@ export function MapStage({
               aria-label={t('world.map')}
               style={{ '--map-text': frame.textScale } as CSSProperties}
             >
-              <WorldArt layerRef={layerRef} viewportRef={viewportRef} />
               <RegionsLayer
                 drawn={drawn}
                 activeId={active?.id}
