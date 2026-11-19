@@ -163,9 +163,8 @@ export function RegionsLayer({ drawn, activeId, inWorld, tip, litId, focusRegion
 interface LabelProps {
   drawn: Region[];
   inWorld: boolean;
-  /** Подсказка и наведение: что показано, что под мышью, обработчики подписи (#193). */
-  tip: Pick<RegionTooltipState, 'shownId' | 'litId' | 'label'>;
-  onSelectRegion: (regionId: string, source?: 'map' | 'list') => void;
+  /** Подсказка и наведение: что показано и что под мышью (#193: подсказку вызывает габарит подписи, `useRegionTooltip`). */
+  tip: Pick<RegionTooltipState, 'shownId' | 'litId'>;
   litId: string | null;
   focusRegions: Set<string> | null;
   previewRegions: Set<string> | null;
@@ -177,9 +176,9 @@ interface LabelProps {
  * Названия регионов (ARCHITECTURE A4, #180): рисуются в экранном слое над слоем карты, а не в его растре,
  * поэтому чёткие на любом приближении. Координаты — те же единицы сцены.
  */
-export function RegionLabels({ drawn, inWorld, tip, onSelectRegion, litId, focusRegions, previewRegions, widths }: LabelProps) {
+export function RegionLabels({ drawn, inWorld, tip, litId, focusRegions, previewRegions, widths }: LabelProps) {
   const { l } = useT();
-  const { shownId, litId: overId, label: on } = tip;
+  const { shownId, litId: overId } = tip;
   const heroClass = (regionId: string) =>
     focusRegions ? (focusRegions.has(regionId) ? styles.heroRegion : styles.muted) : undefined;
   return (
@@ -207,11 +206,6 @@ export function RegionLabels({ drawn, inWorld, tip, onSelectRegion, litId, focus
             y={ly}
             textAnchor="middle"
             data-label={r.id}
-            // #193: в мире подпись — цель наведения подсказки; клик по ней — как по региону. Фокус и клавиатура — у полигона.
-            onPointerEnter={inWorld ? (e) => e.pointerType !== 'touch' && on.onEnter(r) : undefined}
-            onPointerMove={inWorld ? (e) => e.pointerType !== 'touch' && on.onMove(r) : undefined}
-            onPointerLeave={inWorld ? (e) => e.pointerType !== 'touch' && on.onLeave(r) : undefined}
-            onClick={inWorld ? () => onSelectRegion(r.id, 'map') : undefined}
             // Номер в каскаде проявления подписей после интро (#187, WorldScreen `unveiling`).
             style={{ '--i': index } as CSSProperties}
             data-measure={lines.length === 1 ? `r:${r.id}` : undefined}

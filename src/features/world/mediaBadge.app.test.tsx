@@ -5,6 +5,7 @@ import { parseHash } from '../../app/router';
 import type { Media } from '../../data/types';
 import { getRegion, world } from '../../data/world';
 import { mediaKinds, placeMediaBadge, regionMediaBadge } from './mediaBadge';
+import { pointAtLabel } from './labelHover.testutil';
 import { TOOLTIP_OPEN_DELAY } from './useRegionTooltip';
 
 // Значок медиа на карте (#69): у маркера места и в подсказке региона; клик открывает галерею (?media=, A5).
@@ -15,7 +16,7 @@ const withMedia = (r: typeof icewrack) => r.places.filter((p) => p.media?.length
 
 /** #193: подсказку вызывает наведение на подпись региона, через TOOLTIP_OPEN_DELAY. */
 async function hoverLabel(id: string) {
-  fireEvent.pointerEnter(document.querySelector(`[data-label="${id}"]`)!, { pointerType: 'mouse' });
+  pointAtLabel(id);
   await act(() => new Promise((r) => setTimeout(r, TOOLTIP_OPEN_DELAY)));
 }
 
@@ -98,7 +99,7 @@ describe('значок медиа (#69)', () => {
     await hoverLabel(bare.id);
     expect(document.getElementById(screen.getByRole('button', { name: bare.name.en }).getAttribute('aria-describedby')!)).toBeInTheDocument();
     expect(screen.queryByRole('button', { name: /^Media:/ })).toBeNull();
-    fireEvent.pointerLeave(document.querySelector(`[data-label="${bare.id}"]`)!, { pointerType: 'mouse' });
+    pointAtLabel(null);
 
     // Подсказка открыта — на другую подпись переходит сразу.
     const tip = await hoverRegion(hazhadal.id, hazhadal.name.en);

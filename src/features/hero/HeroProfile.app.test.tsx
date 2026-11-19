@@ -2,6 +2,7 @@ import { act, fireEvent, render, screen, within } from '@testing-library/react';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { App } from '../../app/App';
 import { getHero, getPlace, getRegion, heroCrop, heroRender, placeName } from '../../data/world';
+import { pointAtLabel } from '../world/labelHover.testutil';
 import { TOOLTIP_OPEN_DELAY } from '../world/useRegionTooltip';
 import { artId } from './profile';
 
@@ -155,7 +156,7 @@ describe('профиль героя', () => {
     window.location.hash = '#/world';
     render(<App />);
     // #193: подсказку вызывает подпись региона.
-    fireEvent.pointerEnter(document.querySelector('[data-label="icewrack"]')!, { pointerType: 'mouse' });
+    pointAtLabel('icewrack');
     await act(() => new Promise((r) => setTimeout(r, TOOLTIP_OPEN_DELAY)));
     // В мире панели нет: портрет-кнопка с этим героем — только в подсказке региона.
     fireEvent.click(document.querySelector('button img[alt="Crystal Maiden"]')!.closest('button')!);

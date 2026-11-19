@@ -156,7 +156,7 @@ export function MapStage({
   return (
     <div className={[styles.stage, active && zoomedClass].filter(Boolean).join(' ')}>
       {hasMap && (
-        <div ref={viewportRef} className={styles.viewport} onClick={onBackground}>
+        <div ref={viewportRef} className={styles.viewport} onClick={onBackground} data-map-viewport="">
           <div ref={layerRef} className={styles.layer} style={{ transform: target, '--aspect': WORLD_ASPECT } as CSSProperties}>
             <WorldArt layerRef={layerRef} viewportRef={viewportRef} />
             <svg
@@ -207,7 +207,6 @@ export function MapStage({
                 drawn={drawn}
                 inWorld={inWorld}
                 tip={tip}
-                onSelectRegion={onSelectRegion}
                 litId={litId}
                 focusRegions={focusRegions}
                 previewRegions={previewRegions}

@@ -4,6 +4,7 @@ import { App } from '../../app/App';
 import { parseHash } from '../../app/router';
 import { getRegion, heroesOfRegion } from '../../data/world';
 import { TOOLTIP_HEROES } from './RegionTooltip';
+import { pointAtLabel } from './labelHover.testutil';
 import { TOOLTIP_OPEN_DELAY } from './useRegionTooltip';
 
 // Подсказка региона в мире (#65): портрет выбирает героя, не уводя камеру; «+N» раскрывает всех на месте.
@@ -23,7 +24,7 @@ describe('подсказка региона в мире', () => {
     // #193: подсказку вызывает подпись региона, а не полигон.
     fireEvent.pointerEnter(screen.getByRole('button', { name: heavens.name.ru }), { pointerType: 'mouse' });
     expect(screen.queryByRole('group', { name: heavens.name.ru })).toBeNull();
-    fireEvent.pointerEnter(document.querySelector('[data-label="heavens"]')!, { pointerType: 'mouse' });
+    pointAtLabel('heavens');
     await act(() => new Promise((r) => setTimeout(r, TOOLTIP_OPEN_DELAY)));
     const tip = screen.getByRole('group', { name: heavens.name.ru });
     expect(tip.querySelector('[data-counts]')).toHaveTextContent(new RegExp(`^${all.length} геро`));

@@ -14,6 +14,9 @@ export const TOOLTIP_OPEN_DELAY = 300;
 /** Глубже этого приближения мира подсказки региона нет (#193): подписи и арт и так крупные. */
 export const TOOLTIP_MAX_ZOOM = 2;
 
+/** Запас вокруг габарита подписи региона для наведения, px (#193). */
+const LABEL_SLACK = 4;
+
 /** Правый край левой полосы (SPEC §6.1): подсказку левее не ставят (#101). */
 const railRight = () => cssPixels('--rail-width');
 
@@ -204,10 +207,13 @@ export function useRegionTooltip({ regions, inWorld, svgRef, labelsRef, camera, 
     },
   };
 
-  /** Обработчики подписи региона (экранный слой): наведение вызывает подсказку. */
+  /**
+   * Наведение на подпись региона (экранный слой): вызывает подсказку. Подсветку держит полигон под подписью.
+   * Вызывается из `pointermove` окна по габариту подписи (см. ниже), а не событиями самой подписи.
+   */
   const label = {
     onEnter: (r: Region) => {
-      over(r);
+      void preloadRegionArt(r);
       cancelClose();
       // Подсказка уже открыта (у этой или соседней подписи) — переходит сразу; иначе — после задержки.
       if (shownRef.current) {
@@ -224,11 +230,63 @@ export function useRegionTooltip({ regions, inWorld, svgRef, labelsRef, camera, 
       label.onEnter(r);
     },
     onLeave: (r: Region) => {
-      out(r);
       if (openTimer.current?.id === r.id) cancelOpen();
       leave(r.id);
     },
   };
+  const labelRef = useRef(label);
+  useEffect(() => {
+    labelRef.current = label;
+  });
+
+  // #193: подпись под мышью — по её габариту на экране (`getBoundingClientRect` с запасом LABEL_SLACK), а не по
+  // событиям `<text>`: у SVG-текста цель — только глифы (в WebKit — и с pointer-events: bounding-box ненадёжно),
+  // мышь между буквами и строками «уходила» с подписи. Считаем только мышь над картой (полигоны или пустое место
+  // кадра), не над кнопками и подсказкой; с зажатой кнопкой (перетаскивание) подписи нет.
+  const labelAt = useRef<string | null>(null);
+  useEffect(() => {
+    if (!inWorld) return;
+    const move = (e: PointerEvent) => {
+      if (e.pointerType === 'touch') return;
+      const target = e.target as Element | null;
+      // Мышь перешла на подсказку: её держит сама подсказка (onPointerEnter/Leave), уход с подписи не считаем.
+      if (target && tipRef.current?.contains(target)) {
+        labelAt.current = null;
+        return;
+      }
+      const viewport = target?.closest?.('[data-map-viewport]');
+      let id: string | null = null;
+      if (e.buttons === 0 && viewport && (target === viewport || svgRef.current?.contains(target))) {
+        for (const el of labelsRef.current?.querySelectorAll('[data-label]') ?? []) {
+          const r = el.getBoundingClientRect();
+          if (r.width <= 0) continue;
+          if (
+            e.clientX >= r.left - LABEL_SLACK &&
+            e.clientX <= r.right + LABEL_SLACK &&
+            e.clientY >= r.top - LABEL_SLACK &&
+            e.clientY <= r.bottom + LABEL_SLACK
+          ) {
+            id = el.getAttribute('data-label');
+            break;
+          }
+        }
+      }
+      const prev = labelAt.current;
+      const region = (x: string | null) => (x ? regions.find((r) => r.id === x) : undefined);
+      if (id === prev) {
+        const r = region(id);
+        if (r) labelRef.current.onMove(r);
+        return;
+      }
+      labelAt.current = id;
+      const left = region(prev);
+      if (left) labelRef.current.onLeave(left);
+      const entered = region(id);
+      if (entered) labelRef.current.onEnter(entered);
+    };
+    window.addEventListener('pointermove', move);
+    return () => window.removeEventListener('pointermove', move);
+  }, [inWorld, regions, svgRef, labelsRef]);
 
   /** Свойства для `RegionTooltip`, кроме `region`, героев и медиа. */
   const tip = {
