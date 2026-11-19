@@ -1,35 +1,65 @@
 .region {
   stroke: var(--border);
-  stroke-width: 2;
+  stroke-width: 1.5;
+  /* #188: толщина контура — в пикселях экрана на любом приближении. */
+  vector-effect: non-scaling-stroke;
   cursor: pointer;
 }
 
 .region:focus-visible {
   outline: none;
   stroke: var(--accent-bright);
-  stroke-width: 3;
+  stroke-width: 2;
 }
 
-/* Рамка открытого региона — цвет его стороны или яруса (SPEC §8.3, #94), не красный акцент. */
+/* Рамка открытого региона — цвет его стороны или яруса (SPEC §8.3, #94), не красный акцент. На арте её нет:
+   регион выделяет вуаль вокруг (#188). */
 .active.region {
   stroke: var(--hl);
-  stroke-width: 3;
+  stroke-width: 2;
 }
 
-/* S1h (SPEC §5.3, §7.1 A2): заливка цветом стороны и светлая граница проявляются за 200 мс. */
+/* S1h (SPEC §5.3, §7.1 A2, #188): свечение цветом стороны изнутри по сглаженной кривой и тонкий приглушённый
+   контур проявляются за 200 мс. Без фильтров: свечение — ступени широкой обводки, обрезанные формой региона. */
 .tint {
-  fill: var(--hl-glow);
-  stroke: var(--hl);
-  stroke-width: 3;
-  stroke-linejoin: round;
   pointer-events: none;
   opacity: 0;
   transition: opacity var(--dur-hover) var(--ease-out);
 }
 
+.glowFill {
+  fill: var(--hl-glow);
+  fill-opacity: 0.25;
+}
+
+.glowWide,
+.glowNear {
+  fill: none;
+  stroke: var(--hl-glow);
+  stroke-linejoin: round;
+}
+
+.glowWide {
+  stroke-width: 28;
+  stroke-opacity: 0.35;
+}
+
+.glowNear {
+  stroke-width: 10;
+  stroke-opacity: 0.6;
+}
+
+.outline {
+  fill: none;
+  stroke: var(--hl);
+  stroke-opacity: 0.6;
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
 .tint.lit {
   opacity: 1;
-  filter: drop-shadow(0 0 10px var(--hl-glow));
   /* SPEC §7.5: проявившаяся подсветка «дышит» — медленно тускнеет и разгорается. Задержка — на проявление:
      до неё работает переход opacity, анимация его не перебивает. */
   animation: breathe var(--dur-breathe) ease-in-out var(--dur-hover) infinite;
@@ -42,8 +72,27 @@
 }
 
 /* Фокус с клавиатуры — кольцо цвета акцента (SPEC §7.2). */
-.tint.focused {
+.tint.focused .outline {
   stroke: var(--accent-bright);
+  stroke-opacity: 1;
+  stroke-width: 2;
+}
+
+/* S2/S3 (#188): вне открытого региона — затемнение и лёгкое размытие с растушёванным краем. */
+.veil {
+  pointer-events: none;
+  animation: veil-in var(--dur-camera) var(--ease-in-out) both;
+}
+
+.veilShade {
+  fill: #000;
+  fill-opacity: 0.55;
+}
+
+@keyframes veil-in {
+  from {
+    opacity: 0;
+  }
 }
 
 .label {
@@ -141,24 +190,31 @@
   transition: fill-opacity var(--dur-camera) var(--ease-in-out);
 }
 
-.region.onArt.dimmed,
 .region.onArt.muted {
   filter: none;
   fill-opacity: 0.6;
 }
 
-.region.onArt.active {
-  stroke-opacity: 1;
+/* На арте соседей затемняет вуаль (#188), а не полигоны с прямыми краями. */
+.region.onArt.dimmed {
+  filter: none;
+  fill-opacity: 0;
 }
 
-/* Подсветка S1h поверх арта (#112): заливка вдвое прозрачнее токена, чтобы рисунок под ней оставался виден. */
-.tint.onArt {
-  fill-opacity: 0.5;
+/* #188: на арте контуров нет — ни ломаной у полигонов, ни рамки открытого региона. */
+.region.onArt:not(:focus-visible) {
+  stroke: none;
+}
+
+/* Подсветка S1h поверх арта (#112): свечение вдвое прозрачнее, чтобы рисунок под ним оставался виден. */
+.tint.onArt .glowFill {
+  fill-opacity: 0.12;
 }
 
 /* SPEC §7.5: при reduced motion подсветка горит ровно. */
 @media (prefers-reduced-motion: reduce) {
-  .tint.lit {
+  .tint.lit,
+  .veil {
     animation: none;
   }
 }
