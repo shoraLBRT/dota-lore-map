@@ -86,6 +86,15 @@ describe('MapStage — наведение на регион (S1h)', () => {
     expect(screen.queryByRole('tooltip')).toBeNull();
   });
 
+  it('тач: фокус от тапа не подсвечивает регион (#188)', () => {
+    renderStage([region('a', true)]);
+    const polygon = screen.getByRole('button', { name: 'a en' });
+    fireEvent.pointerDown(polygon, { pointerType: 'touch' });
+    fireEvent.focus(polygon);
+    expect(screen.queryByRole('tooltip')).toBeNull();
+    expect(tint('a').getAttribute('class')).not.toMatch(/lit/);
+  });
+
   it('тач: подсказки нет (SPEC §5.3)', () => {
     renderStage([region('a', true)]);
     fireEvent.pointerEnter(screen.getByRole('button', { name: 'a en' }), { pointerType: 'touch' });
@@ -98,6 +107,10 @@ describe('MapStage — наведение на регион (S1h)', () => {
     expect(screen.queryByRole('button', { name: 'b en' })).toBeNull();
     expect(document.querySelector('[data-region="b"]')!.getAttribute('class')).toMatch(/dimmed/);
     expect(document.querySelector('[data-region="a"]')!.getAttribute('class')).not.toMatch(/dimmed/);
+    // #188: на арте соседей затемняет вуаль с маской по всей сцене, а не по габариту региона.
+    const mask = screen.getByTestId('region-veil').querySelector('mask')!;
+    expect(mask).toHaveAttribute('maskUnits', 'userSpaceOnUse');
+    expect(mask).toHaveAttribute('width', '1600');
     fireEvent.pointerEnter(document.querySelector('[data-region="a"]')!, { pointerType: 'mouse' });
     expect(screen.queryByRole('tooltip')).toBeNull();
   });

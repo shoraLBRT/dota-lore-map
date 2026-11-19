@@ -1,11 +1,12 @@
-import type { CSSProperties } from 'react';
+import { useRef, useState, type CSSProperties } from 'react';
 import type { Region } from '../../data/types';
 import { useT } from '../../i18n';
-import { WORLD_ART } from './art';
+import { WORLD_ART, WORLD_PREVIEW } from './art';
 import { biomeColor } from './biomes';
 import { clampLabelX, splitLabel } from './labels';
 import styles from './RegionsLayer.module.css';
-import { onActivate, points, toStage } from './stage';
+import { STAGE_HEIGHT, STAGE_WIDTH } from './camera';
+import { onActivate, points, smoothPath, toStage } from './stage';
 import tones from './tones.module.css';
 import type { RegionTooltipState } from './useRegionTooltip';
 
@@ -42,6 +43,16 @@ export function RegionsLayer({ drawn, activeId, inWorld, tip, litId, focusRegion
   const onArt = WORLD_ART ? styles.onArt : undefined;
   const fillOf = (r: Region) => (WORLD_ART ? '#000' : biomeColor(r.biome));
   const { shownId, focusId, tooltipId, region: on } = tip;
+  const active = drawn.find((r) => r.id === activeId);
+  // #188: фокус от тапа — не фокус с клавиатуры; на сенсорных экранах подсветки и подсказки по нему нет,
+  // иначе после возврата в мир регион остаётся подсвеченным без наведения.
+  const touchFocus = useRef(false);
+  const isLit = (id: string) => id === shownId || id === litId || (inWorld && (focusRegions?.has(id) || previewRegions?.has(id)));
+  // Свечение появляется в DOM при первой подсветке и остаётся (для угасания): 27 погасших свечений под clipPath
+  // дорого стоят кадру входа (A14). Состояние правится во время рендера — штатный приём React.
+  const [everLit, setEverLit] = useState<ReadonlySet<string>>(() => new Set());
+  const newlyLit = drawn.filter((r) => isLit(r.id) && !everLit.has(r.id));
+  if (newlyLit.length) setEverLit(new Set([...everLit, ...newlyLit.map((r) => r.id)]));
   /** Класс приглушения или подсветки при выбранном герое. */
   const heroClass = (regionId: string) =>
     focusRegions ? (focusRegions.has(regionId) ? styles.heroRegion : styles.muted) : undefined;
@@ -87,31 +98,53 @@ export function RegionsLayer({ drawn, activeId, inWorld, tip, litId, focusRegion
               // SPEC §5.3: на тач-устройствах подсказки нет, тап сразу открывает регион.
               onPointerEnter={(e) => e.pointerType !== 'touch' && on.onEnter(r, { x: e.clientX, y: e.clientY })}
               onPointerLeave={(e) => e.pointerType !== 'touch' && on.onLeave(r)}
-              onFocus={() => on.onFocus(r)}
+              onPointerDown={(e) => {
+                touchFocus.current = e.pointerType === 'touch';
+              }}
+              onFocus={() => {
+                if (touchFocus.current) touchFocus.current = false;
+                else on.onFocus(r);
+              }}
               onBlur={() => on.onBlur(r)}
             />
           );
         })}
       </g>
-      {/* Заливка цветом стороны поверх всех полигонов, чтобы светлая граница не пряталась под соседями. */}
+      {/* S2/S3 (#188): всё вне открытого региона затемнено и слегка размыто, край растушёван по форме региона. */}
+      {WORLD_ART && !inWorld && active?.layout && <RegionVeil d={smoothPath(active.layout.polygon)} art={WORLD_PREVIEW ?? WORLD_ART} />}
+      {/* Подсветка S1h поверх всех полигонов, чтобы граница не пряталась под соседями (#188): мягкое свечение
+          изнутри по сглаженной кривой и тонкий контур постоянной толщины на экране. */}
       <g aria-hidden="true">
-        {drawn.map((r) => (
-          <polygon
-            key={r.id}
-            className={[
-              styles.tint,
-              onArt,
-              tones[highlight(r)],
-              (r.id === shownId || r.id === litId || (inWorld && (focusRegions?.has(r.id) || previewRegions?.has(r.id)))) &&
-                styles.lit,
-              r.id === shownId && r.id === focusId && styles.focused,
-            ]
-              .filter(Boolean)
-              .join(' ')}
-            points={points(r.layout!.polygon)}
-            data-tint={r.id}
-          />
-        ))}
+        {drawn.map((r) => {
+          const lit = isLit(r.id);
+          if (!lit && !everLit.has(r.id)) return <g key={r.id} className={styles.tint} data-tint={r.id} />;
+          const d = smoothPath(r.layout!.polygon);
+          return (
+            <g
+              key={r.id}
+              className={[
+                styles.tint,
+                onArt,
+                tones[highlight(r)],
+                lit && styles.lit,
+                r.id === shownId && r.id === focusId && styles.focused,
+              ]
+                .filter(Boolean)
+                .join(' ')}
+              data-tint={r.id}
+            >
+              <clipPath id={`rl-clip-${r.id}`}>
+                <path d={d} />
+              </clipPath>
+              <g clipPath={`url(#rl-clip-${r.id})`}>
+                <path className={styles.glowFill} d={d} />
+                <path className={styles.glowWide} d={d} />
+                <path className={styles.glowNear} d={d} />
+              </g>
+              <path className={styles.outline} d={d} />
+            </g>
+          );
+        })}
       </g>
       <g aria-hidden="true" className={styles.labels}>
         {drawn.map((r, index) => {
@@ -153,6 +186,32 @@ export function RegionsLayer({ drawn, activeId, inWorld, tip, litId, focusRegion
         })}
       </g>
     </>
+  );
+}
+
+/**
+ * Вуаль режима региона (#188): затемнение и лёгкое размытие арта вне региона. Размытие — превью мира 1024 px,
+ * растянутое на сцену (фильтр по полной картинке не укладывается в бюджет кадра, A14). Маска — сцена целиком
+ * минус растушёванная кривая региона; области фильтра и маски — вся сцена, а не габарит региона.
+ */
+function RegionVeil({ d, art }: { d: string; art: string }) {
+  const stage = { x: 0, y: 0, width: STAGE_WIDTH, height: STAGE_HEIGHT };
+  return (
+    <g aria-hidden="true" className={styles.veil} data-testid="region-veil">
+      <defs>
+        <filter id="rl-feather" filterUnits="userSpaceOnUse" {...stage}>
+          <feGaussianBlur stdDeviation="10" />
+        </filter>
+        <mask id="rl-veil" maskUnits="userSpaceOnUse" {...stage}>
+          <rect {...stage} fill="#fff" />
+          <path d={d} fill="#000" filter="url(#rl-feather)" />
+        </mask>
+      </defs>
+      <g mask="url(#rl-veil)">
+        <image href={art} {...stage} preserveAspectRatio="none" />
+        <rect className={styles.veilShade} {...stage} />
+      </g>
+    </g>
   );
 }
 
