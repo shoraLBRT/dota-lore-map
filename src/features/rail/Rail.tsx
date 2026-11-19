@@ -2,11 +2,11 @@ import { useState, type ButtonHTMLAttributes } from 'react';
 import { useNavigation } from '../../app/navigation';
 import { useSound } from '../../app/sound';
 import { Icon, type IconName } from '../../components/Icon';
-import { LangSwitch } from '../../components/LangSwitch';
 import { Tooltip } from '../../components/Tooltip';
 import { useFeedback } from '../feedback/FeedbackProvider';
 import { useT } from '../../i18n';
 import { AboutDialog } from './AboutDialog';
+import { LangMenu } from './LangMenu';
 import styles from './Rail.module.css';
 
 interface RailButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children'> {
@@ -25,7 +25,7 @@ function RailButton({ icon, label, className, ...rest }: RailButtonProps) {
   );
 }
 
-/** Левая вертикальная панель (SPEC §6.1): логотип, глобус, поиск, язык; внизу обратная связь, звук и «О проекте». */
+/** Левая вертикальная панель (SPEC §6.1): логотип, глобус, поиск, язык (один значок с меню, #195); внизу обратная связь, звук и «О проекте». */
 interface Props {
   className?: string;
   /** Открыть поиск героя (SPEC §6.5). */
@@ -52,7 +52,7 @@ export function Rail({ className, onSearch, searchOpen = false }: Props) {
           onClick={() => open({ name: 'world' })}
         />
         <RailButton icon="search" label={t('rail.search')} aria-expanded={searchOpen} onClick={onSearch} />
-        <LangSwitch className={styles.lang} />
+        <LangMenu buttonClassName={styles.button} />
       </div>
       <div className={styles.group}>
         <RailButton

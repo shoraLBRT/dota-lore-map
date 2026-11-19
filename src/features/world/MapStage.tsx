@@ -69,6 +69,8 @@ interface Props {
   topInset?: number;
   /** Низ плашки героя или поиска над кадром, px от его верха (0 — плашки нет): метки «нить за краем» — ниже (#64). */
   coverTop?: number;
+  /** Панель свёрнута ромбом (#195): кнопки зума уезжают к краю окна вместе с ней, камера не перекадрируется. */
+  panelCollapsed?: boolean;
 }
 
 const noop = () => () => {};
@@ -102,6 +104,7 @@ export function MapStage({
   regionList = false,
   topInset = 0,
   coverTop = 0,
+  panelCollapsed = false,
 }: Props) {
   const { lang, l, t } = useT();
   const svgRef = useRef<SVGSVGElement>(null);
@@ -260,7 +263,7 @@ export function MapStage({
               style={rectStyle(listLayout.list)}
             />
           )}
-          {!listLayout && <ZoomControls controls={controls} right={frame.cover} />}
+          {!listLayout && <ZoomControls controls={controls} right={panelCollapsed ? 0 : frame.cover} />}
         </div>
       )}
       {shown && !flying && (

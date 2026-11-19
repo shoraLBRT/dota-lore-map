@@ -82,7 +82,8 @@ describe('регион и место', () => {
     expect(cm).toHaveAttribute('target', '_blank');
     expect(cm.getAttribute('rel')).toMatch(/noopener/);
 
-    fireEvent.click(screen.getByRole('button', { name: 'EN' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Язык: RU' }));
+    fireEvent.click(screen.getByRole('menuitemradio', { name: 'English' }));
     expect(within(panel).getByRole('link', { name: /Crystal Maiden/ })).toHaveAttribute(
       'href',
       'https://www.dota2.com/hero/crystalmaiden?l=english',

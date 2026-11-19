@@ -22,7 +22,8 @@ export function Tooltip({ content, placement = 'top', mode = 'describe', childre
   return (
     <span className={`${styles.wrap} ${styles[placement]}`}>
       {cloneElement(children, aria)}
-      <span id={id} role="tooltip" className={styles.tip}>
+      {/* В режиме label текст уже — имя кнопки: в дереве доступности второй раз его не показываем (#195). */}
+      <span id={id} role="tooltip" className={styles.tip} aria-hidden={mode === 'label' || undefined}>
         {content}
       </span>
     </span>
