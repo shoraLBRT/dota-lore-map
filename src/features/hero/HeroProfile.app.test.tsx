@@ -2,6 +2,8 @@ import { act, fireEvent, render, screen, within } from '@testing-library/react';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { App } from '../../app/App';
 import { getHero, getPlace, getRegion, heroCrop, heroRender, placeName } from '../../data/world';
+import { pointAtLabel } from '../world/labelHover.testutil';
+import { TOOLTIP_OPEN_DELAY } from '../world/useRegionTooltip';
 import { artId } from './profile';
 
 // Профиль героя в приложении (E15, SPEC §6.8): открывается кликом по герою, показывает то, что есть.
@@ -150,10 +152,12 @@ describe('профиль героя', () => {
     expect(chip()).toBeNull();
   });
 
-  it('портрет в подсказке региона в мире открывает профиль, не двигая камеру (#65)', () => {
+  it('портрет в подсказке региона в мире открывает профиль, не двигая камеру (#65)', async () => {
     window.location.hash = '#/world';
     render(<App />);
-    fireEvent.pointerEnter(document.querySelector('polygon[data-region="icewrack"]')!, { pointerType: 'mouse' });
+    // #193: подсказку вызывает подпись региона.
+    pointAtLabel('icewrack');
+    await act(() => new Promise((r) => setTimeout(r, TOOLTIP_OPEN_DELAY)));
     // В мире панели нет: портрет-кнопка с этим героем — только в подсказке региона.
     fireEvent.click(document.querySelector('button img[alt="Crystal Maiden"]')!.closest('button')!);
     expect(window.location.hash).toBe('#/world?hero=crystal_maiden&profile');

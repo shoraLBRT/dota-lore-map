@@ -1,10 +1,11 @@
-/* Подсказка региона (SPEC §5.3 S1h, §6.2, §7.1 A2): появляется с задержкой ~80 мс, fade + сдвиг 8 px. */
+/* Подсказка региона (SPEC §5.3 S1h, §6.2, §7.1 A2): задержку наведения (#193) держит JS, здесь — fade + сдвиг 8 px. */
 .tooltip {
   position: fixed;
   z-index: 50;
   /* Ширина — по содержимому, а не по месту справа от left: иначе у правого края она сжимается и замер врёт. */
   width: max-content;
-  max-width: min(26rem, calc(100vw - 16px));
+  /* #193: компактная, чтобы не закрывать соседние подписи; пять портретов и «+N» помещаются в строку. */
+  max-width: min(22rem, calc(100vw - 16px));
   padding: var(--space-3) var(--space-4);
   border: 1px solid var(--metal);
   background: var(--bg-1);
@@ -46,8 +47,12 @@
 
 .subtitle {
   margin: 0;
+  overflow: hidden;
   color: var(--text-2);
   font-size: 0.85rem;
+  /* #193: одна строка описания, полное — в title. */
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .heroes {
@@ -98,7 +103,7 @@ button.more:focus-visible {
   box-shadow: var(--glow-metal);
 }
 
-/* Подпись под портретами: имя героя под курсором, иначе — что делает нажатие. */
+/* Нижняя строка: число героев и мест, портрет под курсором или фокусом — имя героя (#193). */
 .caption {
   margin: var(--space-2) 0 0;
   color: var(--text-2);

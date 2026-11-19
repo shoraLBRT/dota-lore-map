@@ -22,7 +22,7 @@ interface Props {
   activeId: string | undefined;
   inWorld: boolean;
   /** Подсказка региона: что показано и обработчики полигонов. */
-  tip: Pick<RegionTooltipState, 'shownId' | 'focusId' | 'tooltipId' | 'region'>;
+  tip: Pick<RegionTooltipState, 'shownId' | 'focusId' | 'tooltipId' | 'litId' | 'region'>;
   /** Пункт списка регионов под наведением или фокусом (только в мире). */
   litId: string | null;
   /** Регионы выбранного героя и героя под наведением. */
@@ -41,7 +41,7 @@ export function RegionsLayer({ drawn, activeId, inWorld, tip, litId, focusRegion
   // Есть арт — полигоны прозрачны поверх картинки и только затемняют соседей; нет — заглушка цветом биома.
   const onArt = WORLD_ART ? styles.onArt : undefined;
   const fillOf = (r: Region) => (WORLD_ART ? '#000' : biomeColor(r.biome));
-  const { shownId, focusId, tooltipId, region: on } = tip;
+  const { shownId, focusId, tooltipId, litId: overId, region: on } = tip;
   const active = drawn.find((r) => r.id === activeId);
   // #188, #207: подсветка и кольцо по фокусу — только для фокуса с клавиатуры. Фокус от клика, тапа или возврата
   // в мир после кнопки «назад» мышью не подсвечивает регион: последним вводом был указатель, а не клавиша.
@@ -60,7 +60,7 @@ export function RegionsLayer({ drawn, activeId, inWorld, tip, litId, focusRegion
       window.removeEventListener('keydown', onKey, true);
     };
   }, []);
-  const isLit = (id: string) => id === shownId || id === litId || (inWorld && (focusRegions?.has(id) || previewRegions?.has(id)));
+  const isLit = (id: string) => id === shownId || id === overId || id === litId || (inWorld && (focusRegions?.has(id) || previewRegions?.has(id)));
   // Свечение появляется в DOM при первой подсветке и остаётся (для угасания): 27 погасших свечений под clipPath
   // дорого стоят кадру входа (A14). Состояние правится во время рендера — штатный приём React.
   const [everLit, setEverLit] = useState<ReadonlySet<string>>(() => new Set());
@@ -108,8 +108,9 @@ export function RegionsLayer({ drawn, activeId, inWorld, tip, litId, focusRegion
                 if (on.onKeyDown(r, e)) return;
                 onActivate(() => onSelectRegion(r.id, 'map'))(e);
               }}
-              // SPEC §5.3: на тач-устройствах подсказки нет, тап сразу открывает регион.
-              onPointerEnter={(e) => e.pointerType !== 'touch' && on.onEnter(r, { x: e.clientX, y: e.clientY })}
+              // SPEC §5.3: на тач-устройствах подсветки и подсказки нет, тап сразу открывает регион.
+              // #193: мышь на полигоне — только подсветка; подсказку вызывает подпись (`RegionLabels`).
+              onPointerEnter={(e) => e.pointerType !== 'touch' && on.onEnter(r)}
               onPointerLeave={(e) => e.pointerType !== 'touch' && on.onLeave(r)}
               onFocus={() => {
                 if (!pointerFocus.current) on.onFocus(r);
@@ -162,8 +163,8 @@ export function RegionsLayer({ drawn, activeId, inWorld, tip, litId, focusRegion
 interface LabelProps {
   drawn: Region[];
   inWorld: boolean;
-  /** Регион под наведением или фокусом (подсказка). */
-  shownId: RegionTooltipState['shownId'];
+  /** Подсказка и наведение: что показано и что под мышью (#193: подсказку вызывает габарит подписи, `useRegionTooltip`). */
+  tip: Pick<RegionTooltipState, 'shownId' | 'litId'>;
   litId: string | null;
   focusRegions: Set<string> | null;
   previewRegions: Set<string> | null;
@@ -175,8 +176,9 @@ interface LabelProps {
  * Названия регионов (ARCHITECTURE A4, #180): рисуются в экранном слое над слоем карты, а не в его растре,
  * поэтому чёткие на любом приближении. Координаты — те же единицы сцены.
  */
-export function RegionLabels({ drawn, inWorld, shownId, litId, focusRegions, previewRegions, widths }: LabelProps) {
+export function RegionLabels({ drawn, inWorld, tip, litId, focusRegions, previewRegions, widths }: LabelProps) {
   const { l } = useT();
+  const { shownId, litId: overId } = tip;
   const heroClass = (regionId: string) =>
     focusRegions ? (focusRegions.has(regionId) ? styles.heroRegion : styles.muted) : undefined;
   return (
@@ -195,7 +197,7 @@ export function RegionLabels({ drawn, inWorld, shownId, litId, focusRegions, pre
               styles.label,
               tones[highlight(r)],
               r.tier !== 'continent' && styles.tierLabel,
-              (r.id === shownId || r.id === litId || (inWorld && previewRegions?.has(r.id))) && styles.lit,
+              (r.id === shownId || r.id === overId || r.id === litId || (inWorld && previewRegions?.has(r.id))) && styles.lit,
               inWorld && heroClass(r.id),
             ]
               .filter(Boolean)
