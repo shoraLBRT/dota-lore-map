@@ -29,7 +29,11 @@ export function preloadImage(url: string | undefined): Promise<void> {
     pending = new Promise<void>((resolve) => {
       const img = new Image();
       img.decoding = 'async';
-      img.onload = () => resolve();
+      // Готово — когда картинка не только загружена, но и декодирована: иначе первый кадр с ней дёрнется (#187).
+      img.onload = () => {
+        if (typeof img.decode === 'function') img.decode().then(resolve, resolve);
+        else resolve();
+      };
       img.onerror = () => resolve();
       img.src = url;
     });

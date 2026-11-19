@@ -1,7 +1,7 @@
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 import { App } from '../../app/App';
-import { partOffset } from '../world/cloudSets';
+import { partOffset, VEIL_CLOUDS } from '../world/cloudSets';
 
 /** Подменяет document.fonts: шрифты «грузятся», пока тест не вызовет resolve. */
 function mockPendingFonts() {
@@ -57,6 +57,40 @@ describe('Intro (S0) и переход A1', () => {
 
     await waitFor(() => expect(screen.queryByTestId('intro')).toBeNull());
     expect(screen.getByRole('navigation', { name: 'Навигация' })).toBeInTheDocument();
+  });
+
+  it('клик в любом месте интро ведёт в мир, клик по переключателю языка — нет (#187)', () => {
+    window.localStorage.setItem('dota-lore-map.lang', 'ru');
+    render(<App />);
+    fireEvent.click(screen.getByRole('button', { name: 'EN' }));
+    expect(window.location.hash).not.toBe('#/world');
+    fireEvent.click(screen.getByRole('heading', { level: 1 }));
+    expect(window.location.hash).toBe('#/world');
+    expect(screen.getByTestId('world-screen').className).toMatch(/unveiling/);
+  });
+
+  it.each(['Enter', ' '])('клавиша «%s» на интро ведёт в мир (#187)', (key) => {
+    window.localStorage.setItem('dota-lore-map.lang', 'ru');
+    render(<App />);
+    fireEvent.keyDown(document.body, { key });
+    expect(window.location.hash).toBe('#/world');
+  });
+
+  it('пока мир грузится, клик и Enter никуда не ведут', async () => {
+    window.localStorage.setItem('dota-lore-map.lang', 'ru');
+    const loaded = mockPendingFonts();
+    render(<App />);
+    fireEvent.click(screen.getByTestId('intro'));
+    fireEvent.keyDown(document.body, { key: 'Enter' });
+    expect(window.location.hash).not.toBe('#/world');
+    await loaded();
+  });
+
+  it('облака пелены — только по краям: центр кадра с заголовком открыт (#187)', () => {
+    for (const c of VEIL_CLOUDS) {
+      const nearCenter = Math.abs(c.x - 50) < 30 && Math.abs(c.y - 50) < 30;
+      expect(nearCenter, `облако ${c.x},${c.y}`).toBe(false);
+    }
   });
 
   it('облака интро разъезжаются от центра к краям', () => {

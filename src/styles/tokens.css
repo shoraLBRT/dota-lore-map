@@ -66,7 +66,7 @@
   --atmo-star: rgb(196 168 255 / 0.6);
   --atmo-lava: rgb(255 122 42 / 0.7);
   --atmo-grain: 0.22;
-  --map-blur: 6px;
+  --map-blur: 4px;
 
   /* Текст: тёплый светлый → приглушённый → служебный.
      Контраст WCAG AA (≥ 4.5:1) на всех фонах --bg-0…--bg-2 — проверяет src/styles/contrast.test.ts (SPEC §14). */

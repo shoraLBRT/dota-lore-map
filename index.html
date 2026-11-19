@@ -45,6 +45,7 @@
     <style>
       .boot { position: fixed; inset: 0; display: flex; flex-direction: column; overflow: hidden; background: var(--bg-0, #0b0d11); color: var(--text-1, #e9e2d4); }
       .boot-art { position: absolute; inset: -2%; width: 104%; height: 104%; object-fit: cover; filter: blur(var(--map-blur)) brightness(0.8); }
+      @media (max-width: 767px) { .boot-art { filter: blur(var(--map-blur)) brightness(0.55); } }
       .boot::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 20%, var(--vignette) 95%), var(--veil); }
       .boot > :not(.boot-art) { position: relative; z-index: 1; }
       html[data-boot-deep] .boot > :not(.boot-art) { visibility: hidden; }
@@ -52,7 +53,7 @@
       .boot-top { height: calc(2 * var(--space-3) + 2.175rem); flex: none; }
       .boot-center { flex: 1 1 auto; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-3); padding: var(--space-4); text-align: center; }
       .boot-center p, .boot-center h1 { margin: 0; }
-      .boot-kicker { color: var(--text-2); letter-spacing: 0.2em; text-transform: uppercase; }
+      .boot-kicker { color: var(--text-2); text-shadow: 0 1px 8px var(--map-ink); letter-spacing: 0.2em; text-transform: uppercase; }
       .boot-center h1 { text-shadow: 0 2px 16px var(--map-ink); font-size: clamp(2rem, 6vw, 4rem); }
       .boot-tagline { max-width: 32rem; color: var(--text-1); text-shadow: 0 1px 8px var(--map-ink); font-size: 1.05rem; }
       .boot-divider { position: relative; width: min(22rem, 70vw); height: 1px; margin: var(--space-4) 5px; background: linear-gradient(90deg, var(--metal) 0%, var(--metal-bright) 50%, var(--metal) 100%); }
@@ -84,8 +85,8 @@
           <p class="boot-status"></p>
         </div>
         <div class="boot-footer">
-          <p lang="ru">Некоммерческий фанатский проект. Не связан с Valve Corporation и не одобрен ею. Dota 2 и связанные материалы — товарные знаки и собственность Valve Corporation.</p>
-          <p lang="en">Non-commercial fan project. Not affiliated with or endorsed by Valve Corporation. Dota 2 and all related materials are trademarks and property of Valve Corporation.</p>
+          <p data-l="ru" lang="ru">Некоммерческий фанатский проект. Не связан с Valve Corporation и не одобрен ею. Dota 2 и связанные материалы — товарные знаки и собственность Valve Corporation.</p>
+          <p data-l="en" lang="en">Non-commercial fan project. Not affiliated with or endorsed by Valve Corporation. Dota 2 and all related materials are trademarks and property of Valve Corporation.</p>
         </div>
       </div>
     </div>

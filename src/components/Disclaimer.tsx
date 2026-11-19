@@ -1,11 +1,19 @@
-import { dictionaries } from '../i18n';
+import { dictionaries, useT } from '../i18n';
 
-/** Дисклеймер SPEC §15: всегда на обоих языках, независимо от выбранного. */
-export function Disclaimer({ className }: { className?: string }) {
+/**
+ * Дисклеймер SPEC §15. В окне «О проекте» — на обоих языках; на интро (`single`) — одна строка
+ * на языке интерфейса (#187).
+ */
+export function Disclaimer({ className, single = false }: { className?: string; single?: boolean }) {
+  const { lang } = useT();
+  const langs = single ? [lang] : (['ru', 'en'] as const);
   return (
     <footer className={className}>
-      <p lang="ru">{dictionaries.ru.disclaimer}</p>
-      <p lang="en">{dictionaries.en.disclaimer}</p>
+      {langs.map((l) => (
+        <p key={l} lang={l}>
+          {dictionaries[l].disclaimer}
+        </p>
+      ))}
     </footer>
   );
 }

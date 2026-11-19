@@ -12,11 +12,14 @@ describe('App', () => {
     window.localStorage.setItem('dota-lore-map.lang', 'ru');
   });
 
-  it('интро: заголовок, кнопка «Начать», дисклеймер на двух языках', () => {
+  it('интро: заголовок, кнопка «Начать», дисклеймер одной строкой на языке интерфейса (#187)', () => {
     render(<App />);
     expect(screen.getByRole('heading', { level: 1, name: 'Мир Dota 2' })).toBeInTheDocument();
     expect(screen.getByText(dictionaries.ru.disclaimer)).toBeInTheDocument();
+    expect(screen.queryByText(dictionaries.en.disclaimer)).toBeNull();
+    fireEvent.click(screen.getByRole('button', { name: 'EN' }));
     expect(screen.getByText(dictionaries.en.disclaimer)).toBeInTheDocument();
+    expect(screen.queryByText(dictionaries.ru.disclaimer)).toBeNull();
   });
 
   it('переключает язык и запоминает выбор', () => {
