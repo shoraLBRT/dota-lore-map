@@ -111,10 +111,14 @@ function stats(name, { frames, longest }) {
 /** LCP и CLS из буферизованных записей; FCP — paint timing, `load` — Navigation Timing. */
 const VITALS = () => {
   const w = window;
-  w.__vitals = { lcp: 0, cls: 0 };
+  w.__vitals = { lcp: 0, lcpEl: '', cls: 0 };
   try {
     new PerformanceObserver((l) => {
-      for (const e of l.getEntries()) w.__vitals.lcp = e.startTime;
+      for (const e of l.getEntries()) {
+        w.__vitals.lcp = e.startTime;
+        const el = e.element;
+        w.__vitals.lcpEl = el ? `${el.tagName.toLowerCase()}${e.url ? ' ' + e.url.split('/').pop() : el.className ? '.' + String(el.className).split(' ')[0] : ''}` : '?';
+      }
     }).observe({ type: 'largest-contentful-paint', buffered: true });
     new PerformanceObserver((l) => {
       for (const e of l.getEntries()) if (!e.hadRecentInput) w.__vitals.cls += e.value;
@@ -139,7 +143,7 @@ async function runLoad(browser) {
     const fcp = performance.getEntriesByName('first-contentful-paint')[0]?.startTime ?? 0;
     const nav = performance.getEntriesByType('navigation')[0];
     const art = performance.getEntriesByType('resource').find((e) => e.name.includes('world-4096'));
-    return { fcp, lcp: window.__vitals.lcp, cls: window.__vitals.cls, load: nav?.loadEventEnd || 0, art: art ? art.responseEnd : -1 };
+    return { fcp, lcp: window.__vitals.lcp, lcpEl: window.__vitals.lcpEl, cls: window.__vitals.cls, load: nav?.loadEventEnd || 0, art: art ? art.responseEnd : -1 };
   });
   await context.close();
   const ok = loadOk && v.fcp <= LOAD_BUDGET.fcp && v.lcp <= LOAD_BUDGET.lcp && v.cls <= LOAD_BUDGET.cls;
@@ -155,7 +159,7 @@ async function loadReport(browser, gpu) {
     if (!s.ok) failed = true;
     const load = s.loadOk ? `${s.load.toFixed(0)} мс` : 'нет за 30 с';
     const art = s.art < 0 ? '—' : `${s.art.toFixed(0)} мс`;
-    console.log(`${s.ok ? 'ok  ' : 'FAIL'} FCP ${s.fcp.toFixed(0).padStart(5)} мс  LCP ${s.lcp.toFixed(0).padStart(5)} мс  CLS ${s.cls.toFixed(3)}  load ${load}  world-4096 ${art}`);
+    console.log(`${s.ok ? 'ok  ' : 'FAIL'} FCP ${s.fcp.toFixed(0).padStart(5)} мс  LCP ${s.lcp.toFixed(0).padStart(5)} мс (${s.lcpEl})  CLS ${s.cls.toFixed(3)}  load ${load}  world-4096 ${art}`);
   }
   return failed;
 }

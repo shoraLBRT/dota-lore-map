@@ -44,10 +44,10 @@
          Токены и шрифты — из CSS бандла (он блокирует отрисовку), геометрия — как у Intro.module.css. -->
     <style>
       .boot { position: fixed; inset: 0; display: flex; flex-direction: column; overflow: hidden; background: var(--bg-0); color: var(--text-1); }
-      .boot::before { content: ''; position: absolute; inset: -2%; background: url('/art/world-1024.webp') center / cover; filter: blur(var(--map-blur)) brightness(0.8); }
+      .boot-art { position: absolute; inset: -2%; width: 104%; height: 104%; object-fit: cover; filter: blur(var(--map-blur)) brightness(0.8); }
       .boot::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 20%, var(--vignette) 95%), var(--veil); }
-      .boot > * { position: relative; z-index: 1; }
-      html[data-boot-deep] .boot > * { visibility: hidden; }
+      .boot > :not(.boot-art) { position: relative; z-index: 1; }
+      html[data-boot-deep] .boot > :not(.boot-art) { visibility: hidden; }
       html[lang='en'] .boot [data-l='ru'], html:not([lang='en']) .boot [data-l='en'] { display: none; }
       .boot-top { height: calc(2 * var(--space-3) + 2.175rem); flex: none; }
       .boot-center { flex: 1 1 auto; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-3); padding: var(--space-4); text-align: center; }
@@ -73,6 +73,7 @@
     </noscript>
     <div id="root">
       <div class="boot" data-boot="">
+        <img class="boot-art" src="/art/world-1024.webp" alt="" fetchpriority="high" />
         <div class="boot-top"></div>
         <div class="boot-center">
           <p class="boot-kicker"><span data-l="ru">Исследуй мир</span><span data-l="en">Explore &amp; discover</span></p>
