@@ -25,6 +25,7 @@ export function PlaceTooltip({ id, placeKey, heroes, getAnchor }: Props) {
     <div
       ref={ref}
       id={id}
+      data-map-tip=""
       role="tooltip"
       className={`${styles.tooltip} ${styles.small}`}
       style={pos ? { left: pos.left, top: pos.top } : { visibility: 'hidden' }}

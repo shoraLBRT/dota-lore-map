@@ -276,6 +276,7 @@ export function RegionTooltip({
     <div
       ref={ref}
       id={id}
+      data-map-tip=""
       role={interactive ? 'group' : 'tooltip'}
       aria-labelledby={interactive ? nameId : undefined}
       className={[styles.tooltip, interactive && styles.interactive].filter(Boolean).join(' ')}

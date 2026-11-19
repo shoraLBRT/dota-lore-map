@@ -334,6 +334,11 @@ export function useFreeCamera({ viewportRef, layerRef, screenRef, view, current,
     };
     const onWheel = (e: WheelEvent) => {
       if (!live.current.enabled) return;
+      // Над подсказкой карты (#208): щипок тачпада (ctrlKey) — зум камеры, а не браузера, иначе растёт вся страница
+      // вместе с подсказкой; обычное колесо листает раскрытую подсказку, если ей есть куда.
+      const tip = e.currentTarget === el ? null : (e.target as Element | null)?.closest?.('[data-map-tip]');
+      if (e.currentTarget !== el && !tip) return;
+      if (tip && !e.ctrlKey && tip.scrollHeight > tip.clientHeight) return;
       e.preventDefault();
       const p = local(e);
       const limited = limitWheel(wheelDelta(e.deltaY, e.deltaMode), wheel, e.timeStamp);
@@ -346,6 +351,20 @@ export function useFreeCamera({ viewportRef, layerRef, screenRef, view, current,
       if ((e.target as Element).closest?.('[role="button"], button, a')) return;
       const p = local(e);
       zoomBy(e.shiftKey ? 1 / 2 : 2, p.x, p.y);
+    };
+    // Safari: щипок тачпада — не ctrl+колесо, а gesture*; без preventDefault он масштабирует страницу (#208).
+    let gesture = 1;
+    const onGesture = (e: Event) => {
+      const g = e as Event & { scale: number; clientX: number; clientY: number };
+      if (!live.current.enabled) return;
+      if (e.currentTarget !== el && !(e.target as Element | null)?.closest?.('[data-map-tip]')) return;
+      e.preventDefault();
+      if (e.type === 'gesturestart') gesture = 1;
+      else if (e.type === 'gesturechange' && g.scale > 0) {
+        const p = local(g);
+        zoomBy(g.scale / gesture, p.x, p.y);
+        gesture = g.scale;
+      }
     };
     const onKey = (e: KeyboardEvent) => {
       if (!live.current.enabled || e.altKey || e.ctrlKey || e.metaKey) return;
@@ -375,6 +394,13 @@ export function useFreeCamera({ viewportRef, layerRef, screenRef, view, current,
     el.addEventListener('pointercancel', onUp);
     el.addEventListener('click', onClick, true);
     el.addEventListener('wheel', onWheel, { passive: false });
+    // Подсказки карты — порталы в body, вне кадра: их колесо и щипок ловим на документе.
+    document.addEventListener('wheel', onWheel, { passive: false });
+    const gestures = ['gesturestart', 'gesturechange', 'gestureend'];
+    for (const type of gestures) {
+      el.addEventListener(type, onGesture);
+      document.addEventListener(type, onGesture);
+    }
     el.addEventListener('dblclick', onDouble);
     el.addEventListener('keydown', onKey);
     return () => {
@@ -384,6 +410,11 @@ export function useFreeCamera({ viewportRef, layerRef, screenRef, view, current,
       el.removeEventListener('pointercancel', onUp);
       el.removeEventListener('click', onClick, true);
       el.removeEventListener('wheel', onWheel);
+      document.removeEventListener('wheel', onWheel);
+      for (const type of gestures) {
+        el.removeEventListener(type, onGesture);
+        document.removeEventListener(type, onGesture);
+      }
       el.removeEventListener('dblclick', onDouble);
       el.removeEventListener('keydown', onKey);
       stop();
