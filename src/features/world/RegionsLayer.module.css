@@ -1,9 +1,13 @@
 .region {
   stroke: var(--border);
   stroke-width: 1.5;
-  /* #188: толщина контура — в пикселях экрана на любом приближении. */
-  vector-effect: non-scaling-stroke;
   cursor: pointer;
+}
+
+/* #188: толщина контура — в пикселях экрана на любом приближении. На арте контура нет — и правила тоже. */
+.region:not(.onArt),
+.region:focus-visible {
+  vector-effect: non-scaling-stroke;
 }
 
 .region:focus-visible {
