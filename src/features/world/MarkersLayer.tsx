@@ -3,8 +3,8 @@ import { useSfx } from '../../app/sound';
 import type { Place } from '../../data/types';
 import { placeName } from '../../data/world';
 import { useT } from '../../i18n';
-import { labelBox, type LabelSide } from './labels';
-import { fontOf, markerLabelAttrs, ringOf, significance } from './markerLayout';
+import type { LabelSide } from './labels';
+import { fontOf, kindOf, markerLabelAttrs, ringOf, significance } from './markerLayout';
 import styles from './MarkersLayer.module.css';
 import { mediaKinds, placeMediaBadge, type MediaBadge } from './mediaBadge';
 import { onActivate, toStage } from './stage';
@@ -16,14 +16,18 @@ const STAR = Array.from({ length: 10 }, (_, i) => {
   const r = i % 2 === 0 ? 1 : 0.45;
   return `${(Math.cos(a) * r).toFixed(3)},${(Math.sin(a) * r).toFixed(3)}`;
 }).join(' ');
+/** Ромб места события (#191), полудиагональ 1. */
+const DIAMOND = '0,-1 1,0 0,1 -1,0';
+/** Зона нажатия маркера, px: больше фигуры; на сенсорном экране CSS растит её до 44 px (MarkersLayer.module.css: .hit). */
+const HIT_RADIUS = 16;
+/** Значок галереи (#191): страница 5×4 и край второй под ней, центр — в (0, 0). */
+const GALLERY = 'M-3 -2.5h5v4h-5z M-1.5 -3.5h4.5v4';
 
 interface Props {
   regionId: string;
   activePlaceSlug: string | undefined;
   /** Где подпись каждого маркера (markerLayout.ts). */
   sides: Map<string, LabelSide>;
-  /** Ширина текста подписи каждого маркера, px (markerLayout.ts) — для плашки под ней (#98). */
-  labelWidths: Map<string, number>;
   markerScale: number;
   /** Места выбранного героя (`region/slug`): подсвечены, остальные приглушены. */
   focusPlaces: Set<string> | null;
@@ -38,14 +42,14 @@ interface Props {
 }
 
 /**
- * Маркеры мест открытого региона (S2/S3, SPEC §6.3): точка или звезда в кольце, подпись, значок медиа.
+ * Маркеры мест открытого региона (S2/S3, SPEC §6.3): звезда столицы, ромб места события или точка места,
+ * подпись без плашки (с ореолом) и значок медиа на углу фигуры.
  * Группа каждого маркера — `translate(pos) scale(markerScale)`: размер не зависит от приближения (ARCHITECTURE A4).
  */
 export function MarkersLayer({
   regionId,
   activePlaceSlug,
   sides,
-  labelWidths,
   markerScale,
   focusPlaces,
   previewPlaces,
@@ -66,10 +70,9 @@ export function MarkersLayer({
     const side = sides.get(p.slug) ?? 'top';
     const ring = ringOf(p, isActive);
     const sig = significance(p);
+    const kind = kindOf(p);
     const size = fontOf(p, isActive);
-    const label = markerLabelAttrs(side, ring, size);
-    // Плашка под подписью (#98, SPEC §8.6): та же рамка, по которой расставляются подписи (labels.ts).
-    const plate = labelBox(side === 'hidden' ? 'top' : side, { width: labelWidths.get(p.slug) ?? 0, size, ring });
+    const label = markerLabelAttrs(side === 'hidden' ? 'right' : side, ring, size);
     const previewed = previewPlaces?.has(`${regionId}/${p.slug}`) ?? false;
     const muted = focusPlaces && !focusPlaces.has(`${regionId}/${p.slug}`);
     const media = onOpenMedia ? placeMediaBadge(p) : null;
@@ -80,8 +83,8 @@ export function MarkersLayer({
           className={[
             styles.marker,
             p.capital && styles.capital,
-            sig === 'event' && styles.event,
-            sig === 'minor' && styles.minor,
+            kind === 'event' && styles.event,
+            kind === 'place' && styles.minor,
             isActive && styles.current,
             side === 'hidden' && styles.labelHidden,
             focusPlaces && (focusPlaces.has(`${regionId}/${p.slug}`) ? styles.heroSpot : styles.mutedMarker),
@@ -100,6 +103,7 @@ export function MarkersLayer({
           data-place={p.slug}
           data-lit={p.slug === litPlaceSlug ? '' : undefined}
           data-significance={sig}
+          data-kind={kind}
           onClick={(e) => {
             e.stopPropagation();
             select();
@@ -114,30 +118,27 @@ export function MarkersLayer({
           onFocus={() => onSpotFocus(p.slug)}
           onBlur={() => onSpotFocus((s) => (s === p.slug ? null : s))}
         >
-          <circle className={styles.hit} r={18} />
+          <circle className={styles.hit} r={HIT_RADIUS} data-hit="" />
           {previewed && <circle className={styles.pulse} r={ring} data-pulse="" />}
-          {/* Кольцо с точкой: .pin — мягкое появление с масштабом, .hop — подпрыгивание при наведении (SPEC §7.5).
-              Два слоя, а не один: у каждого своя CSS-анимация transform, и transform-атрибут маркера они не трогают. */}
+          {/* Фигура маркера (#191): .pin — мягкое появление с масштабом, .hop — подпрыгивание при наведении (SPEC §7.5).
+              Два слоя, а не один: у каждого своя CSS-анимация transform, и transform-атрибут маркера они не трогают.
+              Выбранное место — та же фигура в кольце радиуса `ring`. */}
           <g className={styles.pin}>
             <g className={styles.hop}>
-              <circle className={styles.ring} r={ring} />
-              {p.capital ? (
-                <polygon className={styles.dot} points={STAR} transform="scale(7)" />
+              {isActive && <circle className={styles.selection} r={ring} />}
+              {kind === 'capital' ? (
+                <polygon className={styles.ring} points={STAR} transform={`scale(${isActive ? 7 : ring})`} data-shape="star" />
+              ) : kind === 'event' ? (
+                <>
+                  <polygon className={styles.ring} points={DIAMOND} transform={`scale(${isActive ? 6 : ring})`} data-shape="diamond" />
+                  <circle className={styles.dot} r={1.6} />
+                </>
               ) : (
-                <circle className={styles.dot} r={sig === 'minor' ? 3 : 4} />
+                <circle className={styles.ring} r={isActive ? 4.5 : ring} data-shape="dot" />
               )}
             </g>
           </g>
           <g className={styles.label}>
-            <rect
-              className={styles.plate}
-              x={plate.left}
-              y={plate.top}
-              width={plate.right - plate.left}
-              height={plate.bottom - plate.top}
-              rx={3}
-              data-plate=""
-            />
             <text
               className={styles.markerLabel}
               x={label.x}
@@ -152,7 +153,7 @@ export function MarkersLayer({
         </g>
         {media && (
           // Значок медиа (#69, SPEC §6.3) — отдельная кнопка сразу за маркером (Tab: место → его медиа),
-          // в верхнем правом углу кольца: между кольцом и рамками подписей сверху и справа (labels.ts).
+          // на верхнем правом углу фигуры, внутри зазора до рамок подписей (labels.ts: LABEL_GAP), без плашки (#191).
           <g
             className={[styles.mediaBadge, muted && styles.mutedMarker].filter(Boolean).join(' ')}
             style={{ '--i': i } as CSSProperties}
@@ -167,10 +168,11 @@ export function MarkersLayer({
             }}
             onKeyDown={onActivate(() => onOpenMedia!(regionId, media.open))}
           >
-            <g transform={`translate(${(ring * 0.75).toFixed(2)} ${(-ring * 0.75).toFixed(2)})`}>
-              <circle className={styles.hit} r={6.5} />
-              <rect className={styles.badgeFrame} x={-5} y={-5} width={10} height={10} />
-              <path className={styles.badgeLines} d="M-5 0h10M0 0v5" />
+            <g transform={`translate(${(ring * 0.6).toFixed(2)} ${(-ring * 0.6).toFixed(2)})`}>
+              <circle className={styles.badgeHit} r={6} />
+              {/* Галерея — две страницы стопкой: тёмный ореол под светлым контуром. */}
+              <path className={styles.badgeHalo} d={GALLERY} />
+              <path className={styles.badgeLines} d={GALLERY} />
             </g>
           </g>
         )}

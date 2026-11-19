@@ -37,8 +37,8 @@ describe('регион и место', () => {
     window.location.hash = '#/r/icewrack';
     render(<App />);
     const capital = screen.getByRole('button', { name: 'Айсрак' });
-    expect(capital.querySelector('polygon')).not.toBeNull();
-    expect(screen.getByRole('button', { name: placeName(pool, 'ru') }).querySelector('polygon')).toBeNull();
+    expect(capital.querySelector('[data-shape]')!.getAttribute('data-shape')).toBe('star');
+    expect(screen.getByRole('button', { name: placeName(pool, 'ru') }).querySelector('[data-shape]')!.getAttribute('data-shape')).not.toBe('star');
 
     fireEvent.click(screen.getByRole('button', { name: placeName(pool, 'ru') }));
     expect(window.location.hash).toBe('#/r/icewrack/black-pool');

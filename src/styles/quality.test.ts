@@ -78,24 +78,24 @@ describe('контраст WCAG AA (SPEC §14)', () => {
     expect(css('features/world/MarkersLayer.module.css')).not.toMatch(/\.minor[^{]*\{[^}]*opacity/);
   });
 
-  // #98: подпись маркера — на плашке --label-plate. Худший случай — плашка поверх белого: так контраст
-  // не зависит от фона карты (заглушки или будущего арта).
-  it.each(['--text-1', '--text-2', '--text-3'])('подпись маркера %s на плашке — ≥ 4.5:1 на любом фоне карты', (fg) => {
+  // #191: подпись маркера — без плашки, на ореоле --label-halo (обводка под текстом). Худший случай — ореол поверх
+  // белого (снег Айсрака, песок): так контраст не зависит от фона арта.
+  it.each(['--text-1', '--text-2', '--text-3'])('подпись маркера %s на ореоле — ≥ 4.5:1 на любом фоне карты', (fg) => {
     const file = css('styles/tokens.css');
-    const m = file.match(/--label-plate:\s*rgb\((\d+) (\d+) (\d+) \/ ([\d.]+)\)/)!;
+    const m = file.match(/--label-halo:\s*rgb\((\d+) (\d+) (\d+) \/ ([\d.]+)\)/)!;
     const [r, g, b, a] = m.slice(1).map(Number) as [number, number, number, number];
     const over = (bg: number) => (c: number) => Math.round(a * c + (1 - a) * bg).toString(16).padStart(2, '0');
     for (const bg of [255, 0]) {
       const plate = `#${[r, g, b].map(over(bg)).join('')}`;
-      expect(contrast(t[fg]!, plate), `${fg} на плашке поверх ${bg}`).toBeGreaterThanOrEqual(4.5);
+      expect(contrast(t[fg]!, plate), `${fg} на ореоле поверх ${bg}`).toBeGreaterThanOrEqual(4.5);
     }
     const layer = css('features/world/MarkersLayer.module.css');
-    // Цвета подписей — только эти токены; обводки нет; приглушение — цветом, а не прозрачностью подписи.
+    // Цвета подписей — только эти токены; ореол — обводка под текстом; приглушение — цветом, а не прозрачностью подписи.
     const fills = [...layer.matchAll(/markerLabel[^{]*\{[^}]*?fill:\s*var\((--[\w-]+)\)/g)].map((x) => x[1]);
     expect(new Set(fills)).toEqual(new Set(['--text-1', '--text-2', '--text-3']));
-    expect(layer).not.toMatch(/paint-order/);
+    expect(layer).toMatch(/\.markerLabel\s*\{[^}]*paint-order:\s*stroke;[^}]*stroke:\s*var\(--label-halo\);\s*stroke-width:\s*3\.5px/);
+    expect(layer).not.toMatch(/\.plate\b/);
     expect(layer).not.toMatch(/\.mutedMarker[^{]*\.markerLabel[^{]*\{[^}]*opacity/);
-    expect(layer).toMatch(/\.plate\s*\{\s*fill:\s*var\(--label-plate\)/);
   });
 
   it('красный --accent и тёмный металл не служат цветом текста', () => {

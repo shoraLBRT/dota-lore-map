@@ -30,7 +30,8 @@ test('интро → регион → место → галерея → поис
   await expect(panelHeading(page)).toHaveText('Айсрак');
   await expectNoHorizontalScroll(page);
 
-  await tap(page.locator('[role="button"][data-place="frostreach"]'));
+  // Точка маркера, а не центр группы: подпись справа от точки сдвигает центр рамки маркера (#191).
+  await tap(page.locator('[role="button"][data-place="frostreach"] [data-hit]'));
   await expectHash(page, '#/r/icewrack/frostreach');
   await expect(panelHeading(page)).toHaveText('Фростреч');
   await expectNoHorizontalScroll(page);

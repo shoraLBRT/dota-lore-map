@@ -210,7 +210,6 @@ export function MapStage({
                   regionId={active.id}
                   activePlaceSlug={activePlaceSlug}
                   sides={labels.sides}
-                  labelWidths={labels.labelWidths}
                   markerScale={frame.markerScale}
                   focusPlaces={focusPlaces}
                   previewPlaces={previewPlaces}
