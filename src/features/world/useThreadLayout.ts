@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 import type { Region } from '../../data/types';
-import { useT } from '../../i18n';
 import type { HeroThreads } from '../search/threads';
-import { clampLabelX, labelBox, splitLabel, type Box, type LabelSide, type MarkerLabel } from './labels';
+import { labelBox, type Box, type LabelSide, type MarkerLabel } from './labels';
+import type { RegionNames } from './regionLabelLayout';
 import { toStage } from './stage';
 import { toScreen, visibleFrame } from './threadGeometry';
 import type { Frame } from './useCamera';
@@ -10,16 +10,14 @@ import type { Frame } from './useCamera';
 /** Отступ значков нитей и меток «нить за краем» от края видимой части кадра, px (#64). */
 export const EXIT_LABEL_MARGIN = 8;
 
-/** Кегль названия региона на карте, единицы сцены (.label в RegionsLayer.module.css). */
-const REGION_FONT = 22;
-
 interface Options {
   threads: HeroThreads | undefined;
   active: Region | undefined;
   drawn: Region[];
   /** Подписи маркеров и их стороны (markerLayout.ts). */
   labels: { items: MarkerLabel[]; sides: Map<string, LabelSide> };
-  widths: Record<string, number>;
+  /** Названия регионов мира: рамки названий и гербов (#189). */
+  names: RegionNames;
   frame: Frame;
   /** Низ плашки героя над кадром, px. */
   coverTop: number;
@@ -37,12 +35,11 @@ export function useThreadLayout({
   active,
   drawn,
   labels: { items: labelItems, sides },
-  widths,
+  names,
   frame,
   coverTop,
   listed,
 }: Options) {
-  const { l } = useT();
   const { markerScale, threadScale, view, framed, cover, insetBottom } = frame;
   const obstacles = useMemo<Box[]>(() => {
     if (!threads) return [];
@@ -60,18 +57,20 @@ export function useThreadLayout({
         return side && side !== 'hidden' ? [ring, scaled(labelBox(side, m), m.x, m.y)] : [ring];
       });
     }
-    return drawn.map((r) => {
+    // Мир: видимые названия регионов и их гербы — рамки в px экрана от точки названия, в единицах сцены.
+    const k = frame.pxScale;
+    return drawn.flatMap((r) => {
+      const spot = names.spots.get(r.id);
+      if (!spot || frame.worldZoom < spot.from - 1e-6) return [];
       const [lx, ly] = toStage(r.layout!.label);
-      const name = l(r.name);
-      const lines = r.tier === 'continent' ? splitLabel(name).length : 1;
-      const width = widths[`r:${r.id}`] ?? (lines === 1 ? name.length : Math.ceil(name.length / 2)) * REGION_FONT * 0.7;
-      const x = widths[`r:${r.id}`] ? clampLabelX(lx, width) : lx;
-      // Одна строка — по базовой линии; две — первая на 0.45em выше, вторая на 1.05em ниже неё (см. разметку подписи).
-      const top = ly - (lines === 1 ? 0.8 : 1.25) * REGION_FONT;
-      const bottom = ly + (lines === 1 ? 0.2 : 0.8) * REGION_FONT;
-      return { left: x - width / 2, right: x + width / 2, top, bottom };
+      return [spot.box, ...(spot.crest ? [spot.crest] : [])].map((b) => ({
+        left: lx + b.left * k,
+        right: lx + b.right * k,
+        top: ly + b.top * k,
+        bottom: ly + b.bottom * k,
+      }));
     });
-  }, [threads, active, labelItems, sides, markerScale, drawn, widths, l]);
+  }, [threads, active, labelItems, sides, markerScale, drawn, names, frame.pxScale, frame.worldZoom]);
   // Видимая часть кадра в координатах сцены (левее панели, выше шторки, ниже плашки героя): значки — только в ней.
   const clip = useMemo<Box | undefined>(() => {
     if (!threads || view.width <= 0 || listed) return undefined;

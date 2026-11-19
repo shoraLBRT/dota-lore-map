@@ -256,7 +256,8 @@ export function useRegionTooltip({ regions, inWorld, svgRef, labelsRef, camera, 
       }
       const viewport = target?.closest?.('[data-map-viewport]');
       let id: string | null = null;
-      if (e.buttons === 0 && viewport && (target === viewport || svgRef.current?.contains(target))) {
+      // Герб региона (#189) — в экранном слое и ловит мышь сам: мышь на нём — тоже на названии.
+      if (e.buttons === 0 && viewport && (target === viewport || svgRef.current?.contains(target) || labelsRef.current?.contains(target))) {
         for (const el of labelsRef.current?.querySelectorAll('[data-label]') ?? []) {
           const r = el.getBoundingClientRect();
           if (r.width <= 0) continue;

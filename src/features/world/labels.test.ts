@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { clampLabelX, EDGE_GAP, LABEL_PAD_X, LABEL_PAD_Y, labelBox, placeEdgeLabels, placeMarkerLabels, splitLabel, type EdgeLabel, type MarkerLabel } from './labels';
+import { EDGE_GAP, LABEL_PAD_X, LABEL_PAD_Y, labelBox, placeEdgeLabels, placeMarkerLabels, splitLabel, type EdgeLabel, type MarkerLabel } from './labels';
+import { world } from '../../data/world';
+import { LANGS } from '../../i18n';
+import { containScale, polygonBox, WORLD_ASPECT, zoomLevels, type View } from './camera';
+import { labelMetrics, overlapsOnZoom, placeRegionLabels, regionLevels } from './labels';
+import { levelsOf, regionLabelItems } from './regionLabelLayout';
 
 describe('splitLabel — длинные названия регионов в две строки', () => {
   it('короткое и без пробела — одной строкой', () => {
@@ -12,21 +17,6 @@ describe('splitLabel — длинные названия регионов в д�
     expect(splitLabel('Quoidge and the Fields of Carnage')).toEqual(['Quoidge and the', 'Fields of Carnage']);
     expect(splitLabel('Western Forests')).toEqual(['Western', 'Forests']);
     expect(splitLabel('Хазадальские пустоши')).toEqual(['Хазадальские', 'пустоши']);
-  });
-});
-
-describe('clampLabelX — подпись не выходит за край карты', () => {
-  it('внутри карты — на месте', () => {
-    expect(clampLabelX(800, 200)).toBe(800);
-  });
-
-  it('у края — сдвигается внутрь на половину ширины и отступ', () => {
-    expect(clampLabelX(1580, 200)).toBe(1600 - 8 - 100);
-    expect(clampLabelX(20, 200)).toBe(8 + 100);
-  });
-
-  it('шире карты — по центру', () => {
-    expect(clampLabelX(100, 1700)).toBe(800);
   });
 });
 
@@ -168,4 +158,110 @@ describe('placeEdgeLabels — метки «нить за краем» в вид�
     expect(at.get('a')!.top).toBe(FRAME.bottom - 40);
     expect(at.get('b')!.top).toBe(FRAME.bottom - 40 - 40 - EDGE_GAP);
   });
+});
+describe('названия регионов по уровням (#189, SPEC §8.6)', () => {
+  const drawn = world.regions.filter((r) => r.layout);
+  const levels = levelsOf(drawn);
+  const boxes = drawn.map((r) => polygonBox(r.layout!.polygon));
+
+  it('первый уровень — 8–10 главных регионов; ярусы и земли без мест — третий', () => {
+    const first = drawn.filter((r) => levels.get(r.id) === 1);
+    expect(first.length).toBeGreaterThanOrEqual(8);
+    expect(first.length).toBeLessThanOrEqual(10);
+    for (const r of drawn) if (r.tier !== 'continent' || r.places.length === 0) expect(levels.get(r.id)).toBe(3);
+    expect(levels.get('uncharted')).toBe(3);
+  });
+
+  it('уровни по весу; при равенстве — по порядку данных', () => {
+    const rs = ['a', 'b', 'c'].map((id) => ({ id, tier: 'continent', places: [1] }));
+    const l = regionLevels([...rs, { id: 't', tier: 'upper', places: [1] }], (r) => (r.id === 'c' ? 5 : 1));
+    expect([...l.entries()]).toEqual([['a', 1], ['b', 1], ['c', 1], ['t', 3]]);
+  });
+
+  it('размеры: в полном кадре первый уровень ≥ 18 px с гербом 40–48 px; на телефоне ≥ 12 px', () => {
+    const full = labelMetrics(1, 900);
+    expect(full.font).toBeGreaterThanOrEqual(18);
+    expect(full.crest).toBeGreaterThanOrEqual(40);
+    expect(full.crest).toBeLessThanOrEqual(48);
+    expect(labelMetrics(1, 375).font).toBeGreaterThanOrEqual(12);
+    expect(labelMetrics(2, 900).crest).toBe(0);
+  });
+
+  it('overlapsOnZoom — точки расходятся с приближением, рамки нет', () => {
+    const box = { left: -10, right: 10, top: -5, bottom: 5 };
+    const w = { width: 1000, height: 1000 };
+    // 15 px при zoom 1, 30 px при zoom 2: рамки по 20 px касаются до zoom 2.
+    expect(overlapsOnZoom(box, [0.5, 0.5], box, [0.515, 0.5], w, 1, 1.2)).toBe(true);
+    expect(overlapsOnZoom(box, [0.5, 0.5], box, [0.515, 0.5], w, 1.4, 3)).toBe(false);
+    expect(overlapsOnZoom(box, [0.5, 0.5], box, [0.5, 0.52], w, 1, 3)).toBe(false);
+  });
+
+  it('placeRegionLabels — под гербом; тесно — справа или слева; второму уровню тесно — появляется позже, на потолке — не появляется', () => {
+    const w = { width: 1000, height: 1000 };
+    const m1 = labelMetrics(1, 900);
+    const m2 = labelMetrics(2, 900);
+    const item = (id: string, x: number, y: number, from: number, metrics = m1) => ({ id, x, y, width: 80, lines: 1, metrics, from });
+    // Второй герб прямо под первым: первому — сбоку, второму — под гербом.
+    const spots = placeRegionLabels([item('a', 0.5, 0.5, 1), item('b', 0.5, 0.56, 1)], w, 2);
+    expect(spots.get('a')!.side).toBe('right');
+    expect(spots.get('b')!.side).toBe('bottom');
+    // Название второго уровня на гербе первого: видно только с того зума, где они разошлись.
+    const late = placeRegionLabels([item('a', 0.5, 0.5, 1), item('c', 0.5, 0.52, 1.35, m2)], w, 3).get('c')!;
+    expect(late.from).toBeGreaterThan(1.35);
+    expect(late.from).toBeLessThanOrEqual(3);
+    // Не расходятся и на потолке — не показывается.
+    expect(placeRegionLabels([item('a', 0.5, 0.5, 1), item('c', 0.5, 0.501, 1.35, m2)], w, 1.5).get('c')!.from).toBe(Infinity);
+  });
+
+  // Кадры как у useCamera: слой покрывает кадр; телефон — мир со списком, камера стоит.
+  const sizes = [
+    { name: '1440×900', width: 1440 - 64, height: 900, phone: false },
+    { name: '1280×720', width: 1280 - 64, height: 720, phone: false },
+    { name: '768×1024', width: 768 - 64, height: 1024, phone: false },
+    { name: '375×812', width: 375, height: 812 - 44, phone: true },
+  ];
+  for (const s of sizes) {
+    for (const lang of LANGS) {
+      it(`${s.name}, ${lang}: названия и гербы не пересекаются ни на одном зуме мира`, () => {
+        const layerWidth = Math.max(s.width, s.height * WORLD_ASPECT);
+        const view: View = { width: s.width, height: s.height, layerWidth, layerHeight: layerWidth / WORLD_ASPECT, inset: 0 };
+        const fitted = layerWidth * containScale(view);
+        const zoomFrom = s.phone ? Math.min(s.width, s.height) / layerWidth : 1;
+        const zoomMax = s.phone ? zoomFrom : zoomLevels(boxes, view).zoomMax;
+        const items = regionLabelItems(drawn, { name: (r) => r.name[lang], levels, widths: {}, fitted, zoomFrom });
+        const worldPx = { width: layerWidth, height: layerWidth / WORLD_ASPECT };
+        const spots = placeRegionLabels(items, worldPx, zoomMax);
+        const rects = items.flatMap((m) => {
+          const spot = spots.get(m.id)!;
+          return [spot.box, ...(spot.crest ? [spot.crest] : [])].map((b) => ({ m, b, from: spot.from }));
+        });
+        const bad: string[] = [];
+        for (let z = zoomFrom; z <= zoomMax + 1e-9; z += 0.01) {
+          const shown = rects
+            .filter((r) => r.from <= z + 1e-9)
+            .map(({ m, b }) => {
+              const x = m.x * worldPx.width * z;
+              const y = m.y * worldPx.height * z;
+              return { id: m.id, left: x + b.left, right: x + b.right, top: y + b.top, bottom: y + b.bottom };
+            });
+          for (let i = 0; i < shown.length; i++)
+            for (let j = i + 1; j < shown.length; j++) {
+              const a = shown[i]!;
+              const b = shown[j]!;
+              if (a.id !== b.id && a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom) bad.push(`${a.id}×${b.id}@${z.toFixed(2)}`);
+            }
+        }
+        expect([...new Set(bad.map((x) => x.split('@')[0]))]).toEqual([]);
+        // Первого уровня — не больше 12, и он виден с самого дальнего зума: на компьютере — весь, на телефоне — не меньше 8.
+        const first = items.filter((m) => levels.get(m.id) === 1);
+        const always = items.filter((m) => spots.get(m.id)!.from <= zoomFrom + 1e-9);
+        expect(always.length).toBeLessThanOrEqual(12);
+        expect(always.every((m) => levels.get(m.id) === 1)).toBe(true);
+        if (s.phone) expect(always.length).toBeGreaterThanOrEqual(6);
+        else expect(always.length).toBe(first.length);
+        // Остальные на компьютере появляются при приближении, не позже потолка мира.
+        if (!s.phone) expect(items.filter((m) => spots.get(m.id)!.from === Infinity).map((m) => m.id)).toEqual([]);
+      });
+    }
+  }
 });

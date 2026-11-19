@@ -63,7 +63,8 @@ function renderStage(regions: Region[], activeRegionId?: string, heroCount = 0, 
 }
 
 const tint = (id: string) => document.querySelector(`[data-tint="${id}"]`)!;
-const label = (id: string) => document.querySelector(`[data-label="${id}"]`)!;
+/** Название региона: группа с подсветкой (#189: внутри точки названия — герб и текст). */
+const label = (id: string) => document.querySelector(`[data-label="${id}"] > g`)!;
 /** #193: подсказку вызывает наведение на подпись региона, через TOOLTIP_OPEN_DELAY (нужны ложные таймеры). */
 function hoverLabel(id: string) {
   pointAtLabel(id);
@@ -291,7 +292,7 @@ describe('MapStage — список регионов на телефоне (#39)
     renderWithList();
     fireEvent.focus(item(/a en/));
     expect(tint('a').getAttribute('class')).toMatch(/lit/);
-    expect(document.querySelector('[data-label="a"]')!.getAttribute('class')).toMatch(/lit/);
+    expect(label('a').getAttribute('class')).toMatch(/lit/);
     expect(tint('b').getAttribute('class')).not.toMatch(/lit/);
     expect(screen.queryByRole('tooltip')).toBeNull();
     fireEvent.blur(item(/a en/));
@@ -425,8 +426,23 @@ describe('MapStage — подписи и подсказки (аудит E13)', (
     renderStage([long, tier]);
     const lines = (id: string) => [...document.querySelectorAll(`[data-label="${id}"] tspan`)].map((t) => t.textContent);
     expect(lines('a')).toEqual(['Quoidge and the', 'Fields of Carnage']);
-    expect(lines('b')).toEqual([]);
-    expect(document.querySelector('[data-label="b"]')!.textContent).toBe('The Seven Hells and the Afterlife');
+    expect(lines('b')).toEqual(['The Seven Hells and the Afterlife']);
+  });
+
+  it('герб первого уровня (#189): клик открывает регион, мышь на нём подсвечивает название; у яруса герба нет', () => {
+    const tier: Region = { ...region('b', true), tier: 'abyss' };
+    const { onSelectRegion } = renderStage([region('a', true), tier]);
+    const crest = document.querySelector('[data-crest="a"]')!;
+    expect(document.querySelector('[data-crest="b"]')).toBeNull();
+    expect(label('a').closest('[data-level]')!.getAttribute('data-level')).toBe('1');
+    expect(label('b').closest('[data-level]')!.getAttribute('data-level')).toBe('3');
+    fireEvent.pointerEnter(crest, { pointerType: 'mouse' });
+    expect(label('a').getAttribute('class')).toMatch(/lit/);
+    expect(tint('a').getAttribute('class')).toMatch(/lit/);
+    fireEvent.pointerLeave(crest, { pointerType: 'mouse' });
+    expect(label('a').getAttribute('class')).not.toMatch(/lit/);
+    fireEvent.click(crest);
+    expect(onSelectRegion).toHaveBeenCalledWith('a', 'map');
   });
 
   it('у столицы подпись есть всегда; у тесно стоящих маркеров лишние подписи прячутся до наведения', () => {
