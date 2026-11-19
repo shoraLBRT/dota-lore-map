@@ -3,6 +3,7 @@
 // Шаги: вход («Начать» → мир), колесо внутрь ×12, перетаскивание, колесо наружу до мира, клик по региону.
 // На телефоне (ширина < 768) свободной камеры в мире нет — только вход и регион из списка.
 // В `npm run check` не входит: цифры зависят от машины. Бюджет — в A14.
+/* global window, document, requestAnimationFrame -- функции для page.evaluate выполняются в браузере */
 import { spawn, spawnSync } from 'node:child_process';
 import { chromium } from '@playwright/test';
 
