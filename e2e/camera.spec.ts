@@ -21,9 +21,12 @@ test('мир во весь кадр; колесо, перетаскивание,
   expect(ly!.width).toBeGreaterThanOrEqual(vp!.width - 1);
   expect(ly!.height).toBeGreaterThanOrEqual(vp!.height - 1);
 
-  // Колесо приближает.
+  // Колесо приближает: три щелчка мыши с паузой (не больше щелчка за событие и за 120 мс, #179) — ×1.2³.
   await page.mouse.move(vp!.x + vp!.width / 2, vp!.y + vp!.height / 2);
-  await page.mouse.wheel(0, -400);
+  for (let i = 0; i < 3; i += 1) {
+    await page.mouse.wheel(0, -100);
+    await page.waitForTimeout(150);
+  }
   await expect.poll(() => scale(page)).toBeGreaterThan(1.5);
 
   // Перетаскивание двигает карту и не открывает регион.
