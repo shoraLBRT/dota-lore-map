@@ -28,15 +28,16 @@ interface Spec {
 }
 
 export const SPECS: Record<Kind, Spec> = {
-  snow: { count: 160, size: [1.2, 3.2], vx: [-8, 8], vy: [18, 45], alpha: [0.5, 0.95], sway: [14, 1.1] },
-  ash: { count: 110, size: [1, 2.6], vx: [-6, 10], vy: [6, 20], alpha: [0.3, 0.7], sway: [10, 0.7] },
-  embers: { count: 70, size: [1, 2.4], vx: [-8, 8], vy: [-40, -16], alpha: [0.5, 1], sway: [16, 1.6] },
+  // Размеры точечных частиц — мелкие (#192): крупные белые точки читались как пятна поверх карты.
+  snow: { count: 160, size: [0.8, 2.1], vx: [-8, 8], vy: [18, 45], alpha: [0.5, 0.95], sway: [14, 1.1] },
+  ash: { count: 110, size: [0.7, 1.8], vx: [-6, 10], vy: [6, 20], alpha: [0.3, 0.7], sway: [10, 0.7] },
+  embers: { count: 70, size: [0.8, 1.8], vx: [-8, 8], vy: [-40, -16], alpha: [0.5, 1], sway: [16, 1.6] },
   fog: { count: 9, size: [140, 280], vx: [6, 16], vy: [-2, 2], alpha: [0.05, 0.12] },
-  rain: { count: 150, size: [10, 18], vx: [-90, -60], vy: [520, 700], alpha: [0.18, 0.4] },
-  sparkles: { count: 55, size: [1, 2.4], vx: [-4, 4], vy: [-10, -2], alpha: [0.3, 1] },
-  stars: { count: 80, size: [0.8, 2], vx: [-1, 1], vy: [-1, 1], alpha: [0.3, 1] },
-  leaves: { count: 32, size: [3, 6], vx: [14, 34], vy: [16, 34], alpha: [0.55, 0.9], sway: [24, 0.9] },
-  sand: { count: 130, size: [0.8, 1.8], vx: [160, 260], vy: [-6, 10], alpha: [0.25, 0.6] },
+  rain: { count: 150, size: [8, 14], vx: [-90, -60], vy: [520, 700], alpha: [0.18, 0.4] },
+  sparkles: { count: 55, size: [0.7, 1.7], vx: [-4, 4], vy: [-10, -2], alpha: [0.3, 1] },
+  stars: { count: 80, size: [0.6, 1.4], vx: [-1, 1], vy: [-1, 1], alpha: [0.3, 1] },
+  leaves: { count: 32, size: [2.2, 4.2], vx: [14, 34], vy: [16, 34], alpha: [0.55, 0.9], sway: [24, 0.9] },
+  sand: { count: 130, size: [0.6, 1.3], vx: [160, 260], vy: [-6, 10], alpha: [0.25, 0.6] },
 };
 
 /** Потолок частиц на кадр: держим 60 FPS на среднем ноутбуке (SPEC §7.3). */

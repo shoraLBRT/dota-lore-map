@@ -19,7 +19,7 @@
   background: var(--bg-1);
   transform: translateY(calc(100dvh - var(--visible)));
   transition: transform var(--dur-panel) var(--ease-spring);
-  animation: sheet-in var(--dur-panel) var(--ease-out);
+  animation: sheet-in var(--dur-panel-in) var(--ease-in-out);
 }
 
 .full {

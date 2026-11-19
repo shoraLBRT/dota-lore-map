@@ -2,10 +2,9 @@ import { describe, expect, it } from 'vitest';
 import { world } from '../../data/world';
 import {
   clampCamera,
-  frameCamera,
   maxZoom,
-  placeCamera,
   polygonBox,
+  regionFrame,
   REGION_ZOOM_IN,
   SHEET_PEEK,
   WORLD_ASPECT,
@@ -30,18 +29,18 @@ function view(width: number, height: number): View {
 }
 
 const drawn = world.regions.filter((r) => r.layout);
-const cameras = drawn.map((r) => r.layout!.camera);
-const frame = (id: string, stage: View) => frameCamera(drawn.find((r) => r.id === id)!.layout!.camera, stage).camera.zoom;
+const boxes = drawn.map((r) => polygonBox(r.layout!.polygon));
+const frame = (id: string, stage: View) => regionFrame(polygonBox(drawn.find((r) => r.id === id)!.layout!.polygon), stage).camera.zoom;
 
 describe('уровни зума вложены (#209, SPEC §8.6)', () => {
   for (const size of [[1440, 900], [375, 812]] as const) {
     const stage = view(size[0], size[1]);
-    const frames = cameras.map((c) => frameCamera(c, stage).camera.zoom).sort((a, b) => a - b);
+    const frames = boxes.map((b) => regionFrame(b, stage).camera.zoom).sort((a, b) => a - b);
     const median = frames[Math.floor(frames.length / 2)]!;
 
     it(`${size.join('×')}: потолок мира — ${WORLD_SHARE} медианы кадров ${frames.length} регионов`, () => {
       expect(frames.length % 2).toBe(1);
-      const world = zoomLevels(cameras, stage);
+      const world = zoomLevels(boxes, stage);
       expect(world.zoomMin).toBe(1);
       expect(world.zoomMax).toBeCloseTo(Math.max(1, WORLD_SHARE * median));
       expect(world.zoomMax).toBeLessThan(median);
@@ -52,10 +51,11 @@ describe('уровни зума вложены (#209, SPEC §8.6)', () => {
     });
 
     it(`${size.join('×')}: в регионе — от потолка мира (или кадра) до кадра × ${REGION_ZOOM_IN}; место — в этих пределах`, () => {
-      const worldMax = zoomLevels(cameras, stage).zoomMax;
+      const worldMax = zoomLevels(boxes, stage).zoomMax;
       for (const region of drawn) {
-        const own = frameCamera(region.layout!.camera, stage).camera.zoom;
-        const levels = zoomLevels(cameras, stage, region.layout!.camera);
+        const box = polygonBox(region.layout!.polygon);
+        const own = regionFrame(box, stage).camera.zoom;
+        const levels = zoomLevels(boxes, stage, box);
         expect(levels.zoomMax).toBeCloseTo(own * REGION_ZOOM_IN);
         expect(levels.zoomMin).toBeCloseTo(Math.min(worldMax, own));
         const roam = { ...stage, ...levels };
@@ -63,9 +63,8 @@ describe('уровни зума вложены (#209, SPEC §8.6)', () => {
         expect(clampCamera({ ...region.layout!.camera, zoom: 10 }, roam).zoom).toBeLessThanOrEqual(own * REGION_ZOOM_IN + 1e-9);
         expect(clampCamera({ ...region.layout!.camera, zoom: 0.5 }, roam).zoom).toBeCloseTo(levels.zoomMin);
         for (const place of region.places.filter((p) => p.pos)) {
-          const keep = { box: polygonBox(region.layout!.polygon), place: place.pos! };
-          const zoom = frameCamera(placeCamera(region.layout!.camera, place.pos!), stage, keep).camera.zoom;
-          expect(zoom).toBeLessThanOrEqual(levels.zoomMax + 1e-9);
+          // Камера места — ровно потолок региона: на ступень ближе кадра, но не дальше свободной камеры.
+          expect(regionFrame(box, stage, place.pos!).camera.zoom).toBeLessThanOrEqual(levels.zoomMax + 1e-9);
         }
       }
     });
@@ -73,12 +72,12 @@ describe('уровни зума вложены (#209, SPEC §8.6)', () => {
 
   it('1440×900: потолок мира глубже TOOLTIP_MAX_ZOOM 2 — e2e подсказки доходит до порога; кадр медианного региона ближе', () => {
     const stage = view(1440, 900);
-    const worldMax = zoomLevels(cameras, stage).zoomMax;
+    const worldMax = zoomLevels(boxes, stage).zoomMax;
     expect(worldMax).toBeGreaterThan(2);
     expect(frame('wailing-mountains', stage)).toBeGreaterThan(worldMax);
   });
 
   it('без измерений — как раньше', () => {
-    expect(zoomLevels(cameras, { width: 0, height: 0, layerWidth: 0, layerHeight: 0, inset: 0 })).toEqual({ zoomMin: 1, zoomMax: 3 });
+    expect(zoomLevels(boxes, { width: 0, height: 0, layerWidth: 0, layerHeight: 0, inset: 0 })).toEqual({ zoomMin: 1, zoomMax: 3 });
   });
 });

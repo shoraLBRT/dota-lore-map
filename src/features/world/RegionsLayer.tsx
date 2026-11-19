@@ -120,8 +120,15 @@ export function RegionsLayer({ drawn, activeId, inWorld, tip, litId, focusRegion
           );
         })}
       </g>
-      {/* S2/S3 (#188): всё вне открытого региона затемнено и слегка размыто, край растушёван по форме региона. */}
-      {WORLD_ART && !inWorld && active?.layout && <RegionVeil d={smoothPath(active.layout.polygon)} art={WORLD_PREVIEW ?? WORLD_ART} />}
+      {/* S2/S3 (#188): всё вне открытого региона затемнено и слегка размыто, край растушёван по форме региона;
+          чужие ярусы гаснут целиком (#192). */}
+      {WORLD_ART && !inWorld && active?.layout && (
+        <RegionVeil
+          d={smoothPath(active.layout.polygon)}
+          tiers={foreignTiers(drawn, active).map((r) => smoothPath(r.layout!.polygon))}
+          art={WORLD_PREVIEW ?? WORLD_ART}
+        />
+      )}
       {/* Подсветка S1h поверх всех полигонов, чтобы граница не пряталась под соседями (#188): мягкое свечение
           изнутри по сглаженной кривой и тонкий контур постоянной толщины на экране. */}
       <g aria-hidden="true">
@@ -224,12 +231,22 @@ export function RegionLabels({ drawn, inWorld, tip, litId, focusRegions, preview
   );
 }
 
+/** Ширины ступеней растушёвки чужого яруса, единицы сцены: половина обводки ложится внутрь яруса. */
+const TIER_FEATHER = [120, 80, 48, 20];
+
+/** Ярусы, чужие открытому региону (#192): верхний и нижний — для региона континента, другой ярус — для яруса. */
+export function foreignTiers(drawn: Region[], active: Region): Region[] {
+  return drawn.filter((r) => r.layout && r.tier !== 'continent' && r.tier !== active.tier && r.id !== active.id);
+}
+
 /**
  * Вуаль режима региона (#188): затемнение и лёгкое размытие арта вне региона. Размытие — превью мира 1024 px,
  * растянутое на сцену (фильтр по полной картинке не укладывается в бюджет кадра, A14). Маска — сцена целиком
  * минус растушёванная кривая региона; области фильтра и маски — вся сцена, а не габарит региона.
+ * Чужие ярусы (`tiers`, #192) сверху гаснут целиком — цветом фона, край растушёван внутрь ступенями обводки в маске
+ * (`TIER_FEATHER`), без шва яруса на арте. Полигоны регионов не пересекаются — свой регион вычитать не нужно.
  */
-function RegionVeil({ d, art }: { d: string; art: string }) {
+function RegionVeil({ d, tiers, art }: { d: string; tiers: string[]; art: string }) {
   const stage = { x: 0, y: 0, width: STAGE_WIDTH, height: STAGE_HEIGHT };
   return (
     <g aria-hidden="true" className={styles.veil} data-testid="region-veil">
@@ -241,11 +258,27 @@ function RegionVeil({ d, art }: { d: string; art: string }) {
           <rect {...stage} fill="#fff" />
           <path d={d} fill="#000" filter="url(#rl-feather)" />
         </mask>
+        {tiers.length > 0 && (
+          <>
+            <mask id="rl-tiers" maskUnits="userSpaceOnUse" {...stage}>
+              {tiers.map((t, i) => (
+                <g key={i}>
+                  <path d={t} fill="#fff" />
+                  {/* Край гаснет внутрь ступенями обводки, без фильтра: размытие маски на всю сцену дорого (A14). */}
+                  {TIER_FEATHER.map((w) => (
+                    <path key={w} d={t} fill="none" stroke="#000" strokeOpacity={0.25} strokeWidth={w} />
+                  ))}
+                </g>
+              ))}
+            </mask>
+          </>
+        )}
       </defs>
       <g mask="url(#rl-veil)">
         <image href={art} {...stage} preserveAspectRatio="none" />
         <rect className={styles.veilShade} {...stage} />
       </g>
+      {tiers.length > 0 && <rect className={styles.tierShade} {...stage} mask="url(#rl-tiers)" data-testid="tier-shade" />}
     </g>
   );
 }

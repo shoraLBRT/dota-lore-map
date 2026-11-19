@@ -60,8 +60,6 @@ export const SHEET_FULL = 0.9;
 /** Телефон: правая панель становится нижней шторкой (SPEC §13). */
 export const MOBILE_QUERY = '(max-width: 767px)';
 
-/** Камера места: ближе какой доли видимой части к её краю не встаёт выбранное место (#96). */
-const PLACE_MARGIN = 0.2;
 /** Пикселей арта по стороне мира с запасом на приближение: ближе картинка уже расплывается. */
 export const ART_PIXELS = 4096 * 1.5;
 
@@ -70,8 +68,10 @@ export const ART_PIXELS = 4096 * 1.5;
 export const FREE_ZOOM_MAX = 3;
 /** Кадр региона: маленький регион не заполняет экран. */
 export const REGION_ZOOM_MAX = 2.5;
-/** Камера места — чуть ближе камеры региона (и её потолка); не ближе потолка региона (REGION_ZOOM_IN). */
+/** Камера места — на ступень ближе кадра региона (и его потолка): ровно потолок свободной камеры региона (REGION_ZOOM_IN). */
 export const PLACE_ZOOM = 1.15;
+/** Кадр региона (#192, SPEC §8.6): габарит региона занимает эту долю свободной области по ведущей стороне (60–75 %). */
+export const REGION_FILL = 0.7;
 /** Уровни зума вложены (#209): потолок мира — эта доля медианы кадров регионов, мир не доходит до кадра региона. */
 export const WORLD_SHARE = 0.93;
 /** В регионе и месте свободная камера приближает не больше чем в столько раз от кадра региона. */
@@ -138,65 +138,76 @@ const median = (values: number[]) => {
 /**
  * Пределы свободной камеры по уровням (#209, SPEC §8.6): уровни вложены и не заходят друг на друга.
  * Мир — [1, WORLD_SHARE × медиана кадров регионов на этом кадре]; регион и место — от потолка мира (не дальше кадра
- * региона) до кадра региона × REGION_ZOOM_IN. `regions` — камеры регионов из layout.json, `region` — открытый,
- * `stage` — кадр с панелью и шторкой региона: кадры считает `frameCamera`, как при перелёте.
+ * региона) до кадра региона × REGION_ZOOM_IN. `regions` — рамки регионов (`polygonBox`), `region` — открытого,
+ * `stage` — кадр с панелью и шторкой региона: кадры считает `regionFrame`, как при перелёте.
  */
-export function zoomLevels(regions: Camera[], stage: View, region?: Camera): { zoomMin: number; zoomMax: number } {
+export function zoomLevels(regions: WorldBox[], stage: View, region?: WorldBox): { zoomMin: number; zoomMax: number } {
   if (!measured(stage) || regions.length === 0) return { zoomMin: 1, zoomMax: FREE_ZOOM_MAX };
-  const world = Math.max(1, WORLD_SHARE * median(regions.map((c) => frameCamera(c, stage).camera.zoom)));
+  const world = Math.max(1, WORLD_SHARE * median(regions.map((b) => regionFrame(b, stage).camera.zoom)));
   if (!region) return { zoomMin: 1, zoomMax: world };
-  const frame = frameCamera(region, stage).camera.zoom;
+  const frame = regionFrame(region, stage).camera.zoom;
   return { zoomMin: Math.min(world, frame), zoomMax: frame * REGION_ZOOM_IN };
 }
 
+/** Свободная часть кадра (без панели и шторки), px; узкий кадр не ужимается меньше четверти вписанного мира. */
+function freeArea(view: View): { free: number; freeY: number } {
+  const fitted = view.layerWidth * containScale(view);
+  const inset = Math.max(view.inset, 0);
+  const bottom = view.insetBottom ?? 0;
+  return {
+    free: inset > 0 ? Math.max(view.width - inset, fitted * 0.25) : view.width,
+    freeY: bottom > 0 ? Math.max(view.height - bottom, fitted * 0.25) : view.height,
+  };
+}
+
+/** Сдвиги центра для cameraTransform: к середине свободной части кадра. */
+function offsets(view: View): { offset: number; offsetY?: number } {
+  const bottom = view.insetBottom ?? 0;
+  return { offset: Math.max(view.inset, 0) / 2, ...(bottom > 0 ? { offsetY: bottom / 2 } : {}) };
+}
+
 /**
- * Камера с учётом панели: рамка региона (1/zoom мира, вписанного в кадр) должна поместиться в свободную часть кадра,
- * поэтому zoom уменьшается в (ширина − панель) / размер вписанного мира раз; больше задуманного не приближаем
- * (правило кадра — map/cameras.mjs, #112) и не ближе REGION_ZOOM_MAX (у камеры места — ×PLACE_ZOOM, #179).
- * Камера мира (zoom 1) — весь кадр.
- * `keep` — рамка региона и точка места (доли мира) у камеры места: центр сдвигается не дальше, чем нужно, чтобы регион
- * остался в видимой части кадра, а если не помещается — вылезал из неё как можно меньше, не уводя к краю само место (#96).
+ * Кадр региона и места (#192, SPEC §8.6, ARCHITECTURE A4). Регион: центр — середина габарита `box`, zoom такой, чтобы
+ * габарит занял REGION_FILL свободной области по ведущей стороне (вытянутый регион — по большей), в пределах
+ * [1, REGION_ZOOM_MAX]. Место (`place`): камера встаёт точно на место (центр свободной области), на ступень ближе —
+ * × PLACE_ZOOM. В конце камера прижимается к картинке (`clampCamera`) по видимой части кадра.
+ */
+export function regionFrame(box: WorldBox, view: View, place?: Point): { camera: Camera; offset: number; offsetY?: number } {
+  const x = place ? place[0] : (box.left + box.right) / 2;
+  const y = place ? place[1] : (box.top + box.bottom) / 2;
+  if (!measured(view)) return { camera: { x, y, zoom: 1 }, offset: 0 };
+  const { free, freeY } = freeArea(view);
+  const w = Math.max((box.right - box.left) * view.layerWidth, 1);
+  const h = Math.max((box.bottom - box.top) * view.layerHeight, 1);
+  const zoom = Math.min(REGION_ZOOM_MAX, Math.max(1, REGION_FILL * Math.min(free / w, freeY / h)));
+  const shift = offsets(view);
+  return {
+    camera: clampCamera({ x, y, zoom: place ? zoom * PLACE_ZOOM : zoom }, view, shift.offset, shift.offsetY ?? 0),
+    ...shift,
+  };
+}
+
+/**
+ * Камера мира и камера по готовому `layout.camera` с учётом панели: рамка (1/zoom мира, вписанного в кадр) должна
+ * поместиться в свободную часть кадра, поэтому zoom уменьшается в (ширина − панель) / размер вписанного мира раз;
+ * не ближе REGION_ZOOM_MAX. Камера мира (zoom 1) — весь кадр. Кадр региона и места считает `regionFrame` (#192).
  * В конце камера прижимается к картинке (`clampCamera`): за краем мира пустоты нет.
  * Возвращает камеру и сдвиг центра для cameraTransform.
  */
-export function frameCamera(
-  camera: Camera,
-  view: View,
-  keep?: { box: WorldBox; place: Point },
-): { camera: Camera; offset: number; offsetY?: number } {
+export function frameCamera(camera: Camera, view: View): { camera: Camera; offset: number; offsetY?: number } {
   if (!measured(view)) return { camera, offset: 0 };
-  const bottom = view.insetBottom ?? 0;
-  const inset = Math.max(view.inset, 0);
   const contain = containScale(view);
   const fitted = view.layerWidth * contain;
-  const free = inset > 0 ? Math.max(view.width - inset, fitted * 0.25) : view.width;
-  const freeY = bottom > 0 ? Math.max(view.height - bottom, fitted * 0.25) : view.height;
-  const ceiling = keep ? REGION_ZOOM_MAX * PLACE_ZOOM : REGION_ZOOM_MAX;
+  const { free, freeY } = freeArea(view);
   const zoom =
     camera.zoom <= 1
       ? 1
-      : Math.min(ceiling, Math.max(1, camera.zoom * contain * Math.min(1, free / fitted, freeY / fitted)));
-  // Рамка региона держит центр так, чтобы за видимую часть (`size` — её доля мира) уходило не больше, чем нужно:
-  // помещается — целиком в кадре; не помещается — вылезает поровну за оба края, но само место остаётся
-  // не ближе PLACE_MARGIN видимой части к её краю (рядом с ним — подпись).
-  const hold = (c: number, from: number, to: number, size: number, place: number) => {
-    if (to - from <= size) return Math.min(Math.max(c, to - size / 2), from + size / 2);
-    const even = Math.min(Math.max(c, from + size / 2), to - size / 2);
-    const reach = size / 2 - size * PLACE_MARGIN;
-    return Math.min(Math.max(even, place - reach), place + reach);
-  };
-  let { x, y } = camera;
-  if (keep) {
-    x = hold(x, keep.box.left, keep.box.right, free / (view.layerWidth * zoom), keep.place[0]);
-    y = hold(y, keep.box.top, keep.box.bottom, freeY / (view.layerHeight * zoom), keep.place[1]);
-  }
-  const offset = inset / 2;
-  const offsetY = bottom / 2;
+      : Math.min(REGION_ZOOM_MAX, Math.max(1, camera.zoom * contain * Math.min(1, free / fitted, freeY / fitted)));
+  const shift = offsets(view);
   return {
     // Камера мира (#97) держит на картинке весь кадр, и под панелью — тоже арт; кадр региона — только видимую часть.
-    camera: clampCamera({ x, y, zoom }, camera.zoom > 1 ? view : wholeFrame(view), offset, offsetY),
-    offset,
-    ...(bottom > 0 ? { offsetY } : {}),
+    camera: clampCamera({ x: camera.x, y: camera.y, zoom }, camera.zoom > 1 ? view : wholeFrame(view), shift.offset, shift.offsetY ?? 0),
+    ...shift,
   };
 }
 
@@ -262,13 +273,9 @@ export function worldListLayout(
   };
 }
 
-/** Камера места: лёгкий сдвиг от камеры региона к месту и небольшой дозум (A4). */
+/** Кадр места как ключ перелёта (A4, #192): камера встаёт на место и на ступень ближе региона; zoom считает `regionFrame`. */
 export function placeCamera(region: Camera, pos: Point): Camera {
-  return {
-    x: (region.x + pos[0]) / 2,
-    y: (region.y + pos[1]) / 2,
-    zoom: region.zoom * PLACE_ZOOM,
-  };
+  return { x: pos[0], y: pos[1], zoom: region.zoom * PLACE_ZOOM };
 }
 
 export function prefersReducedMotion(): boolean {

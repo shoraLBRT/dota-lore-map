@@ -6,7 +6,7 @@ import { AmbientCanvas } from '../atmosphere/AmbientCanvas';
 import type { Spot } from '../search/search';
 import type { HeroThreads } from '../search/threads';
 import { preloadRegionArt } from './art';
-import { STAGE_HEIGHT, STAGE_WIDTH, WORLD_ASPECT, type Rect } from './camera';
+import { polygonBox, STAGE_HEIGHT, STAGE_WIDTH, WORLD_ASPECT, type Rect } from './camera';
 import { EdgeLabels } from './EdgeLabels';
 import { MapAtmosphere } from './MapAtmosphere';
 import styles from './MapStage.module.css';
@@ -128,8 +128,8 @@ export function MapStage({
   const previewRegions = useMemo(() => (preview ? new Set(preview.map((s) => s.regionId)) : null), [preview]);
   const previewPlaces = useMemo(() => (preview ? new Set(preview.map((s) => s.key)) : null), [preview]);
 
-  const regionCameras = useMemo(() => regions.flatMap((r) => (r.layout ? [r.layout.camera] : [])), [regions]);
-  const cam = useCamera({ active, regionCameras, activePlaceSlug, panel, regionList, topInset, hasMap, onCameraBusy });
+  const regionBoxes = useMemo(() => regions.flatMap((r) => (r.layout ? [polygonBox(r.layout.polygon)] : [])), [regions]);
+  const cam = useCamera({ active, regionBoxes, activePlaceSlug, panel, regionList, topInset, hasMap, onCameraBusy });
   const { viewportRef, layerRef, screenRef, listLayout, flying, target, frame, controls } = cam;
   const tip = useRegionTooltip({
     regions,
@@ -236,7 +236,13 @@ export function MapStage({
           <div className={styles.cloudBox} style={listLayout ? rectStyle(listLayout.map) : undefined}>
             <MapAtmosphere layerRef={layerRef} activeId={active?.id} clear={Boolean(threads)} />
           </div>
-          {active && <AmbientCanvas key={active.id} ambient={active.ambient} />}
+          {active && (
+            <AmbientCanvas
+              key={active.id}
+              ambient={active.ambient}
+              region={active.layout ? { layerRef, polygon: active.layout.polygon } : undefined}
+            />
+          )}
           <div className={styles.vignette} style={listLayout ? rectStyle(listLayout.map) : undefined} aria-hidden="true" />
           <EdgeLabels
             active={active}
