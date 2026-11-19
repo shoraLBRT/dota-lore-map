@@ -1,14 +1,50 @@
 /* Профиль героя (E15, SPEC §6.8): в правой панели и в шторке телефона. */
 
-/* Шапка — широкий портрет Valve с затуханием в фон, как шапка места (Panel.module.css .header). */
+/* Шапка — широкий портрет Valve с затуханием в фон, как шапка места (Panel.module.css .header).
+   Не выше трети экрана (#194); пока шапка грузится — портрет-заглушка в цвет панели, шапка проявляется поверх. */
 .header {
+  position: relative;
   display: block;
   width: calc(100% + 2 * var(--space-5));
   aspect-ratio: 16 / 9;
+  max-height: calc(100dvh / 3);
   margin: calc(-1 * var(--space-2)) calc(-1 * var(--space-5)) var(--space-3);
+  overflow: hidden;
+  background: var(--bg-1);
+  mask-image: linear-gradient(180deg, var(--bg-0) 60%, transparent);
+}
+
+.headerPortrait,
+.headerCrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: 50% 20%;
-  mask-image: linear-gradient(180deg, var(--bg-0) 60%, transparent);
+}
+
+/* Портрет 256×144 растянут — пока грузится шапка, он приглушён; при ошибке шапки остаётся чётким. */
+.headerPortrait {
+  opacity: 0.55;
+  filter: blur(3px);
+  transition:
+    opacity var(--dur-fade) var(--ease-out),
+    filter var(--dur-fade) var(--ease-out);
+}
+
+.header[data-hero-header='failed'] .headerPortrait {
+  opacity: 1;
+  filter: none;
+}
+
+.headerCrop {
+  opacity: 0;
+  transition: opacity var(--dur-fade) var(--ease-out);
+}
+
+.header[data-hero-header='loaded'] .headerCrop {
+  opacity: 1;
 }
 
 .fallbackPortrait {
@@ -217,6 +253,10 @@
 @media (max-width: 767px) {
   .header {
     aspect-ratio: 4 / 1;
+  }
+
+  .headerPortrait,
+  .headerCrop {
     object-position: 50% 15%;
   }
 }

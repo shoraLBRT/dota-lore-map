@@ -1,11 +1,11 @@
-import { useId, useMemo, useState } from 'react';
+import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import { useNavigation } from '../../app/navigation';
 import { serializeRoute } from '../../app/router';
 import { EventIcon } from '../../components/EventIcon';
 import { HeroPortrait } from '../../components/HeroPortrait';
 import { Paragraphs } from '../../components/Paragraphs';
 import type { Hero } from '../../data/types';
-import { getPlace, getRegion, heroCrop, heroUrl, placeName } from '../../data/world';
+import { getPlace, getRegion, heroCrop, heroPortrait, heroUrl, placeName } from '../../data/world';
 import { useT } from '../../i18n';
 import { heroBlock } from '../feedback/context';
 import { FeedbackLink } from '../feedback/FeedbackLink';
@@ -33,7 +33,6 @@ export function HeroProfile({ hero, spots, threads, onPick }: Props) {
   const { l, lang, t } = useT();
   const { route, open, navigate } = useNavigation();
   const preview = useHeroPreview();
-  const [headerFailed, setHeaderFailed] = useState<string | null>(null);
   const media = useMemo(() => heroMedia(hero), [hero]);
   const relations = useMemo(() => heroRelations(hero), [hero]);
   const places = useMemo(() => profilePlaces(hero, spots), [hero, spots]);
@@ -42,11 +41,7 @@ export function HeroProfile({ hero, spots, threads, onPick }: Props) {
 
   return (
     <>
-      {headerFailed !== hero.key ? (
-        <img className={styles.header} src={heroCrop(hero)} alt="" onError={() => setHeaderFailed(hero.key)} />
-      ) : (
-        <HeroPortrait hero={hero} link={false} className={styles.fallbackPortrait} />
-      )}
+      <HeroHeader key={hero.key} hero={hero} />
       <h2 tabIndex={-1} data-panel-heading>
         {hero.name}
       </h2>
@@ -127,6 +122,51 @@ export function HeroProfile({ hero, spots, threads, onPick }: Props) {
       )}
       <FeedbackLink block={heroBlock(hero)} />
     </>
+  );
+}
+
+type Load = 'loading' | 'loaded' | 'failed';
+
+/**
+ * Шапка профиля (#194): широкий портрет Valve (`heroCrop`, 100–300 КБ) грузится не сразу, поэтому под ним — заглушка
+ * в цвет панели с маленьким портретом (он уже в кэше: чип, список героев), шапка проявляется поверх по загрузке.
+ * Ошибка шапки — остаётся портрет; нет и портрета — блок схлопывается до буквы-заглушки `HeroPortrait`. Пустого блока нет.
+ */
+function HeroHeader({ hero }: { hero: Hero }) {
+  const [crop, setCrop] = useState<Load>('loading');
+  const [portraitFailed, setPortraitFailed] = useState(false);
+  const ref = useRef<HTMLImageElement>(null);
+  // Картинка из кэша могла загрузиться раньше, чем React повесил onLoad.
+  useEffect(() => {
+    const img = ref.current;
+    if (img?.complete && img.naturalWidth > 0) setCrop('loaded');
+  }, []);
+  if (crop === 'failed' && portraitFailed) {
+    return <HeroPortrait hero={hero} link={false} className={styles.fallbackPortrait} />;
+  }
+  return (
+    <div className={styles.header} data-hero-header={crop}>
+      {!portraitFailed && (
+        <img
+          className={styles.headerPortrait}
+          src={heroPortrait(hero)}
+          alt=""
+          decoding="async"
+          onError={() => setPortraitFailed(true)}
+        />
+      )}
+      {crop !== 'failed' && (
+        <img
+          ref={ref}
+          className={styles.headerCrop}
+          src={heroCrop(hero)}
+          alt=""
+          decoding="async"
+          onLoad={() => setCrop('loaded')}
+          onError={() => setCrop('failed')}
+        />
+      )}
+    </div>
   );
 }
 
