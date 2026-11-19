@@ -203,20 +203,20 @@ describe('свои шрифты (A8, #108)', () => {
     const urls = [...fonts.matchAll(/url\('\/(fonts\/[^']+)'\)/g), ...html.matchAll(/href="\/(fonts\/[^"]+)"/g)].map(
       (m) => m[1]!,
     );
-    expect(urls.length).toBe(8);
+    expect(urls.length).toBe(10);
     for (const u of urls) expect(existsSync(join(ROOT, 'public', u)), u).toBe(true);
     expect(readdirSync(join(ROOT, 'public/fonts')).filter((f) => f.startsWith('OFL-'))).toHaveLength(2);
   });
 
-  it('у каждого @font-face — unicode-range и font-display: swap; preload — только latin', () => {
+  it('у каждого @font-face — unicode-range и font-display: swap; preload — латиница и кириллица первого экрана', () => {
     const faces = fonts.match(/@font-face\s*{[^}]*}/g) ?? [];
     expect(faces).toHaveLength(6);
     for (const f of faces) {
       expect(f).toMatch(/unicode-range:/);
       expect(f).toMatch(/font-display:\s*swap/);
     }
-    const preloads = html.match(/<link rel="preload"[^>]*>/g) ?? [];
-    expect(preloads).toHaveLength(2);
-    for (const p of preloads) expect(p).toMatch(/-latin-.*crossorigin/);
+    const preloads = html.match(/<link rel="preload"[^>]*as="font"[^>]*>/g) ?? [];
+    expect(preloads).toHaveLength(4);
+    for (const p of preloads) expect(p).toMatch(/(cormorant-sc-(latin|cyrillic)-700|manrope-(latin|cyrillic)-wght).*crossorigin/);
   });
 });

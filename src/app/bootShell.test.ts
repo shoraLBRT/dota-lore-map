@@ -1,7 +1,8 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { dictionaries, type Lang } from '../i18n';
+import type { Lang } from '../data/types';
+import { dictionaries } from '../i18n';
 
 // Статичная оболочка интро в index.html (#186, ARCHITECTURE A14): тексты — те же, что у Intro и Disclaimer,
 // иначе при подхвате React заголовок сменится на глазах.

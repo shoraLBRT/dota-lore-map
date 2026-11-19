@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
 import { FeedbackProvider, useFeedback } from '../features/feedback/FeedbackProvider';
-import { Gallery } from '../features/gallery/Gallery';
 import { galleryOf } from '../features/gallery/items';
 import { Intro } from '../features/intro/Intro';
 import { WorldScreen } from '../features/world/WorldScreen';
 import { I18nProvider } from '../i18n';
+import { Gallery, prefetchDeferred } from './deferred';
 import { NavigationProvider, useNavigation } from './navigation';
 import { parentScreen, type Screen } from './router';
 import { SoundProvider, useSound } from './sound';
@@ -56,6 +56,7 @@ function Screens() {
     open(WORLD);
   }, [unlock, open]);
   const left = useCallback(() => setIntroLeaving(false), []);
+  useEffect(prefetchDeferred, []);
   // Листание и закрытие галереи не добавляют записей в историю: «назад» браузера ведёт к прошлому экрану.
   const selectMedia = useCallback((media: string) => navigate({ ...route, media }, { replace: true }), [navigate, route]);
   const closeGallery = useCallback(

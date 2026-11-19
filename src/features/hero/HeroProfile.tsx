@@ -1,7 +1,6 @@
 import { useId, useMemo, useState } from 'react';
 import { useNavigation } from '../../app/navigation';
 import { serializeRoute } from '../../app/router';
-import { DiamondButton } from '../../components/DiamondButton';
 import { EventIcon } from '../../components/EventIcon';
 import { HeroPortrait } from '../../components/HeroPortrait';
 import { Paragraphs } from '../../components/Paragraphs';
@@ -10,7 +9,6 @@ import { getPlace, getRegion, heroCrop, heroUrl, placeName } from '../../data/wo
 import { useT } from '../../i18n';
 import { heroBlock } from '../feedback/context';
 import { FeedbackLink } from '../feedback/FeedbackLink';
-import crumbStyles from '../panel/Blocks.module.css';
 import { MediaCards } from '../panel/MediaCards';
 import { useHeroPreview } from '../search/preview';
 import { spotName, spotScreen, type Spot } from '../search/search';
@@ -195,21 +193,5 @@ function LineSample({ kind }: { kind: StepKind }) {
       <path d="M2 6h22" strokeDasharray={kind === 'aside' ? '4 3' : undefined} />
       {kind === 'path' && <path className={styles.legendArrow} d="M15 2.5 21 6l-6 3.5Z" />}
     </svg>
-  );
-}
-
-/**
- * Кнопка в шапке профиля (SPEC §6.4, §6.8): «‹ Закрыть профиль» — закрывает профиль и возвращает панель
- * экрана под ним, герой остаётся выбранным; то же делают Esc и «назад» браузера (A11).
- */
-export function ProfileCrumb({ onClose }: { onClose: () => void }) {
-  const { t } = useT();
-  const text = t('hero.close');
-  return (
-    <nav className={crumbStyles.crumbs} aria-label={t('panel.breadcrumbs')}>
-      <DiamondButton icon="back" label={text} onClick={onClose}>
-        {text}
-      </DiamondButton>
-    </nav>
   );
 }

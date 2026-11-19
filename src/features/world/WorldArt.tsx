@@ -1,4 +1,5 @@
 import { useEffect, useState, type RefObject, type SyntheticEvent } from 'react';
+import { afterLoadIdle } from '../../app/idle';
 import { WORLD_ART, WORLD_PREVIEW } from './art';
 import { STAGE_HEIGHT, STAGE_WIDTH } from './camera';
 import styles from './WorldArt.module.css';
@@ -16,18 +17,7 @@ interface Props {
 function usePageLoaded(): boolean {
   const [loaded, setLoaded] = useState(() => typeof document === 'undefined' || document.readyState === 'complete');
   useEffect(() => {
-    if (loaded) return;
-    let idle = 0;
-    const done = () => setLoaded(true);
-    const onLoad = () => {
-      idle = 'requestIdleCallback' in window ? window.requestIdleCallback(done, { timeout: 1000 }) : window.setTimeout(done, 200);
-    };
-    window.addEventListener('load', onLoad, { once: true });
-    return () => {
-      window.removeEventListener('load', onLoad);
-      if ('cancelIdleCallback' in window) window.cancelIdleCallback(idle);
-      window.clearTimeout(idle);
-    };
+    if (!loaded) return afterLoadIdle(() => setLoaded(true));
   }, [loaded]);
   return loaded;
 }

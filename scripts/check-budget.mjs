@@ -32,6 +32,29 @@ export function measure(dist) {
   return { files, total: files.reduce((s, f) => s + f.gzip, 0) };
 }
 
+/** Части бандла, которые грузятся после первого экрана (#186, `src/app/deferred.tsx`). */
+export const DEFERRED_CHUNKS = ['Gallery', 'HeroProfile', 'HeroSearch'];
+
+/**
+ * Первый экран (#186): index.html и то, что он просит сам — скрипт входа, modulepreload и стили (gzip).
+ * Отложенные части (`DEFERRED_CHUNKS`) должны быть отдельными файлами и не попадать сюда.
+ */
+export function measureFirstScreen(dist) {
+  const html = readFileSync(join(dist, 'index.html'), 'utf8');
+  const refs = [...html.matchAll(/<(?:script|link)\b[^>]*(?:src|href)="([^"]+\.(?:js|css))"/g)].map((m) => m[1]);
+  const files = ['index.html', ...refs.map((r) => r.replace(/^.*?\/assets\//, 'assets/'))].map((file) => ({
+    file,
+    gzip: gzipSync(readFileSync(join(dist, file))).length,
+  }));
+  const assets = existsSync(join(dist, 'assets')) ? readdirSync(join(dist, 'assets')) : [];
+  const errors = [];
+  for (const name of DEFERRED_CHUNKS) {
+    if (!assets.some((f) => f.startsWith(`${name}-`) && f.endsWith('.js'))) errors.push(`нет отдельного куска ${name}-*.js — его затянуло в бандл первого экрана`);
+    if (files.some((f) => f.file.startsWith(`assets/${name}-`))) errors.push(`${name} грузится с первым экраном (index.html)`);
+  }
+  return { files, total: files.reduce((s, f) => s + f.gzip, 0), errors };
+}
+
 /**
  * Шрифты из dist/fonts — все woff2 целиком, как худший случай (браузер берёт только нужные подмножества).
  * woff2 уже сжат, поэтому считаем размер файла, а не gzip.
@@ -97,11 +120,13 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
   const art = measureArt(dist);
   const manifest = JSON.parse(readFileSync(resolve(fileURLToPath(new URL('..', import.meta.url)), 'src/features/world/tiles.json'), 'utf8'));
   const tiles = measureTiles(dist, manifest.levels);
+  const first = measureFirstScreen(dist);
   for (const f of files) console.log(`  ${f.file}: ${kb(f.gzip)}`);
   console.log(`  fonts/*.woff2 (${fonts.files.length}): ${kb(fonts.total)}`);
   for (const f of art.files) console.log(`  ${f.file}: ${kb(f.size)}`);
   console.log(`  map/tiles (${tiles.files.length}, лениво, вне бюджета до мира): ${kb(tiles.total)}`);
-  const errors = [...tiles.errors];
+  console.log(`  первый экран (index.html, вход, modulepreload, css): ${kb(first.total)}`);
+  const errors = [...tiles.errors, ...first.errors];
   if (files.length === 0) errors.push('dist пуст — сначала npm run build');
   if (fonts.files.length === 0) errors.push('в dist/fonts нет woff2 — шрифты должны быть в public/fonts');
   if (total > BUNDLE_BUDGET) errors.push(`бандл ${kb(total)} > бюджета ${kb(BUNDLE_BUDGET)}`);
