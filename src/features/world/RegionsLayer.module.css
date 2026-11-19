@@ -126,35 +126,110 @@
   }
 }
 
+/* Названия регионов (#189): группа в px экрана; первый уровень — с гербом, третий — приглушён. */
+.spot {
+  transition:
+    opacity var(--dur-fade) var(--ease-out),
+    visibility 0s;
+}
+
+/* Название ещё не видно на этом приближении (уровни 2 и 3) — проявляется, когда мир приблизили. */
+.spot.off {
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity var(--dur-fade) var(--ease-out),
+    visibility 0s var(--dur-fade);
+}
+
 .label {
-  fill: var(--text-1);
-  font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: var(--tracking-display);
-  font-size: calc(22px * var(--map-text, 1));
-  text-transform: uppercase;
   pointer-events: none;
-  paint-order: stroke;
-  stroke: var(--map-ink);
-  stroke-width: calc(3px * var(--map-text, 1));
-  filter: var(--map-halo-filter);
   transform-box: fill-box;
   transform-origin: center;
   transition:
     transform var(--dur-hover) var(--ease-out),
-    filter var(--dur-hover) var(--ease-out),
-    fill var(--dur-hover) var(--ease-out);
+    filter var(--dur-hover) var(--ease-out);
+}
+
+.name {
+  fill: var(--text-1);
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+  paint-order: stroke;
+  stroke: var(--map-ink);
+  stroke-width: 3px;
+  filter: var(--map-halo-filter);
+  transition:
+    fill var(--dur-hover) var(--ease-out),
+    filter var(--dur-hover) var(--ease-out);
 }
 
 /* Ярус — как регион, но с особым свечением: небесным или огненным (SPEC §6.3). */
-.tierLabel {
+.tierLabel .name {
   fill: var(--hl);
   filter: var(--map-halo-filter) drop-shadow(0 0 6px var(--hl-glow));
 }
 
-.label.lit {
-  transform: scale(1.05);
+/* Третий уровень (ярусы, земли без мест) — приглушён. */
+.level3 .name {
+  fill: var(--text-2);
+}
+
+.tierLabel.level3 .name {
+  fill: var(--hl);
+  fill-opacity: 0.75;
+}
+
+.label.lit .name {
   filter: var(--map-halo-filter) drop-shadow(0 0 8px var(--hl)) drop-shadow(0 0 2px var(--hl-glow));
+}
+
+/* Герб: тёмный круг в металлической кромке, знак — тоном стороны или яруса (A8). */
+.crest {
+  transform-box: fill-box;
+  transform-origin: center;
+  filter: drop-shadow(0 1px 3px var(--map-halo));
+  transition:
+    transform var(--dur-hover) var(--ease-out),
+    filter var(--dur-hover) var(--ease-out);
+}
+
+.crestButton {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.crestHit {
+  fill: transparent;
+}
+
+.crestDisc {
+  fill: var(--bg-1);
+  stroke: var(--metal-bright);
+  stroke-width: 1.5px;
+}
+
+.crestRing {
+  fill: none;
+  stroke: var(--metal);
+  stroke-width: 1px;
+}
+
+.crestGlyph {
+  fill: none;
+  stroke: var(--hl);
+  stroke-width: 1.8px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+/* Наведение на название или герб: герб крупнее и светится тоном стороны; регион не заливается. */
+.label.lit .crest {
+  transform: scale(1.12);
+  filter: drop-shadow(0 1px 3px var(--map-halo)) drop-shadow(0 0 8px var(--hl));
 }
 
 /* S2/S3 (SPEC §5.4): соседние регионы затемнены и не кликаются. */
@@ -177,7 +252,6 @@
   transition:
     transform var(--dur-hover) var(--ease-out),
     filter var(--dur-hover) var(--ease-out),
-    fill var(--dur-hover) var(--ease-out),
     opacity calc(var(--dur-camera) / 3) var(--ease-out) calc(var(--dur-camera) * 2 / 3);
 }
 
@@ -196,7 +270,7 @@
   opacity: 0.35;
 }
 
-.label.heroRegion {
+.label.heroRegion .name {
   filter: var(--map-halo-filter) drop-shadow(0 0 8px var(--hl)) drop-shadow(0 0 2px var(--hl-glow));
 }
 

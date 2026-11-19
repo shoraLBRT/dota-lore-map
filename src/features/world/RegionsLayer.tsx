@@ -3,7 +3,8 @@ import type { Region } from '../../data/types';
 import { useT } from '../../i18n';
 import { WORLD_ART, WORLD_PREVIEW } from './art';
 import { biomeColor } from './biomes';
-import { clampLabelX, splitLabel } from './labels';
+import { crestPath } from './crests';
+import { nameLines, type RegionNames } from './regionLabelLayout';
 import styles from './RegionsLayer.module.css';
 import { STAGE_HEIGHT, STAGE_WIDTH } from './camera';
 import { onActivate, points, smoothPath, toStage } from './stage';
@@ -171,60 +172,101 @@ interface LabelProps {
   drawn: Region[];
   inWorld: boolean;
   /** Подсказка и наведение: что показано и что под мышью (#193: подсказку вызывает габарит подписи, `useRegionTooltip`). */
-  tip: Pick<RegionTooltipState, 'shownId' | 'litId'>;
+  tip: Pick<RegionTooltipState, 'shownId' | 'litId' | 'region'>;
   litId: string | null;
   focusRegions: Set<string> | null;
   previewRegions: Set<string> | null;
-  /** Измеренные ширины подписей (`r:id`). */
-  widths: Record<string, number>;
+  /** Уровни, размеры и стороны названий (#189, `useRegionNames`). */
+  names: RegionNames;
+  /** Приближение мира на экране и 1 px экрана в единицах сцены. */
+  zoom: number;
+  pxScale: number;
+  onSelectRegion: (regionId: string, source?: 'map' | 'list') => void;
 }
 
+/** Герб не меньше этого — кнопка для мыши (цель ≥ 44 px); меньше (телефон) — знак, нажатие ловит полигон под ним. */
+const CREST_BUTTON = 40;
+/** Цель нажатия герба, px. */
+const CREST_HIT = 44;
+/** Базовая линия первой строки от верха рамки названия — доля кегля (капители Cormorant SC). */
+const BASELINE = 0.8;
+
 /**
- * Названия регионов (ARCHITECTURE A4, #180): рисуются в экранном слое над слоем карты, а не в его растре,
- * поэтому чёткие на любом приближении. Координаты — те же единицы сцены.
+ * Названия регионов (ARCHITECTURE A4, #180, #189): в экранном слое над слоем карты, поэтому чёткие на любом
+ * приближении. Группа названия стоит в точке `layout.label` и масштабирована в px экрана: размеры и стороны —
+ * `useRegionNames`. Первый уровень — с гербом; второй и третий видны с порога приближения (`from`).
+ * Герб — цель для мыши (aria-hidden: клавиатура и диктор ходят по полигонам-кнопкам).
  */
-export function RegionLabels({ drawn, inWorld, tip, litId, focusRegions, previewRegions, widths }: LabelProps) {
+export function RegionLabels({ drawn, inWorld, tip, litId, focusRegions, previewRegions, names, zoom, pxScale, onSelectRegion }: LabelProps) {
   const { l } = useT();
-  const { shownId, litId: overId } = tip;
+  const { shownId, litId: overId, region: on } = tip;
   const heroClass = (regionId: string) =>
     focusRegions ? (focusRegions.has(regionId) ? styles.heroRegion : styles.muted) : undefined;
+  const k = pxScale.toFixed(5);
   return (
     <g aria-hidden="true" className={styles.labels}>
       {drawn.map((r, index) => {
+        const spot = names.spots.get(r.id);
+        const metrics = names.metrics.get(r.id);
+        if (!spot || !metrics) return null;
         const [lx, ly] = toStage(r.layout!.label);
-        // Длинные названия регионов — в две строки (ярусам, широким полосам, не нужно); подпись не выходит за край.
         const name = l(r.name);
-        const lines = r.tier === 'continent' ? splitLabel(name) : [name];
-        const width = widths[`r:${r.id}`];
-        const x = width ? clampLabelX(lx, width) : lx;
+        const lines = nameLines(r, name);
+        const level = names.levels.get(r.id) ?? 2;
+        const shown = zoom >= spot.from - 1e-6;
+        const { box } = spot;
+        const anchor = spot.side === 'right' ? 'start' : spot.side === 'left' ? 'end' : 'middle';
+        const tx = spot.side === 'right' ? box.left + 3 : spot.side === 'left' ? box.right - 3 : (box.left + box.right) / 2;
+        const ty = box.top + 3 + metrics.font * BASELINE;
+        const c = metrics.crest;
+        const button = c >= CREST_BUTTON && inWorld && shown;
         return (
-          <text
+          <g
             key={r.id}
-            className={[
-              styles.label,
-              tones[highlight(r)],
-              r.tier !== 'continent' && styles.tierLabel,
-              (r.id === shownId || r.id === overId || r.id === litId || (inWorld && previewRegions?.has(r.id))) && styles.lit,
-              inWorld && heroClass(r.id),
-            ]
-              .filter(Boolean)
-              .join(' ')}
-            x={x}
-            y={ly}
-            textAnchor="middle"
-            data-label={r.id}
+            transform={`translate(${lx} ${ly}) scale(${k})`}
+            className={[styles.spot, !shown && styles.off].filter(Boolean).join(' ')}
+            // Скрытое название не ловит наведение и не мешает подсказке (#193): у него нет `data-label`.
+            data-label={shown ? r.id : undefined}
+            data-label-off={shown ? undefined : r.id}
+            data-level={level}
             // Номер в каскаде проявления подписей после интро (#187, WorldScreen `unveiling`).
             style={{ '--i': index } as CSSProperties}
-            data-measure={lines.length === 1 ? `r:${r.id}` : undefined}
           >
-            {lines.length === 1
-              ? name
-              : lines.map((line, i) => (
-                  <tspan key={i} x={x} dy={i === 0 ? '-0.45em' : '1.05em'} data-measure={`r:${r.id}`}>
+            <g
+              className={[
+                styles.label,
+                tones[highlight(r)],
+                r.tier !== 'continent' && styles.tierLabel,
+                level === 3 && styles.level3,
+                (r.id === shownId || r.id === overId || r.id === litId || (inWorld && previewRegions?.has(r.id))) && styles.lit,
+                inWorld && heroClass(r.id),
+              ]
+                .filter(Boolean)
+                .join(' ')}
+            >
+              {c > 0 && (
+                <g
+                  className={[styles.crest, button && styles.crestButton].filter(Boolean).join(' ')}
+                  data-crest={r.id}
+                  onClick={button ? () => onSelectRegion(r.id, 'map') : undefined}
+                  onPointerEnter={button ? (e) => e.pointerType !== 'touch' && on.onEnter(r) : undefined}
+                  onPointerLeave={button ? (e) => e.pointerType !== 'touch' && on.onLeave(r) : undefined}
+                >
+                  {button && <circle className={styles.crestHit} r={Math.max(c, CREST_HIT) / 2} />}
+                  <circle className={styles.crestDisc} r={c / 2 - 0.75} />
+                  <circle className={styles.crestRing} r={c / 2 - 3.5} />
+                  <path className={styles.crestGlyph} d={crestPath(r.id)} transform={`scale(${(c / 40).toFixed(3)}) translate(-12 -12)`} />
+                </g>
+              )}
+              <text className={styles.name} x={tx} y={ty} textAnchor={anchor} style={{ fontSize: `${metrics.font}px` }}>
+                {lines.map((line, i) => (
+                  <tspan key={i} x={tx} dy={i === 0 ? undefined : metrics.line} data-measure={`r:${r.id}`}>
                     {line}
                   </tspan>
                 ))}
-          </text>
+              </text>
+            </g>
+          </g>
         );
       })}
     </g>

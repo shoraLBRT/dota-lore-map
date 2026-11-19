@@ -47,8 +47,11 @@ export interface Frame {
   regionZoom: number;
   markerScale: number;
   threadScale: number;
-  /** Масштаб подписей регионов: их экранный размер не растёт вместе с приближением (#165). */
-  textScale: number;
+  /** Названия регионов (#189): 1 px экрана в единицах сцены, приближение мира на экране, его потолок, мир, вписанный в кадр (px). */
+  pxScale: number;
+  worldZoom: number;
+  zoomMax: number;
+  fitted: number;
 }
 
 interface Options {
@@ -134,6 +137,8 @@ export function useCamera({ active, regionBoxes, activePlaceSlug, panel, regionL
     () => zoomLevels(regionBoxes, view, box),
     [regionBoxes, view, box],
   );
+  /** Потолок мира — и в регионе: от него расстановка названий регионов (#189), она не меняется при перелётах. */
+  const worldMax = useMemo(() => (box ? zoomLevels(regionBoxes, view).zoomMax : levels.zoomMax), [box, regionBoxes, view, levels]);
   const roam = useMemo<View>(() => ({ ...(active ? stage : wholeFrame(stage)), ...levels }), [active, stage, levels]);
   const shot = worldPanel ? WORLD_PANEL_SHOT : camera;
   const freeCamera = free && free.shot === shot ? free.camera : null;
@@ -165,8 +170,11 @@ export function useCamera({ active, regionBoxes, activePlaceSlug, panel, regionL
   const markerScale = (view.layerWidth > 0 ? STAGE_WIDTH / view.layerWidth : 1) / (freeCamera?.zoom ?? regionZoom);
   /** Нити — тоже в экранных px, но при любом приближении (в мире zoom 1). */
   const threadScale = (view.layerWidth > 0 ? STAGE_WIDTH / view.layerWidth : 1) / framed.camera.zoom;
-  /** Подписи регионов — как у мира, вписанного в кадр, при любом приближении. */
-  const textScale = containScale(view) / (listLayout ? listLayout.camera.zoom : framed.camera.zoom);
+  const worldZoom = listLayout ? listLayout.camera.zoom : framed.camera.zoom;
+  const pxScale = (view.layerWidth > 0 ? STAGE_WIDTH / view.layerWidth : 1) / worldZoom;
+  const fitted = view.layerWidth * containScale(view);
+  // Со списком регионов (телефон) камера мира стоит: потолок — её же зум.
+  const zoomMax = listLayout ? listLayout.camera.zoom : worldMax;
 
   // Анимация камеры (A3, A4). Пока она идёт, навигация занята: клики ставятся в очередь.
   // Кадр — камера, а в мире ещё и панель: открыли или свернули профиль — карта переезжает (#97).
@@ -269,6 +277,6 @@ export function useCamera({ active, regionBoxes, activePlaceSlug, panel, regionL
     },
   });
 
-  const frame: Frame = { view, framed, inset, cover, insetBottom, regionZoom, markerScale, threadScale, textScale };
+  const frame: Frame = { view, framed, inset, cover, insetBottom, regionZoom, markerScale, threadScale, pxScale, worldZoom, zoomMax, fitted };
   return { viewportRef, layerRef, screenRef, flying, listLayout, target, frame, controls, free: freeCamera !== null };
 }

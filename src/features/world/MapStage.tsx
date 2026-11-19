@@ -18,6 +18,8 @@ import { RegionArt } from './RegionArt';
 import { WorldArt } from './WorldArt';
 import { ZoomControls } from './ZoomControls';
 import { RegionList } from './RegionList';
+import { labelMetrics } from './labels';
+import { useRegionNames } from './regionLabelLayout';
 import { RegionLabels, RegionsLayer, UnmappedRegions, zoomedClass } from './RegionsLayer';
 import { RegionTooltip } from './RegionTooltip';
 import { Threads } from './Threads';
@@ -113,7 +115,7 @@ export function MapStage({
   /** Пункт списка регионов под наведением или фокусом: регион подсвечен на карте, без подсказки. */
   const [listId, setListId] = useState<string | null>(null);
 
-  const drawn = regions.filter((r) => r.layout);
+  const drawn = useMemo(() => regions.filter((r) => r.layout), [regions]);
   const listed = regions.filter((r) => !r.layout);
   const active = regions.find((r) => r.id === activeRegionId && r.layout);
   const hasMap = drawn.length > 0;
@@ -146,9 +148,20 @@ export function MapStage({
 
   // Ширины подписей: при смене языка, региона и после загрузки шрифтов (подписи не выходят за край и не налезают).
   const fontsTick = useFontsTick();
-  const widths = useMeasuredLabels(screenSvgRef, `${lang}|${active?.id ?? ''}|${fontsTick}|${hasMap}`);
+  // Кегли названий регионов зависят от размера мира в кадре (#189): другой кегль — мерить заново.
+  const nameFonts = `${labelMetrics(1, frame.fitted).font}/${labelMetrics(2, frame.fitted).font}/${labelMetrics(3, frame.fitted).font}`;
+  const widths = useMeasuredLabels(screenSvgRef, `${lang}|${active?.id ?? ''}|${fontsTick}|${hasMap}|${nameFonts}`);
+  const names = useRegionNames(drawn, {
+    lang,
+    name: (r) => l(r.name),
+    widths,
+    fitted: frame.fitted,
+    zoomFrom: Math.min(1, frame.worldZoom),
+    zoomMax: frame.zoomMax,
+    world: { width: frame.view.layerWidth, height: frame.view.layerHeight },
+  });
   const labels = useMarkerLabels({ spots, activeId: active?.id, activePlaceSlug, focusPlaces, lang, widths, frame });
-  const threadLayout = useThreadLayout({ threads, active, drawn, labels, widths, frame, coverTop, listed: !!listLayout });
+  const threadLayout = useThreadLayout({ threads, active, drawn, labels, names, frame, coverTop, listed: !!listLayout });
 
   // S3 → S2: клик по пустому месту карты (SPEC §5.1). Маркеры клик не пропускают.
   const onBackground = (e: MouseEvent) => {
@@ -204,7 +217,6 @@ export function MapStage({
               role={active ? 'group' : undefined}
               aria-label={active ? l(active.name) : undefined}
               aria-hidden={active ? undefined : 'true'}
-              style={{ '--map-text': frame.textScale } as CSSProperties}
               data-screen-layer=""
             >
               <RegionLabels
@@ -214,7 +226,10 @@ export function MapStage({
                 litId={litId}
                 focusRegions={focusRegions}
                 previewRegions={previewRegions}
-                widths={widths}
+                names={names}
+                zoom={frame.worldZoom}
+                pxScale={frame.pxScale}
+                onSelectRegion={onSelectRegion}
               />
               {active && (
                 <MarkersLayer
