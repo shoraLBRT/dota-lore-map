@@ -2,6 +2,8 @@
 // Боевая сборка (`vite build` + `vite preview`), Chromium с GPU; кадры считает requestAnimationFrame в странице.
 // Шаги: вход («Начать» → мир), колесо внутрь ×12, перетаскивание, колесо наружу до мира, клик по региону.
 // На телефоне (ширина < 768) свободной камеры в мире нет — только вход и регион из списка.
+// Первая отрисовка (#186): `npm run perf -- --load [--net 4g] [--url <адрес>] [--runs 3]` — FCP, LCP, CLS и `load`
+// на холодном кэше (новый контекст на прогон); `--net 4g` — «Fast 4G» DevTools, `--url` — чужой адрес без сборки.
 // В `npm run check` не входит: цифры зависят от машины. Бюджет — в A14.
 /* global window, document, requestAnimationFrame -- функции для page.evaluate выполняются в браузере */
 import { spawn, spawnSync } from 'node:child_process';
@@ -23,12 +25,19 @@ const [width, height] = [Number(size[1]), Number(size[2])];
 const mobile = width < 768;
 const runs = Math.max(1, Number(opt('--runs', '1')) || 1);
 const PORT = 4185;
-const BASE = `http://localhost:${PORT}/dota-lore-map/`;
+const loadMode = flag('--load');
+const external = opt('--url', '');
+const BASE = external || `http://localhost:${PORT}/dota-lore-map/`;
+const net4g = opt('--net', '') === '4g';
+/** «Fast 4G» DevTools: 9 Мбит/с вниз, 1.5 вверх, задержка 60 мс × 2.75 (как в Chrome). */
+const FAST_4G = { offline: false, latency: 165, downloadThroughput: (9e6 / 8) * 0.9, uploadThroughput: (1.5e6 / 8) * 0.9 };
+/** Бюджет первой отрисовки (A14), мс: без троттлинга — FCP и LCP, на «Fast 4G» — FCP. */
+const LOAD_BUDGET = net4g ? { fcp: 2000, lcp: Infinity, cls: 0.01 } : { fcp: 1000, lcp: 1500, cls: 0.01 };
 
 /** Бюджет A14: средний темп, p95 и худший кадр; телефон (эмуляция) — только средний темп. */
 const BUDGET = mobile ? { fps: 50, p95: Infinity, worst: Infinity } : { fps: 57, p95: 20, worst: 50 };
 
-if (!flag('--no-build')) {
+if (!flag('--no-build') && !external) {
   const r = spawnSync('npm', ['run', 'build', '--silent'], { stdio: ['ignore', 'ignore', 'inherit'], shell: true });
   if (r.status !== 0) process.exit(r.status ?? 1);
 }
@@ -40,7 +49,7 @@ async function up() {
     return false;
   }
 }
-const server = spawn('npx', ['vite', 'preview', '--port', String(PORT), '--strictPort'], { stdio: 'ignore', shell: true });
+const server = external ? null : spawn('npx', ['vite', 'preview', '--port', String(PORT), '--strictPort'], { stdio: 'ignore', shell: true });
 const until = Date.now() + 60_000;
 while (!(await up())) {
   if (Date.now() > until) {
@@ -52,6 +61,7 @@ while (!(await up())) {
 }
 
 function stop() {
+  if (!server) return;
   if (process.platform === 'win32') spawnSync('taskkill', ['/pid', String(server.pid), '/t', '/f'], { stdio: 'ignore' });
   else server.kill();
 }
@@ -96,6 +106,58 @@ function stats(name, { frames, longest }) {
   const fps = total ? (frames.length * 1000) / total : 0;
   const ok = fps >= BUDGET.fps && p95 <= BUDGET.p95 && worst <= BUDGET.worst;
   return { name, fps, p95, worst, over34: frames.filter((f) => f > 34).length, longest, ok };
+}
+
+/** LCP и CLS из буферизованных записей; FCP — paint timing, `load` — Navigation Timing. */
+const VITALS = () => {
+  const w = window;
+  w.__vitals = { lcp: 0, cls: 0 };
+  try {
+    new PerformanceObserver((l) => {
+      for (const e of l.getEntries()) w.__vitals.lcp = e.startTime;
+    }).observe({ type: 'largest-contentful-paint', buffered: true });
+    new PerformanceObserver((l) => {
+      for (const e of l.getEntries()) if (!e.hadRecentInput) w.__vitals.cls += e.value;
+    }).observe({ type: 'layout-shift', buffered: true });
+  } catch {
+    /* нет наблюдателей — числа будут нулями */
+  }
+};
+
+async function runLoad(browser) {
+  const context = await browser.newContext({ viewport: { width, height }, locale: 'ru-RU', isMobile: mobile, hasTouch: mobile, deviceScaleFactor: mobile ? 3 : 1 });
+  await context.addInitScript(VITALS);
+  const page = await context.newPage();
+  const cdp = await context.newCDPSession(page);
+  await cdp.send('Network.enable');
+  await cdp.send('Network.setCacheDisabled', { cacheDisabled: true });
+  if (net4g) await cdp.send('Network.emulateNetworkConditions', FAST_4G);
+  let loadOk = true;
+  await page.goto(BASE + '#/', { waitUntil: 'load', timeout: 30_000 }).catch(() => (loadOk = false));
+  await pause(page, 1500);
+  const v = await page.evaluate(() => {
+    const fcp = performance.getEntriesByName('first-contentful-paint')[0]?.startTime ?? 0;
+    const nav = performance.getEntriesByType('navigation')[0];
+    const art = performance.getEntriesByType('resource').find((e) => e.name.includes('world-4096'));
+    return { fcp, lcp: window.__vitals.lcp, cls: window.__vitals.cls, load: nav?.loadEventEnd || 0, art: art ? art.responseEnd : -1 };
+  });
+  await context.close();
+  const ok = loadOk && v.fcp <= LOAD_BUDGET.fcp && v.lcp <= LOAD_BUDGET.lcp && v.cls <= LOAD_BUDGET.cls;
+  return { ...v, loadOk, ok };
+}
+
+async function loadReport(browser, gpu) {
+  const lcp = Number.isFinite(LOAD_BUDGET.lcp) ? `, LCP ≤ ${LOAD_BUDGET.lcp} мс` : '';
+  console.log(`${BASE} ${width}x${height}${net4g ? ', Fast 4G' : ''}, GPU: ${gpu}; бюджет: FCP ≤ ${LOAD_BUDGET.fcp} мс${lcp}, CLS ≤ ${LOAD_BUDGET.cls}`);
+  let failed = false;
+  for (let r = 0; r < runs; r++) {
+    const s = await runLoad(browser);
+    if (!s.ok) failed = true;
+    const load = s.loadOk ? `${s.load.toFixed(0)} мс` : 'нет за 30 с';
+    const art = s.art < 0 ? '—' : `${s.art.toFixed(0)} мс`;
+    console.log(`${s.ok ? 'ok  ' : 'FAIL'} FCP ${s.fcp.toFixed(0).padStart(5)} мс  LCP ${s.lcp.toFixed(0).padStart(5)} мс  CLS ${s.cls.toFixed(3)}  load ${load}  world-4096 ${art}`);
+  }
+  return failed;
 }
 
 const pause = (page, ms) => page.waitForTimeout(ms);
@@ -192,14 +254,17 @@ try {
     await p.close();
     return r;
   })();
-  console.log(`${width}x${height}${mobile ? ' (телефон)' : ''}, GPU: ${gpu}; бюджет: ≥ ${BUDGET.fps} к/с${mobile ? '' : `, p95 ≤ ${BUDGET.p95} мс, худший ≤ ${BUDGET.worst} мс`}`);
-  for (let r = 0; r < runs; r++) {
-    if (runs > 1) console.log(`— прогон ${r + 1}`);
-    for (const s of await run(browser)) {
-      if (!s.ok) failed = true;
-      console.log(
-        `${s.ok ? 'ok  ' : 'FAIL'} ${s.name.padEnd(16)} ${s.fps.toFixed(1).padStart(5)} к/с  p95 ${s.p95.toFixed(0).padStart(4)} мс  худший ${s.worst.toFixed(0).padStart(4)} мс  >34 мс: ${String(s.over34).padStart(3)}  длинная задача ${s.longest.toFixed(0)} мс`,
-      );
+  if (loadMode) failed = await loadReport(browser, gpu);
+  else {
+    console.log(`${width}x${height}${mobile ? ' (телефон)' : ''}, GPU: ${gpu}; бюджет: ≥ ${BUDGET.fps} к/с${mobile ? '' : `, p95 ≤ ${BUDGET.p95} мс, худший ≤ ${BUDGET.worst} мс`}`);
+    for (let r = 0; r < runs; r++) {
+      if (runs > 1) console.log(`— прогон ${r + 1}`);
+      for (const s of await run(browser)) {
+        if (!s.ok) failed = true;
+        console.log(
+          `${s.ok ? 'ok  ' : 'FAIL'} ${s.name.padEnd(16)} ${s.fps.toFixed(1).padStart(5)} к/с  p95 ${s.p95.toFixed(0).padStart(4)} мс  худший ${s.worst.toFixed(0).padStart(4)} мс  >34 мс: ${String(s.over34).padStart(3)}  длинная задача ${s.longest.toFixed(0)} мс`,
+        );
+      }
     }
   }
 } finally {
