@@ -17,7 +17,7 @@ interface Tone {
   delay?: number;
 }
 
-/** Синтезатор или null, если Web Audio недоступен. Создавать по жесту пользователя (политика автовоспроизведения). */
+/** Синтезатор или null, если Web Audio недоступен. Созданный до жеста контекст спит; `play` будит его (политика автовоспроизведения). */
 export function createSynth(): Synth | null {
   const Ctor =
     typeof window === 'undefined'

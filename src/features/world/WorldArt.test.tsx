@@ -1,8 +1,8 @@
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, waitFor } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { WorldArt } from './WorldArt';
 
-// Тайлы пирамиды над картинкой мира (#164, ARCHITECTURE A10): внутри того же SVG, что и мир, — двигаются с камерой.
+// Арт мира (ARCHITECTURE A10): HTML-картинки в слое камеры (#185) и тайлы пирамиды над ними (#164).
 const rect = (left: number, top: number, width: number, height: number) => () =>
   ({ left, top, width, height, right: left + width, bottom: top + height, x: left, y: top, toJSON: () => ({}) }) as DOMRect;
 
@@ -12,13 +12,20 @@ function setup(layerWidth: number) {
   layer.getBoundingClientRect = rect(-2000, -2000, layerWidth, layerWidth);
   frame.getBoundingClientRect = rect(0, 0, 1440, 900);
   return render(
-    <svg>
-      <WorldArt tiles={{ tile: 512, levels: [4] }} layerRef={{ current: layer }} viewportRef={{ current: frame }} />
-    </svg>,
+    <WorldArt tiles={{ tile: 512, levels: [4] }} layerRef={{ current: layer }} viewportRef={{ current: frame }} />,
   ).container;
 }
 
 describe('WorldArt', () => {
+  it('полная картинка проявляется после загрузки и декодирования', async () => {
+    const c = setup(1440);
+    const full = c.querySelector<HTMLImageElement>('img[src$="world-4096.webp"]')!;
+    expect(full).not.toHaveAttribute('data-ready');
+    full.decode = () => Promise.resolve();
+    fireEvent.load(full);
+    await waitFor(() => expect(full).toHaveAttribute('data-ready'));
+  });
+
   it('без сильного приближения — только картинка мира', () => {
     expect(setup(1440).querySelectorAll('[data-world-tiles] image')).toHaveLength(0);
   });

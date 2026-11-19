@@ -36,6 +36,7 @@
 - `npm run dev`, `npm run data` (пересобрать `src/data/world.generated.json`), `npm run check` (всё: данные, типы, линт, тесты, сборка, бюджет, геометрия, Python).
 - `npm run e2e` — Playwright: дымовой сценарий и axe в Chromium, Firefox, WebKit и на телефоне (в `check` не входит; браузеры — `npx playwright install chromium firefox webkit`). Один проект — `npx playwright test --project=firefox`.
 - `npm run shot -- <адрес> [ШxВ]` — снимок экрана в `e2e/shots/`.
+- `npm run perf [-- --size 375x812 --runs 3 --no-build]` — замер плавности (к/с, p95, худший кадр) на боевой сборке в Chromium с GPU; бюджет — ARCHITECTURE A14. В `check` не входит.
 - Тесты одного файла: `npx vitest run src/features/world/labels.test.ts` — во время работы гонять их, а не весь `check`.
 - `python research/e1/build.py` — перегенерировать `docs/research/E1-places.md` и проверить `place-candidates.json` (правила модели — в `npm run data`).
 - `node map/check-layout.mjs` — геометрия `map/layout.json`; `node map/render-schema.mjs` — перерисовать `docs/map/schema.svg`.

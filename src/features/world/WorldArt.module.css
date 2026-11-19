@@ -1,4 +1,28 @@
-/* Тайл пирамиды арта (#164, ARCHITECTURE A10): проявляется, когда загружен, поверх world-4096. */
+/* Арт мира (ARCHITECTURE A10, #185): свой композитный слой под SVG-оверлеем — перерисовка подписей его не трогает. */
+.art {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.img,
+.tiles {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+}
+
+/* Полная картинка проявляется поверх превью, когда загружена и декодирована. */
+.full {
+  opacity: 0;
+  transition: opacity var(--dur-fade) var(--ease-out);
+}
+
+/* Тайл пирамиды арта (#164): проявляется, когда загружен, поверх world-4096. */
 .tile {
   opacity: 0;
   transition: opacity var(--dur-fade) var(--ease-out);

@@ -15,13 +15,28 @@
 }
 
 .map {
+  position: relative;
   flex: 1 1 auto;
   min-width: 0;
   min-height: 0;
   /* A1: карта резко становится чёткой и слегка приближается — scale 1.08 → 1 (SPEC §7.1). */
+  transition: scale var(--dur-intro) var(--ease-out);
+}
+
+/* Пелена под интро: размытие — backdrop-filter слоя поверх карты, который гаснет по opacity (#185).
+   transition у filter самой карты давал кадры по 200+ мс: каждый шаг радиуса заново размывал весь кадр. */
+.map::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  backdrop-filter: blur(var(--map-blur)) brightness(0.8);
+  opacity: 0;
+  visibility: hidden;
   transition:
-    scale var(--dur-intro) var(--ease-out),
-    filter calc(var(--dur-intro) * 0.35) var(--ease-out);
+    opacity calc(var(--dur-intro) * 0.35) var(--ease-out),
+    visibility 0s linear calc(var(--dur-intro) * 0.35);
 }
 
 .rail {
@@ -31,7 +46,12 @@
 /* Под интро (SPEC §5.2): размытая карта на фоне, панель скрыта. */
 .veiled .map {
   scale: 1.08;
-  filter: blur(var(--map-blur)) brightness(0.8);
+}
+
+.veiled .map::after {
+  opacity: 1;
+  visibility: visible;
+  transition: none;
 }
 
 .veiled .rail {

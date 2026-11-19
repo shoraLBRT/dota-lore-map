@@ -38,6 +38,9 @@ interface Sound {
 /** Минимальный промежуток между звуками наведения, мс: проводка мышью по карте не трещит. */
 export const HOVER_GAP = 90;
 
+/** Через сколько мс после загрузки создать синтезатор, если браузер не знает requestIdleCallback. */
+export const PRECREATE_MS = 1500;
+
 /** Что считается кликом для звука «клик». */
 const CLICKABLE = 'button, a[href], [role="button"], [role="option"]';
 
@@ -52,7 +55,7 @@ interface ProviderProps {
 export function SoundProvider({ children, makeSynth = createSynth }: ProviderProps) {
   const [enabled, setEnabled] = useState(loadEnabled);
   const [unlocked, setUnlocked] = useState(false);
-  /** undefined — ещё не создан: AudioContext создаётся только внутри жеста пользователя. */
+  /** undefined — ещё не создан: AudioContext создаётся в простое после загрузки или по первому жесту. */
   const synth = useRef<Synth | null | undefined>(undefined);
   const playing = useRef(false);
   const lastHover = useRef(-Infinity);
@@ -86,6 +89,21 @@ export function SoundProvider({ children, makeSynth = createSynth }: ProviderPro
   }, []);
 
   // По прямой ссылке «Начать» не нажимают — звук разблокирует первый жест на любом экране.
+  // `new AudioContext()` на Windows держит главный поток 100–200 мс (#185): создаём его заранее, в простое
+  // интро, а не в жесте «Начать», где он задерживал вход в мир. Без жеста контекст спит — `play` его будит.
+  useEffect(() => {
+    if (!enabled || synth.current !== undefined) return;
+    const create = () => {
+      if (synth.current === undefined) synth.current = makeSynth();
+    };
+    if (typeof window.requestIdleCallback === 'function') {
+      const id = window.requestIdleCallback(create, { timeout: PRECREATE_MS * 2 });
+      return () => window.cancelIdleCallback(id);
+    }
+    const id = window.setTimeout(create, PRECREATE_MS);
+    return () => window.clearTimeout(id);
+  }, [enabled, makeSynth]);
+
   useEffect(() => {
     if (unlocked) return;
     const onGesture = () => unlock();
