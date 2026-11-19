@@ -1,7 +1,7 @@
 import { act, fireEvent, render, screen, within } from '@testing-library/react';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { App } from '../../app/App';
-import { getHero, getPlace, getRegion, heroCrop, heroRender, placeName } from '../../data/world';
+import { getHero, getPlace, getRegion, heroCrop, heroPortrait, heroRender, placeName } from '../../data/world';
 import { pointAtLabel } from '../world/labelHover.testutil';
 import { TOOLTIP_OPEN_DELAY } from '../world/useRegionTooltip';
 import { artId } from './profile';
@@ -34,7 +34,7 @@ describe('профиль героя', () => {
       'href',
       'https://www.dota2.com/hero/tusk?l=russian',
     );
-    expect(panel.querySelector('img')).toHaveAttribute('src', heroCrop(getHero('tusk')!));
+    expect(panel.querySelector(`[data-hero-header] img[src="${heroCrop(getHero('tusk')!)}"]`)).not.toBeNull();
     // Нити героя на карте — как при выборе из поиска.
     expect(document.querySelectorAll('[data-testid="threads"] path[data-thread]').length).toBeGreaterThan(0);
 
@@ -162,5 +162,36 @@ describe('профиль героя', () => {
     fireEvent.click(document.querySelector('button img[alt="Crystal Maiden"]')!.closest('button')!);
     expect(window.location.hash).toBe('#/world?hero=crystal_maiden&profile');
     expect(profile('Crystal Maiden')).not.toBeNull();
+  });
+
+  it('шапка: пока грузится — портрет-заглушка, по загрузке — шапка; ошибка — портрет, без пустого блока (#194)', () => {
+    window.location.hash = '#/r/icewrack/black-pool?hero=lich&profile';
+    render(<App />);
+    const lich = getHero('lich')!;
+    const header = () => profile('Lich')!.querySelector<HTMLElement>('[data-hero-header]');
+    const img = (src: string) => header()?.querySelector<HTMLImageElement>(`img[src="${src}"]`) ?? null;
+    expect(header()).toHaveAttribute('data-hero-header', 'loading');
+    expect(img(heroPortrait(lich))).not.toBeNull();
+    expect(img(heroCrop(lich))).not.toBeNull();
+    fireEvent.load(img(heroCrop(lich))!);
+    expect(header()).toHaveAttribute('data-hero-header', 'loaded');
+  });
+
+  it('шапка: адрес арта недоступен — остаётся портрет; нет и портрета — буква вместо блока (#194)', () => {
+    window.location.hash = '#/r/icewrack/black-pool?hero=lich&profile';
+    render(<App />);
+    const lich = getHero('lich')!;
+    const panel = profile('Lich')!;
+    const header = () => panel.querySelector<HTMLElement>('[data-hero-header]');
+    fireEvent.error(header()!.querySelector(`img[src="${heroCrop(lich)}"]`)!);
+    expect(header()).toHaveAttribute('data-hero-header', 'failed');
+    expect(header()!.querySelector(`img[src="${heroCrop(lich)}"]`)).toBeNull();
+    const portrait = header()!.querySelector(`img[src="${heroPortrait(lich)}"]`)!;
+    expect(portrait).not.toBeNull();
+    fireEvent.error(portrait);
+    expect(header()).toBeNull();
+    // Маленький портрет `HeroPortrait` на месте шапки: его ошибка — буква.
+    fireEvent.error(panel.querySelector(`img[src="${heroPortrait(lich)}"]`)!);
+    expect(within(panel).getByTestId('hero-fallback')).toHaveTextContent('L');
   });
 });
