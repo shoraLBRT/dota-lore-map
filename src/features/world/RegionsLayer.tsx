@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import type { Region } from '../../data/types';
 import { useT } from '../../i18n';
 import { WORLD_ART } from './art';
@@ -113,7 +114,7 @@ export function RegionsLayer({ drawn, activeId, inWorld, tip, litId, focusRegion
         ))}
       </g>
       <g aria-hidden="true" className={styles.labels}>
-        {drawn.map((r) => {
+        {drawn.map((r, index) => {
           const [lx, ly] = toStage(r.layout!.label);
           // Длинные названия регионов — в две строки (ярусам, широким полосам, не нужно); подпись не выходит за край.
           const name = l(r.name);
@@ -136,6 +137,8 @@ export function RegionsLayer({ drawn, activeId, inWorld, tip, litId, focusRegion
               y={ly}
               textAnchor="middle"
               data-label={r.id}
+              // Номер в каскаде проявления подписей после интро (#187, WorldScreen `unveiling`).
+              style={{ '--i': index } as CSSProperties}
               data-measure={lines.length === 1 ? `r:${r.id}` : undefined}
             >
               {lines.length === 1

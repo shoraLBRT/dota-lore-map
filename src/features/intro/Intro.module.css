@@ -12,6 +12,35 @@
   pointer-events: none;
 }
 
+/* Вход кликом в любом месте (#187): весь экран — продолжение кнопки «Начать». */
+.ready {
+  cursor: pointer;
+}
+
+/* Телефон: свой фон из арта мира на весь экран (#187); размытие статичное, A1 гасит слой по opacity. */
+.art {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .art {
+    display: block;
+    position: absolute;
+    inset: -2%;
+    width: 104%;
+    height: 104%;
+    object-fit: cover;
+    filter: blur(var(--map-blur)) brightness(0.8);
+    /* Свой композитный слой: размытие считается один раз, A1 только гасит его. */
+    will-change: opacity;
+    transition: opacity calc(var(--dur-intro) * 0.35) var(--ease-out);
+  }
+
+  .leaving .art {
+    opacity: 0;
+  }
+}
+
 /* Затемнение и виньетка над картой. */
 .veil {
   position: absolute;

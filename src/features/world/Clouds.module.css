@@ -41,17 +41,17 @@
   --cloud-opacity: 0.65;
 }
 
-/* Интро: пелена плотнее. */
+/* Интро: облака только по краям, приглушённые — дымка над картой, а не белые пятна (#187). */
 .veil .cloud {
-  --cloud-opacity: 0.85;
-  filter: blur(14px);
+  --cloud-opacity: 0.5;
+  filter: blur(18px) brightness(0.7);
   transition:
     transform var(--dur-intro) var(--ease-out),
     opacity var(--dur-intro) var(--ease-out);
 }
 
-.veil .layer1 {
-  --cloud-opacity: 0.6;
+.veil .layer2 {
+  --cloud-opacity: 0.4;
 }
 
 /* A1: облака разъезжаются к краям и тают; ближние уходят дальше. */

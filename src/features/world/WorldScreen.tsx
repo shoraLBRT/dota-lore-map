@@ -32,10 +32,12 @@ interface Props {
   screen: Screen;
   /** Под интро: карта размыта и чуть приближена (A1 проявляет её), экран недоступен для мыши и клавиатуры. */
   veiled?: boolean;
+  /** Идёт A1: арт проясняется, подписи регионов проявляются каскадом после него (#187). */
+  unveiling?: boolean;
 }
 
 /** Экраны «Мир», «Регион», «Место»: левая панель, карта, правая панель. Неизвестный регион или место — уровень выше. */
-export function WorldScreen({ screen, veiled = false }: Props) {
+export function WorldScreen({ screen, veiled = false, unveiling = false }: Props) {
   const { l, lang, t } = useT();
   const { route, open, hold, navigate } = useNavigation();
   const rootRef = useRef<HTMLDivElement>(null);
@@ -186,7 +188,7 @@ export function WorldScreen({ screen, veiled = false }: Props) {
   return (
     <div
       ref={rootRef}
-      className={[styles.screen, veiled && styles.veiled].filter(Boolean).join(' ')}
+      className={[styles.screen, veiled && styles.veiled, unveiling && styles.unveiling].filter(Boolean).join(' ')}
       aria-hidden={veiled ? 'true' : undefined}
       data-testid="world-screen"
     >

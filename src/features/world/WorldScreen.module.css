@@ -59,6 +59,17 @@
   transition: none;
 }
 
+/* A1 (#187): подписи регионов не видны под пеленой и проявляются после арта — каскадом, а не разом. */
+.veiled .map [data-label] {
+  opacity: 0;
+  transition: none;
+}
+
+.unveiling .map [data-label] {
+  transition: opacity var(--dur-fade) var(--ease-out)
+    calc(var(--dur-intro) * 0.35 + var(--i, 0) * var(--dur-stagger));
+}
+
 @media (max-width: 767px) {
   .screen,
   .body {

@@ -21,7 +21,8 @@ describe('оболочка интро в index.html', () => {
     expect(text('.boot-kicker', lang)).toBe(d['intro.kicker']);
     expect(text('h1', lang)).toBe(d['intro.title']);
     expect(text('.boot-tagline', lang)).toBe(d['intro.tagline']);
-    expect(boot.querySelector(`.boot-footer [lang="${lang}"]`)?.textContent).toBe(d.disclaimer);
+    // Дисклеймер — одна строка на языке интерфейса, как в Intro (#187).
+    expect(boot.querySelector(`.boot-footer [data-l="${lang}"][lang="${lang}"]`)?.textContent).toBe(d.disclaimer);
   });
 
   it('превью мира и шрифт заголовка предзагружаются', () => {
