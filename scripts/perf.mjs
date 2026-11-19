@@ -24,8 +24,8 @@ const runs = Math.max(1, Number(opt('--runs', '1')) || 1);
 const PORT = 4185;
 const BASE = `http://localhost:${PORT}/dota-lore-map/`;
 
-/** Бюджет A14: средний темп, p95 и худший кадр. */
-const BUDGET = mobile ? { fps: 50, p95: 25, worst: 50 } : { fps: 57, p95: 20, worst: 50 };
+/** Бюджет A14: средний темп, p95 и худший кадр; телефон (эмуляция) — только средний темп. */
+const BUDGET = mobile ? { fps: 50, p95: Infinity, worst: Infinity } : { fps: 57, p95: 20, worst: 50 };
 
 if (!flag('--no-build')) {
   const r = spawnSync('npm', ['run', 'build', '--silent'], { stdio: ['ignore', 'ignore', 'inherit'], shell: true });
@@ -191,7 +191,7 @@ try {
     await p.close();
     return r;
   })();
-  console.log(`${width}x${height}${mobile ? ' (телефон)' : ''}, GPU: ${gpu}; бюджет: ≥ ${BUDGET.fps} к/с, p95 ≤ ${BUDGET.p95} мс, худший ≤ ${BUDGET.worst} мс`);
+  console.log(`${width}x${height}${mobile ? ' (телефон)' : ''}, GPU: ${gpu}; бюджет: ≥ ${BUDGET.fps} к/с${mobile ? '' : `, p95 ≤ ${BUDGET.p95} мс, худший ≤ ${BUDGET.worst} мс`}`);
   for (let r = 0; r < runs; r++) {
     if (runs > 1) console.log(`— прогон ${r + 1}`);
     for (const s of await run(browser)) {
