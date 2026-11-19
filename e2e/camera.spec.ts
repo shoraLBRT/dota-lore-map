@@ -60,6 +60,24 @@ test('мир во весь кадр; колесо, перетаскивание,
   await expect.poll(() => scale(page)).toBeCloseTo(1, 2);
   await page.locator('[role="button"][data-region="stonehall"]').click();
   await expectHash(page, '#/r/stonehall');
+  // Уровни зума вложены (#209): в регионе — не ближе кадра × 1.15, «Показать регион целиком» — снова кадр.
+  const settled = async () => {
+    await expect
+      .poll(async () => {
+        const before = await scale(page);
+        await page.waitForTimeout(250);
+        return (await scale(page)) === before;
+      })
+      .toBe(true);
+    return scale(page);
+  };
+  const regionFrame = await settled();
+  for (let i = 0; i < 4; i += 1) await page.getByRole('button', { name: 'Приблизить' }).click();
+  const regionMax = await settled();
+  expect(regionMax).toBeGreaterThan(regionFrame * 1.1);
+  expect(regionMax).toBeLessThanOrEqual(regionFrame * 1.15 + 0.01);
+  await page.getByRole('button', { name: 'Показать регион целиком' }).click();
+  await expect.poll(() => scale(page)).toBeCloseTo(regionFrame, 2);
   await page.getByRole('button', { name: /Мир/ }).first().click();
   await expectHash(page, '#/world');
   await expect.poll(() => scale(page)).toBeCloseTo(1, 2);
@@ -122,6 +140,9 @@ test('подсказка региона у названия, одного раз
     await page.waitForTimeout(300);
     if ((await scale(page)) <= s) break;
   }
+  // Потолок мира (#209) — 0.93 медианы кадров регионов: на 1440×900 ≈ 2.2, а не 3 (#179).
+  expect(await scale(page)).toBeGreaterThan(2);
+  expect(await scale(page)).toBeLessThan(2.3);
   // Глубже порога (TOOLTIP_MAX_ZOOM) подсказки нет.
   await hoverLabel();
   await page.waitForTimeout(600);

@@ -128,7 +128,8 @@ export function MapStage({
   const previewRegions = useMemo(() => (preview ? new Set(preview.map((s) => s.regionId)) : null), [preview]);
   const previewPlaces = useMemo(() => (preview ? new Set(preview.map((s) => s.key)) : null), [preview]);
 
-  const cam = useCamera({ active, activePlaceSlug, panel, regionList, topInset, hasMap, onCameraBusy });
+  const regionCameras = useMemo(() => regions.flatMap((r) => (r.layout ? [r.layout.camera] : [])), [regions]);
+  const cam = useCamera({ active, regionCameras, activePlaceSlug, panel, regionList, topInset, hasMap, onCameraBusy });
   const { viewportRef, layerRef, screenRef, listLayout, flying, target, frame, controls } = cam;
   const tip = useRegionTooltip({
     regions,
@@ -263,7 +264,7 @@ export function MapStage({
               style={rectStyle(listLayout.list)}
             />
           )}
-          {!listLayout && <ZoomControls controls={controls} right={panelCollapsed ? 0 : frame.cover} />}
+          {!listLayout && <ZoomControls controls={controls} right={panelCollapsed ? 0 : frame.cover} region={!inWorld} />}
         </div>
       )}
       {shown && !flying && (
