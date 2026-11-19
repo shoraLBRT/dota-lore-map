@@ -104,6 +104,25 @@ describe('MapStage — наведение на регион (S1h)', () => {
     expect(tint('a').getAttribute('class')).not.toMatch(/lit/);
   });
 
+  it('мышь: фокус от клика и возврат фокуса после клика не подсвечивают регион (#207)', () => {
+    renderStage([region('a', true)]);
+    const polygon = screen.getByRole('button', { name: 'a en' });
+    fireEvent.pointerDown(polygon, { pointerType: 'mouse' });
+    fireEvent.focus(polygon);
+    expect(screen.queryByRole('tooltip')).toBeNull();
+    expect(tint('a').getAttribute('class')).not.toMatch(/lit|focused/);
+    fireEvent.blur(polygon);
+    // Возврат в мир кнопкой «назад» мышью: фокус ставится на полигон программно, последним вводом был указатель.
+    fireEvent.pointerDown(document.body, { pointerType: 'mouse' });
+    fireEvent.focus(polygon);
+    expect(tint('a').getAttribute('class')).not.toMatch(/lit|focused/);
+    fireEvent.blur(polygon);
+    // Выход по Esc: последним вводом была клавиша — кольцо фокуса по форме региона.
+    fireEvent.keyDown(document.body, { key: 'Escape' });
+    fireEvent.focus(polygon);
+    expect(tint('a').getAttribute('class')).toMatch(/focused/);
+  });
+
   it('тач: подсказки нет (SPEC §5.3)', () => {
     renderStage([region('a', true)]);
     fireEvent.pointerEnter(screen.getByRole('button', { name: 'a en' }), { pointerType: 'touch' });
