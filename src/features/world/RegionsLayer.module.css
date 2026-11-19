@@ -24,7 +24,11 @@
 .tint {
   pointer-events: none;
   opacity: 0;
-  transition: opacity var(--dur-hover) var(--ease-out);
+  /* Погасшая подсветка не рисуется вовсе (бюджет кадра на входе, A14); visibility держится до конца угасания. */
+  visibility: hidden;
+  transition:
+    opacity var(--dur-hover) var(--ease-out),
+    visibility 0s linear var(--dur-hover);
 }
 
 .glowFill {
@@ -60,6 +64,8 @@
 
 .tint.lit {
   opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
   /* SPEC §7.5: проявившаяся подсветка «дышит» — медленно тускнеет и разгорается. Задержка — на проявление:
      до неё работает переход opacity, анимация его не перебивает. */
   animation: breathe var(--dur-breathe) ease-in-out var(--dur-hover) infinite;
