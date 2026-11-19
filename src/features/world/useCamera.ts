@@ -18,6 +18,7 @@ import {
   worldListLayout,
   type View,
   wholeFrame,
+  zoomLevels,
 } from './camera';
 import { centered, useFreeCamera } from './freeCamera';
 
@@ -51,6 +52,8 @@ export interface Frame {
 interface Options {
   /** Открытый регион с геометрией; нет — мир. */
   active: Region | undefined;
+  /** Камеры всех регионов на карте: от их кадров — потолок зума мира (#209). */
+  regionCameras: Camera[];
   activePlaceSlug: string | undefined;
   /** Справа кадр закрыт панелью (ARCHITECTURE A4). */
   panel: boolean;
@@ -65,7 +68,7 @@ interface Options {
  * Камера карты (ARCHITECTURE A4): измеряет кадр и панель, считает кадр региона или места и анимирует
  * перелёт. Пока камера летит, навигация занята (`onCameraBusy`, SPEC §7.1), а `flying` — true.
  */
-export function useCamera({ active, activePlaceSlug, panel, regionList, topInset, hasMap, onCameraBusy }: Options) {
+export function useCamera({ active, regionCameras, activePlaceSlug, panel, regionList, topInset, hasMap, onCameraBusy }: Options) {
   const viewportRef = useRef<HTMLDivElement>(null);
   const layerRef = useRef<HTMLDivElement>(null);
   /** Экранный слой (#180): подписи и маркеры в том же кадре, но вне растра слоя карты — тот же transform. */
@@ -122,8 +125,15 @@ export function useCamera({ active, activePlaceSlug, panel, regionList, topInset
   }, [active, activePlaceSlug]);
   /** Кадр с панелью и шторкой этого экрана: видимая часть, которую камера держит на картинке (#112). */
   const stage = useMemo<View>(() => ({ ...view, inset, insetBottom }), [view, inset, insetBottom]);
-  /** Свободная камера: в регионе и месте пустота за краем мира допустима под панелью, в мире — нет (#97). */
-  const roam = useMemo<View>(() => (active ? stage : wholeFrame(stage)), [active, stage]);
+  /**
+   * Свободная камера: в регионе и месте пустота за краем мира допустима под панелью, в мире — нет (#97).
+   * Зум — в пределах уровня (#209): кадры регионов для потолка мира — с панелью и шторкой (`view`), как при перелёте.
+   */
+  const levels = useMemo(
+    () => zoomLevels(regionCameras, view, active?.layout ? active.layout.camera : undefined),
+    [regionCameras, view, active],
+  );
+  const roam = useMemo<View>(() => ({ ...(active ? stage : wholeFrame(stage)), ...levels }), [active, stage, levels]);
   const shot = worldPanel ? WORLD_PANEL_SHOT : camera;
   const freeCamera = free && free.shot === shot ? free.camera : null;
   const framed = useMemo(
@@ -142,7 +152,13 @@ export function useCamera({ active, activePlaceSlug, panel, regionList, topInset
     ? cameraTransform(listLayout.camera, listLayout.offset, listLayout.offsetY)
     : cameraTransform(framed.camera, framed.offset, framed.offsetY);
   /** Маркеры и подписи — в экранных пикселях, независимо от приближения и размера окна (1 единица SVG = 1 px). */
-  const regionZoom = active?.layout ? frameCamera(active.layout.camera, stage).camera.zoom : 1;
+  const regionFrame = useMemo(() => (active?.layout ? frameCamera(active.layout.camera, stage) : null), [active, stage]);
+  const regionZoom = regionFrame?.camera.zoom ?? 1;
+  /** «Весь мир» в регионе дальше потолка мира не отдаляет (#209) — возвращает к кадру региона. */
+  const home = useMemo(
+    () => (regionFrame ? centered(regionFrame.camera, roam, regionFrame.offset, regionFrame.offsetY ?? 0) : WORLD_CAMERA),
+    [regionFrame, roam],
+  );
   const markerScale = (view.layerWidth > 0 ? STAGE_WIDTH / view.layerWidth : 1) / (freeCamera?.zoom ?? regionZoom);
   /** Нити — тоже в экранных px, но при любом приближении (в мире zoom 1). */
   const threadScale = (view.layerWidth > 0 ? STAGE_WIDTH / view.layerWidth : 1) / framed.camera.zoom;
@@ -233,7 +249,7 @@ export function useCamera({ active, activePlaceSlug, panel, regionList, topInset
     attached: hasMap,
     enabled: hasMap && !listLayout && !flying,
     resetKey: shot,
-    home: WORLD_CAMERA,
+    home,
     current: () => {
       const { framed: f, view: v } = latest.current;
       return clampCamera(centered(f.camera, v, f.offset, f.offsetY ?? 0), v);

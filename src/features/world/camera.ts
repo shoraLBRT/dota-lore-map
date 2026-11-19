@@ -48,6 +48,9 @@ export interface View {
   inset: number;
   /** Сколько px снизу закрывает шторка панели на телефоне (SPEC §13). */
   insetBottom?: number;
+  /** Пределы зума свободной камеры на этом уровне (#209, `zoomLevels`); нет — [1, maxZoom]. */
+  zoomMin?: number;
+  zoomMax?: number;
 }
 
 /** Высота свёрнутой шторки — доля высоты кадра (SPEC §13: ~30 %). */
@@ -62,13 +65,17 @@ const PLACE_MARGIN = 0.2;
 /** Пикселей арта по стороне мира с запасом на приближение: ближе картинка уже расплывается. */
 export const ART_PIXELS = 4096 * 1.5;
 
-// Потолки зума (#179, SPEC §5.3, ARCHITECTURE A4) — во сколько раз ближе, чем «мир целиком» (zoom 1, слой покрывает кадр).
-/** Свободная камера: колесо, щипок, кнопки и клавиши. */
+// Потолки зума (#179, #209, SPEC §8.6, ARCHITECTURE A4) — во сколько раз ближе, чем «мир целиком» (zoom 1, слой покрывает кадр).
+/** Предел любой камеры: ближе арт расплывается. */
 export const FREE_ZOOM_MAX = 3;
 /** Кадр региона: маленький регион не заполняет экран. */
 export const REGION_ZOOM_MAX = 2.5;
-/** Камера места — чуть ближе камеры региона (и её потолка). */
+/** Камера места — чуть ближе камеры региона (и её потолка); не ближе потолка региона (REGION_ZOOM_IN). */
 export const PLACE_ZOOM = 1.15;
+/** Уровни зума вложены (#209): потолок мира — эта доля медианы кадров регионов, мир не доходит до кадра региона. */
+export const WORLD_SHARE = 0.93;
+/** В регионе и месте свободная камера приближает не больше чем в столько раз от кадра региона. */
+export const REGION_ZOOM_IN = 1.15;
 
 export const UNMEASURED: View = { width: 0, height: 0, layerWidth: 0, layerHeight: 0, inset: 0 };
 
@@ -82,10 +89,13 @@ export function containScale(view: View): number {
   return measured(view) ? Math.min(1, view.width / view.layerWidth, view.height / view.layerHeight) : 1;
 }
 
-/** Наибольшее приближение: FREE_ZOOM_MAX, но не ближе, чем 1 px экрана ≈ 1 px арта (с запасом ART_PIXELS), и не меньше 2. */
+/**
+ * Наибольшее приближение: FREE_ZOOM_MAX, но не ближе, чем 1 px экрана ≈ 1 px арта (с запасом ART_PIXELS, не меньше 2),
+ * и не ближе потолка уровня `view.zoomMax` (#209).
+ */
 export function maxZoom(view: View): number {
   const art = view.layerWidth > 0 ? Math.max(2, ART_PIXELS / view.layerWidth) : FREE_ZOOM_MAX;
-  return Math.min(FREE_ZOOM_MAX, art);
+  return Math.max(1, Math.min(FREE_ZOOM_MAX, art, view.zoomMax ?? Infinity));
 }
 
 /**
@@ -96,7 +106,8 @@ export function maxZoom(view: View): number {
  */
 export function clampCamera(camera: Camera, view: View, offset = 0, offsetY = 0): Camera {
   if (!measured(view)) return camera;
-  const zoom = Math.min(Math.max(camera.zoom, 1), maxZoom(view));
+  const top = maxZoom(view);
+  const zoom = Math.min(Math.max(camera.zoom, 1, Math.min(view.zoomMin ?? 1, top)), top);
   const kx = view.layerWidth * zoom;
   const ky = view.layerHeight * zoom;
   // c — точка мира в центре всего кадра (size px); видимая часть — [0, seen] px от левого (верхнего) края.
@@ -116,6 +127,26 @@ export function clampCamera(camera: Camera, view: View, offset = 0, offsetY = 0)
 /** Кадр без панели и шторки: камера держит на картинке его целиком. */
 export function wholeFrame(view: View): View {
   return { ...view, inset: 0, insetBottom: 0 };
+}
+
+const median = (values: number[]) => {
+  const v = [...values].sort((a, b) => a - b);
+  const m = Math.floor(v.length / 2);
+  return v.length % 2 ? v[m]! : (v[m - 1]! + v[m]!) / 2;
+};
+
+/**
+ * Пределы свободной камеры по уровням (#209, SPEC §8.6): уровни вложены и не заходят друг на друга.
+ * Мир — [1, WORLD_SHARE × медиана кадров регионов на этом кадре]; регион и место — от потолка мира (не дальше кадра
+ * региона) до кадра региона × REGION_ZOOM_IN. `regions` — камеры регионов из layout.json, `region` — открытый,
+ * `stage` — кадр с панелью и шторкой региона: кадры считает `frameCamera`, как при перелёте.
+ */
+export function zoomLevels(regions: Camera[], stage: View, region?: Camera): { zoomMin: number; zoomMax: number } {
+  if (!measured(stage) || regions.length === 0) return { zoomMin: 1, zoomMax: FREE_ZOOM_MAX };
+  const world = Math.max(1, WORLD_SHARE * median(regions.map((c) => frameCamera(c, stage).camera.zoom)));
+  if (!region) return { zoomMin: 1, zoomMax: world };
+  const frame = frameCamera(region, stage).camera.zoom;
+  return { zoomMin: Math.min(world, frame), zoomMax: frame * REGION_ZOOM_IN };
 }
 
 /**

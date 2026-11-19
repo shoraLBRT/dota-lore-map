@@ -10,6 +10,7 @@
   "world.zoomIn": "Приблизить",
   "world.zoomOut": "Отдалить",
   "world.home": "Показать мир целиком",
+  "world.homeRegion": "Показать регион целиком",
   "world.zoom": "Масштаб карты",
   "world.regions": "Регионы",
   "world.hint": "Выберите регион, чтобы узнать о нём больше",
