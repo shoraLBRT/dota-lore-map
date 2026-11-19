@@ -1,5 +1,5 @@
 import { fireEvent, render, waitFor } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { WorldArt } from './WorldArt';
 
 // Арт мира (ARCHITECTURE A10): HTML-картинки в слое камеры (#185) и тайлы пирамиды над ними (#164).
@@ -24,6 +24,16 @@ describe('WorldArt', () => {
     full.decode = () => Promise.resolve();
     fireEvent.load(full);
     await waitFor(() => expect(full).toHaveAttribute('data-ready'));
+  });
+
+  it('полная картинка ждёт load страницы и грузится с низким приоритетом (#186)', async () => {
+    const state = vi.spyOn(document, 'readyState', 'get').mockReturnValue('loading');
+    const c = setup(1440);
+    expect(c.querySelector('img[src$="world-4096.webp"]')).toBeNull();
+    state.mockReturnValue('complete');
+    window.dispatchEvent(new Event('load'));
+    await waitFor(() => expect(c.querySelector('img[src$="world-4096.webp"]')).toHaveAttribute('fetchpriority', 'low'));
+    state.mockRestore();
   });
 
   it('без сильного приближения — только картинка мира', () => {

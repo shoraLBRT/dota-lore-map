@@ -3,7 +3,7 @@ import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
-import { measure, measureArt, measureFonts, measureTiles, TILE_BUDGET } from './check-budget.mjs';
+import { measure, measureArt, measureFirstScreen, measureFonts, measureTiles, TILE_BUDGET } from './check-budget.mjs';
 
 // Бюджет загрузки до мира (SPEC §14, ARCHITECTURE A14).
 
@@ -23,6 +23,24 @@ describe('check-budget', () => {
     expect(total).toBe(files.reduce((s, f) => s + f.gzip, 0));
     // gzip повторов маленький — считаем именно сжатый размер.
     expect(total).toBeLessThan(1000);
+  });
+
+  it('первый экран — index.html и то, что он просит; отложенные части — отдельными файлами (#186)', () => {
+    dir = mkdtempSync(join(tmpdir(), 'budget-'));
+    mkdirSync(join(dir, 'assets'));
+    const page = (extra) =>
+      `<script type="module" crossorigin src="/base/assets/index-1.js"></script><link rel="modulepreload" href="/base/assets/world-1.js">${extra}<link rel="stylesheet" href="/base/assets/index-1.css">`;
+    for (const f of ['index-1.js', 'world-1.js', 'index-1.css', 'Gallery-1.js', 'HeroProfile-1.js', 'HeroSearch-1.js']) writeFileSync(join(dir, 'assets', f), 'x');
+    writeFileSync(join(dir, 'index.html'), page(''));
+    const ok = measureFirstScreen(dir);
+    expect(ok.files.map((f) => f.file)).toEqual(['index.html', 'assets/index-1.js', 'assets/world-1.js', 'assets/index-1.css']);
+    expect(ok.errors).toEqual([]);
+    writeFileSync(join(dir, 'index.html'), page('<link rel="modulepreload" href="/base/assets/Gallery-1.js">'));
+    rmSync(join(dir, 'assets', 'HeroSearch-1.js'));
+    const bad = measureFirstScreen(dir);
+    expect(bad.errors).toHaveLength(2);
+    expect(bad.errors.join(' ')).toMatch(/Gallery грузится с первым экраном/);
+    expect(bad.errors.join(' ')).toMatch(/нет отдельного куска HeroSearch/);
   });
 
   it('шрифты — настоящий размер woff2 из dist/fonts, без gzip и без файлов лицензии', () => {

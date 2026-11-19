@@ -22,9 +22,48 @@
     <meta name="twitter:description" content="Интерактивная карта лора Dota 2. Interactive Dota 2 lore map." />
     <meta name="twitter:image" content="https://shoralbrt.github.io/dota-lore-map/og.png" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <!-- Шрифты первого экрана (A8); cyrillic не предзагружаем — нужное подмножество заранее не угадать. -->
+    <!-- Первый экран (A8, A14 #186): шрифты заголовка и текста интро (cyrillic — язык страницы по умолчанию) и превью мира. -->
     <link rel="preload" href="/fonts/cormorant-sc-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/cormorant-sc-cyrillic-700-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/manrope-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/manrope-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/art/world-1024.webp" as="image" type="image/webp" fetchpriority="high" />
+    <!-- Язык оболочки до загрузки скрипта — как detectLang() в src/i18n (SPEC §12); глубокая ссылка — оболочка без текста интро. -->
+    <script>
+      (function () {
+        var l;
+        try { l = localStorage.getItem('dota-lore-map.lang'); } catch (e) {}
+        if (l !== 'ru' && l !== 'en') {
+          try { l = navigator.language.toLowerCase().indexOf('ru') === 0 ? 'ru' : 'en'; } catch (e) { l = 'en'; }
+        }
+        document.documentElement.lang = l;
+        if (location.hash.replace(/^#/, '').split('?')[0].replace(/\//g, '')) document.documentElement.setAttribute('data-boot-deep', '');
+      })();
+    </script>
+    <!-- Статичная оболочка интро (#186): видна до загрузки скрипта, React заменяет её при первой отрисовке.
+         Токены и шрифты — из CSS бандла (он блокирует отрисовку), геометрия — как у Intro.module.css. -->
+    <style>
+      .boot { position: fixed; inset: 0; display: flex; flex-direction: column; overflow: hidden; background: var(--bg-0, #0b0d11); color: var(--text-1, #e9e2d4); }
+      .boot-art { position: absolute; inset: -2%; width: 104%; height: 104%; object-fit: cover; filter: blur(var(--map-blur)) brightness(0.8); }
+      .boot::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 20%, var(--vignette) 95%), var(--veil); }
+      .boot > :not(.boot-art) { position: relative; z-index: 1; }
+      html[data-boot-deep] .boot > :not(.boot-art) { visibility: hidden; }
+      html[lang='en'] .boot [data-l='ru'], html:not([lang='en']) .boot [data-l='en'] { display: none; }
+      .boot-top { height: calc(2 * var(--space-3) + 2.175rem); flex: none; }
+      .boot-center { flex: 1 1 auto; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-3); padding: var(--space-4); text-align: center; }
+      .boot-center p, .boot-center h1 { margin: 0; }
+      .boot-kicker { color: var(--text-2); letter-spacing: 0.2em; text-transform: uppercase; }
+      .boot-center h1 { text-shadow: 0 2px 16px var(--map-ink); font-size: clamp(2rem, 6vw, 4rem); }
+      .boot-tagline { max-width: 32rem; color: var(--text-1); text-shadow: 0 1px 8px var(--map-ink); font-size: 1.05rem; }
+      .boot-divider { position: relative; width: min(22rem, 70vw); height: 1px; margin: var(--space-4) 5px; background: linear-gradient(90deg, var(--metal) 0%, var(--metal-bright) 50%, var(--metal) 100%); }
+      .boot-divider::before, .boot-divider::after { content: ''; position: absolute; top: -3px; width: 7px; height: 7px; background: var(--metal-bright); transform: rotate(45deg); }
+      .boot-divider::before { left: -5px; }
+      .boot-divider::after { right: -5px; }
+      .boot-start { height: 55px; margin-top: var(--space-4); }
+      .boot-status { min-height: 1.5em; font-size: 0.85rem; }
+      .boot-footer { padding: var(--space-6) var(--space-4) var(--space-3); font-size: 0.8rem; color: var(--text-2); text-align: center; background: linear-gradient(180deg, transparent, var(--veil-strong) var(--space-6)); }
+      .boot-footer p { margin: var(--space-1) 0; }
+    </style>
     <title>Мир Dota 2 · Dota 2 World</title>
   </head>
   <body>
@@ -32,7 +71,24 @@
       <p lang="ru">Интерактивной карте лора Dota 2 нужен JavaScript — включите его в браузере.</p>
       <p lang="en">The interactive Dota 2 lore map needs JavaScript — please enable it in your browser.</p>
     </noscript>
-    <div id="root"></div>
+    <div id="root">
+      <div class="boot" data-boot="">
+        <img class="boot-art" src="/art/world-1024.webp" alt="" fetchpriority="high" />
+        <div class="boot-top"></div>
+        <div class="boot-center">
+          <p class="boot-kicker"><span data-l="ru">Исследуй мир</span><span data-l="en">Explore &amp; discover</span></p>
+          <h1><span data-l="ru">Мир Dota 2</span><span data-l="en">Dota 2 World</span></h1>
+          <p class="boot-tagline"><span data-l="ru">Интерактивная карта мест и героев лора</span><span data-l="en">An interactive map of the lore's places and heroes</span></p>
+          <div class="boot-divider"></div>
+          <div class="boot-start"></div>
+          <p class="boot-status"></p>
+        </div>
+        <div class="boot-footer">
+          <p lang="ru">Некоммерческий фанатский проект. Не связан с Valve Corporation и не одобрен ею. Dota 2 и связанные материалы — товарные знаки и собственность Valve Corporation.</p>
+          <p lang="en">Non-commercial fan project. Not affiliated with or endorsed by Valve Corporation. Dota 2 and all related materials are trademarks and property of Valve Corporation.</p>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

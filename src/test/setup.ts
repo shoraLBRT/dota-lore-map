@@ -9,6 +9,24 @@ vi.mock('../features/world/art', async (importOriginal) => ({
   WORLD_PREVIEW: undefined,
 }));
 
+// Отложенные части бандла (#186) в тестах — обычные компоненты: рисуются сразу, как в боевой сборке после простоя.
+// Фабрика вызывается при первом импорте в файле теста — уже после его собственных vi.mock (например, ./sfx).
+// Сам механизм отложенной загрузки проверяет src/app/deferred.test.tsx (vi.unmock).
+vi.mock('../app/deferred', async () => {
+  const [gallery, profile, search] = await Promise.all([
+    import('../features/gallery/Gallery'),
+    import('../features/hero/HeroProfile'),
+    import('../features/search/HeroSearch'),
+  ]);
+  return {
+    Gallery: gallery.Gallery,
+    HeroProfile: profile.HeroProfile,
+    HeroSearch: search.HeroSearch,
+    preloadDeferred: () => Promise.resolve(),
+    prefetchDeferred: () => () => undefined,
+  };
+});
+
 // Тесты scripts/ идут в окружении node, где нет window.
 if (typeof window !== 'undefined') {
   // В jsdom нет canvas: без заглушки каждый регион с частицами пишет в консоль «Not implemented».
