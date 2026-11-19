@@ -170,13 +170,24 @@ describe('правило движения (SPEC §7.5)', () => {
 
   it('кривые и шаг каскада — токены', () => {
     const t = css('styles/tokens.css');
-    for (const token of ['--ease-out', '--ease-in-out', '--ease-spring', '--dur-stagger', '--dur-breathe']) {
+    for (const token of ['--ease-out', '--ease-in-out', '--ease-spring', '--dur-stagger', '--dur-breathe', '--dur-hl-in', '--dur-hl-out', '--hl-breathe-min']) {
       expect(t).toContain(`${token}:`);
     }
     const global = css('styles/global.css');
     const block = global.slice(global.indexOf('@media (prefers-reduced-motion: reduce)'));
     expect(block).toContain('--dur-stagger: 0ms');
     expect(block).toContain('--ease-spring: var(--ease-out)');
+    // #211: подсветка региона при reduced motion проявляется и гаснет сразу.
+    expect(block).toContain('--dur-hl-in: 0ms');
+    expect(block).toContain('--dur-hl-out: 0ms');
+  });
+
+  it('подсветка региона дышит только свечением и только через opacity (#211, A14)', () => {
+    const plain = css('features/world/RegionsLayer.module.css').replace(/\/\*[\s\S]*?\*\//g, '');
+    const breathe = plain.match(/@keyframes breathe\s*\{([\s\S]*?)\n\}/)![1]!;
+    expect([...breathe.matchAll(/([\w-]+)\s*:/g)].map((m) => m[1])).toEqual(['opacity']);
+    expect(plain).toMatch(/\.glow\s*\{[^}]*animation:\s*breathe var\(--dur-breathe\)[^}]*paused/);
+    expect(plain).not.toMatch(/\.outline[^{]*\{[^}]*animation/);
   });
 });
 

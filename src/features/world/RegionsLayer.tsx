@@ -145,7 +145,7 @@ export function RegionsLayer({ drawn, activeId, inWorld, tip, litId, focusRegion
               <clipPath id={`rl-clip-${r.id}`}>
                 <path d={d} />
               </clipPath>
-              <g clipPath={`url(#rl-clip-${r.id})`}>
+              <g className={styles.glow} clipPath={`url(#rl-clip-${r.id})`}>
                 <path className={styles.glowFill} d={d} />
                 <path className={styles.glowWide} d={d} />
                 <path className={styles.glowNear} d={d} />
