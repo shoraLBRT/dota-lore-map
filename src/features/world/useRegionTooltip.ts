@@ -1,54 +1,71 @@
 import { useCallback, useEffect, useId, useMemo, useRef, useState, type KeyboardEvent, type RefObject } from 'react';
 import { cssPixels } from '../../app/motion';
 import { useSfx } from '../../app/sound';
-import type { Hero, Region } from '../../data/types';
+import type { Camera, Hero, Region } from '../../data/types';
 import { preloadRegionArt } from './art';
 import { focusAfter } from './focus';
 import { regionMediaBadge } from './mediaBadge';
-import { headingTo, type Anchor } from './RegionTooltip';
+import type { Anchor, Box } from './RegionTooltip';
 
-/** Задержка закрытия подсказки региона: успеть перевести мышь с региона на подсказку и обратно (#65), мс. */
+/** Задержка закрытия подсказки региона: успеть перевести мышь с подписи на подсказку и обратно (#65), мс. */
 export const TOOLTIP_CLOSE_DELAY = 200;
-
-interface Point {
-  x: number;
-  y: number;
-}
+/** Задержка появления подсказки после наведения на подпись региона (#193), мс. */
+export const TOOLTIP_OPEN_DELAY = 300;
+/** Глубже этого приближения мира подсказки региона нет (#193): подписи и арт и так крупные. */
+export const TOOLTIP_MAX_ZOOM = 2;
 
 /** Правый край левой полосы (SPEC §6.1): подсказку левее не ставят (#101). */
 const railRight = () => cssPixels('--rail-width');
+
+const boxOf = (el: Element): Box | null => {
+  const r = el.getBoundingClientRect();
+  return r.width > 0 && r.height > 0 ? { left: r.left, top: r.top, right: r.right, bottom: r.bottom } : null;
+};
 
 interface Options {
   regions: Region[];
   /** Мир (S1): подсказка есть только в нём. */
   inWorld: boolean;
   svgRef: RefObject<SVGSVGElement | null>;
+  /** SVG экранного слоя с подписями регионов (`[data-label]`): подсказка привязана к подписи (#193). */
+  labelsRef: RefObject<SVGSVGElement | null>;
+  /** Камера мира: сдвиг или зум (перетаскивание, колесо, щипок) прячет подсказку, глубже порога её нет. */
+  camera: Camera;
   heroesOf: (regionId: string) => Hero[];
   /** Есть галерея — в подсказке значок медиа. */
   withMedia: boolean;
 }
 
 /**
- * Подсказка региона в мире (ARCHITECTURE A4, #65): наведение и фокус на регионе показывают её,
- * мышь на ней и фокус в ней держат её открытой, Esc закрывает до ухода с региона.
+ * Подсказка региона в мире (ARCHITECTURE A4, #65, #193): наведение на полигон только подсвечивает регион;
+ * подсказку вызывает наведение на подпись (через `TOOLTIP_OPEN_DELAY`) или фокус с клавиатуры на регионе.
+ * Мышь на подписи или на подсказке и фокус в подсказке держат её открытой, Esc закрывает до ухода с региона.
  */
-export function useRegionTooltip({ regions, inWorld, svgRef, heroesOf, withMedia }: Options) {
+export function useRegionTooltip({ regions, inWorld, svgRef, labelsRef, camera, heroesOf, withMedia }: Options) {
   const sfx = useSfx();
   const tooltipId = useId();
+  /** Полигон или подпись под мышью: подсветка региона, без подсказки. */
+  const [overId, setOverId] = useState<string | null>(null);
+  /** Подсказка по наведению на подпись. */
   const [hoverId, setHoverId] = useState<string | null>(null);
   const [focusId, setFocusId] = useState<string | null>(null);
   const tipRef = useRef<HTMLDivElement>(null);
   const [tipFocusId, setTipFocusId] = useState<string | null>(null);
   const [dismissedId, setDismissedId] = useState<string | null>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
-  // #101: подсказка стоит рядом с регионом, путь к ней может идти через соседа. Сосед, на которого мышь зашла
-  // по пути к подсказке, ждёт TOOLTIP_CLOSE_DELAY и перехватывает подсказку, только если мышь там и осталась.
-  const lastPos = useRef<Point | null>(null);
-  const pending = useRef<{ id: string; from: Point; timer: ReturnType<typeof setTimeout> } | null>(null);
+  const openTimer = useRef<{ id: string; timer: ReturnType<typeof setTimeout> } | null>(null);
 
-  // S1h только в мире; фокус в подсказке важнее мыши (иначе фокус пропадёт вместе с ней), мышь — фокуса на регионе.
-  const wantedId = inWorld ? (tipFocusId ?? hoverId ?? focusId) : null;
+  const deep = camera.zoom > TOOLTIP_MAX_ZOOM + 1e-6;
+  // S1h только в мире и не на глубоком зуме; фокус в подсказке важнее мыши (иначе фокус пропадёт вместе с ней),
+  // мышь — фокуса на регионе.
+  const wantedId = inWorld && !deep ? (tipFocusId ?? hoverId ?? focusId) : null;
   const shownId = wantedId === dismissedId ? null : wantedId;
+  const shownRef = useRef(shownId);
+  const hoverRef = useRef(hoverId);
+  useEffect(() => {
+    shownRef.current = shownId;
+    hoverRef.current = hoverId;
+  });
   const shown = useMemo(() => regions.find((r) => r.id === shownId && r.layout), [regions, shownId]);
   const heroes = useMemo(() => (shown ? heroesOf(shown.id) : []), [shown, heroesOf]);
   const media = useMemo(() => (shown && withMedia ? regionMediaBadge(shown) : null), [shown, withMedia]);
@@ -59,45 +76,30 @@ export function useRegionTooltip({ regions, inWorld, svgRef, heroesOf, withMedia
     const rect = svg.getBoundingClientRect();
     const [x, y] = shown.layout.label;
     const anchor: Anchor = { x: rect.left + x * rect.width, y: rect.top + y * rect.height, minLeft: railRight() };
-    // #101: габарит полигона на экране — подсказка встанет рядом с регионом, а не на нём.
-    const box = svg.querySelector(`[data-region="${shown.id}"]`)?.getBoundingClientRect();
-    if (box && box.width > 0 && box.height > 0) anchor.box = { left: box.left, top: box.top, right: box.right, bottom: box.bottom };
+    // #193: подсказка у подписи региона и не на ней; соседние подписи по возможности не закрывает.
+    const labels = labelsRef.current?.querySelectorAll('[data-label]') ?? [];
+    const avoid: Box[] = [];
+    for (const el of labels) {
+      const box = boxOf(el);
+      if (!box) continue;
+      if (el.getAttribute('data-label') === shown.id) anchor.label = box;
+      else avoid.push(box);
+    }
+    anchor.avoid = avoid;
     return anchor;
-  }, [shown, svgRef]);
+  }, [shown, svgRef, labelsRef]);
 
   const cancelClose = () => clearTimeout(closeTimer.current);
-  const clearPending = () => {
-    if (pending.current) clearTimeout(pending.current.timer);
-    pending.current = null;
+  const cancelOpen = () => {
+    if (openTimer.current) clearTimeout(openTimer.current.timer);
+    openTimer.current = null;
   };
-  const switchTo = (r: Region) => {
-    clearPending();
+  const open = (r: Region) => {
+    cancelOpen();
     setDismissedId((d) => (d === r.id ? null : d));
     setHoverId(r.id);
-    sfx('hover');
   };
-  const aimsAtTip = (from: Point, to: Point) => {
-    const rect = tipRef.current?.getBoundingClientRect();
-    return rect ? headingTo(from, to, rect) : false;
-  };
-  // Мышь свернула с пути к подсказке — сосед перехватывает её сразу.
-  useEffect(() => {
-    if (!inWorld) return;
-    const move = (e: PointerEvent) => {
-      if (e.pointerType === 'touch') return;
-      const at = { x: e.clientX, y: e.clientY };
-      const wait = pending.current;
-      if (wait && !aimsAtTip(wait.from, at)) {
-        const r = regions.find((x) => x.id === wait.id);
-        if (r) switchTo(r);
-      }
-      lastPos.current = at;
-    };
-    window.addEventListener('pointermove', move);
-    return () => window.removeEventListener('pointermove', move);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inWorld, regions]);
-  // Уход мыши с региона или подсказки: закрыть с задержкой, если она не вернулась на регион или подсказку.
+  // Уход мыши с подписи или подсказки: закрыть с задержкой, если она не вернулась на подпись или подсказку.
   const leave = (id: string | null) => {
     cancelClose();
     closeTimer.current = setTimeout(() => setHoverId((h) => (id === null || h === id ? null : h)), TOOLTIP_CLOSE_DELAY);
@@ -105,10 +107,22 @@ export function useRegionTooltip({ regions, inWorld, svgRef, heroesOf, withMedia
   useEffect(
     () => () => {
       cancelClose();
-      clearPending();
+      cancelOpen();
     },
     [],
   );
+
+  // #193: камера сдвинулась или приблизилась (перетаскивание, колесо, щипок, кнопки зума) — подсказки по наведению нет;
+  // мышь, оставшаяся на подписи, вызовет её снова, когда двинется.
+  const cameraKey = `${camera.x}|${camera.y}|${camera.zoom}`;
+  const prevCamera = useRef(cameraKey);
+  useEffect(() => {
+    if (prevCamera.current === cameraKey) return;
+    prevCamera.current = cameraKey;
+    cancelOpen();
+    cancelClose();
+    setHoverId(null);
+  }, [cameraKey]);
 
   const regionButton = (id: string) => svgRef.current?.querySelector<SVGElement>(`[role="button"][data-region="${id}"]`);
   /** Tab с региона: фокус на первую кнопку подсказки. false — заходить некуда. */
@@ -145,6 +159,23 @@ export function useRegionTooltip({ regions, inWorld, svgRef, heroesOf, withMedia
     }
   };
 
+  // Регион, для которого уже прозвучало наведение. Переход с полигона на его подпись и обратно — пара leave/enter
+  // в одной задаче браузера: ref сбрасывается после неё, если мышь так и не вернулась на регион.
+  const soundRef = useRef<string | null>(null);
+  const over = (r: Region) => {
+    if (soundRef.current !== r.id && soundRef.current !== `-${r.id}`) sfx('hover');
+    soundRef.current = r.id;
+    setOverId(r.id);
+    void preloadRegionArt(r);
+  };
+  const out = (r: Region) => {
+    soundRef.current = `-${r.id}`;
+    setTimeout(() => {
+      if (soundRef.current === `-${r.id}`) soundRef.current = null;
+    }, 0);
+    setOverId((id) => (id === r.id ? null : id));
+  };
+
   /** Обработчики полигона-кнопки региона в мире. */
   const region = {
     /** #65: Tab с региона — в его подсказку, Esc — закрыть её. true — клавиша обработана. */
@@ -160,26 +191,9 @@ export function useRegionTooltip({ regions, inWorld, svgRef, heroesOf, withMedia
       }
       return false;
     },
-    /** `at` — где мышь вошла в регион (клиентские координаты). */
-    onEnter: (r: Region, at?: Point) => {
-      cancelClose();
-      void preloadRegionArt(r);
-      const from = lastPos.current;
-      if (at && from && shownId && shownId !== r.id && hoverId === shownId && aimsAtTip(from, at)) {
-        clearPending();
-        pending.current = { id: r.id, from, timer: setTimeout(() => switchTo(r), TOOLTIP_CLOSE_DELAY) };
-        return;
-      }
-      switchTo(r);
-    },
-    onLeave: (r: Region) => {
-      if (pending.current?.id === r.id) {
-        clearPending();
-        leave(null);
-        return;
-      }
-      leave(r.id);
-    },
+    /** Мышь на полигоне — только подсветка (#193). */
+    onEnter: over,
+    onLeave: out,
     onFocus: (r: Region) => {
       setFocusId(r.id);
       void preloadRegionArt(r);
@@ -190,21 +204,46 @@ export function useRegionTooltip({ regions, inWorld, svgRef, heroesOf, withMedia
     },
   };
 
+  /** Обработчики подписи региона (экранный слой): наведение вызывает подсказку. */
+  const label = {
+    onEnter: (r: Region) => {
+      over(r);
+      cancelClose();
+      // Подсказка уже открыта (у этой или соседней подписи) — переходит сразу; иначе — после задержки.
+      if (shownRef.current) {
+        open(r);
+        return;
+      }
+      if (openTimer.current?.id === r.id) return;
+      cancelOpen();
+      openTimer.current = { id: r.id, timer: setTimeout(() => open(r), TOOLTIP_OPEN_DELAY) };
+    },
+    /** Мышь двинулась на подписи после сдвига камеры: подсказку снова можно вызвать. */
+    onMove: (r: Region) => {
+      if (hoverRef.current === r.id || openTimer.current?.id === r.id) return;
+      label.onEnter(r);
+    },
+    onLeave: (r: Region) => {
+      out(r);
+      if (openTimer.current?.id === r.id) cancelOpen();
+      leave(r.id);
+    },
+  };
+
   /** Свойства для `RegionTooltip`, кроме `region`, героев и медиа. */
   const tip = {
     id: tooltipId,
     getAnchor,
     tipRef,
-    onPointerEnter: () => {
-      cancelClose();
-      clearPending();
-    },
+    onPointerEnter: cancelClose,
     onPointerLeave: () => leave(null),
     onKeyDown: onTipKeyDown,
     onFocusOut: () => setTipFocusId(null),
   };
 
-  return { tooltipId, shownId, shown, heroes, media, focusId, region, tip };
+  /** Подсвечен ли регион мышью или подсказкой. */
+  const litId = inWorld ? overId : null;
+  return { tooltipId, shownId, shown, heroes, media, focusId, litId, region, label, tip };
 }
 
 export type RegionTooltipState = ReturnType<typeof useRegionTooltip>;

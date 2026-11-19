@@ -179,6 +179,15 @@
 .zoomed .labels .label {
   opacity: 0;
   transition-delay: 0s;
+  pointer-events: none;
+}
+
+/* #193: в мире подпись региона — цель наведения подсказки и клика (полигон под ней только подсвечивается). */
+.labels .label {
+  pointer-events: auto;
+  /* Цель — весь габарит подписи, а не только глифы (WebKit иначе пропускает промежутки и середину двух строк); auto — для браузеров без bounding-box. */
+  pointer-events: bounding-box;
+  cursor: pointer;
 }
 
 /* Выбран герой (SPEC §6.5): его регионы и места подсвечены, остальные приглушены. */

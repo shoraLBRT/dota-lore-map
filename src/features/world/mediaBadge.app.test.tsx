@@ -5,6 +5,7 @@ import { parseHash } from '../../app/router';
 import type { Media } from '../../data/types';
 import { getRegion, world } from '../../data/world';
 import { mediaKinds, placeMediaBadge, regionMediaBadge } from './mediaBadge';
+import { TOOLTIP_OPEN_DELAY } from './useRegionTooltip';
 
 // Значок медиа на карте (#69): у маркера места и в подсказке региона; клик открывает галерею (?media=, A5).
 
@@ -12,9 +13,14 @@ const icewrack = getRegion('icewrack')!;
 const hazhadal = getRegion('hazhadal')!;
 const withMedia = (r: typeof icewrack) => r.places.filter((p) => p.media?.length && p.pos);
 
-function hoverRegion(name: string) {
-  const polygon = screen.getByRole('button', { name });
-  fireEvent.pointerEnter(polygon, { pointerType: 'mouse' });
+/** #193: подсказку вызывает наведение на подпись региона, через TOOLTIP_OPEN_DELAY. */
+async function hoverLabel(id: string) {
+  fireEvent.pointerEnter(document.querySelector(`[data-label="${id}"]`)!, { pointerType: 'mouse' });
+  await act(() => new Promise((r) => setTimeout(r, TOOLTIP_OPEN_DELAY)));
+}
+
+async function hoverRegion(id: string, name: string) {
+  await hoverLabel(id);
   return screen.getByRole('group', { name });
 }
 
@@ -71,10 +77,10 @@ describe('значок медиа (#69)', () => {
     expect(parseHash(window.location.hash).media).toBe(place.media![0]);
   });
 
-  it('подсказка региона в мире: значок открывает медиа региона, а без своего — место с медиа', () => {
+  it('подсказка региона в мире: значок открывает медиа региона, а без своего — место с медиа', async () => {
     window.location.hash = '#/world';
     render(<App />);
-    const tip = hoverRegion(icewrack.name.ru);
+    const tip = await hoverRegion(icewrack.id, icewrack.name.ru);
     const badge = within(tip).getByRole('button', { name: 'Есть медиа: комикс, трейлер' });
     expect(badge).toHaveTextContent('комикс, трейлер');
     // Tab с региона ведёт в подсказку: значок — первая кнопка.
@@ -84,17 +90,18 @@ describe('значок медиа (#69)', () => {
     expect(screen.getByRole('dialog')).toBeInTheDocument();
   });
 
-  it('регион без своего медиа: значок ведёт в место; без медиа — значка нет; EN — «Media: comic»', () => {
+  it('регион без своего медиа: значок ведёт в место; без медиа — значка нет; EN — «Media: comic»', async () => {
     window.localStorage.setItem('dota-lore-map.lang', 'en');
     window.location.hash = '#/world';
     render(<App />);
     const bare = world.regions.find((r) => r.layout && !regionMediaBadge(r))!;
-    fireEvent.pointerEnter(screen.getByRole('button', { name: bare.name.en }), { pointerType: 'mouse' });
+    await hoverLabel(bare.id);
     expect(document.getElementById(screen.getByRole('button', { name: bare.name.en }).getAttribute('aria-describedby')!)).toBeInTheDocument();
     expect(screen.queryByRole('button', { name: /^Media:/ })).toBeNull();
-    fireEvent.pointerLeave(screen.getByRole('button', { name: bare.name.en }), { pointerType: 'mouse' });
+    fireEvent.pointerLeave(document.querySelector(`[data-label="${bare.id}"]`)!, { pointerType: 'mouse' });
 
-    const tip = hoverRegion(hazhadal.name.en);
+    // Подсказка открыта — на другую подпись переходит сразу.
+    const tip = await hoverRegion(hazhadal.id, hazhadal.name.en);
     fireEvent.click(within(tip).getByRole('button', { name: 'Media: comic' }));
     const place = withMedia(hazhadal)[0]!;
     expect(parseHash(window.location.hash)).toEqual({

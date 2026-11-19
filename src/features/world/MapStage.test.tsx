@@ -13,6 +13,7 @@ import {
   worldListLayout,
 } from './camera';
 import { MapStage, TOOLTIP_CLOSE_DELAY } from './MapStage';
+import { TOOLTIP_OPEN_DELAY } from './useRegionTooltip';
 
 const region = (id: string, withLayout: boolean): Region => ({
   id,
@@ -59,35 +60,75 @@ function renderStage(regions: Region[], activeRegionId?: string, heroCount = 0, 
 }
 
 const tint = (id: string) => document.querySelector(`[data-tint="${id}"]`)!;
+const label = (id: string) => document.querySelector(`[data-label="${id}"]`)!;
+/** #193: подсказку вызывает наведение на подпись региона, через TOOLTIP_OPEN_DELAY (нужны ложные таймеры). */
+function hoverLabel(id: string) {
+  fireEvent.pointerEnter(label(id), { pointerType: 'mouse' });
+  act(() => vi.advanceTimersByTime(TOOLTIP_OPEN_DELAY));
+}
 
 describe('MapStage — наведение на регион (S1h)', () => {
-  it('мышь: подсветка, подсказка с ≤ 6 портретами и «+N», уход мыши всё снимает', () => {
+  afterEach(() => vi.useRealTimers());
+
+  it('мышь на полигоне: только подсветка, подсказки нет (#193)', () => {
+    vi.useFakeTimers();
+    renderStage([region('a', true), region('b', true)], undefined, 8);
+    const polygon = screen.getByRole('button', { name: 'a en' });
+    fireEvent.pointerEnter(polygon, { pointerType: 'mouse' });
+    expect(tint('a').getAttribute('class')).toMatch(/lit/);
+    expect(label('a').getAttribute('class')).toMatch(/lit/);
+    act(() => vi.advanceTimersByTime(TOOLTIP_OPEN_DELAY * 3));
+    expect(screen.queryByRole('tooltip')).toBeNull();
+    fireEvent.pointerLeave(polygon, { pointerType: 'mouse' });
+    expect(tint('a').getAttribute('class')).not.toMatch(/lit/);
+  });
+
+  it('мышь на подписи: через задержку подсказка с ≤ 5 портретами и «+N», уход мыши всё снимает', () => {
     vi.useFakeTimers();
     renderStage([region('a', true), region('b', true)], undefined, 8);
     const polygon = screen.getByRole('button', { name: 'a en' });
     expect(screen.queryByRole('tooltip')).toBeNull();
 
+    // С полигона на его подпись: подсветка не гаснет, подсказка — только после TOOLTIP_OPEN_DELAY.
     fireEvent.pointerEnter(polygon, { pointerType: 'mouse' });
+    fireEvent.pointerLeave(polygon, { pointerType: 'mouse' });
+    fireEvent.pointerEnter(label('a'), { pointerType: 'mouse' });
+    expect(tint('a').getAttribute('class')).toMatch(/lit/);
+    act(() => vi.advanceTimersByTime(TOOLTIP_OPEN_DELAY - 1));
+    expect(screen.queryByRole('tooltip')).toBeNull();
+    act(() => vi.advanceTimersByTime(1));
     const tip = screen.getByRole('tooltip');
     expect(tip).toHaveTextContent('a en');
-    expect(within(tip).getAllByRole('img')).toHaveLength(6);
-    expect(tip).toHaveTextContent('+2');
+    expect(within(tip).getAllByRole('img')).toHaveLength(5);
+    expect(tip).toHaveTextContent('+3');
     expect(polygon).toHaveAttribute('aria-describedby', tip.id);
     expect(tint('a').getAttribute('class')).toMatch(/lit/);
     expect(tint('b').getAttribute('class')).not.toMatch(/lit/);
 
     // Подсказка закрывается с задержкой (#65): успеть перевести на неё мышь.
-    fireEvent.pointerLeave(polygon, { pointerType: 'mouse' });
+    fireEvent.pointerLeave(label('a'), { pointerType: 'mouse' });
     expect(screen.getByRole('tooltip')).toBeInTheDocument();
     act(() => vi.advanceTimersByTime(TOOLTIP_CLOSE_DELAY));
     expect(screen.queryByRole('tooltip')).toBeNull();
     expect(tint('a').getAttribute('class')).not.toMatch(/lit/);
-    vi.useRealTimers();
+  });
+
+  it('мышь ушла с подписи до задержки — подсказки нет; клик по подписи открывает регион', () => {
+    vi.useFakeTimers();
+    const { onSelectRegion } = renderStage([region('a', true)]);
+    fireEvent.pointerEnter(label('a'), { pointerType: 'mouse' });
+    act(() => vi.advanceTimersByTime(TOOLTIP_OPEN_DELAY / 2));
+    fireEvent.pointerLeave(label('a'), { pointerType: 'mouse' });
+    act(() => vi.advanceTimersByTime(TOOLTIP_OPEN_DELAY * 2));
+    expect(screen.queryByRole('tooltip')).toBeNull();
+    fireEvent.click(label('a'));
+    expect(onSelectRegion).toHaveBeenCalledWith('a', 'map');
   });
 
   it('подсказка — в экранных пикселях: портал в body, не внутри слоёв с transform камеры (#208)', () => {
+    vi.useFakeTimers();
     renderStage([region('a', true)], undefined, 2);
-    fireEvent.pointerEnter(screen.getByRole('button', { name: 'a en' }), { pointerType: 'mouse' });
+    hoverLabel('a');
     const tip = document.querySelector<HTMLElement>('[data-map-tip]')!;
     expect(tip.parentElement).toBe(document.body);
     for (let el: HTMLElement | null = tip; el; el = el.parentElement) expect(el.style.transform).toBe('');
@@ -132,8 +173,11 @@ describe('MapStage — наведение на регион (S1h)', () => {
   });
 
   it('тач: подсказки нет (SPEC §5.3)', () => {
+    vi.useFakeTimers();
     renderStage([region('a', true)]);
     fireEvent.pointerEnter(screen.getByRole('button', { name: 'a en' }), { pointerType: 'touch' });
+    fireEvent.pointerEnter(label('a'), { pointerType: 'touch' });
+    act(() => vi.advanceTimersByTime(TOOLTIP_OPEN_DELAY));
     expect(screen.queryByRole('tooltip')).toBeNull();
   });
 
@@ -319,13 +363,13 @@ describe('MapStage — маркеры мест (S2/S3, SPEC §5.4, §6.3)', () =
     expect(screen.queryByRole('button', { name: 'Hidden' })).toBeNull();
   });
 
-  it('наведение и фокус на маркер — подсказка с портретами героев места (≤ 6 и «+N»), без героев — нет', () => {
+  it('наведение и фокус на маркер — подсказка с портретами героев места (≤ 5 и «+N»), без героев — нет', () => {
     renderStage([withPlaces()], 'a', 7);
     const spot = screen.getByRole('button', { name: 'Spot' });
     fireEvent.pointerEnter(spot, { pointerType: 'mouse' });
     const tip = screen.getByRole('tooltip');
-    expect(within(tip).getAllByRole('img')).toHaveLength(6);
-    expect(tip).toHaveTextContent('+1');
+    expect(within(tip).getAllByRole('img')).toHaveLength(5);
+    expect(tip).toHaveTextContent('+2');
     expect(spot).toHaveAttribute('aria-describedby', tip.id);
     fireEvent.pointerLeave(spot, { pointerType: 'mouse' });
     expect(screen.queryByRole('tooltip')).toBeNull();
@@ -670,11 +714,11 @@ describe('MapStage — подсказка региона с героями (#65)
 
   afterEach(() => vi.useRealTimers());
 
-  it('мышь с региона на подсказку держит её открытой, уход с подсказки закрывает', () => {
+  it('мышь с подписи на подсказку держит её открытой, уход с подсказки закрывает', () => {
     vi.useFakeTimers();
-    const { polygon, tip } = renderPickable();
-    fireEvent.pointerEnter(polygon, { pointerType: 'mouse' });
-    fireEvent.pointerLeave(polygon, { pointerType: 'mouse' });
+    const { tip } = renderPickable();
+    hoverLabel('a');
+    fireEvent.pointerLeave(label('a'), { pointerType: 'mouse' });
     act(() => vi.advanceTimersByTime(TOOLTIP_CLOSE_DELAY / 2));
     fireEvent.pointerEnter(tip()!);
     act(() => vi.advanceTimersByTime(TOOLTIP_CLOSE_DELAY * 2));
@@ -686,38 +730,33 @@ describe('MapStage — подсказка региона с героями (#65)
     expect(tip()).toBeNull();
   });
 
-  it('сосед на пути к подсказке не перехватывает её, сосед в стороне — сразу (#101)', () => {
+  it('по пути к подсказке через соседний полигон она остаётся; на соседней подписи — переходит сразу (#193)', () => {
     vi.useFakeTimers();
     const { polygon, tip } = renderPickable();
     const b = screen.getByRole('button', { name: 'b en' });
-    const at = (x: number, y: number) => ({ pointerType: 'mouse', clientX: x, clientY: y });
-    fireEvent.pointerMove(window, at(100, 100));
-    fireEvent.pointerEnter(polygon, at(100, 100));
-    vi.spyOn(tip()!, 'getBoundingClientRect').mockReturnValue(new DOMRect(300, 50, 200, 100));
-    // К подсказке через b: подсказка остаётся у a и доживает до входа мыши на неё.
-    fireEvent.pointerMove(window, at(150, 100));
-    fireEvent.pointerLeave(polygon, at(160, 100));
-    fireEvent.pointerEnter(b, at(160, 100));
-    fireEvent.pointerMove(window, at(220, 100));
+    hoverLabel('a');
+    fireEvent.pointerLeave(label('a'), { pointerType: 'mouse' });
+    // Полигоны подсказку не трогают: сосед под мышью только подсвечен.
+    fireEvent.pointerEnter(b, { pointerType: 'mouse' });
     act(() => vi.advanceTimersByTime(TOOLTIP_CLOSE_DELAY / 2));
-    fireEvent.pointerLeave(b, at(290, 100));
+    fireEvent.pointerLeave(b, { pointerType: 'mouse' });
     fireEvent.pointerEnter(tip()!);
     act(() => vi.advanceTimersByTime(TOOLTIP_CLOSE_DELAY * 2));
     expect(polygon.getAttribute('aria-describedby')).toBe(tip()!.id);
+    expect(b).not.toHaveAttribute('aria-describedby');
 
-    // С подсказки обратно на a, затем на b — в сторону от подсказки: подсказка сразу у b.
+    // Подсказка открыта — на подпись соседа она переходит без задержки.
     fireEvent.pointerLeave(tip()!);
-    fireEvent.pointerEnter(polygon, at(100, 100));
-    fireEvent.pointerMove(window, at(100, 100));
-    fireEvent.pointerLeave(polygon, at(100, 160));
-    fireEvent.pointerEnter(b, at(100, 160));
+    fireEvent.pointerEnter(label('b'), { pointerType: 'mouse' });
     expect(b.getAttribute('aria-describedby')).not.toBeNull();
   });
 
   it('портрет выбирает героя, «+N» раскрывает всех на месте, клик по региону открывает регион', () => {
+    vi.useFakeTimers();
     const { onPickHero, onSelectRegion, polygon, tip } = renderPickable();
-    fireEvent.pointerEnter(polygon, { pointerType: 'mouse' });
-    expect(within(tip()!).getByText('Click a hero to show them on the map')).toBeInTheDocument();
+    hoverLabel('a');
+    // Внизу — число героев; подсказки про клик по герою больше нет (#193).
+    expect(tip()!.querySelector('[data-counts]')).toHaveTextContent('8 heroes · 1 place');
 
     const portrait = within(tip()!).getByRole('button', { name: 'Hero 2' });
     fireEvent.pointerEnter(portrait.parentElement!);
@@ -726,18 +765,18 @@ describe('MapStage — подсказка региона с героями (#65)
     expect(onPickHero).toHaveBeenCalledWith(expect.objectContaining({ key: 'h2' }));
     expect(onSelectRegion).not.toHaveBeenCalled();
 
-    const more = within(tip()!).getByRole('button', { name: '+2: show all heroes (8)' });
+    const more = within(tip()!).getByRole('button', { name: '+3: show all heroes (8)' });
     expect(more).toHaveAttribute('aria-expanded', 'false');
     fireEvent.click(more);
     expect(within(tip()!).getAllByRole('button')).toHaveLength(8);
-    expect(within(tip()!).queryByText('+2')).toBeNull();
+    expect(within(tip()!).queryByText('+3')).toBeNull();
     fireEvent.click(within(tip()!).getByRole('button', { name: 'Hero 7' }));
     expect(onPickHero).toHaveBeenLastCalledWith(expect.objectContaining({ key: 'h7' }));
 
     // Подсказка ушла на другой регион и вернулась — снова свёрнуто.
-    fireEvent.pointerEnter(screen.getByRole('button', { name: 'b en' }), { pointerType: 'mouse' });
-    fireEvent.pointerEnter(polygon, { pointerType: 'mouse' });
-    expect(within(tip()!).getAllByRole('button')).toHaveLength(7);
+    fireEvent.pointerEnter(label('b'), { pointerType: 'mouse' });
+    fireEvent.pointerEnter(label('a'), { pointerType: 'mouse' });
+    expect(within(tip()!).getAllByRole('button')).toHaveLength(6);
 
     fireEvent.click(polygon);
     expect(onSelectRegion).toHaveBeenCalledWith('a', 'map');
@@ -784,10 +823,10 @@ describe('MapStage — подсказка региона с героями (#65)
     const { polygon, tip } = renderPickable();
     act(() => polygon.focus());
     fireEvent.keyDown(polygon, { key: 'Tab' });
-    const more = within(tip()!).getByRole('button', { name: /^\+2/ });
+    const more = within(tip()!).getByRole('button', { name: /^\+3/ });
     act(() => more.focus());
     fireEvent.click(more);
-    expect(within(tip()!).getByRole('button', { name: 'Hero 6' })).toHaveFocus();
+    expect(within(tip()!).getByRole('button', { name: 'Hero 5' })).toHaveFocus();
   });
 
   it('Esc в подсказке закрывает её и возвращает фокус на регион, не доходя до окна', () => {

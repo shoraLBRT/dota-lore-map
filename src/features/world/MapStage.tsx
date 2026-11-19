@@ -117,8 +117,6 @@ export function MapStage({
   const inWorld = !active;
   const litId = inWorld ? listId : null;
 
-  const tip = useRegionTooltip({ regions, inWorld, svgRef, heroesOf, withMedia: !!onOpenMedia });
-  const { shown } = tip;
   const place = usePlaceTooltip(active, svgRef, heroesOfSpot);
   const { spots, spot } = place;
 
@@ -129,6 +127,16 @@ export function MapStage({
 
   const cam = useCamera({ active, activePlaceSlug, panel, regionList, topInset, hasMap, onCameraBusy });
   const { viewportRef, layerRef, screenRef, listLayout, flying, target, frame, controls } = cam;
+  const tip = useRegionTooltip({
+    regions,
+    inWorld,
+    svgRef,
+    labelsRef: screenSvgRef,
+    camera: frame.framed.camera,
+    heroesOf,
+    withMedia: !!onOpenMedia,
+  });
+  const { shown } = tip;
   // Рисунок пути (#168): `?threads=<вариант>` до `#` — сравнение вариантов для владельца.
   const [threadVariant] = useState(() => threadStyleFrom(typeof location === 'undefined' ? '' : location.search));
 
@@ -198,7 +206,8 @@ export function MapStage({
               <RegionLabels
                 drawn={drawn}
                 inWorld={inWorld}
-                shownId={tip.shownId}
+                tip={tip}
+                onSelectRegion={onSelectRegion}
                 litId={litId}
                 focusRegions={focusRegions}
                 previewRegions={previewRegions}

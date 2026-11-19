@@ -1,8 +1,8 @@
 import { render, screen, within } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import type { Hero, Region } from '../../data/types';
-import { I18nProvider } from '../../i18n';
-import { clampTooltip, headingTo, placeTooltip, RegionTooltip, splitHeroes } from './RegionTooltip';
+import { I18nProvider, translate, type MessageKey } from '../../i18n';
+import { clampTooltip, overlap, placeTooltip, RegionTooltip, regionCounts, splitHeroes, type Box } from './RegionTooltip';
 
 const heroes = (n: number): Hero[] =>
   Array.from({ length: n }, (_, i) => ({ key: `h${i}`, name: `Hero ${i}`, slug: `hero${i}`, links: [] }));
@@ -14,7 +14,10 @@ const region: Region = {
   name: { ru: 'Айсрак', en: 'Icewrack' },
   subtitle: { ru: 'Ледяной край', en: 'Frozen land' },
   geo: '',
-  places: [],
+  places: [
+    { name: 'A', slug: 'a', capital: false, placement: 'lore', pos: [0.1, 0.1] },
+    { name: 'B', slug: 'b', capital: false, placement: 'lore', pos: [0.2, 0.2] },
+  ],
   regionHeroes: [],
 };
 
@@ -28,20 +31,23 @@ function renderTooltip(list: Hero[]) {
 }
 
 describe('RegionTooltip', () => {
-  it('название, подзаголовок и не больше 6 портретов с плашкой «+N»', () => {
+  it('название, подзаголовок, не больше 5 портретов с плашкой «+N», число героев и мест (#193)', () => {
     const tip = renderTooltip(heroes(9));
     expect(tip).toHaveTextContent('Icewrack');
     expect(tip).toHaveTextContent('Frozen land');
-    expect(within(tip).getAllByRole('img')).toHaveLength(6);
-    expect(within(tip).getByLabelText('and 3 more')).toHaveTextContent('+3');
+    expect(within(tip).getAllByRole('img')).toHaveLength(5);
+    expect(within(tip).getByLabelText('and 4 more')).toHaveTextContent('+4');
+    expect(tip.querySelector('[data-counts]')).toHaveTextContent('9 heroes · 2 places');
+    // Подсказки про клик по герою больше нет (#193).
+    expect(tip).not.toHaveTextContent(/click/i);
     // Без onPick портреты не кликаются и ссылок нет (SPEC §5.3, #65).
     expect(within(tip).queryByRole('link')).toBeNull();
     expect(within(tip).queryByRole('button')).toBeNull();
   });
 
-  it('6 и меньше героев — без «+N»', () => {
-    const tip = renderTooltip(heroes(6));
-    expect(within(tip).getAllByRole('img')).toHaveLength(6);
+  it('5 и меньше героев — без «+N»', () => {
+    const tip = renderTooltip(heroes(5));
+    expect(within(tip).getAllByRole('img')).toHaveLength(5);
     expect(tip.textContent).not.toMatch(/\+\d/);
   });
 
@@ -50,9 +56,18 @@ describe('RegionTooltip', () => {
     expect(within(tip).queryByRole('list')).toBeNull();
   });
 
+  it('regionCounts: формы числа по-русски и по-английски, нули не пишутся', () => {
+    const t = (lang: 'ru' | 'en') => (key: MessageKey, vars?: Record<string, string>) => translate(lang, key, vars);
+    expect(regionCounts('ru', 1, 2, t('ru'))).toBe('1 герой · 2 места');
+    expect(regionCounts('ru', 5, 21, t('ru'))).toBe('5 героев · 21 место');
+    expect(regionCounts('en', 1, 1, t('en'))).toBe('1 hero · 1 place');
+    expect(regionCounts('en', 0, 3, t('en'))).toBe('3 places');
+    expect(regionCounts('ru', 0, 0, t('ru'))).toBe('');
+  });
+
   it('splitHeroes', () => {
-    expect(splitHeroes(heroes(8))).toMatchObject({ rest: 2 });
-    expect(splitHeroes(heroes(8)).shown).toHaveLength(6);
+    expect(splitHeroes(heroes(8))).toMatchObject({ rest: 3 });
+    expect(splitHeroes(heroes(8)).shown).toHaveLength(5);
     expect(splitHeroes(heroes(2))).toMatchObject({ rest: 0 });
   });
 });
@@ -74,57 +89,46 @@ describe('placeTooltip', () => {
     expect(placeTooltip({ x: 500, y: 560 }, tip, view).top).toBe(442);
   });
 
-  describe('рядом с габаритом региона (#101)', () => {
-    const at = (box: { left: number; top: number; right: number; bottom: number }, x = 500, y = 300) =>
-      placeTooltip({ x, y, box, minLeft: 64 }, tip, view);
-    const overlaps = (p: { left: number; top: number }, b: { left: number; top: number; right: number; bottom: number }) =>
-      p.left < b.right && p.left + tip.width > b.left && p.top < b.bottom && p.top + tip.height > b.top;
+  describe('у подписи региона (#193)', () => {
+    const label = { left: 450, top: 290, right: 550, bottom: 310 };
+    const at = (l: Box, avoid: Box[] = [], size = tip) => placeTooltip({ x: 500, y: 300, label: l, avoid, minLeft: 64 }, size, view);
+    const covers = (p: { left: number; top: number }, b: Box) =>
+      overlap({ left: p.left, top: p.top, right: p.left + tip.width, bottom: p.top + tip.height }, b) > 0;
 
-    it('справа, на высоте названия', () => {
-      const box = { left: 400, top: 200, right: 600, bottom: 400 };
-      expect(at(box)).toEqual({ left: 606, top: 250 });
+    it('снизу под подписью, по её центру, и не на ней', () => {
+      const p = at(label);
+      expect(p).toEqual({ left: 400, top: 316 });
+      expect(covers(p, label)).toBe(false);
     });
 
-    it('у правого края — слева', () => {
-      const box = { left: 700, top: 200, right: 900, bottom: 400 };
-      expect(at(box, 800)).toEqual({ left: 494, top: 250 });
+    it('снизу соседняя подпись — сверху', () => {
+      const neighbour = { left: 420, top: 330, right: 580, bottom: 350 };
+      const p = at(label, [neighbour]);
+      expect(p).toEqual({ left: 400, top: 184 });
+      expect(covers(p, neighbour)).toBe(false);
     });
 
-    it('слева — левая полоса: снизу', () => {
-      const box = { left: 200, top: 100, right: 850, bottom: 300 };
-      const p = at(box, 500, 200);
-      expect(p).toEqual({ left: 400, top: 306 });
-      expect(overlaps(p, box)).toBe(false);
+    it('соседи со всех сторон — та сторона, где закрыто меньше всего', () => {
+      const below = { left: 400, top: 320, right: 600, bottom: 400 };
+      const above = { left: 400, top: 190, right: 600, bottom: 280 };
+      const right = { left: 560, top: 250, right: 760, bottom: 350 };
+      const left = { left: 300, top: 290, right: 340, bottom: 300 };
+      expect(at(label, [below, above, right, left])).toEqual({ left: 244, top: 250 });
     });
 
-    it('снизу не помещается — сверху', () => {
-      const box = { left: 200, top: 250, right: 850, bottom: 550 };
-      expect(at(box, 500, 400)).toEqual({ left: 400, top: 144 });
+    it('у нижнего края — над подписью', () => {
+      expect(at({ left: 450, top: 520, right: 550, bottom: 540 })).toEqual({ left: 400, top: 414 });
     });
 
-    it('не правее левой полосы и не за краем окна', () => {
-      const box = { left: 100, top: 250, right: 850, bottom: 550 };
-      expect(at(box, 120, 400).left).toBe(72);
+    it('не левее левой полосы и не за правым краем окна', () => {
+      expect(at({ left: 60, top: 290, right: 120, bottom: 310 }).left).toBe(72);
+      expect(at({ left: 880, top: 290, right: 980, bottom: 310 }).left).toBe(792);
     });
 
-    it('ни одна сторона не подошла — у якоря, как без габарита', () => {
-      const box = { left: 100, top: 50, right: 950, bottom: 550 };
-      expect(at(box)).toEqual(placeTooltip({ x: 500, y: 300 }, tip, view));
+    it('ни одна сторона не подошла — у якоря, как без подписи', () => {
+      const big = { width: 900, height: 560 };
+      expect(at(label, [], big)).toEqual(placeTooltip({ x: 500, y: 300 }, big, view));
     });
-  });
-});
-
-describe('headingTo (#101)', () => {
-  const tip = { left: 300, top: 50, right: 500, bottom: 150 };
-  it('к подсказке — да, в сторону и назад — нет', () => {
-    expect(headingTo({ x: 100, y: 100 }, { x: 160, y: 100 }, tip)).toBe(true);
-    expect(headingTo({ x: 100, y: 100 }, { x: 160, y: 85 }, tip)).toBe(true);
-    expect(headingTo({ x: 100, y: 100 }, { x: 100, y: 160 }, tip)).toBe(false);
-    expect(headingTo({ x: 100, y: 100 }, { x: 60, y: 100 }, tip)).toBe(false);
-  });
-  it('мышь стоит или подсказка не измерена — нет', () => {
-    expect(headingTo({ x: 100, y: 100 }, { x: 100, y: 100 }, tip)).toBe(false);
-    expect(headingTo({ x: 100, y: 100 }, { x: 160, y: 100 }, { left: 0, top: 0, right: 0, bottom: 0 })).toBe(false);
   });
 });
 

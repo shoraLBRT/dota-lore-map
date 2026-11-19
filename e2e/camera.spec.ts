@@ -65,29 +65,56 @@ test('мир во весь кадр; колесо, перетаскивание,
   await expect.poll(() => scale(page)).toBeCloseTo(1, 2);
 });
 
-test('подсказка региона одного размера на любом зуме и в окне; щипок над ней — зум камеры (#208)', async ({ page, consoleErrors }, info) => {
+test('подсказка региона у названия, одного размера на зуме и в окне, глубже порога её нет; щипок над ней — зум камеры (#208, #193)', async ({
+  page,
+  consoleErrors,
+}, info) => {
   test.skip(info.project.name === 'mobile', 'на телефоне подсказки нет');
   void consoleErrors;
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('./#/world');
   const tip = page.locator('[data-map-tip]');
   const zoomIn = page.getByRole('button', { name: 'Приблизить' });
-  const measure = async () => {
-    // Регион под центром кадра: наводим мышь на его полигон заново на каждом зуме.
-    const viewport = await page.locator('[data-world-art]').locator('xpath=ancestor::div[2]').boundingBox();
-    const at = { x: viewport!.x + viewport!.width / 2, y: viewport!.y + viewport!.height / 2 };
-    await page.mouse.move(at.x - 40, at.y - 40);
+  /** #193: мышь на название региона, ближайшее к центру окна (подсказку вызывает только название). */
+  const hoverLabel = async () => {
+    await page.mouse.move(5, 5);
+    const at = await page.locator('[data-label]').evaluateAll((els) => {
+      const boxes = els
+        .map((el) => el.getBoundingClientRect())
+        .filter((r) => r.width > 0 && r.left > 80 && r.right < innerWidth - 20 && r.top > 20 && r.bottom < innerHeight - 20);
+      const d = (r: DOMRect) => Math.hypot(r.left + r.width / 2 - innerWidth / 2, r.top + r.height / 2 - innerHeight / 2);
+      const r = boxes.sort((a, b) => d(a) - d(b))[0]!;
+      return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+    });
     await page.mouse.move(at.x, at.y, { steps: 2 });
-    await expect(tip).toBeVisible();
-    await page.waitForTimeout(400); // появление: 80 мс задержки + fade со сдвигом
+  };
+  const measure = async () => {
+    // Камера ещё доезжает (под нагрузкой — дольше) — подсказка снимается; мышь двигается снова, как у человека.
+    await expect(async () => {
+      await hoverLabel();
+      await expect(tip).toBeVisible({ timeout: 1500 });
+    }).toPass({ timeout: 20_000 });
+    await page.waitForTimeout(400); // fade со сдвигом после задержки наведения
     return tip.evaluate((el) => {
       const r = el.getBoundingClientRect();
       return { width: r.width, inside: r.left >= 0 && r.top >= 0 && r.right <= innerWidth && r.bottom <= innerHeight };
     });
   };
   const one = await measure();
-  while ((await scale(page)) < 2) await zoomIn.click();
-  await expect.poll(() => scale(page)).toBeGreaterThanOrEqual(2);
+  // Полигон под мышью подсказку не вызывает — только название.
+  await page.mouse.move(5, 5);
+  await expect(tip).toHaveCount(0);
+  const s1 = await scale(page);
+  await zoomIn.click();
+  await expect.poll(() => scale(page)).toBeGreaterThan(s1 * 1.2);
+  // Доезд камеры: пока она движется, подсказки нет.
+  await expect
+    .poll(async () => {
+      const before = await scale(page);
+      await page.waitForTimeout(250);
+      return (await scale(page)) === before;
+    })
+    .toBe(true);
   const two = await measure();
   while (await zoomIn.isEnabled()) {
     const s = await scale(page);
@@ -95,10 +122,12 @@ test('подсказка региона одного размера на люб�
     await page.waitForTimeout(300);
     if ((await scale(page)) <= s) break;
   }
-  const max = await measure();
-  for (const m of [one, two, max]) expect(m.inside).toBe(true);
+  // Глубже порога (TOOLTIP_MAX_ZOOM) подсказки нет.
+  await hoverLabel();
+  await page.waitForTimeout(600);
+  await expect(tip).toHaveCount(0);
+  for (const m of [one, two]) expect(m.inside).toBe(true);
   expect(Math.abs(two.width - one.width)).toBeLessThanOrEqual(1);
-  expect(Math.abs(max.width - one.width)).toBeLessThanOrEqual(1);
 
   // Щипок тачпада (ctrl+колесо) над подсказкой — зум камеры, а не страницы: иначе вся страница с подсказкой растёт.
   await page.getByRole('button', { name: 'Показать мир целиком' }).click();
