@@ -36,6 +36,17 @@ describe('WorldArt', () => {
     state.mockRestore();
   });
 
+  it('под интро полной картинки нет в DOM — она не станет элементом LCP; после интро вставляется (#186)', async () => {
+    const props = { tiles: undefined, layerRef: { current: null }, viewportRef: { current: null } };
+    const { container, rerender } = render(<WorldArt {...props} deferFull />);
+    await new Promise((r) => setTimeout(r, 50));
+    expect(container.querySelector('img[src$="world-4096.webp"]')).toBeNull();
+    rerender(<WorldArt {...props} deferFull={false} />);
+    expect(container.querySelector('img[src$="world-4096.webp"]')).toHaveAttribute('fetchpriority', 'low');
+    rerender(<WorldArt {...props} deferFull />);
+    expect(container.querySelector('img[src$="world-4096.webp"]')).not.toBeNull();
+  });
+
   it('без сильного приближения — только картинка мира', () => {
     expect(setup(1440).querySelectorAll('[data-world-tiles] image')).toHaveLength(0);
   });

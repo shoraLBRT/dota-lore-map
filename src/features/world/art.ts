@@ -22,13 +22,14 @@ const loading = new Map<string, Promise<void>>();
  * Загружает картинку в кэш браузера один раз на адрес.
  * Ошибка загрузки не ломает ожидание: промис всегда выполняется.
  */
-export function preloadImage(url: string | undefined): Promise<void> {
+export function preloadImage(url: string | undefined, priority?: 'low'): Promise<void> {
   if (!url || typeof Image === 'undefined') return Promise.resolve();
   let pending = loading.get(url);
   if (!pending) {
     pending = new Promise<void>((resolve) => {
       const img = new Image();
       img.decoding = 'async';
+      if (priority) img.setAttribute('fetchpriority', priority);
       // Готово — когда картинка не только загружена, но и декодирована: иначе первый кадр с ней дёрнется (#187).
       img.onload = () => {
         if (typeof img.decode === 'function') img.decode().then(resolve, resolve);

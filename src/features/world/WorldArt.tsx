@@ -1,6 +1,6 @@
 import { useEffect, useState, type RefObject, type SyntheticEvent } from 'react';
 import { afterLoadIdle } from '../../app/idle';
-import { WORLD_ART, WORLD_PREVIEW } from './art';
+import { preloadImage, WORLD_ART, WORLD_PREVIEW } from './art';
 import { STAGE_HEIGHT, STAGE_WIDTH } from './camera';
 import styles from './WorldArt.module.css';
 import { tileKey, tileUrl, visibleTiles, WORLD_TILES, type TilePyramid, type TileRef } from './tiles';
@@ -11,6 +11,11 @@ interface Props {
   viewportRef?: RefObject<HTMLElement | null>;
   /** Пирамида тайлов; по умолчанию — из манифеста (`undefined` — тайлов нет). */
   tiles?: TilePyramid;
+  /**
+   * Мир под интро (#186): полная картинка не вставляется в DOM, а только греется в кэше — иначе, проявившись
+   * под интро, она становится элементом LCP. В DOM она попадает, когда интро снято (после клика «Начать»).
+   */
+  deferFull?: boolean;
 }
 
 /** Страница загружена (`load`) и браузер свободен: тогда и только тогда просить полную картинку мира (#186). */
@@ -33,11 +38,21 @@ const LOW_PRIORITY = { fetchpriority: 'low' } as Record<string, string>;
  * Арт — HTML `<img>` в своём композитном слое под SVG-оверлеем, а не `<image>` внутри SVG (#185):
  * перерисовка подписей и подсветки не перерастеризует картинку 4096², а `decode()` до показа
  * уводит декодирование с кадра. Полную картинку (800 КБ) просим только после `load` страницы и с низким
- * приоритетом (#186): она не держит первую отрисовку и событие `load`, интро хватает превью.
+ * приоритетом (#186): она не держит первую отрисовку и событие `load`, интро хватает превью. Под интро
+ * (`deferFull`) её только греем в кэше: в DOM она попадает после «Начать» и не становится элементом LCP.
  */
-export function WorldArt({ layerRef, viewportRef, tiles = WORLD_TILES }: Props) {
+export function WorldArt({ layerRef, viewportRef, tiles = WORLD_TILES, deferFull = false }: Props) {
   const [ready, setReady] = useState(false);
   const pageLoaded = usePageLoaded();
+  // Пока мир под интро — только кэш, без элемента в DOM (#186); вставленная картинка остаётся навсегда.
+  const [inserted, setInserted] = useState(false);
+  const showFull = inserted || (pageLoaded && !deferFull);
+  useEffect(() => {
+    if (showFull && !inserted) setInserted(true);
+  }, [showFull, inserted]);
+  useEffect(() => {
+    if (pageLoaded && deferFull && !inserted) void preloadImage(WORLD_ART, 'low');
+  }, [pageLoaded, deferFull, inserted]);
   if (!WORLD_ART) return null;
   const onLoad = (e: SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
@@ -48,7 +63,7 @@ export function WorldArt({ layerRef, viewportRef, tiles = WORLD_TILES }: Props) 
   return (
     <div aria-hidden="true" className={styles.art} data-world-art="">
       {WORLD_PREVIEW && <img src={WORLD_PREVIEW} alt="" className={styles.img} decoding="async" draggable={false} />}
-      {pageLoaded && (
+      {showFull && (
         <img
           src={WORLD_ART}
           alt=""

@@ -31,6 +31,8 @@ import { useThreadLayout } from './useThreadLayout';
 export { TOOLTIP_CLOSE_DELAY } from './useRegionTooltip';
 
 interface Props {
+  /** Карта под интро: полную картинку мира не вставлять в DOM, только греть кэш (A10, #186). */
+  deferArt?: boolean;
   regions: Region[];
   activeRegionId?: string;
   activePlaceSlug?: string;
@@ -102,6 +104,7 @@ export function MapStage({
   regionList = false,
   topInset = 0,
   coverTop = 0,
+  deferArt = false,
 }: Props) {
   const { lang, t } = useT();
   const svgRef = useRef<SVGSVGElement>(null);
@@ -148,7 +151,7 @@ export function MapStage({
       {hasMap && (
         <div ref={viewportRef} className={styles.viewport} onClick={onBackground}>
           <div ref={layerRef} className={styles.layer} style={{ transform: target, '--aspect': WORLD_ASPECT } as CSSProperties}>
-            <WorldArt layerRef={layerRef} viewportRef={viewportRef} />
+            <WorldArt layerRef={layerRef} viewportRef={viewportRef} deferFull={deferArt} />
             <svg
               ref={svgRef}
               className={styles.svg}
