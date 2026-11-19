@@ -62,6 +62,14 @@ const PLACE_MARGIN = 0.2;
 /** Пикселей арта по стороне мира с запасом на приближение: ближе картинка уже расплывается. */
 export const ART_PIXELS = 4096 * 1.5;
 
+// Потолки зума (#179, SPEC §5.3, ARCHITECTURE A4) — во сколько раз ближе, чем «мир целиком» (zoom 1, слой покрывает кадр).
+/** Свободная камера: колесо, щипок, кнопки и клавиши. */
+export const FREE_ZOOM_MAX = 3;
+/** Кадр региона: маленький регион не заполняет экран. */
+export const REGION_ZOOM_MAX = 2.5;
+/** Камера места — чуть ближе камеры региона (и её потолка). */
+export const PLACE_ZOOM = 1.15;
+
 export const UNMEASURED: View = { width: 0, height: 0, layerWidth: 0, layerHeight: 0, inset: 0 };
 
 const measured = (view: View) => view.layerWidth > 0 && view.layerHeight > 0 && view.width > 0 && view.height > 0;
@@ -74,9 +82,10 @@ export function containScale(view: View): number {
   return measured(view) ? Math.min(1, view.width / view.layerWidth, view.height / view.layerHeight) : 1;
 }
 
-/** Наибольшее приближение: 1 px экрана ≈ 1 px арта (с запасом ART_PIXELS), не меньше 2. */
+/** Наибольшее приближение: FREE_ZOOM_MAX, но не ближе, чем 1 px экрана ≈ 1 px арта (с запасом ART_PIXELS), и не меньше 2. */
 export function maxZoom(view: View): number {
-  return view.layerWidth > 0 ? Math.max(2, ART_PIXELS / view.layerWidth) : 8;
+  const art = view.layerWidth > 0 ? Math.max(2, ART_PIXELS / view.layerWidth) : FREE_ZOOM_MAX;
+  return Math.min(FREE_ZOOM_MAX, art);
 }
 
 /**
@@ -112,7 +121,8 @@ export function wholeFrame(view: View): View {
 /**
  * Камера с учётом панели: рамка региона (1/zoom мира, вписанного в кадр) должна поместиться в свободную часть кадра,
  * поэтому zoom уменьшается в (ширина − панель) / размер вписанного мира раз; больше задуманного не приближаем
- * (правило кадра — map/cameras.mjs, #112). Камера мира (zoom 1) — весь кадр.
+ * (правило кадра — map/cameras.mjs, #112) и не ближе REGION_ZOOM_MAX (у камеры места — ×PLACE_ZOOM, #179).
+ * Камера мира (zoom 1) — весь кадр.
  * `keep` — рамка региона и точка места (доли мира) у камеры места: центр сдвигается не дальше, чем нужно, чтобы регион
  * остался в видимой части кадра, а если не помещается — вылезал из неё как можно меньше, не уводя к краю само место (#96).
  * В конце камера прижимается к картинке (`clampCamera`): за краем мира пустоты нет.
@@ -130,10 +140,11 @@ export function frameCamera(
   const fitted = view.layerWidth * contain;
   const free = inset > 0 ? Math.max(view.width - inset, fitted * 0.25) : view.width;
   const freeY = bottom > 0 ? Math.max(view.height - bottom, fitted * 0.25) : view.height;
+  const ceiling = keep ? REGION_ZOOM_MAX * PLACE_ZOOM : REGION_ZOOM_MAX;
   const zoom =
     camera.zoom <= 1
       ? 1
-      : Math.max(1, camera.zoom * contain * Math.min(1, free / fitted, freeY / fitted));
+      : Math.min(ceiling, Math.max(1, camera.zoom * contain * Math.min(1, free / fitted, freeY / fitted)));
   // Рамка региона держит центр так, чтобы за видимую часть (`size` — её доля мира) уходило не больше, чем нужно:
   // помещается — целиком в кадре; не помещается — вылезает поровну за оба края, но само место остаётся
   // не ближе PLACE_MARGIN видимой части к её краю (рядом с ним — подпись).
@@ -225,7 +236,7 @@ export function placeCamera(region: Camera, pos: Point): Camera {
   return {
     x: (region.x + pos[0]) / 2,
     y: (region.y + pos[1]) / 2,
-    zoom: region.zoom * 1.15,
+    zoom: region.zoom * PLACE_ZOOM,
   };
 }
 

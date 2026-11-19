@@ -2,7 +2,16 @@ import { act, cleanup, fireEvent, render, screen, within } from '@testing-librar
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { Hero, Region } from '../../data/types';
 import { I18nProvider } from '../../i18n';
-import { cameraTransform, clampCamera, frameCamera, placeCamera, UNMEASURED, worldListLayout } from './camera';
+import {
+  cameraTransform,
+  clampCamera,
+  frameCamera,
+  PLACE_ZOOM,
+  placeCamera,
+  REGION_ZOOM_MAX,
+  UNMEASURED,
+  worldListLayout,
+} from './camera';
 import { MapStage, TOOLTIP_CLOSE_DELAY } from './MapStage';
 
 const region = (id: string, withLayout: boolean): Region => ({
@@ -491,6 +500,18 @@ describe('camera', () => {
   it('сдвиг под панель: центр кадра левее на половину ширины панели', () => {
     expect(cameraTransform({ x: 0.25, y: 0.5, zoom: 2 }, 240)).toBe('translate(calc(0% - 240px), -50%) scale(2)');
   });
+  it('кадр самого маленького региона не ближе REGION_ZOOM_MAX, места — ×PLACE_ZOOM (#179)', () => {
+    const view = { width: 1440, height: 900, layerWidth: 1440, layerHeight: 1440, inset: 0 };
+    const region = { x: 0.5, y: 0.5, zoom: 5 };
+    expect(frameCamera(region, view).camera.zoom).toBe(REGION_ZOOM_MAX);
+    const place = placeCamera(region, [0.5, 0.5]);
+    const box = { left: 0.45, top: 0.45, right: 0.55, bottom: 0.55 };
+    expect(frameCamera(place, view, { box, place: [0.5, 0.5] }).camera.zoom).toBeCloseTo(REGION_ZOOM_MAX * PLACE_ZOOM);
+    // Телефон: вписанный мир уже кадра, потолок не достигается.
+    const phone = { width: 375, height: 812, layerWidth: 812, layerHeight: 812, inset: 0 };
+    expect(frameCamera(region, phone).camera.zoom).toBeCloseTo(5 * (375 / 812));
+  });
+
   it('рамка региона под панелью: zoom — от вписанного мира, до свободной ширины', () => {
     const camera = { x: 0.5, y: 0.5, zoom: 3 };
     expect(frameCamera(camera, UNMEASURED)).toEqual({ camera, offset: 0 });
