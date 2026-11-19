@@ -85,6 +85,14 @@ describe('MapStage — наведение на регион (S1h)', () => {
     vi.useRealTimers();
   });
 
+  it('подсказка — в экранных пикселях: портал в body, не внутри слоёв с transform камеры (#208)', () => {
+    renderStage([region('a', true)], undefined, 2);
+    fireEvent.pointerEnter(screen.getByRole('button', { name: 'a en' }), { pointerType: 'mouse' });
+    const tip = document.querySelector<HTMLElement>('[data-map-tip]')!;
+    expect(tip.parentElement).toBe(document.body);
+    for (let el: HTMLElement | null = tip; el; el = el.parentElement) expect(el.style.transform).toBe('');
+  });
+
   it('клавиатура: фокус = наведение', () => {
     renderStage([region('a', true)]);
     const polygon = screen.getByRole('button', { name: 'a en' });
