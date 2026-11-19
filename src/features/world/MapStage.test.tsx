@@ -434,7 +434,8 @@ describe('MapStage — подписи и подсказки (аудит E13)', (
           <MapStage {...props} />
         </I18nProvider>,
       );
-      expect(Element.prototype.animate).toHaveBeenCalledTimes(1);
+      // Перелёт — у слоя карты и у экранного слоя подписей (#180).
+      expect(Element.prototype.animate).toHaveBeenCalledTimes(2);
       fireEvent.focus(screen.getByRole('button', { name: 'a en' }));
       expect(screen.queryByRole('tooltip')).toBeNull();
 
@@ -482,11 +483,16 @@ describe('MapStage — мир с открытой панелью (#97)', () => {
     rerender(stage(true));
     // Слой покрывает кадр (#165): мир не ужимается, сдвиг под панель гасится прижатием к краю картинки.
     expect(layer().style.transform).toBe('translate(calc(15% - 240px), 0%) scale(1)');
-    expect(Element.prototype.animate).toHaveBeenCalledTimes(1);
-    expect(vi.mocked(Element.prototype.animate).mock.calls[0]?.[1]).toMatchObject({ duration: 700 });
+    // Экранный слой подписей (#180) летит вместе со слоем карты: тот же transform и та же анимация.
+    const screenLayer = () => container.querySelector<HTMLElement>('[data-screen-layer]')!.parentElement!;
+    expect(screenLayer().style.transform).toBe(layer().style.transform);
+    const contexts = () => vi.mocked(Element.prototype.animate).mock.contexts;
+    expect(contexts()).toEqual([layer(), screenLayer()]);
+    expect(vi.mocked(Element.prototype.animate).mock.calls[1]?.[1]).toMatchObject({ duration: 700 });
     rerender(stage(false));
     expect(layer().style.transform).toBe('translate(0%, 0%) scale(1)');
-    expect(Element.prototype.animate).toHaveBeenCalledTimes(2);
+    expect(screenLayer().style.transform).toBe('translate(0%, 0%) scale(1)');
+    expect(contexts()).toHaveLength(4);
   });
 });
 

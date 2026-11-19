@@ -121,6 +121,8 @@ type Motion =
 interface Options {
   viewportRef: React.RefObject<HTMLDivElement | null>;
   layerRef: React.RefObject<HTMLDivElement | null>;
+  /** Экранный слой подписей и маркеров (#180): двигается вместе со слоем карты. */
+  screenRef?: React.RefObject<HTMLDivElement | null>;
   view: View;
   /** Камера, которую сейчас показывает кадр (уже без сдвигов, см. `centered`). */
   current: () => Camera;
@@ -147,7 +149,7 @@ export interface FreeCameraControls {
  * Жесты свободной камеры на кадре карты. Transform слоя пишется напрямую в каждом кадре анимации,
  * React получает камеру через `onChange` (маркеры и подписи пересчитывают масштаб).
  */
-export function useFreeCamera({ viewportRef, layerRef, view, current, enabled, onChange, home, resetKey, attached }: Options): FreeCameraControls {
+export function useFreeCamera({ viewportRef, layerRef, screenRef, view, current, enabled, onChange, home, resetKey, attached }: Options): FreeCameraControls {
   const live = useRef({ view, current, enabled, onChange, home });
   useLayoutEffect(() => {
     live.current = { view, current, enabled, onChange, home };
@@ -159,8 +161,8 @@ export function useFreeCamera({ viewportRef, layerRef, view, current, enabled, o
 
   const apply = (c: Camera) => {
     cam.current = c;
-    const el = layerRef.current;
-    if (el) el.style.transform = cameraTransform(c);
+    const transform = cameraTransform(c);
+    for (const el of [layerRef.current, screenRef?.current]) if (el) el.style.transform = transform;
     live.current.onChange(c);
   };
   const base = () => cam.current ?? live.current.current();

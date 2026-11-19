@@ -101,13 +101,20 @@ describe('регион и место', () => {
 
 describe('клики во время анимации камеры (SPEC §7.1)', () => {
   let finish: (() => void)[] = [];
+  /** Перелёты слоя карты; экранный слой подписей (#180) летит вместе с ним и здесь не считается. */
+  let flights = 0;
   const original = Element.prototype.animate;
 
   beforeEach(() => {
     window.localStorage.setItem('dota-lore-map.lang', 'ru');
     finish = [];
+    flights = 0;
     // jsdom не умеет WAAPI: подменяем animate управляемой анимацией.
-    Element.prototype.animate = vi.fn(function () {
+    Element.prototype.animate = vi.fn(function (this: Element) {
+      if (this.querySelector('[data-screen-layer]')) {
+        return { finished: Promise.resolve(), cancel: () => undefined } as unknown as Animation;
+      }
+      flights += 1;
       let resolve!: () => void;
       let reject!: (e: unknown) => void;
       const finished = new Promise<void>((res, rej) => {
@@ -135,7 +142,7 @@ describe('клики во время анимации камеры (SPEC §7.1)'
     render(<App />);
     fireEvent.click(screen.getByRole('button', { name: icewrack.name.ru }));
     expect(window.location.hash).toBe('#/r/icewrack');
-    expect(Element.prototype.animate).toHaveBeenCalledTimes(1);
+    expect(flights).toBe(1);
 
     // Во время перелёта: глобус, Esc, крошки и маркер — встают в очередь, адрес и панель не меняются.
     fireEvent.click(screen.getByRole('button', { name: 'Весь мир' }));
@@ -144,12 +151,12 @@ describe('клики во время анимации камеры (SPEC §7.1)'
     fireEvent.click(screen.getByRole('button', { name: placeName(pool, 'ru') }));
     expect(window.location.hash).toBe('#/r/icewrack');
     expect(heading()).toHaveTextContent(icewrack.name.ru);
-    expect(Element.prototype.animate).toHaveBeenCalledTimes(1);
+    expect(flights).toBe(1);
 
     await done();
     expect(window.location.hash).toBe('#/r/icewrack/black-pool');
     expect(heading()).toHaveTextContent(placeName(pool, 'ru'));
-    expect(Element.prototype.animate).toHaveBeenCalledTimes(2);
+    expect(flights).toBe(2);
 
     // Вторая анимация (A4) тоже держит навигацию, потом всё снова отвечает сразу.
     fireEvent.keyDown(window, { key: 'Escape' });

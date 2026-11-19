@@ -18,7 +18,7 @@ import { RegionArt } from './RegionArt';
 import { WorldArt } from './WorldArt';
 import { ZoomControls } from './ZoomControls';
 import { RegionList } from './RegionList';
-import { RegionsLayer, UnmappedRegions, zoomedClass } from './RegionsLayer';
+import { RegionLabels, RegionsLayer, UnmappedRegions, zoomedClass } from './RegionsLayer';
 import { RegionTooltip } from './RegionTooltip';
 import { Threads } from './Threads';
 import { threadStyleFrom } from './threadStyle';
@@ -103,8 +103,10 @@ export function MapStage({
   topInset = 0,
   coverTop = 0,
 }: Props) {
-  const { lang, t } = useT();
+  const { lang, l, t } = useT();
   const svgRef = useRef<SVGSVGElement>(null);
+  /** SVG экранного слоя (#180): названия регионов и маркеры мест — их ширины меряются здесь. */
+  const screenSvgRef = useRef<SVGSVGElement>(null);
   /** Пункт списка регионов под наведением или фокусом: регион подсвечен на карте, без подсказки. */
   const [listId, setListId] = useState<string | null>(null);
 
@@ -126,13 +128,13 @@ export function MapStage({
   const previewPlaces = useMemo(() => (preview ? new Set(preview.map((s) => s.key)) : null), [preview]);
 
   const cam = useCamera({ active, activePlaceSlug, panel, regionList, topInset, hasMap, onCameraBusy });
-  const { viewportRef, layerRef, listLayout, flying, target, frame, controls } = cam;
+  const { viewportRef, layerRef, screenRef, listLayout, flying, target, frame, controls } = cam;
   // Рисунок пути (#168): `?threads=<вариант>` до `#` — сравнение вариантов для владельца.
   const [threadVariant] = useState(() => threadStyleFrom(typeof location === 'undefined' ? '' : location.search));
 
   // Ширины подписей: при смене языка, региона и после загрузки шрифтов (подписи не выходят за край и не налезают).
   const fontsTick = useFontsTick();
-  const widths = useMeasuredLabels(svgRef, `${lang}|${active?.id ?? ''}|${fontsTick}|${hasMap}`);
+  const widths = useMeasuredLabels(screenSvgRef, `${lang}|${active?.id ?? ''}|${fontsTick}|${hasMap}`);
   const labels = useMarkerLabels({ spots, activeId: active?.id, activePlaceSlug, focusPlaces, lang, widths, frame });
   const threadLayout = useThreadLayout({ threads, active, drawn, labels, widths, frame, coverTop, listed: !!listLayout });
 
@@ -155,7 +157,6 @@ export function MapStage({
               viewBox={`0 0 ${STAGE_WIDTH} ${STAGE_HEIGHT}`}
               role="group"
               aria-label={t('world.map')}
-              style={{ '--map-text': frame.textScale } as CSSProperties}
             >
               <RegionsLayer
                 drawn={drawn}
@@ -165,10 +166,44 @@ export function MapStage({
                 litId={litId}
                 focusRegions={focusRegions}
                 previewRegions={previewRegions}
-                widths={widths}
                 onSelectRegion={onSelectRegion}
               />
               {active && <RegionArt key={`art-${active.id}`} region={active} />}
+              {threads && (
+                <Threads
+                  key={threadsKey}
+                  threads={threads}
+                  scale={frame.threadScale}
+                  obstacles={threadLayout.obstacles}
+                  clip={threadLayout.clip}
+                  compact={Boolean(listLayout)}
+                  variant={threadVariant}
+                />
+              )}
+            </svg>
+          </div>
+          {/* Экранный слой (#180, ARCHITECTURE A4): тот же кадр и transform, что у слоя карты, но без
+              will-change — текст растеризуется в разрешении экрана при любом приближении. */}
+          <div ref={screenRef} className={styles.screen} style={{ transform: target, '--aspect': WORLD_ASPECT } as CSSProperties}>
+            <svg
+              ref={screenSvgRef}
+              className={styles.svg}
+              viewBox={`0 0 ${STAGE_WIDTH} ${STAGE_HEIGHT}`}
+              role={active ? 'group' : undefined}
+              aria-label={active ? l(active.name) : undefined}
+              aria-hidden={active ? undefined : 'true'}
+              style={{ '--map-text': frame.textScale } as CSSProperties}
+              data-screen-layer=""
+            >
+              <RegionLabels
+                drawn={drawn}
+                inWorld={inWorld}
+                shownId={tip.shownId}
+                litId={litId}
+                focusRegions={focusRegions}
+                previewRegions={previewRegions}
+                widths={widths}
+              />
               {active && (
                 <MarkersLayer
                   key={`markers-${active.id}`}
@@ -183,17 +218,6 @@ export function MapStage({
                   place={place}
                   onSelectPlace={onSelectPlace}
                   onOpenMedia={onOpenMedia}
-                />
-              )}
-              {threads && (
-                <Threads
-                  key={threadsKey}
-                  threads={threads}
-                  scale={frame.threadScale}
-                  obstacles={threadLayout.obstacles}
-                  clip={threadLayout.clip}
-                  compact={Boolean(listLayout)}
-                  variant={threadVariant}
                 />
               )}
             </svg>
