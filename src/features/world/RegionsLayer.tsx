@@ -1,4 +1,4 @@
-import { useRef, useState, type CSSProperties } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import type { Region } from '../../data/types';
 import { useT } from '../../i18n';
 import { WORLD_ART, WORLD_PREVIEW } from './art';
@@ -43,9 +43,23 @@ export function RegionsLayer({ drawn, activeId, inWorld, tip, litId, focusRegion
   const fillOf = (r: Region) => (WORLD_ART ? '#000' : biomeColor(r.biome));
   const { shownId, focusId, tooltipId, region: on } = tip;
   const active = drawn.find((r) => r.id === activeId);
-  // #188: фокус от тапа — не фокус с клавиатуры; на сенсорных экранах подсветки и подсказки по нему нет,
-  // иначе после возврата в мир регион остаётся подсвеченным без наведения.
-  const touchFocus = useRef(false);
+  // #188, #207: подсветка и кольцо по фокусу — только для фокуса с клавиатуры. Фокус от клика, тапа или возврата
+  // в мир после кнопки «назад» мышью не подсвечивает регион: последним вводом был указатель, а не клавиша.
+  const pointerFocus = useRef(false);
+  useEffect(() => {
+    const onPointer = () => {
+      pointerFocus.current = true;
+    };
+    const onKey = () => {
+      pointerFocus.current = false;
+    };
+    window.addEventListener('pointerdown', onPointer, true);
+    window.addEventListener('keydown', onKey, true);
+    return () => {
+      window.removeEventListener('pointerdown', onPointer, true);
+      window.removeEventListener('keydown', onKey, true);
+    };
+  }, []);
   const isLit = (id: string) => id === shownId || id === litId || (inWorld && (focusRegions?.has(id) || previewRegions?.has(id)));
   // Свечение появляется в DOM при первой подсветке и остаётся (для угасания): 27 погасших свечений под clipPath
   // дорого стоят кадру входа (A14). Состояние правится во время рендера — штатный приём React.
@@ -97,12 +111,8 @@ export function RegionsLayer({ drawn, activeId, inWorld, tip, litId, focusRegion
               // SPEC §5.3: на тач-устройствах подсказки нет, тап сразу открывает регион.
               onPointerEnter={(e) => e.pointerType !== 'touch' && on.onEnter(r, { x: e.clientX, y: e.clientY })}
               onPointerLeave={(e) => e.pointerType !== 'touch' && on.onLeave(r)}
-              onPointerDown={(e) => {
-                touchFocus.current = e.pointerType === 'touch';
-              }}
               onFocus={() => {
-                if (touchFocus.current) touchFocus.current = false;
-                else on.onFocus(r);
+                if (!pointerFocus.current) on.onFocus(r);
               }}
               onBlur={() => on.onBlur(r)}
             />
