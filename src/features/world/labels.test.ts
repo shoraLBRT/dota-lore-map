@@ -41,19 +41,22 @@ const m = (key: string, x: number, y: number, extra: Partial<MarkerLabel> = {}):
 });
 
 describe('placeMarkerLabels — подписи маркеров не налезают друг на друга', () => {
-  it('просторно — все сверху', () => {
+  it('просторно — все справа от точки (#191)', () => {
     const sides = placeMarkerLabels([m('a', 0, 0), m('b', 200, 0), m('c', 0, 200)]);
-    expect([...sides.values()]).toEqual(['top', 'top', 'top']);
+    expect([...sides.values()]).toEqual(['right', 'right', 'right']);
   });
 
   it('у края кадра подпись не выходит за него: ищет другую сторону, нет — прячется', () => {
     const bounds = { left: -100, right: 100, top: -100, bottom: 100 };
-    // У верхнего края — снизу; у левого края, где и сверху, и снизу вылезает — справа.
-    expect(placeMarkerLabels([m('a', 0, -80)], bounds).get('a')).toBe('bottom');
+    // У правого края — слева; у левого края — справа.
+    expect(placeMarkerLabels([m('a', 60, 0)], bounds).get('a')).toBe('left');
     expect(placeMarkerLabels([m('b', -90, 0)], bounds).get('b')).toBe('right');
+    // Длинной подписи тесно по бокам — сверху, а у верхнего края — снизу.
+    expect(placeMarkerLabels([m('w', 0, 0, { width: 150 })], bounds).get('w')).toBe('top');
+    expect(placeMarkerLabels([m('w', 0, -90, { width: 150 })], bounds).get('w')).toBe('bottom');
     // Маркер за краем — без подписи; без bounds — как раньше.
     expect(placeMarkerLabels([m('c', 300, 0)], bounds).get('c')).toBe('hidden');
-    expect(placeMarkerLabels([m('c', 300, 0)]).get('c')).toBe('top');
+    expect(placeMarkerLabels([m('c', 300, 0)]).get('c')).toBe('right');
   });
 
   it('маркер за видимой частью кадра — без подписи, даже если она сама влезла бы (#96)', () => {
@@ -72,14 +75,17 @@ describe('placeMarkerLabels — подписи маркеров не налез�
     expect(sides.get('c')).toBe('left');
   });
 
-  it('соседу сверху тесно — следующая сторона: снизу, справа, слева', () => {
-    // b прямо над a: подпись a сверху налезла бы на кольцо b.
-    const sides = placeMarkerLabels([m('b', 0, -30), m('a', 0, 0)]);
-    expect(sides.get('b')).toBe('top');
-    expect(sides.get('a')).toBe('bottom');
+  it('справа тесно — следующая сторона: слева, сверху, снизу', () => {
+    // b правее a: подпись a справа налезла бы на кольцо b.
+    const sides = placeMarkerLabels([m('b', 30, 0), m('a', 0, 0)]);
+    expect(sides.get('b')).toBe('right');
+    expect(sides.get('a')).toBe('left');
+    // Справа и слева соседи — сверху; и сверху — снизу.
+    expect(placeMarkerLabels([m('b', 30, 0), m('c', -30, 0), m('a', 0, 0)]).get('a')).toBe('top');
+    expect(placeMarkerLabels([m('b', 30, 0), m('c', -30, 0), m('n', 0, -24), m('a', 0, 0)]).get('a')).toBe('bottom');
   });
 
-  it('места нет — подпись прячется, а обязательная встаёт сверху', () => {
+  it('места нет — подпись прячется, а обязательная встаёт на первую сторону — справа', () => {
     // Плотное кольцо соседей вокруг центра закрывает все четыре стороны.
     const around = [
       m('n', 0, -24),
@@ -88,7 +94,7 @@ describe('placeMarkerLabels — подписи маркеров не налез�
       m('w', -30, 0),
     ];
     expect(placeMarkerLabels([...around, m('c', 0, 0)]).get('c')).toBe('hidden');
-    expect(placeMarkerLabels([m('c', 0, 0, { must: true }), ...around]).get('c')).toBe('top');
+    expect(placeMarkerLabels([m('c', 0, 0, { must: true }), ...around]).get('c')).toBe('right');
   });
 
   it('обязательной подписи тесно везде — сторона, где она накрывает меньше колец (#98)', () => {
@@ -106,8 +112,8 @@ describe('placeMarkerLabels — подписи маркеров не налез�
   });
 });
 
-describe('labelBox — плашка подписи маркера (#98)', () => {
-  it('рамка — текст плюс поля плашки, у кольца с прежним зазором', () => {
+describe('labelBox — рамка подписи маркера (#191)', () => {
+  it('рамка — текст плюс поля под ореол, у кольца с прежним зазором', () => {
     const b = labelBox('top', { width: 60, size: 13, ring: 9 });
     expect(b.right - b.left).toBe(60 + 2 * LABEL_PAD_X);
     expect(b.bottom - b.top).toBe(13 + 2 * LABEL_PAD_Y);

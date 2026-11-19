@@ -310,10 +310,11 @@ describe('MapStage — маркеры мест (S2/S3, SPEC §5.4, §6.3)', () =
     }
   });
 
-  it('маркер — точка в кольце, столица — звезда; место без позиции не рисуется', () => {
+  it('маркер — ромб места события, столица — звезда (#191); место без позиции не рисуется', () => {
     renderStage([withPlaces()], 'a');
-    expect(screen.getByRole('button', { name: 'Spot' }).querySelector('polygon')).toBeNull();
-    expect(screen.getByRole('button', { name: 'Capital' }).querySelector('polygon')).not.toBeNull();
+    const shape = (name: string) => screen.getByRole('button', { name }).querySelector('[data-shape]')!.getAttribute('data-shape');
+    expect(shape('Spot')).toBe('diamond');
+    expect(shape('Capital')).toBe('star');
     expect(screen.getByRole('button', { name: 'Capital' }).getAttribute('class')).toMatch(/capital/);
     expect(screen.queryByRole('button', { name: 'Hidden' })).toBeNull();
   });
@@ -386,6 +387,7 @@ describe('MapStage — подписи и подсказки (аудит E13)', (
     renderStage([crowded], 'a');
     const side = (slug: string) => document.querySelector(`[data-place="${slug}"] text`)!.getAttribute('data-side');
     expect(side('cap')).not.toBe('hidden');
+    expect(document.querySelector('[data-place="cap"] [data-shape]')!.getAttribute('data-shape')).toBe('star');
     const hidden = ['n', 's', 'e', 'w'].filter((slug) => side(slug) === 'hidden');
     expect(hidden.length).toBeGreaterThan(0);
     for (const slug of hidden) {
@@ -404,13 +406,15 @@ describe('MapStage — подписи и подсказки (аудит E13)', (
     });
     renderStage([{ ...region('a', true), places: [at('ev', [0.1, 0.1], 'event'), at('mi', [0.2, 0.1], 'minor'), at('old', [0.25, 0.1])] }], 'a');
     const marker = (slug: string) => document.querySelector(`[data-place="${slug}"]`)!;
-    const ring = (slug: string) => marker(slug).querySelector('circle:not([r="18"])')!.getAttribute('r');
+    const shape = (slug: string) => marker(slug).querySelector('[data-shape]')!.getAttribute('data-shape');
     expect(marker('ev').getAttribute('data-significance')).toBe('event');
     expect(marker('ev').getAttribute('class')).toMatch(/event/);
     expect(marker('mi').getAttribute('class')).toMatch(/minor/);
     // Нет поля — как место события.
     expect(marker('old').getAttribute('data-significance')).toBe('event');
-    expect([ring('ev'), ring('old'), ring('mi')]).toEqual(['9', '9', '7']);
+    // Три вида маркера без легенды (#191): место события — ромб, место — точка; столица — звезда (ниже).
+    expect([shape('ev'), shape('old'), shape('mi')]).toEqual(['diamond', 'diamond', 'dot']);
+    expect([marker('ev'), marker('mi')].map((m) => m.getAttribute('data-kind'))).toEqual(['event', 'place']);
     // Второстепенное место не убираем — оно на карте и кликается.
     expect(screen.getByRole('button', { name: 'MI' })).toBeInTheDocument();
     cleanup();
@@ -420,7 +424,7 @@ describe('MapStage — подписи и подсказки (аудит E13)', (
     const crowd = ['m1', 'm2', 'm3', 'm4'].map((slug) => at(slug, [0.2, 0.2], 'minor'));
     renderStage([{ ...region('a', true), places: [...crowd, at('ev', [0.2, 0.2], 'event')] }], 'a');
     const side = (slug: string) => document.querySelector(`[data-place="${slug}"] text`)!.getAttribute('data-side');
-    expect(side('ev')).toBe('top');
+    expect(side('ev')).toBe('right');
     expect(side('m4')).toBe('hidden');
   });
 

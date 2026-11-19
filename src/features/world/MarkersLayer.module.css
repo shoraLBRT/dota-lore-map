@@ -1,4 +1,5 @@
-/* Маркеры мест (SPEC §6.3): точка в кольце, столица — звезда в кольце и подпись крупнее.
+/* Маркеры мест (SPEC §6.3, #191): столица — звезда и подпись капителями, место события — ромб, место — точка.
+   Подписи без плашек: светлый текст с тёмным ореолом (обводка под текстом, paint-order) сбоку от фигуры.
    A3: появляются по очереди с шагом --dur-stagger (40 мс) в последней трети перелёта. */
 .marker {
   cursor: pointer;
@@ -9,6 +10,15 @@
 
 .hit {
   fill: transparent;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* Зона нажатия на сенсорном экране — не меньше 44 px (HIT_RADIUS 16 × 1.375 = 22, WCAG 2.5.5), фигура меньше неё. */
+@media (pointer: coarse) {
+  .hit {
+    transform: scale(1.375);
+  }
 }
 
 /* SPEC §7.5: кольцо вырастает из точки с лёгким перелётом вместе с проявлением маркера. */
@@ -29,6 +39,9 @@
   fill: var(--map-ink);
   stroke: var(--metal-bright);
   stroke-width: 2;
+  /* Обводка фигур со scale() не толстеет вместе с ними. */
+  vector-effect: non-scaling-stroke;
+  stroke-linejoin: round;
   transition:
     stroke var(--dur-hover) var(--ease-out),
     filter var(--dur-hover) var(--ease-out);
@@ -36,10 +49,22 @@
 
 .dot {
   fill: var(--accent-bright);
+  pointer-events: none;
 }
 
-.capital .dot {
+/* Столица — светлая звезда с тёмной кромкой. */
+.capital .ring {
   fill: var(--metal-bright);
+  stroke: var(--label-halo);
+  stroke-width: 1.5;
+}
+
+/* Кольцо выбранного места вокруг фигуры (#96). */
+.selection {
+  fill: var(--map-ink);
+  stroke: var(--accent-bright);
+  stroke-width: 2.5;
+  filter: drop-shadow(0 0 8px var(--marker-glow)) drop-shadow(0 0 3px var(--marker-glow));
 }
 
 .markerLabel {
@@ -47,15 +72,15 @@
   font-family: var(--font-body);
   font-size: 13px;
   font-weight: 600;
-  pointer-events: none;
+  /* Видимая подпись — часть кнопки маркера (#191): клик по ней открывает место. Спрятанная мышь не ловит (ниже). */
+  pointer-events: auto;
+  /* Ореол вместо плашки (#191, SPEC §8.6): тёмная обводка под текстом — у каждой буквы свой тёмный фон,
+     поэтому подпись ≥ 4.5:1 на снегу и на песке (quality.test.ts). Поля рамки под ореол — labels.ts: LABEL_PAD_X/Y. */
+  paint-order: stroke;
+  stroke: var(--label-halo);
+  stroke-width: 3.5px;
+  stroke-linejoin: round;
   transition: fill var(--dur-hover) var(--ease-out);
-}
-
-/* Подпись — на тёмной плашке, а не с обводкой (#98, SPEC §8.6): читается на любом фоне карты.
-   Размер плашки — рамка подписи из labels.ts (labelBox) с полями LABEL_PAD_X, LABEL_PAD_Y. */
-.plate {
-  fill: var(--label-plate);
-  pointer-events: none;
 }
 
 .capital .markerLabel {
@@ -72,7 +97,7 @@
    и подсветка героя ниже перекрывают эти цвета. */
 .event .ring {
   stroke: var(--marker-event);
-  stroke-width: 2.5;
+  stroke-width: 2;
 }
 
 .event .markerLabel {
@@ -80,12 +105,9 @@
 }
 
 .minor .ring {
-  stroke: var(--marker-minor);
-  stroke-width: 1.5;
-}
-
-.minor .dot {
   fill: var(--marker-minor);
+  stroke: var(--label-halo);
+  stroke-width: 1.5;
 }
 
 .minor .markerLabel {
@@ -97,8 +119,7 @@
 /* Наведение и фокус: кольцо светится, подпись ярче (SPEC §5.4, §7.2); `.lit` — то же от строки списка мест в панели (#99). */
 .marker:hover .ring,
 .marker:focus-visible .ring,
-.lit .ring,
-.current .ring {
+.lit .ring {
   stroke: var(--accent-bright);
   filter: drop-shadow(0 0 6px var(--marker-glow));
 }
@@ -118,45 +139,46 @@
   stroke-width: 3;
 }
 
-/* Значок медиа у маркера (#69, SPEC §6.3): квадратик-страница в верхнем правом углу кольца,
+/* Значок медиа у маркера (#69, SPEC §6.3, #191): значок галереи без плашки на верхнем правом углу фигуры,
    появляется вместе с маркером. Этот угол маркера отдан значку медиа. */
 .mediaBadge {
   cursor: pointer;
   animation: marker-in var(--dur-hover) var(--ease-out) calc(var(--dur-camera) * 2 / 3 + var(--i, 0) * var(--dur-stagger)) both;
 }
 
-.badgeFrame {
-  fill: var(--map-ink);
-  stroke: var(--metal-bright);
-  stroke-width: 1.5;
-  transition:
-    stroke var(--dur-hover) var(--ease-out),
-    filter var(--dur-hover) var(--ease-out);
+.badgeHit {
+  fill: transparent;
+}
+
+.badgeHalo {
+  fill: none;
+  stroke: var(--label-halo);
+  stroke-width: 3.5;
+  stroke-linejoin: round;
 }
 
 .badgeLines {
   fill: none;
   stroke: var(--metal-bright);
   stroke-width: 1.2;
+  stroke-linejoin: round;
+  transition: stroke var(--dur-hover) var(--ease-out);
 }
 
-.mediaBadge:hover .badgeFrame,
-.mediaBadge:focus-visible .badgeFrame {
+.mediaBadge:hover .badgeLines,
+.mediaBadge:focus-visible .badgeLines {
   stroke: var(--accent-bright);
-  stroke-width: 2;
-  filter: drop-shadow(0 0 4px var(--marker-glow));
+  stroke-width: 1.6;
 }
 
 .mediaBadge:focus-visible {
   outline: none;
 }
 
-/* Активное место (S3) выделено (SPEC §5.5, #96): кольцо крупнее (markerLayout.ts: ringOf) и ярче,
+/* Активное место (S3) выделено (SPEC §5.5, #96): фигура в светящемся кольце (.selection, markerLayout.ts: ringOf),
    подпись — как у столицы (fontOf). `.marker.current` перекрывает значимость и подсветку героя. */
 .marker.current .ring {
   stroke: var(--accent-bright);
-  stroke-width: 3.5;
-  filter: drop-shadow(0 0 10px var(--marker-glow)) drop-shadow(0 0 3px var(--marker-glow));
 }
 
 .marker.current .markerLabel {
@@ -194,10 +216,10 @@
 }
 
 /* Прозрачность маркера занята анимацией появления — приглушаем его части. Подпись — цветом текста,
-   а не прозрачностью (#98): на плашке она остаётся ≥ 4.5:1 (quality.test.ts). */
+   а не прозрачностью (#98): на ореоле она остаётся ≥ 4.5:1 (quality.test.ts). */
 .mutedMarker .ring,
 .mutedMarker .dot,
-.mutedMarker .badgeFrame,
+.mutedMarker .badgeHalo,
 .mutedMarker .badgeLines {
   opacity: 0.35;
 }
@@ -210,6 +232,7 @@
    и появляется при наведении, фокусе и у выбранного места. */
 .marker.labelHidden .label {
   opacity: 0;
+  pointer-events: none;
   transition: opacity var(--dur-hover) var(--ease-out);
 }
 

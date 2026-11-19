@@ -16,15 +16,21 @@ const MINOR_FONT = 12;
 
 /** Значимость места (#68, SPEC §6.3); нет поля — как `event`. */
 export const significance = (p: Place): Significance => p.significance ?? 'event';
-/** Радиус кольца маркера, px: выбранное место (крупнее всех, #96), столица, место, второстепенное место (меньше). */
-export const ringOf = (p: Place, selected = false) => (selected ? 13 : p.capital ? 11 : significance(p) === 'minor' ? 7 : 9);
+/** Вид маркера (#191, SPEC §6.3): столица — звезда, место события — ромб, остальное место — точка. */
+export type MarkerKind = 'capital' | 'event' | 'place';
+export const kindOf = (p: Place): MarkerKind => (p.capital ? 'capital' : significance(p) === 'minor' ? 'place' : 'event');
+/**
+ * Радиус фигуры маркера, px (по нему расставляются подписи): выбранное место (крупнее всех, #96), столица,
+ * место события, место. Зона нажатия больше фигуры — `HIT_RADIUS` (MarkersLayer).
+ */
+export const ringOf = (p: Place, selected = false) => (selected ? 10 : { capital: 9, event: 6, place: 4 }[kindOf(p)]);
 /** Кегль подписи: у выбранного места — как у столицы (MarkersLayer.module.css: .current .markerLabel). */
 export const fontOf = (p: Place, selected = false) =>
   selected || p.capital ? CAPITAL_FONT : significance(p) === 'minor' ? MINOR_FONT : MARKER_FONT;
 /** Порядок подписей после текущего места, столицы и мест героя: события, второстепенные (labels.ts). */
 const SIGNIFICANCE_RANK: Record<Significance, number> = { event: 3, minor: 4 };
 
-/** Подпись маркера на стороне `side`: якорь и базовая линия текста внутри плашки (labels.ts: labelBox). */
+/** Подпись маркера на стороне `side`: якорь и базовая линия текста внутри её рамки (labels.ts: labelBox). */
 export function markerLabelAttrs(
   side: LabelSide,
   ring: number,
@@ -41,6 +47,55 @@ export function markerLabelAttrs(
     default:
       return { x: 0, y: -d - LABEL_PAD_Y - 0.22 * size, textAnchor: 'middle' };
   }
+}
+
+interface ItemOptions {
+  activeId: string | undefined;
+  activePlaceSlug: string | undefined;
+  /** Ключи `region/slug` мест выбранного героя. */
+  focusPlaces: Set<string> | null;
+  lang: Lang;
+  widths: Record<string, number>;
+  markerScale: number;
+}
+
+/**
+ * Подписи маркеров по порядку расстановки (labels.ts: placeMarkerLabels): текущее место, столица, места героя,
+ * затем по значимости; координаты — в единицах группы маркера (1 = 1 экранный px).
+ */
+export function markerLabelItems(spots: Place[], { activeId, activePlaceSlug, focusPlaces, lang, widths, markerScale }: ItemOptions): MarkerLabel[] {
+  const rank = (p: Place) =>
+    p.slug === activePlaceSlug ? 0 : p.capital ? 1 : focusPlaces?.has(`${activeId}/${p.slug}`) ? 2 : SIGNIFICANCE_RANK[significance(p)];
+  return [...spots]
+    .sort((a, b) => rank(a) - rank(b))
+    .map((p) => {
+      const [x, y] = toStage(p.pos!);
+      const selected = p.slug === activePlaceSlug;
+      const size = fontOf(p, selected);
+      return {
+        key: p.slug,
+        x: x / markerScale,
+        y: y / markerScale,
+        // Без измерений — оценка по числу знаков.
+        width: widths[`m:${p.slug}`] ?? placeName(p, lang).length * size * 0.6,
+        size,
+        ring: ringOf(p, selected),
+        must: rank(p) < 2,
+        selected,
+      };
+    });
+}
+
+/**
+ * Видимая часть кадра (левее панели, выше шторки) в единицах маркеров: подписи не уходят за край (аудит E13).
+ * Без измерений — `undefined`.
+ */
+export function labelBounds({ view, inset, insetBottom, framed, regionZoom }: Pick<Frame, 'view' | 'inset' | 'insetBottom' | 'framed' | 'regionZoom'>): Box | undefined {
+  if (view.width <= 0) return undefined;
+  const frame = visibleFrame(view, inset, LABEL_MARGIN, insetBottom);
+  const [ox, oy] = toScreen([0, 0], framed.camera, framed.offset, view, framed.offsetY);
+  const k = regionZoom / framed.camera.zoom;
+  return { left: (frame.left - ox) * k, right: (frame.right - ox) * k, top: (frame.top - oy) * k, bottom: (frame.bottom - oy) * k };
 }
 
 interface Options {
@@ -60,47 +115,13 @@ interface Options {
  */
 export function useMarkerLabels({ spots, activeId, activePlaceSlug, focusPlaces, lang, widths, frame: cam }: Options) {
   const { markerScale, regionZoom, view, inset, insetBottom, framed } = cam;
-  const items = useMemo(() => {
-    const rank = (p: Place) =>
-      p.slug === activePlaceSlug
-        ? 0
-        : p.capital
-          ? 1
-          : focusPlaces?.has(`${activeId}/${p.slug}`)
-            ? 2
-            : SIGNIFICANCE_RANK[significance(p)];
-    const out: MarkerLabel[] = [...spots]
-      .sort((a, b) => rank(a) - rank(b))
-      .map((p) => {
-        const [x, y] = toStage(p.pos!);
-        const selected = p.slug === activePlaceSlug;
-        const size = fontOf(p, selected);
-        return {
-          key: p.slug,
-          x: x / markerScale,
-          y: y / markerScale,
-          // Без измерений — оценка по числу знаков.
-          width: widths[`m:${p.slug}`] ?? placeName(p, lang).length * size * 0.6,
-          size,
-          ring: ringOf(p, selected),
-          must: rank(p) < 2,
-          selected,
-        };
-      });
-    return out;
-  }, [spots, activePlaceSlug, focusPlaces, activeId, lang, widths, markerScale]);
-  const sides = useMemo(() => {
-    // Видимая часть кадра (левее панели, выше шторки) в единицах маркеров: подписи не уходят за край (аудит E13).
-    let bounds: Box | undefined;
-    if (view.width > 0 && activeId) {
-      const frame = visibleFrame(view, inset, LABEL_MARGIN, insetBottom);
-      const [ox, oy] = toScreen([0, 0], framed.camera, framed.offset, view, framed.offsetY);
-      const k = regionZoom / framed.camera.zoom;
-      bounds = { left: (frame.left - ox) * k, right: (frame.right - ox) * k, top: (frame.top - oy) * k, bottom: (frame.bottom - oy) * k };
-    }
-    return placeMarkerLabels(items, bounds);
-  }, [items, activeId, view, inset, insetBottom, framed, regionZoom]);
-  // Ширина текста каждой подписи — для плашки под ней (MarkersLayer, #98).
-  const labelWidths = useMemo(() => new Map(items.map((m) => [m.key, m.width])), [items]);
-  return { items, sides, labelWidths };
+  const items = useMemo(
+    () => markerLabelItems(spots, { activeId, activePlaceSlug, focusPlaces, lang, widths, markerScale }),
+    [spots, activePlaceSlug, focusPlaces, activeId, lang, widths, markerScale],
+  );
+  const sides = useMemo(
+    () => placeMarkerLabels(items, activeId ? labelBounds({ view, inset, insetBottom, framed, regionZoom }) : undefined),
+    [items, activeId, view, inset, insetBottom, framed, regionZoom],
+  );
+  return { items, sides };
 }

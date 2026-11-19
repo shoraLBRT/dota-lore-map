@@ -63,13 +63,16 @@ export const LABEL_GAP = 3;
 /** Минимальный просвет между подписями, px. */
 const PAD = 2;
 
-/** Поля плашки подписи маркера (#98, SPEC §8.6): по бокам и сверху-снизу от текста, px. */
-export const LABEL_PAD_X = 4;
-export const LABEL_PAD_Y = 2;
+/**
+ * Поля рамки подписи маркера по бокам и сверху-снизу от текста, px: место под обводку-ореол (#191, SPEC §8.6;
+ * MarkersLayer.module.css: .markerLabel, stroke-width 3.5 — по 1.75 px наружу).
+ */
+export const LABEL_PAD_X = 2;
+export const LABEL_PAD_Y = 1;
 
 /**
- * Рамка подписи для стороны `side` в координатах группы маркера (0, 0 — центр маркера) — это и плашка
- * под текстом (#98): ширина текста и кегль плюс поля `LABEL_PAD_X`, `LABEL_PAD_Y`.
+ * Рамка подписи для стороны `side` в координатах группы маркера (0, 0 — центр маркера): ширина текста
+ * и кегль плюс поля под ореол `LABEL_PAD_X`, `LABEL_PAD_Y`.
  */
 export function labelBox(side: Exclude<LabelSide, 'hidden'>, m: Pick<MarkerLabel, 'width' | 'size' | 'ring'>): Box {
   const h = m.size + 2 * LABEL_PAD_Y;
@@ -87,7 +90,8 @@ export function labelBox(side: Exclude<LabelSide, 'hidden'>, m: Pick<MarkerLabel
   }
 }
 
-const SIDES = ['top', 'bottom', 'right', 'left'] as const;
+/** Порядок сторон подписи (#191): сбоку от точки, при нехватке места — сверху и снизу. */
+const SIDES = ['right', 'left', 'top', 'bottom'] as const;
 
 const overlap = (a: Box, b: Box) =>
   a.left < b.right + PAD && b.left < a.right + PAD && a.top < b.bottom + PAD && b.top < a.bottom + PAD;
@@ -103,8 +107,8 @@ const shift = (b: Box, x: number, y: number): Box => ({
 
 /**
  * Жадная расстановка подписей маркеров: по порядку `items` (важные — первыми) каждая подпись
- * встаёт на первую свободную сторону — сверху, снизу, справа, слева. Мешают ей уже поставленные подписи
- * и кольца всех маркеров. Нет места — `hidden`, а обязательная подпись (`must`) — на первую сторону в кадре или сверху.
+ * встаёт на первую свободную сторону — справа, слева, сверху, снизу. Мешают ей уже поставленные подписи
+ * и фигуры всех маркеров. Нет места — `hidden`, а обязательная подпись (`must`) — на первую сторону в кадре или справа.
  * `bounds` — видимая часть кадра в тех же единицах: подпись, вылезающая за неё, ищет другую сторону;
  * маркер, центр которого за её пределами, подписи не получает (кроме выбранного места, #96).
  */
@@ -129,13 +133,13 @@ export function placeMarkerLabels(items: MarkerLabel[], bounds?: Box): Map<strin
     }
     if (side === 'hidden' && m.must) {
       // Обязательная подпись: среди сторон, где она не вылезает из кадра, — та, что накрывает меньше
-      // подписей и колец (при равенстве — первая по порядку); таких нет — сверху.
+      // подписей и колец (при равенстве — первая по порядку); таких нет — справа.
       const conflicts = (s: (typeof SIDES)[number]) => {
         const box = shift(labelBox(s, m), m.x, m.y);
         return placed.filter((p) => overlap(p, box)).length + rings.filter((r, j) => items[j] !== m && overlap(r, box)).length;
       };
       const fits = SIDES.filter((s) => !bounds || inside(shift(labelBox(s, m), m.x, m.y), bounds));
-      side = fits.reduce<(typeof SIDES)[number] | undefined>((best, s) => (best && conflicts(best) <= conflicts(s) ? best : s), undefined) ?? 'top';
+      side = fits.reduce<(typeof SIDES)[number] | undefined>((best, s) => (best && conflicts(best) <= conflicts(s) ? best : s), undefined) ?? SIDES[0];
       placed.push(shift(labelBox(side, m), m.x, m.y));
     }
     result.set(m.key, side);
