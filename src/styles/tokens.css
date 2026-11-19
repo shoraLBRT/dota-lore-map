@@ -35,9 +35,10 @@
 
   /* Карта: обводка подписей, виньетка, облака (SPEC §5.2, §5.3, §7.1 A1/A7) */
   --map-ink: rgb(0 0 0 / 0.65);
-  /* Мягкая подложка-свечение под названиями регионов: читаются на снегу и облаках арта (#112). */
+  /* Мягкая подложка-свечение под названиями регионов: читаются на снегу и облаках арта (#112).
+     Не больше двух drop-shadow: подписи перерисовываются каждый кадр зума, четыре тени роняли его до 35–40 к/с (#185). */
   --map-halo: rgb(6 7 10 / 0.9);
-  --map-halo-filter: drop-shadow(0 0 1px var(--map-halo)) drop-shadow(0 0 3px var(--map-halo)) drop-shadow(0 0 8px var(--map-halo)) drop-shadow(0 0 14px var(--map-halo));
+  --map-halo-filter: drop-shadow(0 0 2px var(--map-halo)) drop-shadow(0 0 10px var(--map-halo));
   --vignette: rgb(6 7 10 / 0.9);
   --veil: rgb(11 13 17 / 0.45);
   --veil-strong: rgb(6 7 10 / 0.88);

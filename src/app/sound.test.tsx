@@ -1,7 +1,7 @@
 import { act, renderHook } from '@testing-library/react';
 import type { ReactNode } from 'react';
 import { describe, expect, it, vi } from 'vitest';
-import { HOVER_GAP, SoundProvider, useSfx, useSound } from './sound';
+import { HOVER_GAP, PRECREATE_MS, SoundProvider, useSfx, useSound } from './sound';
 
 const wrapper = ({ children }: { children: ReactNode }) => <SoundProvider>{children}</SoundProvider>;
 
@@ -48,6 +48,20 @@ describe('звуки интерфейса (SPEC §7.4)', () => {
     act(() => hook.result.current.play('gallery'));
     expect(played).toEqual(['panel']);
     expect(created()).toBe(1);
+  });
+
+  it('синтезатор создаётся заранее, в простое, а не в жесте «Начать» (#185)', () => {
+    vi.useFakeTimers();
+    try {
+      const { created, hook } = setup();
+      expect(created()).toBe(0);
+      act(() => vi.advanceTimersByTime(PRECREATE_MS));
+      expect(created()).toBe(1);
+      act(() => hook.result.current.unlock());
+      expect(created()).toBe(1);
+    } finally {
+      vi.useRealTimers();
+    }
   });
 
   it('первый жест на любом экране разблокирует звук (прямая ссылка без «Начать»)', () => {
