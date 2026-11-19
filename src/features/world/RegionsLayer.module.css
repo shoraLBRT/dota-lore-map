@@ -28,15 +28,23 @@
 }
 
 /* S1h (SPEC §5.3, §7.1 A2, #188): свечение цветом стороны изнутри по сглаженной кривой и тонкий приглушённый
-   контур проявляются за 200 мс. Без фильтров: свечение — ступени широкой обводки, обрезанные формой региона. */
+   контур. Без фильтров: свечение — ступени широкой обводки, обрезанные формой региона. #211: проявляется за
+   `--dur-hl-in`, гаснет быстрее — за `--dur-hl-out`; переход opacity при быстром проведении мыши разворачивается
+   с текущего значения, а не начинается заново. */
 .tint {
   pointer-events: none;
   opacity: 0;
   /* Погасшая подсветка не рисуется вовсе (бюджет кадра на входе, A14); visibility держится до конца угасания. */
   visibility: hidden;
   transition:
-    opacity var(--dur-hover) var(--ease-out),
-    visibility 0s linear var(--dur-hover);
+    opacity var(--dur-hl-out) var(--ease-out),
+    visibility 0s linear var(--dur-hl-out);
+}
+
+/* #211: «дыхание» — только свечение, контур ровный. Анимация стоит на паузе, пока регион не подсвечен: угасание
+   идёт с той силы свечения, на которой его застали, без скачка к 100 %. */
+.glow {
+  animation: breathe var(--dur-breathe) ease-in-out infinite paused;
 }
 
 .glowFill {
@@ -73,15 +81,19 @@
 .tint.lit {
   opacity: 1;
   visibility: visible;
-  transition-delay: 0s;
-  /* SPEC §7.5: проявившаяся подсветка «дышит» — медленно тускнеет и разгорается. Задержка — на проявление:
-     до неё работает переход opacity, анимация его не перебивает. */
-  animation: breathe var(--dur-breathe) ease-in-out var(--dur-hover) infinite;
+  transition:
+    opacity var(--dur-hl-in) var(--ease-out),
+    visibility 0s;
+}
+
+/* SPEC §7.5: подсвеченный регион «дышит» — свечение медленно тускнеет до `--hl-breathe-min` и разгорается. */
+.tint.lit .glow {
+  animation-play-state: running;
 }
 
 @keyframes breathe {
   50% {
-    opacity: 0.6;
+    opacity: var(--hl-breathe-min);
   }
 }
 
@@ -226,9 +238,9 @@
   fill-opacity: 0.12;
 }
 
-/* SPEC §7.5: при reduced motion подсветка горит ровно. */
+/* SPEC §7.5: при reduced motion подсветка горит ровно, проявляется и гаснет сразу (`--dur-hl-*` = 0). */
 @media (prefers-reduced-motion: reduce) {
-  .tint.lit,
+  .glow,
   .veil {
     animation: none;
   }

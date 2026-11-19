@@ -127,6 +127,8 @@ button:hover {
 @media (prefers-reduced-motion: reduce) {
   :root {
     --dur-hover: 0ms;
+    --dur-hl-in: 0ms;
+    --dur-hl-out: 0ms;
     --dur-fade: 200ms;
     --dur-panel: 0ms;
     --dur-thread: 0ms;
