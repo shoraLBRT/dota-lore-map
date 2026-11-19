@@ -36,6 +36,16 @@ test('мир во весь кадр; колесо, перетаскивание,
   await page.mouse.up();
   await expect.poll(() => layer(page).evaluate((el) => (el as HTMLElement).style.transform)).not.toBe(before);
   await expectHash(page, '#/world');
+  // Подписи — в экранном слое (#180): та же рамка и тот же transform, что у слоя карты, а не его растр.
+  await expect(page.locator('[data-screen-layer] [data-label="stonehall"]')).toHaveCount(1);
+  const twin = await page.evaluate(() => {
+    const map = document.querySelector('[data-world-art]')!.parentElement!;
+    const screen = document.querySelector('[data-screen-layer]')!.parentElement!;
+    const [a, b] = [map, screen].map((el) => el.getBoundingClientRect());
+    return { same: map.style.transform === screen.style.transform, dx: Math.abs(a.x - b.x) + Math.abs(a.y - b.y) + Math.abs(a.width - b.width) };
+  });
+  expect(twin.same).toBe(true);
+  expect(twin.dx).toBeLessThan(1);
 
   // Кнопка «Показать мир целиком» и клавиша «+».
   await page.getByRole('button', { name: 'Показать мир целиком' }).click();

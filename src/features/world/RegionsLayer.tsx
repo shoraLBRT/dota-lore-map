@@ -28,16 +28,15 @@ interface Props {
   /** Регионы выбранного героя и героя под наведением. */
   focusRegions: Set<string> | null;
   previewRegions: Set<string> | null;
-  /** Измеренные ширины подписей (`r:id`). */
-  widths: Record<string, number>;
   onSelectRegion: (regionId: string, source?: 'map' | 'list') => void;
 }
 
 /**
- * Слой регионов (ARCHITECTURE A4): сверху вниз — подписи, заливка подсветки S1h, полигоны-кнопки
- * (в DOM — в обратном порядке). В S2/S3 полигоны не кнопки: соседи затемнены, активный — «пустое место».
+ * Слой регионов (ARCHITECTURE A4): сверху вниз — заливка подсветки S1h, полигоны-кнопки
+ * (в DOM — в обратном порядке); названия — `RegionLabels` в экранном слое (#180).
+ * В S2/S3 полигоны не кнопки: соседи затемнены, активный — «пустое место».
  */
-export function RegionsLayer({ drawn, activeId, inWorld, tip, litId, focusRegions, previewRegions, widths, onSelectRegion }: Props) {
+export function RegionsLayer({ drawn, activeId, inWorld, tip, litId, focusRegions, previewRegions, onSelectRegion }: Props) {
   const { l } = useT();
   // Есть арт — полигоны прозрачны поверх картинки и только затемняют соседей; нет — заглушка цветом биома.
   const onArt = WORLD_ART ? styles.onArt : undefined;
@@ -146,46 +145,70 @@ export function RegionsLayer({ drawn, activeId, inWorld, tip, litId, focusRegion
           );
         })}
       </g>
-      <g aria-hidden="true" className={styles.labels}>
-        {drawn.map((r, index) => {
-          const [lx, ly] = toStage(r.layout!.label);
-          // Длинные названия регионов — в две строки (ярусам, широким полосам, не нужно); подпись не выходит за край.
-          const name = l(r.name);
-          const lines = r.tier === 'continent' ? splitLabel(name) : [name];
-          const width = widths[`r:${r.id}`];
-          const x = width ? clampLabelX(lx, width) : lx;
-          return (
-            <text
-              key={r.id}
-              className={[
-                styles.label,
-                tones[highlight(r)],
-                r.tier !== 'continent' && styles.tierLabel,
-                (r.id === shownId || r.id === litId || (inWorld && previewRegions?.has(r.id))) && styles.lit,
-                inWorld && heroClass(r.id),
-              ]
-                .filter(Boolean)
-                .join(' ')}
-              x={x}
-              y={ly}
-              textAnchor="middle"
-              data-label={r.id}
-              // Номер в каскаде проявления подписей после интро (#187, WorldScreen `unveiling`).
-              style={{ '--i': index } as CSSProperties}
-              data-measure={lines.length === 1 ? `r:${r.id}` : undefined}
-            >
-              {lines.length === 1
-                ? name
-                : lines.map((line, i) => (
-                    <tspan key={i} x={x} dy={i === 0 ? '-0.45em' : '1.05em'} data-measure={`r:${r.id}`}>
-                      {line}
-                    </tspan>
-                  ))}
-            </text>
-          );
-        })}
-      </g>
     </>
+  );
+}
+
+interface LabelProps {
+  drawn: Region[];
+  inWorld: boolean;
+  /** Регион под наведением или фокусом (подсказка). */
+  shownId: RegionTooltipState['shownId'];
+  litId: string | null;
+  focusRegions: Set<string> | null;
+  previewRegions: Set<string> | null;
+  /** Измеренные ширины подписей (`r:id`). */
+  widths: Record<string, number>;
+}
+
+/**
+ * Названия регионов (ARCHITECTURE A4, #180): рисуются в экранном слое над слоем карты, а не в его растре,
+ * поэтому чёткие на любом приближении. Координаты — те же единицы сцены.
+ */
+export function RegionLabels({ drawn, inWorld, shownId, litId, focusRegions, previewRegions, widths }: LabelProps) {
+  const { l } = useT();
+  const heroClass = (regionId: string) =>
+    focusRegions ? (focusRegions.has(regionId) ? styles.heroRegion : styles.muted) : undefined;
+  return (
+    <g aria-hidden="true" className={styles.labels}>
+      {drawn.map((r, index) => {
+        const [lx, ly] = toStage(r.layout!.label);
+        // Длинные названия регионов — в две строки (ярусам, широким полосам, не нужно); подпись не выходит за край.
+        const name = l(r.name);
+        const lines = r.tier === 'continent' ? splitLabel(name) : [name];
+        const width = widths[`r:${r.id}`];
+        const x = width ? clampLabelX(lx, width) : lx;
+        return (
+          <text
+            key={r.id}
+            className={[
+              styles.label,
+              tones[highlight(r)],
+              r.tier !== 'continent' && styles.tierLabel,
+              (r.id === shownId || r.id === litId || (inWorld && previewRegions?.has(r.id))) && styles.lit,
+              inWorld && heroClass(r.id),
+            ]
+              .filter(Boolean)
+              .join(' ')}
+            x={x}
+            y={ly}
+            textAnchor="middle"
+            data-label={r.id}
+            // Номер в каскаде проявления подписей после интро (#187, WorldScreen `unveiling`).
+            style={{ '--i': index } as CSSProperties}
+            data-measure={lines.length === 1 ? `r:${r.id}` : undefined}
+          >
+            {lines.length === 1
+              ? name
+              : lines.map((line, i) => (
+                  <tspan key={i} x={x} dy={i === 0 ? '-0.45em' : '1.05em'} data-measure={`r:${r.id}`}>
+                    {line}
+                  </tspan>
+                ))}
+          </text>
+        );
+      })}
+    </g>
   );
 }
 

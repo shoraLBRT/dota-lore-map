@@ -2,6 +2,8 @@
    A3: появляются по очереди с шагом --dur-stagger (40 мс) в последней трети перелёта. */
 .marker {
   cursor: pointer;
+  /* Экранный слой не ловит мышь (#180) — ловят только маркеры. */
+  pointer-events: auto;
   animation: marker-in var(--dur-hover) var(--ease-out) calc(var(--dur-camera) * 2 / 3 + var(--i, 0) * var(--dur-stagger)) both;
 }
 

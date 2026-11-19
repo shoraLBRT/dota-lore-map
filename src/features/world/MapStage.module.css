@@ -34,6 +34,17 @@
   transform-origin: 0 0;
 }
 
+/* Экранный слой (#180): названия регионов и маркеры мест над слоем карты. Абсолютный ребёнок flex-кадра
+   встаёт по центру, как и слой карты; transform тот же, но без will-change — текст не растягивается растром. */
+.screen {
+  position: absolute;
+  width: max(100cqw, calc(100cqh * var(--aspect, 1)));
+  aspect-ratio: var(--aspect, 1);
+  transform-origin: 0 0;
+  touch-action: none;
+  pointer-events: none;
+}
+
 .svg {
   position: relative;
   display: block;

@@ -68,6 +68,8 @@ interface Options {
 export function useCamera({ active, activePlaceSlug, panel, regionList, topInset, hasMap, onCameraBusy }: Options) {
   const viewportRef = useRef<HTMLDivElement>(null);
   const layerRef = useRef<HTMLDivElement>(null);
+  /** Экранный слой (#180): подписи и маркеры в том же кадре, но вне растра слоя карты — тот же transform. */
+  const screenRef = useRef<HTMLDivElement>(null);
   const [view, setView] = useState<View>(UNMEASURED);
   /** Камера летит: подсказки ждут посадки, иначе встают у якоря, посчитанного на старте (аудит E13). */
   const [flying, setFlying] = useState(false);
@@ -178,6 +180,7 @@ export function useCamera({ active, activePlaceSlug, panel, regionList, topInset
       from = window.getComputedStyle(el).transform || from;
       running.current.cancel();
       running.current = null;
+      screenRef.current?.getAnimations?.().forEach((a) => a.cancel());
     }
     const worldToWorld = prevRegion === undefined && !active;
     const withinRegion = worldToWorld || (prevRegion !== undefined && prevRegion === active?.id);
@@ -185,7 +188,12 @@ export function useCamera({ active, activePlaceSlug, panel, regionList, topInset
       ? cssDuration('--dur-place') || DURATION.place
       : cssDuration('--dur-camera') || DURATION.region;
     const animation = animateCamera(el, from, target, duration);
-    if (!animation) return;
+    const screen = screenRef.current;
+    const twin = screen ? animateCamera(screen, from, target, duration) : null;
+    if (!animation) {
+      twin?.cancel();
+      return;
+    }
     running.current = animation;
     setFlying(true);
     const release = busy.current();
@@ -197,6 +205,7 @@ export function useCamera({ active, activePlaceSlug, panel, regionList, topInset
           setFlying(false);
           // Посадка ставит кадр, посчитанный на старте; если окно с тех пор изменилось — берём свежий.
           el.style.transform = latestTarget.current;
+          if (screenRef.current) screenRef.current.style.transform = latestTarget.current;
         }
         release();
       });
@@ -219,6 +228,7 @@ export function useCamera({ active, activePlaceSlug, panel, regionList, topInset
   const controls = useFreeCamera({
     viewportRef,
     layerRef,
+    screenRef,
     view: roam,
     attached: hasMap,
     enabled: hasMap && !listLayout && !flying,
@@ -241,5 +251,5 @@ export function useCamera({ active, activePlaceSlug, panel, regionList, topInset
   });
 
   const frame: Frame = { view, framed, inset, cover, insetBottom, regionZoom, markerScale, threadScale, textScale };
-  return { viewportRef, layerRef, flying, listLayout, target, frame, controls, free: freeCamera !== null };
+  return { viewportRef, layerRef, screenRef, flying, listLayout, target, frame, controls, free: freeCamera !== null };
 }
