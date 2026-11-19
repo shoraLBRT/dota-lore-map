@@ -197,7 +197,7 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
       <div className={styles.body}>
         <main className={styles.map} onPointerOver={onMapEvent} onFocus={onMapEvent} onPointerDown={onMapEvent}>
           <MapStage
-            deferArt={veiled}
+            deferArt={veiled || unveiling}
             regions={world.regions}
             activeRegionId={region?.id}
             activePlaceSlug={place?.slug}

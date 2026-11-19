@@ -139,6 +139,7 @@ async function runLoad(browser) {
   let loadOk = true;
   await page.goto(BASE + '#/', { waitUntil: 'load', timeout: 30_000 }).catch(() => (loadOk = false));
   // LCP пишется, пока нет ввода: ждём, пока полная картинка мира проявится (или 3 с), чтобы она попала в замер.
+  // Под интро её в DOM нет (A10), так что обычно это просто 3 с — за них кандидат LCP успел бы смениться.
   await page.waitForSelector('[data-world-art] img[data-ready]', { timeout: 3000 }).catch(() => undefined);
   await pause(page, 500);
   const v = await page.evaluate(() => {

@@ -13,7 +13,7 @@ interface Props {
   tiles?: TilePyramid;
   /**
    * Мир под интро (#186): полная картинка не вставляется в DOM, а только греется в кэше — иначе, проявившись
-   * под интро, она становится элементом LCP. В DOM она попадает, когда интро снято (после клика «Начать»).
+   * под интро, она становится элементом LCP. В DOM она попадает, когда интро снято и сошло (после клика «Начать»).
    */
   deferFull?: boolean;
 }
@@ -47,9 +47,7 @@ export function WorldArt({ layerRef, viewportRef, tiles = WORLD_TILES, deferFull
   // Пока мир под интро — только кэш, без элемента в DOM (#186); вставленная картинка остаётся навсегда.
   const [inserted, setInserted] = useState(false);
   const showFull = inserted || (pageLoaded && !deferFull);
-  useEffect(() => {
-    if (showFull && !inserted) setInserted(true);
-  }, [showFull, inserted]);
+  if (showFull && !inserted) setInserted(true);
   useEffect(() => {
     if (pageLoaded && deferFull && !inserted) void preloadImage(WORLD_ART, 'low');
   }, [pageLoaded, deferFull, inserted]);
