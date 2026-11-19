@@ -7,6 +7,12 @@ import { App } from './App';
 
 const comic = getMedia('icewrack-new-neighbors')!;
 
+/** Язык в левой панели — один значок с меню (#195). */
+function switchToEnglish() {
+  fireEvent.click(screen.getByRole('button', { name: 'Язык: RU' }));
+  fireEvent.click(screen.getByRole('menuitemradio', { name: 'English' }));
+}
+
 describe('переключение языка на лету', () => {
   beforeEach(() => {
     window.localStorage.setItem('dota-lore-map.lang', 'ru');
@@ -19,7 +25,7 @@ describe('переключение языка на лету', () => {
     expect(screen.getByRole('heading', { level: 2, name: 'Tusk' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Закрыть профиль' })).toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole('button', { name: 'EN' }));
+    switchToEnglish();
 
     expect(window.location.hash).toBe(hash);
     expect(document.documentElement.lang).toBe('en');
@@ -30,8 +36,7 @@ describe('переключение языка на лету', () => {
     const profile = screen.getByRole('complementary', { name: 'Tusk' });
     expect(within(profile).getByRole('navigation', { name: "Hero's places" })).toBeInTheDocument();
     expect(within(profile).getByRole('heading', { name: 'Art' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'RU' })).toHaveAttribute('aria-pressed', 'false');
-    expect(screen.getByRole('button', { name: 'EN' })).toHaveAttribute('aria-pressed', 'true');
+    expect(screen.getByRole('button', { name: 'Language: EN' })).toHaveTextContent('EN');
     // Ни одной строки словаря на русском не осталось в правой панели.
     expect(screen.getByRole('complementary').textContent).not.toMatch(/[А-Яа-яЁё]/);
   });
@@ -42,7 +47,7 @@ describe('переключение языка на лету', () => {
     render(<App />);
     expect(screen.getByRole('dialog', { name: comic.title.ru })).toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole('button', { name: 'EN' }));
+    switchToEnglish();
 
     expect(window.location.hash).toBe(hash);
     const dialog = screen.getByRole('dialog', { name: comic.title.en });

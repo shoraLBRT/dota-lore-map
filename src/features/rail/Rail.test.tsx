@@ -25,15 +25,47 @@ describe('Rail — левая панель (SPEC §6.1)', () => {
   it('сверху вниз: логотип, глобус, поиск, язык, обратная связь, звук, «О проекте»', () => {
     const rail = renderRail();
     const buttons = within(rail).getAllByRole('button');
-    expect(buttons).toHaveLength(8);
+    expect(buttons).toHaveLength(7);
     expect(buttons[0]).toHaveAccessibleName('На заставку');
     expect(buttons[1]).toHaveAccessibleName('Весь мир');
     expect(buttons[2]).toHaveAccessibleName('Поиск героя');
-    expect(buttons[3]).toHaveAccessibleName('RU');
-    expect(buttons[4]).toHaveAccessibleName('EN');
-    expect(buttons[5]).toHaveAccessibleName('Обратная связь');
-    expect(buttons[6]).toHaveAccessibleName('Звук');
-    expect(buttons[7]).toHaveAccessibleName('О проекте');
+    expect(buttons[3]).toHaveAccessibleName('Язык: RU');
+    expect(buttons[4]).toHaveAccessibleName('Обратная связь');
+    expect(buttons[5]).toHaveAccessibleName('Звук');
+    expect(buttons[6]).toHaveAccessibleName('О проекте');
+    // У каждой кнопки — подсказка при наведении, она же имя (#195).
+    for (const b of buttons) expect(document.getElementById(b.getAttribute('aria-labelledby')!)).toHaveAttribute('role', 'tooltip');
+  });
+
+  it('язык — один значок с меню: текущий отмечен, выбор меняет язык и возвращает фокус, Esc закрывает (#195)', () => {
+    let escapes = 0;
+    const onEsc = (e: KeyboardEvent) => e.key === 'Escape' && (escapes += 1);
+    window.addEventListener('keydown', onEsc);
+    const rail = renderRail();
+    const lang = within(rail).getByRole('button', { name: 'Язык: RU' });
+    expect(lang).toHaveTextContent('RU');
+    expect(lang).toHaveAttribute('aria-haspopup', 'menu');
+    expect(lang).toHaveAttribute('aria-expanded', 'false');
+
+    fireEvent.click(lang);
+    const menu = screen.getByRole('menu', { name: 'Язык' });
+    const items = within(menu).getAllByRole('menuitemradio');
+    expect(items.map((i) => i.textContent)).toEqual(['RUРусский', 'ENEnglish']);
+    expect(items[0]).toHaveAttribute('aria-checked', 'true');
+    expect(items[0]).toHaveFocus();
+    fireEvent.keyDown(items[0]!, { key: 'ArrowDown' });
+    expect(items[1]).toHaveFocus();
+    fireEvent.keyDown(items[1]!, { key: 'Escape' });
+    expect(screen.queryByRole('menu')).toBeNull();
+    expect(lang).toHaveFocus();
+    expect(escapes).toBe(0);
+
+    fireEvent.keyDown(lang, { key: 'ArrowDown' });
+    fireEvent.click(screen.getByRole('menuitemradio', { name: 'English' }));
+    expect(screen.queryByRole('menu')).toBeNull();
+    const en = within(rail).getByRole('button', { name: 'Language: EN' });
+    expect(en).toHaveFocus();
+    window.removeEventListener('keydown', onEsc);
   });
 
   it('логотип ведёт на интро, глобус — в мир', () => {

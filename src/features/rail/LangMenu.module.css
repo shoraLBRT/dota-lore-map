@@ -1,0 +1,68 @@
+/* Язык в левой панели (#195): значок с кодом текущего языка и меню справа от него (на телефоне — под ним). */
+.wrap {
+  position: relative;
+}
+
+/* Пока меню открыто, подсказка значка его не перекрывает. */
+.open [role='tooltip'] {
+  visibility: hidden;
+}
+
+.button {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.menu {
+  position: absolute;
+  top: 0;
+  left: calc(100% + var(--space-2));
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  min-width: 9rem;
+  padding: var(--space-1);
+  border: 1px solid var(--metal);
+  background: var(--bg-0);
+  box-shadow: var(--shadow-1);
+}
+
+.item {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0 var(--space-3);
+  border-color: transparent;
+  background: none;
+  color: var(--text-2);
+  text-align: left;
+}
+
+.item:hover,
+.item:focus-visible {
+  border-color: var(--metal);
+  color: var(--text-1);
+}
+
+/* Выбранный язык: светлый текст на тёмно-красном — контраст WCAG AA. */
+.item[aria-checked='true'] {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+  color: var(--text-1);
+}
+
+.code {
+  width: 1.75rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 767px) {
+  .menu {
+    top: calc(100% + var(--space-1));
+    left: 0;
+  }
+}

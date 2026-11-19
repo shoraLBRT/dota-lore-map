@@ -68,19 +68,6 @@
   box-shadow: var(--glow-accent);
 }
 
-.lang {
-  flex-direction: column;
-  margin-top: var(--space-2);
-}
-
-.lang button {
-  width: 2.75rem;
-  padding: var(--space-1) 0;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-}
-
 /* SPEC §13: на узких экранах панель — компактная полоса сверху. */
 @media (max-width: 767px) {
   .rail {
@@ -92,47 +79,21 @@
     border-bottom: 1px solid var(--border);
   }
 
-  /* 8 кнопок по 44 px — 352 px; с отступами между ними (4 px) не помещаются в 375 px, поэтому кнопки встык:
-     поле вокруг иконки 24 px в кнопке 44 px и так разделяет их (E17, #73; ARCHITECTURE A13). */
-  .group,
-  .lang {
+  /* 7 кнопок 44×44 px (рекомендация платформ) встык — 308 px, с полями полосы 8 px — 324 px: поле вокруг
+     иконки 24 px в кнопке 44 px и так разделяет их (ARCHITECTURE A13). */
+  .group {
     flex-direction: row;
     gap: 0;
-  }
-
-  /* Кнопки 44×44 px (рекомендация платформ): 8 штук встык и поля полосы — 368 px, помещаются от 368 px. */
-  .button,
-  .lang button {
-    height: 2.75rem;
   }
 
   .logo {
     margin: 0;
   }
-
-  .lang {
-    margin: 0;
-  }
 }
 
-/* Уже 368 px (360 px — частая ширина Android): кнопки 40 px в ширину при высоте 44 px — 328 px с полями. */
-@media (max-width: 367px) {
+/* Уже 324 px (320 px — iPhone SE 1-го поколения): поля полосы 4 px — 316 px, кнопки по-прежнему 44×44 px. */
+@media (max-width: 323px) {
   .rail {
     padding: 0 var(--space-1);
-  }
-
-  .button,
-  .lang button {
-    width: 2.5rem;
-  }
-}
-
-/* Уже 328 px (320 px — iPhone SE 1-го поколения): 38×40 px (выше WCAG 2.5.8 AA — 24 px) — 312 px с полями,
-   все 8 кнопок в кадре (ARCHITECTURE A13). */
-@media (max-width: 327px) {
-  .button,
-  .lang button {
-    width: 2.375rem;
-    height: 2.5rem;
   }
 }
