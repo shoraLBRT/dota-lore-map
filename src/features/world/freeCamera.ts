@@ -8,10 +8,17 @@ import { cameraTransform, clampCamera, prefersReducedMotion, type View } from '.
 
 /** Сдвиг, после которого нажатие — уже перетаскивание, а не клик, px. */
 export const DRAG_THRESHOLD = 5;
-/** Шаг зума кнопками и клавишами `+`/`−`, двойным кликом — вдвое. */
-export const ZOOM_STEP = 1.5;
-/** Колесо: во сколько раз меняется зум на 100 px прокрутки. */
-const WHEEL_RATE = 1.25;
+/** Шаг зума кнопками и клавишами `+`/`−`, двойным кликом — вдвое (#179). */
+export const ZOOM_STEP = 1.3;
+/**
+ * Колесо (#179): во сколько раз меняется зум на 100 px прокрутки (один щелчок мыши); от «мир целиком» до потолка
+ * FREE_ZOOM_MAX — не меньше 5 щелчков.
+ */
+export const WHEEL_RATE = 1.2;
+/** Не больше одного щелчка за событие: «быстрые» колёса и deltaMode строк/страниц не прыгают. */
+export const WHEEL_MAX_DELTA = 100;
+/** Скорость колеса не выше одного щелчка за WHEEL_REFILL мс: частые мелкие шаги тачпада не разгоняют зум. */
+export const WHEEL_REFILL = 120;
 /** Инерция: доля скорости, что остаётся через 16 мс, и порог остановки, px/мс. */
 const FRICTION = 0.92;
 const MIN_SPEED = 0.02;
@@ -71,6 +78,29 @@ export function zoomAt(camera: Camera, view: View, factor: number, px: number, p
 /** Множитель зума на прокрутку колеса (deltaY в px; вниз — отдалить). */
 export function wheelFactor(deltaY: number): number {
   return Math.pow(WHEEL_RATE, -deltaY / 100);
+}
+
+/**
+ * Прокрутка события в px, не больше WHEEL_MAX_DELTA по модулю. Строки (deltaMode 1, Firefox: 3 строки на щелчок)
+ * — по 100/3 px, чтобы щелчок был щелчком; страницы — по 400 px.
+ */
+export function wheelDelta(deltaY: number, deltaMode = 0): number {
+  const px = deltaMode === 1 ? (deltaY * 100) / 3 : deltaMode === 2 ? deltaY * 400 : deltaY;
+  return Math.min(Math.max(px, -WHEEL_MAX_DELTA), WHEEL_MAX_DELTA);
+}
+
+/**
+ * Ограничитель скорости колеса: запас прокрутки (px) до WHEEL_MAX_DELTA, пополняется на WHEEL_MAX_DELTA за
+ * WHEEL_REFILL мс. Возвращает прокрутку, которую можно пропустить, и новый запас на момент `now`.
+ */
+export function limitWheel(
+  delta: number,
+  budget: { left: number; at: number },
+  now: number,
+): { delta: number; budget: { left: number; at: number } } {
+  const left = Math.min(WHEEL_MAX_DELTA, budget.left + (Math.max(now - budget.at, 0) * WHEEL_MAX_DELTA) / WHEEL_REFILL);
+  const pass = Math.sign(delta) * Math.min(Math.abs(delta), left);
+  return { delta: pass, budget: { left: left - Math.abs(pass), at: now } };
 }
 
 /** Затухание скорости инерции за `dt` мс. */
@@ -216,6 +246,8 @@ export function useFreeCamera({ viewportRef, layerRef, view, current, enabled, o
     let start: { x: number; y: number } | null = null;
     let dragging = false;
     let moved = false;
+    /** Запас колеса (limitWheel). */
+    let wheel = { left: WHEEL_MAX_DELTA, at: 0 };
     let pinch: { dist: number; mid: { x: number; y: number } } | null = null;
     let samples: { t: number; x: number; y: number }[] = [];
 
@@ -302,8 +334,9 @@ export function useFreeCamera({ viewportRef, layerRef, view, current, enabled, o
       if (!live.current.enabled) return;
       e.preventDefault();
       const p = local(e);
-      const delta = e.deltaMode === 1 ? e.deltaY * 16 : e.deltaMode === 2 ? e.deltaY * 400 : e.deltaY;
-      zoomBy(wheelFactor(delta), p.x, p.y);
+      const limited = limitWheel(wheelDelta(e.deltaY, e.deltaMode), wheel, e.timeStamp);
+      wheel = limited.budget;
+      if (limited.delta !== 0) zoomBy(wheelFactor(limited.delta), p.x, p.y);
     };
     const onDouble = (e: MouseEvent) => {
       if (!live.current.enabled) return;
