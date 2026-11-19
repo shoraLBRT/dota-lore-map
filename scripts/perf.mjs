@@ -138,7 +138,9 @@ async function runLoad(browser) {
   if (net4g) await cdp.send('Network.emulateNetworkConditions', FAST_4G);
   let loadOk = true;
   await page.goto(BASE + '#/', { waitUntil: 'load', timeout: 30_000 }).catch(() => (loadOk = false));
-  await pause(page, 1500);
+  // LCP пишется, пока нет ввода: ждём, пока полная картинка мира проявится (или 3 с), чтобы она попала в замер.
+  await page.waitForSelector('[data-world-art] img[data-ready]', { timeout: 3000 }).catch(() => undefined);
+  await pause(page, 500);
   const v = await page.evaluate(() => {
     const fcp = performance.getEntriesByName('first-contentful-paint')[0]?.startTime ?? 0;
     const nav = performance.getEntriesByType('navigation')[0];
@@ -146,7 +148,8 @@ async function runLoad(browser) {
     return { fcp, lcp: window.__vitals.lcp, lcpEl: window.__vitals.lcpEl, cls: window.__vitals.cls, load: nav?.loadEventEnd || 0, art: art ? art.responseEnd : -1 };
   });
   await context.close();
-  const ok = loadOk && v.fcp <= LOAD_BUDGET.fcp && v.lcp <= LOAD_BUDGET.lcp && v.cls <= LOAD_BUDGET.cls;
+  // Ноль — замер не состоялся (нет записи paint или LCP), а не быстрая страница.
+  const ok = loadOk && v.fcp > 0 && v.lcp > 0 && v.fcp <= LOAD_BUDGET.fcp && v.lcp <= LOAD_BUDGET.lcp && v.cls <= LOAD_BUDGET.cls;
   return { ...v, loadOk, ok };
 }
 
