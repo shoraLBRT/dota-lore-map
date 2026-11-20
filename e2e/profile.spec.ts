@@ -14,6 +14,14 @@ async function headerBox(page: import('@playwright/test').Page) {
   return panel.locator('[data-hero-header]');
 }
 
+// Панель профиля въезжает с анимацией: рамка шапки на миг бывает пустой — ждём её, а не читаем один раз.
+async function expectHeaderFits(page: import('@playwright/test').Page, header: import('@playwright/test').Locator) {
+  await expect(header).toBeVisible();
+  await expect
+    .poll(async () => (await header.boundingBox())?.height ?? Infinity)
+    .toBeLessThanOrEqual(page.viewportSize()!.height / 3 + 1);
+}
+
 test('адрес арта с ошибкой — остаётся портрет', async ({ page }) => {
   await stubNetwork(page);
   await page.route(CROPS, (route) => route.fulfill({ status: 404, body: '' }));
@@ -21,9 +29,8 @@ test('адрес арта с ошибкой — остаётся портрет'
   const header = await headerBox(page);
   await expect(header).toHaveAttribute('data-hero-header', 'failed');
   await expect(header.locator('img')).toHaveCount(1);
-  await expect(header.locator('img')).toBeVisible();
-  const box = (await header.boundingBox())!;
-  expect(box.height).toBeLessThanOrEqual(page.viewportSize()!.height / 3 + 1);
+  await expect(header.locator('img').first()).toBeVisible();
+  await expectHeaderFits(page, header);
 });
 
 test('адрес арта заблокирован — виден портрет, пустого блока нет', async ({ page }) => {
@@ -49,6 +56,5 @@ test('арт грузится долго — портрет-заглушка, ш
   const portrait = header.locator('img').first();
   await expect(portrait).toBeVisible();
   await expect.poll(() => portrait.evaluate((el: HTMLImageElement) => el.naturalWidth)).toBeGreaterThan(0);
-  const box = (await header.boundingBox())!;
-  expect(box.height).toBeLessThanOrEqual(page.viewportSize()!.height / 3 + 1);
+  await expectHeaderFits(page, header);
 });
