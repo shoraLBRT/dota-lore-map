@@ -19,6 +19,7 @@ import {
   type WorldRect,
 } from './atmosphere';
 import { MOBILE_QUERY, prefersReducedMotion } from './camera';
+import { edgeClouds as edgeOnly, glintAlpha, partCloud, PART_CLOUDS, seaGlints, waterAt } from './depth';
 import styles from './MapAtmosphere.module.css';
 
 /** Пропорция спрайта облака (ширина к высоте), как у прежних CSS-облаков. */
@@ -83,6 +84,15 @@ function cloudSprite(light: string, shade: string): HTMLCanvasElement | null {
   return c;
 }
 
+/** Блик на воде (#197): вытянутое по горизонтали пятно с ярким ядром. */
+function glintSprite(color: string): HTMLCanvasElement | null {
+  const made = canvasOf(64, 16);
+  if (!made) return null;
+  const [c, ctx] = made;
+  puff(ctx, 32, 8, 32, 8, color);
+  return c;
+}
+
 /** Пятно тумана или свечения: круглый градиент, растягивается по полуосям при рисовании. */
 function patchSprite(color: string, glow: boolean): HTMLCanvasElement | null {
   const made = canvasOf(128, 128);
@@ -105,6 +115,10 @@ interface Props {
   activeId?: string;
   /** На карте путь героя (#168): облака и туман расходятся до PATH_VEIL, чтобы нить читалась. */
   clear?: boolean;
+  /** Прототип #197 «вода»: полигоны суши (доли мира) — блики рисуются на море вне них. */
+  water?: readonly (readonly (readonly [number, number])[])[];
+  /** Прототип #197 «облака»: только крупные слои по краям мира; при входе в регион облака расходятся от центра. */
+  edgeClouds?: boolean;
 }
 
 /**
@@ -113,14 +127,17 @@ interface Props {
  * Положение мира каждый кадр берётся из `getBoundingClientRect` слоя — так эффекты идут и за жестами,
  * и за анимацией перелёта камеры. Телефон — облегчённый вариант; reduced motion — без дрейфа, пульса и параллакса.
  */
-export function MapAtmosphere({ layerRef, activeId, clear = false }: Props) {
+export function MapAtmosphere({ layerRef, activeId, clear = false, water, edgeClouds = false }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const grainRef = useRef<HTMLDivElement>(null);
   const active = useRef(activeId);
   const dirty = useRef(true);
   const veilTarget = useRef(clear ? PATH_VEIL : 1);
 
+  /** Начало завесы входа в регион (прототип «облака», #197): мир → регион. */
+  const partStart = useRef<number | null>(null);
   useEffect(() => {
+    if (active.current === undefined && activeId !== undefined) partStart.current = performance.now();
     active.current = activeId;
     dirty.current = true;
   }, [activeId]);
@@ -137,7 +154,10 @@ export function MapAtmosphere({ layerRef, activeId, clear = false }: Props) {
     const lite = matches(MOBILE_QUERY);
     const reduced = prefersReducedMotion();
     const res = lite ? RESOLUTION.lite : RESOLUTION.full;
-    const clouds = cloudsFor(lite);
+    const clouds = edgeClouds ? edgeOnly(cloudsFor(lite), lite) : cloudsFor(lite);
+    const glints = water ? seaGlints(water, lite ? 200 : 500) : [];
+    const glint = glints.length > 0 ? glintSprite(token('--atmo-glint', 'rgb(225 238 255 / 0.9)')) : null;
+    const partMs = cssDuration('--dur-camera') || 1200;
     const cloud = cloudSprite(token('--atmo-cloud', 'rgb(170 182 200 / 0.85)'), token('--atmo-cloud-shade', 'rgb(30 40 56 / 0.5)'));
     const sprites = Object.fromEntries(
       (Object.keys(PATCH_TOKEN) as PatchKind[]).map((k) => [
@@ -186,6 +206,22 @@ export function MapAtmosphere({ layerRef, activeId, clear = false }: Props) {
         ctx.drawImage(sprite, x - rx, y - ry, rx * 2, ry * 2);
       });
 
+      // Блики на море (#197): короткие вспышки, складываются со светом картинки.
+      if (glint && !reduced) {
+        ctx.globalCompositeOperation = 'lighter';
+        const wet = waterAt(zoom);
+        for (const g of glints) {
+          const a = glintAlpha(g, t);
+          if (a < 0.02) continue;
+          const w = g.w * rect.size;
+          const x = rect.left + g.x * rect.size;
+          const y = rect.top + g.y * rect.size;
+          if (!visible(x, y, w, w / 4, box)) continue;
+          ctx.globalAlpha = 0.85 * wet * a;
+          ctx.drawImage(glint, x - w / 2, y - w / 8, w, w / 4);
+        }
+      }
+
       // Свечение ярусов складывается со светом картинки (блум).
       ctx.globalCompositeOperation = 'lighter';
       GLOWS.forEach((p, i) => {
@@ -226,6 +262,21 @@ export function MapAtmosphere({ layerRef, activeId, clear = false }: Props) {
               ctx.drawImage(cloud, p.x - w / 2, p.y - h / 2, w, h);
             }
           });
+        }
+      }
+      // Завеса входа в регион (#197): облака у центра кадра расходятся к краям за перелёт камеры.
+      if (cloud && edgeClouds && !reduced && partStart.current !== null) {
+        const k = (performance.now() - partStart.current) / partMs;
+        if (k >= 1) partStart.current = null;
+        else {
+          const side = Math.max(box.width, box.height);
+          for (let i = 0; i < PART_CLOUDS; i++) {
+            const p = partCloud(i, k);
+            const w = p.w * side;
+            const h = w / CLOUD_ASPECT;
+            ctx.globalAlpha = p.alpha * DEPTH_ALPHA[3];
+            ctx.drawImage(cloud, box.width / 2 + p.dx * side - w / 2, box.height / 2 + p.dy * side - h / 2, w, h);
+          }
         }
       }
       ctx.globalAlpha = 1;
@@ -277,7 +328,7 @@ export function MapAtmosphere({ layerRef, activeId, clear = false }: Props) {
       document.removeEventListener('visibilitychange', onVisibility);
       observer?.disconnect();
     };
-  }, [layerRef]);
+  }, [layerRef, water, edgeClouds]);
 
   return (
     <div className={styles.atmosphere} aria-hidden="true" data-testid="map-atmosphere">
