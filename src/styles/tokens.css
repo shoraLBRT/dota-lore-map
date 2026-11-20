@@ -65,6 +65,8 @@
   --atmo-haze: rgb(120 142 166 / 0.55);
   --atmo-star: rgb(196 168 255 / 0.6);
   --atmo-lava: rgb(255 122 42 / 0.7);
+  /* Блик на воде — прототип #197 (`?depth=water`). */
+  --atmo-glint: rgb(225 238 255 / 0.9);
   --atmo-grain: 0.22;
   --map-blur: 4px;
 

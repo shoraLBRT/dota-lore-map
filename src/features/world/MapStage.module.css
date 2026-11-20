@@ -68,3 +68,54 @@
   pointer-events: none;
   background: radial-gradient(ellipse at center, transparent 55%, var(--vignette) 100%);
 }
+
+/* Прототипы объёма (#197, `?depth=…`): обёртка слоя карты и экранного слоя — наклон пишет `useDepth`
+   (`perspective() rotateX()` от приближения). Обёртка — во весь кадр и по центру, как сам кадр. */
+.tilt {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: 50% 50%;
+}
+
+/* Подписи и маркеры на наклонённом слое — лицом к зрителю: группа каждого названия и маркера растянута
+   по вертикали на 1 / cos θ вокруг своей середины (вложенные группы — значки медиа — не трогаем). */
+.tilt[data-depth-tilt] [data-screen-layer] g[transform^='translate']:not(g[transform^='translate'] g) {
+  transform-box: fill-box;
+  transform-origin: center;
+  scale: 1 var(--upright, 1);
+}
+
+/* Глубина резкости: полосы сверху и снизу кадра размывают и затемняют арт под собой (backdrop-filter
+   только на полосах, не на весь кадр), подписи лежат выше и остаются чёткими. Сила — `--dof` от приближения. */
+.dof {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: var(--dof, 0);
+  visibility: hidden;
+}
+
+.tilt[data-dof-on] .dof {
+  visibility: visible;
+}
+
+.dof > span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 30%;
+  backdrop-filter: blur(5px) brightness(0.8);
+}
+
+.dof > [data-edge='top'] {
+  top: 0;
+  mask-image: linear-gradient(to bottom, #000 25%, transparent);
+}
+
+.dof > [data-edge='bottom'] {
+  bottom: 0;
+  mask-image: linear-gradient(to top, #000 25%, transparent);
+}

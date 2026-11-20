@@ -24,6 +24,8 @@ import { RegionLabels, RegionsLayer, UnmappedRegions, zoomedClass } from './Regi
 import { RegionTooltip } from './RegionTooltip';
 import { Threads } from './Threads';
 import { threadStyleFrom } from './threadStyle';
+import { depthFlagsFrom } from './depth';
+import { useDepth } from './useDepth';
 import { useCamera } from './useCamera';
 import { useFontsTick, useMeasuredLabels } from './useMeasuredLabels';
 import { usePlaceTooltip } from './usePlaceTooltip';
@@ -153,6 +155,11 @@ export function MapStage({
   const { shown } = tip;
   // Рисунок пути (#168): `?threads=<вариант>` до `#` — сравнение вариантов для владельца.
   const [threadVariant] = useState(() => threadStyleFrom(typeof location === 'undefined' ? '' : location.search));
+  // Прототипы объёма (#197): `?depth=tilt,dof,water,clouds` или `?depth=all` до `#`; без флага карта прежняя.
+  const [depth] = useState(() => depthFlagsFrom(typeof location === 'undefined' ? '' : location.search));
+  const tiltRef = useRef<HTMLDivElement>(null);
+  useDepth(depth, { viewportRef, layerRef, tiltRef });
+  const landPolygons = useMemo(() => drawn.map((r) => r.layout!.polygon), [drawn]);
 
   // Ширины подписей: при смене языка, региона и после загрузки шрифтов (подписи не выходят за край и не налезают).
   const fontsTick = useFontsTick();
@@ -190,99 +197,122 @@ export function MapStage({
     }
   };
 
+  const mapLayer = (
+    <div ref={layerRef} className={styles.layer} style={{ transform: target, '--aspect': WORLD_ASPECT } as CSSProperties}>
+      <WorldArt layerRef={layerRef} viewportRef={viewportRef} />
+      <svg
+        ref={svgRef}
+        className={styles.svg}
+        viewBox={`0 0 ${STAGE_WIDTH} ${STAGE_HEIGHT}`}
+        role="group"
+        aria-label={t('world.map')}
+      >
+        <RegionsLayer
+          drawn={drawn}
+          activeId={active?.id}
+          inWorld={inWorld}
+          tip={tip}
+          litId={litId}
+          focusRegions={focusRegions}
+          previewRegions={previewRegions}
+          onSelectRegion={onSelectRegion}
+        />
+        {active && <RegionArt key={`art-${active.id}`} region={active} />}
+        {threads && (
+          <Threads
+            key={threadsKey}
+            threads={threads}
+            scale={frame.threadScale}
+            obstacles={threadLayout.obstacles}
+            clip={threadLayout.clip}
+            variant={threadVariant}
+          />
+        )}
+      </svg>
+    </div>
+  );
+    {/* Экранный слой (#180, ARCHITECTURE A4): тот же кадр и transform, что у слоя карты, но без
+        will-change — текст растеризуется в разрешении экрана при любом приближении. */}
+  const screenLayer = (
+    <div ref={screenRef} className={styles.screen} style={{ transform: target, '--aspect': WORLD_ASPECT } as CSSProperties}>
+      <svg
+        ref={screenSvgRef}
+        className={styles.svg}
+        viewBox={`0 0 ${STAGE_WIDTH} ${STAGE_HEIGHT}`}
+        role={active ? 'group' : undefined}
+        aria-label={active ? l(active.name) : undefined}
+        aria-hidden={active ? undefined : 'true'}
+        data-screen-layer=""
+      >
+        <RegionLabels
+          drawn={drawn}
+          inWorld={inWorld}
+          tip={tip}
+          litId={litId}
+          focusRegions={focusRegions}
+          previewRegions={previewRegions}
+          names={names}
+          zoom={frame.worldZoom}
+          pxScale={frame.pxScale}
+          onSelectRegion={onSelectRegion}
+          underId={under?.id}
+        />
+        {inWorld && <WorldPlaceMeasure regions={drawn} />}
+        {inWorld && worldPlaces.items.length > 0 && (
+          <WorldMarkers
+            items={worldPlaces.items}
+            spots={worldPlaces.spots}
+            zoom={frame.worldZoom}
+            pxScale={frame.pxScale}
+            view={frame.view}
+            framed={frame.framed}
+            focusPlaces={focusPlaces}
+            onSelectPlace={onSelectPlace}
+          />
+        )}
+        {active && (
+          <MarkersLayer
+            key={`markers-${active.id}`}
+            regionId={active.id}
+            activePlaceSlug={activePlaceSlug}
+            sides={labels.sides}
+            markerScale={frame.markerScale}
+            focusPlaces={focusPlaces}
+            previewPlaces={previewPlaces}
+            litPlaceSlug={litPlace}
+            place={place}
+            onSelectPlace={onSelectPlace}
+            onOpenMedia={onOpenMedia}
+          />
+        )}
+      </svg>
+    </div>
+  );
+
   return (
     <div className={[styles.stage, active && zoomedClass].filter(Boolean).join(' ')}>
       {hasMap && (
         <div ref={viewportRef} className={styles.viewport} onClick={onBackground} data-map-viewport="">
-          <div ref={layerRef} className={styles.layer} style={{ transform: target, '--aspect': WORLD_ASPECT } as CSSProperties}>
-            <WorldArt layerRef={layerRef} viewportRef={viewportRef} />
-            <svg
-              ref={svgRef}
-              className={styles.svg}
-              viewBox={`0 0 ${STAGE_WIDTH} ${STAGE_HEIGHT}`}
-              role="group"
-              aria-label={t('world.map')}
-            >
-              <RegionsLayer
-                drawn={drawn}
-                activeId={active?.id}
-                inWorld={inWorld}
-                tip={tip}
-                litId={litId}
-                focusRegions={focusRegions}
-                previewRegions={previewRegions}
-                onSelectRegion={onSelectRegion}
-              />
-              {active && <RegionArt key={`art-${active.id}`} region={active} />}
-              {threads && (
-                <Threads
-                  key={threadsKey}
-                  threads={threads}
-                  scale={frame.threadScale}
-                  obstacles={threadLayout.obstacles}
-                  clip={threadLayout.clip}
-                  variant={threadVariant}
-                />
+          {depth.tilt || depth.dof ? (
+            // Прототипы #197: наклон и полосы глубины резкости — в одной обёртке над слоем карты и под подписями.
+            <div ref={tiltRef} className={styles.tilt} data-depth-tilt={depth.tilt ? '' : undefined}>
+              {mapLayer}
+              {depth.dof && (
+                <div className={styles.dof} aria-hidden="true">
+                  <span data-edge="top" />
+                  <span data-edge="bottom" />
+                </div>
               )}
-            </svg>
-          </div>
-          {/* Экранный слой (#180, ARCHITECTURE A4): тот же кадр и transform, что у слоя карты, но без
-              will-change — текст растеризуется в разрешении экрана при любом приближении. */}
-          <div ref={screenRef} className={styles.screen} style={{ transform: target, '--aspect': WORLD_ASPECT } as CSSProperties}>
-            <svg
-              ref={screenSvgRef}
-              className={styles.svg}
-              viewBox={`0 0 ${STAGE_WIDTH} ${STAGE_HEIGHT}`}
-              role={active ? 'group' : undefined}
-              aria-label={active ? l(active.name) : undefined}
-              aria-hidden={active ? undefined : 'true'}
-              data-screen-layer=""
-            >
-              <RegionLabels
-                drawn={drawn}
-                inWorld={inWorld}
-                tip={tip}
-                litId={litId}
-                focusRegions={focusRegions}
-                previewRegions={previewRegions}
-                names={names}
-                zoom={frame.worldZoom}
-                pxScale={frame.pxScale}
-                onSelectRegion={onSelectRegion}
-                underId={under?.id}
-              />
-              {inWorld && <WorldPlaceMeasure regions={drawn} />}
-              {inWorld && worldPlaces.items.length > 0 && (
-                <WorldMarkers
-                  items={worldPlaces.items}
-                  spots={worldPlaces.spots}
-                  zoom={frame.worldZoom}
-                  pxScale={frame.pxScale}
-                  view={frame.view}
-                  framed={frame.framed}
-                  focusPlaces={focusPlaces}
-                  onSelectPlace={onSelectPlace}
-                />
-              )}
-              {active && (
-                <MarkersLayer
-                  key={`markers-${active.id}`}
-                  regionId={active.id}
-                  activePlaceSlug={activePlaceSlug}
-                  sides={labels.sides}
-                  markerScale={frame.markerScale}
-                  focusPlaces={focusPlaces}
-                  previewPlaces={previewPlaces}
-                  litPlaceSlug={litPlace}
-                  place={place}
-                  onSelectPlace={onSelectPlace}
-                  onOpenMedia={onOpenMedia}
-                />
-              )}
-            </svg>
-          </div>
+              {screenLayer}
+            </div>
+          ) : (
+            <>
+              {mapLayer}
+              {screenLayer}
+            </>
+          )}
           <div className={styles.cloudBox}>
-            <MapAtmosphere layerRef={layerRef} activeId={active?.id} clear={Boolean(threads)} />
+            <MapAtmosphere layerRef={layerRef} activeId={active?.id} clear={Boolean(threads)} water={depth.water ? landPolygons : undefined} edgeClouds={depth.clouds} />
           </div>
           {active && (
             <AmbientCanvas

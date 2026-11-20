@@ -1,4 +1,4 @@
-// Замер плавности (#185, ARCHITECTURE A14): `npm run perf [-- --no-build] [--headed] [--size 1440x900] [--runs 3]`.
+// Замер плавности (#185, ARCHITECTURE A14): `npm run perf [-- --no-build] [--headed] [--size 1440x900] [--runs 3] [--query depth=all]`.
 // Боевая сборка (`vite build` + `vite preview`), Chromium с GPU; кадры считает requestAnimationFrame в странице.
 // Шаги: вход («Начать» → мир), колесо внутрь ×12, перетаскивание, колесо наружу до мира, клик по региону.
 // На телефоне (ширина < 768) свободной камеры в мире нет — только вход и регион из списка.
@@ -28,6 +28,8 @@ const PORT = 4185;
 const loadMode = flag('--load');
 const external = opt('--url', '');
 const BASE = external || `http://localhost:${PORT}/dota-lore-map/`;
+/** Строка запроса до `#` (флаги прототипов, #197): `--query depth=tilt`. */
+const QUERY = opt('--query', '') ? `?${opt('--query', '')}` : '';
 const net4g = opt('--net', '') === '4g';
 /** «Fast 4G» DevTools: 9 Мбит/с вниз, 1.5 вверх, задержка 60 мс × 2.75 (как в Chrome). */
 const FAST_4G = { offline: false, latency: 165, downloadThroughput: (9e6 / 8) * 0.9, uploadThroughput: (1.5e6 / 8) * 0.9 };
@@ -137,7 +139,7 @@ async function runLoad(browser) {
   await cdp.send('Network.setCacheDisabled', { cacheDisabled: true });
   if (net4g) await cdp.send('Network.emulateNetworkConditions', FAST_4G);
   let loadOk = true;
-  await page.goto(BASE + '#/', { waitUntil: 'load', timeout: 30_000 }).catch(() => (loadOk = false));
+  await page.goto(BASE + QUERY + '#/', { waitUntil: 'load', timeout: 30_000 }).catch(() => (loadOk = false));
   // LCP пишется, пока нет ввода: ждём, пока полная картинка мира проявится (или 3 с), чтобы она попала в замер.
   await page.waitForSelector('[data-world-art] img[data-ready]', { timeout: 3000 }).catch(() => undefined);
   await pause(page, 500);
@@ -179,7 +181,7 @@ async function run(browser) {
   const context = await browser.newContext({ viewport: { width, height }, locale: 'ru-RU', isMobile: mobile, hasTouch: mobile, deviceScaleFactor: mobile ? 3 : 1 });
   await context.addInitScript(RECORDER);
   const page = await context.newPage();
-  await page.goto(BASE + '#/', { waitUntil: 'load' });
+  await page.goto(BASE + QUERY + '#/', { waitUntil: 'load' });
   const start = page.getByRole('button', { name: 'Начать' });
   await start.waitFor();
   await page.waitForFunction(() => {
