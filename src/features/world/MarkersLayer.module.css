@@ -308,3 +308,17 @@
     display: none;
   }
 }
+
+/* Маркеры мест в мире (#190): проявляются, как только приближение дошло до порога (transform пишет WorldMarkers). */
+.worldMarker {
+  animation: marker-in var(--dur-fade) var(--ease-out) both;
+}
+
+.worldMarker .pin {
+  animation-delay: 0s;
+}
+
+/* До порога и за краем кадра маркер не рисуется вовсе: анимация проявления перезапускается при каждом показе. */
+.worldMarker.worldOff {
+  display: none;
+}

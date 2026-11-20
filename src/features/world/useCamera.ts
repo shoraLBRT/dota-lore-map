@@ -26,6 +26,8 @@ import { centered, useFreeCamera } from './freeCamera';
 
 /** Кадр «мир слева от панели» — отдельный кадр для анимации, хотя камера та же (#97). */
 const WORLD_PANEL_SHOT = 'world-panel' as const;
+/** Свободная камера, оставленная при выходе из региона колесом (#190): мир продолжается с того же вида. */
+const EXIT_SHOT = 'region-exit' as const;
 
 function isMobile(): boolean {
   try {
@@ -67,13 +69,15 @@ interface Options {
   topInset: number;
   hasMap: boolean;
   onCameraBusy: () => () => void;
+  /** Отдаление с нижнего упора региона или места (#190): выйти в мир. Камера мира остаётся там же. */
+  onLeave?: () => void;
 }
 
 /**
  * Камера карты (ARCHITECTURE A4): измеряет кадр и панель, считает кадр региона или места и анимирует
  * перелёт. Пока камера летит, навигация занята (`onCameraBusy`, SPEC §7.1), а `flying` — true.
  */
-export function useCamera({ active, regionBoxes, activePlaceSlug, panel, regionList, topInset, hasMap, onCameraBusy }: Options) {
+export function useCamera({ active, regionBoxes, activePlaceSlug, panel, regionList, topInset, hasMap, onCameraBusy, onLeave }: Options) {
   const viewportRef = useRef<HTMLDivElement>(null);
   const layerRef = useRef<HTMLDivElement>(null);
   /** Экранный слой (#180): подписи и маркеры в том же кадре, но вне растра слоя карты — тот же transform. */
@@ -141,7 +145,7 @@ export function useCamera({ active, regionBoxes, activePlaceSlug, panel, regionL
   const worldMax = useMemo(() => (box ? zoomLevels(regionBoxes, view).zoomMax : levels.zoomMax), [box, regionBoxes, view, levels]);
   const roam = useMemo<View>(() => ({ ...(active ? stage : wholeFrame(stage)), ...levels }), [active, stage, levels]);
   const shot = worldPanel ? WORLD_PANEL_SHOT : camera;
-  const freeCamera = free && free.shot === shot ? free.camera : null;
+  const freeCamera = free && (free.shot === shot || (free.shot === EXIT_SHOT && inWorld)) ? free.camera : null;
   const framed = useMemo(
     () =>
       freeCamera
@@ -261,6 +265,13 @@ export function useCamera({ active, regionBoxes, activePlaceSlug, panel, regionL
     enabled: hasMap && !listLayout && !flying,
     resetKey: shot,
     home,
+    onFloor:
+      active && onLeave
+        ? (c) => {
+            setFree({ shot: EXIT_SHOT, camera: c });
+            onLeave();
+          }
+        : undefined,
     current: () => {
       const { framed: f, view: v } = latest.current;
       return clampCamera(centered(f.camera, v, f.offset, f.offsetY ?? 0), v);
