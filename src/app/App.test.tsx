@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { getPlace, getRegion, placeName, world } from '../data/world';
 import { dictionaries } from '../i18n';
@@ -29,7 +29,7 @@ describe('App', () => {
     expect(window.localStorage.getItem('dota-lore-map.lang')).toBe('en');
   });
 
-  it('«Начать» → мир со списком регионов → регион → место', () => {
+  it('«Начать» → мир со списком регионов → регион → место', async () => {
     render(<App />);
     fireEvent.click(screen.getByRole('button', { name: 'Начать' }));
     expect(window.location.hash).toBe('#/world');
@@ -48,7 +48,7 @@ describe('App', () => {
     expect(screen.getByRole('button', { name: /^Crystal Maiden: открыть профиль/ })).toBeInTheDocument();
 
     fireEvent.keyDown(window, { key: 'Escape' });
-    expect(window.location.hash).toBe('#/world');
+    await waitFor(() => expect(window.location.hash).toBe('#/world'));
   });
 
   it('открывает место по адресу', () => {

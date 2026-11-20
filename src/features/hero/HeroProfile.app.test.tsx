@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen, within } from '@testing-library/react';
+import { act, fireEvent, render, screen, within, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { App } from '../../app/App';
 import { getHero, getPlace, getRegion, heroCrop, heroPortrait, heroRender, placeName } from '../../data/world';
@@ -76,7 +76,7 @@ describe('профиль героя', () => {
     expect(within(mars).getByRole('button', { name: 'Dawnbreaker, Возлюбленные: открыть профиль' })).toBeInTheDocument();
   });
 
-  it('арты: карточка открывает галерею героя; Esc закрывает галерею, затем профиль, затем снимает героя', () => {
+  it('арты: карточка открывает галерею героя; Esc закрывает галерею, затем профиль, затем снимает героя', async () => {
     window.location.hash = '#/world?hero=tusk&profile';
     render(<App />);
     const tusk = getHero('tusk')!;
@@ -89,7 +89,7 @@ describe('профиль героя', () => {
       fireEvent.keyDown(document.activeElement ?? window, { key: 'Escape' });
     });
     expect(screen.queryByRole('dialog')).toBeNull();
-    expect(window.location.hash).toBe('#/world?hero=tusk&profile');
+    await waitFor(() => expect(window.location.hash).toBe('#/world?hero=tusk&profile'));
     act(() => {
       fireEvent.keyDown(window, { key: 'Escape' });
     });
@@ -125,7 +125,7 @@ describe('профиль героя', () => {
     expect(within(profile('Shadow Fiend')!).getByRole('button', { name: 'Close profile' })).toBeInTheDocument();
   });
 
-  it('выбран герой, профиль открыт: маркер, крошка и Esc ведут к панели экрана, герой остаётся (A15)', () => {
+  it('выбран герой, профиль открыт: маркер, крошка и Esc ведут к панели экрана, герой остаётся (A15)', async () => {
     window.location.hash = '#/r/icewrack?hero=tusk&profile';
     render(<App />);
     expect(profile('Tusk')).not.toBeNull();
@@ -146,7 +146,7 @@ describe('профиль героя', () => {
     act(() => {
       fireEvent.keyDown(window, { key: 'Escape' });
     });
-    expect(window.location.hash).toBe('#/r/icewrack?hero=tusk');
+    await waitFor(() => expect(window.location.hash).toBe('#/r/icewrack?hero=tusk'));
     fireEvent.click(within(chip()!).getByRole('button', { name: 'Снять выбор героя' }));
     expect(window.location.hash).toBe('#/r/icewrack');
     expect(chip()).toBeNull();

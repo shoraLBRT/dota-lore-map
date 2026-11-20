@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen, within } from '@testing-library/react';
+import { act, fireEvent, render, screen, within, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { getPlace, getRegion, placeName } from '../data/world';
 import { App } from './App';
@@ -163,9 +163,9 @@ describe('клики во время анимации камеры (SPEC §7.1)'
     fireEvent.keyDown(window, { key: 'Escape' });
     expect(window.location.hash).toBe('#/r/icewrack/black-pool');
     await done();
-    expect(window.location.hash).toBe('#/r/icewrack');
+    await waitFor(() => expect(window.location.hash).toBe('#/r/icewrack'));
     await done();
     fireEvent.keyDown(window, { key: 'Escape' });
-    expect(window.location.hash).toBe('#/world');
+    await waitFor(() => expect(window.location.hash).toBe('#/world'));
   });
 });

@@ -36,11 +36,11 @@ function Screens() {
       }
       if (galleryOpen) return;
       if (hero && profileOpen) {
-        navigate({ screen, hero });
+        navigate({ screen, hero }, { replace: true });
         return;
       }
       if (hero) {
-        navigate({ screen });
+        navigate({ screen }, { replace: true });
         return;
       }
       const parent = parentScreen(screen);

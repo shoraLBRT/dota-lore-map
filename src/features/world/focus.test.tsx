@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { App } from '../../app/App';
 import { getPlace, getRegion, placeName } from '../../data/world';
@@ -66,7 +66,7 @@ describe('клавиатура на карте', () => {
     window.localStorage.setItem('dota-lore-map.lang', 'ru');
   });
 
-  it('Enter на регионе → фокус на заголовке панели; Enter на маркере → место; Esc → обратно на маркер и регион', () => {
+  it('Enter на регионе → фокус на заголовке панели; Enter на маркере → место; Esc → обратно на маркер и регион', async () => {
     window.location.hash = '#/world';
     render(<App />);
     const polygon = screen.getByRole('button', { name: icewrack.name.ru });
@@ -86,11 +86,11 @@ describe('клавиатура на карте', () => {
     // Фокус потерян (на body) — Esc из места ставит его на маркер места, откуда пришли.
     act(() => (document.activeElement as HTMLElement).blur());
     fireEvent.keyDown(window, { key: 'Escape' });
-    expect(window.location.hash).toBe('#/r/icewrack');
+    await waitFor(() => expect(window.location.hash).toBe('#/r/icewrack'));
     expect(document.activeElement).toBe(screen.getByRole('button', { name: placeName(cobalt, 'ru') }));
 
     fireEvent.keyDown(window, { key: 'Escape' });
-    expect(window.location.hash).toBe('#/world');
+    await waitFor(() => expect(window.location.hash).toBe('#/world'));
     expect(document.activeElement).toBe(screen.getByRole('button', { name: icewrack.name.ru }));
   });
 

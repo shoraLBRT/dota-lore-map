@@ -9,6 +9,12 @@ const DRAFT = 'dota-lore-map.feedback.draft';
 const button = () => screen.getByRole('button', { name: 'Обратная связь' });
 const dialog = () => screen.queryByRole('dialog', { name: 'Обратная связь' });
 
+/** Нажать и отпустить на месте. */
+function tap(el: Element) {
+  fireEvent.pointerDown(el, { pointerId: 1, clientX: 100, clientY: 100 });
+  fireEvent.pointerUp(el, { pointerId: 1, clientX: 100, clientY: 100 });
+}
+
 function openWindow() {
   const b = button();
   b.focus();
@@ -94,13 +100,18 @@ describe('окно обратной связи', () => {
     expect(button()).toHaveFocus();
 
     win = openWindow();
-    fireEvent.pointerDown(win.querySelector('p')!);
+    tap(win.querySelector('p')!);
     expect(dialog()).not.toBeNull();
-    fireEvent.pointerDown(document.querySelector('main') ?? document.body.firstElementChild!);
+    const outside = document.querySelector('main') ?? document.body.firstElementChild!;
+    // Перетаскивание карты окно не закрывает (#182), тап мимо — закрывает.
+    fireEvent.pointerDown(outside, { pointerId: 1, clientX: 100, clientY: 100 });
+    fireEvent.pointerUp(outside, { pointerId: 1, clientX: 160, clientY: 100 });
+    expect(dialog()).not.toBeNull();
+    tap(outside);
     expect(dialog()).toBeNull();
 
     openWindow();
-    fireEvent.pointerDown(button());
+    tap(button());
     fireEvent.click(button());
     expect(dialog()).toBeNull();
   });

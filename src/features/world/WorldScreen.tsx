@@ -168,9 +168,9 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
     setSearchOpen(false);
     navigate({ screen: heroScreen(h), hero: h.key, profile: true });
   };
-  const clearHero = () => navigate({ screen: route.screen });
+  const clearHero = () => navigate({ screen: route.screen }, { replace: true });
   // Закрыть профиль, оставив героя выбранным (крошка, Esc); открыть снова — чип.
-  const closeProfile = () => hero && navigate({ screen: route.screen, hero: hero.key });
+  const closeProfile = () => hero && navigate({ screen: route.screen, hero: hero.key }, { replace: true });
   const openProfile = () => hero && navigate({ screen: route.screen, hero: hero.key, profile: true });
   // Портрет героя где угодно — в подсказке региона (#65), в панели региона или места, в «Связан с» профиля —
   // открывает его профиль (E15, SPEC §6.8). Камера остаётся: из мира не приближается, в регионе и месте

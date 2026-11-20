@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen, within } from '@testing-library/react';
+import { act, fireEvent, render, screen, within, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { App } from '../../app/App';
 import { getPlace, getRegion, placeName, world } from '../../data/world';
@@ -32,7 +32,19 @@ describe('список регионов на телефоне', () => {
   });
   afterEach(() => vi.unstubAllGlobals());
 
-  it('мир → шторка «Регионы» → пункт → регион со шторкой → Esc → снова мир с развёрнутым списком', () => {
+  it('Esc сворачивает раскрытую шторку «Регионы», экран и герой остаются (#182)', () => {
+    window.location.hash = '#/world?hero=tusk';
+    render(<App />);
+    openList();
+    const item = within(list()!).getByRole('button', { name: new RegExp(icewrack.name.ru) });
+    item.focus();
+    fireEvent.keyDown(item, { key: 'Escape' });
+    expect(list()).toHaveAttribute('data-state', 'closed');
+    expect(within(list()!).getByRole('button', { name: 'Регионы' })).toHaveFocus();
+    expect(window.location.hash).toBe('#/world?hero=tusk');
+  });
+
+  it('мир → шторка «Регионы» → пункт → регион со шторкой → Esc → снова мир с развёрнутым списком', async () => {
     window.location.hash = '#/world';
     render(<App />);
     expect(list()).toHaveAttribute('data-state', 'closed');
@@ -47,11 +59,11 @@ describe('список регионов на телефоне', () => {
     expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent(icewrack.name.ru);
 
     fireEvent.keyDown(window, { key: 'Escape' });
-    expect(window.location.hash).toBe('#/world');
+    await waitFor(() => expect(window.location.hash).toBe('#/world'));
     expect(list()).toHaveAttribute('data-state', 'open');
   });
 
-  it('клавиатура: регион открыт из списка → Esc из места и региона → фокус на тот же пункт списка', () => {
+  it('клавиатура: регион открыт из списка → Esc из места и региона → фокус на тот же пункт списка', async () => {
     window.location.hash = '#/world';
     render(<App />);
     const item = () => list()!.querySelector<HTMLElement>('[data-list-region="icewrack"]')!;
@@ -67,11 +79,11 @@ describe('список регионов на телефоне', () => {
     fireEvent.keyDown(window, { key: 'Escape' });
     act(() => (document.activeElement as HTMLElement).blur());
     fireEvent.keyDown(window, { key: 'Escape' });
-    expect(window.location.hash).toBe('#/world');
+    await waitFor(() => expect(window.location.hash).toBe('#/world'));
     expect(document.activeElement).toBe(item());
   });
 
-  it('открыт тапом по карте — назад в мир фокус на полигон, как на компьютере', () => {
+  it('открыт тапом по карте — назад в мир фокус на полигон, как на компьютере', async () => {
     window.location.hash = '#/world';
     render(<App />);
     const polygon = () => document.querySelector<SVGElement>('[data-region="icewrack"]')!;
@@ -79,7 +91,7 @@ describe('список регионов на телефоне', () => {
     fireEvent.keyDown(polygon(), { key: 'Enter' });
     expect(window.location.hash).toBe('#/r/icewrack');
     fireEvent.keyDown(window, { key: 'Escape' });
-    expect(window.location.hash).toBe('#/world');
+    await waitFor(() => expect(window.location.hash).toBe('#/world'));
     expect(document.activeElement).toBe(polygon());
     // Регион открыт с карты — шторка снова свёрнута.
     expect(list()).toHaveAttribute('data-state', 'closed');

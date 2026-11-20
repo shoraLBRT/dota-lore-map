@@ -1,4 +1,4 @@
-import { useId, useMemo } from "react";
+import { useId, useMemo, useRef, type KeyboardEvent } from "react";
 import type { Lang, Region } from "../../data/types";
 import { useT, type MessageKey } from "../../i18n";
 import styles from "./RegionList.module.css";
@@ -68,6 +68,14 @@ export function RegionList({
   const { l, lang, t } = useT();
   const titleId = useId();
   const bodyId = useId();
+  const handleRef = useRef<HTMLButtonElement>(null);
+  // Esc сворачивает раскрытую шторку (#182): она — верхнее окно, экран и выбранный герой остаются.
+  const onKeyDown = (e: KeyboardEvent) => {
+    if (e.key !== "Escape" || !open) return;
+    e.stopPropagation();
+    onOpenChange(false);
+    handleRef.current?.focus();
+  };
   const groups = useMemo(
     () =>
       GROUPS.map((g) => ({
@@ -90,11 +98,13 @@ export function RegionList({
       data-testid="region-list"
       data-region-list
       data-state={open ? "open" : "closed"}
+      onKeyDown={onKeyDown}
     >
       <h2 id={titleId} className={styles.title}>
         <button
           type="button"
           className={styles.handle}
+          ref={handleRef}
           aria-expanded={open}
           aria-controls={bodyId}
           onClick={() => onOpenChange(!open)}

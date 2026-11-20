@@ -10,6 +10,7 @@ import { useT } from '../../i18n';
 import { feedbackContext, type FeedbackBlockRef } from './context';
 import { loadDraft, saveDraft } from './draft';
 import { cleanMessage, FEEDBACK_KINDS, feedbackUrl, MESSAGE_LIMIT, type FeedbackKind } from './message';
+import { listenOutsideTap } from '../../app/outsideTap';
 import styles from './FeedbackWindow.module.css';
 
 /** Кнопки-источники с этим атрибутом сами открывают и закрывают окно: клик по ним — не «клик вне окна». */
@@ -53,17 +54,15 @@ export function FeedbackWindow({ block, onClose }: Props) {
     };
   }, []);
 
-  // Клик вне окна закрывает его. Кнопки-источники пропускаем: они переключают окно сами.
-  useEffect(() => {
-    const onPointerDown = (e: PointerEvent) => {
-      const target = e.target;
-      if (!(target instanceof Element)) return;
-      if (dialogRef.current?.contains(target) || target.closest(`[${OPENER_ATTR}]`)) return;
-      onClose();
-    };
-    document.addEventListener('pointerdown', onPointerDown, true);
-    return () => document.removeEventListener('pointerdown', onPointerDown, true);
-  }, [onClose]);
+  // Клик вне окна закрывает его, перетаскивание карты — нет (#182). Кнопки-источники пропускаем: они переключают окно сами.
+  useEffect(
+    () =>
+      listenOutsideTap(
+        (target) => Boolean(dialogRef.current?.contains(target) || target.closest(`[${OPENER_ATTR}]`)),
+        onClose,
+      ),
+    [onClose],
+  );
 
   const change = (value: string) => {
     const next = value.slice(0, MESSAGE_LIMIT);

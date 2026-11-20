@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen, within } from '@testing-library/react';
+import { act, fireEvent, render, screen, within, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { App } from '../../app/App';
 import type { Lang, Media } from '../../data/types';
@@ -234,7 +234,7 @@ describe('галерея в приложении', () => {
     window.localStorage.setItem('dota-lore-map.lang', 'ru');
   });
 
-  it('карточка открывает галерею на своём элементе; Esc закрывает только её, следующий Esc — на уровень вверх', () => {
+  it('карточка открывает галерею на своём элементе; Esc закрывает только её, следующий Esc — на уровень вверх', async () => {
     window.location.hash = '#/r/icewrack';
     render(<App />);
     const title = getMedia('icewrack-new-neighbors')!.title.ru;
@@ -247,7 +247,7 @@ describe('галерея в приложении', () => {
       fireEvent.keyDown(window, { key: 'Escape' });
     });
     expect(screen.queryByRole('dialog')).toBeNull();
-    expect(window.location.hash).toBe('#/r/icewrack');
+    await waitFor(() => expect(window.location.hash).toBe('#/r/icewrack'));
     expect(window.history.length).toBe(length);
 
     fireEvent.keyDown(window, { key: 'Escape' });

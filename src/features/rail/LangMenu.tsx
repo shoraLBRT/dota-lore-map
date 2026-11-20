@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
 import { Tooltip } from '../../components/Tooltip';
 import type { Lang } from '../../data/types';
 import { LANGS, useT } from '../../i18n';
+import { listenOutsideTap } from '../../app/outsideTap';
 import styles from './LangMenu.module.css';
 
 /** Названия языков — каждый на самом себе (самоназвание), поэтому не из словаря. */
@@ -22,11 +23,11 @@ export function LangMenu({ buttonClassName }: { buttonClassName?: string }) {
   useEffect(() => {
     if (!open) return;
     items.current[Math.max(0, LANGS.indexOf(lang))]?.focus();
-    const onDown = (e: PointerEvent) => {
-      if (!wrap.current?.contains(e.target as Node)) setOpen(false);
-    };
-    document.addEventListener('pointerdown', onDown);
-    return () => document.removeEventListener('pointerdown', onDown);
+    // Клик вне меню закрывает его, перетаскивание карты — нет (#182).
+    return listenOutsideTap(
+      (target) => Boolean(wrap.current?.contains(target)),
+      () => setOpen(false),
+    );
     // Фокус ставится только при открытии меню.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
