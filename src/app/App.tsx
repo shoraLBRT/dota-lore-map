@@ -1,18 +1,15 @@
-import { useCallback, useEffect, useState } from "react";
-import {
-  FeedbackProvider,
-  useFeedback,
-} from "../features/feedback/FeedbackProvider";
-import { galleryOf } from "../features/gallery/items";
-import { Intro } from "../features/intro/Intro";
-import { WorldScreen } from "../features/world/WorldScreen";
-import { I18nProvider } from "../i18n";
-import { Gallery, prefetchDeferred } from "./deferred";
-import { NavigationProvider, useNavigation } from "./navigation";
-import { parentScreen, type Screen } from "./router";
-import { SoundProvider, useSound } from "./sound";
+import { useCallback, useEffect, useState } from 'react';
+import { FeedbackProvider, useFeedback } from '../features/feedback/FeedbackProvider';
+import { galleryOf } from '../features/gallery/items';
+import { Intro } from '../features/intro/Intro';
+import { WorldScreen } from '../features/world/WorldScreen';
+import { I18nProvider } from '../i18n';
+import { Gallery, prefetchDeferred } from './deferred';
+import { NavigationProvider, useNavigation } from './navigation';
+import { parentScreen, type Screen } from './router';
+import { SoundProvider, useSound } from './sound';
 
-const WORLD: Screen = { name: "world" };
+const WORLD: Screen = { name: 'world' };
 
 function Screens() {
   const { route, open, navigate } = useNavigation();
@@ -21,7 +18,7 @@ function Screens() {
   const { screen } = route;
   // A1 идёт уже на адресе #/world: интро остаётся поверх мира, пока облака не разъедутся.
   const [introLeaving, setIntroLeaving] = useState(false);
-  const onIntro = screen.name === "intro";
+  const onIntro = screen.name === 'intro';
   const gallery = onIntro ? null : galleryOf(route);
   const galleryOpen = gallery !== null;
 
@@ -32,7 +29,7 @@ function Screens() {
   const profileOpen = Boolean(route.hero && route.profile);
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key !== "Escape") return;
+      if (e.key !== 'Escape') return;
       if (feedback.isOpen) {
         feedback.close();
         return;
@@ -49,8 +46,8 @@ function Screens() {
       const parent = parentScreen(screen);
       if (parent !== screen) open(parent);
     };
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
   }, [screen, open, navigate, galleryOpen, hero, profileOpen, feedback]);
 
   const start = useCallback(() => {
@@ -61,10 +58,7 @@ function Screens() {
   const left = useCallback(() => setIntroLeaving(false), []);
   useEffect(prefetchDeferred, []);
   // Листание и закрытие галереи не добавляют записей в историю: «назад» браузера ведёт к прошлому экрану.
-  const selectMedia = useCallback(
-    (media: string) => navigate({ ...route, media }, { replace: true }),
-    [navigate, route],
-  );
+  const selectMedia = useCallback((media: string) => navigate({ ...route, media }, { replace: true }), [navigate, route]);
   const closeGallery = useCallback(
     // Профиль и выбранный герой остаются: галерея открыта поверх них.
     () => navigate({ ...route, media: undefined }, { replace: true }),
@@ -73,26 +67,9 @@ function Screens() {
 
   return (
     <>
-      <WorldScreen
-        screen={onIntro ? WORLD : screen}
-        veiled={onIntro}
-        unveiling={!onIntro && introLeaving}
-      />
-      {(onIntro || introLeaving) && (
-        <Intro
-          leaving={!onIntro && introLeaving}
-          onStart={start}
-          onLeft={left}
-        />
-      )}
-      {gallery && (
-        <Gallery
-          items={gallery.items}
-          index={gallery.index}
-          onSelect={selectMedia}
-          onClose={closeGallery}
-        />
-      )}
+      <WorldScreen screen={onIntro ? WORLD : screen} veiled={onIntro} unveiling={!onIntro && introLeaving} />
+      {(onIntro || introLeaving) && <Intro leaving={!onIntro && introLeaving} onStart={start} onLeft={left} />}
+      {gallery && <Gallery items={gallery.items} index={gallery.index} onSelect={selectMedia} onClose={closeGallery} />}
     </>
   );
 }
