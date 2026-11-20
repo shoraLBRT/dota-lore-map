@@ -1,28 +1,34 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { useMediaQuery } from '../../app/media';
-import { useNavigation } from '../../app/navigation';
-import { useSfx } from '../../app/sound';
-import { parseHash, serializeRoute, type Screen } from '../../app/router';
-import type { Hero } from '../../data/types';
-import { getHero, getPlace, getRegion, placeName, world } from '../../data/world';
-import { useT } from '../../i18n';
-import { HeroChip } from '../hero/HeroChip';
-import { HeroProfile, HeroSearch } from '../../app/deferred';
-import { ProfileCrumb } from '../hero/ProfileCrumb';
-import { PlacePanel } from '../location/PlacePanel';
-import { Breadcrumbs } from '../panel/Breadcrumbs';
-import { Panel } from '../panel/Panel';
-import { Rail } from '../rail/Rail';
-import { RegionPanel } from '../region/RegionPanel';
-import barStyles from '../search/HeroBar.module.css';
-import { HeroPickProvider, HeroPreviewProvider } from '../search/preview';
-import { heroScreen, heroSpots, spotScreen } from '../search/search';
-import { heroThreads } from '../search/threads';
-import { MOBILE_QUERY } from './camera';
-import { focusLost, restoreFocus } from './focus';
-import { MapStage } from './MapStage';
-import { MoveHint, useMoveHint, useWorldHint, WorldHint } from './WorldHint';
-import styles from './WorldScreen.module.css';
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useMediaQuery } from "../../app/media";
+import { useNavigation } from "../../app/navigation";
+import { useSfx } from "../../app/sound";
+import { parseHash, serializeRoute, type Screen } from "../../app/router";
+import type { Hero } from "../../data/types";
+import {
+  getHero,
+  getPlace,
+  getRegion,
+  placeName,
+  world,
+} from "../../data/world";
+import { useT } from "../../i18n";
+import { HeroChip } from "../hero/HeroChip";
+import { HeroProfile, HeroSearch } from "../../app/deferred";
+import { ProfileCrumb } from "../hero/ProfileCrumb";
+import { PlacePanel } from "../location/PlacePanel";
+import { Breadcrumbs } from "../panel/Breadcrumbs";
+import { Panel } from "../panel/Panel";
+import { Rail } from "../rail/Rail";
+import { RegionPanel } from "../region/RegionPanel";
+import barStyles from "../search/HeroBar.module.css";
+import { HeroPickProvider, HeroPreviewProvider } from "../search/preview";
+import { heroScreen, heroSpots, spotScreen } from "../search/search";
+import { heroThreads } from "../search/threads";
+import { MOBILE_QUERY } from "./camera";
+import { focusLost, restoreFocus } from "./focus";
+import { MapStage } from "./MapStage";
+import { MoveHint, useMoveHint, useWorldHint, WorldHint } from "./WorldHint";
+import styles from "./WorldScreen.module.css";
 
 interface Props {
   screen: Screen;
@@ -33,7 +39,11 @@ interface Props {
 }
 
 /** Экраны «Мир», «Регион», «Место»: левая панель, карта, правая панель. Неизвестный регион или место — уровень выше. */
-export function WorldScreen({ screen, veiled = false, unveiling = false }: Props) {
+export function WorldScreen({
+  screen,
+  veiled = false,
+  unveiling = false,
+}: Props) {
   const { l, lang, t } = useT();
   const { route, open, hold, navigate } = useNavigation();
   const rootRef = useRef<HTMLDivElement>(null);
@@ -43,9 +53,15 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
     if (rootRef.current) rootRef.current.inert = veiled;
   }, [veiled]);
 
-  const regionId = screen.name === 'region' || screen.name === 'place' ? screen.regionId : undefined;
+  const regionId =
+    screen.name === "region" || screen.name === "place"
+      ? screen.regionId
+      : undefined;
   const region = regionId ? getRegion(regionId) : undefined;
-  const place = region && screen.name === 'place' ? getPlace(region.id, screen.placeSlug) : undefined;
+  const place =
+    region && screen.name === "place"
+      ? getPlace(region.id, screen.placeSlug)
+      : undefined;
   const screenKey = serializeRoute({ screen });
   const hero = route.hero ? getHero(route.hero) : undefined;
   // Профиль героя (E15, SPEC §6.8, A15) открыт флагом `profile` в адресе: панель показывает его поверх панели экрана.
@@ -54,7 +70,10 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
   const profileOpen = Boolean(hero && route.profile);
   const panelKey = profileOpen ? `hero/${hero!.key}` : screenKey;
   // Свёрнутая панель снова раскрывается при смене региона, места или героя: иначе клик «ничего не делает».
-  const [fold, setFold] = useState<{ key: string; collapsed: boolean }>({ key: panelKey, collapsed: false });
+  const [fold, setFold] = useState<{ key: string; collapsed: boolean }>({
+    key: panelKey,
+    collapsed: false,
+  });
   const collapsed = fold.key === panelKey && fold.collapsed;
 
   // Клавиатура (SPEC §14): если при переходе фокус пропал вместе с элементом, ставим его на заголовок
@@ -66,9 +85,14 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
     const prev = prevKey.current;
     prevKey.current = screenKey;
     if (veiled || !rootRef.current || prev === screenKey) return;
-    restoreFocus(rootRef.current, parseHash(prev).screen, parseHash(screenKey).screen, {
-      listRegionId: listOrigin.current,
-    });
+    restoreFocus(
+      rootRef.current,
+      parseHash(prev).screen,
+      parseHash(screenKey).screen,
+      {
+        listRegionId: listOrigin.current,
+      },
+    );
   }, [screenKey, veiled]);
 
   // Профиль открыт или сменился герой: фокус — на имя героя (заголовок панели), как при переходе вниз;
@@ -81,8 +105,8 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
     if (veiled || !rootRef.current || prev === profileKey) return;
     if (!profileKey && !focusLost(document.activeElement)) return;
     const target =
-      rootRef.current.querySelector<HTMLElement>('[data-panel-heading]') ??
-      rootRef.current.querySelector<HTMLElement>('[data-hero-chip]');
+      rootRef.current.querySelector<HTMLElement>("[data-panel-heading]") ??
+      rootRef.current.querySelector<HTMLElement>("[data-hero-chip]");
     target?.focus({ preventScroll: true });
   }, [profileKey, veiled]);
 
@@ -90,7 +114,7 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
   const sfx = useSfx();
   const panelOpen = (Boolean(region) || profileOpen) && !veiled;
   useEffect(() => {
-    if (panelOpen) sfx('panel');
+    if (panelOpen) sfx("panel");
   }, [panelOpen, sfx]);
 
   // Поиск и выбранный герой (SPEC §6.5): `?hero=` в адресе, профиль или чип сверху, приглушение, нити.
@@ -98,20 +122,46 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
   const spots = useMemo(() => (hero ? heroSpots(hero) : undefined), [hero]);
   // Герой под наведением или фокусом — портрет в панели или вариант поиска (SPEC §6.6, #66): нити, если мест
   // несколько, и всегда — где он на карте. Живёт, пока не сменился экран.
-  const [preview, setPreview] = useState<{ key: string; hero: Hero } | null>(null);
+  const [preview, setPreview] = useState<{ key: string; hero: Hero } | null>(
+    null,
+  );
   // Вариант поиска — отдельно: закрытый поиск не должен снимать портрет, на который ушёл фокус.
   const [searchPreview, setSearchPreview] = useState<Hero | null>(null);
-  const previewHero = searchOpen && searchPreview ? searchPreview : preview?.key === screenKey ? preview.hero : null;
-  const previewSpots = useMemo(() => (previewHero ? heroSpots(previewHero) : undefined), [previewHero]);
+  const previewHero =
+    searchOpen && searchPreview
+      ? searchPreview
+      : preview?.key === screenKey
+        ? preview.hero
+        : null;
+  const previewSpots = useMemo(
+    () => (previewHero ? heroSpots(previewHero) : undefined),
+    [previewHero],
+  );
   // Строка места в панели региона под наведением или фокусом (#99): маркер подсвечен. Живёт, пока не сменился экран.
-  const [placeLit, setPlaceLit] = useState<{ key: string; slug: string } | null>(null);
+  const [placeLit, setPlaceLit] = useState<{
+    key: string;
+    slug: string;
+  } | null>(null);
   const litPlace = placeLit?.key === screenKey ? placeLit.slug : undefined;
-  const onPreviewPlace = useCallback((slug: string | null) => setPlaceLit(slug ? { key: screenKey, slug } : null), [screenKey]);
-  const onPreview = useCallback((h: Hero | null) => setPreview(h ? { key: screenKey, hero: h } : null), [screenKey]);
+  const onPreviewPlace = useCallback(
+    (slug: string | null) =>
+      setPlaceLit(slug ? { key: screenKey, slug } : null),
+    [screenKey],
+  );
+  const onPreview = useCallback(
+    (h: Hero | null) => setPreview(h ? { key: screenKey, hero: h } : null),
+    [screenKey],
+  );
   // Нити (#67): шаги пути и прочие связи; наведение важнее выбора.
-  const heroLines = useMemo(() => (hero && spots ? heroThreads(hero, spots) : undefined), [hero, spots]);
+  const heroLines = useMemo(
+    () => (hero && spots ? heroThreads(hero, spots) : undefined),
+    [hero, spots],
+  );
   const previewLines = useMemo(
-    () => (previewHero && previewSpots ? heroThreads(previewHero, previewSpots) : undefined),
+    () =>
+      previewHero && previewSpots
+        ? heroThreads(previewHero, previewSpots)
+        : undefined,
     [previewHero, previewSpots],
   );
   const threads = previewLines ?? heroLines;
@@ -125,7 +175,7 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
   const { dismiss: dismissHint } = hint;
   const moveHint = useMoveHint();
   const { dismiss: dismissMoveHint } = moveHint;
-  const moveFirst = moveHint.state !== 'gone';
+  const moveFirst = moveHint.state !== "gone";
   const inRegion = Boolean(region) && !veiled;
   useEffect(() => {
     if (!inRegion) return;
@@ -133,11 +183,16 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
     dismissHint();
   }, [inRegion, dismissHint, dismissMoveHint]);
   const onMapEvent = (e: { target: EventTarget }) => {
-    if (!moveFirst && e.target instanceof Element && e.target.closest('[data-region]')) dismissHint();
+    if (
+      !moveFirst &&
+      e.target instanceof Element &&
+      e.target.closest("[data-region]")
+    )
+      dismissHint();
   };
   // Телефон (#39, #196): в мире шторка «Регионы» — она сама и есть подсказка, строка внизу кадра не нужна.
   const mobile = useMediaQuery(MOBILE_QUERY);
-  const hintRoom = !veiled && screen.name === 'world' && !searchOpen && !hero;
+  const hintRoom = !veiled && screen.name === "world" && !searchOpen && !hero;
   const showMoveHint = hintRoom && moveFirst;
   const showHint = hintRoom && !moveFirst && !mobile;
   // Легенда сторон (#102): в мире на широком экране; не под интро и не при открытом профиле.
@@ -154,7 +209,7 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
     }
     const measure = () => setBarBottom(el.offsetTop + el.offsetHeight);
     measure();
-    if (typeof ResizeObserver === 'undefined') return;
+    if (typeof ResizeObserver === "undefined") return;
     barObserver.current = new ResizeObserver(measure);
     barObserver.current.observe(el);
   }, []);
@@ -168,10 +223,13 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
     setSearchOpen(false);
     navigate({ screen: heroScreen(h), hero: h.key, profile: true });
   };
-  const clearHero = () => navigate({ screen: route.screen });
+  const clearHero = () => navigate({ screen: route.screen }, { replace: true });
   // Закрыть профиль, оставив героя выбранным (крошка, Esc); открыть снова — чип.
-  const closeProfile = () => hero && navigate({ screen: route.screen, hero: hero.key });
-  const openProfile = () => hero && navigate({ screen: route.screen, hero: hero.key, profile: true });
+  const closeProfile = () =>
+    hero &&
+    navigate({ screen: route.screen, hero: hero.key }, { replace: true });
+  const openProfile = () =>
+    hero && navigate({ screen: route.screen, hero: hero.key, profile: true });
   // Портрет героя где угодно — в подсказке региона (#65), в панели региона или места, в «Связан с» профиля —
   // открывает его профиль (E15, SPEC §6.8). Камера остаётся: из мира не приближается, в регионе и месте
   // герой виден подсветкой и нитями с метками «за краем».
@@ -182,36 +240,60 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
 
   // Значок медиа на карте (#69): галерея на экране, которому медиа принадлежит, — места или региона (A5);
   // герой остаётся выбранным, как при открытии из панели.
-  const openMedia = (regionId: string, target: { mediaId: string; placeSlug?: string }) => {
+  const openMedia = (
+    regionId: string,
+    target: { mediaId: string; placeSlug?: string },
+  ) => {
     setSearchOpen(false);
     const next: Screen = target.placeSlug
-      ? { name: 'place', regionId, placeSlug: target.placeSlug }
-      : { name: 'region', regionId };
-    navigate(route.hero ? { screen: next, hero: route.hero, media: target.mediaId } : { screen: next, media: target.mediaId });
+      ? { name: "place", regionId, placeSlug: target.placeSlug }
+      : { name: "region", regionId };
+    navigate(
+      route.hero
+        ? { screen: next, hero: route.hero, media: target.mediaId }
+        : { screen: next, media: target.mediaId },
+    );
   };
 
   return (
     <div
       ref={rootRef}
-      className={[styles.screen, veiled && styles.veiled, unveiling && styles.unveiling].filter(Boolean).join(' ')}
-      aria-hidden={veiled ? 'true' : undefined}
+      className={[
+        styles.screen,
+        veiled && styles.veiled,
+        unveiling && styles.unveiling,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+      aria-hidden={veiled ? "true" : undefined}
       data-testid="world-screen"
     >
-      <h1 className="visually-hidden">{t('app.title')}</h1>
-      <Rail className={styles.rail} onSearch={() => setSearchOpen(true)} searchOpen={searchOpen} />
+      <h1 className="visually-hidden">{t("app.title")}</h1>
+      <Rail
+        className={styles.rail}
+        onSearch={() => setSearchOpen(true)}
+        searchOpen={searchOpen}
+      />
       <div className={styles.body}>
-        <main className={styles.map} onPointerOver={onMapEvent} onFocus={onMapEvent} onPointerDown={onMapEvent}>
+        <main
+          className={styles.map}
+          onPointerOver={onMapEvent}
+          onFocus={onMapEvent}
+          onPointerDown={onMapEvent}
+        >
           <MapStage
             regions={world.regions}
             activeRegionId={region?.id}
             activePlaceSlug={place?.slug}
             onSelectRegion={(id, source) => {
               // Клик по пустому месту карты в месте (S3 → S2) источника не передаёт — origin не трогаем.
-              if (source) listOrigin.current = source === 'list' ? id : null;
-              if (source) setRegionsOpen(source === 'list');
-              open({ name: 'region', regionId: id });
+              if (source) listOrigin.current = source === "list" ? id : null;
+              if (source) setRegionsOpen(source === "list");
+              open({ name: "region", regionId: id });
             }}
-            onSelectPlace={(id, slug) => open({ name: 'place', regionId: id, placeSlug: slug })}
+            onSelectPlace={(id, slug) =>
+              open({ name: "place", regionId: id, placeSlug: slug })
+            }
             // Свёрнутый профиль в мире кадр не закрывает: карта снова на весь кадр (#97).
             panel={Boolean(region) || (profileOpen && !collapsed)}
             onCameraBusy={hold}
@@ -229,7 +311,7 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
             onRegionsOpen={setRegionsOpen}
             coverTop={barBottom}
             panelCollapsed={Boolean(region) && collapsed}
-            onLeaveRegion={() => open({ name: 'world' })}
+            onLeaveRegion={() => open({ name: "world" })}
             onCameraMove={veiled ? undefined : dismissMoveHint}
           />
         </main>
@@ -238,9 +320,13 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
         {!veiled && (searchOpen || showChip) && (
           <div
             ref={barRef}
-            className={[barStyles.bar, showChip && barStyles.chipBar, (region || profileOpen) && !collapsed && barStyles.withPanel]
+            className={[
+              barStyles.bar,
+              showChip && barStyles.chipBar,
+              (region || profileOpen) && !collapsed && barStyles.withPanel,
+            ]
               .filter(Boolean)
-              .join(' ')}
+              .join(" ")}
           >
             {searchOpen ? (
               <HeroSearch
@@ -253,26 +339,52 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
                 onPreview={setSearchPreview}
               />
             ) : (
-              hero && <HeroChip hero={hero} onOpen={openProfile} onClear={clearHero} />
+              hero && (
+                <HeroChip
+                  hero={hero}
+                  onOpen={openProfile}
+                  onClear={clearHero}
+                />
+              )
             )}
           </div>
         )}
         {(profileOpen || region) && (
           <Panel
-            label={profileOpen ? hero!.name : place ? placeName(place, lang) : l(region!.name)}
+            label={
+              profileOpen
+                ? hero!.name
+                : place
+                  ? placeName(place, lang)
+                  : l(region!.name)
+            }
             collapsed={collapsed}
             onToggle={() => setFold({ key: panelKey, collapsed: !collapsed })}
             contentKey={panelKey}
-            back={profileOpen ? <ProfileCrumb onClose={closeProfile} /> : <Breadcrumbs region={region!} place={place} />}
+            back={
+              profileOpen ? (
+                <ProfileCrumb onClose={closeProfile} />
+              ) : (
+                <Breadcrumbs region={region!} place={place} />
+              )
+            }
           >
             <HeroPreviewProvider value={onPreview}>
               <HeroPickProvider value={pickHere}>
                 {profileOpen && hero && spots ? (
-                  <HeroProfile hero={hero} spots={spots} threads={heroLines} onPick={pickHere} />
+                  <HeroProfile
+                    hero={hero}
+                    spots={spots}
+                    threads={heroLines}
+                    onPick={pickHere}
+                  />
                 ) : place ? (
                   <PlacePanel region={region!} place={place} />
                 ) : (
-                  <RegionPanel region={region!} onPreviewPlace={onPreviewPlace} />
+                  <RegionPanel
+                    region={region!}
+                    onPreviewPlace={onPreviewPlace}
+                  />
                 )}
               </HeroPickProvider>
             </HeroPreviewProvider>
