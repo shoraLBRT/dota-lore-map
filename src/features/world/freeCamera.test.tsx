@@ -1,8 +1,12 @@
-import { describe, expect, it } from 'vitest';
+import { cleanup, fireEvent, render } from '@testing-library/react';
+import { useRef } from 'react';
+import { describe, expect, it, vi } from 'vitest';
 import { clampCamera, FREE_ZOOM_MAX, maxZoom } from './camera';
 import {
   anchorAt,
+  atZoomFloor,
   centered,
+  useFreeCamera,
   decay,
   limitWheel,
   panBy,
@@ -90,5 +94,45 @@ describe('свободная камера (#165)', () => {
     expect(-total).toBeLessThanOrEqual(3 * WHEEL_MAX_DELTA);
     // Мышь: щелчок раз в 150 мс проходит целиком.
     expect(limitWheel(100, { left: 0, at: 0 }, 150).delta).toBe(100);
+  });
+});
+
+describe('выход из региона колесом (#190)', () => {
+  it('нижний упор уровня: дальше не отдалить', () => {
+    const region = { ...view, zoomMin: 2, zoomMax: 3 };
+    expect(atZoomFloor({ x: 0.5, y: 0.5, zoom: 2 }, region)).toBe(true);
+    expect(atZoomFloor({ x: 0.5, y: 0.5, zoom: 2.2 }, region)).toBe(false);
+  });
+
+  it('колесо наружу на упоре зовёт onFloor, выше упора — только отдаляет', () => {
+    const onFloor = vi.fn();
+    function Stage({ zoom }: { zoom: number }) {
+      const viewportRef = useRef<HTMLDivElement>(null);
+      const layerRef = useRef<HTMLDivElement>(null);
+      useFreeCamera({
+        viewportRef,
+        layerRef,
+        view: { ...view, zoomMin: 2, zoomMax: 3 },
+        current: () => ({ x: 0.5, y: 0.5, zoom }),
+        enabled: true,
+        onChange: () => {},
+        home: { x: 0.5, y: 0.5, zoom: 2 },
+        resetKey: zoom,
+        attached: true,
+        onFloor,
+      });
+      return (
+        <div ref={viewportRef} data-testid="vp">
+          <div ref={layerRef} />
+        </div>
+      );
+    }
+    const { getByTestId, rerender } = render(<Stage zoom={2.5} />);
+    fireEvent.wheel(getByTestId('vp'), { deltaY: 100 });
+    expect(onFloor).not.toHaveBeenCalled();
+    rerender(<Stage zoom={2} />);
+    fireEvent.wheel(getByTestId('vp'), { deltaY: 100, timeStamp: 1000 });
+    expect(onFloor).toHaveBeenCalledTimes(1);
+    cleanup();
   });
 });

@@ -75,6 +75,11 @@ export function zoomAt(camera: Camera, view: View, factor: number, px: number, p
   return anchorAt(view, zoom, worldAt(camera, view, px, py), px, py);
 }
 
+/** Камера стоит на нижнем упоре уровня (`clampCamera`: дальше не отдалить). */
+export function atZoomFloor(camera: Camera, view: View): boolean {
+  return clampCamera({ ...camera, zoom: camera.zoom / 1.01 }, view).zoom >= camera.zoom * (1 - 1e-3);
+}
+
 /** Множитель зума на прокрутку колеса (deltaY в px; вниз — отдалить). */
 export function wheelFactor(deltaY: number): number {
   return Math.pow(WHEEL_RATE, -deltaY / 100);
@@ -136,6 +141,11 @@ interface Options {
   resetKey: unknown;
   /** Кадр карты есть в DOM (жесты вешаются на него). */
   attached: boolean;
+  /**
+   * Отдаление колесом, `−` или кнопкой, когда камера уже стоит на нижнем упоре уровня (#190): в регионе и месте —
+   * выход в мир. Без него упор просто держит камеру.
+   */
+  onFloor?: (camera: Camera) => void;
 }
 
 /** Действия кнопок на экране. */
@@ -149,10 +159,10 @@ export interface FreeCameraControls {
  * Жесты свободной камеры на кадре карты. Transform слоя пишется напрямую в каждом кадре анимации,
  * React получает камеру через `onChange` (маркеры и подписи пересчитывают масштаб).
  */
-export function useFreeCamera({ viewportRef, layerRef, screenRef, view, current, enabled, onChange, home, resetKey, attached }: Options): FreeCameraControls {
-  const live = useRef({ view, current, enabled, onChange, home });
+export function useFreeCamera({ viewportRef, layerRef, screenRef, view, current, enabled, onChange, home, resetKey, attached, onFloor }: Options): FreeCameraControls {
+  const live = useRef({ view, current, enabled, onChange, home, onFloor });
   useLayoutEffect(() => {
-    live.current = { view, current, enabled, onChange, home };
+    live.current = { view, current, enabled, onChange, home, onFloor };
   });
   const cam = useRef<Camera | null>(null);
   const motion = useRef<Motion | null>(null);
@@ -223,12 +233,20 @@ export function useFreeCamera({ viewportRef, layerRef, screenRef, view, current,
     }
   };
 
-  /** Плавно приблизить в `factor` раз вокруг точки кадра; повторные шаги копятся. */
-  const zoomBy = (factor: number, px: number, py: number) => {
-    const { view: v } = live.current;
+  /**
+   * Плавно приблизить в `factor` раз вокруг точки кадра; повторные шаги копятся. `floor` — шаг колеса, клавиши или
+   * кнопки: отдаление с уже достигнутого нижнего упора (камера стоит, а не едет к нему) зовёт `onFloor` (#190).
+   */
+  const zoomBy = (factor: number, px: number, py: number, floor = false) => {
+    const { view: v, onFloor: atFloor } = live.current;
     if (v.layerWidth <= 0) return;
     const c = base();
     const m = motion.current;
+    if (floor && atFloor && factor < 1 && m?.kind !== 'zoom' && atZoomFloor(c, v)) {
+      stop();
+      atFloor(c);
+      return;
+    }
     const from = m?.kind === 'zoom' ? m.zoom : c.zoom;
     const zoom = clampCamera({ ...c, zoom: from * factor }, v).zoom;
     const world = m?.kind === 'zoom' && Math.abs(m.px - px) < 1 && Math.abs(m.py - py) < 1 ? m.world : worldAt(c, v, px, py);
@@ -343,7 +361,7 @@ export function useFreeCamera({ viewportRef, layerRef, screenRef, view, current,
       const p = local(e);
       const limited = limitWheel(wheelDelta(e.deltaY, e.deltaMode), wheel, e.timeStamp);
       wheel = limited.budget;
-      if (limited.delta !== 0) zoomBy(wheelFactor(limited.delta), p.x, p.y);
+      if (limited.delta !== 0) zoomBy(wheelFactor(limited.delta), p.x, p.y, true);
     };
     const onDouble = (e: MouseEvent) => {
       if (!live.current.enabled) return;
@@ -382,7 +400,7 @@ export function useFreeCamera({ viewportRef, layerRef, screenRef, view, current,
         const c = base();
         run({ kind: 'fly', goal: panBy(c, v, dx, dy) });
       } else if (e.key === '+' || e.key === '=') zoomBy(ZOOM_STEP, v.width / 2, v.height / 2);
-      else if (e.key === '-' || e.key === '_') zoomBy(1 / ZOOM_STEP, v.width / 2, v.height / 2);
+      else if (e.key === '-' || e.key === '_') zoomBy(1 / ZOOM_STEP, v.width / 2, v.height / 2, true);
       else if (e.key === '0') run({ kind: 'fly', goal: live.current.home });
       else return;
       e.preventDefault();
@@ -425,7 +443,7 @@ export function useFreeCamera({ viewportRef, layerRef, screenRef, view, current,
   const center = () => [live.current.view.width / 2, live.current.view.height / 2] as const;
   return {
     zoomIn: () => zoomBy(ZOOM_STEP, ...center()),
-    zoomOut: () => zoomBy(1 / ZOOM_STEP, ...center()),
+    zoomOut: () => zoomBy(1 / ZOOM_STEP, ...center(), true),
     home: () => {
       if (live.current.enabled) {
         if (cam.current === null) cam.current = live.current.current();

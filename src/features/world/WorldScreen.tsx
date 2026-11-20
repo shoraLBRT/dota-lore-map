@@ -219,6 +219,7 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
             topInset={topInset}
             coverTop={barBottom}
             panelCollapsed={Boolean(region) && collapsed}
+            onLeaveRegion={() => open({ name: 'world' })}
           />
         </main>
         {showHint && <WorldHint state={hint.state} />}

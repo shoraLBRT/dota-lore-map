@@ -4,7 +4,7 @@ import type { Place } from '../../data/types';
 import { placeName } from '../../data/world';
 import { useT } from '../../i18n';
 import type { LabelSide } from './labels';
-import { fontOf, kindOf, markerLabelAttrs, ringOf, significance } from './markerLayout';
+import { fontOf, kindOf, markerLabelAttrs, ringOf, significance, type MarkerKind } from './markerLayout';
 import styles from './MarkersLayer.module.css';
 import { mediaKinds, placeMediaBadge, type MediaBadge } from './mediaBadge';
 import { onActivate, toStage } from './stage';
@@ -22,6 +22,55 @@ const DIAMOND = '0,-1 1,0 0,1 -1,0';
 const HIT_RADIUS = 16;
 /** Значок галереи (#191): страница 5×4 и край второй под ней, центр — в (0, 0). */
 const GALLERY = 'M-3 -2.5h5v4h-5z M-1.5 -3.5h4.5v4';
+
+/**
+ * Фигура и подпись маркера (#191) — общие для маркеров региона и мира (#190). `.pin` — мягкое появление с масштабом,
+ * `.hop` — подпрыгивание при наведении (SPEC §7.5): два слоя, у каждого своя CSS-анимация transform, и transform-атрибут
+ * маркера они не трогают. Выбранное место — та же фигура в кольце радиуса `ring`.
+ */
+export function MarkerFigure({
+  kind,
+  ring,
+  selected = false,
+  label,
+  side,
+  name,
+  measure,
+}: {
+  kind: MarkerKind;
+  ring: number;
+  selected?: boolean;
+  label: ReturnType<typeof markerLabelAttrs>;
+  side: LabelSide;
+  name: string;
+  /** Ключ замера ширины подписи (`useMeasuredLabels`); без него подпись не меряется. */
+  measure?: string;
+}) {
+  return (
+    <>
+      <g className={styles.pin}>
+        <g className={styles.hop}>
+          {selected && <circle className={styles.selection} r={ring} />}
+          {kind === 'capital' ? (
+            <polygon className={styles.ring} points={STAR} transform={`scale(${selected ? 7 : ring})`} data-shape="star" />
+          ) : kind === 'event' ? (
+            <>
+              <polygon className={styles.ring} points={DIAMOND} transform={`scale(${selected ? 6 : ring})`} data-shape="diamond" />
+              <circle className={styles.dot} r={1.6} />
+            </>
+          ) : (
+            <circle className={styles.ring} r={selected ? 4.5 : ring} data-shape="dot" />
+          )}
+        </g>
+      </g>
+      <g className={styles.label}>
+        <text className={styles.markerLabel} x={label.x} y={label.y} textAnchor={label.textAnchor} data-measure={measure} data-side={side}>
+          {name}
+        </text>
+      </g>
+    </>
+  );
+}
 
 interface Props {
   regionId: string;
@@ -120,36 +169,7 @@ export function MarkersLayer({
         >
           <circle className={styles.hit} r={HIT_RADIUS} data-hit="" />
           {previewed && <circle className={styles.pulse} r={ring} data-pulse="" />}
-          {/* Фигура маркера (#191): .pin — мягкое появление с масштабом, .hop — подпрыгивание при наведении (SPEC §7.5).
-              Два слоя, а не один: у каждого своя CSS-анимация transform, и transform-атрибут маркера они не трогают.
-              Выбранное место — та же фигура в кольце радиуса `ring`. */}
-          <g className={styles.pin}>
-            <g className={styles.hop}>
-              {isActive && <circle className={styles.selection} r={ring} />}
-              {kind === 'capital' ? (
-                <polygon className={styles.ring} points={STAR} transform={`scale(${isActive ? 7 : ring})`} data-shape="star" />
-              ) : kind === 'event' ? (
-                <>
-                  <polygon className={styles.ring} points={DIAMOND} transform={`scale(${isActive ? 6 : ring})`} data-shape="diamond" />
-                  <circle className={styles.dot} r={1.6} />
-                </>
-              ) : (
-                <circle className={styles.ring} r={isActive ? 4.5 : ring} data-shape="dot" />
-              )}
-            </g>
-          </g>
-          <g className={styles.label}>
-            <text
-              className={styles.markerLabel}
-              x={label.x}
-              y={label.y}
-              textAnchor={label.textAnchor}
-              data-measure={`m:${p.slug}`}
-              data-side={side}
-            >
-              {name}
-            </text>
-          </g>
+          <MarkerFigure kind={kind} ring={ring} selected={isActive} label={label} side={side} name={name} measure={`m:${p.slug}`} />
         </g>
         {media && (
           // Значок медиа (#69, SPEC §6.3) — отдельная кнопка сразу за маркером (Tab: место → его медиа),

@@ -324,3 +324,30 @@
     animation: none;
   }
 }
+
+/* Регион под камерой (#190, SPEC §8.6): мелкое название гаснет, по территории — крупная приглушённая надпись,
+   в единицах сцены (растёт с приближением, как нарисованная на карте). Мышь не ловит. */
+.spot.under {
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity var(--dur-fade) var(--ease-out),
+    visibility 0s var(--dur-fade);
+}
+
+.territory {
+  fill: var(--text-1);
+  fill-opacity: 0.42;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  pointer-events: none;
+  animation: territory-in var(--dur-fade) var(--ease-out) both;
+}
+
+@keyframes territory-in {
+  from {
+    opacity: 0;
+  }
+}
