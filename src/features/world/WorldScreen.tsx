@@ -24,9 +24,6 @@ import { MapStage } from './MapStage';
 import { useWorldHint, WorldHint } from './WorldHint';
 import styles from './WorldScreen.module.css';
 
-/** Зазор между чипом героя и картой со списком регионов на телефоне, px. */
-const BAR_GAP = 8;
-
 interface Props {
   screen: Screen;
   /** Под интро: карта размыта и чуть приближена (A1 проявляет её), экран недоступен для мыши и клавиатуры. */
@@ -131,13 +128,12 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
   const onMapEvent = (e: { target: EventTarget }) => {
     if (e.target instanceof Element && e.target.closest('[data-region]')) dismissHint();
   };
-  // Телефон (#39): в мире под картой список регионов — он сам и есть подсказка, строка внизу кадра не нужна.
+  // Телефон (#39, #196): в мире шторка «Регионы» — она сама и есть подсказка, строка внизу кадра не нужна.
   const mobile = useMediaQuery(MOBILE_QUERY);
   const showHint = !veiled && screen.name === 'world' && !searchOpen && !hero && !mobile;
   // Легенда сторон (#102): в мире на широком экране; не под интро и не при открытом профиле.
 
-  // Поле поиска или чип героя сверху кадра: метки «нить за краем» встают под них (#64),
-  // на телефоне карта со списком регионов — под чип.
+  // Поле поиска или чип героя сверху кадра: метки «нить за краем» встают под них (#64).
   const [barBottom, setBarBottom] = useState(0);
   const barObserver = useRef<ResizeObserver | null>(null);
   const barRef = useCallback((el: HTMLDivElement | null) => {
@@ -155,7 +151,9 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
   }, []);
 
   const showChip = !veiled && !searchOpen && Boolean(hero) && !profileOpen;
-  const topInset = mobile && showChip && barBottom > 0 ? barBottom + BAR_GAP : 0;
+  // Шторка списка регионов (#196): открыли регион из списка — вернулись в мир к развёрнутому списку (фокус на пункт),
+  // тапом по карте — к свёрнутому.
+  const [regionsOpen, setRegionsOpen] = useState(false);
 
   const pick = (h: Hero) => {
     setSearchOpen(false);
@@ -201,6 +199,7 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
             onSelectRegion={(id, source) => {
               // Клик по пустому месту карты в месте (S3 → S2) источника не передаёт — origin не трогаем.
               if (source) listOrigin.current = source === 'list' ? id : null;
+              if (source) setRegionsOpen(source === 'list');
               open({ name: 'region', regionId: id });
             }}
             onSelectPlace={(id, slug) => open({ name: 'place', regionId: id, placeSlug: slug })}
@@ -215,8 +214,10 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
             onPickHero={pickHere}
             onSelectSpot={(s) => open(spotScreen(s))}
             onOpenMedia={openMedia}
-            regionList={mobile}
-            topInset={topInset}
+            // Профиль героя в мире — своя шторка: список регионов вернётся, когда её закроют.
+            regionList={mobile && !profileOpen}
+            regionsOpen={regionsOpen}
+            onRegionsOpen={setRegionsOpen}
             coverTop={barBottom}
             panelCollapsed={Boolean(region) && collapsed}
             onLeaveRegion={() => open({ name: 'world' })}

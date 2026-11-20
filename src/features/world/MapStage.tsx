@@ -6,7 +6,7 @@ import { AmbientCanvas } from '../atmosphere/AmbientCanvas';
 import type { Spot } from '../search/search';
 import type { HeroThreads } from '../search/threads';
 import { preloadRegionArt } from './art';
-import { polygonBox, STAGE_HEIGHT, STAGE_WIDTH, WORLD_ASPECT, type Rect } from './camera';
+import { polygonBox, STAGE_HEIGHT, STAGE_WIDTH, WORLD_ASPECT } from './camera';
 import { EdgeLabels } from './EdgeLabels';
 import { MapAtmosphere } from './MapAtmosphere';
 import styles from './MapStage.module.css';
@@ -67,10 +67,11 @@ interface Props {
   onSelectSpot?: (spot: Spot) => void;
   /** Нажат значок медиа у маркера места или в подсказке региона (#69): открыть галерею. Без него значков нет. */
   onOpenMedia?: (regionId: string, open: MediaBadge['open']) => void;
-  /** Телефон (#39, SPEC §13): в мире карта прижата к верху, под ней — список регионов. */
+  /** Телефон (#196, SPEC §13): в мире карта во весь кадр, список регионов — в нижней шторке. */
   regionList?: boolean;
-  /** Сколько px сверху кадра занято (плашка героя): карта со списком встаёт ниже. */
-  topInset?: number;
+  /** Шторка списка регионов развёрнута; без `onRegionsOpen` — своё состояние. */
+  regionsOpen?: boolean;
+  onRegionsOpen?: (open: boolean) => void;
   /** Низ плашки героя или поиска над кадром, px от его верха (0 — плашки нет): метки «нить за краем» — ниже (#64). */
   coverTop?: number;
   /** Панель свёрнута ромбом (#195): кнопки зума уезжают к краю окна вместе с ней, камера не перекадрируется. */
@@ -81,7 +82,6 @@ interface Props {
 
 const noop = () => () => {};
 
-const rectStyle = (r: Rect): CSSProperties => ({ top: r.top, left: r.left, width: r.width, height: r.height });
 
 /**
  * Слой карты (ARCHITECTURE A4): картинка мира и SVG в координатах сцены под камерой — сборка слоёв.
@@ -108,7 +108,8 @@ export function MapStage({
   onSelectSpot,
   onOpenMedia,
   regionList = false,
-  topInset = 0,
+  regionsOpen,
+  onRegionsOpen,
   coverTop = 0,
   panelCollapsed = false,
   onLeaveRegion,
@@ -136,8 +137,10 @@ export function MapStage({
   const previewPlaces = useMemo(() => (preview ? new Set(preview.map((s) => s.key)) : null), [preview]);
 
   const regionBoxes = useMemo(() => regions.flatMap((r) => (r.layout ? [polygonBox(r.layout.polygon)] : [])), [regions]);
-  const cam = useCamera({ active, regionBoxes, activePlaceSlug, panel, regionList, topInset, hasMap, onCameraBusy, onLeave: onLeaveRegion });
-  const { viewportRef, layerRef, screenRef, listLayout, flying, target, frame, controls } = cam;
+  const cam = useCamera({ active, regionBoxes, activePlaceSlug, panel, hasMap, onCameraBusy, onLeave: onLeaveRegion });
+  const { viewportRef, layerRef, screenRef, flying, target, frame, controls } = cam;
+  const [ownOpen, setOwnOpen] = useState(false);
+  const sheetOpen = regionsOpen ?? ownOpen;
   const tip = useRegionTooltip({
     regions,
     inWorld,
@@ -173,12 +176,12 @@ export function MapStage({
     zoomFrom: Math.min(1, frame.worldZoom),
     zoomMax: frame.zoomMax,
     world: { width: frame.view.layerWidth, height: frame.view.layerHeight },
-    enabled: inWorld && !listLayout,
+    enabled: inWorld,
   });
-  const deep = inWorld && !listLayout && frame.worldZoom >= placeThreshold('capital', Math.min(1, frame.worldZoom), frame.zoomMax) - 1e-6;
+  const deep = inWorld && frame.worldZoom >= placeThreshold('capital', Math.min(1, frame.worldZoom), frame.zoomMax) - 1e-6;
   const under = deep ? regionUnder(drawn, [frame.framed.camera.x, frame.framed.camera.y]) : undefined;
   const labels = useMarkerLabels({ spots, activeId: active?.id, activePlaceSlug, focusPlaces, lang, widths, frame });
-  const threadLayout = useThreadLayout({ threads, active, drawn, labels, names, frame, coverTop, listed: !!listLayout });
+  const threadLayout = useThreadLayout({ threads, active, drawn, labels, names, frame, coverTop });
 
   // S3 → S2: клик по пустому месту карты (SPEC §5.1). Маркеры клик не пропускают.
   const onBackground = (e: MouseEvent) => {
@@ -218,7 +221,6 @@ export function MapStage({
                   scale={frame.threadScale}
                   obstacles={threadLayout.obstacles}
                   clip={threadLayout.clip}
-                  compact={Boolean(listLayout)}
                   variant={threadVariant}
                 />
               )}
@@ -279,7 +281,7 @@ export function MapStage({
               )}
             </svg>
           </div>
-          <div className={styles.cloudBox} style={listLayout ? rectStyle(listLayout.map) : undefined}>
+          <div className={styles.cloudBox}>
             <MapAtmosphere layerRef={layerRef} activeId={active?.id} clear={Boolean(threads)} />
           </div>
           {active && (
@@ -289,7 +291,7 @@ export function MapStage({
               region={active.layout ? { layerRef, polygon: active.layout.polygon } : undefined}
             />
           )}
-          <div className={styles.vignette} style={listLayout ? rectStyle(listLayout.map) : undefined} aria-hidden="true" />
+          <div className={styles.vignette} aria-hidden="true" />
           <EdgeLabels
             active={active}
             threads={threads}
@@ -300,7 +302,7 @@ export function MapStage({
             fontsTick={fontsTick}
             onSelectSpot={onSelectSpot}
           />
-          {listLayout && (
+          {regionList && inWorld && (
             <RegionList
               regions={drawn}
               onSelect={(id) => onSelectRegion(id, 'list')}
@@ -313,10 +315,11 @@ export function MapStage({
               heroCountOf={(id) => heroesOf(id).length}
               focus={focusRegions}
               waiting={flying}
-              style={rectStyle(listLayout.list)}
+              open={sheetOpen}
+              onOpenChange={(open) => (onRegionsOpen ?? setOwnOpen)(open)}
             />
           )}
-          {!listLayout && <ZoomControls controls={controls} right={panelCollapsed ? 0 : frame.cover} region={!inWorld} />}
+          <ZoomControls controls={controls} right={panelCollapsed ? 0 : frame.cover} region={!inWorld} />
         </div>
       )}
       {shown && !flying && (

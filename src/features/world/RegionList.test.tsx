@@ -5,11 +5,12 @@ import { world } from '../../data/world';
 import { I18nProvider } from '../../i18n';
 import { RegionList } from './RegionList';
 
-// Список регионов под картой мира на телефоне (#39).
+// Список регионов на телефоне (#39) — нижняя шторка над картой во весь экран (#196).
 
-function renderList(lang: Lang, focus?: Set<string>, regions: Region[] = world.regions) {
+function renderList(lang: Lang, focus?: Set<string>, regions: Region[] = world.regions, open = true) {
   const onSelect = vi.fn();
   const onHighlight = vi.fn();
+  const onOpenChange = vi.fn();
   render(
     <I18nProvider initialLang={lang}>
       <RegionList
@@ -18,22 +19,26 @@ function renderList(lang: Lang, focus?: Set<string>, regions: Region[] = world.r
         onHighlight={onHighlight}
         heroCountOf={(id) => (id === 'empire-of-bone' ? 1 : id === 'druud' ? 2 : 7)}
         focus={focus}
+        open={open}
+        onOpenChange={onOpenChange}
       />
     </I18nProvider>,
   );
-  return { onSelect, onHighlight };
+  return { onSelect, onHighlight, onOpenChange };
 }
 
 const groupNames = (nav: HTMLElement, title: string) =>
   within(within(nav).getByRole('region', { name: title }))
     .getAllByRole('button')
+    .filter((b) => b.hasAttribute('data-list-region'))
     .map((b) => b.querySelector('[class*="name"]')!.textContent);
 
 describe('RegionList', () => {
   it('все 27 регионов по группам сверху вниз, как на карте; внутри группы — по алфавиту', () => {
     renderList('ru');
     const nav = screen.getByRole('navigation', { name: 'Регионы' });
-    expect(within(nav).getAllByRole('button')).toHaveLength(world.regions.length);
+    // Пункты и ручка шторки.
+    expect(within(nav).getAllByRole('button')).toHaveLength(world.regions.length + 1);
     expect(within(nav).getAllByRole('heading', { level: 3 }).map((h) => h.textContent)).toEqual([
       'Верхний ярус',
       'Radiant',
@@ -105,5 +110,15 @@ describe('RegionList', () => {
     expect(other.className).toMatch(/muted/);
     fireEvent.click(other);
     expect(onSelect).toHaveBeenCalledWith('druud');
+  });
+
+  it('шторка (#196): свёрнута — только ручка «Регионы»; ручка разворачивает и сворачивает', () => {
+    const { onOpenChange } = renderList('ru', undefined, world.regions, false);
+    const nav = screen.getByRole('navigation', { name: 'Регионы' });
+    const handle = within(nav).getByRole('button', { name: 'Регионы' });
+    expect(handle).toHaveAttribute('aria-expanded', 'false');
+    expect(within(nav).getAllByRole('button')).toEqual([handle]);
+    fireEvent.click(handle);
+    expect(onOpenChange).toHaveBeenCalledWith(true);
   });
 });
