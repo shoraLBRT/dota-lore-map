@@ -15,7 +15,7 @@ import {
   seaGlints,
   tiltAt,
   TILT_MAX,
-  uprightOf,
+  tiltPoint,
 } from './depth';
 
 type Pt = [number, number];
@@ -40,9 +40,14 @@ describe('наклон и резкость', () => {
     expect(tiltAt(1.8)).toBeLessThan(tiltAt(2.2));
     expect(tiltAt(4)).toBe(TILT_MAX);
   });
-  it('подпись растягивается на 1 / cos θ', () => {
-    expect(uprightOf(0)).toBe(1);
-    expect(uprightOf(20)).toBeCloseTo(1.0642, 3);
+  it('проекция: центр на месте, верх мельчает, низ крупнеет, без наклона — тождество', () => {
+    expect(tiltPoint(500, 400, 500, 400, 20, 2000)).toEqual([500, 400]);
+    expect(tiltPoint(700, 100, 500, 400, 0, 2000)).toEqual([700, 100]);
+    const [tx, ty] = tiltPoint(700, 100, 500, 400, 20, 2000);
+    expect(tx - 500).toBeLessThan(200);
+    expect(400 - ty).toBeLessThan(300);
+    const [bx] = tiltPoint(700, 700, 500, 400, 20, 2000);
+    expect(bx - 500).toBeGreaterThan(200);
   });
   it('глубины резкости на мире нет', () => {
     expect(dofAt(1)).toBe(0);

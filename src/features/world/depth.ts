@@ -47,11 +47,16 @@ export function tiltAt(zoom: number): number {
 }
 
 /**
- * Во сколько раз растянуть подпись по вертикали, чтобы на наклонённом слое она осталась лицом к зрителю:
- * наклон сжимает плоскость по вертикали в cos θ раз. Перспективу (дальнее мельче) не трогаем — это и есть глубина.
+ * Куда на экране попадает точка плоской карты после `perspective(p) rotateX(deg)` вокруг центра кадра (cx, cy):
+ * верх уходит от зрителя и мельчает, низ приближается. Подписи и маркеры лежат в плоском экранном слое,
+ * и их якорь переносится в эту точку — текст остаётся чётким и лицом к зрителю (растр в 3D мылит текст).
  */
-export function uprightOf(tiltDeg: number): number {
-  return 1 / Math.cos((tiltDeg * Math.PI) / 180);
+export function tiltPoint(x: number, y: number, cx: number, cy: number, deg: number, p: number): [number, number] {
+  const a = (deg * Math.PI) / 180;
+  const dy = y - cy;
+  const z = dy * Math.sin(a);
+  const k = p / (p - z);
+  return [cx + (x - cx) * k, cy + dy * Math.cos(a) * k];
 }
 
 /** Расстояние до камеры для `perspective()`, px: больше — мягче перспектива. */
@@ -101,7 +106,7 @@ export interface Glint {
 }
 
 /** Отступ бликов от берега, доли мира: блик не лезет на сушу. */
-export const COAST = 0.012;
+export const COAST = 0.008;
 
 /**
  * Блики на море: `count` точек вне всех полигонов регионов (маска воды — дополнение суши из `layout.json`)
@@ -122,7 +127,7 @@ export function seaGlints(land: readonly (readonly Pt[])[], count: number, seed 
       [x, y - COAST],
     ];
     if (!near.every(wet)) continue;
-    out.push({ x, y, w: 0.004 + rnd() * 0.005, phase: rnd() * 10, period: 3 + rnd() * 4 });
+    out.push({ x, y, w: 0.006 + rnd() * 0.008, phase: rnd() * 10, period: 3 + rnd() * 4 });
   }
   return out;
 }

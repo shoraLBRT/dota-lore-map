@@ -69,8 +69,9 @@
   background: radial-gradient(ellipse at center, transparent 55%, var(--vignette) 100%);
 }
 
-/* Прототипы объёма (#197, `?depth=…`): обёртка слоя карты и экранного слоя — наклон пишет `useDepth`
-   (`perspective() rotateX()` от приближения). Обёртка — во весь кадр и по центру, как сам кадр. */
+/* Прототипы объёма (#197, `?depth=…`): обёртка слоя карты — наклон пишет `useDepth` (`perspective() rotateX()`
+   от приближения). Обёртка — во весь кадр и по центру, как сам кадр. Экранный слой подписей — плоский, вне обёртки:
+   `useDepth` переносит якоря подписей в точки наклонённой карты (растр в 3D мылит текст). */
 .tilt {
   position: absolute;
   inset: 0;
@@ -78,14 +79,6 @@
   align-items: center;
   justify-content: center;
   transform-origin: 50% 50%;
-}
-
-/* Подписи и маркеры на наклонённом слое — лицом к зрителю: группа каждого названия и маркера растянута
-   по вертикали на 1 / cos θ вокруг своей середины (вложенные группы — значки медиа — не трогаем). */
-.tilt[data-depth-tilt] [data-screen-layer] g[transform^='translate']:not(g[transform^='translate'] g) {
-  transform-box: fill-box;
-  transform-origin: center;
-  scale: 1 var(--upright, 1);
 }
 
 /* Глубина резкости: полосы сверху и снизу кадра размывают и затемняют арт под собой (backdrop-filter
