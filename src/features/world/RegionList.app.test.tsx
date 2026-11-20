@@ -117,6 +117,7 @@ describe('список регионов на телефоне', () => {
   it('компьютер и планшет (≥ 768): списка нет, подсказка мира — как раньше; поворот телефона включает список', () => {
     mobile = false;
     window.location.hash = '#/world';
+    window.localStorage.setItem('dota-lore-map.move-hint', 'seen');
     render(<App />);
     expect(list()).toBeNull();
     expect(screen.getByTestId('world-hint')).toBeInTheDocument();

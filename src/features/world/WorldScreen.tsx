@@ -21,7 +21,7 @@ import { heroThreads } from '../search/threads';
 import { MOBILE_QUERY } from './camera';
 import { focusLost, restoreFocus } from './focus';
 import { MapStage } from './MapStage';
-import { useWorldHint, WorldHint } from './WorldHint';
+import { MoveHint, useMoveHint, useWorldHint, WorldHint } from './WorldHint';
 import styles from './WorldScreen.module.css';
 
 interface Props {
@@ -119,18 +119,27 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
 
   // Подсказка «выберите регион» при первом входе: гаснет от первого наведения, фокуса или нажатия на регион,
   // а также если пользователь уже ушёл из мира (тап на телефоне сразу открывает регион).
+  // До неё — жест «карту можно двигать» (#181, SPEC §5.3): гаснет от первого сдвига или зума камеры или когда открыт
+  // регион; пока он виден, наведение на регионы строку «выберите регион» не гасит — она ещё не показана.
   const hint = useWorldHint();
   const { dismiss: dismissHint } = hint;
+  const moveHint = useMoveHint();
+  const { dismiss: dismissMoveHint } = moveHint;
+  const moveFirst = moveHint.state !== 'gone';
   const inRegion = Boolean(region) && !veiled;
   useEffect(() => {
-    if (inRegion) dismissHint();
-  }, [inRegion, dismissHint]);
+    if (!inRegion) return;
+    dismissMoveHint();
+    dismissHint();
+  }, [inRegion, dismissHint, dismissMoveHint]);
   const onMapEvent = (e: { target: EventTarget }) => {
-    if (e.target instanceof Element && e.target.closest('[data-region]')) dismissHint();
+    if (!moveFirst && e.target instanceof Element && e.target.closest('[data-region]')) dismissHint();
   };
   // Телефон (#39, #196): в мире шторка «Регионы» — она сама и есть подсказка, строка внизу кадра не нужна.
   const mobile = useMediaQuery(MOBILE_QUERY);
-  const showHint = !veiled && screen.name === 'world' && !searchOpen && !hero && !mobile;
+  const hintRoom = !veiled && screen.name === 'world' && !searchOpen && !hero;
+  const showMoveHint = hintRoom && moveFirst;
+  const showHint = hintRoom && !moveFirst && !mobile;
   // Легенда сторон (#102): в мире на широком экране; не под интро и не при открытом профиле.
 
   // Поле поиска или чип героя сверху кадра: метки «нить за краем» встают под них (#64).
@@ -221,8 +230,10 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
             coverTop={barBottom}
             panelCollapsed={Boolean(region) && collapsed}
             onLeaveRegion={() => open({ name: 'world' })}
+            onCameraMove={veiled ? undefined : dismissMoveHint}
           />
         </main>
+        {showMoveHint && <MoveHint state={moveHint.state} />}
         {showHint && <WorldHint state={hint.state} />}
         {!veiled && (searchOpen || showChip) && (
           <div

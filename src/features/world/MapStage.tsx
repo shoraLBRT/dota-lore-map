@@ -80,6 +80,8 @@ interface Props {
   panelCollapsed?: boolean;
   /** Колесо наружу с нижнего упора региона или места (#190): вернуться в мир. */
   onLeaveRegion?: () => void;
+  /** Сдвиг или зум свободной камеры (#181): гаснет подсказка жестов. */
+  onCameraMove?: () => void;
 }
 
 const noop = () => () => {};
@@ -115,6 +117,7 @@ export function MapStage({
   coverTop = 0,
   panelCollapsed = false,
   onLeaveRegion,
+  onCameraMove,
 }: Props) {
   const { lang, l, t } = useT();
   const svgRef = useRef<SVGSVGElement>(null);
@@ -139,7 +142,7 @@ export function MapStage({
   const previewPlaces = useMemo(() => (preview ? new Set(preview.map((s) => s.key)) : null), [preview]);
 
   const regionBoxes = useMemo(() => regions.flatMap((r) => (r.layout ? [polygonBox(r.layout.polygon)] : [])), [regions]);
-  const cam = useCamera({ active, regionBoxes, activePlaceSlug, panel, hasMap, onCameraBusy, onLeave: onLeaveRegion });
+  const cam = useCamera({ active, regionBoxes, activePlaceSlug, panel, hasMap, onCameraBusy, onLeave: onLeaveRegion, onMove: onCameraMove });
   const { viewportRef, layerRef, screenRef, flying, target, frame, controls } = cam;
   const [ownOpen, setOwnOpen] = useState(false);
   const sheetOpen = regionsOpen ?? ownOpen;

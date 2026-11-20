@@ -1,4 +1,4 @@
-/* Подсказка мира при первом входе (аудит E13): ненавязчивая строка внизу кадра. */
+/* Подсказки мира при первом входе: жест «карту можно двигать» (#181) и строка «выберите регион» (аудит E13). */
 .hint {
   position: absolute;
   bottom: var(--space-5);
@@ -20,8 +20,87 @@
   animation: appear var(--dur-fade) var(--ease-out) var(--dur-intro) both;
 }
 
+/* Жест (#181): внизу кадра, где море, а не названия регионов; на телефоне — над шторкой «Регионы». Клики
+   проходят к карте. */
+.move {
+  position: absolute;
+  right: 0;
+  bottom: var(--space-5);
+  left: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  width: fit-content;
+  max-width: calc(100% - 2 * var(--space-4));
+  margin: 0 auto;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border);
+  background: var(--veil-strong);
+  color: var(--text-1);
+  text-align: center;
+  pointer-events: none;
+  animation: appear var(--dur-fade) var(--ease-out) var(--dur-intro) both;
+}
+
 .leaving {
   animation: vanish var(--dur-fade) var(--ease-out) both;
+}
+
+.glyph {
+  width: 64px;
+  height: 48px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+.moveText {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.moveKeys {
+  margin: 0;
+  color: var(--text-2);
+  font-size: 0.8rem;
+}
+
+/* Мышь тянет карту из стороны в сторону, колесо прокручивается. */
+.mouse {
+  animation: drag 2.4s var(--ease-in-out) infinite;
+}
+
+.wheel {
+  fill: currentColor;
+  stroke: none;
+  animation: wheel 1.2s var(--ease-in-out) infinite;
+}
+
+/* Два пальца расходятся — щипок; вместе сдвигаются — перетаскивание. */
+.fingerA,
+.fingerB {
+  fill: currentColor;
+  fill-opacity: 0.25;
+}
+
+.pinch {
+  animation: drag 2.4s var(--ease-in-out) infinite;
+}
+
+.fingerA {
+  animation: spread-a 2.4s var(--ease-in-out) infinite;
+}
+
+.fingerB {
+  animation: spread-b 2.4s var(--ease-in-out) infinite;
+}
+
+@media (max-width: 767px) {
+  .move {
+    bottom: calc(var(--space-5) + 3rem);
+  }
 }
 
 @keyframes appear {
@@ -36,8 +115,59 @@
   }
 }
 
+@keyframes drag {
+  0%,
+  100% {
+    transform: translateX(-8px);
+  }
+
+  50% {
+    transform: translateX(8px);
+  }
+}
+
+@keyframes wheel {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@keyframes spread-a {
+  0%,
+  100% {
+    transform: translateX(2px);
+  }
+
+  50% {
+    transform: translateX(-6px);
+  }
+}
+
+@keyframes spread-b {
+  0%,
+  100% {
+    transform: translateX(-2px);
+  }
+
+  50% {
+    transform: translateX(6px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .hint {
+  .hint,
+  .move,
+  .mouse,
+  .wheel,
+  .pinch,
+  .fingerA,
+  .fingerB {
     animation: none;
   }
 
