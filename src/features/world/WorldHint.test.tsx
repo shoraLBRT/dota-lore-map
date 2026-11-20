@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { App } from '../../app/App';
-import { HINT_STORAGE_KEY } from './WorldHint';
+import { HINT_STORAGE_KEY, MOVE_HINT_STORAGE_KEY } from './WorldHint';
 
 // Подсказка мира при первом входе (аудит E13, SPEC §8.6).
 
@@ -12,6 +12,7 @@ describe('подсказка «выберите регион»', () => {
   beforeEach(() => {
     window.localStorage.setItem('dota-lore-map.lang', 'ru');
     window.location.hash = '#/world';
+    window.localStorage.setItem(MOVE_HINT_STORAGE_KEY, 'seen');
   });
   afterEach(() => {
     vi.restoreAllMocks();
@@ -52,7 +53,8 @@ describe('подсказка «выберите регион»', () => {
       throw new Error('denied');
     });
     render(<App />);
-    expect(hint()).not.toBeNull();
+    // Первым — жест «карту можно двигать» (#181): он тоже живёт без localStorage.
+    expect(screen.queryByTestId('move-hint')).not.toBeNull();
     expect(() => fireEvent.pointerOver(region())).not.toThrow();
   });
 });

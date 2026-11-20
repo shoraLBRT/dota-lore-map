@@ -67,13 +67,15 @@ interface Options {
   onCameraBusy: () => () => void;
   /** Отдаление с нижнего упора региона или места (#190): выйти в мир. Камера мира остаётся там же. */
   onLeave?: () => void;
+  /** Пользователь сдвинул или приблизил карту свободной камерой (#181): гаснет подсказка жестов. */
+  onMove?: () => void;
 }
 
 /**
  * Камера карты (ARCHITECTURE A4): измеряет кадр и панель, считает кадр региона или места и анимирует
  * перелёт. Пока камера летит, навигация занята (`onCameraBusy`, SPEC §7.1), а `flying` — true.
  */
-export function useCamera({ active, regionBoxes, activePlaceSlug, panel, hasMap, onCameraBusy, onLeave }: Options) {
+export function useCamera({ active, regionBoxes, activePlaceSlug, panel, hasMap, onCameraBusy, onLeave, onMove }: Options) {
   const viewportRef = useRef<HTMLDivElement>(null);
   const layerRef = useRef<HTMLDivElement>(null);
   /** Экранный слой (#180): подписи и маркеры в том же кадре, но вне растра слоя карты — тот же transform. */
@@ -265,6 +267,7 @@ export function useCamera({ active, regionBoxes, activePlaceSlug, panel, hasMap,
       return clampCamera(centered(f.camera, v, f.offset, f.offsetY ?? 0), v);
     },
     onChange: (c) => {
+      onMove?.();
       if (pending.current === null && typeof requestAnimationFrame === 'function') {
         requestAnimationFrame(() => {
           const next = pending.current;
