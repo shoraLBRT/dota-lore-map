@@ -1,7 +1,7 @@
 import { test, expect, expectHash, expectNoHorizontalScroll, panelHeading } from './fixtures';
 
 // Дымовой сценарий (#105): интро → мир → Айсрак → Фростреч → галерея → назад → поиск → профиль.
-// Один на проект; на `mobile` — тапы и список регионов вместо полигона.
+// Один на проект; на `mobile` — тапы и шторка «Регионы» вместо полигона.
 
 test('интро → регион → место → галерея → поиск → профиль', async ({ page, consoleErrors }, info) => {
   const mobile = info.project.name === 'mobile';
@@ -19,9 +19,11 @@ test('интро → регион → место → галерея → поис
   await expectHash(page, '#/world');
   await expectNoHorizontalScroll(page);
 
-  // Регион: на компьютере — полигон, на телефоне — пункт списка регионов.
+  // Регион: на компьютере — полигон, на телефоне — пункт шторки «Регионы».
   if (mobile) {
-    await tap(page.getByRole('navigation', { name: 'Регионы' }).getByRole('button', { name: 'Айсрак' }));
+    const list = page.getByRole('navigation', { name: 'Регионы' });
+    await tap(list.getByRole('button', { name: 'Регионы' }));
+    await tap(list.getByRole('button', { name: 'Айсрак' }));
   } else {
     // Клик в середину полигона: подсказка региона встаёт рядом с ним и его не закрывает (#101).
     await page.locator('[role="button"][data-region="icewrack"]').click();

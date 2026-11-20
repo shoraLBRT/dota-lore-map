@@ -136,3 +136,77 @@ describe('выход из региона колесом (#190)', () => {
     cleanup();
   });
 });
+
+describe('жесты на телефоне (#196)', () => {
+  function touch(el: Element, type: string, id: number, x: number, y: number, t: number) {
+    const e = new MouseEvent(type, { bubbles: true, cancelable: true, clientX: x, clientY: y });
+    Object.defineProperty(e, 'pointerId', { value: id });
+    Object.defineProperty(e, 'pointerType', { value: 'touch' });
+    Object.defineProperty(e, 'timeStamp', { value: t });
+    el.dispatchEvent(e);
+  }
+  function Stage({ zoom, onFloor, onChange }: { zoom: number; onFloor?: () => void; onChange: (c: { zoom: number }) => void }) {
+    const viewportRef = useRef<HTMLDivElement>(null);
+    const layerRef = useRef<HTMLDivElement>(null);
+    useFreeCamera({
+      viewportRef,
+      layerRef,
+      view: { ...view, zoomMin: 2, zoomMax: 3 },
+      current: () => ({ x: 0.5, y: 0.5, zoom }),
+      enabled: true,
+      onChange,
+      home: { x: 0.5, y: 0.5, zoom: 2 },
+      resetKey: zoom,
+      attached: true,
+      onFloor,
+    });
+    return (
+      <div ref={viewportRef} data-testid="vp">
+        <div ref={layerRef} />
+      </div>
+    );
+  }
+
+  it('двойное касание пустого места приближает вдвое (до потолка уровня); одиночное — нет', () => {
+    // Без анимации: камера встаёт на место сразу.
+    vi.stubGlobal('matchMedia', (q: string) => ({ matches: q.includes('reduce'), addEventListener() {}, removeEventListener() {} }));
+    const onChange = vi.fn();
+    const { getByTestId } = render(<Stage zoom={1.2} onChange={onChange} />);
+    const vp = getByTestId('vp');
+    touch(vp, 'pointerdown', 1, 100, 100, 0);
+    touch(vp, 'pointerup', 1, 100, 100, 50);
+    expect(onChange).not.toHaveBeenCalled();
+    touch(vp, 'pointerdown', 1, 104, 102, 200);
+    touch(vp, 'pointerup', 1, 104, 102, 250);
+    expect(onChange).toHaveBeenCalledTimes(1);
+    expect(onChange.mock.calls[0]![0].zoom).toBeCloseTo(2.4);
+    // Слишком поздно — снова одиночное.
+    touch(vp, 'pointerdown', 1, 100, 100, 1000);
+    touch(vp, 'pointerup', 1, 100, 100, 1050);
+    touch(vp, 'pointerdown', 1, 100, 100, 1500);
+    touch(vp, 'pointerup', 1, 100, 100, 1550);
+    expect(onChange).toHaveBeenCalledTimes(1);
+    cleanup();
+    vi.unstubAllGlobals();
+  });
+
+  it('щипок дальше нижнего упора региона зовёт onFloor; щипок до упора — нет', () => {
+    const onFloor = vi.fn();
+    const { getByTestId } = render(<Stage zoom={2} onFloor={onFloor} onChange={() => {}} />);
+    const vp = getByTestId('vp');
+    const pinch = (to: number) => {
+      touch(vp, 'pointerdown', 1, 500, 400, 0);
+      touch(vp, 'pointerdown', 2, 700, 400, 0);
+      touch(vp, 'pointermove', 2, 500 + to, 400, 20);
+      touch(vp, 'pointerup', 2, 500 + to, 400, 40);
+      touch(vp, 'pointerup', 1, 500, 400, 40);
+    };
+    // Пальцы сошлись на 10 % — упор держит камеру.
+    pinch(180);
+    expect(onFloor).not.toHaveBeenCalled();
+    // Вдвое — выход в мир.
+    pinch(100);
+    expect(onFloor).toHaveBeenCalledTimes(1);
+    cleanup();
+  });
+});

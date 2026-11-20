@@ -226,53 +226,6 @@ export function polygonBox(polygon: Point[]): WorldBox {
   return { left: Math.min(...xs), top: Math.min(...ys), right: Math.max(...xs), bottom: Math.max(...ys) };
 }
 
-/** Прямоугольник в px внутри кадра карты. */
-export interface Rect {
-  top: number;
-  left: number;
-  width: number;
-  height: number;
-}
-
-/**
- * Мир на телефоне со списком регионов (#39, SPEC §13): мир целиком (слой уменьшен до вписанного размера)
- * прижимается к верху кадра (ниже `top` — плашки героя), а список занимает пустое место под ним. Если кадр шире,
- * чем выше (телефон боком), карта прижимается влево, список — справа. Возвращает камеру мира и сдвиг для
- * cameraTransform, рамку карты и рамку списка. Без измерений (jsdom) — без сдвига, список на весь кадр.
- */
-export function worldListLayout(
-  view: View,
-  top = 0,
-): { camera: Camera; offset: number; offsetY: number; map: Rect; list: Rect } {
-  const { width, height } = view;
-  if (!measured(view)) {
-    const box = { top: 0, left: 0, width, height };
-    return { camera: WORLD_CAMERA, offset: 0, offsetY: 0, map: box, list: box };
-  }
-  const size = Math.min(width, height);
-  const camera = { x: 0.5, y: 0.5, zoom: size / view.layerWidth };
-  if (width > height) {
-    // Карта у левого края: её центр левее центра кадра на половину свободной ширины.
-    const freeX = width - size;
-    return {
-      camera,
-      offset: freeX / 2,
-      offsetY: 0,
-      map: { top: 0, left: 0, width: size, height: size },
-      list: { top: 0, left: size, width: freeX, height },
-    };
-  }
-  const freeY = height - size;
-  const mapTop = Math.min(Math.max(top, 0), freeY);
-  return {
-    camera,
-    offset: 0,
-    offsetY: freeY / 2 - mapTop,
-    map: { top: mapTop, left: 0, width: size, height: size },
-    list: { top: mapTop + size, left: 0, width, height: height - mapTop - size },
-  };
-}
-
 /** Кадр места как ключ перелёта (A4, #192): камера встаёт на место и на ступень ближе региона; zoom считает `regionFrame`. */
 export function placeCamera(region: Camera, pos: Point): Camera {
   return { x: pos[0], y: pos[1], zoom: region.zoom * PLACE_ZOOM };

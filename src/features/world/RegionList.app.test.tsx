@@ -4,7 +4,7 @@ import { App } from '../../app/App';
 import { getPlace, getRegion, placeName, world } from '../../data/world';
 import { MOBILE_QUERY } from './camera';
 
-// Мир на телефоне (#39): список регионов под картой ведёт туда же, куда тап по карте.
+// Мир на телефоне (#39, #196): карта во весь экран, шторка «Регионы» ведёт туда же, куда тап по карте.
 
 let listeners: (() => void)[] = [];
 let mobile = true;
@@ -20,6 +20,7 @@ function stubMedia() {
 }
 
 const list = () => screen.queryByTestId('region-list');
+const openList = () => fireEvent.click(within(list()!).getByRole('button', { name: 'Регионы' }));
 const icewrack = getRegion('icewrack')!;
 
 describe('список регионов на телефоне', () => {
@@ -31,10 +32,11 @@ describe('список регионов на телефоне', () => {
   });
   afterEach(() => vi.unstubAllGlobals());
 
-  it('мир → пункт списка → регион со шторкой → Esc → снова мир со списком', () => {
+  it('мир → шторка «Регионы» → пункт → регион со шторкой → Esc → снова мир с развёрнутым списком', () => {
     window.location.hash = '#/world';
     render(<App />);
-    expect(list()).not.toBeNull();
+    expect(list()).toHaveAttribute('data-state', 'closed');
+    openList();
     // Список сам и есть подсказка: строки «Выберите регион…» на телефоне нет.
     expect(screen.queryByTestId('world-hint')).toBeNull();
 
@@ -46,13 +48,14 @@ describe('список регионов на телефоне', () => {
 
     fireEvent.keyDown(window, { key: 'Escape' });
     expect(window.location.hash).toBe('#/world');
-    expect(list()).not.toBeNull();
+    expect(list()).toHaveAttribute('data-state', 'open');
   });
 
   it('клавиатура: регион открыт из списка → Esc из места и региона → фокус на тот же пункт списка', () => {
     window.location.hash = '#/world';
     render(<App />);
     const item = () => list()!.querySelector<HTMLElement>('[data-list-region="icewrack"]')!;
+    openList();
     act(() => item().focus());
     fireEvent.click(item());
     expect(window.location.hash).toBe('#/r/icewrack');
@@ -78,6 +81,8 @@ describe('список регионов на телефоне', () => {
     fireEvent.keyDown(window, { key: 'Escape' });
     expect(window.location.hash).toBe('#/world');
     expect(document.activeElement).toBe(polygon());
+    // Регион открыт с карты — шторка снова свёрнута.
+    expect(list()).toHaveAttribute('data-state', 'closed');
   });
 
   it('пункт списка и тап по карте ведут на один и тот же адрес', () => {
@@ -100,6 +105,13 @@ describe('список регионов на телефоне', () => {
     const marked = list()!.querySelectorAll('[class*="heroRegion"]');
     expect(marked.length).toBeGreaterThan(1);
     expect(list()!.querySelectorAll('[class*="muted"]').length).toBe(world.regions.length - marked.length);
+  });
+
+  it('профиль героя в мире — своя шторка, списка регионов под ней нет', () => {
+    window.location.hash = '#/world?hero=templar_assassin&profile';
+    render(<App />);
+    expect(screen.getByTestId('panel-sheet')).toBeInTheDocument();
+    expect(list()).toBeNull();
   });
 
   it('компьютер и планшет (≥ 768): списка нет, подсказка мира — как раньше; поворот телефона включает список', () => {

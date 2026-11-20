@@ -1,7 +1,7 @@
 import { test, expect, expectHash } from './fixtures';
 
 // Свободная камера (#165): арт во весь кадр, колесо, перетаскивание, клавиши и кнопки; перетаскивание — не клик.
-// На телефоне мир — список регионов под картой, свободная камера работает в регионе.
+// На телефоне (#196) мир тоже во весь кадр: палец, щипок, двойное касание; список регионов — в шторке.
 
 const layer = (page: import('@playwright/test').Page) => page.locator('[data-world-art]').locator('xpath=ancestor::div[1]');
 const scale = async (page: import('@playwright/test').Page) => {
@@ -10,7 +10,7 @@ const scale = async (page: import('@playwright/test').Page) => {
 };
 
 test('мир во весь кадр; колесо, перетаскивание, клавиши; клик по региону и назад', async ({ page, consoleErrors }, info) => {
-  test.skip(info.project.name === 'mobile', 'на телефоне мир — список регионов');
+  test.skip(info.project.name === 'mobile', 'колесо и мышь — компьютер; телефон — отдельный тест жестов');
   void consoleErrors;
   await page.goto('./#/world');
   const viewport = page.locator('[data-world-art]').locator('xpath=ancestor::div[2]');
@@ -161,4 +161,49 @@ test('подсказка региона у названия, одного раз
   });
   expect(prevented).toBe(true);
   await expect.poll(() => scale(page)).toBeGreaterThan(1.05);
+});
+
+test('телефон (#196): мир во весь кадр двигается пальцем и щипком, места появляются; шторка «Регионы» ведёт в регион', async ({
+  page,
+  consoleErrors,
+}, info) => {
+  test.skip(info.project.name !== 'mobile', 'жесты пальцем — на телефоне');
+  void consoleErrors;
+  await page.goto('./#/world');
+  const viewport = page.locator('[data-map-viewport]');
+  await expect(viewport).toBeVisible();
+  await expect.poll(() => scale(page)).toBe(1);
+  const transform = () => layer(page).evaluate((el) => (el as HTMLElement).style.transform);
+
+  // Касания — pointer events с pointerType touch (так их видит свободная камера во всех движках).
+  const touch = (type: string, points: [number, number, number][]) =>
+    viewport.evaluate(
+      (el, { type, points }) => {
+        for (const [id, x, y] of points)
+          el.dispatchEvent(new PointerEvent(type, { pointerId: id, pointerType: 'touch', clientX: x, clientY: y, bubbles: true, isPrimary: id === 1 }));
+      },
+      { type, points },
+    );
+
+  // Один палец тянет карту.
+  const before = await transform();
+  await touch('pointerdown', [[1, 300, 400]]);
+  for (let i = 1; i <= 6; i += 1) await touch('pointermove', [[1, 300 - i * 20, 400]]);
+  await touch('pointerup', [[1, 180, 400]]);
+  await expect.poll(transform).not.toBe(before);
+  await expectHash(page, '#/world');
+
+  // Щипок приближает — в мире появляются места (#190).
+  await touch('pointerdown', [[1, 150, 400], [2, 220, 400]]);
+  for (let i = 1; i <= 10; i += 1) await touch('pointermove', [[1, 150 - i * 8, 400], [2, 220 + i * 8, 400]]);
+  await touch('pointerup', [[2, 300, 400], [1, 70, 400]]);
+  await expect.poll(() => scale(page)).toBeGreaterThan(1.4);
+  await expect(page.locator('[data-screen-layer] [data-world-place]').first()).toBeAttached();
+
+  // Шторка свёрнута до ручки; ручка разворачивает, пункт открывает регион.
+  const list = page.getByRole('navigation', { name: 'Регионы' });
+  await expect(list).toHaveAttribute('data-state', 'closed');
+  await list.getByRole('button', { name: 'Регионы' }).tap();
+  await list.getByRole('button', { name: 'Айсрак' }).tap();
+  await expectHash(page, '#/r/icewrack');
 });

@@ -20,6 +20,12 @@ export const WHEEL_MAX_DELTA = 100;
 /** Скорость колеса не выше одного щелчка за WHEEL_REFILL мс: частые мелкие шаги тачпада не разгоняют зум. */
 export const WHEEL_REFILL = 120;
 /** Инерция: доля скорости, что остаётся через 16 мс, и порог остановки, px/мс. */
+/** Щипок дальше нижнего упора во столько раз (сумма за жест) — выход из региона в мир (#196), как колесо на упоре. */
+export const PINCH_EXIT = 0.75;
+/** Двойное касание (#196): второе касание не позже, мс, и не дальше, px, от первого. */
+export const DOUBLE_TAP_MS = 300;
+export const DOUBLE_TAP_PX = 30;
+
 const FRICTION = 0.92;
 const MIN_SPEED = 0.02;
 /** Плавный зум и перелёт: доля пути, проходимая за 16 мс. */
@@ -131,7 +137,7 @@ interface Options {
   view: View;
   /** Камера, которую сейчас показывает кадр (уже без сдвигов, см. `centered`). */
   current: () => Camera;
-  /** Свободная камера включена: в мире со списком регионов на телефоне и во время перелёта — нет. */
+  /** Свободная камера включена: во время перелёта — нет. */
   enabled: boolean;
   /** Новая свободная камера; вызывается не чаще раза в кадр анимации. */
   onChange: (camera: Camera) => void;
@@ -142,8 +148,8 @@ interface Options {
   /** Кадр карты есть в DOM (жесты вешаются на него). */
   attached: boolean;
   /**
-   * Отдаление колесом, `−` или кнопкой, когда камера уже стоит на нижнем упоре уровня (#190): в регионе и месте —
-   * выход в мир. Без него упор просто держит камеру.
+   * Отдаление колесом, `−` или кнопкой, когда камера уже стоит на нижнем упоре уровня (#190), или щипок дальше упора
+   * в PINCH_EXIT раз (#196): в регионе и месте — выход в мир. Без него упор просто держит камеру.
    */
   onFloor?: (camera: Camera) => void;
 }
@@ -269,6 +275,11 @@ export function useFreeCamera({ viewportRef, layerRef, screenRef, view, current,
     /** Запас колеса (limitWheel). */
     let wheel = { left: WHEEL_MAX_DELTA, at: 0 };
     let pinch: { dist: number; mid: { x: number; y: number } } | null = null;
+    /** Сколько щипок просит отдалить за нижний упор (произведение за жест; 1 — не упирался). */
+    let under = 1;
+    /** Последнее касание без сдвига — для двойного касания; когда двойное касание сработало — для отсева dblclick. */
+    let lastTap: { t: number; x: number; y: number } | null = null;
+    let doubleAt = -Infinity;
     let samples: { t: number; x: number; y: number }[] = [];
 
     const local = (e: { clientX: number; clientY: number }) => {
@@ -289,7 +300,10 @@ export function useFreeCamera({ viewportRef, layerRef, screenRef, view, current,
       start = p;
       moved = false;
       samples = [{ t: e.timeStamp, ...p }];
-      if (pointers.size === 2) pinch = pinchOf();
+      if (pointers.size === 2) {
+        pinch = pinchOf();
+        under = 1;
+      }
     };
     const onMove = (e: PointerEvent) => {
       const prev = pointers.get(e.pointerId);
@@ -301,7 +315,9 @@ export function useFreeCamera({ viewportRef, layerRef, screenRef, view, current,
         const now = pinchOf();
         const c = base();
         const world = worldAt(c, v, pinch.mid.x, pinch.mid.y);
-        const zoom = clampCamera({ ...c, zoom: c.zoom * (now.dist / (pinch.dist || now.dist)) }, v).zoom;
+        const wanted = c.zoom * (now.dist / (pinch.dist || now.dist));
+        const zoom = clampCamera({ ...c, zoom: wanted }, v).zoom;
+        under = wanted < zoom * (1 - 1e-3) ? under * (wanted / zoom) : 1;
         apply(anchorAt(v, zoom, world, now.mid.x, now.mid.y));
         pinch = now;
         moved = dragging = true;
@@ -322,13 +338,35 @@ export function useFreeCamera({ viewportRef, layerRef, screenRef, view, current,
       if (!pointers.has(e.pointerId)) return;
       pointers.delete(e.pointerId);
       if (pointers.size === 1) {
-        // Второй палец отпустили — дальше тянем оставшимся.
+        // Второй палец отпустили — дальше тянем оставшимся; щипок далеко за упор — выход из региона.
+        const atFloor = live.current.onFloor;
+        if (pinch && under <= PINCH_EXIT && atFloor) {
+          pointers.clear();
+          pinch = null;
+          start = null;
+          dragging = false;
+          under = 1;
+          delete el.dataset.dragging;
+          stop();
+          atFloor(base());
+          return;
+        }
         pinch = null;
         start = [...pointers.values()][0] ?? null;
         samples = [];
         return;
       }
       if (pointers.size > 0) return;
+      // Двойное касание пустого места карты (#196) — приблизить вдвое; регион или маркер касание открывает сразу.
+      if (e.pointerType === 'touch' && !moved && start) {
+        const p = start;
+        const onTarget = (e.target as Element | null)?.closest?.('[role="button"], button, a');
+        if (lastTap && e.timeStamp - lastTap.t <= DOUBLE_TAP_MS && Math.hypot(p.x - lastTap.x, p.y - lastTap.y) <= DOUBLE_TAP_PX && !onTarget) {
+          lastTap = null;
+          doubleAt = e.timeStamp;
+          zoomBy(2, p.x, p.y);
+        } else lastTap = onTarget ? null : { t: e.timeStamp, ...p };
+      }
       if (dragging && samples.length > 1) {
         const a = samples[0]!;
         const b = samples[samples.length - 1]!;
@@ -367,6 +405,8 @@ export function useFreeCamera({ viewportRef, layerRef, screenRef, view, current,
       if (!live.current.enabled) return;
       // Двойной клик по региону или маркеру — это два клика по нему, не зум.
       if ((e.target as Element).closest?.('[role="button"], button, a')) return;
+      // Двойное касание уже приблизило (браузер следом шлёт dblclick).
+      if (e.timeStamp - doubleAt < 1000) return;
       const p = local(e);
       zoomBy(e.shiftKey ? 1 / 2 : 2, p.x, p.y);
     };

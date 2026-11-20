@@ -21,8 +21,6 @@ interface Options {
   frame: Frame;
   /** Низ плашки героя над кадром, px. */
   coverTop: number;
-  /** Мир со списком регионов (телефон): значки не ограничиваются кадром. */
-  listed: boolean;
 }
 
 /**
@@ -38,7 +36,6 @@ export function useThreadLayout({
   names,
   frame,
   coverTop,
-  listed,
 }: Options) {
   const { markerScale, threadScale, view, framed, cover, insetBottom } = frame;
   const obstacles = useMemo<Box[]>(() => {
@@ -73,12 +70,12 @@ export function useThreadLayout({
   }, [threads, active, labelItems, sides, markerScale, drawn, names, frame.pxScale, frame.worldZoom]);
   // Видимая часть кадра в координатах сцены (левее панели, выше шторки, ниже плашки героя): значки — только в ней.
   const clip = useMemo<Box | undefined>(() => {
-    if (!threads || view.width <= 0 || listed) return undefined;
+    if (!threads || view.width <= 0) return undefined;
     const frame = visibleFrame(view, cover, EXIT_LABEL_MARGIN, insetBottom);
     if (coverTop > 0) frame.top = Math.max(frame.top, coverTop + EXIT_LABEL_MARGIN);
     const [ox, oy] = toScreen([0, 0], framed.camera, framed.offset, view, framed.offsetY);
     const k = threadScale;
     return { left: (frame.left - ox) * k, right: (frame.right - ox) * k, top: (frame.top - oy) * k, bottom: (frame.bottom - oy) * k };
-  }, [threads, view, cover, insetBottom, coverTop, framed, threadScale, listed]);
+  }, [threads, view, cover, insetBottom, coverTop, framed, threadScale]);
   return { obstacles, clip };
 }

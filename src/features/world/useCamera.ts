@@ -16,7 +16,6 @@ import {
   STAGE_WIDTH,
   UNMEASURED,
   WORLD_CAMERA,
-  worldListLayout,
   type View,
   wholeFrame,
   type WorldBox,
@@ -64,9 +63,6 @@ interface Options {
   activePlaceSlug: string | undefined;
   /** Справа кадр закрыт панелью (ARCHITECTURE A4). */
   panel: boolean;
-  /** Телефон: в мире карта прижата к верху, под ней — список регионов (#39). */
-  regionList: boolean;
-  topInset: number;
   hasMap: boolean;
   onCameraBusy: () => () => void;
   /** Отдаление с нижнего упора региона или места (#190): выйти в мир. Камера мира остаётся там же. */
@@ -77,7 +73,7 @@ interface Options {
  * Камера карты (ARCHITECTURE A4): измеряет кадр и панель, считает кадр региона или места и анимирует
  * перелёт. Пока камера летит, навигация занята (`onCameraBusy`, SPEC §7.1), а `flying` — true.
  */
-export function useCamera({ active, regionBoxes, activePlaceSlug, panel, regionList, topInset, hasMap, onCameraBusy, onLeave }: Options) {
+export function useCamera({ active, regionBoxes, activePlaceSlug, panel, hasMap, onCameraBusy, onLeave }: Options) {
   const viewportRef = useRef<HTMLDivElement>(null);
   const layerRef = useRef<HTMLDivElement>(null);
   /** Экранный слой (#180): подписи и маркеры в том же кадре, но вне растра слоя карты — тот же transform. */
@@ -126,7 +122,7 @@ export function useCamera({ active, regionBoxes, activePlaceSlug, panel, regionL
   const box = useMemo(() => (active?.layout ? polygonBox(active.layout.polygon) : undefined), [active]);
 
   /** Мир с открытой панелью (профиль героя, #97): карта целиком кадрируется в свободную часть слева от панели. */
-  const worldPanel = inWorld && panel && !regionList && view.inset > 0;
+  const worldPanel = inWorld && panel && view.inset > 0;
   const inset = panel && (active || worldPanel) ? view.inset : 0;
   /** Панель закрывает кадр справа в любом экране: значки нитей не встают под неё. */
   const cover = panel ? view.inset : 0;
@@ -155,14 +151,7 @@ export function useCamera({ active, regionBoxes, activePlaceSlug, panel, regionL
           : frameCamera(camera, stage),
     [freeCamera, camera, stage, roam, box, placePos],
   );
-  // Мир со списком регионов: карта прижата к верху (или влево, если телефон боком), список — в пустом месте.
-  const listLayout = useMemo(
-    () => (regionList && inWorld && hasMap ? worldListLayout(view, topInset) : null),
-    [regionList, inWorld, hasMap, view, topInset],
-  );
-  const target = listLayout
-    ? cameraTransform(listLayout.camera, listLayout.offset, listLayout.offsetY)
-    : cameraTransform(framed.camera, framed.offset, framed.offsetY);
+  const target = cameraTransform(framed.camera, framed.offset, framed.offsetY);
   /** Маркеры и подписи — в экранных пикселях, независимо от приближения и размера окна (1 единица SVG = 1 px). */
   const ownFrame = useMemo(() => (box ? regionFrame(box, stage) : null), [box, stage]);
   const regionZoom = ownFrame?.camera.zoom ?? 1;
@@ -174,11 +163,10 @@ export function useCamera({ active, regionBoxes, activePlaceSlug, panel, regionL
   const markerScale = (view.layerWidth > 0 ? STAGE_WIDTH / view.layerWidth : 1) / (freeCamera?.zoom ?? regionZoom);
   /** Нити — тоже в экранных px, но при любом приближении (в мире zoom 1). */
   const threadScale = (view.layerWidth > 0 ? STAGE_WIDTH / view.layerWidth : 1) / framed.camera.zoom;
-  const worldZoom = listLayout ? listLayout.camera.zoom : framed.camera.zoom;
+  const worldZoom = framed.camera.zoom;
   const pxScale = (view.layerWidth > 0 ? STAGE_WIDTH / view.layerWidth : 1) / worldZoom;
   const fitted = view.layerWidth * containScale(view);
-  // Со списком регионов (телефон) камера мира стоит: потолок — её же зум.
-  const zoomMax = listLayout ? listLayout.camera.zoom : worldMax;
+  const zoomMax = worldMax;
 
   // Анимация камеры (A3, A4). Пока она идёт, навигация занята: клики ставятся в очередь.
   // Кадр — камера, а в мире ещё и панель: открыли или свернули профиль — карта переезжает (#97).
@@ -262,7 +250,7 @@ export function useCamera({ active, regionBoxes, activePlaceSlug, panel, regionL
     screenRef,
     view: roam,
     attached: hasMap,
-    enabled: hasMap && !listLayout && !flying,
+    enabled: hasMap && !flying,
     resetKey: shot,
     home,
     onFloor:
@@ -289,5 +277,5 @@ export function useCamera({ active, regionBoxes, activePlaceSlug, panel, regionL
   });
 
   const frame: Frame = { view, framed, inset, cover, insetBottom, regionZoom, markerScale, threadScale, pxScale, worldZoom, zoomMax, fitted };
-  return { viewportRef, layerRef, screenRef, flying, listLayout, target, frame, controls, free: freeCamera !== null };
+  return { viewportRef, layerRef, screenRef, flying, target, frame, controls, free: freeCamera !== null };
 }

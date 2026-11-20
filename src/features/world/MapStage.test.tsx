@@ -12,7 +12,6 @@ import {
   regionFrame,
   REGION_ZOOM_MAX,
   UNMEASURED,
-  worldListLayout,
 } from './camera';
 import { MapStage, TOOLTIP_CLOSE_DELAY } from './MapStage';
 import { pointAtLabel } from './labelHover.testutil';
@@ -260,7 +259,7 @@ describe('MapStage', () => {
   });
 });
 
-describe('MapStage — список регионов на телефоне (#39)', () => {
+describe('MapStage — шторка регионов на телефоне (#39, #196)', () => {
   function renderWithList(activeRegionId?: string, focus?: { key: string; regionId: string; tone: 'neutral'; event: 'origin' }[]) {
     const onSelectRegion = vi.fn();
     render(
@@ -273,6 +272,7 @@ describe('MapStage — список регионов на телефоне (#39)
           heroesOf={(id) => heroes(id === 'a' ? 1 : 3)}
           focus={focus}
           regionList
+          regionsOpen
         />
       </I18nProvider>,
     );
@@ -280,7 +280,7 @@ describe('MapStage — список регионов на телефоне (#39)
   }
   const item = (name: RegExp) => within(screen.getByTestId('region-list')).getByRole('button', { name });
 
-  it('в мире — список под картой; нажатие открывает регион, как тап по карте', () => {
+  it('в мире — шторка над картой; нажатие открывает регион, как тап по карте', () => {
     const { onSelectRegion } = renderWithList();
     expect(item(/a en/)).toHaveTextContent('1 hero');
     expect(item(/b en/)).toHaveTextContent('3 heroes');
@@ -310,6 +310,19 @@ describe('MapStage — список регионов на телефоне (#39)
     renderWithList(undefined, [{ key: 'b', regionId: 'b', tone: 'neutral', event: 'origin' }]);
     expect(item(/b en/).className).toMatch(/heroRegion/);
     expect(item(/a en/).className).toMatch(/muted/);
+  });
+
+  it('свёрнута по умолчанию: ручка разворачивает пункты', () => {
+    render(
+      <I18nProvider initialLang="en">
+        <MapStage regions={[region('a', true)]} onSelectRegion={vi.fn()} onSelectPlace={vi.fn()} heroesOf={() => heroes(1)} regionList />
+      </I18nProvider>,
+    );
+    const handle = within(screen.getByTestId('region-list')).getByRole('button', { name: 'Regions' });
+    expect(screen.getByTestId('region-list')).toHaveAttribute('data-state', 'closed');
+    fireEvent.click(handle);
+    expect(screen.getByTestId('region-list')).toHaveAttribute('data-state', 'open');
+    expect(item(/a en/)).toBeInTheDocument();
   });
 
   it('без regionList (компьютер, планшет) списка нет', () => {
@@ -701,29 +714,6 @@ describe('camera', () => {
   });
   it('отрицательный сдвиг по вертикали — вниз', () => {
     expect(cameraTransform({ x: 0.5, y: 0.5, zoom: 1 }, 0, -40)).toBe('translate(0%, calc(0% + 40px)) scale(1)');
-  });
-  it('мир со списком регионов (#39): мир вписан и прижат к верху, список под ним; боком — карта слева, список справа', () => {
-    // 375×812: кадр под полосой 375×760, слой покрывает его — 760×760.
-    const portrait = { width: 375, height: 760, layerWidth: 760, layerHeight: 760, inset: 0 };
-    const p = worldListLayout(portrait);
-    expect(p.camera.zoom).toBeCloseTo(375 / 760);
-    expect(p.offset).toBe(0);
-    expect(p.offsetY).toBe(192.5);
-    expect(p.map).toEqual({ top: 0, left: 0, width: 375, height: 375 });
-    expect(p.list).toEqual({ top: 375, left: 0, width: 375, height: 385 });
-    // Плашка героя сверху: карта встаёт под неё, сдвиг меньше.
-    const withBar = worldListLayout(portrait, 150);
-    expect(withBar.offsetY).toBe(42.5);
-    expect(withBar.list).toEqual({ top: 525, left: 0, width: 375, height: 235 });
-    // Плашка выше свободного места — карта у низа кадра, список пустой.
-    expect(worldListLayout(portrait, 900).list.height).toBe(0);
-    // 667×375 боком: кадр 667×323, слой 667×667.
-    const landscape = worldListLayout({ width: 667, height: 323, layerWidth: 667, layerHeight: 667, inset: 0 });
-    expect(landscape.offset).toBe(172);
-    expect(landscape.offsetY).toBe(0);
-    expect(landscape.list).toEqual({ top: 0, left: 323, width: 344, height: 323 });
-    // Без измерений — без сдвига.
-    expect(worldListLayout(UNMEASURED)).toMatchObject({ offset: 0, offsetY: 0 });
   });
   it('ключ кадра места — точка места, чуть ближе', () => {
     expect(placeCamera({ x: 0.2, y: 0.2, zoom: 2 }, [0.4, 0.6])).toEqual({ x: 0.4, y: 0.6, zoom: 2 * PLACE_ZOOM });
