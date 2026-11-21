@@ -30,25 +30,41 @@ test('мир во весь кадр; колесо, перетаскивание,
   await expect.poll(() => scale(page)).toBeGreaterThan(1.5);
 
   // Перетаскивание двигает карту и не открывает регион.
+  // Подписи — в экранном слое (#180, #231): слой камерой не масштабируется, а якорь названия стоит в той же точке
+  // экрана, что и его точка на слое карты, — в любой момент жеста и инерции, между любыми задачами страницы (не только
+  // после посадки): зонд перепроверяет это в каждой задаче, пока идёт жест.
+  await expect(page.locator('[data-screen-layer] [data-label="stonehall"]')).toHaveCount(1);
+  await page.evaluate(() => {
+    const w = window as unknown as { twin: { dx: number; screen: string; on: boolean } };
+    w.twin = { dx: 0, screen: '', on: true };
+    const channel = new MessageChannel();
+    const probe = () => {
+      const mapSvg = document.querySelector<SVGSVGElement>('[data-world-art] ~ svg')!;
+      const screen = document.querySelector('[data-screen-layer]')!.parentElement!;
+      const label = document.querySelector<SVGGElement>('[data-screen-layer] [data-label="stonehall"]')!;
+      const [x, y] = label.getAttribute('data-at')!.split(' ').map(Number) as [number, number];
+      const p = new DOMPoint(x, y).matrixTransform(mapSvg.getScreenCTM()!);
+      const ctm = label.getScreenCTM()!;
+      w.twin.dx = Math.max(w.twin.dx, Math.abs(p.x - ctm.e) + Math.abs(p.y - ctm.f));
+      if (!['', 'none'].includes(screen.style.transform)) w.twin.screen = screen.style.transform;
+      if (w.twin.on) channel.port2.postMessage(0);
+    };
+    channel.port1.onmessage = probe;
+    probe();
+  });
   const before = await layer(page).evaluate((el) => (el as HTMLElement).style.transform);
   await page.mouse.down();
   await page.mouse.move(vp!.x + vp!.width / 2 - 200, vp!.y + vp!.height / 2 - 100, { steps: 8 });
   await page.mouse.up();
   await expect.poll(() => layer(page).evaluate((el) => (el as HTMLElement).style.transform)).not.toBe(before);
   await expectHash(page, '#/world');
-  // Подписи — в экранном слое (#180, #231): слой камерой не масштабируется, а якорь названия стоит в той же точке
-  // экрана, что и его точка на слое карты.
-  await expect(page.locator('[data-screen-layer] [data-label="stonehall"]')).toHaveCount(1);
+  await page.waitForTimeout(1000);
   const twin = await page.evaluate(() => {
-    const mapSvg = document.querySelector<SVGSVGElement>('[data-world-art] ~ svg')!;
-    const screen = document.querySelector('[data-screen-layer]')!.parentElement!;
-    const label = document.querySelector<SVGGElement>('[data-screen-layer] [data-label="stonehall"]')!;
-    const [x, y] = label.getAttribute('data-at')!.split(' ').map(Number) as [number, number];
-    const p = new DOMPoint(x, y).matrixTransform(mapSvg.getScreenCTM()!);
-    const ctm = label.getScreenCTM()!;
-    return { screen: screen.style.transform, dx: Math.abs(p.x - ctm.e) + Math.abs(p.y - ctm.f) };
+    const w = window as unknown as { twin: { dx: number; screen: string; on: boolean } };
+    w.twin.on = false;
+    return w.twin;
   });
-  expect(['', 'none']).toContain(twin.screen);
+  expect(twin.screen).toBe('');
   expect(twin.dx).toBeLessThan(1);
 
   // Кнопка «Показать мир целиком» и клавиша «+».

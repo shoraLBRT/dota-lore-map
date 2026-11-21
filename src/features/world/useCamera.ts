@@ -177,6 +177,8 @@ export function useCamera({ active, regionBoxes, activePlaceSlug, panel, hasMap,
   const shownTarget = useRef(target);
   const shownRegion = useRef(active?.id);
   const running = useRef<Animation | null>(null);
+  /** Камера, которую жест последней поставил в DOM (`useFreeCamera`); сбрасывает перелёт. */
+  const applied = useRef<Camera | null>(null);
   const busy = useRef(onCameraBusy);
   useLayoutEffect(() => {
     busy.current = onCameraBusy;
@@ -197,6 +199,7 @@ export function useCamera({ active, regionBoxes, activePlaceSlug, panel, hasMap,
     shownRegion.current = active?.id;
     // Тот же кадр, другой размер окна — без анимации, transform уже стоит в style.
     if (!el || prevCamera === shot) return;
+    applied.current = null;
     if (running.current) {
       // Новый переход посреди старого (кнопка «назад» браузера) — продолжаем с текущего положения.
       from = window.getComputedStyle(el).transform || from;
@@ -237,8 +240,14 @@ export function useCamera({ active, regionBoxes, activePlaceSlug, panel, hasMap,
   }, [shot]);
 
   // Экранный слой (#231): группы с якорем — в точки кадра на каждый рендер (жест между рендерами ставит их сам).
+  // Рендер, который не догнал жест (`free` ещё со старой камерой, а жест уже поставил новую в DOM), кадр не откатывает:
+  // React записал бы слою карты и якорям камеру на кадр-другой назад — подписи и карта разъехались бы до следующего рендера.
   useLayoutEffect(() => {
-    placeAnchors(screenRef.current, { ...framed, layerWidth: view.layerWidth });
+    const c = applied.current;
+    if (c && free?.camera !== c) {
+      if (layerRef.current) layerRef.current.style.transform = cameraTransform(c);
+      placeAnchors(screenRef.current, { camera: c, layerWidth: view.layerWidth });
+    } else placeAnchors(screenRef.current, { ...framed, layerWidth: view.layerWidth });
   });
 
   // Свободная камера двигает тот же кадр: следующий перелёт начинается с того места, куда карту утянули.
@@ -284,6 +293,7 @@ export function useCamera({ active, regionBoxes, activePlaceSlug, panel, hasMap,
         });
       }
       pending.current = c;
+      applied.current = c;
     },
   });
 
