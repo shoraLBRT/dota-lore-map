@@ -9,6 +9,9 @@ function zoomOf(layer: HTMLElement): number {
   return Math.hypot(Number(match[1]), Number(match[2])) || 1;
 }
 
+/** Сколько кадров подряд без изменений, после которых цикл засыпает (камера встала). */
+export const STILL_FRAMES = 8;
+
 /** Группы названий и маркеров экранного слоя: `translate(якорь) scale(k)`, без вложенных (значки медиа). */
 const ANCHORED = "g[transform^='translate']:not(g[transform^='translate'] g)";
 const TRANSLATE = /^translate\(\s*([-\d.e]+)[\s,]+([-\d.e]+)/;
@@ -62,14 +65,18 @@ export function useDepth(
     let frame = 0;
     let last = '';
     let tilted = false;
+    let still = 0;
+    let lastMatrix = '';
     const tick = () => {
-      frame = requestAnimationFrame(tick);
+      frame = 0;
       const viewport = viewportRef.current;
       const layer = layerRef.current;
       const wrap = tiltRef.current;
       const edge = dofRef.current;
       const svg = screenSvgRef.current;
       if (!viewport || !layer) return;
+      const before = last;
+      const matrix = getComputedStyle(layer).transform;
       const zoom = zoomOf(layer);
       const deg = tilt ? Math.round(tiltAt(zoom) * 10) / 10 : 0;
       const d = Math.round(dofAt(zoom) * 50) / 50;
@@ -79,7 +86,12 @@ export function useDepth(
       else if (svg && tilted) clearAnchors(svg);
       tilted = deg > 0;
       const key = `${deg}|${d}|${p}`;
-      if (key === last) return;
+      // Кадры идут, пока камера движется; после STILL_FRAMES неподвижных кадров и без перелёта цикл засыпает.
+      const moving = key !== before || matrix !== lastMatrix || (layer.getAnimations?.().length ?? 0) > 0;
+      lastMatrix = matrix;
+      still = moving ? 0 : still + 1;
+      if (still < STILL_FRAMES) frame = requestAnimationFrame(tick);
+      if (key === before) return;
       last = key;
       if (wrap) wrap.style.transform = deg > 0 ? `perspective(${p}px) rotateX(${deg}deg)` : '';
       if (edge) {
@@ -87,7 +99,22 @@ export function useDepth(
         edge.toggleAttribute('data-on', d > 0);
       }
     };
-    frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
+    // Камеру двигают жесты, колесо, клавиши и перелёт (смена `style` слоя): любое из них будит цикл.
+    const wake = () => {
+      still = 0;
+      if (!frame) frame = requestAnimationFrame(tick);
+    };
+    const viewport = viewportRef.current;
+    const layer = layerRef.current;
+    const events = ['wheel', 'pointerdown', 'pointermove', 'keydown', 'touchstart'] as const;
+    for (const e of events) viewport?.addEventListener(e, wake, { passive: true, capture: true });
+    const mo = new MutationObserver(wake);
+    if (layer) mo.observe(layer, { attributes: true, attributeFilter: ['style'] });
+    wake();
+    return () => {
+      cancelAnimationFrame(frame);
+      mo.disconnect();
+      for (const e of events) viewport?.removeEventListener(e, wake, { capture: true });
+    };
   }, [tilt, viewportRef, layerRef, tiltRef, dofRef, screenSvgRef]);
 }

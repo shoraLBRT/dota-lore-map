@@ -145,7 +145,7 @@ describe('окно обратной связи', () => {
     send.addEventListener('click', (e) => e.preventDefault());
     fireEvent.click(send);
     expect(send).toBeInTheDocument();
-    act(() => vi.runOnlyPendingTimers());
+    act(() => vi.runAllTimers());
     expect(window.localStorage.getItem(DRAFT)).toBeNull();
     expect(within(win).getByRole('textbox', { name: 'Сообщение' })).toHaveValue('');
     expect(within(win).getByRole('status')).toHaveTextContent('Форма открыта в новой вкладке');
