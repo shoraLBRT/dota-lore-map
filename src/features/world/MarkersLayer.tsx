@@ -77,7 +77,8 @@ interface Props {
   activePlaceSlug: string | undefined;
   /** Где подпись каждого маркера (markerLayout.ts). */
   sides: Map<string, LabelSide>;
-  markerScale: number;
+  /** Во сколько раз маркер крупнее экранного px-размера (место крупнее региона, `placeCamera`); 1 — как есть. */
+  markerGrow: number;
   /** Места выбранного героя (`region/slug`): подсвечены, остальные приглушены. */
   focusPlaces: Set<string> | null;
   /** Места героя под наведением: маркеры пульсируют (#66). */
@@ -93,13 +94,13 @@ interface Props {
 /**
  * Маркеры мест открытого региона (S2/S3, SPEC §6.3): звезда столицы, ромб места события или точка места,
  * подпись без плашки (с ореолом) и значок медиа на углу фигуры.
- * Группа каждого маркера — `translate(pos) scale(markerScale)`: размер не зависит от приближения (ARCHITECTURE A4).
+ * Группа каждого маркера стоит на якоре `data-at` (`placeAnchors`): размер в экранных px не зависит от приближения (A4).
  */
 export function MarkersLayer({
   regionId,
   activePlaceSlug,
   sides,
-  markerScale,
+  markerGrow,
   focusPlaces,
   previewPlaces,
   litPlaceSlug,
@@ -125,7 +126,8 @@ export function MarkersLayer({
     const previewed = previewPlaces?.has(`${regionId}/${p.slug}`) ?? false;
     const muted = focusPlaces && !focusPlaces.has(`${regionId}/${p.slug}`);
     const media = onOpenMedia ? placeMediaBadge(p) : null;
-    const transform = `translate(${x} ${y}) scale(${markerScale.toFixed(4)})`;
+    // Сдвиг и масштаб пишет камера (`placeAnchors`, A4): слой маркеров камерой не масштабируется (#231).
+    const anchor = { 'data-at': `${x} ${y}`, 'data-k': markerGrow === 1 ? undefined : markerGrow.toFixed(4) };
     return (
       <Fragment key={p.slug}>
         <g
@@ -143,7 +145,7 @@ export function MarkersLayer({
             .filter(Boolean)
             .join(' ')}
           style={{ '--i': i } as CSSProperties}
-          transform={transform}
+          {...anchor}
           role="button"
           tabIndex={0}
           aria-label={name}
@@ -177,7 +179,7 @@ export function MarkersLayer({
           <g
             className={[styles.mediaBadge, muted && styles.mutedMarker].filter(Boolean).join(' ')}
             style={{ '--i': i } as CSSProperties}
-            transform={transform}
+            {...anchor}
             role="button"
             tabIndex={0}
             aria-label={t('media.badge', { kinds: mediaKinds(media.media, lang) })}

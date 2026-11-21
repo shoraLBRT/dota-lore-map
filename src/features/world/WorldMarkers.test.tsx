@@ -33,7 +33,7 @@ function renderAt(zoom: number, onSelectPlace = vi.fn()) {
   render(
     <I18nProvider initialLang="en">
       <svg>
-        <WorldMarkers items={items} spots={spots} zoom={zoom} pxScale={1} view={unmeasured} framed={framed} focusPlaces={null} onSelectPlace={onSelectPlace} />
+        <WorldMarkers items={items} spots={spots} zoom={zoom} view={unmeasured} framed={framed} focusPlaces={null} onSelectPlace={onSelectPlace} />
       </svg>
     </I18nProvider>,
   );

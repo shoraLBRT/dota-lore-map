@@ -22,6 +22,7 @@ import {
   zoomLevels,
 } from './camera';
 import { centered, useFreeCamera } from './freeCamera';
+import { cameraInverse, placeAnchors } from './screenAnchors';
 
 /** Кадр «мир слева от панели» — отдельный кадр для анимации, хотя камера та же (#97). */
 const WORLD_PANEL_SHOT = 'world-panel' as const;
@@ -209,8 +210,10 @@ export function useCamera({ active, regionBoxes, activePlaceSlug, panel, hasMap,
       ? cssDuration('--dur-place') || DURATION.place
       : cssDuration('--dur-camera') || DURATION.region;
     const animation = animateCamera(el, from, target, duration);
+    // Экранный слой (#231): группы уже стоят в точках нового кадра, слой летит от «откуда» относительно него к себе.
     const screen = screenRef.current;
-    const twin = screen ? animateCamera(screen, from, target, duration) : null;
+    const back = cameraInverse({ ...framed, layerWidth: view.layerWidth });
+    const twin = screen ? animateCamera(screen, from === 'none' ? back : `${from} ${back}`, 'none', duration) : null;
     if (!animation) {
       twin?.cancel();
       return;
@@ -226,12 +229,17 @@ export function useCamera({ active, regionBoxes, activePlaceSlug, panel, hasMap,
           setFlying(false);
           // Посадка ставит кадр, посчитанный на старте; если окно с тех пор изменилось — берём свежий.
           el.style.transform = latestTarget.current;
-          if (screenRef.current) screenRef.current.style.transform = latestTarget.current;
+          if (screenRef.current) screenRef.current.style.transform = '';
         }
         release();
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps -- анимируем только смену кадра, не размер окна
   }, [shot]);
+
+  // Экранный слой (#231): группы с якорем — в точки кадра на каждый рендер (жест между рендерами ставит их сам).
+  useLayoutEffect(() => {
+    placeAnchors(screenRef.current, { ...framed, layerWidth: view.layerWidth });
+  });
 
   // Свободная камера двигает тот же кадр: следующий перелёт начинается с того места, куда карту утянули.
   useLayoutEffect(() => {

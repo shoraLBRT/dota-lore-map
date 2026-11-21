@@ -18,9 +18,8 @@ const HIT_RADIUS = 16;
 interface Props {
   items: WorldPlaceItem[];
   spots: Map<string, WorldPlaceSpot>;
-  /** Приближение мира на экране и 1 px экрана в единицах сцены. */
+  /** Приближение мира на экране. */
   zoom: number;
-  pxScale: number;
   /** Кадр: маркеры за его краем не рисуются (`inView`). Без замера (`view.width` 0) — все в кадре. */
   view: View;
   framed: Frame['framed'];
@@ -53,9 +52,8 @@ interface MarkerProps {
 }
 
 /**
- * Один маркер мира. Его transform (`translate(x y) scale(k)`, A4) пишет группа (`WorldMarkers`) прямо в DOM: на кадре
- * зума React маркеры не перерисовывает, а у элементов меняется только transform — без пересчёта стилей поддерева,
- * как было бы с CSS-переменной масштаба у группы.
+ * Один маркер мира. Его transform пишет камера (`placeAnchors`, якорь `data-at` — только у показанного, A4, A14):
+ * на кадре зума React маркеры не перерисовывает, а у групп меняется только сдвиг.
  */
 const WorldMarker = memo(function WorldMarker({ m, side, shown, focus, name, select }: MarkerProps) {
   const sfx = useSfx();
@@ -77,8 +75,7 @@ const WorldMarker = memo(function WorldMarker({ m, side, shown, focus, name, sel
       ]
         .filter(Boolean)
         .join(' ')}
-      data-x={x.toFixed(2)}
-      data-y={y.toFixed(2)}
+      data-at={shown ? `${x.toFixed(2)} ${y.toFixed(2)}` : undefined}
       data-world-place={m.key}
       data-shown={shown ? '' : undefined}
       data-kind={kind}
@@ -100,7 +97,7 @@ const WorldMarker = memo(function WorldMarker({ m, side, shown, focus, name, sel
  * кадра (`display: none`) — переход порога меняет класс, а не монтирует сотню узлов на кадре зума. Экранный слой мира скрыт от чтения с экрана
  * (`aria-hidden`), поэтому маркеры здесь — цели только для мыши и пальца: с клавиатуры места открываются через регион.
  */
-export function WorldMarkers({ items, spots, zoom, pxScale, view, framed, focusPlaces, onSelectPlace }: Props) {
+export function WorldMarkers({ items, spots, zoom, view, framed, focusPlaces, onSelectPlace }: Props) {
   const { lang } = useT();
   // Обработчик из WorldScreen — новый на каждый рендер; через ref маркеры остаются мемоизированными.
   const selectRef = useRef(onSelectPlace);
@@ -108,18 +105,8 @@ export function WorldMarkers({ items, spots, zoom, pxScale, view, framed, focusP
     selectRef.current = onSelectPlace;
   });
   const select = useCallback((regionId: string, slug: string) => selectRef.current(regionId, slug), []);
-  const groupRef = useRef<SVGGElement>(null);
-  const k = pxScale.toFixed(5);
-  useLayoutEffect(() => {
-    // Скрытые (`display: none`) не трогаем: показанный маркер React перерисовывает в том же кадре, что и масштаб.
-    for (const el of groupRef.current?.children ?? []) {
-      const g = el as SVGGElement;
-      if (g.dataset.shown === undefined) continue;
-      g.setAttribute('transform', `translate(${g.dataset.x} ${g.dataset.y}) scale(${k})`);
-    }
-  }, [k, items, spots, zoom, view, framed]);
   return (
-    <g ref={groupRef} className={styles.markers} data-world-places="">
+    <g className={styles.markers} data-world-places="">
       {items.map((m) => {
         const spot = spots.get(m.key);
         if (!spot || spot.from === Infinity) return null;
