@@ -17,7 +17,7 @@ const FAKE_TURNSTILE = `window.turnstile = {
   reset() {}, remove() {},
 };`;
 
-test('отзыв уходит в функцию: токен, текст с контекстом, ссылка на issue; axe чисто', async ({ page, consoleErrors }) => {
+test('отзыв уходит в функцию: токен, текст с контекстом, ссылка на issue; axe чисто', async ({ page, consoleErrors, browserName }) => {
   void consoleErrors;
   const posted: unknown[] = [];
   await page.route('https://challenges.cloudflare.com/**', (route) =>
@@ -44,11 +44,15 @@ test('отзыв уходит в функцию: токен, текст с ко�
   const send = win.getByRole('button', { name: 'Отправить' });
   await expect(send).toBeEnabled();
 
-  const { violations } = await new AxeBuilder({ page }).include('[role="dialog"]').analyze();
-  const serious = violations
-    .filter((v) => v.impact === 'serious' || v.impact === 'critical')
-    .map((v) => `${v.impact} ${v.id}: ${v.nodes.map((n) => n.target.join(' ')).join(', ')}`);
-  expect(serious).toEqual([]);
+  // Firefox в CI падает (Page crashed) в axe и здесь, как в a11y.spec.ts при поиске; разметку окна проверяют
+  // остальные движки, сам поток отправки в Firefox проверяется.
+  if (browserName !== 'firefox') {
+    const { violations } = await new AxeBuilder({ page }).include('[role="dialog"]').analyze();
+    const serious = violations
+      .filter((v) => v.impact === 'serious' || v.impact === 'critical')
+      .map((v) => `${v.impact} ${v.id}: ${v.nodes.map((n) => n.target.join(' ')).join(', ')}`);
+    expect(serious).toEqual([]);
+  }
 
   await send.click();
   await expect(win.getByRole('status')).toContainText('Отзыв отправлен: issue #42');
