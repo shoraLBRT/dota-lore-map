@@ -33,6 +33,8 @@ export default defineConfig({
   ],
   webServer: {
     command: `npm run build && npx vite preview --port ${PORT} --strictPort`,
+    // Адрес функции отзыва (#75) — подменный: e2e/feedback.spec.ts отвечает за неё и за Turnstile.
+    env: { VITE_FEEDBACK_URL: 'https://feedback.e2e.test/' },
     url: `http://localhost:${PORT}/dota-lore-map/`,
     reuseExistingServer: !CI,
     timeout: 180_000,

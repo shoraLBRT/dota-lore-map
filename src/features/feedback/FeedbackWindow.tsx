@@ -9,7 +9,9 @@ import { trapTab } from '../../components/focusTrap';
 import { useT } from '../../i18n';
 import { feedbackContext, type FeedbackBlockRef } from './context';
 import { loadDraft, saveDraft } from './draft';
-import { cleanMessage, FEEDBACK_KINDS, feedbackUrl, MESSAGE_LIMIT, type FeedbackKind } from './message';
+import { DirectError, directConfig, sendDirect, type SentIssue } from './direct';
+import { cleanMessage, FEEDBACK_KINDS, feedbackIssue, feedbackUrl, MESSAGE_LIMIT, type FeedbackKind } from './message';
+import { useTurnstile } from './turnstile';
 import { listenOutsideTap } from '../../app/outsideTap';
 import styles from './FeedbackWindow.module.css';
 
@@ -24,7 +26,9 @@ interface Props {
 
 /**
  * Окно обратной связи (SPEC §6.9): небольшое, в углу, без затемнения карты. Ловушка фокуса; Esc, × и клик вне
- * окна закрывают его, черновик остаётся. «Отправить» открывает в новой вкладке форму нового issue на GitHub.
+ * окна закрывают его, черновик остаётся. Настроена функция отзыва (#75) — «Отправить» шлёт issue в неё после
+ * проверки Turnstile; не настроена, Turnstile не работает или отправка не удалась — открывает в новой вкладке
+ * форму нового issue на GitHub (#73).
  * Открытое из блока (#74) — с подписью «Регион: Айсрак» и выбором «ошибка / дополнение / другое».
  */
 export function FeedbackWindow({ block, onClose }: Props) {
@@ -39,6 +43,14 @@ export function FeedbackWindow({ block, onClose }: Props) {
   const [text, setText] = useState(loadDraft);
   const [sent, setSent] = useState(false);
   const [kind, setKind] = useState<FeedbackKind>('error');
+  // Прямая отправка (#75): настройки — на момент открытия окна, проверка Turnstile — пока окно открыто.
+  const [config] = useState(directConfig);
+  const guardRef = useRef<HTMLDivElement>(null);
+  const guard = useTurnstile(guardRef, config?.siteKey ?? null, lang);
+  const direct = config !== null && !guard.failed;
+  const [sending, setSending] = useState(false);
+  const [issue, setIssue] = useState<SentIssue | null>(null);
+  const [failure, setFailure] = useState<string | null>(null);
 
   // Фокус в поле (курсор в конце черновика); при закрытии — обратно на кнопку-источник, если фокус не ушёл
   // на то, по чему кликнули.
@@ -68,6 +80,7 @@ export function FeedbackWindow({ block, onClose }: Props) {
     const next = value.slice(0, MESSAGE_LIMIT);
     setText(next);
     setSent(false);
+    setIssue(null);
     saveDraft(next);
   };
 
@@ -82,7 +95,8 @@ export function FeedbackWindow({ block, onClose }: Props) {
   };
 
   const message = cleanMessage(text);
-  const fitted = message ? feedbackUrl(REPO_URL, text, feedbackContext(route, lang, window.location.href, block, kind)) : null;
+  const ctx = feedbackContext(route, lang, window.location.href, block, kind);
+  const fitted = message ? feedbackUrl(REPO_URL, text, ctx) : null;
 
   // Вкладку открывает сама ссылка — её не режет блокировщик всплывающих окон. Черновик очищаем после клика
   // отдельной задачей: ссылка, убранная из DOM во время клика, никуда не переходит.
@@ -95,6 +109,35 @@ export function FeedbackWindow({ block, onClose }: Props) {
       dialogRef.current?.querySelector('textarea')?.focus();
     }, 0);
   };
+
+  // Отправка в функцию: удалось — черновик очищен, ссылка на issue; нет — сообщение и форма GitHub запасным путём.
+  // Токен Turnstile одноразовый: после любого ответа функции берётся новый.
+  const onSendDirect = async () => {
+    if (!config || !message || !guard.token || sending) return;
+    setSending(true);
+    setFailure(null);
+    try {
+      const sentIssue = await sendDirect(config.endpoint, feedbackIssue(text, ctx), guard.token);
+      saveDraft('');
+      setText('');
+      setIssue(sentIssue);
+    } catch (error) {
+      setFailure(error instanceof DirectError && error.reason === 'rate' ? 'rate' : 'failed');
+    } finally {
+      setSending(false);
+      guard.renew();
+      // Кнопка на время отправки неактивна и теряет фокус — он возвращается в поле, в окне.
+      dialogRef.current?.querySelector('textarea')?.focus();
+    }
+  };
+
+  const directStatus = sending
+    ? t('feedback.sending')
+    : issue
+      ? t('feedback.delivered', { number: String(issue.number) })
+      : guard.interactive
+        ? t('feedback.guard')
+        : '';
 
   return createPortal(
     <div
@@ -118,7 +161,7 @@ export function FeedbackWindow({ block, onClose }: Props) {
       )}
       <div id={textId} className={styles.text}>
         <p>{t('feedback.text')}</p>
-        <p>{t('feedback.account')}</p>
+        <p>{t(direct ? 'feedback.direct' : 'feedback.account')}</p>
       </div>
       {block && (
         <fieldset className={styles.kinds}>
@@ -157,7 +200,16 @@ export function FeedbackWindow({ block, onClose }: Props) {
         <span id={countId} className={styles.count}>
           {t('feedback.count', { count: String(text.length), limit: String(MESSAGE_LIMIT) })}
         </span>
-        {fitted ? (
+        {direct ? (
+          <Button
+            variant="primary"
+            className={styles.send}
+            disabled={!message || !guard.token || sending}
+            onClick={() => void onSendDirect()}
+          >
+            {t('feedback.send')}
+          </Button>
+        ) : fitted ? (
           <a
             className={[buttonStyles.button, buttonStyles.primary, styles.send].join(' ')}
             href={fitted.url}
@@ -173,14 +225,33 @@ export function FeedbackWindow({ block, onClose }: Props) {
           </Button>
         )}
       </div>
-      {message && !fitted && (
+      {direct && <div ref={guardRef} className={styles.guard} />}
+      {direct && failure && (
+        <p className={styles.note} role="alert">
+          {t(failure === 'rate' ? 'feedback.rate' : 'feedback.failed')}{' '}
+          {fitted && (
+            <a href={fitted.url} target="_blank" rel="noopener noreferrer">
+              {t('feedback.viaGitHub')}
+            </a>
+          )}
+        </p>
+      )}
+      {!direct && message && !fitted && (
         <p className={styles.note} role="alert">
           {t('feedback.tooLong')}
         </p>
       )}
       {/* Живая область есть всегда: так экранный диктор прочтёт сообщение, когда оно появится. */}
       <p className={styles.note} role="status">
-        {sent ? t('feedback.sent') : ''}
+        {direct ? directStatus : sent ? t('feedback.sent') : ''}
+        {direct && issue && (
+          <>
+            {' '}
+            <a href={issue.url} target="_blank" rel="noopener noreferrer">
+              {t('feedback.viewIssue')}
+            </a>
+          </>
+        )}
       </p>
     </div>,
     document.body,

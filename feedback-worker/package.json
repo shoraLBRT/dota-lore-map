@@ -1,0 +1,10 @@
+{
+  "name": "dota-lore-map-feedback",
+  "private": true,
+  "type": "module",
+  "description": "Функция обратной связи карты лора: заводит issue на GitHub без аккаунта у посетителя (#75).",
+  "scripts": {
+    "test": "node --test",
+    "deploy": "npx wrangler@4 deploy"
+  }
+}

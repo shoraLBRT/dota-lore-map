@@ -1,0 +1,25 @@
+# Функция обратной связи карты (#75) на Cloudflare Workers. Развёртывание — README.md рядом.
+name = "dota-lore-map-feedback"
+main = "src/feedback.js"
+compatibility_date = "2025-09-01"
+
+[vars]
+# Откуда принимаются отзывы: выложенная карта, `npm run dev` (5183) и `vite preview` (4173).
+ALLOWED_ORIGINS = "https://shoralbrt.github.io,http://localhost:5183,http://localhost:4173"
+GITHUB_REPOSITORY = "shoraLBRT/dota-lore-map"
+# Номер GitHub App (App ID) — не секрет. Приложение общее с Transliterator: оно должно быть
+# установлено и на этот репозиторий (README, шаг 2).
+GITHUB_APP_ID = "5514770"
+
+# Секреты задаются командой `npx wrangler secret put`, не здесь:
+#   GITHUB_APP_PRIVATE_KEY — закрытый ключ GitHub App (.pem целиком);
+#   TURNSTILE_SECRET       — секретный ключ виджета Turnstile.
+
+# Не больше пяти сообщений в минуту с одного адреса — сверх проверки Turnstile.
+[[ratelimits]]
+name = "FEEDBACK_LIMITER"
+namespace_id = "1001"
+
+  [ratelimits.simple]
+  limit = 5
+  period = 60

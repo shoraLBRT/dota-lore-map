@@ -149,5 +149,13 @@
   "feedback.kind.other": "Other",
   "feedback.placeholder.error": "What is wrong and what is right? A source helps, if you have one.",
   "feedback.placeholder.addition": "What should be added? A source helps, if you have one.",
-  "feedback.placeholder.other": "What did you notice?"
+  "feedback.placeholder.other": "What did you notice?",
+  "feedback.direct": "No account needed: your message becomes an issue in the project's GitHub repository.",
+  "feedback.sending": "Sending…",
+  "feedback.delivered": "Thank you! Feedback sent: issue #{number}.",
+  "feedback.viewIssue": "Open on GitHub",
+  "feedback.guard": "Tick the box below — a check that you are not a robot.",
+  "feedback.failed": "Could not send. The draft is kept — try again or",
+  "feedback.rate": "Too many messages in a row — wait a minute or",
+  "feedback.viaGitHub": "open the issue form on GitHub (account needed)"
 }

@@ -149,5 +149,13 @@
   "feedback.kind.other": "Другое",
   "feedback.placeholder.error": "Что не так и как правильно? Если можете — источник.",
   "feedback.placeholder.addition": "Что стоит добавить? Если можете — источник.",
-  "feedback.placeholder.other": "Что заметили?"
+  "feedback.placeholder.other": "Что заметили?",
+  "feedback.direct": "Аккаунт не нужен: сообщение станет issue в репозитории проекта на GitHub.",
+  "feedback.sending": "Отправляем…",
+  "feedback.delivered": "Спасибо! Отзыв отправлен: issue #{number}.",
+  "feedback.viewIssue": "Открыть на GitHub",
+  "feedback.guard": "Отметьте флажок ниже — проверка, что вы не робот.",
+  "feedback.failed": "Не удалось отправить. Черновик сохранён — можно отправить ещё раз или",
+  "feedback.rate": "Слишком много сообщений подряд — подождите минуту или",
+  "feedback.viaGitHub": "открыть форму issue на GitHub (нужен аккаунт)"
 }
