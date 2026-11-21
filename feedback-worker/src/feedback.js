@@ -114,6 +114,9 @@ async function humanVerified(env, token, ip, fetchImpl) {
     try {
         const response = await fetchImpl(SITEVERIFY, { method: "POST", body: form });
         const result = await response.json();
+        // Причина отказа (коды Turnstile, не секрет) — в журнал функции: `wrangler tail`.
+        if (result.success !== true)
+            console.warn("turnstile", JSON.stringify({ codes: result["error-codes"], hostname: result.hostname }));
         return result.success === true;
     } catch (error) {
         console.error(error);
