@@ -3,7 +3,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { App } from '../../app/App';
 import { MESSAGE_LIMIT } from './message';
 
-// Окно обратной связи в приложении (E17, #73; SPEC §6.9).
+// Окно обратной связи в приложении (E17, #73; SPEC §6.9); прямая отправка в функцию — #75.
 
 const DRAFT = 'dota-lore-map.feedback.draft';
 const button = () => screen.getByRole('button', { name: 'Обратная связь' });
@@ -24,10 +24,15 @@ function openWindow() {
 
 describe('окно обратной связи', () => {
   beforeEach(() => {
+    // Отправка ссылкой (#73) — и тогда, когда в .env уже вписан адрес функции отзыва (#75).
+    vi.stubEnv('VITE_FEEDBACK_URL', '');
     window.localStorage.setItem('dota-lore-map.lang', 'ru');
     window.location.hash = '#/r/icewrack?hero=crystal_maiden&profile';
   });
-  afterEach(() => vi.useRealTimers());
+  afterEach(() => {
+    vi.useRealTimers();
+    vi.unstubAllEnvs();
+  });
 
   it('кнопка в левой панели открывает окно: пояснение про публичность и аккаунт, фокус в поле, без затемнения', () => {
     render(<App />);
@@ -173,9 +178,11 @@ describe('«Нашли ошибку?» у блоков (#74)', () => {
   const sendUrl = (win: HTMLElement) => new URL(within(win).getByRole('link', { name: /^Отправить/ }).getAttribute('href')!);
 
   beforeEach(() => {
+    vi.stubEnv('VITE_FEEDBACK_URL', '');
     window.localStorage.setItem('dota-lore-map.lang', 'ru');
     window.localStorage.removeItem(DRAFT);
   });
+  afterEach(() => vi.unstubAllEnvs());
 
   it('панель региона: строка в конце, окно о регионе с выбором вида, issue с блоком и метками', () => {
     window.location.hash = '#/r/icewrack';
@@ -276,5 +283,119 @@ describe('«Нашли ошибку?» у блоков (#74)', () => {
     expect(url.searchParams.get('title')).toBe('Mistake in “Icewrack”: Wrong date');
     expect(url.searchParams.get('body')).toContain('- Block: region Icewrack (`icewrack`)');
     expect(url.searchParams.get('body')).toContain('- Kind: mistake');
+  });
+});
+
+describe('отправка без аккаунта GitHub (#75)', () => {
+  const ENDPOINT = 'https://feedback.example/';
+  let options: Record<string, (value?: string) => unknown>;
+  let fetchMock: ReturnType<typeof vi.fn>;
+  const turnstile = { render: vi.fn(), reset: vi.fn(), remove: vi.fn() };
+
+  beforeEach(() => {
+    window.localStorage.setItem('dota-lore-map.lang', 'ru');
+    window.location.hash = '#/r/icewrack';
+    vi.stubEnv('VITE_FEEDBACK_URL', ENDPOINT);
+    vi.stubEnv('VITE_TURNSTILE_SITE_KEY', 'site-key');
+    turnstile.render.mockImplementation((_el: HTMLElement, o: typeof options) => {
+      options = o;
+      return 'widget-1';
+    });
+    window.turnstile = turnstile;
+    fetchMock = vi.fn(async () =>
+      Response.json({ number: 42, url: 'https://github.com/shoraLBRT/dota-lore-map/issues/42' }, { status: 201 }),
+    );
+    vi.stubGlobal('fetch', fetchMock);
+  });
+  afterEach(() => {
+    vi.unstubAllEnvs();
+    vi.unstubAllGlobals();
+    vi.clearAllMocks();
+    delete window.turnstile;
+  });
+
+  /** Окно открыто, Turnstile отрисован и выдал токен. */
+  async function openPassed() {
+    render(<App />);
+    const win = openWindow();
+    await act(async () => {});
+    expect(turnstile.render).toHaveBeenCalledWith(expect.any(HTMLElement), expect.objectContaining({ sitekey: 'site-key', language: 'ru' }));
+    act(() => void options.callback!('token-1'));
+    return win;
+  }
+
+  it('аккаунт не нужен: «Отправить» — кнопка, отзыв уходит в функцию с токеном, черновик очищен, ссылка на issue', async () => {
+    const win = await openPassed();
+    expect(win).toHaveTextContent('Аккаунт не нужен');
+    expect(win).not.toHaveTextContent('Нужен аккаунт GitHub');
+    const field = within(win).getByRole('textbox', { name: 'Сообщение' });
+    const send = within(win).getByRole('button', { name: 'Отправить' });
+    expect(send).toBeDisabled();
+    fireEvent.change(field, { target: { value: 'Опечатка в описании' } });
+    expect(within(win).queryByRole('link', { name: /^Отправить/ })).toBeNull();
+    await act(async () => void fireEvent.click(send));
+
+    const [url, init] = fetchMock.mock.calls[0] as [string, RequestInit];
+    expect(url).toBe(ENDPOINT);
+    const sent = JSON.parse(init.body as string);
+    expect(sent.title).toBe('Отзыв с карты: Опечатка в описании');
+    expect(sent.body).toContain('- Регион: Айсрак (`icewrack`)');
+    expect(sent.labels).toEqual(['feedback']);
+    expect(sent.token).toBe('token-1');
+
+    expect(field).toHaveValue('');
+    expect(window.localStorage.getItem(DRAFT)).toBeNull();
+    const status = within(win).getByRole('status');
+    expect(status).toHaveTextContent('Отзыв отправлен: issue #42');
+    expect(within(status).getByRole('link', { name: 'Открыть на GitHub' })).toHaveAttribute(
+      'href',
+      'https://github.com/shoraLBRT/dota-lore-map/issues/42',
+    );
+    // Токен одноразовый: после отправки — новый.
+    expect(turnstile.reset).toHaveBeenCalledWith('widget-1');
+  });
+
+  it('функция не ответила — сообщение и запасной путь, форма issue на GitHub; черновик цел', async () => {
+    fetchMock.mockImplementation(async () => {
+      throw new TypeError('Failed to fetch');
+    });
+    const win = await openPassed();
+    fireEvent.change(within(win).getByRole('textbox', { name: 'Сообщение' }), { target: { value: 'Опечатка' } });
+    await act(async () => void fireEvent.click(within(win).getByRole('button', { name: 'Отправить' })));
+    const alert = within(win).getByRole('alert');
+    expect(alert).toHaveTextContent('Не удалось отправить');
+    const link = within(alert).getByRole('link', { name: /форму issue на GitHub/ });
+    expect(link.getAttribute('href')!.startsWith('https://github.com/shoraLBRT/dota-lore-map/issues/new?title=')).toBe(true);
+    expect(window.localStorage.getItem(DRAFT)).toBe('Опечатка');
+  });
+
+  it('Turnstile нужен человек — окно просит отметить флажок', async () => {
+    const win = await openPassed();
+    act(() => void options['before-interactive-callback']!());
+    expect(within(win).getByRole('status')).toHaveTextContent('Отметьте флажок');
+  });
+
+  it('Turnstile не загрузился — окно работает по-старому, ссылкой на форму issue', async () => {
+    delete window.turnstile;
+    const append = vi.spyOn(document.head, 'appendChild').mockImplementation((node) => {
+      queueMicrotask(() => (node as HTMLScriptElement).onerror?.(new Event('error')));
+      return node;
+    });
+    render(<App />);
+    const win = openWindow();
+    expect(append).toHaveBeenCalledWith(expect.objectContaining({ src: expect.stringContaining('challenges.cloudflare.com/turnstile') }));
+    await act(async () => {});
+    expect(win).toHaveTextContent('Нужен аккаунт GitHub');
+    fireEvent.change(within(win).getByRole('textbox', { name: 'Сообщение' }), { target: { value: 'Опечатка' } });
+    expect(within(win).getByRole('link', { name: /^Отправить/ })).toBeInTheDocument();
+    append.mockRestore();
+  });
+
+  it('без открытого окна скрипт Turnstile не грузится', () => {
+    delete window.turnstile;
+    const append = vi.spyOn(document.head, 'appendChild');
+    render(<App />);
+    expect(append).not.toHaveBeenCalledWith(expect.objectContaining({ src: expect.stringContaining('turnstile') }));
+    append.mockRestore();
   });
 });

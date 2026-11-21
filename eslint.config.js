@@ -16,6 +16,12 @@ export default tseslint.config(
     languageOptions: { globals: globals.node },
   },
   {
+    // Функция отзыва (#75): Cloudflare Workers — Web API (fetch, crypto, FormData); тесты — node --test.
+    files: ['feedback-worker/**/*.js'],
+    extends: [js.configs.recommended],
+    languageOptions: { globals: { ...globals.serviceworker, ...globals.node } },
+  },
+  {
     files: ['vite.config.ts', 'playwright.config.ts', 'e2e/**/*.ts'],
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     languageOptions: { globals: globals.node },

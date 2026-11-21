@@ -213,3 +213,13 @@
     opacity: 0;
   }
 }
+
+/* Виджет Turnstile (#75): невидим, пока проверке не нужен человек; флажок — по центру под полем. */
+.guard {
+  display: flex;
+  justify-content: center;
+}
+
+.guard:empty {
+  display: none;
+}

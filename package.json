@@ -14,11 +14,12 @@
     "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.node.json",
     "lint": "eslint .",
     "test": "vitest run",
+    "test:worker": "npm --prefix feedback-worker test",
     "e2e": "playwright test",
     "shot": "node scripts/shot.mjs",
     "perf": "node scripts/perf.mjs",
     "links": "node scripts/check-links.mjs",
-    "check": "npm run data && npm run typecheck && npm run lint && npm run test && npm run build && node scripts/check-budget.mjs && node scripts/og-image.mjs --check && node map/check-layout.mjs && python research/e1/build.py --check && python research/e14/test_e14.py"
+    "check": "npm run data && npm run typecheck && npm run lint && npm run test && npm run test:worker && npm run build && node scripts/check-budget.mjs && node scripts/og-image.mjs --check && node map/check-layout.mjs && python research/e1/build.py --check && python research/e14/test_e14.py"
   },
   "dependencies": {
     "react": "^18.3.1",

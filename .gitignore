@@ -27,3 +27,8 @@ playwright-report/
 map/art/tiles/cut/
 map/art/tiles/refined/
 map/art/tiles/master.png
+
+# Функция обратной связи (feedback-worker, #75): локальные секреты, кеш wrangler
+feedback-worker/.dev.vars
+feedback-worker/.wrangler/
+*.pem
