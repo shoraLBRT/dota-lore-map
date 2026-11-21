@@ -7,8 +7,8 @@ describe('depthFlagsFrom (#197)', () => {
     expect(depthFlagsFrom('?threads=caravan')).toEqual(NO_DEPTH);
   });
   it('список и all', () => {
-    expect(depthFlagsFrom('?depth=tilt')).toEqual({ tilt: true, dof: false });
-    expect(depthFlagsFrom('?depth=all')).toEqual({ tilt: true, dof: true });
+    expect(depthFlagsFrom('?depth=tilt')).toEqual({ tilt: true });
+    expect(depthFlagsFrom('?depth=all')).toEqual({ tilt: true });
   });
 });
 
@@ -29,8 +29,10 @@ describe('наклон и резкость', () => {
     const [bx] = tiltPoint(700, 700, 500, 400, 20, 2000);
     expect(bx - 500).toBeGreaterThan(200);
   });
-  it('глубины резкости на мире нет', () => {
+  it('размытия краёв на мире нет, растёт с зумом', () => {
     expect(dofAt(1)).toBe(0);
+    expect(dofAt(1.6)).toBeGreaterThan(0);
+    expect(dofAt(1.6)).toBeLessThan(dofAt(2));
     expect(dofAt(3)).toBe(1);
   });
 });

@@ -42,9 +42,9 @@ function clearAnchors(svg: SVGSVGElement) {
 }
 
 /**
- * Прототипы #197 «наклон» и «глубина резкости»: раз в кадр берёт приближение слоя карты и пишет
- * `perspective() rotateX()` обёртке слоя карты (`tiltRef`), переносит якоря подписей плоского экранного слоя
- * (`screenSvgRef`) в точки наклонённой карты и ставит `--dof` (сила размытия краёв). Без флагов цикла нет.
+ * Раз в кадр берёт приближение слоя карты и ставит `--dof` (сила размытия краёв, #233) полосам `dofRef`;
+ * с флагом прототипа #197 «наклон» ещё пишет `perspective() rotateX()` обёртке слоя карты (`tiltRef`) и переносит
+ * якоря подписей плоского экранного слоя (`screenSvgRef`) в точки наклонённой карты.
  */
 export function useDepth(
   flags: DepthFlags,
@@ -52,13 +52,13 @@ export function useDepth(
     viewportRef: RefObject<HTMLElement | null>;
     layerRef: RefObject<HTMLElement | null>;
     tiltRef: RefObject<HTMLElement | null>;
+    dofRef: RefObject<HTMLElement | null>;
     screenSvgRef: RefObject<SVGSVGElement | null>;
   },
 ) {
-  const { tilt, dof } = flags;
-  const { viewportRef, layerRef, tiltRef, screenSvgRef } = refs;
+  const { tilt } = flags;
+  const { viewportRef, layerRef, tiltRef, dofRef, screenSvgRef } = refs;
   useEffect(() => {
-    if (!tilt && !dof) return;
     let frame = 0;
     let last = '';
     let tilted = false;
@@ -67,12 +67,13 @@ export function useDepth(
       const viewport = viewportRef.current;
       const layer = layerRef.current;
       const wrap = tiltRef.current;
+      const edge = dofRef.current;
       const svg = screenSvgRef.current;
-      if (!viewport || !layer || !wrap) return;
+      if (!viewport || !layer) return;
       const zoom = zoomOf(layer);
       const deg = tilt ? Math.round(tiltAt(zoom) * 10) / 10 : 0;
-      const d = dof ? Math.round(dofAt(zoom) * 50) / 50 : 0;
-      const p = perspectiveOf(viewport.clientWidth, viewport.clientHeight);
+      const d = Math.round(dofAt(zoom) * 50) / 50;
+      const p = tilt ? perspectiveOf(viewport.clientWidth, viewport.clientHeight) : 0;
       // Подписи сдвигаем каждый кадр, пока карта наклонена: камера двигает их и без смены наклона.
       if (svg && deg > 0) placeAnchors(svg, viewport.getBoundingClientRect(), deg, p);
       else if (svg && tilted) clearAnchors(svg);
@@ -80,11 +81,13 @@ export function useDepth(
       const key = `${deg}|${d}|${p}`;
       if (key === last) return;
       last = key;
-      wrap.style.transform = deg > 0 ? `perspective(${p}px) rotateX(${deg}deg)` : '';
-      wrap.style.setProperty('--dof', String(d));
-      wrap.toggleAttribute('data-dof-on', d > 0);
+      if (wrap) wrap.style.transform = deg > 0 ? `perspective(${p}px) rotateX(${deg}deg)` : '';
+      if (edge) {
+        edge.style.setProperty('--dof', String(d));
+        edge.toggleAttribute('data-on', d > 0);
+      }
     };
     frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
-  }, [tilt, dof, viewportRef, layerRef, tiltRef, screenSvgRef]);
+  }, [tilt, viewportRef, layerRef, tiltRef, dofRef, screenSvgRef]);
 }
