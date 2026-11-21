@@ -158,11 +158,10 @@ export function MapStage({
   const { shown } = tip;
   // Рисунок пути (#168): `?threads=<вариант>` до `#` — сравнение вариантов для владельца.
   const [threadVariant] = useState(() => threadStyleFrom(typeof location === 'undefined' ? '' : location.search));
-  // Прототипы объёма (#197): `?depth=tilt,dof,water,clouds` или `?depth=all` до `#`; без флага карта прежняя.
+  // Прототипы объёма (#197): `?depth=tilt,dof` или `?depth=all` до `#`; без флага карта прежняя.
   const [depth] = useState(() => depthFlagsFrom(typeof location === 'undefined' ? '' : location.search));
   const tiltRef = useRef<HTMLDivElement>(null);
   useDepth(depth, { viewportRef, layerRef, tiltRef, screenSvgRef });
-  const landPolygons = useMemo(() => drawn.map((r) => r.layout!.polygon), [drawn]);
 
   // Ширины подписей: при смене языка, региона и после загрузки шрифтов (подписи не выходят за край и не налезают).
   const fontsTick = useFontsTick();
@@ -310,7 +309,7 @@ export function MapStage({
           )}
           {screenLayer}
           <div className={styles.cloudBox}>
-            <MapAtmosphere layerRef={layerRef} activeId={active?.id} clear={Boolean(threads)} water={depth.water ? landPolygons : undefined} edgeClouds={depth.clouds} />
+            <MapAtmosphere layerRef={layerRef} activeId={active?.id} clear={Boolean(threads)} />
           </div>
           {active && (
             <AmbientCanvas

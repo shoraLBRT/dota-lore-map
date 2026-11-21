@@ -216,3 +216,18 @@ export function visible(x: number, y: number, rx: number, ry: number, box: Box):
 export function cloudsFor(lite: boolean): SkyCloud[] {
   return lite ? SKY_CLOUDS.filter((c) => c.lite) : SKY_CLOUDS;
 }
+
+/** Сколько облаков в завесе входа в регион (#234). */
+export const PART_CLOUDS = 8;
+
+/**
+ * Завеса входа в регион (#234, A9): облака стоят у центра кадра и расходятся к краям за перелёт камеры.
+ * `k` — доля перелёта 0…1; возвращает центр (доли кадра от центра, по большей стороне), ширину (та же доля) и прозрачность.
+ */
+export function partCloud(i: number, k: number): { dx: number; dy: number; w: number; alpha: number } {
+  const e = 1 - (1 - clamp01(k)) ** 3;
+  const a = (i / PART_CLOUDS) * 2 * Math.PI + 0.4;
+  const r = 0.08 + 0.75 * e;
+  const fadeIn = clamp01(k / 0.12);
+  return { dx: Math.cos(a) * r, dy: Math.sin(a) * r * 0.7, w: 0.42 + 0.2 * e, alpha: 0.85 * fadeIn * (1 - e) };
+}

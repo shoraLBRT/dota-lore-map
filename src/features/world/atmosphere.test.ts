@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import layout from '../../../map/layout.json';
 import {
   approachVeil,
+  partCloud,
   PATH_VEIL,
   cloudsFor,
   drift,
@@ -108,5 +109,15 @@ describe('облака расходятся под путём героя (#168)'
     for (let i = 0; i < 180; i++) v = approachVeil(v, PATH_VEIL, 1 / 60);
     expect(v).toBe(PATH_VEIL);
     expect(approachVeil(PATH_VEIL, 1, 10)).toBe(1);
+  });
+});
+
+describe('завеса входа в регион (#234)', () => {
+  it('расходится от центра и тает к концу перелёта', () => {
+    const r = (k: number) => Math.hypot(partCloud(0, k).dx, partCloud(0, k).dy);
+    expect(r(0.8)).toBeGreaterThan(r(0.2));
+    expect(partCloud(0, 0).alpha).toBe(0);
+    expect(partCloud(0, 1).alpha).toBeCloseTo(0, 5);
+    expect(partCloud(0, 0.3).alpha).toBeGreaterThan(0.2);
   });
 });

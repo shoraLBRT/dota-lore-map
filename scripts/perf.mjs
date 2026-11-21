@@ -28,7 +28,7 @@ const PORT = 4185;
 const loadMode = flag('--load');
 const external = opt('--url', '');
 const BASE = external || `http://localhost:${PORT}/dota-lore-map/`;
-/** Строка запроса до `#` (флаги прототипов, #197): `--query depth=tilt`. */
+/** Строка запроса до `#` (флаги прототипов, #197: `depth=tilt,dof`): `--query depth=tilt`. */
 const QUERY = opt('--query', '') ? `?${opt('--query', '')}` : '';
 const net4g = opt('--net', '') === '4g';
 /** «Fast 4G» DevTools: 9 Мбит/с вниз, 1.5 вверх, задержка 60 мс × 2.75 (как в Chrome). */
