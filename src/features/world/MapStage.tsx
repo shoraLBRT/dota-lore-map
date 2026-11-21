@@ -234,10 +234,10 @@ export function MapStage({
       </svg>
     </div>
   );
-    {/* Экранный слой (#180, ARCHITECTURE A4): тот же кадр и transform, что у слоя карты, но без
-        will-change — текст растеризуется в разрешении экрана при любом приближении. */}
+  // Экранный слой (#180, #231, ARCHITECTURE A4): тот же бокс, что у слоя карты при zoom 1, но камерой не масштабируется —
+  // группы с якорем `data-at` ставит в их точки `placeAnchors`; transform у самого слоя — только на время перелёта.
   const screenLayer = (
-    <div ref={screenRef} className={styles.screen} style={{ transform: target, '--aspect': WORLD_ASPECT } as CSSProperties}>
+    <div ref={screenRef} className={styles.screen} style={{ '--aspect': WORLD_ASPECT } as CSSProperties}>
       <svg
         ref={screenSvgRef}
         className={styles.svg}
@@ -256,7 +256,6 @@ export function MapStage({
           previewRegions={previewRegions}
           names={names}
           zoom={frame.worldZoom}
-          pxScale={frame.pxScale}
           onSelectRegion={onSelectRegion}
           underId={under?.id}
         />
@@ -266,7 +265,6 @@ export function MapStage({
             items={worldPlaces.items}
             spots={worldPlaces.spots}
             zoom={frame.worldZoom}
-            pxScale={frame.pxScale}
             view={frame.view}
             framed={frame.framed}
             focusPlaces={focusPlaces}
@@ -279,7 +277,7 @@ export function MapStage({
             regionId={active.id}
             activePlaceSlug={activePlaceSlug}
             sides={labels.sides}
-            markerScale={frame.markerScale}
+            markerGrow={frame.markerScale / frame.pxScale}
             focusPlaces={focusPlaces}
             previewPlaces={previewPlaces}
             litPlaceSlug={litPlace}

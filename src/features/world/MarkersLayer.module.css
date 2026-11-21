@@ -5,7 +5,7 @@
   cursor: pointer;
   /* Экранный слой не ловит мышь (#180) — ловят только маркеры. */
   pointer-events: auto;
-  animation: marker-in var(--dur-hover) var(--ease-out) calc(var(--dur-camera) * 2 / 3 + var(--i, 0) * var(--dur-stagger)) both;
+  animation: marker-in var(--dur-hover) var(--ease-out) calc(var(--dur-camera) * 2 / 3 + var(--i, 0) * var(--dur-stagger)) backwards;
 }
 
 .hit {
@@ -26,7 +26,7 @@
   transform-box: fill-box;
   transform-origin: center;
   animation: pin-in calc(var(--dur-hover) * 2) var(--ease-spring)
-    calc(var(--dur-camera) * 2 / 3 + var(--i, 0) * var(--dur-stagger)) both;
+    calc(var(--dur-camera) * 2 / 3 + var(--i, 0) * var(--dur-stagger)) backwards;
 }
 
 /* Наведение и фокус — кольцо подпрыгивает один раз и встаёт на место. */
@@ -143,7 +143,7 @@
    появляется вместе с маркером. Этот угол маркера отдан значку медиа. */
 .mediaBadge {
   cursor: pointer;
-  animation: marker-in var(--dur-hover) var(--ease-out) calc(var(--dur-camera) * 2 / 3 + var(--i, 0) * var(--dur-stagger)) both;
+  animation: marker-in var(--dur-hover) var(--ease-out) calc(var(--dur-camera) * 2 / 3 + var(--i, 0) * var(--dur-stagger)) backwards;
 }
 
 .badgeHit {
@@ -311,7 +311,7 @@
 
 /* Маркеры мест в мире (#190): проявляются, как только приближение дошло до порога (transform пишет WorldMarkers). */
 .worldMarker {
-  animation: marker-in var(--dur-fade) var(--ease-out) both;
+  animation: marker-in var(--dur-fade) var(--ease-out) backwards;
 }
 
 .worldMarker .pin {

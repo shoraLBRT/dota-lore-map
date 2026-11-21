@@ -599,15 +599,18 @@ describe('MapStage — мир с открытой панелью (#97)', () => {
     rerender(stage(true));
     // Слой покрывает кадр (#165): мир не ужимается, сдвиг под панель гасится прижатием к краю картинки.
     expect(layer().style.transform).toBe('translate(calc(15% - 240px), 0%) scale(1)');
-    // Экранный слой подписей (#180) летит вместе со слоем карты: тот же transform и та же анимация.
+    // Экранный слой подписей (#180, #231) камерой не масштабируется: его группы уже в точках нового кадра,
+    // а сам слой летит той же анимацией от «откуда» относительно нового кадра (`cameraInverse`) к себе.
     const screenLayer = () => container.querySelector<HTMLElement>('[data-screen-layer]')!.parentElement!;
-    expect(screenLayer().style.transform).toBe(layer().style.transform);
+    expect(['', 'none']).toContain(screenLayer().style.transform);
     const contexts = () => vi.mocked(Element.prototype.animate).mock.contexts;
     expect(contexts()).toEqual([layer(), screenLayer()]);
-    expect(vi.mocked(Element.prototype.animate).mock.calls[1]?.[1]).toMatchObject({ duration: 700 });
+    const [keyframes, options] = vi.mocked(Element.prototype.animate).mock.calls[1]!;
+    expect(options).toMatchObject({ duration: 700 });
+    expect(keyframes).toEqual([{ transform: 'translate(0%, 0%) scale(1) scale(1) translate(calc(-15% + 240px), 0%)' }, { transform: 'none' }]);
     rerender(stage(false));
     expect(layer().style.transform).toBe('translate(0%, 0%) scale(1)');
-    expect(screenLayer().style.transform).toBe('translate(0%, 0%) scale(1)');
+    expect(['', 'none']).toContain(screenLayer().style.transform);
     expect(contexts()).toHaveLength(4);
   });
 });

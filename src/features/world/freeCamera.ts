@@ -5,6 +5,7 @@
 import { useEffect, useLayoutEffect, useRef } from 'react';
 import type { Camera } from '../../data/types';
 import { cameraTransform, clampCamera, prefersReducedMotion, type View } from './camera';
+import { placeAnchors } from './screenAnchors';
 
 /** Сдвиг, после которого нажатие — уже перетаскивание, а не клик, px. */
 export const DRAG_THRESHOLD = 5;
@@ -132,7 +133,7 @@ type Motion =
 interface Options {
   viewportRef: React.RefObject<HTMLDivElement | null>;
   layerRef: React.RefObject<HTMLDivElement | null>;
-  /** Экранный слой подписей и маркеров (#180): двигается вместе со слоем карты. */
+  /** Экранный слой подписей и маркеров (#180): камера ставит его группы в их точки (`placeAnchors`, #231). */
   screenRef?: React.RefObject<HTMLDivElement | null>;
   view: View;
   /** Камера, которую сейчас показывает кадр (уже без сдвигов, см. `centered`). */
@@ -178,7 +179,8 @@ export function useFreeCamera({ viewportRef, layerRef, screenRef, view, current,
   const apply = (c: Camera) => {
     cam.current = c;
     const transform = cameraTransform(c);
-    for (const el of [layerRef.current, screenRef?.current]) if (el) el.style.transform = transform;
+    if (layerRef.current) layerRef.current.style.transform = transform;
+    placeAnchors(screenRef?.current ?? null, { camera: c, layerWidth: live.current.view.layerWidth });
     live.current.onChange(c);
   };
   const base = () => cam.current ?? live.current.current();
