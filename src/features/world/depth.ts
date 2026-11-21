@@ -1,20 +1,18 @@
-// Прототипы объёма карты (#197, исследование E20): наклон и глубина резкости (задачи #232, #233).
-// Включаются флагом в адресе до `#`: `?depth=tilt,dof` или `?depth=all`. Без флага карта прежняя.
-// Здесь — флаги и чистая геометрия; применяет `useDepth`. Облака при входе в регион — уже продукт (`atmosphere.ts`, #234).
+// Объём карты (#197, исследование E20). Размытие краёв кадра на приближении (#233) — в продукте, без флага: `dofAt`.
+// Наклон (#232) пока прототип: флаг в адресе до `#`, `?depth=tilt`; без флага карта прежняя.
+// Здесь — флаги и чистая геометрия; применяет `useDepth`. Облака при входе в регион — тоже продукт (`atmosphere.ts`, #234).
 // Итоги и цена в кадрах — docs/research/E20-depth.md.
 
 export interface DepthFlags {
   /** Наклон слоя карты (`perspective` + `rotateX`), растёт с приближением. */
   tilt: boolean;
-  /** Глубина резкости: размытие и затемнение полос сверху и снизу кадра на приближении. */
-  dof: boolean;
 }
 
-export const DEPTH_KEYS = ['tilt', 'dof'] as const;
+export const DEPTH_KEYS = ['tilt'] as const;
 
-export const NO_DEPTH: DepthFlags = { tilt: false, dof: false };
+export const NO_DEPTH: DepthFlags = { tilt: false };
 
-/** Флаги из строки запроса (`location.search`): `?depth=tilt,dof`, `?depth=all`; иного или нет — всё выключено. */
+/** Флаги из строки запроса (`location.search`): `?depth=tilt`, `?depth=all`; иного или нет — всё выключено. */
 export function depthFlagsFrom(search: string): DepthFlags {
   const raw = new URLSearchParams(search).get('depth');
   if (!raw) return NO_DEPTH;
@@ -22,7 +20,6 @@ export function depthFlagsFrom(search: string): DepthFlags {
   const all = keys.has('all');
   return {
     tilt: all || keys.has('tilt'),
-    dof: all || keys.has('dof'),
   };
 }
 
@@ -56,7 +53,7 @@ export function perspectiveOf(width: number, height: number): number {
   return Math.round(1.4 * Math.max(width, height, 1));
 }
 
-/** Сила глубины резкости: на мире нет, полная с приближения 2.2. */
+/** Сила размытия краёв кадра (#233): на мире нет, полная с приближения 2.2. */
 export function dofAt(zoom: number): number {
   return smooth(clamp01((zoom - 1.2) / (2.2 - 1.2)));
 }

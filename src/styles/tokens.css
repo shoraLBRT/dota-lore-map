@@ -40,6 +40,11 @@
   --map-halo: rgb(6 7 10 / 0.9);
   --map-halo-filter: drop-shadow(0 0 2px var(--map-halo)) drop-shadow(0 0 10px var(--map-halo));
   --vignette: rgb(6 7 10 / 0.9);
+  /* Размытие краёв кадра на приближении (#233, A9): высота полосы, радиус, затемнение; при reduced motion — только тень. */
+  --dof-band: 30%;
+  --dof-blur: 5px;
+  --dof-dim: 0.8;
+  --dof-shade: rgb(6 7 10 / 0.3);
   --veil: rgb(11 13 17 / 0.45);
   --veil-strong: rgb(6 7 10 / 0.88);
   /* Ореол подписи маркера (#191, SPEC §8.6) — обводка под текстом и кромка фигур: текст ≥ 4.5:1 к нему даже на белом фоне — quality.test.ts. */

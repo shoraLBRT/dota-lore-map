@@ -9,6 +9,9 @@ function zoomOf(layer: HTMLElement): number {
   return Math.hypot(Number(match[1]), Number(match[2])) || 1;
 }
 
+/** Сколько кадров подряд без изменений, после которых цикл засыпает (камера встала). */
+export const STILL_FRAMES = 8;
+
 /** Группы названий и маркеров экранного слоя: `translate(якорь) scale(k)`, без вложенных (значки медиа). */
 const ANCHORED = "g[transform^='translate']:not(g[transform^='translate'] g)";
 const TRANSLATE = /^translate\(\s*([-\d.e]+)[\s,]+([-\d.e]+)/;
@@ -42,9 +45,9 @@ function clearAnchors(svg: SVGSVGElement) {
 }
 
 /**
- * Прототипы #197 «наклон» и «глубина резкости»: раз в кадр берёт приближение слоя карты и пишет
- * `perspective() rotateX()` обёртке слоя карты (`tiltRef`), переносит якоря подписей плоского экранного слоя
- * (`screenSvgRef`) в точки наклонённой карты и ставит `--dof` (сила размытия краёв). Без флагов цикла нет.
+ * Раз в кадр берёт приближение слоя карты и ставит `--dof` (сила размытия краёв, #233) полосам `dofRef`;
+ * с флагом прототипа #197 «наклон» ещё пишет `perspective() rotateX()` обёртке слоя карты (`tiltRef`) и переносит
+ * якоря подписей плоского экранного слоя (`screenSvgRef`) в точки наклонённой карты.
  */
 export function useDepth(
   flags: DepthFlags,
@@ -52,39 +55,66 @@ export function useDepth(
     viewportRef: RefObject<HTMLElement | null>;
     layerRef: RefObject<HTMLElement | null>;
     tiltRef: RefObject<HTMLElement | null>;
+    dofRef: RefObject<HTMLElement | null>;
     screenSvgRef: RefObject<SVGSVGElement | null>;
   },
 ) {
-  const { tilt, dof } = flags;
-  const { viewportRef, layerRef, tiltRef, screenSvgRef } = refs;
+  const { tilt } = flags;
+  const { viewportRef, layerRef, tiltRef, dofRef, screenSvgRef } = refs;
   useEffect(() => {
-    if (!tilt && !dof) return;
     let frame = 0;
     let last = '';
     let tilted = false;
+    let still = 0;
+    let lastMatrix = '';
     const tick = () => {
-      frame = requestAnimationFrame(tick);
+      frame = 0;
       const viewport = viewportRef.current;
       const layer = layerRef.current;
       const wrap = tiltRef.current;
+      const edge = dofRef.current;
       const svg = screenSvgRef.current;
-      if (!viewport || !layer || !wrap) return;
+      if (!viewport || !layer) return;
+      const before = last;
+      const matrix = getComputedStyle(layer).transform;
       const zoom = zoomOf(layer);
       const deg = tilt ? Math.round(tiltAt(zoom) * 10) / 10 : 0;
-      const d = dof ? Math.round(dofAt(zoom) * 50) / 50 : 0;
-      const p = perspectiveOf(viewport.clientWidth, viewport.clientHeight);
+      const d = Math.round(dofAt(zoom) * 50) / 50;
+      const p = tilt ? perspectiveOf(viewport.clientWidth, viewport.clientHeight) : 0;
       // Подписи сдвигаем каждый кадр, пока карта наклонена: камера двигает их и без смены наклона.
       if (svg && deg > 0) placeAnchors(svg, viewport.getBoundingClientRect(), deg, p);
       else if (svg && tilted) clearAnchors(svg);
       tilted = deg > 0;
       const key = `${deg}|${d}|${p}`;
-      if (key === last) return;
+      // Кадры идут, пока камера движется; после STILL_FRAMES неподвижных кадров и без перелёта цикл засыпает.
+      const moving = key !== before || matrix !== lastMatrix || (layer.getAnimations?.().length ?? 0) > 0;
+      lastMatrix = matrix;
+      still = moving ? 0 : still + 1;
+      if (still < STILL_FRAMES) frame = requestAnimationFrame(tick);
+      if (key === before) return;
       last = key;
-      wrap.style.transform = deg > 0 ? `perspective(${p}px) rotateX(${deg}deg)` : '';
-      wrap.style.setProperty('--dof', String(d));
-      wrap.toggleAttribute('data-dof-on', d > 0);
+      if (wrap) wrap.style.transform = deg > 0 ? `perspective(${p}px) rotateX(${deg}deg)` : '';
+      if (edge) {
+        edge.style.setProperty('--dof', String(d));
+        edge.toggleAttribute('data-on', d > 0);
+      }
     };
-    frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
-  }, [tilt, dof, viewportRef, layerRef, tiltRef, screenSvgRef]);
+    // Камеру двигают жесты, колесо, клавиши и перелёт (смена `style` слоя): любое из них будит цикл.
+    const wake = () => {
+      still = 0;
+      if (!frame) frame = requestAnimationFrame(tick);
+    };
+    const viewport = viewportRef.current;
+    const layer = layerRef.current;
+    const events = ['wheel', 'pointerdown', 'pointermove', 'keydown', 'touchstart'] as const;
+    for (const e of events) viewport?.addEventListener(e, wake, { passive: true, capture: true });
+    const mo = new MutationObserver(wake);
+    if (layer) mo.observe(layer, { attributes: true, attributeFilter: ['style'] });
+    wake();
+    return () => {
+      cancelAnimationFrame(frame);
+      mo.disconnect();
+      for (const e of events) viewport?.removeEventListener(e, wake, { capture: true });
+    };
+  }, [tilt, viewportRef, layerRef, tiltRef, dofRef, screenSvgRef]);
 }

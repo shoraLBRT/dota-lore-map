@@ -158,10 +158,11 @@ export function MapStage({
   const { shown } = tip;
   // Рисунок пути (#168): `?threads=<вариант>` до `#` — сравнение вариантов для владельца.
   const [threadVariant] = useState(() => threadStyleFrom(typeof location === 'undefined' ? '' : location.search));
-  // Прототипы объёма (#197): `?depth=tilt,dof` или `?depth=all` до `#`; без флага карта прежняя.
+  // Наклон (прототип #197, #232): `?depth=tilt` до `#`; без флага карта прежняя. Размытие краёв (#233) — всегда.
   const [depth] = useState(() => depthFlagsFrom(typeof location === 'undefined' ? '' : location.search));
   const tiltRef = useRef<HTMLDivElement>(null);
-  useDepth(depth, { viewportRef, layerRef, tiltRef, screenSvgRef });
+  const dofRef = useRef<HTMLDivElement>(null);
+  useDepth(depth, { viewportRef, layerRef, tiltRef, dofRef, screenSvgRef });
 
   // Ширины подписей: при смене языка, региона и после загрузки шрифтов (подписи не выходят за край и не налезают).
   const fontsTick = useFontsTick();
@@ -293,20 +294,19 @@ export function MapStage({
     <div className={[styles.stage, active && zoomedClass].filter(Boolean).join(' ')}>
       {hasMap && (
         <div ref={viewportRef} className={styles.viewport} onClick={onBackground} data-map-viewport="">
-          {depth.tilt || depth.dof ? (
-            // Прототипы #197: наклон и полосы глубины резкости — в обёртке слоя карты; подписи — плоские, над ней.
+          {depth.tilt ? (
+            // Прототип #197: наклон — в обёртке слоя карты; подписи — плоские, над ней.
             <div ref={tiltRef} className={styles.tilt}>
               {mapLayer}
-              {depth.dof && (
-                <div className={styles.dof} aria-hidden="true">
-                  <span data-edge="top" />
-                  <span data-edge="bottom" />
-                </div>
-              )}
             </div>
           ) : (
             mapLayer
           )}
+          {/* Размытие и затемнение краёв на приближении (#233): над артом, под подписями и маркерами. */}
+          <div ref={dofRef} className={styles.dof} aria-hidden="true">
+            <span data-edge="top" />
+            <span data-edge="bottom" />
+          </div>
           {screenLayer}
           <div className={styles.cloudBox}>
             <MapAtmosphere layerRef={layerRef} activeId={active?.id} clear={Boolean(threads)} />
