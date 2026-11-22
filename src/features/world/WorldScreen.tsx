@@ -1,8 +1,8 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
 import { useMediaQuery } from '../../app/media';
 import { useNavigation } from '../../app/navigation';
 import { useSfx } from '../../app/sound';
-import { parseHash, serializeRoute, type Screen } from '../../app/router';
+import { parseHash, serializeRoute, type Route, type Screen } from '../../app/router';
 import type { Hero } from '../../data/types';
 import { getHero, getPlace, getRegion, placeName, world } from '../../data/world';
 import { useT } from '../../i18n';
@@ -33,6 +33,23 @@ interface Props {
 }
 
 /** Экраны «Мир», «Регион», «Место»: левая панель, карта, правая панель. Неизвестный регион или место — уровень выше. */
+/**
+ * Что показывает экран по адресу: регион, место, герой, открыт ли профиль и ключ панели.
+ * Профиль героя (E15, SPEC §6.8, A15) открыт флагом `profile` в адресе: панель показывает его поверх панели экрана.
+ * Без флага герой только выбран — подсветка, нити и плашка-чип сверху, а в панели регион или место.
+ * Переход на другой экран (`open`) флаг снимает: видна панель того места, куда пришли, герой остаётся.
+ */
+function screenView(screen: Screen, heroKey: Route['hero'], profile: Route['profile']) {
+  const regionId = screen.name === 'region' || screen.name === 'place' ? screen.regionId : undefined;
+  const region = regionId ? getRegion(regionId) : undefined;
+  const place = region && screen.name === 'place' ? getPlace(region.id, screen.placeSlug) : undefined;
+  const screenKey = serializeRoute({ screen });
+  const hero = heroKey ? getHero(heroKey) : undefined;
+  const profileOpen = Boolean(hero && profile);
+  const panelKey = profileOpen ? `hero/${hero!.key}` : screenKey;
+  return { region, place, screenKey, hero, profileOpen, panelKey };
+}
+
 export function WorldScreen({ screen, veiled = false, unveiling = false }: Props) {
   const { l, lang, t } = useT();
   const { route, open, hold, navigate } = useNavigation();
@@ -43,37 +60,47 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
     if (rootRef.current) rootRef.current.inert = veiled;
   }, [veiled]);
 
-  const regionId = screen.name === 'region' || screen.name === 'place' ? screen.regionId : undefined;
-  const region = regionId ? getRegion(regionId) : undefined;
-  const place = region && screen.name === 'place' ? getPlace(region.id, screen.placeSlug) : undefined;
-  const screenKey = serializeRoute({ screen });
-  const hero = route.hero ? getHero(route.hero) : undefined;
-  // Профиль героя (E15, SPEC §6.8, A15) открыт флагом `profile` в адресе: панель показывает его поверх панели экрана.
-  // Без флага герой только выбран — подсветка, нити и плашка-чип сверху, а в панели регион или место.
-  // Переход на другой экран (`open`) флаг снимает: видна панель того места, куда пришли, герой остаётся.
-  const profileOpen = Boolean(hero && route.profile);
-  const panelKey = profileOpen ? `hero/${hero!.key}` : screenKey;
+  const { region, place, screenKey, hero, profileOpen, panelKey } = screenView(screen, route.hero, route.profile);
+  // Панель — переходом после клика (#238, A14): кадр клика несёт только карту (перелёт камеры, вуаль), а панель
+  // рисуется следом отложенным рендером, который React режет на куски. Всё, что внутри панели и фокус после
+  // перехода, — по `shown`; карта, звук и камера — по живому адресу.
+  const shownScreen = useDeferredValue(screen);
+  const shownRoute = useDeferredValue(route);
+  const shown = screenView(shownScreen, shownRoute.hero, shownRoute.profile);
   // Свёрнутая панель снова раскрывается при смене региона, места или героя: иначе клик «ничего не делает».
   const [fold, setFold] = useState<{ key: string; collapsed: boolean }>({ key: panelKey, collapsed: false });
   const collapsed = fold.key === panelKey && fold.collapsed;
+  const shownCollapsed = fold.key === shown.panelKey && fold.collapsed;
 
   // Клавиатура (SPEC §14): если при переходе фокус пропал вместе с элементом, ставим его на заголовок
-  // панели или туда, откуда пришли (ARCHITECTURE A14). Экраны — по ключу адреса, а не по объекту.
+  // панели или туда, откуда пришли (ARCHITECTURE A14). Экраны — по ключу адреса, а не по объекту;
+  // Фокус ставится, когда панель догнала адрес (`shown` = живой ключ, #238): заголовок новой панели появляется
+  // только с ней. Откуда пришли — последний другой живой ключ: адрес мог сменить экран и вернуться, пока панель
+  // догоняла (гонка «назад» в очереди навигации, A5), — тогда фокус всё равно ставится по последнему переходу.
   // Регион открыт из списка под картой (телефон, #39): назад в мир — фокус на тот же пункт списка.
   const listOrigin = useRef<string | null>(null);
-  const prevKey = useRef(screenKey);
+  const liveKey = useRef(screenKey);
+  const fromKey = useRef(screenKey);
   useEffect(() => {
-    const prev = prevKey.current;
-    prevKey.current = screenKey;
-    if (veiled || !rootRef.current || prev === screenKey) return;
-    restoreFocus(rootRef.current, parseHash(prev).screen, parseHash(screenKey).screen, {
+    if (liveKey.current === screenKey) return;
+    fromKey.current = liveKey.current;
+    liveKey.current = screenKey;
+  }, [screenKey]);
+  useEffect(() => {
+    if (veiled || !rootRef.current) {
+      fromKey.current = screenKey;
+      return;
+    }
+    if (shown.screenKey !== screenKey || fromKey.current === screenKey) return;
+    restoreFocus(rootRef.current, parseHash(fromKey.current).screen, parseHash(screenKey).screen, {
       listRegionId: listOrigin.current,
     });
-  }, [screenKey, veiled]);
+    fromKey.current = screenKey;
+  }, [screenKey, shown.screenKey, veiled]);
 
   // Профиль открыт или сменился герой: фокус — на имя героя (заголовок панели), как при переходе вниз;
   // профиль закрыт — если фокус пропал вместе с ним: на заголовок панели экрана, а в мире — на чип героя (A14, SPEC §6.8).
-  const profileKey = profileOpen ? hero!.key : null;
+  const profileKey = shown.profileOpen ? shown.hero!.key : null;
   const prevProfile = useRef(profileKey);
   useEffect(() => {
     const prev = prevProfile.current;
@@ -110,6 +137,9 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
   const onPreview = useCallback((h: Hero | null) => setPreview(h ? { key: screenKey, hero: h } : null), [screenKey]);
   // Нити (#67): шаги пути и прочие связи; наведение важнее выбора.
   const heroLines = useMemo(() => (hero && spots ? heroThreads(hero, spots) : undefined), [hero, spots]);
+  const shownHero = shown.hero;
+  const shownSpots = useMemo(() => (shownHero ? heroSpots(shownHero) : undefined), [shownHero]);
+  const shownLines = useMemo(() => (shownHero && shownSpots ? heroThreads(shownHero, shownSpots) : undefined), [shownHero, shownSpots]);
   const previewLines = useMemo(
     () => (previewHero && previewSpots ? heroThreads(previewHero, previewSpots) : undefined),
     [previewHero, previewSpots],
@@ -238,7 +268,7 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
         {!veiled && (searchOpen || showChip) && (
           <div
             ref={barRef}
-            className={[barStyles.bar, showChip && barStyles.chipBar, (region || profileOpen) && !collapsed && barStyles.withPanel]
+            className={[barStyles.bar, showChip && barStyles.chipBar, (shown.region || shown.profileOpen) && !shownCollapsed && barStyles.withPanel]
               .filter(Boolean)
               .join(' ')}
           >
@@ -257,22 +287,22 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
             )}
           </div>
         )}
-        {(profileOpen || region) && (
+        {(shown.profileOpen || shown.region) && (
           <Panel
-            label={profileOpen ? hero!.name : place ? placeName(place, lang) : l(region!.name)}
-            collapsed={collapsed}
-            onToggle={() => setFold({ key: panelKey, collapsed: !collapsed })}
-            contentKey={panelKey}
-            back={profileOpen ? <ProfileCrumb onClose={closeProfile} /> : <Breadcrumbs region={region!} place={place} />}
+            label={shown.profileOpen ? shown.hero!.name : shown.place ? placeName(shown.place, lang) : l(shown.region!.name)}
+            collapsed={shownCollapsed}
+            onToggle={() => setFold({ key: shown.panelKey, collapsed: !shownCollapsed })}
+            contentKey={shown.panelKey}
+            back={shown.profileOpen ? <ProfileCrumb onClose={closeProfile} /> : <Breadcrumbs region={shown.region!} place={shown.place} />}
           >
             <HeroPreviewProvider value={onPreview}>
               <HeroPickProvider value={pickHere}>
-                {profileOpen && hero && spots ? (
-                  <HeroProfile hero={hero} spots={spots} threads={heroLines} onPick={pickHere} />
-                ) : place ? (
-                  <PlacePanel region={region!} place={place} />
+                {shown.profileOpen && shownHero && shownSpots ? (
+                  <HeroProfile hero={shownHero} spots={shownSpots} threads={shownLines} onPick={pickHere} />
+                ) : shown.place ? (
+                  <PlacePanel region={shown.region!} place={shown.place} />
                 ) : (
-                  <RegionPanel region={region!} onPreviewPlace={onPreviewPlace} />
+                  <RegionPanel region={shown.region!} onPreviewPlace={onPreviewPlace} />
                 )}
               </HeroPickProvider>
             </HeroPreviewProvider>

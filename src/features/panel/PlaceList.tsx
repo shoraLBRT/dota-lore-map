@@ -21,11 +21,14 @@ const KIND_LABEL: Partial<Record<Kind, MessageKey>> = {
   minor: 'places.minor',
 };
 
+const collators = new Map<Lang, Intl.Collator>();
+
 /** Порядок списка: столица, места событий, обычные, второстепенные; внутри — по алфавиту языка, кавычки не в счёт. */
 export function sortPlaces(places: Place[], lang: Lang): Place[] {
-  return [...places].sort(
-    (a, b) => RANK[kindOf(a)] - RANK[kindOf(b)] || placeName(a, lang).localeCompare(placeName(b, lang), lang, { ignorePunctuation: true }),
-  );
+  // Один Collator на язык: `localeCompare` с опциями строит его заново на каждое сравнение (#238: ~12 мс на клике).
+  const collator = collators.get(lang) ?? new Intl.Collator(lang, { ignorePunctuation: true });
+  collators.set(lang, collator);
+  return [...places].sort((a, b) => RANK[kindOf(a)] - RANK[kindOf(b)] || collator.compare(placeName(a, lang), placeName(b, lang)));
 }
 
 /** Значок значимости — как маркер на карте (SPEC §6.3): звезда, яркое кольцо, кольцо, малое тусклое кольцо. */
