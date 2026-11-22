@@ -3,6 +3,7 @@ import { cssPixels } from '../../app/motion';
 import { useSfx } from '../../app/sound';
 import type { Camera, Hero, Region } from '../../data/types';
 import { preloadRegionArt } from './art';
+import { pointOnMap } from './depth';
 import { focusAfter } from './focus';
 import { regionMediaBadge } from './mediaBadge';
 import type { Anchor, Box } from './RegionTooltip';
@@ -76,9 +77,9 @@ export function useRegionTooltip({ regions, inWorld, svgRef, labelsRef, camera, 
   const getAnchor = useCallback(() => {
     const svg = svgRef.current;
     if (!svg || !shown?.layout) return null;
-    const rect = svg.getBoundingClientRect();
-    const [x, y] = shown.layout.label;
-    const anchor: Anchor = { x: rect.left + x * rect.width, y: rect.top + y * rect.height, minLeft: railRight() };
+    // Слой карты под наклоном (#232): точка подписи — там, где её видно на наклонённой карте.
+    const [x, y] = pointOnMap(svg, ...shown.layout.label);
+    const anchor: Anchor = { x, y, minLeft: railRight() };
     // #193: подсказка у подписи региона и не на ней; соседние подписи по возможности не закрывает.
     const labels = labelsRef.current?.querySelectorAll('[data-label]') ?? [];
     const avoid: Box[] = [];

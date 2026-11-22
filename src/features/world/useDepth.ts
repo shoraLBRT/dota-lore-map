@@ -1,12 +1,22 @@
 import { useEffect, type RefObject } from 'react';
-import { dofAt, perspectiveOf, tiltAt, tiltPoint, type DepthFlags } from './depth';
+import { prefersReducedMotion } from './camera';
+import { dofAt, perspectiveOf, tiltAt, tiltPoint, tiltTransform } from './depth';
 
-/** Приближение слоя карты сейчас — из вычисленного transform (идёт и за жестами, и за WAAPI-перелётом). */
-function zoomOf(layer: HTMLElement): number {
-  const m = getComputedStyle(layer).transform;
-  const match = /^matrix\(([^,]+),\s*([^,]+)/.exec(m);
-  if (!match) return 1;
-  return Math.hypot(Number(match[1]), Number(match[2])) || 1;
+const SCALE = /scale\(([\d.e-]+)\)/;
+const MATRIX = /^matrix\(([^,]+),\s*([^,]+)/;
+
+/**
+ * Приближение слоя карты сейчас. Жесты свободной камеры пишут inline `transform` — его и читаем (без пересчёта стиля);
+ * только пока идёт WAAPI-перелёт, приближение берётся из вычисленного transform.
+ */
+function zoomOf(layer: HTMLElement, flying: boolean): number {
+  if (!flying) {
+    const m = SCALE.exec(layer.style.transform);
+    if (m) return Number(m[1]) || 1;
+  }
+  const m = MATRIX.exec(getComputedStyle(layer).transform);
+  if (!m) return 1;
+  return Math.hypot(Number(m[1]), Number(m[2])) || 1;
 }
 
 /** Сколько кадров подряд без изменений, после которых цикл засыпает (камера встала). */
@@ -18,10 +28,10 @@ const TRANSLATE = /^translate\(\s*([-\d.e]+)[\s,]+([-\d.e]+)/;
 
 /**
  * Якоря подписей и маркеров плоского экранного слоя — туда, куда наклон унёс их точку на карте
- * (CSS-свойство `translate` поверх атрибута `transform`, который пишут React и `WorldMarkers`).
+ * (CSS-свойство `translate` поверх атрибута `transform`, который пишут React, `placeAnchors` и `WorldMarkers`).
  */
 function placeAnchors(svg: SVGSVGElement, viewport: DOMRect, deg: number, p: number) {
-  const ctm = svg.getScreenCTM();
+  const ctm = svg.getScreenCTM?.();
   if (!ctm) return;
   const inv = ctm.inverse();
   const cx = viewport.left + viewport.width / 2;
@@ -45,76 +55,86 @@ function clearAnchors(svg: SVGSVGElement) {
 }
 
 /**
- * Раз в кадр берёт приближение слоя карты и ставит `--dof` (сила размытия краёв, #233) полосам `dofRef`;
- * с флагом прототипа #197 «наклон» ещё пишет `perspective() rotateX()` обёртке слоя карты (`tiltRef`) и переносит
- * якоря подписей плоского экранного слоя (`screenSvgRef`) в точки наклонённой карты.
+ * Объём карты (#232, #233, SPEC §8.5): по приближению слоя карты ставит `--dof` (сила размытия краёв) полосам `dofRef`,
+ * пишет наклон `perspective() rotateX()` обёрткам `tiltRefs` (слой карты и частицы региона) и переносит якоря подписей
+ * плоского экранного слоя (`screenSvgRef`) в точки наклонённой карты. Reduced motion — без наклона.
+ *
+ * Камеру двигают жесты (inline `transform` слоя в кадре rAF) и перелёт (WAAPI). Смену стиля слоя ловит
+ * MutationObserver и сразу, в том же кадре, ставит наклон и якоря — иначе наклон отставал бы от зума на кадр,
+ * и точка под курсором дрожала бы. Перелёт и инерцию ведёт свой цикл rAF; камера встала — цикл засыпает.
  */
-export function useDepth(
-  flags: DepthFlags,
-  refs: {
-    viewportRef: RefObject<HTMLElement | null>;
-    layerRef: RefObject<HTMLElement | null>;
-    tiltRef: RefObject<HTMLElement | null>;
-    dofRef: RefObject<HTMLElement | null>;
-    screenSvgRef: RefObject<SVGSVGElement | null>;
-  },
-) {
-  const { tilt } = flags;
-  const { viewportRef, layerRef, tiltRef, dofRef, screenSvgRef } = refs;
+export function useDepth(refs: {
+  viewportRef: RefObject<HTMLElement | null>;
+  layerRef: RefObject<HTMLElement | null>;
+  tiltRefs: readonly RefObject<HTMLElement | null>[];
+  dofRef: RefObject<HTMLElement | null>;
+  screenSvgRef: RefObject<SVGSVGElement | null>;
+}) {
+  const { viewportRef, layerRef, tiltRefs, dofRef, screenSvgRef } = refs;
   useEffect(() => {
     let frame = 0;
     let last = '';
     let tilted = false;
     let still = 0;
     let lastMatrix = '';
-    const tick = () => {
-      frame = 0;
+    const update = () => {
       const viewport = viewportRef.current;
       const layer = layerRef.current;
-      const wrap = tiltRef.current;
-      const edge = dofRef.current;
       const svg = screenSvgRef.current;
-      if (!viewport || !layer) return;
+      if (!viewport || !layer) return false;
       const before = last;
-      const matrix = getComputedStyle(layer).transform;
-      const zoom = zoomOf(layer);
-      const deg = tilt ? Math.round(tiltAt(zoom) * 10) / 10 : 0;
+      const flying = (layer.getAnimations?.().length ?? 0) > 0;
+      const zoom = zoomOf(layer, flying);
+      const matrix = flying ? `fly ${zoom}` : layer.style.transform;
+      const deg = tiltAt(zoom, prefersReducedMotion());
       const d = Math.round(dofAt(zoom) * 50) / 50;
-      const p = tilt ? perspectiveOf(viewport.clientWidth, viewport.clientHeight) : 0;
+      const p = perspectiveOf(viewport.clientWidth, viewport.clientHeight);
+      const key = `${deg}|${d}|${p}`;
+      if (key !== before) {
+        last = key;
+        const transform = tiltTransform({ deg, p });
+        for (const ref of tiltRefs) if (ref.current) ref.current.style.transform = transform;
+        const edge = dofRef.current;
+        if (edge) {
+          edge.style.setProperty('--dof', String(d));
+          edge.toggleAttribute('data-on', d > 0);
+        }
+      }
       // Подписи сдвигаем каждый кадр, пока карта наклонена: камера двигает их и без смены наклона.
       if (svg && deg > 0) placeAnchors(svg, viewport.getBoundingClientRect(), deg, p);
       else if (svg && tilted) clearAnchors(svg);
       tilted = deg > 0;
-      const key = `${deg}|${d}|${p}`;
-      // Кадры идут, пока камера движется; после STILL_FRAMES неподвижных кадров и без перелёта цикл засыпает.
-      const moving = key !== before || matrix !== lastMatrix || (layer.getAnimations?.().length ?? 0) > 0;
+      const moving = key !== before || matrix !== lastMatrix || flying;
       lastMatrix = matrix;
-      still = moving ? 0 : still + 1;
+      return moving;
+    };
+    const tick = () => {
+      frame = 0;
+      still = update() ? 0 : still + 1;
+      // Кадры идут, пока камера движется; после STILL_FRAMES неподвижных кадров и без перелёта цикл засыпает.
       if (still < STILL_FRAMES) frame = requestAnimationFrame(tick);
-      if (key === before) return;
-      last = key;
-      if (wrap) wrap.style.transform = deg > 0 ? `perspective(${p}px) rotateX(${deg}deg)` : '';
-      if (edge) {
-        edge.style.setProperty('--dof', String(d));
-        edge.toggleAttribute('data-on', d > 0);
-      }
     };
     // Камеру двигают жесты, колесо, клавиши и перелёт (смена `style` слоя): любое из них будит цикл.
     const wake = () => {
       still = 0;
       if (!frame) frame = requestAnimationFrame(tick);
     };
+    // Жест записал камеру — наклон и якоря в том же кадре, до отрисовки.
+    const now = () => {
+      update();
+      wake();
+    };
     const viewport = viewportRef.current;
     const layer = layerRef.current;
     const events = ['wheel', 'pointerdown', 'pointermove', 'keydown', 'touchstart'] as const;
     for (const e of events) viewport?.addEventListener(e, wake, { passive: true, capture: true });
-    const mo = new MutationObserver(wake);
+    const mo = new MutationObserver(now);
     if (layer) mo.observe(layer, { attributes: true, attributeFilter: ['style'] });
-    wake();
+    now();
     return () => {
       cancelAnimationFrame(frame);
       mo.disconnect();
       for (const e of events) viewport?.removeEventListener(e, wake, { capture: true });
     };
-  }, [tilt, viewportRef, layerRef, tiltRef, dofRef, screenSvgRef]);
+  }, [viewportRef, layerRef, tiltRefs, dofRef, screenSvgRef]);
 }

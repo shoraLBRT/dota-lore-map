@@ -16,7 +16,10 @@ import {
   worldAt,
   ZOOM_STEP,
   zoomAt,
+  pinOnScreen,
+  worldOnScreen,
 } from './freeCamera';
+import { perspectiveOf, tiltAt, tiltPoint } from './depth';
 
 // Кадр 1440×900, слой покрывает его — 1440×1440 (#165).
 const view = { width: 1440, height: 900, layerWidth: 1440, layerHeight: 1440, inset: 0 };
@@ -45,6 +48,27 @@ describe('свободная камера (#165)', () => {
     expect(wx).toBeCloseTo(before[0]);
     expect(wy).toBeCloseTo(before[1]);
     expect(anchorAt(view, after.zoom, before, 400, 300)).toEqual(after);
+  });
+
+  it('зум под наклоном (#232): точку мира видно под курсором и после зума, хотя наклон вырос', () => {
+    const c = { x: 0.5, y: 0.5, zoom: 1.3 };
+    const [px, py] = [300, 120];
+    const world = worldOnScreen(c, view, px, py);
+    const after = pinOnScreen(view, 2.4, world, px, py);
+    const onScreen = (cam: { x: number; y: number; zoom: number }) => {
+      const fx = (world[0] - cam.x) * view.layerWidth * cam.zoom + view.width / 2;
+      const fy = (world[1] - cam.y) * view.layerHeight * cam.zoom + view.height / 2;
+      return tiltPoint(fx, fy, view.width / 2, view.height / 2, tiltAt(cam.zoom), perspectiveOf(view.width, view.height));
+    };
+    expect(tiltAt(2.4)).toBeGreaterThan(tiltAt(1.3));
+    const [sx, sy] = onScreen(after);
+    expect(sx).toBeCloseTo(px, 6);
+    expect(sy).toBeCloseTo(py, 6);
+    // Плоский якорь (как до #232) уплыл бы от курсора.
+    const [nx, ny] = onScreen(zoomAt(c, view, 2.4 / 1.3, px, py));
+    expect(Math.hypot(nx - px, ny - py)).toBeGreaterThan(10);
+    // Reduced motion — без наклона: то же, что плоский зум.
+    expect(pinOnScreen(view, 2.4, worldAt(c, view, px, py), px, py, true)).toEqual(zoomAt(c, view, 2.4 / 1.3, px, py));
   });
 
   it('камера со сдвигом под панель → точка в центре всего кадра', () => {

@@ -262,7 +262,8 @@ export function useCamera({ active, regionBoxes, activePlaceSlug, panel, hasMap,
   useLayoutEffect(() => {
     latest.current = { framed, view: roam, shot };
   });
-  const pending = useRef<Camera | null>(null);
+  /** Камера жеста, которую React ещё не получил, и кадр, на котором её поставили. */
+  const pending = useRef<{ camera: Camera; shot: unknown } | null>(null);
   const controls = useFreeCamera({
     viewportRef,
     layerRef,
@@ -289,10 +290,12 @@ export function useCamera({ active, regionBoxes, activePlaceSlug, panel, hasMap,
         requestAnimationFrame(() => {
           const next = pending.current;
           pending.current = null;
-          if (next) setFree({ shot: latest.current.shot, camera: next });
+          // Кадр сменился, пока камера ждала рендера (перелёт к региону после колеса): старая камера к новому кадру
+          // не пристаёт — иначе перелёт откатился бы к ней (видно при редких кадрах, #232).
+          if (next && next.shot === latest.current.shot) setFree(next);
         });
       }
-      pending.current = c;
+      pending.current = { camera: c, shot: latest.current.shot };
       applied.current = c;
     },
   });

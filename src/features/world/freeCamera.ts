@@ -5,6 +5,7 @@
 import { useEffect, useLayoutEffect, useRef } from 'react';
 import type { Camera } from '../../data/types';
 import { cameraTransform, clampCamera, prefersReducedMotion, type View } from './camera';
+import { perspectiveOf, tiltAt, untiltPoint } from './depth';
 import { placeAnchors } from './screenAnchors';
 
 /** Сдвиг, после которого нажатие — уже перетаскивание, а не клик, px. */
@@ -73,6 +74,27 @@ export function anchorAt(view: View, zoom: number, world: [number, number], px: 
     },
     view,
   );
+}
+
+/**
+ * Точка плоского кадра, которая видна в точке экрана (px, py) при приближении `zoom`: под наклоном карты (#232) —
+ * обратная проекция наклона, который `useDepth` ставит при этом зуме (`tiltAt`); без наклона — та же точка.
+ */
+export function flatAt(view: View, zoom: number, px: number, py: number, reduced = false): [number, number] {
+  return untiltPoint(px, py, view.width / 2, view.height / 2, tiltAt(zoom, reduced), perspectiveOf(view.width, view.height));
+}
+
+/** Точка мира, которую видно в точке экрана (px, py), — с учётом наклона карты. */
+export function worldOnScreen(camera: Camera, view: View, px: number, py: number, reduced = false): [number, number] {
+  return worldAt(camera, view, ...flatAt(view, camera.zoom, px, py, reduced));
+}
+
+/**
+ * Камера с зумом `zoom`, при которой точку мира `world` видно в точке экрана (px, py) — под наклоном этого зума.
+ * Наклон растёт с зумом, поэтому точку под курсором держит именно она, а не `anchorAt` в плоских координатах.
+ */
+export function pinOnScreen(view: View, zoom: number, world: [number, number], px: number, py: number, reduced = false): Camera {
+  return anchorAt(view, zoom, world, ...flatAt(view, zoom, px, py, reduced));
 }
 
 /** Приблизить в `factor` раз вокруг точки кадра (px, py): точка мира под курсором остаётся на месте. */
@@ -211,7 +233,7 @@ export function useFreeCamera({ viewportRef, layerRef, screenRef, view, current,
       const k = easeStep(dt);
       const zoom = Math.exp(Math.log(c.zoom) + (Math.log(m.zoom) - Math.log(c.zoom)) * k);
       const done = Math.abs(Math.log(m.zoom / zoom)) < 0.002;
-      apply(anchorAt(v, done ? m.zoom : zoom, m.world, m.px, m.py));
+      apply(pinOnScreen(v, done ? m.zoom : zoom, m.world, m.px, m.py, prefersReducedMotion()));
       if (done) motion.current = null;
     } else {
       const k = easeStep(dt);
@@ -257,7 +279,8 @@ export function useFreeCamera({ viewportRef, layerRef, screenRef, view, current,
     }
     const from = m?.kind === 'zoom' ? m.zoom : c.zoom;
     const zoom = clampCamera({ ...c, zoom: from * factor }, v).zoom;
-    const world = m?.kind === 'zoom' && Math.abs(m.px - px) < 1 && Math.abs(m.py - py) < 1 ? m.world : worldAt(c, v, px, py);
+    const world =
+      m?.kind === 'zoom' && Math.abs(m.px - px) < 1 && Math.abs(m.py - py) < 1 ? m.world : worldOnScreen(c, v, px, py, prefersReducedMotion());
     run({ kind: 'zoom', zoom, world, px, py });
   };
 
@@ -316,11 +339,12 @@ export function useFreeCamera({ viewportRef, layerRef, screenRef, view, current,
       if (pointers.size >= 2 && pinch) {
         const now = pinchOf();
         const c = base();
-        const world = worldAt(c, v, pinch.mid.x, pinch.mid.y);
+        const reduced = prefersReducedMotion();
+        const world = worldOnScreen(c, v, pinch.mid.x, pinch.mid.y, reduced);
         const wanted = c.zoom * (now.dist / (pinch.dist || now.dist));
         const zoom = clampCamera({ ...c, zoom: wanted }, v).zoom;
         under = wanted < zoom * (1 - 1e-3) ? under * (wanted / zoom) : 1;
-        apply(anchorAt(v, zoom, world, now.mid.x, now.mid.y));
+        apply(pinOnScreen(v, zoom, world, now.mid.x, now.mid.y, reduced));
         pinch = now;
         moved = dragging = true;
         return;
@@ -332,7 +356,12 @@ export function useFreeCamera({ viewportRef, layerRef, screenRef, view, current,
         el.setPointerCapture?.(e.pointerId);
         el.dataset.dragging = '';
       }
-      apply(panBy(base(), v, p.x - prev.x, p.y - prev.y));
+      // Под наклоном (#232) сдвиг пальца на экране — другой сдвиг плоской карты: карта едет ровно за пальцем.
+      const c = base();
+      const reduced = prefersReducedMotion();
+      const [ax, ay] = flatAt(v, c.zoom, prev.x, prev.y, reduced);
+      const [bx, by] = flatAt(v, c.zoom, p.x, p.y, reduced);
+      apply(panBy(c, v, bx - ax, by - ay));
       samples.push({ t: e.timeStamp, ...p });
       samples = samples.filter((s) => e.timeStamp - s.t < 100);
     };

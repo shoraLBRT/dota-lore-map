@@ -21,6 +21,7 @@ import {
   type WorldRect,
 } from './atmosphere';
 import { MOBILE_QUERY, prefersReducedMotion } from './camera';
+import { flatRect, tiltOver, tiltPoint, tiltScale, type Tilt } from './depth';
 import styles from './MapAtmosphere.module.css';
 
 /** Пропорция спрайта облака (ширина к высоте), как у прежних CSS-облаков. */
@@ -170,6 +171,18 @@ export function MapAtmosphere({ layerRef, activeId, clear = false }: Props) {
     let veil = veilTarget.current;
     let lastNow = t0;
 
+    /**
+     * Наклон карты (#232) в координатах холста: холст плоский, а земля под ним наклонена — центр каждого пятна и облака
+     * ставится в точку наклонённой карты, размер — по строке (`tiltScale`); без наклона — как есть.
+     */
+    let tilt: (Tilt & { cx: number; cy: number }) | null = null;
+    const lay = (x: number, y: number): [number, number, number, number] => {
+      if (!tilt) return [x, y, 1, 1];
+      const [tx, ty] = tiltPoint(x, y, tilt.cx, tilt.cy, tilt.deg, tilt.p);
+      const k = tiltScale(y, tilt.cy, tilt.deg, tilt.p);
+      return [tx, ty, k, k * Math.cos((tilt.deg * Math.PI) / 180)];
+    };
+
     const draw = (rect: WorldRect, homeSize: number, t: number) => {
       const zoom = zoomOf(rect, homeSize);
       const s = strength(zoom, active.current !== undefined);
@@ -182,10 +195,9 @@ export function MapAtmosphere({ layerRef, activeId, clear = false }: Props) {
       ctx.globalCompositeOperation = 'source-over';
       FOG_PATCHES.forEach((p, i) => {
         const sprite = sprites[p.kind];
-        const x = rect.left + (p.x + drift(1, t, i) * 0.6) * rect.size;
-        const y = rect.top + p.y * rect.size;
-        const rx = p.rx * rect.size;
-        const ry = p.ry * rect.size;
+        const [x, y, kx, ky] = lay(rect.left + (p.x + drift(1, t, i) * 0.6) * rect.size, rect.top + p.y * rect.size);
+        const rx = p.rx * rect.size * kx;
+        const ry = p.ry * rect.size * ky;
         if (!sprite || !visible(x, y, rx, ry, box)) return;
         const own = p.region !== undefined && p.region === active.current ? 0.35 : 1;
         ctx.globalAlpha = s.fog * PATCH_ALPHA[p.kind] * own * (reduced ? 1 : pulse(t, 20, i));
@@ -196,10 +208,9 @@ export function MapAtmosphere({ layerRef, activeId, clear = false }: Props) {
       ctx.globalCompositeOperation = 'lighter';
       GLOWS.forEach((p, i) => {
         const sprite = sprites[p.kind];
-        const x = rect.left + p.x * rect.size;
-        const y = rect.top + p.y * rect.size;
-        const rx = p.rx * rect.size;
-        const ry = p.ry * rect.size;
+        const [x, y, kx, ky] = lay(rect.left + p.x * rect.size, rect.top + p.y * rect.size);
+        const rx = p.rx * rect.size * kx;
+        const ry = p.ry * rect.size * ky;
         if (!sprite || !visible(x, y, rx, ry, box)) return;
         ctx.globalAlpha = s.glow * PATCH_ALPHA[p.kind] * (reduced ? 1 : pulse(t, breathe * (p.kind === 'star' ? 1.6 : 1), i));
         ctx.drawImage(sprite, x - rx, y - ry, rx * 2, ry * 2);
@@ -212,10 +223,12 @@ export function MapAtmosphere({ layerRef, activeId, clear = false }: Props) {
           clouds.forEach((c, i) => {
             if (c.depth !== depth) return;
             const dx = reduced ? 0 : drift(depth, t, i * 1.7);
-            const p = reduced
+            const flat = reduced
               ? { x: rect.left + c.x * rect.size, y: rect.top + c.y * rect.size, scale: rect.size }
               : project(c.x + dx, c.y, depth, rect, box, homeSize);
-            const w = c.w * p.scale;
+            const [x, y, k] = lay(flat.x, flat.y);
+            const p = { x, y };
+            const w = c.w * flat.scale * k;
             const h = w / CLOUD_ASPECT;
             if (!visible(p.x, p.y, w / 2, h / 2, box)) return;
             const alpha = s.clouds * DEPTH_ALPHA[depth] * sizeFade(w, box);
@@ -262,10 +275,13 @@ export function MapAtmosphere({ layerRef, activeId, clear = false }: Props) {
       frame = requestAnimationFrame(tick);
       const layer = layerRef.current;
       if (!layer || box.width === 0) return;
-      const lr = layer.getBoundingClientRect();
+      // Под наклоном габарит слоя — трапеция: положение мира — по плоской рамке слоя (#232).
+      const lr = flatRect(layer);
       const cr = canvas.getBoundingClientRect();
       const rect: WorldRect = { left: lr.left - cr.left, top: lr.top - cr.top, size: lr.width };
-      const key = `${Math.round(rect.left * 2)}|${Math.round(rect.top * 2)}|${Math.round(rect.size * 2)}`;
+      const over = tiltOver(layer);
+      tilt = over && { ...over, cx: over.cx - cr.left, cy: over.cy - cr.top };
+      const key = `${Math.round(rect.left * 2)}|${Math.round(rect.top * 2)}|${Math.round(rect.size * 2)}|${tilt?.deg ?? 0}`;
       // Путь героя (#168): облака расходятся плавно; reduced motion — сразу.
       const dt = (now - lastNow) / 1000;
       lastNow = now;
