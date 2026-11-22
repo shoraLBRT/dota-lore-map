@@ -30,8 +30,6 @@ import { useFontsTick, useMeasuredLabels } from './useMeasuredLabels';
 import { usePlaceTooltip } from './usePlaceTooltip';
 import { useRegionTooltip } from './useRegionTooltip';
 import { useThreadLayout } from './useThreadLayout';
-import { WorldMarkers, WorldPlaceMeasure } from './WorldMarkers';
-import { placeThreshold, regionUnder, useWorldPlaces } from './worldPlaces';
 
 export { TOOLTIP_CLOSE_DELAY } from './useRegionTooltip';
 
@@ -177,18 +175,6 @@ export function MapStage({
     zoomMax: frame.zoomMax,
     world: { width: frame.view.layerWidth, height: frame.view.layerHeight },
   });
-  // Смысловой зум (#190): места в мире появляются по значимости с приближением; регион под камерой подписан по территории.
-  const worldPlaces = useWorldPlaces(drawn, {
-    lang,
-    names,
-    widths,
-    zoomFrom: Math.min(1, frame.worldZoom),
-    zoomMax: frame.zoomMax,
-    world: { width: frame.view.layerWidth, height: frame.view.layerHeight },
-    enabled: inWorld,
-  });
-  const deep = inWorld && frame.worldZoom >= placeThreshold('capital', Math.min(1, frame.worldZoom), frame.zoomMax) - 1e-6;
-  const under = deep ? regionUnder(drawn, [frame.framed.camera.x, frame.framed.camera.y]) : undefined;
   const labels = useMarkerLabels({ spots, activeId: active?.id, activePlaceSlug, focusPlaces, lang, widths, frame });
   const threadLayout = useThreadLayout({ threads, active, drawn, labels, names, frame, coverTop });
 
@@ -256,20 +242,7 @@ export function MapStage({
           names={names}
           zoom={frame.worldZoom}
           onSelectRegion={onSelectRegion}
-          underId={under?.id}
         />
-        {inWorld && <WorldPlaceMeasure regions={drawn} />}
-        {inWorld && worldPlaces.items.length > 0 && (
-          <WorldMarkers
-            items={worldPlaces.items}
-            spots={worldPlaces.spots}
-            zoom={frame.worldZoom}
-            view={frame.view}
-            framed={frame.framed}
-            focusPlaces={focusPlaces}
-            onSelectPlace={onSelectPlace}
-          />
-        )}
         {active && (
           <MarkersLayer
             key={`markers-${active.id}`}

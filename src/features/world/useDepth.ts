@@ -28,7 +28,7 @@ const TRANSLATE = /^translate\(\s*([-\d.e]+)[\s,]+([-\d.e]+)/;
 
 /**
  * Якоря подписей и маркеров плоского экранного слоя — туда, куда наклон унёс их точку на карте
- * (CSS-свойство `translate` поверх атрибута `transform`, который пишут React, `placeAnchors` и `WorldMarkers`).
+ * (CSS-свойство `translate` поверх атрибута `transform`, который пишут React и `placeAnchors`).
  */
 function placeAnchors(svg: SVGSVGElement, viewport: DOMRect, deg: number, p: number) {
   const ctm = svg.getScreenCTM?.();

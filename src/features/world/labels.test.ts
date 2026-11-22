@@ -213,21 +213,24 @@ describe('названия регионов по уровням (#189, SPEC §8.
     expect(placeRegionLabels([item('a', 0.5, 0.5, 1), item('c', 0.5, 0.501, 1.35, m2)], w, 1.5).get('c')!.from).toBe(Infinity);
   });
 
-  // Кадры как у useCamera: слой покрывает кадр; телефон — мир со списком, камера стоит.
+  // Кадры как у useCamera: слой покрывает кадр; телефон (под шапкой 52 px) — мир со списком и свободной камерой (#196),
+  // от слоя во весь кадр до потолка мира.
   const sizes = [
     { name: '1440×900', width: 1440 - 64, height: 900, phone: false },
     { name: '1280×720', width: 1280 - 64, height: 720, phone: false },
     { name: '768×1024', width: 768 - 64, height: 1024, phone: false },
-    { name: '375×812', width: 375, height: 812 - 44, phone: true },
+    { name: '375×812', width: 375, height: 812 - 52, phone: true },
   ];
   for (const s of sizes) {
     for (const lang of LANGS) {
-      it(`${s.name}, ${lang}: названия и гербы не пересекаются ни на одном зуме мира`, () => {
+      it(`${s.name}, ${lang}: у всех 27 регионов есть название в диапазоне зума мира; названия и гербы не пересекаются`, () => {
         const layerWidth = Math.max(s.width, s.height * WORLD_ASPECT);
         const view: View = { width: s.width, height: s.height, layerWidth, layerHeight: layerWidth / WORLD_ASPECT, inset: 0 };
         const fitted = layerWidth * containScale(view);
-        const zoomFrom = s.phone ? Math.min(s.width, s.height) / layerWidth : 1;
-        const zoomMax = s.phone ? zoomFrom : zoomLevels(boxes, view).zoomMax;
+        // Самое дальнее приближение — слой во весь кадр (zoom 1, SPEC §5.3), и на телефоне: мир покрывает кадр.
+        const zoomFrom = 1;
+        const zoomMax = zoomLevels(boxes, view).zoomMax;
+        expect(zoomMax).toBeGreaterThan(zoomFrom);
         const items = regionLabelItems(drawn, { name: (r) => r.name[lang], levels, widths: {}, fitted, zoomFrom });
         const worldPx = { width: layerWidth, height: layerWidth / WORLD_ASPECT };
         const spots = placeRegionLabels(items, worldPx, zoomMax);
@@ -259,8 +262,9 @@ describe('названия регионов по уровням (#189, SPEC §8.
         expect(always.every((m) => levels.get(m.id) === 1)).toBe(true);
         if (s.phone) expect(always.length).toBeGreaterThanOrEqual(6);
         else expect(always.length).toBe(first.length);
-        // Остальные на компьютере появляются при приближении, не позже потолка мира.
-        if (!s.phone) expect(items.filter((m) => spots.get(m.id)!.from === Infinity).map((m) => m.id)).toEqual([]);
+        // Каждый регион (#243) подписан где-то в диапазоне зума мира — и на компьютере, и на телефоне.
+        expect(drawn).toHaveLength(27);
+        expect(items.filter((m) => !(spots.get(m.id)!.from <= zoomMax + 1e-9)).map((m) => m.id)).toEqual([]);
       });
     }
   }
