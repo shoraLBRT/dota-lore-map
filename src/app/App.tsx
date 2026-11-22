@@ -5,6 +5,7 @@ import { Intro } from '../features/intro/Intro';
 import { WorldScreen } from '../features/world/WorldScreen';
 import { I18nProvider } from '../i18n';
 import { Gallery, prefetchDeferred } from './deferred';
+import { navNew } from './flags';
 import { NavigationProvider, useNavigation } from './navigation';
 import { parentScreen, type Screen } from './router';
 import { SoundProvider, useSound } from './sound';
@@ -35,7 +36,8 @@ function Screens() {
         return;
       }
       if (galleryOpen) return;
-      if (hero && profileOpen) {
+      // `?nav=new` (#230, Н5, Н6): профиль и герой закрываются одним шагом — чипа нет.
+      if (hero && profileOpen && !navNew()) {
         navigate({ screen, hero }, { replace: true });
         return;
       }

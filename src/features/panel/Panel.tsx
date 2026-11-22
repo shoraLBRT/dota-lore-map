@@ -6,6 +6,7 @@ import { useT } from '../../i18n';
 import { MOBILE_QUERY } from '../world/camera';
 import styles from './Panel.module.css';
 import { Sheet } from './Sheet';
+import { WindowHead } from './WindowHead';
 
 interface Props {
   label: string;
@@ -16,6 +17,13 @@ interface Props {
   contentKey: string;
   /** Крошка «назад» в шапке, над прокруткой (SPEC §6.4). */
   back?: ReactNode;
+  /**
+   * `?nav=new` (#230, Н2, Н3, Н9): × в шапке закрывает окно и ведёт на шаг вверх; «Свернуть»-ромба нет,
+   * на телефоне шторка в три положения. `collapsed` тогда — профиль свёрнут до шапки (`minimizable`, Н7).
+   */
+  onClose?: () => void;
+  closeLabel?: string;
+  minimizable?: boolean;
   children: ReactNode;
 }
 
@@ -23,7 +31,7 @@ interface Props {
  * Правая панель регионов и мест: лежит поверх карты, выезжает справа (A3, 400 мс),
  * сворачивается кнопкой-ромбом на левом краю без смещения карты (SPEC §5.4).
  */
-export function Panel({ label, collapsed, onToggle, contentKey, back, children }: Props) {
+export function Panel({ label, collapsed, onToggle, contentKey, back, onClose, closeLabel, minimizable = false, children }: Props) {
   const { t } = useT();
   const id = useId();
   const contentRef = useRef<HTMLDivElement>(null);
@@ -50,6 +58,41 @@ export function Panel({ label, collapsed, onToggle, contentKey, back, children }
       {back}
     </div>
   );
+
+  if (onClose) {
+    const head = (
+      <div key={contentKey} className={styles.content}>
+        <WindowHead
+          title={label}
+          closeLabel={closeLabel ?? t('panel.close', { name: label })}
+          onClose={onClose}
+          minimized={!mobile && minimizable && collapsed}
+          onMinimize={minimizable ? onToggle : undefined}
+        />
+      </div>
+    );
+    if (mobile) {
+      return (
+        <Sheet id={id} label={label} contentKey={contentKey} header={head} onClose={onClose}>
+          <div key={contentKey} className={styles.content}>
+            {children}
+          </div>
+        </Sheet>
+      );
+    }
+    const headOnly = minimizable && collapsed;
+    return (
+      <div className={[styles.dock, headOnly && styles.minimized].filter(Boolean).join(' ')} data-testid="panel-dock">
+        <div className={styles.body}>
+          <PanelFrame id={id} label={label} className={styles.panel} header={head} headOnly={headOnly}>
+            <div key={contentKey} className={styles.content}>
+              {children}
+            </div>
+          </PanelFrame>
+        </div>
+      </div>
+    );
+  }
 
   // Телефон: нижняя шторка со своим «свернуть / развернуть» (SPEC §13); collapsed десктопа к ней не относится.
   if (mobile) {

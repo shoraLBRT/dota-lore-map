@@ -20,6 +20,11 @@
   transform: translateX(calc(100% + var(--space-4)));
 }
 
+/* `?nav=new` (#230, Н7): профиль свёрнут до шапки — карта и нити героя видны под ней. */
+.minimized {
+  bottom: auto;
+}
+
 .body {
   display: flex;
   flex-direction: column;

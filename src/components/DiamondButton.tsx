@@ -1,9 +1,19 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
 import styles from './DiamondButton.module.css';
 
-export type DiamondIcon = 'close' | 'collapse' | 'expand' | 'back' | 'prev' | 'next';
+export type DiamondIcon = 'close' | 'collapse' | 'expand' | 'back' | 'prev' | 'next' | 'minimize' | 'restore';
 
-const GLYPH: Record<DiamondIcon, string> = { close: '×', collapse: '›', expand: '‹', back: '‹', prev: '‹', next: '›' };
+const GLYPH: Record<DiamondIcon, string> = {
+  close: '×',
+  collapse: '›',
+  expand: '‹',
+  back: '‹',
+  prev: '‹',
+  next: '›',
+  // `?nav=new` (#230, Н7): профиль сворачивается до шапки и разворачивается обратно.
+  minimize: '−',
+  restore: '+',
+};
 
 interface Props extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children'> {
   icon: DiamondIcon;
