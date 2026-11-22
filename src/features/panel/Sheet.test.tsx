@@ -4,7 +4,7 @@ import { App } from '../../app/App';
 import { useMediaQuery } from '../../app/media';
 import { getRegion } from '../../data/world';
 import { MOBILE_QUERY } from '../world/camera';
-import { settleFull } from './Sheet';
+import { SHEET_HEAD_PX, settleFull, settleSheet } from './Sheet';
 
 // Телефон (SPEC §13): правая панель — нижняя шторка, свёрнута ~30 %, развёрнута ~90 %, «потянуть».
 
@@ -114,5 +114,22 @@ describe('settleFull: инерция шторки (SPEC §7.5)', () => {
   it('бросили — по направлению броска, даже не дотянув до середины', () => {
     expect(settleFull(vh * 0.35, vh, -0.8)).toBe(true);
     expect(settleFull(vh * 0.85, vh, 0.8)).toBe(false);
+  });
+});
+
+describe('settleSheet: три положения шторки с ?nav=new (#230, Н9)', () => {
+  const vh = 800;
+  it('медленно отпустили — ближайшее из трёх; ниже заголовка — закрыть', () => {
+    expect(settleSheet(SHEET_HEAD_PX + 10, vh, 0)).toBe('head');
+    expect(settleSheet(vh * 0.33, vh, 0)).toBe('peek');
+    expect(settleSheet(vh * 0.8, vh, 0)).toBe('full');
+    expect(settleSheet(SHEET_HEAD_PX * 0.5, vh, 0)).toBe('close');
+  });
+
+  it('бросили — на шаг по направлению броска; вниз из заголовка — закрыть', () => {
+    expect(settleSheet(vh * 0.28, vh, 0.8)).toBe('head');
+    expect(settleSheet(vh * 0.32, vh, -0.8)).toBe('full');
+    expect(settleSheet(SHEET_HEAD_PX + 20, vh, -0.8)).toBe('peek');
+    expect(settleSheet(SHEET_HEAD_PX - 10, vh, 0.8)).toBe('close');
   });
 });

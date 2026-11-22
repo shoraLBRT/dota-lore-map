@@ -1,4 +1,6 @@
-import { useId, useMemo, useRef, type KeyboardEvent } from "react";
+import { useId, useMemo, useRef, type KeyboardEvent, type PointerEvent } from "react";
+import { useBackLayer } from "../../app/backLayer";
+import { navNew } from "../../app/flags";
 import type { Lang, Region } from "../../data/types";
 import { useT, type MessageKey } from "../../i18n";
 import styles from "./RegionList.module.css";
@@ -20,6 +22,9 @@ const GROUPS: { key: Group; label: MessageKey }[] = [
 /** Группа и цвет подсветки — как на карте (SPEC §8.3): ярусы — свой цвет, материк — по стороне. */
 export const regionGroup = (r: Region): Group =>
   r.tier === "continent" ? r.side : r.tier;
+
+/** Сдвиг пальца по ручке, после которого это жест «потянуть», а не тап, px (`?nav=new`). */
+const SWIPE = 24;
 
 /** Ключ сортировки: без английского артикля («The Free Cities» — на F). */
 const sortKey = (name: string) => name.replace(/^the\s+/i, "");
@@ -69,6 +74,24 @@ export function RegionList({
   const titleId = useId();
   const bodyId = useId();
   const handleRef = useRef<HTMLButtonElement>(null);
+  // `?nav=new` (#230, Н8): обычная нижняя шторка — тянется пальцем, тап по затемнённой карте и «назад» сворачивают.
+  const nav = navNew();
+  useBackLayer(open, () => onOpenChange(false), nav);
+  const drag = useRef<{ id: number; y: number } | null>(null);
+  /** Только что тянули: следующий click — конец жеста, а не тап. */
+  const dragged = useRef(false);
+  const onPointerDown = (e: PointerEvent<HTMLButtonElement>) => {
+    drag.current = { id: e.pointerId, y: e.clientY };
+  };
+  const onPointerUp = (e: PointerEvent<HTMLButtonElement>) => {
+    const d = drag.current;
+    drag.current = null;
+    if (!d || d.id !== e.pointerId) return;
+    const dy = e.clientY - d.y;
+    if (Math.abs(dy) < SWIPE) return;
+    dragged.current = true;
+    onOpenChange(dy < 0);
+  };
   // Esc сворачивает раскрытую шторку (#182): она — верхнее окно, экран и выбранный герой остаются.
   const onKeyDown = (e: KeyboardEvent) => {
     if (e.key !== "Escape" || !open) return;
@@ -90,8 +113,13 @@ export function RegionList({
   );
 
   return (
+    <>
+    {nav && open && (
+      // Затемнение карты под раскрытой шторкой: тап сворачивает её (мышью и клавиатурой — ручка и Esc).
+      <div className={styles.scrim} aria-hidden="true" data-testid="region-list-scrim" onClick={() => onOpenChange(false)} />
+    )}
     <nav
-      className={[styles.list, open && styles.open, waiting && styles.waiting]
+      className={[styles.list, open && styles.open, waiting && styles.waiting, nav && styles.swipe]
         .filter(Boolean)
         .join(" ")}
       aria-labelledby={titleId}
@@ -107,7 +135,16 @@ export function RegionList({
           ref={handleRef}
           aria-expanded={open}
           aria-controls={bodyId}
-          onClick={() => onOpenChange(!open)}
+          onClick={() => {
+            if (dragged.current) {
+              dragged.current = false;
+              return;
+            }
+            onOpenChange(!open);
+          }}
+          onPointerDown={nav ? onPointerDown : undefined}
+          onPointerUp={nav ? onPointerUp : undefined}
+          onPointerCancel={nav ? () => (drag.current = null) : undefined}
         >
           <span className={styles.grip} aria-hidden="true" />
           {t("world.regions")}
@@ -170,5 +207,6 @@ export function RegionList({
         ))}
       </div>
     </nav>
+    </>
   );
 }

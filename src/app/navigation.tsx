@@ -1,4 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useLayoutEffect, useMemo, useReducer, useRef, type ReactNode } from 'react';
+import { navNew } from './flags';
 import { parseHash, serializeRoute, type Route, type Screen } from './router';
 
 type Action = { type: 'sync'; route: Route };
@@ -109,7 +110,8 @@ export function NavigationProvider({ children }: { children: ReactNode }) {
 
   const go = useCallback(
     (screen: Screen) => {
-      const hero = routeRef.current.hero;
+      // `?nav=new` (#230, Н6): герой живёт только вместе с профилем — переход на другой экран профиль закрывает и героя снимает.
+      const hero = navNew() ? undefined : routeRef.current.hero;
       navigate(hero ? { screen, hero } : { screen });
     },
     [navigate],

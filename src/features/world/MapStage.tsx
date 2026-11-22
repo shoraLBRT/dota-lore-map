@@ -79,6 +79,8 @@ interface Props {
   onLeaveRegion?: () => void;
   /** Сдвиг или зум свободной камеры (#181): гаснет подсказка жестов. */
   onCameraMove?: () => void;
+  /** Клик по пустой карте в месте возвращает в регион (SPEC §5.1); `?nav=new` (#230, Н4) — нет, только зум двойным. */
+  backgroundClose?: boolean;
 }
 
 const noop = () => () => {};
@@ -115,6 +117,7 @@ export function MapStage({
   panelCollapsed = false,
   onLeaveRegion,
   onCameraMove,
+  backgroundClose = true,
 }: Props) {
   const { lang, l, t } = useT();
   const svgRef = useRef<SVGSVGElement>(null);
@@ -180,7 +183,7 @@ export function MapStage({
 
   // S3 → S2: клик по пустому месту карты (SPEC §5.1). Маркеры клик не пропускают.
   const onBackground = (e: MouseEvent) => {
-    if (active && activePlaceSlug !== undefined && !(e.target as Element).closest?.('[data-place]')) {
+    if (backgroundClose && active && activePlaceSlug !== undefined && !(e.target as Element).closest?.('[data-place]')) {
       onSelectRegion(active.id);
     }
   };

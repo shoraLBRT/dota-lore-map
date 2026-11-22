@@ -7,15 +7,19 @@ interface Props {
   className?: string;
   /** Шапка над прокруткой: всегда на виду (крошка «назад», SPEC §6.4). */
   header?: ReactNode;
+  /** Свёрнута до шапки (`?nav=new`, профиль, #230 Н7): прокрутка скрыта, видна только шапка. */
+  headOnly?: boolean;
   children: ReactNode;
 }
 
 /** Рамка правой панели (SPEC §8.5): графитовая подложка, металлический кант, срезанный угол. */
-export function PanelFrame({ id, label, className, header, children }: Props) {
+export function PanelFrame({ id, label, className, header, headOnly = false, children }: Props) {
   return (
     <aside id={id} className={[styles.frame, className].filter(Boolean).join(' ')} aria-label={label}>
       {header && <div className={styles.head}>{header}</div>}
-      <div className={[styles.inner, header && styles.underHead].filter(Boolean).join(' ')}>{children}</div>
+      <div className={[styles.inner, header && styles.underHead].filter(Boolean).join(' ')} hidden={headOnly}>
+        {children}
+      </div>
     </aside>
   );
 }

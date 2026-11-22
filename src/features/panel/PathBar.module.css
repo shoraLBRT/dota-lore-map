@@ -1,0 +1,92 @@
+/* `?nav=new` (#230, Н1): путь поверх карты слева сверху; на телефоне — под верхней полосой (рейкой). */
+.path {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  z-index: 6;
+  max-width: calc(100% - 2 * var(--space-4) - var(--panel-inset, 0px));
+  border: 1px solid var(--metal-dim);
+  background: var(--bg-1);
+  box-shadow: var(--shadow-2);
+  animation: path-in var(--dur-fade) var(--ease-out) both;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0;
+  padding: 0 var(--space-2);
+  list-style: none;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.step + .step::before {
+  content: '›';
+  padding: 0 var(--space-1);
+  color: var(--text-3);
+}
+
+.link,
+.current {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0 var(--space-2);
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: var(--tracking-display);
+}
+
+.link {
+  border: 0;
+  background: none;
+  color: var(--metal-bright);
+  cursor: pointer;
+}
+
+.link:hover,
+.link:focus-visible {
+  color: var(--accent-bright);
+  text-decoration: underline;
+}
+
+.link:focus-visible {
+  outline: 2px solid var(--accent-bright);
+  outline-offset: -4px;
+}
+
+.current {
+  color: var(--text-1);
+}
+
+@media (max-width: 767px) {
+  .path {
+    top: var(--space-2);
+    left: var(--space-2);
+    max-width: calc(100% - 2 * var(--space-2));
+  }
+
+  .link,
+  .current {
+    font-size: 0.85rem;
+  }
+}
+
+@keyframes path-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .path {
+    animation: none;
+  }
+}
