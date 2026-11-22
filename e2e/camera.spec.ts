@@ -342,12 +342,13 @@ test('телефон (#196): мир во весь кадр двигается п
   await expect.poll(transform).not.toBe(before);
   await expectHash(page, '#/world');
 
-  // Щипок приближает — в мире появляются места (#190).
+  // Щипок приближает — проявляются названия второго уровня; мест в мире нет (#243).
   await touch('pointerdown', [[1, 150, 400], [2, 220, 400]]);
   for (let i = 1; i <= 10; i += 1) await touch('pointermove', [[1, 150 - i * 8, 400], [2, 220 + i * 8, 400]]);
   await touch('pointerup', [[2, 300, 400], [1, 70, 400]]);
   await expect.poll(() => scale(page)).toBeGreaterThan(1.4);
-  await expect(page.locator('[data-screen-layer] [data-world-place]').first()).toBeAttached();
+  await expect(page.locator('[data-screen-layer] [data-label][data-level="2"]').first()).toBeAttached();
+  await expect(page.locator('[data-screen-layer] [data-place]')).toHaveCount(0);
 
   // Шторка свёрнута до ручки; ручка разворачивает, пункт открывает регион.
   const list = page.getByRole('navigation', { name: 'Регионы' });

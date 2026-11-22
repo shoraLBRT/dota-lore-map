@@ -442,6 +442,14 @@ describe('MapStage — подписи и подсказки (аудит E13)', (
     expect(lines('b')).toEqual(['The Seven Hells and the Afterlife']);
   });
 
+  it('в мире — только названия регионов: маркеров мест и надписи по территории нет (#243)', () => {
+    renderStage([region('a', true), region('b', true)]);
+    expect(document.querySelector('[data-place]')).toBeNull();
+    expect(document.querySelector('[data-world-place]')).toBeNull();
+    expect(document.querySelector('[data-territory]')).toBeNull();
+    expect(document.querySelectorAll('[data-label]')).toHaveLength(2);
+  });
+
   it('герб первого уровня (#189): клик открывает регион, мышь на нём подсвечивает название; у яруса герба нет', () => {
     const tier: Region = { ...region('b', true), tier: 'abyss' };
     const { onSelectRegion } = renderStage([region('a', true), tier]);

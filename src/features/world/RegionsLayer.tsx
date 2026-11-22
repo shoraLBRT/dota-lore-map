@@ -181,8 +181,6 @@ interface LabelProps {
   /** Приближение мира на экране. */
   zoom: number;
   onSelectRegion: (regionId: string, source?: 'map' | 'list') => void;
-  /** Регион под камерой (#190): вместо названия — крупная приглушённая надпись по территории. */
-  underId?: string;
 }
 
 /** Герб не меньше этого — кнопка для мыши (цель ≥ 44 px); меньше (телефон) — знак, нажатие ловит полигон под ним. */
@@ -196,17 +194,20 @@ const BASELINE = 0.8;
  * Названия регионов (ARCHITECTURE A4, #180, #189): в экранном слое над слоем карты, поэтому чёткие на любом
  * приближении. Группа названия стоит в точке `layout.label` и масштабирована в px экрана: размеры и стороны —
  * `useRegionNames`. Первый уровень — с гербом; второй и третий видны с порога приближения (`from`).
- * Герб — цель для мыши (aria-hidden: клавиатура и диктор ходят по полигонам-кнопкам).
+ * Регион под мышью, фокусом или пунктом списка (#243) в мире подписан всегда, даже до своего порога: его название
+ * рисуется последним, поверх соседей. Герб — цель для мыши (aria-hidden: клавиатура и диктор ходят по полигонам-кнопкам).
  */
-export function RegionLabels({ drawn, inWorld, tip, litId, focusRegions, previewRegions, names, zoom, onSelectRegion, underId }: LabelProps) {
+export function RegionLabels({ drawn, inWorld, tip, litId, focusRegions, previewRegions, names, zoom, onSelectRegion }: LabelProps) {
   const { l } = useT();
   const { shownId, litId: overId, region: on } = tip;
   const heroClass = (regionId: string) =>
     focusRegions ? (focusRegions.has(regionId) ? styles.heroRegion : styles.muted) : undefined;
-  const underRegion = underId ? drawn.find((r) => r.id === underId && r.layout) : undefined;
+  const hovered = (id: string) => inWorld && (id === shownId || id === overId || id === litId);
+  // Название под наведением — последним в DOM: в SVG порядок — это слой, и оно встаёт поверх соседей.
+  const order = drawn.map((r, index) => ({ r, index })).sort((a, b) => Number(hovered(a.r.id)) - Number(hovered(b.r.id)));
   return (
     <g aria-hidden="true" className={styles.labels}>
-      {drawn.map((r, index) => {
+      {order.map(({ r, index }) => {
         const spot = names.spots.get(r.id);
         const metrics = names.metrics.get(r.id);
         if (!spot || !metrics) return null;
@@ -214,8 +215,7 @@ export function RegionLabels({ drawn, inWorld, tip, litId, focusRegions, preview
         const name = l(r.name);
         const lines = nameLines(r, name);
         const level = names.levels.get(r.id) ?? 2;
-        const under = r.id === underId;
-        const shown = zoom >= spot.from - 1e-6 && !under;
+        const shown = zoom >= spot.from - 1e-6 || hovered(r.id);
         const { box } = spot;
         const anchor = spot.side === 'right' ? 'start' : spot.side === 'left' ? 'end' : 'middle';
         const tx = spot.side === 'right' ? box.left + 3 : spot.side === 'left' ? box.right - 3 : (box.left + box.right) / 2;
@@ -227,7 +227,7 @@ export function RegionLabels({ drawn, inWorld, tip, litId, focusRegions, preview
             key={r.id}
             // Сдвиг и масштаб пишет камера (`placeAnchors`): слой подписей камерой не масштабируется (A4, #231).
             data-at={`${lx} ${ly}`}
-            className={[styles.spot, under ? styles.under : !shown && styles.off].filter(Boolean).join(' ')}
+            className={[styles.spot, !shown && styles.off].filter(Boolean).join(' ')}
             // Скрытое название не ловит наведение и не мешает подсказке (#193): у него нет `data-label`.
             data-label={shown ? r.id : undefined}
             data-label-off={shown ? undefined : r.id}
@@ -272,41 +272,6 @@ export function RegionLabels({ drawn, inWorld, tip, litId, focusRegions, preview
           </g>
         );
       })}
-      {underRegion && <TerritoryName key={underRegion.id} region={underRegion} name={l(underRegion.name)} />}
-    </g>
-  );
-}
-
-/** Кегль надписи по территории (#190), единицы сцены. */
-const TERRITORY_FONT = { min: 16, max: 44 };
-/** Доля ширины полигона под надпись и ширина знака с разрядкой 0.22em, в кеглях. */
-const TERRITORY_FILL = 0.7;
-const TERRITORY_CHAR_EM = 0.95;
-
-/** Кегль надписи по территории региона (#190): от ширины полигона, в единицах сцены, в пределах TERRITORY_FONT. */
-export function territoryFont(region: Region, name: string): number {
-  const xs = region.layout!.polygon.map((p) => p[0]);
-  const width = (Math.max(...xs) - Math.min(...xs)) * STAGE_WIDTH;
-  const font = (width * TERRITORY_FILL) / (Math.max(name.length, 1) * TERRITORY_CHAR_EM);
-  return Math.min(TERRITORY_FONT.max, Math.max(TERRITORY_FONT.min, font));
-}
-
-/** Название региона под камерой — по его территории, в единицах сцены: растёт с приближением, как нарисованное. */
-function TerritoryName({ region, name }: { region: Region; name: string }) {
-  const [x, y] = toStage(region.layout!.label);
-  const font = territoryFont(region, name);
-  // Надпись в единицах сцены: камера ставит группу в точку и масштабирует её приближением (`data-at-zoom`).
-  return (
-    <g data-at={`${x} ${y}`} data-at-zoom="">
-      <text
-        className={styles.territory}
-        y={font * 0.35}
-        textAnchor="middle"
-        style={{ fontSize: `${font.toFixed(2)}px` }}
-        data-territory={region.id}
-      >
-        {name}
-      </text>
     </g>
   );
 }
