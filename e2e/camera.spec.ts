@@ -276,10 +276,17 @@ test('подсказка региона у названия, одного раз
     })
     .toBe(true);
   const two = await measure();
+  // Шаг — до остановки камеры: под наклоном (#232) кадры в безголовом Firefox без GPU реже, доезд дольше 300 мс.
   while (await zoomIn.isEnabled()) {
     const s = await scale(page);
     await zoomIn.click();
-    await page.waitForTimeout(300);
+    let last = s;
+    for (let i = 0; i < 20; i += 1) {
+      await page.waitForTimeout(250);
+      const now = await scale(page);
+      if (now === last && now !== s) break;
+      last = now;
+    }
     if ((await scale(page)) <= s) break;
   }
   // Потолок мира (#209) — 0.93 медианы кадров регионов: на 1440×900 ≈ 2.2, а не 3 (#179).
