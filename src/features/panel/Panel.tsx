@@ -36,7 +36,11 @@ export function Panel({ label, collapsed, onToggle, contentKey, back, children }
 
   // Новый экран — текст снова сверху: из списка мест (#99) панель места иначе открылась бы прокрученной вниз.
   // Прокручивается внутренний блок рамки — последний: над ним стоит шапка.
+  // Только смена экрана: новая панель и так сверху, а `scrollTo` — принудительная раскладка на кадре клика (#238).
+  const shownKey = useRef(contentKey);
   useEffect(() => {
+    if (shownKey.current === contentKey) return;
+    shownKey.current = contentKey;
     document.getElementById(id)?.lastElementChild?.scrollTo?.({ top: 0 });
   }, [contentKey, id]);
 

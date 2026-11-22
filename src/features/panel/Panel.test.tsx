@@ -182,3 +182,29 @@ describe('крошка «назад» в шапке панели (SPEC §6.4)', 
     expect(buttons).toEqual(['Свернуть панель', '‹ Мир']);
   });
 });
+
+describe('прокрутка панели при смене экрана (#99, #238)', () => {
+  it('новая панель не прокручивается (без принудительной раскладки), смена экрана — наверх', () => {
+    const calls: unknown[] = [];
+    const proto = Element.prototype as Element & { scrollTo?: (arg: unknown) => void };
+    const saved = proto.scrollTo;
+    proto.scrollTo = (arg: unknown) => {
+      calls.push(arg);
+    };
+    try {
+      const panel = (key: string) => (
+        <I18nProvider initialLang="ru">
+          <Panel label="Пустошь" collapsed={false} onToggle={() => {}} contentKey={key}>
+            <p>текст</p>
+          </Panel>
+        </I18nProvider>
+      );
+      const view = render(panel('a'));
+      expect(calls).toEqual([]);
+      view.rerender(panel('b'));
+      expect(calls).toEqual([{ top: 0 }]);
+    } finally {
+      proto.scrollTo = saved;
+    }
+  });
+});
