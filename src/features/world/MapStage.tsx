@@ -159,8 +159,7 @@ export function MapStage({
   const [threadVariant] = useState(() => threadStyleFrom(typeof location === 'undefined' ? '' : location.search));
   // Объём (#232, #233): наклон слоя карты и частиц региона на приближении, размытие краёв кадра — `useDepth`.
   const tiltRef = useRef<HTMLDivElement>(null);
-  const particlesRef = useRef<HTMLDivElement>(null);
-  const tiltRefs = useMemo(() => [tiltRef, particlesRef] as const, []);
+  const tiltRefs = useMemo(() => [tiltRef] as const, []);
   const dofRef = useRef<HTMLDivElement>(null);
   useDepth({ viewportRef, layerRef, tiltRefs, dofRef, screenSvgRef });
 
@@ -297,6 +296,16 @@ export function MapStage({
           {/* Наклон (#232): обёртка слоя карты; подписи и маркеры — плоские, над ней (якоря переносит `useDepth`). */}
           <div ref={tiltRef} className={styles.tilt} data-tilt="">
             {mapLayer}
+            {/* Частицы региона лежат на земле — в той же обёртке, что и карта: наклоняются вместе с ней (#232). */}
+            <div className={styles.tiltOver}>
+              {active && (
+                <AmbientCanvas
+                  key={active.id}
+                  ambient={active.ambient}
+                  region={active.layout ? { layerRef, polygon: active.layout.polygon } : undefined}
+                />
+              )}
+            </div>
           </div>
           {/* Размытие и затемнение краёв на приближении (#233): над артом, под подписями и маркерами. */}
           <div ref={dofRef} className={styles.dof} aria-hidden="true">
@@ -306,16 +315,6 @@ export function MapStage({
           {screenLayer}
           <div className={styles.cloudBox}>
             <MapAtmosphere layerRef={layerRef} activeId={active?.id} clear={Boolean(threads)} />
-          </div>
-          {/* Частицы региона лежат на земле: наклоняются вместе с картой (обёртка с запасом под наклон, #232). */}
-          <div ref={particlesRef} className={styles.tiltOver} data-tilt="">
-            {active && (
-              <AmbientCanvas
-                key={active.id}
-                ambient={active.ambient}
-                region={active.layout ? { layerRef, polygon: active.layout.polygon } : undefined}
-              />
-            )}
           </div>
           <div className={styles.vignette} aria-hidden="true" />
           <EdgeLabels
