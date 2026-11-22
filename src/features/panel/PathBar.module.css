@@ -29,7 +29,7 @@
 .step + .step::before {
   content: '›';
   padding: 0 var(--space-1);
-  color: var(--metal);
+  color: var(--text-3);
 }
 
 .link,
