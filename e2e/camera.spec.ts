@@ -13,7 +13,7 @@ test('мир во весь кадр; колесо, перетаскивание,
   test.skip(info.project.name === 'mobile', 'колесо и мышь — компьютер; телефон — отдельный тест жестов');
   void consoleErrors;
   await page.goto('./#/world');
-  const viewport = page.locator('[data-world-art]').locator('xpath=ancestor::div[2]');
+  const viewport = page.locator('[data-map-viewport]');
   await expect(viewport).toBeVisible();
 
   // Арт покрывает кадр: слой не меньше кадра по обеим осям.
@@ -32,20 +32,35 @@ test('мир во весь кадр; колесо, перетаскивание,
   // Перетаскивание двигает карту и не открывает регион.
   // Подписи — в экранном слое (#180, #231): слой камерой не масштабируется, а якорь названия стоит в той же точке
   // экрана, что и его точка на слое карты, — в любой момент жеста и инерции, между любыми задачами страницы (не только
-  // после посадки): зонд перепроверяет это в каждой задаче, пока идёт жест.
+  // после посадки): зонд перепроверяет это в каждой задаче, пока идёт жест. Карта при этом наклонена (#232): точки
+  // сверяются по меткам-точкам на карте и в подписи (габарит метки учитывает наклон, `getScreenCTM` — нет).
   await expect(page.locator('[data-screen-layer] [data-label="stonehall"]')).toHaveCount(1);
+  await expect.poll(() => page.locator('[data-tilt]').first().evaluate((el) => (el as HTMLElement).style.transform)).toContain('rotateX');
   await page.evaluate(() => {
     const w = window as unknown as { twin: { dx: number; screen: string; on: boolean } };
     w.twin = { dx: 0, screen: '', on: true };
     const channel = new MessageChannel();
+    const dot = (parent: Element, x: number, y: number, id: string) => {
+      let c = parent.querySelector(`:scope > [data-probe="${id}"]`);
+      if (!c) {
+        c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        c.setAttribute('data-probe', id);
+        c.setAttribute('cx', String(x));
+        c.setAttribute('cy', String(y));
+        c.setAttribute('r', '0.5');
+        parent.append(c);
+      }
+      const r = c.getBoundingClientRect();
+      return [r.left + r.width / 2, r.top + r.height / 2] as const;
+    };
     const probe = () => {
       const mapSvg = document.querySelector<SVGSVGElement>('[data-world-art] ~ svg')!;
       const screen = document.querySelector('[data-screen-layer]')!.parentElement!;
       const label = document.querySelector<SVGGElement>('[data-screen-layer] [data-label="stonehall"]')!;
       const [x, y] = label.getAttribute('data-at')!.split(' ').map(Number) as [number, number];
-      const p = new DOMPoint(x, y).matrixTransform(mapSvg.getScreenCTM()!);
-      const ctm = label.getScreenCTM()!;
-      w.twin.dx = Math.max(w.twin.dx, Math.abs(p.x - ctm.e) + Math.abs(p.y - ctm.f));
+      const [mx, my] = dot(mapSvg, x, y, 'map');
+      const [lx, ly] = dot(label, 0, 0, 'label');
+      w.twin.dx = Math.max(w.twin.dx, Math.abs(mx - lx) + Math.abs(my - ly));
       if (!['', 'none'].includes(screen.style.transform)) w.twin.screen = screen.style.transform;
       if (w.twin.on) channel.port2.postMessage(0);
     };
@@ -101,6 +116,113 @@ test('мир во весь кадр; колесо, перетаскивание,
   await page.getByRole('button', { name: /Мир/ }).first().click();
   await expectHash(page, '#/world');
   await expect.poll(() => scale(page)).toBeCloseTo(1, 2);
+});
+
+test('наклон на приближении (#232): колесо держит точку под курсором, клик попадает в регион и в маркер', async ({ page, consoleErrors }, info) => {
+  test.skip(info.project.name === 'mobile', 'колесо и мышь — компьютер');
+  void consoleErrors;
+  await page.goto('./#/world');
+  const viewport = page.locator('[data-map-viewport]');
+  await expect(viewport).toBeVisible();
+  await expect(page.locator('[role="button"][data-region]').first()).toBeAttached();
+  const tilt = () =>
+    page.locator('[data-tilt]').first().evaluate((el) => Number(/rotateX\(([\d.]+)deg\)/.exec((el as HTMLElement).style.transform)?.[1] ?? 0));
+  const settled = () =>
+    expect
+      .poll(async () => {
+        // Перелёт — WAAPI (inline-стиль не меняется), жесты — inline-стиль: ждём, пока нет ни того, ни другого.
+        const now = () => layer(page).evaluate((el) => `${(el as HTMLElement).style.transform}|${el.getAnimations().length}`);
+        const before = await now();
+        await page.waitForTimeout(300);
+        return before.endsWith('|0') && (await now()) === before;
+      })
+      .toBe(true);
+  expect(await tilt()).toBe(0);
+
+  // Метка-точка на слое карты: её габарит на экране учитывает наклон — так видно, где точка карты на самом деле.
+  const mark = (x: number, y: number, id: string) =>
+    page.evaluate(
+      ({ x, y, id }) => {
+        const svg = document.querySelector<SVGSVGElement>('[data-world-art] ~ svg')!;
+        const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        c.setAttribute('data-probe', id);
+        c.setAttribute('r', '0.5');
+        c.setAttribute('pointer-events', 'none');
+        c.setAttribute('cx', String(x));
+        c.setAttribute('cy', String(y));
+        svg.append(c);
+      },
+      { x, y, id },
+    );
+  const where = (id: string) =>
+    page.evaluate((id) => {
+      const r = document.querySelector(`[data-probe="${id}"]`)!.getBoundingClientRect();
+      return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+    }, id);
+  /** Регион карты, который браузер находит в точке экрана (под подписями экранного слоя). */
+  const regionAt = (p: { x: number; y: number }) =>
+    page.evaluate(
+      ({ x, y }) =>
+        document
+          .elementsFromPoint(x, y)
+          .map((e) => e.closest('polygon[data-region]')?.getAttribute('data-region'))
+          .find(Boolean) ?? null,
+      p,
+    );
+
+  // Пока карта плоская: точка внутри региона в верхней левой четверти кадра — там наклон уводит точки дальше всего.
+  const pick = await page.evaluate(() => {
+    const frame = document.querySelector('[data-map-viewport]')!.getBoundingClientRect();
+    const svg = document.querySelector<SVGSVGElement>('[data-world-art] ~ svg')!;
+    const ctm = svg.getScreenCTM()!;
+    for (const poly of Array.from(document.querySelectorAll<SVGPolygonElement>('polygon[role="button"][data-region]'))) {
+      const b = poly.getBBox();
+      for (let fy = 0.3; fy <= 0.7; fy += 0.1)
+        for (let fx = 0.3; fx <= 0.7; fx += 0.1) {
+          const p = new DOMPoint(b.x + fx * b.width, b.y + fy * b.height);
+          if (!poly.isPointInFill(p)) continue;
+          const s = p.matrixTransform(ctm);
+          const rx = (s.x - frame.left) / frame.width;
+          const ry = (s.y - frame.top) / frame.height;
+          if (rx > 0.15 && rx < 0.4 && ry > 0.15 && ry < 0.4) return { id: poly.getAttribute('data-region')!, x: p.x, y: p.y, sx: s.x, sy: s.y };
+        }
+    }
+    return null;
+  });
+  expect(pick).not.toBeNull();
+  const cursor = { x: pick!.sx, y: pick!.sy };
+  expect(await regionAt(cursor)).toBe(pick!.id);
+  await mark(pick!.x, pick!.y, 'cursor');
+  await page.mouse.move(cursor.x, cursor.y);
+  for (let i = 0; i < 6; i += 1) {
+    await page.mouse.wheel(0, -100);
+    await page.waitForTimeout(150);
+  }
+  await settled();
+  expect(await tilt()).toBeGreaterThan(10);
+  const held = await where('cursor');
+  expect(Math.abs(held.x - cursor.x)).toBeLessThan(2);
+  expect(Math.abs(held.y - cursor.y)).toBeLessThan(2);
+  // Клик под наклоном попадает в тот регион, который виден под курсором.
+  expect(await regionAt(cursor)).toBe(pick!.id);
+
+  // В регионе наклон полный; маркер места стоит над своей точкой карты, клик по этой точке открывает место.
+  await page.goto('./#/r/stonehall');
+  await expect(page.locator('[data-screen-layer] [data-place][data-at]').first()).toBeAttached();
+  await settled();
+  expect(await tilt()).toBeGreaterThan(8);
+  const place = await page.evaluate(() => {
+    const g = document.querySelector<SVGGElement>('[data-screen-layer] [data-place][data-at]')!;
+    const [x, y] = g.getAttribute('data-at')!.split(' ').map(Number) as [number, number];
+    const r = g.querySelector('[data-hit]')!.getBoundingClientRect();
+    return { slug: g.getAttribute('data-place')!, x, y, hit: { x: r.left + r.width / 2, y: r.top + r.height / 2 } };
+  });
+  await mark(place.x, place.y, 'place');
+  const spot = await where('place');
+  expect(Math.abs(place.hit.x - spot.x)).toBeLessThan(1.5);
+  expect(Math.abs(place.hit.y - spot.y)).toBeLessThan(1.5);
+  await page.mouse.click(spot.x, spot.y);
+  await expectHash(page, `#/r/stonehall/${place.slug}`);
 });
 
 test('подсказка региона у названия, одного размера на зуме и в окне, глубже порога её нет; щипок над ней — зум камеры (#208, #193)', async ({

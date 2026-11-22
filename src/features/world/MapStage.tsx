@@ -24,7 +24,6 @@ import { RegionLabels, RegionsLayer, UnmappedRegions, zoomedClass } from './Regi
 import { RegionTooltip } from './RegionTooltip';
 import { Threads } from './Threads';
 import { threadStyleFrom } from './threadStyle';
-import { depthFlagsFrom } from './depth';
 import { useDepth } from './useDepth';
 import { useCamera } from './useCamera';
 import { useFontsTick, useMeasuredLabels } from './useMeasuredLabels';
@@ -158,11 +157,12 @@ export function MapStage({
   const { shown } = tip;
   // Рисунок пути (#168): `?threads=<вариант>` до `#` — сравнение вариантов для владельца.
   const [threadVariant] = useState(() => threadStyleFrom(typeof location === 'undefined' ? '' : location.search));
-  // Наклон (прототип #197, #232): `?depth=tilt` до `#`; без флага карта прежняя. Размытие краёв (#233) — всегда.
-  const [depth] = useState(() => depthFlagsFrom(typeof location === 'undefined' ? '' : location.search));
+  // Объём (#232, #233): наклон слоя карты и частиц региона на приближении, размытие краёв кадра — `useDepth`.
   const tiltRef = useRef<HTMLDivElement>(null);
+  const particlesRef = useRef<HTMLDivElement>(null);
+  const tiltRefs = useMemo(() => [tiltRef, particlesRef] as const, []);
   const dofRef = useRef<HTMLDivElement>(null);
-  useDepth(depth, { viewportRef, layerRef, tiltRef, dofRef, screenSvgRef });
+  useDepth({ viewportRef, layerRef, tiltRefs, dofRef, screenSvgRef });
 
   // Ширины подписей: при смене языка, региона и после загрузки шрифтов (подписи не выходят за край и не налезают).
   const fontsTick = useFontsTick();
@@ -294,14 +294,10 @@ export function MapStage({
     <div className={[styles.stage, active && zoomedClass].filter(Boolean).join(' ')}>
       {hasMap && (
         <div ref={viewportRef} className={styles.viewport} onClick={onBackground} data-map-viewport="">
-          {depth.tilt ? (
-            // Прототип #197: наклон — в обёртке слоя карты; подписи — плоские, над ней.
-            <div ref={tiltRef} className={styles.tilt}>
-              {mapLayer}
-            </div>
-          ) : (
-            mapLayer
-          )}
+          {/* Наклон (#232): обёртка слоя карты; подписи и маркеры — плоские, над ней (якоря переносит `useDepth`). */}
+          <div ref={tiltRef} className={styles.tilt} data-tilt="">
+            {mapLayer}
+          </div>
           {/* Размытие и затемнение краёв на приближении (#233): над артом, под подписями и маркерами. */}
           <div ref={dofRef} className={styles.dof} aria-hidden="true">
             <span data-edge="top" />
@@ -311,13 +307,16 @@ export function MapStage({
           <div className={styles.cloudBox}>
             <MapAtmosphere layerRef={layerRef} activeId={active?.id} clear={Boolean(threads)} />
           </div>
-          {active && (
-            <AmbientCanvas
-              key={active.id}
-              ambient={active.ambient}
-              region={active.layout ? { layerRef, polygon: active.layout.polygon } : undefined}
-            />
-          )}
+          {/* Частицы региона лежат на земле: наклоняются вместе с картой (обёртка с запасом под наклон, #232). */}
+          <div ref={particlesRef} className={styles.tiltOver} data-tilt="">
+            {active && (
+              <AmbientCanvas
+                key={active.id}
+                ambient={active.ambient}
+                region={active.layout ? { layerRef, polygon: active.layout.polygon } : undefined}
+              />
+            )}
+          </div>
           <div className={styles.vignette} aria-hidden="true" />
           <EdgeLabels
             active={active}

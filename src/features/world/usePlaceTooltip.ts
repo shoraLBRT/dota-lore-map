@@ -1,5 +1,6 @@
 import { useCallback, useId, useMemo, useState, type RefObject } from 'react';
 import type { Hero, Region } from '../../data/types';
+import { pointOnMap } from './depth';
 
 /**
  * Места открытого региона и подсказка героев места (S2/S3, SPEC §6.3): маркер под наведением мыши
@@ -20,9 +21,9 @@ export function usePlaceTooltip(
   const getAnchor = useCallback(() => {
     const svg = svgRef.current;
     if (!svg || !spot?.pos) return null;
-    const rect = svg.getBoundingClientRect();
-    const [x, y] = spot.pos;
-    return { x: rect.left + x * rect.width, y: rect.top + y * rect.height };
+    // Слой карты под наклоном (#232): место — там, где его видно на наклонённой карте.
+    const [x, y] = pointOnMap(svg, ...spot.pos);
+    return { x, y };
   }, [spot, svgRef]);
   return { id, spots, spotId, spot, heroes, getAnchor, setHover, setFocus };
 }

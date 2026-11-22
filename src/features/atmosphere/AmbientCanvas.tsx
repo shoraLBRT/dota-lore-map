@@ -1,6 +1,7 @@
 import { useEffect, useRef, type RefObject } from 'react';
 import type { Ambient, Point } from '../../data/types';
 import { polygonBox, prefersReducedMotion, STAGE_WIDTH } from '../world/camera';
+import { flatRect } from '../world/depth';
 import { smoothPath } from '../world/stage';
 import styles from './AmbientCanvas.module.css';
 import { particleCount, spawn, step, twinkle, type Kind, type Particle } from './particles';
@@ -131,12 +132,15 @@ export function AmbientCanvas({ ambient, region }: { ambient: Ambient | undefine
       particles = particles.slice(0, n);
       while (particles.length < n) particles.push(spawn(kind, area.width, area.height));
     };
-    /** Рамка региона на холсте сейчас; камера двигается — частицы растягиваются вместе с ней. */
+    /**
+     * Рамка региона на холсте сейчас; камера двигается — частицы растягиваются вместе с ней. Под наклоном (#232) холст
+     * и слой карты наклонены одинаково: рамки — плоские (`flatRect`), а наклон рисунку даёт обёртка.
+     */
     const follow = () => {
       const layer = layerRef?.current;
       if (!box || !layer) return;
-      const lr = layer.getBoundingClientRect();
-      const cr = canvas.getBoundingClientRect();
+      const lr = flatRect(layer);
+      const cr = flatRect(canvas);
       const next: Area = {
         left: lr.left - cr.left + box.left * lr.width,
         top: lr.top - cr.top + box.top * lr.height,
