@@ -105,6 +105,8 @@ test('шапка окна: название и × в одной строке, н
   const mobile = info.project.name === 'mobile';
   await page.goto('./#/r/icewrack');
   await expect(panelHeading(page)).toHaveText('Айсрак');
+  // Название и × меряются по очереди — до конца въезда окна они в разных кадрах сдвига.
+  await waitForSettled(page);
   const panel = page.getByRole('complementary', { name: 'Айсрак' });
   await expect(panel.getByRole('heading', { level: 2 })).toHaveCount(1);
   const title = (await panelHeading(page).boundingBox())!;
