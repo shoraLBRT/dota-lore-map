@@ -2,7 +2,7 @@ import AxeBuilder from '@axe-core/playwright';
 import type { Page } from '@playwright/test';
 import { test, expect, expectHash, panelHeading, waitForSettled } from './fixtures';
 
-// Прототип новой навигации за `?nav=new` (#230, SPEC §5.1 «Правила окон»): «мир → регион → место → герой → закрыть всё»
+// Навигация (#230, SPEC §5.1 «Правила окон»): «мир → регион → место → герой → закрыть всё»
 // каждым способом закрытия — ×, Esc, «назад» браузера, путь вверху карты. На `mobile` — тапы и шторки.
 
 const PROFILE = /^#\/r\/icewrack\/frostreach\?hero=[a-z_]+&profile$/;
@@ -12,7 +12,7 @@ async function reachProfile(page: Page, mobile: boolean): Promise<string> {
     if (mobile) await locator.tap();
     else await locator.click();
   };
-  await page.goto('./?nav=new#/world');
+  await page.goto('./#/world');
   await expect(page.locator('[data-region]').first()).toBeAttached();
   if (mobile) {
     const list = page.getByRole('navigation', { name: 'Регионы' });
@@ -68,7 +68,6 @@ test('× закрывает каждое окно на шаг вверх, чип
   await tap(page.getByRole('button', { name: 'Закрыть: Айсрак' }));
   await expectHash(page, '#/world');
   await expect(page.getByRole('complementary')).toHaveCount(0);
-  expect(new URL(page.url()).search).toBe('?nav=new');
 });
 
 test('Esc и «назад» браузера — на шаг назад, профиль закрывается вместе с героем', async ({ page, consoleErrors }, info) => {
@@ -98,10 +97,38 @@ test('путь вверху карты: «Мир» из профиля — ср�
   await expect(page.getByRole('complementary')).toHaveCount(0);
 });
 
-test('без флага — прежняя навигация: крошки в шапке, пути нет', async ({ page, consoleErrors }) => {
+test('шапка окна: название и × в одной строке, название один раз; «Мир» на месте и над развёрнутой шторкой', async ({
+  page,
+  consoleErrors,
+}, info) => {
   void consoleErrors;
+  const mobile = info.project.name === 'mobile';
   await page.goto('./#/r/icewrack');
   await expect(panelHeading(page)).toHaveText('Айсрак');
-  await expect(page.getByRole('navigation', { name: 'Навигация по уровням' })).toBeVisible();
-  await expect(page.getByTestId('path-bar')).toHaveCount(0);
+  const panel = page.getByRole('complementary', { name: 'Айсрак' });
+  await expect(panel.getByRole('heading', { level: 2 })).toHaveCount(1);
+  const title = (await panelHeading(page).boundingBox())!;
+  const close = (await panel.getByRole('button', { name: 'Закрыть: Айсрак' }).boundingBox())!;
+  // Одна строка: × по высоте пересекается с названием и стоит правее.
+  expect(close.y).toBeLessThan(title.y + title.height);
+  expect(close.y + close.height).toBeGreaterThan(title.y);
+  expect(close.x).toBeGreaterThan(title.x + title.width - 1);
+
+  const world = page.getByRole('navigation', { name: 'Путь' }).getByRole('button', { name: 'Мир' });
+  const at = (await world.boundingBox())!;
+  await page.locator('[role="button"][data-place="frostreach"] [data-hit]').click();
+  await expectHash(page, '#/r/icewrack/frostreach');
+  await expect(panelHeading(page)).toHaveText('Фростреч');
+  const next = (await world.boundingBox())!;
+  expect([next.x, next.y]).toEqual([at.x, at.y]);
+  if (mobile) {
+    // Развёрнутая шторка «Мир» не закрывает.
+    await page.getByTestId('panel-sheet').locator('button').first().click();
+    await expect(page.getByTestId('panel-sheet')).toHaveAttribute('data-state', 'full');
+    await waitForSettled(page);
+    const sheetTop = (await page.getByTestId('panel-sheet').getByRole('complementary').boundingBox())!.y;
+    expect(next.y + next.height).toBeLessThanOrEqual(sheetTop);
+    await world.click();
+    await expectHash(page, '#/world');
+  }
 });

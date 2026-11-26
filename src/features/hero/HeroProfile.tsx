@@ -42,9 +42,6 @@ export function HeroProfile({ hero, spots, threads, onPick }: Props) {
   return (
     <>
       <HeroHeader key={hero.key} hero={hero} />
-      <h2 tabIndex={-1} data-panel-heading>
-        {hero.name}
-      </h2>
       <a
         className={styles.official}
         href={heroUrl(hero, lang)}

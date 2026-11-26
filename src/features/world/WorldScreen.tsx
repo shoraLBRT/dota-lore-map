@@ -6,12 +6,8 @@ import { parseHash, serializeRoute, type Route, type Screen } from '../../app/ro
 import type { Hero } from '../../data/types';
 import { getHero, getPlace, getRegion, placeName, world } from '../../data/world';
 import { useT } from '../../i18n';
-import { HeroChip } from '../hero/HeroChip';
 import { HeroProfile, HeroSearch } from '../../app/deferred';
-import { ProfileCrumb } from '../hero/ProfileCrumb';
 import { PlacePanel } from '../location/PlacePanel';
-import { navNew } from '../../app/flags';
-import { Breadcrumbs } from '../panel/Breadcrumbs';
 import { PathBar } from '../panel/PathBar';
 import { Panel } from '../panel/Panel';
 import { Rail } from '../rail/Rail';
@@ -37,18 +33,16 @@ interface Props {
 /** Экраны «Мир», «Регион», «Место»: левая панель, карта, правая панель. Неизвестный регион или место — уровень выше. */
 /**
  * Что показывает экран по адресу: регион, место, герой, открыт ли профиль и ключ панели.
- * Профиль героя (E15, SPEC §6.8, A15) открыт флагом `profile` в адресе: панель показывает его поверх панели экрана.
- * Без флага герой только выбран — подсветка, нити и плашка-чип сверху, а в панели регион или место.
- * Переход на другой экран (`open`) флаг снимает: видна панель того места, куда пришли, герой остаётся.
+ * Выбранный герой — это открытый профиль (E15, SPEC §6.8, A15; #230, Н6): панель показывает его поверх панели экрана,
+ * на карте — подсветка и нити. Переход на другой экран (`open`) профиль закрывает и героя снимает.
  */
-function screenView(screen: Screen, heroKey: Route['hero'], profile: Route['profile'], nav: boolean) {
+function screenView(screen: Screen, heroKey: Route['hero']) {
   const regionId = screen.name === 'region' || screen.name === 'place' ? screen.regionId : undefined;
   const region = regionId ? getRegion(regionId) : undefined;
   const place = region && screen.name === 'place' ? getPlace(region.id, screen.placeSlug) : undefined;
   const screenKey = serializeRoute({ screen });
   const hero = heroKey ? getHero(heroKey) : undefined;
-  // `?nav=new` (#230, Н6): выбранный герой — это открытый профиль; чипа «герой выбран» без профиля нет.
-  const profileOpen = Boolean(hero && (profile || nav));
+  const profileOpen = Boolean(hero);
   const panelKey = profileOpen ? `hero/${hero!.key}` : screenKey;
   return { region, place, screenKey, hero, profileOpen, panelKey };
 }
@@ -63,14 +57,13 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
     if (rootRef.current) rootRef.current.inert = veiled;
   }, [veiled]);
 
-  const nav = navNew();
-  const { region, place, screenKey, hero, profileOpen, panelKey } = screenView(screen, route.hero, route.profile, nav);
+  const { region, place, screenKey, hero, profileOpen, panelKey } = screenView(screen, route.hero);
   // Панель — переходом после клика (#238, A14): кадр клика несёт только карту (перелёт камеры, вуаль), а панель
   // рисуется следом отложенным рендером, который React режет на куски. Всё, что внутри панели и фокус после
   // перехода, — по `shown`; карта, звук и камера — по живому адресу.
   const shownScreen = useDeferredValue(screen);
   const shownRoute = useDeferredValue(route);
-  const shown = screenView(shownScreen, shownRoute.hero, shownRoute.profile, nav);
+  const shown = screenView(shownScreen, shownRoute.hero);
   // Свёрнутая панель снова раскрывается при смене региона, места или героя: иначе клик «ничего не делает».
   const [fold, setFold] = useState<{ key: string; collapsed: boolean }>({ key: panelKey, collapsed: false });
   const collapsed = fold.key === panelKey && fold.collapsed;
@@ -179,7 +172,7 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
   // Поле поиска или чип героя сверху кадра: метки «нить за краем» встают под них (#64).
   const [barBottom, setBarBottom] = useState(0);
   const barObserver = useRef<ResizeObserver | null>(null);
-  const barRef = useCallback((el: HTMLDivElement | null) => {
+  const barRef = useCallback((el: HTMLElement | null) => {
     barObserver.current?.disconnect();
     barObserver.current = null;
     if (!el) {
@@ -193,7 +186,6 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
     barObserver.current.observe(el);
   }, []);
 
-  const showChip = !veiled && !searchOpen && Boolean(hero) && !profileOpen && !nav;
   // Шторка списка регионов (#196): открыли регион из списка — вернулись в мир к развёрнутому списку (фокус на пункт),
   // тапом по карте — к свёрнутому.
   const [regionsOpen, setRegionsOpen] = useState(false);
@@ -203,9 +195,6 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
     navigate({ screen: heroScreen(h), hero: h.key, profile: true });
   };
   const clearHero = () => navigate({ screen: route.screen }, { replace: true });
-  // Закрыть профиль, оставив героя выбранным (крошка, Esc); открыть снова — чип.
-  const closeProfile = () => hero && navigate({ screen: route.screen, hero: hero.key }, { replace: true });
-  const openProfile = () => hero && navigate({ screen: route.screen, hero: hero.key, profile: true });
   // Портрет героя где угодно — в подсказке региона (#65), в панели региона или места, в «Связан с» профиля —
   // открывает его профиль (E15, SPEC §6.8). Камера остаётся: из мира не приближается, в регионе и месте
   // герой виден подсветкой и нитями с метками «за краем».
@@ -224,10 +213,10 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
     navigate(route.hero ? { screen: next, hero: route.hero, media: target.mediaId } : { screen: next, media: target.mediaId });
   };
 
-  // `?nav=new` (#230, Н1, Н2): путь вверху карты и × у окна — на шаг вверх. Профиль закрывается вместе с героем (Н6):
+  // #230, Н1, Н2: путь вверху карты и × у окна — на шаг вверх. Профиль закрывается вместе с героем (Н6):
   // та же одна запись истории, что и «назад» браузера (Н5). Звено экрана под открытым профилем закрывает профиль.
   const goPath = (s: Screen) => (profileOpen && serializeRoute({ screen: s }) === screenKey ? clearHero() : open(s));
-  const showPath = nav && !veiled && !searchOpen && (Boolean(region) || profileOpen);
+  const showPath = !veiled && !searchOpen && (Boolean(region) || profileOpen);
   const closePanel = () => {
     if (shown.profileOpen) clearHero();
     else if (shown.place) open({ name: 'region', regionId: shown.region!.id });
@@ -275,32 +264,27 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
             panelCollapsed={Boolean(region) && collapsed}
             onLeaveRegion={() => open({ name: 'world' })}
             onCameraMove={veiled ? undefined : dismissMoveHint}
-            backgroundClose={!nav}
           />
         </main>
-        {showPath && <PathBar region={region} place={place ?? undefined} heroName={profileOpen ? hero?.name : undefined} onGo={goPath} />}
+        {showPath && <PathBar region={region} place={place ?? undefined} heroName={profileOpen ? hero?.name : undefined} onGo={goPath} measureRef={barRef} />}
         {showMoveHint && <MoveHint state={moveHint.state} />}
         {showHint && <WorldHint state={hint.state} />}
-        {!veiled && (searchOpen || showChip) && (
+        {!veiled && searchOpen && (
           <div
             ref={barRef}
-            className={[barStyles.bar, showChip && barStyles.chipBar, (shown.region || shown.profileOpen) && !shownCollapsed && barStyles.withPanel]
+            className={[barStyles.bar, (shown.region || shown.profileOpen) && !shownCollapsed && barStyles.withPanel]
               .filter(Boolean)
               .join(' ')}
           >
-            {searchOpen ? (
-              <HeroSearch
-                onPick={pick}
-                onOpen={(screen) => {
-                  setSearchOpen(false);
-                  open(screen);
-                }}
-                onClose={() => setSearchOpen(false)}
-                onPreview={setSearchPreview}
-              />
-            ) : (
-              hero && <HeroChip hero={hero} onOpen={openProfile} onClear={clearHero} />
-            )}
+            <HeroSearch
+              onPick={pick}
+              onOpen={(screen) => {
+                setSearchOpen(false);
+                open(screen);
+              }}
+              onClose={() => setSearchOpen(false)}
+              onPreview={setSearchPreview}
+            />
           </div>
         )}
         {(shown.profileOpen || shown.region) && (
@@ -309,14 +293,7 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
             collapsed={shownCollapsed}
             onToggle={() => setFold({ key: shown.panelKey, collapsed: !shownCollapsed })}
             contentKey={shown.panelKey}
-            back={
-              nav ? undefined : shown.profileOpen ? (
-                <ProfileCrumb onClose={closeProfile} />
-              ) : (
-                <Breadcrumbs region={shown.region!} place={shown.place} />
-              )
-            }
-            onClose={nav ? closePanel : undefined}
+            onClose={closePanel}
             closeLabel={shown.profileOpen ? t('hero.close') : undefined}
             minimizable={shown.profileOpen}
           >

@@ -15,12 +15,7 @@
   animation: panel-in var(--dur-panel-in) var(--ease-in-out);
 }
 
-/* Свёрнута: уехала за правый край, кнопка-ромб остаётся на виду. Карта не двигается — панель её не толкает. */
-.collapsed {
-  transform: translateX(calc(100% + var(--space-4)));
-}
-
-/* `?nav=new` (#230, Н7): профиль свёрнут до шапки — карта и нити героя видны под ней. */
+/* #230, Н7: профиль свёрнут до шапки — карта и нити героя видны под ней. */
 .minimized {
   bottom: auto;
 }
@@ -33,13 +28,6 @@
 }
 
 .panel {
-  pointer-events: auto;
-}
-
-.toggle {
-  position: absolute;
-  top: var(--space-4);
-  right: calc(100% + var(--space-2));
   pointer-events: auto;
 }
 
@@ -80,7 +68,7 @@
   color: var(--text-2);
 }
 
-/* Шапка-картинка места с затуханием в фон (SPEC §5.5 п. 1). Встаёт вплотную под крошку «назад»:
+/* Шапка-картинка места с затуханием в фон (SPEC §5.5 п. 1). Встаёт вплотную под шапку окна:
    над прокруткой рамки у панели всегда шапка, отступ прокрутки сверху — --space-2 (PanelFrame .underHead). */
 .header {
   display: block;

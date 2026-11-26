@@ -74,7 +74,7 @@ test('закрытые галерея и профиль «назадом» не 
   await expect(gallery).toBeHidden();
   await expectHash(page, '#/r/icewrack/frostreach');
 
-  // Профиль: открыть, закрыть крошкой — герой выбран; «назад» не открывает профиль снова.
+  // Профиль: открыть, закрыть × — профиль закрывается вместе с героем (#230); «назад» не открывает профиль снова.
   await tap(
     page
       .getByRole('complementary')
@@ -83,12 +83,10 @@ test('закрытые галерея и профиль «назадом» не 
   );
   await expectHash(page, /\?hero=[a-z_]+&profile$/);
   await tap(page.getByRole('button', { name: 'Закрыть профиль' }));
-  await expectHash(page, /^#\/r\/icewrack\/frostreach\?hero=[a-z_]+$/);
-
-  // Шаг назад — место до выбора героя, затем регион; галерея и профиль не появляются.
-  await page.goBack();
   await expectHash(page, '#/r/icewrack/frostreach');
   await expect(panelHeading(page)).toHaveText('Фростреч');
+
+  // Шаг назад — регион; галерея и профиль не появляются.
   await page.goBack();
   await expectHash(page, '#/r/icewrack');
   await expect(panelHeading(page)).toHaveText('Айсрак');

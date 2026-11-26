@@ -53,10 +53,10 @@ export interface View {
   zoomMax?: number;
 }
 
-/** Высота свёрнутой шторки — доля высоты кадра (SPEC §13: ~30 %). */
-export const SHEET_PEEK = 0.3;
-/** Высота развёрнутой шторки (SPEC §13: ~90 %). */
-export const SHEET_FULL = 0.9;
+/** Высота шторки в среднем положении — доля высоты кадра (SPEC §13: половина экрана, #230). */
+export const SHEET_PEEK = 0.5;
+/** Высота развёрнутой шторки (SPEC §13): ~80 % — сверху остаются верхняя полоса и строка пути с «Мир» (#230). */
+export const SHEET_FULL = 0.8;
 /** Телефон: правая панель становится нижней шторкой (SPEC §13). */
 export const MOBILE_QUERY = '(max-width: 767px)';
 

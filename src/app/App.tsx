@@ -5,7 +5,6 @@ import { Intro } from '../features/intro/Intro';
 import { WorldScreen } from '../features/world/WorldScreen';
 import { I18nProvider } from '../i18n';
 import { Gallery, prefetchDeferred } from './deferred';
-import { navNew } from './flags';
 import { NavigationProvider, useNavigation } from './navigation';
 import { parentScreen, type Screen } from './router';
 import { SoundProvider, useSound } from './sound';
@@ -24,10 +23,9 @@ function Screens() {
   const galleryOpen = gallery !== null;
 
   // Esc — по порядку: окно обратной связи (обычно закрывается само; здесь — если фокус ушёл из окна, A16);
-  // галерея закрывается сама; открыт профиль — закрыть его, герой остаётся (SPEC §6.8);
-  // выбран герой — снять выбор (SPEC §6.5); иначе на уровень вверх: место → регион → мир (SPEC §5.1).
+  // галерея закрывается сама; открыт профиль героя — закрыть его, герой снимается одним шагом (SPEC §5.1, §6.8);
+  // иначе на уровень вверх: место → регион → мир (SPEC §5.1).
   const hero = route.hero;
-  const profileOpen = Boolean(route.hero && route.profile);
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key !== 'Escape') return;
@@ -36,11 +34,6 @@ function Screens() {
         return;
       }
       if (galleryOpen) return;
-      // `?nav=new` (#230, Н5, Н6): профиль и герой закрываются одним шагом — чипа нет.
-      if (hero && profileOpen && !navNew()) {
-        navigate({ screen, hero }, { replace: true });
-        return;
-      }
       if (hero) {
         navigate({ screen }, { replace: true });
         return;
@@ -50,7 +43,7 @@ function Screens() {
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [screen, open, navigate, galleryOpen, hero, profileOpen, feedback]);
+  }, [screen, open, navigate, galleryOpen, hero, feedback]);
 
   const start = useCallback(() => {
     unlock(); // SPEC §5.2: «Начать» включает звуки, если пользователь их не выключил.

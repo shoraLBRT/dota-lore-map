@@ -49,25 +49,18 @@ describe('регион и место', () => {
     expect(heading()).toHaveTextContent(placeName(cobalt, 'ru'));
   });
 
-  it('крошки и глобус: место → «‹ Регион» → «‹ Мир»; глобус из места — сразу в мир', () => {
+  it('строка пути и глобус: место → «Регион» → «Мир»; глобус из места — сразу в мир (#230)', () => {
     window.location.hash = '#/r/icewrack/cobalt';
     render(<App />);
-    fireEvent.click(screen.getByRole('button', { name: `‹ ${icewrack.name.ru}` }));
+    fireEvent.click(within(screen.getByTestId('path-bar')).getByRole('button', { name: icewrack.name.ru }));
     expect(window.location.hash).toBe('#/r/icewrack');
-    fireEvent.click(screen.getByRole('button', { name: '‹ Мир' }));
+    fireEvent.click(within(screen.getByTestId('path-bar')).getByRole('button', { name: 'Мир' }));
     expect(window.location.hash).toBe('#/world');
 
     window.location.hash = '#/r/icewrack/cobalt';
     fireEvent(window, new HashChangeEvent('hashchange'));
     fireEvent.click(screen.getByRole('button', { name: 'Весь мир' }));
     expect(window.location.hash).toBe('#/world');
-  });
-
-  it('клик по пустому месту карты в месте возвращает в регион (SPEC §5.1)', () => {
-    window.location.hash = '#/r/icewrack/cobalt';
-    render(<App />);
-    fireEvent.click(document.querySelector('[data-region="icewrack"]')!);
-    expect(window.location.hash).toBe('#/r/icewrack');
   });
 
   it('портрет героя открывает профиль; dota2.com — в профиле, в новой вкладке, на языке интерфейса (A6, §6.7, §6.8)', () => {
@@ -90,14 +83,6 @@ describe('регион и место', () => {
     );
   });
 
-  it('свёрнутая панель снова раскрывается при переходе к месту', () => {
-    window.location.hash = '#/r/icewrack';
-    render(<App />);
-    fireEvent.click(screen.getByRole('button', { name: 'Свернуть панель' }));
-    expect(screen.getByRole('button', { name: 'Развернуть панель' })).toBeInTheDocument();
-    fireEvent.click(screen.getByRole('button', { name: placeName(pool, 'ru') }));
-    expect(screen.getByRole('button', { name: 'Свернуть панель' })).toBeInTheDocument();
-  });
 });
 
 describe('клики во время анимации камеры (SPEC §7.1)', () => {
@@ -145,10 +130,10 @@ describe('клики во время анимации камеры (SPEC §7.1)'
     expect(window.location.hash).toBe('#/r/icewrack');
     expect(flights).toBe(1);
 
-    // Во время перелёта: глобус, Esc, крошки и маркер — встают в очередь, адрес и панель не меняются.
+    // Во время перелёта: глобус, Esc, строка пути и маркер — встают в очередь, адрес и панель не меняются.
     fireEvent.click(screen.getByRole('button', { name: 'Весь мир' }));
     fireEvent.keyDown(window, { key: 'Escape' });
-    fireEvent.click(screen.getByRole('button', { name: '‹ Мир' }));
+    fireEvent.click(within(screen.getByTestId('path-bar')).getByRole('button', { name: 'Мир' }));
     fireEvent.click(screen.getByRole('button', { name: placeName(pool, 'ru') }));
     expect(window.location.hash).toBe('#/r/icewrack');
     expect(heading()).toHaveTextContent(icewrack.name.ru);

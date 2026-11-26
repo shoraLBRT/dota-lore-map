@@ -1,5 +1,4 @@
 import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState, type FocusEvent, type KeyboardEvent } from 'react';
-import { navNew } from '../../app/flags';
 import { listenOutsideTap } from '../../app/outsideTap';
 import type { Screen } from '../../app/router';
 import { HeroPortrait } from '../../components/HeroPortrait';
@@ -78,10 +77,9 @@ export function HeroSearch({ onPick, onOpen, onClose, onPreview }: Props) {
     }
   };
 
-  // `?nav=new` (#230, Н11): поиск закрывают Esc, тап вне поля без перетаскивания и выбор варианта — как окно
+  // #230, Н11: поиск закрывают Esc, тап вне поля без перетаскивания и выбор варианта — как окно
   // обратной связи и меню языка (#229). Нажатие на карту фокус уводит в никуда — это не закрытие; уход фокуса
-  // клавишей Tab на другой элемент — закрытие, как и без флага.
-  const nav = navNew();
+  // клавишей Tab на другой элемент — закрытие.
   const frameRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef(onClose);
   useLayoutEffect(() => {
@@ -89,16 +87,15 @@ export function HeroSearch({ onPick, onOpen, onClose, onPreview }: Props) {
   });
   const searchLabel = t('rail.search');
   useEffect(() => {
-    if (!nav) return;
     return listenOutsideTap(
       (target) => Boolean(frameRef.current?.contains(target) || target.closest(`button[aria-label="${searchLabel}"]`)),
       () => closeRef.current(),
     );
-  }, [nav, searchLabel]);
+  }, [searchLabel]);
 
   const onBlur = (e: FocusEvent<HTMLDivElement>) => {
     const to = e.relatedTarget as Node | null;
-    if (nav && !to) return;
+    if (!to) return;
     if (!e.currentTarget.contains(to)) onClose();
   };
 

@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState, type CSSProperties, type MouseEvent } from 'react';
+import { useMemo, useRef, useState, type CSSProperties } from 'react';
 import type { Hero, Region } from '../../data/types';
 import { heroesOfPlace, heroesOfRegion } from '../../data/world';
 import { useT } from '../../i18n';
@@ -78,8 +78,6 @@ interface Props {
   onLeaveRegion?: () => void;
   /** Сдвиг или зум свободной камеры (#181): гаснет подсказка жестов. */
   onCameraMove?: () => void;
-  /** Клик по пустой карте в месте возвращает в регион (SPEC §5.1); `?nav=new` (#230, Н4) — нет, только зум двойным. */
-  backgroundClose?: boolean;
 }
 
 const noop = () => () => {};
@@ -116,7 +114,6 @@ export function MapStage({
   panelCollapsed = false,
   onLeaveRegion,
   onCameraMove,
-  backgroundClose = true,
 }: Props) {
   const { lang, l, t } = useT();
   const svgRef = useRef<SVGSVGElement>(null);
@@ -177,13 +174,6 @@ export function MapStage({
   });
   const labels = useMarkerLabels({ spots, activeId: active?.id, activePlaceSlug, focusPlaces, lang, widths, frame });
   const threadLayout = useThreadLayout({ threads, active, drawn, labels, names, frame, coverTop });
-
-  // S3 → S2: клик по пустому месту карты (SPEC §5.1). Маркеры клик не пропускают.
-  const onBackground = (e: MouseEvent) => {
-    if (backgroundClose && active && activePlaceSlug !== undefined && !(e.target as Element).closest?.('[data-place]')) {
-      onSelectRegion(active.id);
-    }
-  };
 
   const mapLayer = (
     <div ref={layerRef} className={styles.layer} style={{ transform: target, '--aspect': WORLD_ASPECT } as CSSProperties}>
@@ -264,7 +254,7 @@ export function MapStage({
   return (
     <div className={[styles.stage, active && zoomedClass].filter(Boolean).join(' ')}>
       {hasMap && (
-        <div ref={viewportRef} className={styles.viewport} onClick={onBackground} data-map-viewport="">
+        <div ref={viewportRef} className={styles.viewport} data-map-viewport="">
           {/* Наклон (#232): обёртка слоя карты; подписи и маркеры — плоские, над ней (якоря переносит `useDepth`). */}
           <div ref={tiltRef} className={styles.tilt} data-tilt="">
             {mapLayer}
