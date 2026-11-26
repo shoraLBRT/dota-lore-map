@@ -20,7 +20,7 @@ describe('i18n', () => {
   });
 
   it('подставляет переменные', () => {
-    expect(translate('ru', 'panel.backTo', { name: 'Айсрак' })).toBe('‹ Айсрак');
+    expect(translate('ru', 'panel.close', { name: 'Айсрак' })).toBe('Закрыть: Айсрак');
   });
 
   it('язык по умолчанию — из браузера, затем сохранённый выбор', () => {
