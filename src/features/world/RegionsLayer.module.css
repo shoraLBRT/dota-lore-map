@@ -315,3 +315,28 @@
     animation: none;
   }
 }
+
+/* Телефон (#255, A14): ореол названий и гербов — обводкой, без filter. CSS-фильтр на элементе SVG WebKit считает на
+   процессоре и заново при каждой перерисовке слоя, а слой названий перерисовывается на каждом кадре камеры (27
+   названий и 27 гербов). Свечение остаётся только у подсвеченных (наведение, фокус, регион героя) — их единицы. */
+@media (max-width: 767px) {
+  .name,
+  .tierLabel .name {
+    filter: none;
+    stroke: var(--map-halo);
+    stroke-width: 4px;
+  }
+
+  .label.lit .name,
+  .label.heroRegion .name {
+    filter: drop-shadow(0 0 6px var(--hl));
+  }
+
+  .crest {
+    filter: none;
+  }
+
+  .label.lit .crest {
+    filter: drop-shadow(0 0 6px var(--hl));
+  }
+}

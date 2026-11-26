@@ -134,6 +134,20 @@
   mask-image: linear-gradient(to top, #000 25%, transparent);
 }
 
+/* Карту закрыла галерея на весь экран телефона (#255): слои карты не собираются в кадр, циклы эффектов стоят. */
+.viewport[data-paused] {
+  visibility: hidden;
+}
+
+/* Телефон (#255, A14): без размытия — backdrop-filter над картой, которая едет под пальцем, на iPhone пересчитывается
+   каждый кадр. Затемнение то же, что при reduced motion. */
+@media (max-width: 767px) {
+  .dof > span {
+    backdrop-filter: none;
+    background: var(--dof-shade);
+  }
+}
+
 /* Reduced motion: без размытия, только затемнение (обычный градиент, фильтра над кадром нет). */
 @media (prefers-reduced-motion: reduce) {
   .dof > span {

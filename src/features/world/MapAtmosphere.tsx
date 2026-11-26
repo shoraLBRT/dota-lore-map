@@ -108,6 +108,8 @@ interface Props {
   activeId?: string;
   /** На карте путь героя (#168): облака и туман расходятся до PATH_VEIL, чтобы нить читалась. */
   clear?: boolean;
+  /** Карту не видно (#255): цикл кадров стоит, как на скрытой вкладке. */
+  paused?: boolean;
 }
 
 /**
@@ -116,12 +118,20 @@ interface Props {
  * Положение мира каждый кадр берётся из `getBoundingClientRect` слоя — так эффекты идут и за жестами,
  * и за анимацией перелёта камеры. Телефон — облегчённый вариант; reduced motion — без дрейфа, пульса и параллакса.
  */
-export function MapAtmosphere({ layerRef, activeId, clear = false }: Props) {
+export function MapAtmosphere({ layerRef, activeId, clear = false, paused = false }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const grainRef = useRef<HTMLDivElement>(null);
   const active = useRef(activeId);
   const dirty = useRef(true);
   const veilTarget = useRef(clear ? PATH_VEIL : 1);
+  const pausedRef = useRef(paused);
+  /** Пуск или остановка цикла по видимости вкладки и `paused` (ставит эффект холста). */
+  const sync = useRef(() => {});
+  useEffect(() => {
+    pausedRef.current = paused;
+    dirty.current = true;
+    sync.current();
+  }, [paused]);
 
   /** Начало завесы входа в регион (#234): мир → регион. */
   const partStart = useRef<number | null>(null);
@@ -296,14 +306,16 @@ export function MapAtmosphere({ layerRef, activeId, clear = false }: Props) {
       draw(rect, layer.offsetWidth, reduced ? 0 : (now - t0) / 1000);
     };
     const start = () => {
-      if (frame || document.hidden) return;
+      if (frame || document.hidden || pausedRef.current) return;
+      lastNow = performance.now();
       frame = requestAnimationFrame(tick);
     };
     const stop = () => {
       cancelAnimationFrame(frame);
       frame = 0;
     };
-    const onVisibility = () => (document.hidden ? stop() : start());
+    const onVisibility = () => (document.hidden || pausedRef.current ? stop() : start());
+    sync.current = onVisibility;
 
     start();
     document.addEventListener('visibilitychange', onVisibility);
@@ -311,6 +323,7 @@ export function MapAtmosphere({ layerRef, activeId, clear = false }: Props) {
     observer?.observe(canvas);
     return () => {
       stop();
+      sync.current = () => {};
       document.removeEventListener('visibilitychange', onVisibility);
       observer?.disconnect();
     };

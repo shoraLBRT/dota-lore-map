@@ -104,8 +104,24 @@ interface Area {
  * обрезаны по его форме, а их число — от площади этой рамки. Без `region` — весь кадр.
  * Не рисуется при prefers-reduced-motion; на скрытой вкладке цикл стоит.
  */
-export function AmbientCanvas({ ambient, region }: { ambient: Ambient | undefined; region?: AmbientRegion }) {
+export function AmbientCanvas({
+  ambient,
+  region,
+  paused = false,
+}: {
+  ambient: Ambient | undefined;
+  region?: AmbientRegion;
+  /** Карту не видно (#255): цикл кадров стоит, как на скрытой вкладке. */
+  paused?: boolean;
+}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const pausedRef = useRef(paused);
+  /** Пуск или остановка цикла по видимости вкладки и `paused` (ставит эффект холста). */
+  const sync = useRef(() => {});
+  useEffect(() => {
+    pausedRef.current = paused;
+    sync.current();
+  }, [paused]);
   const kind = ambientKind(ambient);
   const density = ambient?.density ?? 0.5;
   const reduced = prefersReducedMotion();
@@ -203,7 +219,7 @@ export function AmbientCanvas({ ambient, region }: { ambient: Ambient | undefine
       frame = requestAnimationFrame(tick);
     };
     const start = () => {
-      if (frame || document.hidden) return;
+      if (frame || document.hidden || pausedRef.current) return;
       last = performance.now();
       frame = requestAnimationFrame(tick);
     };
@@ -211,7 +227,8 @@ export function AmbientCanvas({ ambient, region }: { ambient: Ambient | undefine
       cancelAnimationFrame(frame);
       frame = 0;
     };
-    const onVisibility = () => (document.hidden ? stop() : start());
+    const onVisibility = () => (document.hidden || pausedRef.current ? stop() : start());
+    sync.current = onVisibility;
 
     start();
     document.addEventListener('visibilitychange', onVisibility);
@@ -219,6 +236,7 @@ export function AmbientCanvas({ ambient, region }: { ambient: Ambient | undefine
     observer?.observe(canvas);
     return () => {
       stop();
+      sync.current = () => {};
       document.removeEventListener('visibilitychange', onVisibility);
       observer?.disconnect();
     };

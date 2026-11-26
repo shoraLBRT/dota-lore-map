@@ -79,6 +79,8 @@ interface Props {
   onLeaveRegion?: () => void;
   /** Сдвиг или зум свободной камеры (#181): гаснет подсказка жестов. */
   onCameraMove?: () => void;
+  /** Карту не видно (галерея на весь экран телефона, #255): облака, туман и частицы не рисуются. */
+  paused?: boolean;
 }
 
 const noop = () => () => {};
@@ -115,6 +117,7 @@ export function MapStage({
   panelCollapsed = false,
   onLeaveRegion,
   onCameraMove,
+  paused = false,
 }: Props) {
   const { lang, l, t } = useT();
   const svgRef = useRef<SVGSVGElement>(null);
@@ -254,7 +257,7 @@ export function MapStage({
   return (
     <div className={[styles.stage, active && zoomedClass].filter(Boolean).join(' ')}>
       {hasMap && (
-        <div ref={viewportRef} className={styles.viewport} data-map-viewport="">
+        <div ref={viewportRef} className={styles.viewport} data-map-viewport="" data-paused={paused || undefined}>
           {/* Наклон (#232): обёртка слоя карты; подписи и маркеры — плоские, над ней (якоря переносит `useDepth`). */}
           <div ref={tiltRef} className={styles.tilt} data-tilt="">
             {mapLayer}
@@ -265,6 +268,7 @@ export function MapStage({
                   key={active.id}
                   ambient={active.ambient}
                   region={active.layout ? { layerRef, polygon: active.layout.polygon } : undefined}
+                  paused={paused}
                 />
               )}
             </div>
@@ -276,7 +280,7 @@ export function MapStage({
           </div>
           {screenLayer}
           <div className={styles.cloudBox}>
-            <MapAtmosphere layerRef={layerRef} activeId={active?.id} clear={Boolean(threads)} />
+            <MapAtmosphere layerRef={layerRef} activeId={active?.id} clear={Boolean(threads)} paused={paused} />
           </div>
           <div className={styles.vignette} aria-hidden="true" />
           <EdgeLabels
