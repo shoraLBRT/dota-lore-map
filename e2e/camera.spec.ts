@@ -90,7 +90,7 @@ test('мир во весь кадр; колесо, перетаскивание,
   await page.keyboard.press('+');
   await expect.poll(() => scale(page)).toBeGreaterThan(1.2);
 
-  // Клик по региону — перелёт, «‹ Мир» — снова весь мир.
+  // Клик по региону — перелёт, «Показать мир целиком» — снова весь мир.
   await page.getByRole('button', { name: 'Показать мир целиком' }).click();
   await expect.poll(() => scale(page)).toBeCloseTo(1, 2);
   await page.locator('[role="button"][data-region="stonehall"]').click();
