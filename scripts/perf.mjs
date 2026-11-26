@@ -1,4 +1,4 @@
-// Замер плавности (#185, ARCHITECTURE A14): `npm run perf [-- --no-build] [--headed] [--size 1440x900] [--runs 3] [--query threads=…]`.
+// Замер плавности (#185, ARCHITECTURE A14): `npm run perf [-- --no-build] [--headed] [--size 1440x900] [--runs 3] [--query <флаг>=…]`.
 // Боевая сборка (`vite build` + `vite preview`), Chromium с GPU; кадры считает requestAnimationFrame в странице.
 // Шаги: вход («Начать» → мир), колесо внутрь ×12, перетаскивание, колесо наружу до мира, клик по региону.
 // На телефоне (ширина < 768) свободной камеры в мире нет — только вход и регион из списка.
@@ -28,7 +28,7 @@ const PORT = 4185;
 const loadMode = flag('--load');
 const external = opt('--url', '');
 const BASE = external || `http://localhost:${PORT}/dota-lore-map/`;
-/** Строка запроса до `#` (флаги прототипов для сравнения, например `threads=…` #168): `--query threads=caravan`. */
+/** Строка запроса до `#` (флаги прототипов для сравнения): `--query <флаг>=<значение>`. */
 const QUERY = opt('--query', '') ? `?${opt('--query', '')}` : '';
 const net4g = opt('--net', '') === '4g';
 /** «Fast 4G» DevTools: 9 Мбит/с вниз, 1.5 вверх, задержка 60 мс × 2.75 (как в Chrome). */
