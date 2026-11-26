@@ -90,6 +90,43 @@ describe('нижняя шторка', () => {
     expect(sheet()).toHaveAttribute('data-state', 'head');
   });
 
+  it('свайп по тексту (#253): в среднем положении тянет шторку целиком и отменяет прокрутку; наверху — текст', () => {
+    window.location.hash = '#/r/icewrack';
+    render(<App />);
+    const h = window.innerHeight;
+    const panel = screen.getByRole('complementary', { name: getRegion('icewrack')!.name.ru });
+    const text = panel.lastElementChild as HTMLElement;
+    const touch = (y: number) => ({ touches: [{ clientY: y }] });
+    fireEvent.touchStart(text, touch(h * 0.7));
+    // Отменённый touchmove — браузер не прокручивает текст.
+    expect(fireEvent.touchMove(text, touch(h * 0.3))).toBe(false);
+    expect(sheet().style.getPropertyValue('--sheet-h')).toBe(`${Math.round(h * 0.9)}px`);
+    fireEvent.touchEnd(text, { touches: [] });
+    expect(sheet()).toHaveAttribute('data-state', 'full');
+
+    // Наверху свайп вверх — прокрутка текста, шторка не двигается.
+    fireEvent.touchStart(text, touch(h * 0.6));
+    expect(fireEvent.touchMove(text, touch(h * 0.4))).toBe(true);
+    fireEvent.touchMove(text, touch(h * 0.8));
+    expect(sheet().style.getPropertyValue('--sheet-h')).toBe('');
+    fireEvent.touchEnd(text, { touches: [] });
+    expect(sheet()).toHaveAttribute('data-state', 'full');
+
+    // Текст прокручен не к началу — свайп вниз прокручивает его.
+    text.scrollTop = 40;
+    fireEvent.touchStart(text, touch(h * 0.3));
+    expect(fireEvent.touchMove(text, touch(h * 0.5))).toBe(true);
+    fireEvent.touchEnd(text, { touches: [] });
+    expect(sheet()).toHaveAttribute('data-state', 'full');
+
+    // Прокручен к началу — свайп вниз опускает шторку.
+    text.scrollTop = 0;
+    fireEvent.touchStart(text, touch(h * 0.2));
+    expect(fireEvent.touchMove(text, touch(h * 0.55))).toBe(false);
+    fireEvent.touchEnd(text, { touches: [] });
+    expect(sheet()).toHaveAttribute('data-state', 'peek');
+  });
+
   it('с компьютера — прежний док справа', () => {
     mobile = false;
     window.location.hash = '#/r/icewrack';
