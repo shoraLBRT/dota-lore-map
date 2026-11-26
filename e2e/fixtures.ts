@@ -62,3 +62,21 @@ export async function expectNoHorizontalScroll(page: Page): Promise<void> {
 export function panelHeading(page: Page) {
   return page.locator('h2[data-panel-heading]:visible').first();
 }
+
+/**
+ * Ждёт, пока закончатся конечные анимации и переходы (въезд панели, посадка камеры). Бесконечные
+ * (дыхание подсветки, зерно) не ждём. Фиксированная пауза перед axe в WebKit на CI бывала короче
+ * въезда панели — axe ловил полупрозрачный текст как color-contrast.
+ */
+export async function waitForSettled(page: Page): Promise<void> {
+  await page.waitForFunction(
+    () =>
+      document
+        .getAnimations()
+        .filter((a) => a.playState === 'running' && a.effect?.getComputedTiming().iterations !== Infinity)
+        .length === 0,
+    undefined,
+    { timeout: 10_000 },
+  );
+  await page.waitForTimeout(100);
+}

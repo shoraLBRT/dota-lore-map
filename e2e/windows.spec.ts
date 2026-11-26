@@ -1,5 +1,5 @@
 import AxeBuilder from '@axe-core/playwright';
-import { test, expect, expectHash, panelHeading } from './fixtures';
+import { test, expect, expectHash, panelHeading, waitForSettled } from './fixtures';
 
 // Окна и история браузера (#182, docs/research/E18-windows-audit.md): «назад» — всегда шаг назад,
 // закрытое окно (галерея, профиль) «назадом» не возвращается. Один сценарий на проект; на `mobile` — тапы и шторка.
@@ -38,7 +38,7 @@ test('мир → регион → место → герой → назад ×3',
   await expect(panelHeading(page)).toHaveText(hero);
 
   // Профиль открыт поверх места: axe без серьёзных нарушений.
-  await page.waitForTimeout(800); // панель профиля въезжает
+  await waitForSettled(page); // панель профиля въезжает
   const { violations } = await new AxeBuilder({ page }).analyze();
   expect(violations.filter((v) => v.impact === 'serious' || v.impact === 'critical').map((v) => v.id)).toEqual([]);
 
