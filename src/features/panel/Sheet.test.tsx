@@ -21,6 +21,14 @@ function stubMedia() {
   }));
 }
 
+// Скорость броска считается по `timeStamp` событий, а jsdom берёт его из `Date.now()`. Часы в тестах свои:
+// иначе между событиями то проходит 0 мс, то 1 мс, и медленное перетаскивание случайно становится броском.
+let now = 0;
+/** Сдвинуть часы перед следующим событием: мало — бросок, много — медленное перетаскивание. */
+const wait = (ms: number) => (now += ms);
+const SLOW = 1000;
+const FAST = 50;
+
 const sheet = () => screen.getByTestId('panel-sheet');
 const handle = () => sheet().querySelector('button')!;
 
@@ -29,9 +37,14 @@ describe('нижняя шторка', () => {
     mobile = true;
     listeners = [];
     stubMedia();
+    now = 0;
+    vi.spyOn(Date, 'now').mockImplementation(() => now);
     window.localStorage.setItem('dota-lore-map.lang', 'ru');
   });
-  afterEach(() => vi.unstubAllGlobals());
+  afterEach(() => {
+    vi.unstubAllGlobals();
+    vi.restoreAllMocks();
+  });
 
   it('на телефоне вместо дока — шторка, открывается свёрнутой; тап по ручке разворачивает и сворачивает', () => {
     window.location.hash = '#/r/icewrack';
@@ -76,6 +89,7 @@ describe('нижняя шторка', () => {
     render(<App />);
     const h = window.innerHeight;
     fireEvent.pointerDown(handle(), { clientY: h * 0.7, pointerId: 1 });
+    wait(FAST);
     fireEvent.pointerMove(handle(), { clientY: h * 0.3, pointerId: 1 });
     expect(sheet().style.getPropertyValue('--sheet-h')).toBe(`${Math.round(h * 0.9)}px`);
     fireEvent.pointerUp(handle(), { clientY: h * 0.3, pointerId: 1 });
@@ -84,6 +98,7 @@ describe('нижняя шторка', () => {
     expect(sheet().style.getPropertyValue('--sheet-h')).toBe('');
 
     fireEvent.pointerDown(handle(), { clientY: h * 0.1, pointerId: 1 });
+    wait(FAST);
     fireEvent.pointerMove(handle(), { clientY: h * 0.6, pointerId: 1 });
     fireEvent.pointerUp(handle(), { clientY: h * 0.6, pointerId: 1 });
     // Бросок вниз с высоты ниже половины — на ближайшее положение ниже: заголовок.
@@ -98,6 +113,7 @@ describe('нижняя шторка', () => {
     const text = panel.lastElementChild as HTMLElement;
     const touch = (y: number) => ({ touches: [{ clientY: y }] });
     fireEvent.touchStart(text, touch(h * 0.7));
+    wait(SLOW);
     // Отменённый touchmove — браузер не прокручивает текст.
     expect(fireEvent.touchMove(text, touch(h * 0.3))).toBe(false);
     expect(sheet().style.getPropertyValue('--sheet-h')).toBe(`${Math.round(h * 0.9)}px`);
@@ -119,9 +135,10 @@ describe('нижняя шторка', () => {
     fireEvent.touchEnd(text, { touches: [] });
     expect(sheet()).toHaveAttribute('data-state', 'full');
 
-    // Прокручен к началу — свайп вниз опускает шторку.
+    // Прокручен к началу — медленный свайп вниз опускает шторку в ближайшее положение (бросок довёл бы до заголовка).
     text.scrollTop = 0;
     fireEvent.touchStart(text, touch(h * 0.2));
+    wait(SLOW);
     expect(fireEvent.touchMove(text, touch(h * 0.55))).toBe(false);
     fireEvent.touchEnd(text, { touches: [] });
     expect(sheet()).toHaveAttribute('data-state', 'peek');
