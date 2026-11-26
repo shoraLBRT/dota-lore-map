@@ -71,7 +71,7 @@ describe('нижняя шторка', () => {
     expect(sheet()).toHaveAttribute('data-state', 'peek');
   });
 
-  it('«потянуть»: вверх — развёрнута, вниз — половина экрана; клик после перетаскивания не переключает', () => {
+  it('«потянуть»: бросок вверх — развёрнута, вниз — на шаг ниже; клик после перетаскивания не переключает', () => {
     window.location.hash = '#/r/icewrack';
     render(<App />);
     const h = window.innerHeight;
@@ -86,7 +86,8 @@ describe('нижняя шторка', () => {
     fireEvent.pointerDown(handle(), { clientY: h * 0.1, pointerId: 1 });
     fireEvent.pointerMove(handle(), { clientY: h * 0.6, pointerId: 1 });
     fireEvent.pointerUp(handle(), { clientY: h * 0.6, pointerId: 1 });
-    expect(sheet()).toHaveAttribute('data-state', 'peek');
+    // Бросок вниз с высоты ниже половины — на ближайшее положение ниже: заголовок.
+    expect(sheet()).toHaveAttribute('data-state', 'head');
   });
 
   it('с компьютера — прежний док справа', () => {

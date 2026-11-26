@@ -1,4 +1,4 @@
-/* `?nav=new` (#230, Н1): путь поверх карты слева сверху; на телефоне — под верхней полосой (рейкой). */
+/* #230, Н1: путь поверх карты слева сверху; на телефоне — под верхней полосой (рейкой) и над шторкой. */
 .path {
   position: absolute;
   top: var(--space-4);
@@ -13,7 +13,7 @@
 
 .list {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   margin: 0;
   padding: 0 var(--space-2);
@@ -24,6 +24,11 @@
   display: flex;
   align-items: center;
   min-width: 0;
+}
+
+/* «Мир» не сжимается: одна и та же кнопка на всех экранах (#230). */
+.home {
+  flex: none;
 }
 
 .step + .step::before {
@@ -42,6 +47,10 @@
   font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: var(--tracking-display);
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .link {
@@ -70,6 +79,8 @@
   .path {
     top: var(--space-2);
     left: var(--space-2);
+    /* Над нижней шторкой (z-index 15): «Мир» на виду и при развёрнутой. */
+    z-index: 16;
     max-width: calc(100% - 2 * var(--space-2));
   }
 

@@ -36,7 +36,8 @@ describe('панель региона (SPEC §5.4)', () => {
   it('реальный регион: заголовок, подзаголовок, герои, характеристики 2×2, описание', () => {
     const icewrack = getRegion('icewrack')!;
     wrap(<RegionPanel region={icewrack} />);
-    expect(screen.getByRole('heading', { level: 2, name: icewrack.name.ru })).toBeInTheDocument();
+    // Название — в шапке окна (WindowHead, #230), не в тексте панели.
+    expect(screen.queryByRole('heading', { level: 2 })).toBeNull();
     expect(screen.getByText(icewrack.subtitle!.ru)).toBeInTheDocument();
     expect(screen.getAllByRole('link', { name: /официальная страница/ })).toHaveLength(heroesOfRegion('icewrack').length);
 
@@ -90,9 +91,9 @@ describe('панель региона (SPEC §5.4)', () => {
 describe('панель места (SPEC §5.5)', () => {
   const place: Place = { name: 'Nowhere', slug: 'nowhere', capital: false, placement: 'ours' };
 
-  it('место без текста, арта и медиа — только название, без пустых блоков и заглушек', () => {
+  it('место без текста, арта и медиа — без пустых блоков и заглушек', () => {
     wrap(<PlacePanel region={bare} place={place} />);
-    expect(screen.getByRole('heading', { level: 2, name: 'Nowhere' })).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { level: 2 })).toBeNull();
     expect(screen.queryByRole('img')).toBeNull();
     expect(screen.queryByRole('heading', { level: 3 })).toBeNull();
     // Единственная кнопка — «Нашли ошибку или знаете больше?» (#74): у пустого места она нужнее всего.

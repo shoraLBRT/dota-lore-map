@@ -16,7 +16,7 @@ describe('профиль героя', () => {
     window.localStorage.setItem('dota-lore-map.lang', 'ru');
   });
 
-  it('портрет в панели региона: профиль поверх панели, камера на месте, фокус на имени; крошка закрывает профиль, герой остаётся', () => {
+  it('портрет в панели региона: профиль поверх панели, камера на месте, фокус на имени; × закрывает профиль и снимает героя (#230)', async () => {
     window.location.hash = '#/r/icewrack';
     render(<App />);
     fireEvent.click(screen.getByRole('button', { name: /^Tusk: открыть профиль/ }));
@@ -40,13 +40,11 @@ describe('профиль героя', () => {
 
     const region = getRegion('icewrack')!.name.ru;
     fireEvent.click(within(panel).getByRole('button', { name: 'Закрыть профиль' }));
-    expect(window.location.hash).toBe('#/r/icewrack?hero=tusk');
+    await waitFor(() => expect(window.location.hash).toBe('#/r/icewrack'));
     expect(screen.getByRole('heading', { level: 2, name: region })).toHaveFocus();
-    // Герой выбран: нити на месте, сверху чип — он открывает профиль снова.
-    expect(document.querySelectorAll('[data-testid="threads"] path[data-thread]').length).toBeGreaterThan(0);
-    fireEvent.click(within(chip()!).getByRole('button', { name: /^Tusk/ }));
-    expect(window.location.hash).toBe('#/r/icewrack?hero=tusk&profile');
-    expect(within(profile('Tusk')!).getByRole('heading', { level: 2, name: 'Tusk' })).toHaveFocus();
+    // Профиль и герой закрываются одним шагом: нитей нет, чипа нет.
+    expect(document.querySelectorAll('[data-testid="threads"] path[data-thread]')).toHaveLength(0);
+    expect(chip()).toBeNull();
   });
 
   it('из мира: профиль справа, камера не приближается; описание и «Связан с» с быстрыми ссылками', () => {
@@ -76,7 +74,7 @@ describe('профиль героя', () => {
     expect(within(mars).getByRole('button', { name: 'Dawnbreaker, Возлюбленные: открыть профиль' })).toBeInTheDocument();
   });
 
-  it('арты: карточка открывает галерею героя; Esc закрывает галерею, затем профиль, затем снимает героя', async () => {
+  it('арты: карточка открывает галерею героя; Esc закрывает галерею, затем профиль вместе с героем', async () => {
     window.location.hash = '#/world?hero=tusk&profile';
     render(<App />);
     const tusk = getHero('tusk')!;
@@ -93,18 +91,12 @@ describe('профиль героя', () => {
     act(() => {
       fireEvent.keyDown(window, { key: 'Escape' });
     });
-    expect(window.location.hash).toBe('#/world?hero=tusk');
-    expect(profile('Tusk')).toBeNull();
-    // Профиль закрыт, а в мире панели нет — фокус на чипе героя.
-    expect(within(chip()!).getByRole('button', { name: /^Tusk/ })).toHaveFocus();
-    act(() => {
-      fireEvent.keyDown(window, { key: 'Escape' });
-    });
     expect(window.location.hash).toBe('#/world');
+    expect(profile('Tusk')).toBeNull();
     expect(chip()).toBeNull();
   });
 
-  it('место из профиля: камера к месту, панель места, герой выбран, чип возвращает профиль; EN', () => {
+  it('место из профиля: камера к месту, панель места, профиль закрыт вместе с героем; EN', () => {
     window.localStorage.setItem('dota-lore-map.lang', 'en');
     window.location.hash = '#/world?hero=nevermore&profile';
     render(<App />);
@@ -114,41 +106,24 @@ describe('профиль героя', () => {
     // Упоминание — не остановка пути (пунктир, как на карте).
     expect(second!.className).toMatch(/offPath/);
     fireEvent.click(first!);
-    expect(window.location.hash).toBe('#/r/hells/abysm?hero=nevermore');
+    expect(window.location.hash).toBe('#/r/hells/abysm');
     expect(profile('Shadow Fiend')).toBeNull();
     const abysm = placeName(getPlace('hells', 'abysm')!, 'en');
     expect(screen.getByRole('heading', { level: 2, name: abysm })).toHaveFocus();
-    const badge = screen.getByRole('region', { name: 'Selected hero' });
-    expect(within(badge).getByRole('button', { name: 'Clear hero selection' })).toBeInTheDocument();
-    fireEvent.click(within(badge).getByRole('button', { name: 'Shadow Fiend Hero profile' }));
-    expect(window.location.hash).toBe('#/r/hells/abysm?hero=nevermore&profile');
-    expect(within(profile('Shadow Fiend')!).getByRole('button', { name: 'Close profile' })).toBeInTheDocument();
+    expect(chip()).toBeNull();
   });
 
-  it('выбран герой, профиль открыт: маркер, крошка и Esc ведут к панели экрана, герой остаётся (A15)', async () => {
+  it('профиль открыт: маркер места ведёт к панели места, профиль закрывается вместе с героем (A15, #230)', () => {
     window.location.hash = '#/r/icewrack?hero=tusk&profile';
     render(<App />);
     expect(profile('Tusk')).not.toBeNull();
     // Маркер места на карте: панель места, профиль закрыт, нити и подсветка героя на месте.
     fireEvent.click(document.querySelector('[data-place="blueheart-glacier"][tabindex]')!);
-    expect(window.location.hash).toBe('#/r/icewrack/blueheart-glacier?hero=tusk');
+    expect(window.location.hash).toBe('#/r/icewrack/blueheart-glacier');
     expect(profile('Tusk')).toBeNull();
     const glacier = placeName(getPlace('icewrack', 'blueheart-glacier')!, 'ru');
     expect(screen.getByRole('complementary', { name: glacier })).toBeInTheDocument();
-    expect(document.querySelector('[data-place="cobalt"]')?.getAttribute('class')).toMatch(/heroSpot/);
-    expect(chip()).not.toBeNull();
-    // Крошка «‹ Регион» панели места — тоже переход: герой выбран, профиль закрыт.
-    fireEvent.click(screen.getByRole('button', { name: `‹ ${getRegion('icewrack')!.name.ru}` }));
-    expect(window.location.hash).toBe('#/r/icewrack?hero=tusk');
-    // Чип открывает профиль; ✕ снимает героя.
-    fireEvent.click(within(chip()!).getByRole('button', { name: /^Tusk/ }));
-    expect(window.location.hash).toBe('#/r/icewrack?hero=tusk&profile');
-    act(() => {
-      fireEvent.keyDown(window, { key: 'Escape' });
-    });
-    await waitFor(() => expect(window.location.hash).toBe('#/r/icewrack?hero=tusk'));
-    fireEvent.click(within(chip()!).getByRole('button', { name: 'Снять выбор героя' }));
-    expect(window.location.hash).toBe('#/r/icewrack');
+    expect(document.querySelector('[data-place="cobalt"]')?.getAttribute('class')).not.toMatch(/heroSpot/);
     expect(chip()).toBeNull();
   });
 

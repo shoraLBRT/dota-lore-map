@@ -71,12 +71,12 @@ describe('поиск героя и нити', () => {
     const icewrack = placeName(getPlace('icewrack', 'icewrack')!, 'ru');
     fireEvent.click(within(plaque).getByRole('button', { name: 'Закрыть профиль' }));
     expect(profile('Winter Wyvern')).toBeNull();
-    expect(window.location.hash).toBe('#/r/icewrack/icewrack?hero=winter_wyvern');
-    // Под профилем была панель места — она и вернулась.
+    expect(window.location.hash).toBe('#/r/icewrack/icewrack');
+    // Под профилем была панель места — она и вернулась; герой снят вместе с профилем (#230).
     expect(screen.getByRole('complementary', { name: icewrack })).toBeInTheDocument();
   });
 
-  it('места в разных регионах: мир, остальные регионы приглушены, нити; список мест ведёт к месту, герой остаётся', () => {
+  it('места в разных регионах: мир, остальные регионы приглушены, нити; список мест ведёт к месту, профиль закрывается вместе с героем', () => {
     window.location.hash = '#/world?hero=tidehunter&profile';
     render(<App />);
     expect(threads()).toHaveLength(2);
@@ -87,26 +87,22 @@ describe('поиск героя и нити', () => {
     const places = within(profile('Tidehunter')!).getByRole('navigation', { name: 'Места героя' });
     const reef = new RegExp(`^${placeName(getPlace('the-deep', 'recluse-reef')!, 'ru')}`);
     fireEvent.click(within(places).getByRole('button', { name: reef }));
-    expect(window.location.hash).toBe('#/r/the-deep/recluse-reef?hero=tidehunter');
-    // Видна панель места, профиль закрыт; герой выбран — чип сверху.
+    expect(window.location.hash).toBe('#/r/the-deep/recluse-reef');
+    // Видна панель места, профиль закрыт вместе с героем (#230): нитей и чипа нет.
     expect(profile('Tidehunter')).toBeNull();
-    expect(screen.getByRole('region', { name: 'Выбранный герой' })).toBeInTheDocument();
-    expect(threads()).toHaveLength(2);
+    expect(screen.queryByRole('region', { name: 'Выбранный герой' })).toBeNull();
+    expect(threads()).toHaveLength(0);
   });
 
-  it('Esc: сначала закрывает профиль, потом снимает героя, потом — на уровень вверх', () => {
+  it('Esc: сначала закрывает профиль вместе с героем, потом — на уровень вверх (#230)', () => {
     window.location.hash = '#/r/quoidge?hero=pudge&profile';
     render(<App />);
     expect(profile('Pudge')).not.toBeNull();
     act(() => {
       fireEvent.keyDown(window, { key: 'Escape' });
     });
-    expect(window.location.hash).toBe('#/r/quoidge?hero=pudge');
-    expect(profile('Pudge')).toBeNull();
-    act(() => {
-      fireEvent.keyDown(window, { key: 'Escape' });
-    });
     expect(window.location.hash).toBe('#/r/quoidge');
+    expect(profile('Pudge')).toBeNull();
     fireEvent.keyDown(window, { key: 'Escape' });
     expect(window.location.hash).toBe('#/world');
   });
@@ -177,7 +173,7 @@ describe('поиск героя и нити', () => {
     expect(lit('heavens')).not.toMatch(/lit/);
   });
 
-  it('регионы и места (#100): место с регионом в подписи, выбор открывает его экран, герой остаётся', () => {
+  it('регионы и места (#100): место с регионом в подписи, выбор открывает его экран (герой снимается, #230)', () => {
     window.location.hash = '#/world?hero=crystal_maiden';
     render(<App />);
     const input = openSearch();
@@ -187,7 +183,7 @@ describe('поиск героя и нити', () => {
     expect(option).toHaveTextContent('Турстаркури');
     expect(option).toHaveTextContent(getRegion('wailing-mountains')!.name.ru);
     fireEvent.click(option!);
-    expect(window.location.hash).toBe('#/r/wailing-mountains/turstarkuri?hero=crystal_maiden');
+    expect(window.location.hash).toBe('#/r/wailing-mountains/turstarkuri');
     expect(screen.queryByRole('combobox')).toBeNull();
 
     // EN-название в RU-интерфейсе: регион и место показаны по-русски.
@@ -196,7 +192,7 @@ describe('поиск героя и нити', () => {
     expect(screen.getByRole('group', { name: 'Регионы' })).toBeInTheDocument();
     expect(screen.getByRole('group', { name: 'Места' })).toBeInTheDocument();
     fireEvent.keyDown(screen.getByRole('combobox'), { key: 'Enter' });
-    expect(window.location.hash).toBe('#/r/icewrack?hero=crystal_maiden');
+    expect(window.location.hash).toBe('#/r/icewrack');
   });
 
   it('клавиатура идёт по всем группам; вариант региона героя на карте не показывает (#100)', () => {

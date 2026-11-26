@@ -32,7 +32,7 @@ describe('переключение языка на лету', () => {
     expect(document.title).toBe('Dota 2 World');
     expect(screen.getByRole('heading', { level: 2, name: 'Tusk' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Close profile' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Collapse panel' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Collapse to header' })).toBeInTheDocument();
     const profile = screen.getByRole('complementary', { name: 'Tusk' });
     expect(within(profile).getByRole('navigation', { name: "Hero's places" })).toBeInTheDocument();
     expect(within(profile).getByRole('heading', { name: 'Art' })).toBeInTheDocument();

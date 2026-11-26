@@ -20,11 +20,16 @@ export function useBackLayer(open: boolean, onClose: () => void): void {
   useLayoutEffect(() => {
     close.current = onClose;
   });
-  const wasOpen = useRef(false);
+  // Смонтировались раскрытыми — вернулись «назад» на запись шторки (#196): шаг назад ещё идёт (history.back асинхронный),
+  // и новая запись отменила бы его — оставили бы на экране региона. Своей записи при монтировании не кладём.
+  const wasOpen = useRef(open);
+  /** Адрес, на котором лежит запись шторки: «назад» с неё приходит на тот же адрес (popstate без hashchange). */
+  const home = useRef<string | null>(null);
 
   useEffect(() => {
     if (open && !wasOpen.current && !onTop()) {
       const state: unknown = window.history.state;
+      home.current = window.location.hash;
       window.history.pushState({ ...(state && typeof state === 'object' ? state : {}), [LAYER]: true }, '', window.location.href);
     } else if (!open && wasOpen.current && onTop()) {
       window.history.back();
@@ -34,7 +39,10 @@ export function useBackLayer(open: boolean, onClose: () => void): void {
 
   useEffect(() => {
     const onPop = () => {
-      if (!onTop()) close.current();
+      // Вернулись на запись шторки — запомнили её адрес. Сворачивает только «назад» с неё на тот же адрес:
+      // popstate шага назад между экранами (смонтировались раскрытыми, шаг ещё идёт) шторку не трогает.
+      if (onTop()) home.current = window.location.hash;
+      else if (window.location.hash === home.current) close.current();
     };
     window.addEventListener('popstate', onPop);
     return () => window.removeEventListener('popstate', onPop);

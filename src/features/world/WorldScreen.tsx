@@ -172,7 +172,7 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
   // Поле поиска или чип героя сверху кадра: метки «нить за краем» встают под них (#64).
   const [barBottom, setBarBottom] = useState(0);
   const barObserver = useRef<ResizeObserver | null>(null);
-  const barRef = useCallback((el: HTMLDivElement | null) => {
+  const barRef = useCallback((el: HTMLElement | null) => {
     barObserver.current?.disconnect();
     barObserver.current = null;
     if (!el) {
@@ -266,7 +266,7 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
             onCameraMove={veiled ? undefined : dismissMoveHint}
           />
         </main>
-        {showPath && <PathBar region={region} place={place ?? undefined} heroName={profileOpen ? hero?.name : undefined} onGo={goPath} />}
+        {showPath && <PathBar region={region} place={place ?? undefined} heroName={profileOpen ? hero?.name : undefined} onGo={goPath} measureRef={barRef} />}
         {showMoveHint && <MoveHint state={moveHint.state} />}
         {showHint && <WorldHint state={hint.state} />}
         {!veiled && searchOpen && (

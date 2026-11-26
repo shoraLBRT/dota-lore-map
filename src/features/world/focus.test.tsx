@@ -94,20 +94,20 @@ describe('клавиатура на карте', () => {
     expect(document.activeElement).toBe(screen.getByRole('button', { name: icewrack.name.ru }));
   });
 
-  it('крошка «‹ Мир» уходит вместе с панелью — фокус возвращается на регион', () => {
+  it('× окна региона уходит вместе с панелью — фокус возвращается на регион', () => {
     window.location.hash = '#/r/icewrack';
     render(<App />);
-    const back = screen.getByRole('button', { name: '‹ Мир' });
+    const back = screen.getByRole('button', { name: `Закрыть: ${icewrack.name.ru}` });
     act(() => back.focus());
     fireEvent.click(back);
     expect(window.location.hash).toBe('#/world');
     expect(document.activeElement).toBe(screen.getByRole('button', { name: icewrack.name.ru }));
   });
 
-  it('крошка «‹ Регион» в шапке меняется вместе с экраном — фокус уходит на маркер места, откуда пришли', () => {
+  it('× окна места меняется вместе с экраном — фокус уходит на маркер места, откуда пришли', () => {
     window.location.hash = '#/r/icewrack/cobalt';
     render(<App />);
-    const back = screen.getByRole('button', { name: `‹ ${icewrack.name.ru}` });
+    const back = screen.getByRole('button', { name: `Закрыть: ${placeName(cobalt, 'ru')}` });
     act(() => back.focus());
     fireEvent.click(back);
     expect(window.location.hash).toBe('#/r/icewrack');

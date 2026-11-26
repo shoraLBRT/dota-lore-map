@@ -33,7 +33,7 @@ describe('звуки в приложении', () => {
     window.location.hash = '#/r/icewrack';
     render(<App />);
     fireEvent.pointerDown(document.body);
-    fireEvent.click(screen.getByRole('button', { name: 'Свернуть панель' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Закрыть: Айсрак' }));
     expect(played).toEqual([]);
   });
 });

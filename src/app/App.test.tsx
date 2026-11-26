@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { getPlace, getRegion, placeName, world } from '../data/world';
 import { dictionaries } from '../i18n';
@@ -55,6 +55,6 @@ describe('App', () => {
     window.location.hash = '#/r/icewrack/blueheart-glacier';
     render(<App />);
     expect(screen.getByRole('heading', { level: 2, name: placeName(glacier, 'ru') })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: `‹ ${icewrack.name.ru}` })).toBeInTheDocument();
+    expect(within(screen.getByTestId('path-bar')).getByRole('button', { name: icewrack.name.ru })).toBeInTheDocument();
   });
 });

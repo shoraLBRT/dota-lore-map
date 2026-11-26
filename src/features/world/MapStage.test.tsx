@@ -416,14 +416,14 @@ describe('MapStage — маркеры мест (S2/S3, SPEC §5.4, §6.3)', () =
     expect(screen.queryByRole('tooltip')).toBeNull();
   });
 
-  it('в месте (S3) активный маркер выделен, другие кликаются; клик мимо маркеров — назад в регион', () => {
+  it('в месте (S3) активный маркер выделен, другие кликаются; клик мимо маркеров ничего не закрывает (#230, Н4)', () => {
     const { onSelectPlace, onSelectRegion } = renderStage([withPlaces()], 'a', 0, 'spot');
     expect(screen.getByRole('button', { name: 'Spot' })).toHaveAttribute('aria-current', 'true');
     fireEvent.click(screen.getByRole('button', { name: 'Capital' }));
     expect(onSelectPlace).toHaveBeenCalledWith('a', 'cap');
     expect(onSelectRegion).not.toHaveBeenCalled();
     fireEvent.click(document.querySelector('[data-region="a"]')!);
-    expect(onSelectRegion).toHaveBeenCalledWith('a');
+    expect(onSelectRegion).not.toHaveBeenCalled();
   });
 
   it('без арта региона детальной картинки нет (ARCHITECTURE A10)', () => {

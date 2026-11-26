@@ -4,8 +4,8 @@ import { getHero, getPlace, getRegion, placeName } from '../data/world';
 import { MOBILE_QUERY } from '../features/world/camera';
 import { App } from './App';
 
-// Прототип новой навигации за `?nav=new` (#230, SPEC §5.1 «Правила окон»): путь вверху карты, × у каждого окна,
-// без «Свернуть» и чипа героя, клик по пустой карте ничего не закрывает, шторки на телефоне. Без флага — как раньше.
+// Навигация (#230, SPEC §5.1 «Правила окон»): путь вверху карты, × у каждого окна,
+// без «Свернуть» и чипа героя, клик по пустой карте ничего не закрывает, шторки на телефоне.
 
 const icewrack = getRegion('icewrack')!;
 const pool = getPlace('icewrack', 'black-pool')!;
@@ -25,7 +25,7 @@ function stubMedia() {
   }));
 }
 
-const go = (hash: string) => window.history.replaceState(null, '', `/?nav=new${hash}`);
+const go = (hash: string) => window.history.replaceState(null, '', `/${hash}`);
 const path = () => screen.getByRole('navigation', { name: 'Путь' });
 const heading = () => screen.getByRole('heading', { level: 2 });
 const close = (name: string) => fireEvent.click(screen.getByRole('button', { name }));
@@ -40,7 +40,7 @@ afterEach(() => {
   window.history.replaceState(null, '', '/');
 });
 
-describe('?nav=new на компьютере', () => {
+describe('навигация на компьютере', () => {
   beforeEach(() => {
     mobile = false;
   });
@@ -58,8 +58,6 @@ describe('?nav=new на компьютере', () => {
     close(`Закрыть: ${poolName}`);
     expect(window.location.hash).toBe('#/r/icewrack');
     expect(heading()).toHaveTextContent(icewrack.name.ru);
-    // Флаг держится: переходы меняют только hash.
-    expect(window.location.search).toBe('?nav=new');
 
     close(`Закрыть: ${icewrack.name.ru}`);
     expect(window.location.hash).toBe('#/world');
@@ -119,7 +117,9 @@ describe('?nav=new на компьютере', () => {
     render(<App />);
     const panel = screen.getByRole('complementary', { name: tusk.name });
     fireEvent.click(within(panel).getByRole('button', { name: 'Свернуть до шапки' }));
-    expect(screen.queryByRole('heading', { level: 2 })).toBeNull();
+    // Видна только шапка: название и ×, текст профиля скрыт.
+    expect(panel.lastElementChild).toHaveAttribute('hidden');
+    expect(heading()).toHaveTextContent(tusk.name);
     expect(within(panel).getByRole('button', { name: 'Закрыть профиль' })).toBeVisible();
     fireEvent.click(within(panel).getByRole('button', { name: 'Развернуть профиль' }));
     expect(heading()).toHaveTextContent(tusk.name);
@@ -145,7 +145,7 @@ describe('?nav=new на компьютере', () => {
   });
 });
 
-describe('?nav=new на телефоне', () => {
+describe('навигация на телефоне', () => {
   beforeEach(() => {
     mobile = true;
   });
@@ -185,8 +185,8 @@ describe('?nav=new на телефоне', () => {
     expect(within(sheet).getByRole('button', { name: `Закрыть: ${poolName}` })).toBeInTheDocument();
     const grip = sheet.querySelector('button')!;
     fireEvent.pointerDown(grip, { pointerId: 1, clientY: 500 });
-    fireEvent.pointerMove(grip, { pointerId: 1, clientY: 760 });
-    fireEvent.pointerUp(grip, { pointerId: 1, clientY: 760 });
+    fireEvent.pointerMove(grip, { pointerId: 1, clientY: 900 });
+    fireEvent.pointerUp(grip, { pointerId: 1, clientY: 900 });
     expect(window.location.hash).toBe('#/r/icewrack');
   });
 });

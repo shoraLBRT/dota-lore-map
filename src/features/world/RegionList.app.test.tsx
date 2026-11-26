@@ -1,7 +1,7 @@
 import { act, fireEvent, render, screen, within, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { App } from '../../app/App';
-import { getPlace, getRegion, placeName, world } from '../../data/world';
+import { getPlace, getRegion, placeName } from '../../data/world';
 import { MOBILE_QUERY } from './camera';
 
 // Мир на телефоне (#39, #196): карта во весь экран, шторка «Регионы» ведёт туда же, куда тап по карте.
@@ -32,8 +32,8 @@ describe('список регионов на телефоне', () => {
   });
   afterEach(() => vi.unstubAllGlobals());
 
-  it('Esc сворачивает раскрытую шторку «Регионы», экран и герой остаются (#182)', () => {
-    window.location.hash = '#/world?hero=tusk';
+  it('Esc сворачивает раскрытую шторку «Регионы», экран остаётся (#182)', () => {
+    window.location.hash = '#/world';
     render(<App />);
     openList();
     const item = within(list()!).getByRole('button', { name: new RegExp(icewrack.name.ru) });
@@ -41,7 +41,7 @@ describe('список регионов на телефоне', () => {
     fireEvent.keyDown(item, { key: 'Escape' });
     expect(list()).toHaveAttribute('data-state', 'closed');
     expect(within(list()!).getByRole('button', { name: 'Регионы' })).toHaveFocus();
-    expect(window.location.hash).toBe('#/world?hero=tusk');
+    expect(window.location.hash).toBe('#/world');
   });
 
   it('мир → шторка «Регионы» → пункт → регион со шторкой → Esc → снова мир с развёрнутым списком', async () => {
@@ -106,17 +106,6 @@ describe('список регионов на телефоне', () => {
     fireEvent(window, new HashChangeEvent('hashchange'));
     fireEvent.click(document.querySelector('[data-list-region="druud"]')!);
     expect(window.location.hash).toBe(viaMap);
-  });
-
-  it('выбран герой в мире: список на месте, регионы героя отмечены', () => {
-    // Templar Assassin — места в нескольких регионах, камера остаётся в мире.
-    window.location.hash = '#/world?hero=templar_assassin';
-    render(<App />);
-    // Профиль закрыт — сверху чип героя.
-    expect(screen.getByRole('button', { name: /^Templar Assassin/ })).toBeInTheDocument();
-    const marked = list()!.querySelectorAll('[class*="heroRegion"]');
-    expect(marked.length).toBeGreaterThan(1);
-    expect(list()!.querySelectorAll('[class*="muted"]').length).toBe(world.regions.length - marked.length);
   });
 
   it('профиль героя в мире — своя шторка, списка регионов под ней нет', () => {
