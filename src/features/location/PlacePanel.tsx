@@ -2,7 +2,7 @@ import { useNavigation } from '../../app/navigation';
 import { HeroList } from '../../components/HeroList';
 import { Paragraphs } from '../../components/Paragraphs';
 import type { Place, Region } from '../../data/types';
-import { heroesOfPlace, placeName } from '../../data/world';
+import { heroesOfPlace } from '../../data/world';
 import { useT } from '../../i18n';
 import { FeedbackLink } from '../feedback/FeedbackLink';
 import { placeBlock } from '../feedback/context';
@@ -15,7 +15,7 @@ import { panelStyles } from '../panel/Panel';
  * описание, медиа, строка «Нашли ошибку?» (§6.9). Крошка «‹ Регион» — в шапке панели (Breadcrumbs). Место без арта и медиа — только текст и герои.
  */
 export function PlacePanel({ region, place }: { region: Region; place: Place }) {
-  const { l, lang, t } = useT();
+  const { l, t } = useT();
   const { route, navigate } = useNavigation();
   const preview = useHeroPreview();
   const pick = useHeroPick();
@@ -23,9 +23,6 @@ export function PlacePanel({ region, place }: { region: Region; place: Place }) 
   return (
     <>
       {place.art && <img className={panelStyles.header} src={place.art} alt="" />}
-      <h2 tabIndex={-1} data-panel-heading>
-        {placeName(place, lang)}
-      </h2>
       {place.text?.type && <p className={panelStyles.type}>{l(place.text.type)}</p>}
       <HeroList heroes={heroesOfPlace(region.id, place.slug)} onPreview={preview} onPick={pick} />
       {place.text?.description && <Paragraphs text={l(place.text.description)} />}

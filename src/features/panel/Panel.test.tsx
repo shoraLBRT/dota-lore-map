@@ -1,6 +1,5 @@
 import { fireEvent, render, screen, within } from '@testing-library/react';
-import { useState } from 'react';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { NavigationProvider } from '../../app/navigation';
 import type { Place, Region } from '../../data/types';
 import { getRegion, heroesOfRegion, world } from '../../data/world';
@@ -8,7 +7,6 @@ import { I18nProvider } from '../../i18n';
 import { FeedbackProvider } from '../feedback/FeedbackProvider';
 import { PlacePanel } from '../location/PlacePanel';
 import { REGION_HEROES, RegionPanel } from '../region/RegionPanel';
-import { Breadcrumbs } from './Breadcrumbs';
 import { Panel } from './Panel';
 
 const bare: Region = {
@@ -121,65 +119,25 @@ describe('панель места (SPEC §5.5)', () => {
   });
 });
 
-describe('сворачивание панели (SPEC §5.4)', () => {
-  function Harness() {
-    const [collapsed, setCollapsed] = useState(false);
-    return (
-      <Panel label="Пустошь" collapsed={collapsed} onToggle={() => setCollapsed((c) => !c)} contentKey="k">
-        <button type="button">Внутри</button>
-      </Panel>
-    );
-  }
-
-  it('кнопка-ромб сворачивает и разворачивает, свёрнутое содержимое недоступно', () => {
-    wrap(<Harness />);
-    const toggle = screen.getByRole('button', { name: 'Свернуть панель' });
-    expect(toggle).toHaveAttribute('aria-expanded', 'true');
-    const panel = screen.getByRole('complementary', { name: 'Пустошь' });
-    expect(toggle).toHaveAttribute('aria-controls', panel.id);
-
-    fireEvent.click(toggle);
-    const expand = screen.getByRole('button', { name: 'Развернуть панель' });
-    expect(expand).toHaveAttribute('aria-expanded', 'false');
-    expect(screen.getByTestId('panel-dock').className).toMatch(/collapsed/);
-    expect(screen.queryByRole('button', { name: 'Внутри' })).toBeNull();
-    expect((panel.parentElement as HTMLElement & { inert?: boolean }).inert).toBe(true);
-
-    fireEvent.click(expand);
-    expect(screen.getByRole('button', { name: 'Внутри' })).toBeInTheDocument();
-    expect(screen.getByTestId('panel-dock').className).not.toMatch(/collapsed/);
-  });
-});
-
-describe('крошка «назад» в шапке панели (SPEC §6.4)', () => {
-  const place: Place = { name: 'Nowhere', slug: 'nowhere', capital: false, placement: 'ours' };
-
-  it('регион: «‹ Мир» ведёт в мир; место: «‹ Регион» ведёт в регион; RU и EN', () => {
-    const { unmount } = wrap(<Breadcrumbs region={bare} />);
-    const crumbs = screen.getByRole('navigation', { name: 'Навигация по уровням' });
-    fireEvent.click(within(crumbs).getByRole('button', { name: '‹ Мир' }));
-    expect(window.location.hash).toBe('#/world');
-    unmount();
-
-    wrap(<Breadcrumbs region={bare} place={place} />, 'en');
-    fireEvent.click(screen.getByRole('button', { name: '‹ Waste' }));
-    expect(window.location.hash).toBe('#/r/nowhere-land');
-  });
-
-  it('шапка стоит над прокруткой: до кнопки не надо листать, рядом — «Свернуть»', () => {
+describe('шапка окна (#230, SPEC §5.1 «Правила окон»)', () => {
+  it('название и × в одной строке над прокруткой, название — один раз', () => {
+    const onClose = vi.fn();
     wrap(
-      <Panel label="Пустошь" collapsed={false} onToggle={() => {}} contentKey="k" back={<Breadcrumbs region={bare} />}>
+      <Panel label="Пустошь" collapsed={false} onToggle={() => {}} contentKey="k" onClose={onClose}>
         <p>Длинный текст</p>
       </Panel>,
     );
     const panel = screen.getByRole('complementary', { name: 'Пустошь' });
     const [head, scroller] = Array.from(panel.children) as HTMLElement[];
-    expect(within(head!).getByRole('button', { name: '‹ Мир' })).toBeInTheDocument();
-    expect(within(scroller!).queryByRole('button', { name: '‹ Мир' })).toBeNull();
+    const row = head!.querySelector('[data-window-head]') as HTMLElement;
+    expect(within(row).getByRole('heading', { level: 2, name: 'Пустошь' })).toHaveAttribute('data-panel-heading');
+    fireEvent.click(within(row).getByRole('button', { name: 'Закрыть: Пустошь' }));
+    expect(onClose).toHaveBeenCalledOnce();
+    expect(screen.getAllByText('Пустошь')).toHaveLength(1);
     expect(within(scroller!).getByText('Длинный текст')).toBeInTheDocument();
-    // Порядок фокуса: «Свернуть» → «‹ Мир» → содержимое.
-    const buttons = screen.getAllByRole('button').map((b) => b.getAttribute('aria-label'));
-    expect(buttons).toEqual(['Свернуть панель', '‹ Мир']);
+    // Старых кнопок нет: ни ромба «Свернуть панель», ни крошек «‹ Мир».
+    expect(screen.queryByRole('button', { name: 'Свернуть панель' })).toBeNull();
+    expect(screen.queryByRole('navigation')).toBeNull();
   });
 });
 
@@ -194,7 +152,7 @@ describe('прокрутка панели при смене экрана (#99, #
     try {
       const panel = (key: string) => (
         <I18nProvider initialLang="ru">
-          <Panel label="Пустошь" collapsed={false} onToggle={() => {}} contentKey={key}>
+          <Panel label="Пустошь" collapsed={false} onToggle={() => {}} contentKey={key} onClose={() => {}}>
             <p>текст</p>
           </Panel>
         </I18nProvider>

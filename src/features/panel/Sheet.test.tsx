@@ -4,9 +4,9 @@ import { App } from '../../app/App';
 import { useMediaQuery } from '../../app/media';
 import { getRegion } from '../../data/world';
 import { MOBILE_QUERY } from '../world/camera';
-import { SHEET_HEAD_PX, settleFull, settleSheet } from './Sheet';
+import { SHEET_HEAD_PX, settleSheet } from './Sheet';
 
-// Телефон (SPEC §13): правая панель — нижняя шторка, свёрнута ~30 %, развёрнута ~90 %, «потянуть».
+// Телефон (SPEC §13): правая панель — нижняя шторка в три положения (заголовок, половина экрана, ~90 %), «потянуть».
 
 let listeners: (() => void)[] = [];
 let mobile = true;
@@ -48,16 +48,18 @@ describe('нижняя шторка', () => {
     expect(sheet()).toHaveAttribute('data-state', 'peek');
   });
 
-  it('крошка «назад» — вверху шторки, под ручкой, видна и в свёрнутой', () => {
+  it('шапка шторки — под ручкой: название один раз и × в одной строке (#230)', () => {
     window.location.hash = '#/r/icewrack';
     render(<App />);
-    const panel = screen.getByRole('complementary', { name: getRegion('icewrack')!.name.ru });
+    const name = getRegion('icewrack')!.name.ru;
+    const panel = screen.getByRole('complementary', { name });
     const head = panel.firstElementChild as HTMLElement;
-    expect(head.querySelector('nav')).not.toBeNull();
-    expect(screen.getByRole('button', { name: '‹ Мир' }).closest('nav')!.parentElement!.parentElement).toBe(head);
-    // Порядок в шторке: ручка, затем «назад».
+    const row = head.querySelector('[data-window-head]') as HTMLElement;
+    expect(row.querySelector('h2')).toHaveTextContent(name);
+    expect(panel.querySelectorAll('h2')).toHaveLength(1);
+    // Порядок в шторке: ручка, затем ×.
     const buttons = Array.from(sheet().querySelectorAll('button')).map((b) => b.getAttribute('aria-label'));
-    expect(buttons.slice(0, 2)).toEqual(['Развернуть панель', '‹ Мир']);
+    expect(buttons.slice(0, 2)).toEqual(['Развернуть панель', `Закрыть: ${name}`]);
   });
 
   it('переход к месту — шторка снова свёрнута, карта видна', () => {
@@ -69,13 +71,13 @@ describe('нижняя шторка', () => {
     expect(sheet()).toHaveAttribute('data-state', 'peek');
   });
 
-  it('«потянуть»: вверх за середину — развёрнута, вниз — свёрнута; клик после перетаскивания не переключает', () => {
+  it('«потянуть»: вверх — развёрнута, вниз — половина экрана; клик после перетаскивания не переключает', () => {
     window.location.hash = '#/r/icewrack';
     render(<App />);
     const h = window.innerHeight;
     fireEvent.pointerDown(handle(), { clientY: h * 0.7, pointerId: 1 });
     fireEvent.pointerMove(handle(), { clientY: h * 0.3, pointerId: 1 });
-    expect(sheet().style.getPropertyValue('--sheet-h')).toBe(`${Math.round(h * 0.7)}px`);
+    expect(sheet().style.getPropertyValue('--sheet-h')).toBe(`${Math.round(h * 0.9)}px`);
     fireEvent.pointerUp(handle(), { clientY: h * 0.3, pointerId: 1 });
     fireEvent.click(handle());
     expect(sheet()).toHaveAttribute('data-state', 'full');
@@ -104,20 +106,7 @@ describe('нижняя шторка', () => {
   });
 });
 
-describe('settleFull: инерция шторки (SPEC §7.5)', () => {
-  const vh = 800;
-  it('медленно отпустили — ближайшее положение', () => {
-    expect(settleFull(vh * 0.4, vh, -0.1)).toBe(false);
-    expect(settleFull(vh * 0.7, vh, 0.1)).toBe(true);
-  });
-
-  it('бросили — по направлению броска, даже не дотянув до середины', () => {
-    expect(settleFull(vh * 0.35, vh, -0.8)).toBe(true);
-    expect(settleFull(vh * 0.85, vh, 0.8)).toBe(false);
-  });
-});
-
-describe('settleSheet: три положения шторки с ?nav=new (#230, Н9)', () => {
+describe('settleSheet: три положения шторки и инерция (#230, Н9; SPEC §7.5)', () => {
   const vh = 800;
   it('медленно отпустили — ближайшее из трёх; ниже заголовка — закрыть', () => {
     expect(settleSheet(SHEET_HEAD_PX + 10, vh, 0)).toBe('head');
@@ -128,7 +117,7 @@ describe('settleSheet: три положения шторки с ?nav=new (#230,
 
   it('бросили — на шаг по направлению броска; вниз из заголовка — закрыть', () => {
     expect(settleSheet(vh * 0.28, vh, 0.8)).toBe('head');
-    expect(settleSheet(vh * 0.32, vh, -0.8)).toBe('full');
+    expect(settleSheet(vh * 0.52, vh, -0.8)).toBe('full');
     expect(settleSheet(SHEET_HEAD_PX + 20, vh, -0.8)).toBe('peek');
     expect(settleSheet(SHEET_HEAD_PX - 10, vh, 0.8)).toBe('close');
   });

@@ -10,21 +10,15 @@ const DRAG_MIN = 6;
 const FLICK = 0.5;
 /** Окно, по которому считается скорость в конце перетаскивания, мс. */
 const FLICK_WINDOW = 100;
-/** `?nav=new` (#230, Н9): высота шторки «только заголовок» — ручка и шапка с названием и ×, px (как `.head` в CSS). */
+/** #230, Н9: высота шторки «только заголовок» — ручка и шапка с названием и ×, px (как `.head` в CSS). */
 export const SHEET_HEAD_PX = 96;
 
-/** Куда встать после перетаскивания: бросок решает направление, медленное движение — ближайшее положение. */
-export function settleFull(height: number, viewport: number, velocity: number): boolean {
-  if (Math.abs(velocity) >= FLICK) return velocity < 0;
-  return height > ((SHEET_PEEK + SHEET_FULL) / 2) * viewport;
-}
-
-/** Положение шторки с `?nav=new`: заголовок (видна карта), средняя (~30 %, по ней кадрирует камера), весь экран. */
+/** Положение шторки: заголовок (видна карта), средняя (половина экрана, по ней кадрирует камера), весь экран. */
 export type SheetPos = 'head' | 'peek' | 'full';
 const ORDER: SheetPos[] = ['head', 'peek', 'full'];
 
 /**
- * `?nav=new` (#230, Н9): куда встать после перетаскивания из трёх положений. Бросок — на шаг по направлению
+ * #230, Н9: куда встать после перетаскивания из трёх положений. Бросок — на шаг по направлению
  * броска от текущей высоты (вниз из заголовка — закрыть), медленно — ближайшее; ниже ~60 % заголовка — закрыть.
  */
 export function settleSheet(height: number, viewport: number, velocity: number): SheetPos | 'close' {
@@ -49,12 +43,9 @@ interface Props {
   id: string;
   label: string;
   contentKey: string;
-  header?: ReactNode;
-  /**
-   * `?nav=new` (#230, Н9): три положения вместо двух, свайп вниз из заголовка закрывает шторку — шаг вверх.
-   * Без него — прежние два положения.
-   */
-  onClose?: () => void;
+  header: ReactNode;
+  /** Свайп вниз из заголовка закрывает шторку — шаг вверх (#230, Н9). */
+  onClose: () => void;
   children: ReactNode;
 }
 
@@ -65,14 +56,13 @@ const HEIGHT: Record<SheetPos, (vh: number) => number> = {
 };
 
 /**
- * Нижняя шторка вместо правой панели на телефоне (SPEC §13): свёрнута ~30 % высоты, развёрнута ~90 %.
+ * Нижняя шторка вместо правой панели на телефоне (SPEC §13): три положения — заголовок, половина экрана, ~90 %.
  * Ручка: тап переключает, «потянуть» меняет высоту, отпустили — шторка встаёт в ближайшее положение
  * или, если её бросили, — по направлению броска (инерция, SPEC §7.5).
  * Новый регион или место — снова свёрнута, чтобы была видна карта.
  */
 export function Sheet({ id, label, contentKey, header, onClose, children }: Props) {
   const { t } = useT();
-  const three = Boolean(onClose);
   const [state, setState] = useState<{ key: string; pos: SheetPos }>({ key: contentKey, pos: 'peek' });
   const pos: SheetPos = state.key === contentKey ? state.pos : 'peek';
   const full = pos === 'full';
@@ -107,7 +97,7 @@ export function Sheet({ id, label, contentKey, header, onClose, children }: Prop
     if (!s.moved && Math.abs(dy) < DRAG_MIN) return;
     s.moved = true;
     const vh = window.innerHeight || 1;
-    setDrag(Math.min(Math.max(s.h - dy, three ? 0 : vh * 0.15), vh * 0.95));
+    setDrag(Math.min(Math.max(s.h - dy, 0), vh * 0.95));
   };
   const onPointerUp = () => {
     const s = start.current;
@@ -122,12 +112,8 @@ export function Sheet({ id, label, contentKey, header, onClose, children }: Prop
     const velocity = last.t > first.t ? (last.y - first.y) / (last.t - first.t) : 0;
     const vh = window.innerHeight || 1;
     setDrag(null);
-    if (!three) {
-      set(settleFull(drag, vh, velocity) ? 'full' : 'peek');
-      return;
-    }
     const next = settleSheet(drag, vh, velocity);
-    if (next === 'close') onClose?.();
+    if (next === 'close') onClose();
     else set(next);
   };
 

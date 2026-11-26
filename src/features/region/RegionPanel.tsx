@@ -35,9 +35,6 @@ export function RegionPanel({
 
   return (
     <>
-      <h2 tabIndex={-1} data-panel-heading>
-        {l(region.name)}
-      </h2>
       {region.subtitle && <p className={panelStyles.subtitle}>{l(region.subtitle)}</p>}
       <HeroList heroes={heroesOfRegion(region.id)} max={REGION_HEROES} onPreview={preview} onPick={pick} />
       <Divider />

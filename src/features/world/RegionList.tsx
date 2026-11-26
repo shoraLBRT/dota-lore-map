@@ -1,6 +1,5 @@
 import { useId, useMemo, useRef, type KeyboardEvent, type PointerEvent } from "react";
 import { useBackLayer } from "../../app/backLayer";
-import { navNew } from "../../app/flags";
 import type { Lang, Region } from "../../data/types";
 import { useT, type MessageKey } from "../../i18n";
 import styles from "./RegionList.module.css";
@@ -74,9 +73,8 @@ export function RegionList({
   const titleId = useId();
   const bodyId = useId();
   const handleRef = useRef<HTMLButtonElement>(null);
-  // `?nav=new` (#230, Н8): обычная нижняя шторка — тянется пальцем, тап по затемнённой карте и «назад» сворачивают.
-  const nav = navNew();
-  useBackLayer(open, () => onOpenChange(false), nav);
+  // #230, Н8: обычная нижняя шторка — тянется пальцем, тап по затемнённой карте и «назад» сворачивают.
+  useBackLayer(open, () => onOpenChange(false));
   const drag = useRef<{ id: number; y: number } | null>(null);
   /** Только что тянули: следующий click — конец жеста, а не тап. */
   const dragged = useRef(false);
@@ -114,12 +112,12 @@ export function RegionList({
 
   return (
     <>
-    {nav && open && (
+    {open && (
       // Затемнение карты под раскрытой шторкой: тап сворачивает её (мышью и клавиатурой — ручка и Esc).
       <div className={styles.scrim} aria-hidden="true" data-testid="region-list-scrim" onClick={() => onOpenChange(false)} />
     )}
     <nav
-      className={[styles.list, open && styles.open, waiting && styles.waiting, nav && styles.swipe]
+      className={[styles.list, open && styles.open, waiting && styles.waiting, styles.swipe]
         .filter(Boolean)
         .join(" ")}
       aria-labelledby={titleId}
@@ -142,9 +140,9 @@ export function RegionList({
             }
             onOpenChange(!open);
           }}
-          onPointerDown={nav ? onPointerDown : undefined}
-          onPointerUp={nav ? onPointerUp : undefined}
-          onPointerCancel={nav ? () => (drag.current = null) : undefined}
+          onPointerDown={onPointerDown}
+          onPointerUp={onPointerUp}
+          onPointerCancel={() => (drag.current = null)}
         >
           <span className={styles.grip} aria-hidden="true" />
           {t("world.regions")}

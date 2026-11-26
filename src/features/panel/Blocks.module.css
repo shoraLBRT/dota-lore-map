@@ -79,7 +79,3 @@
   font-size: 0.75rem;
 }
 
-/* Хлебные крошки в шапке панели (SPEC §6.4). */
-.crumbs {
-  display: flex;
-}
