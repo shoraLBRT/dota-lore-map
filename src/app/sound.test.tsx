@@ -107,3 +107,63 @@ describe('звуки интерфейса (SPEC §7.4)', () => {
     expect(() => result.current('click')).not.toThrow();
   });
 });
+
+describe('фоновая атмосфера (#169)', () => {
+  const setup = () => {
+    const calls: string[] = [];
+    const makeSynth = () => ({
+      play: () => undefined,
+      ambience: (on: boolean) => calls.push(on ? 'on' : 'off'),
+      wake: () => calls.push('wake'),
+    });
+    const w = ({ children }: { children: ReactNode }) => <SoundProvider makeSynth={makeSynth}>{children}</SoundProvider>;
+    const hook = renderHook(() => useSound(), { wrapper: w });
+    return { calls, hook };
+  };
+
+  const setHidden = (hidden: boolean) => {
+    Object.defineProperty(document, 'visibilityState', { configurable: true, get: () => (hidden ? 'hidden' : 'visible') });
+    document.dispatchEvent(new Event('visibilitychange'));
+  };
+
+  it('звук включён по умолчанию; атмосфера начинается с первым жестом и гаснет, когда звук выключают', () => {
+    const { calls, hook } = setup();
+    expect(hook.result.current.enabled).toBe(true);
+    expect(calls).not.toContain('on');
+    act(() => {
+      window.dispatchEvent(new Event('pointerdown'));
+    });
+    expect(calls).toContain('wake');
+    expect(calls.at(-1)).toBe('on');
+    act(() => hook.result.current.toggle());
+    expect(calls.at(-1)).toBe('off');
+    act(() => hook.result.current.toggle());
+    expect(calls.at(-1)).toBe('on');
+  });
+
+  it('скрытая вкладка — атмосфера молчит, видимая — снова играет', () => {
+    const { calls, hook } = setup();
+    act(() => hook.result.current.unlock());
+    act(() => setHidden(true));
+    expect(calls.at(-1)).toBe('off');
+    act(() => setHidden(false));
+    expect(calls.at(-1)).toBe('on');
+    delete (document as { visibilityState?: unknown }).visibilityState;
+  });
+
+  it('контекст будится на отпускании пальца (Safari на iPhone), пока звук включён', () => {
+    const { calls, hook } = setup();
+    act(() => hook.result.current.unlock());
+    calls.length = 0;
+    act(() => {
+      window.dispatchEvent(new Event('touchend'));
+    });
+    expect(calls).toEqual(['wake']);
+    act(() => hook.result.current.toggle());
+    calls.length = 0;
+    act(() => {
+      window.dispatchEvent(new Event('touchend'));
+    });
+    expect(calls).toEqual([]);
+  });
+});
