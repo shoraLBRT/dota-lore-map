@@ -1,4 +1,4 @@
-import { createElement, lazy, Suspense, type ComponentType } from 'react';
+import { createElement, lazy, Suspense, useState, type ComponentType } from 'react';
 import { afterLoadIdle } from './idle';
 
 // Отложенные части бандла (#186, ARCHITECTURE A14): галерея, профиль героя и поиск не нужны первому экрану.
@@ -22,8 +22,14 @@ function deferred<M, P extends object>(load: () => Promise<M>, pick: (m: M) => C
       },
     ));
   const Lazy = lazy(() => preload().then((m) => ({ default: pick(m) })));
-  const Component = (props: P) =>
-    mod ? createElement(pick(mod), props) : createElement(Suspense, { fallback: null }, createElement(Lazy as unknown as ComponentType<P>, props));
+  // Путь выбирается один раз при монтировании: если кусок догрузится, пока компонент на экране, переход
+  // с Suspense на прямой рендер пересоздал бы его и стёр состояние (набранный запрос поиска — CI после #260).
+  const Component = (props: P) => {
+    const [ready] = useState(() => mod !== undefined);
+    return ready
+      ? createElement(pick(mod!), props)
+      : createElement(Suspense, { fallback: null }, createElement(Lazy as unknown as ComponentType<P>, props));
+  };
   Component.preload = preload;
   return Component;
 }
