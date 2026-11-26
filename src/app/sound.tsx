@@ -71,6 +71,7 @@ export function SoundProvider({ children, makeSynth = createSynth }: ProviderPro
   }, []);
   const unlock = useCallback(() => {
     if (synth.current === undefined) synth.current = makeSynth();
+    synth.current?.wake?.();
     setUnlocked(true);
   }, [makeSynth]);
 
@@ -114,6 +115,44 @@ export function SoundProvider({ children, makeSynth = createSynth }: ProviderPro
       window.removeEventListener('keydown', onGesture, true);
     };
   }, [unlocked, unlock]);
+
+  // Спящий контекст будится только в жесте, и Safari на iPhone признаёт жестом отпускание пальца, а не касание:
+  // будим на каждом жесте, пока звук включён (#169). Вне жеста `resume()` в Safari молча не срабатывает.
+  useEffect(() => {
+    if (!enabled) return;
+    const wake = () => synth.current?.wake?.();
+    const events = ['pointerdown', 'pointerup', 'touchend', 'keydown'] as const;
+    for (const e of events) window.addEventListener(e, wake, true);
+    return () => {
+      for (const e of events) window.removeEventListener(e, wake, true);
+    };
+  }, [enabled]);
+
+  // Фоновая атмосфера (ветер и прибой, #169): играет, пока звук включён и разблокирован, а вкладка видна.
+  const [visible, setVisible] = useState(() => document.visibilityState !== 'hidden');
+  useEffect(() => {
+    const onVisibility = () => setVisible(document.visibilityState !== 'hidden');
+    document.addEventListener('visibilitychange', onVisibility);
+    return () => document.removeEventListener('visibilitychange', onVisibility);
+  }, []);
+  useEffect(() => {
+    const on = enabled && unlocked && visible;
+    try {
+      synth.current?.ambience?.(on);
+    } catch {
+      // Звук — украшение: ошибка аудио не должна ломать интерфейс.
+    }
+  }, [enabled, unlocked, visible]);
+  useEffect(
+    () => () => {
+      try {
+        synth.current?.ambience?.(false);
+      } catch {
+        // Размонтирование не должно падать из-за аудио.
+      }
+    },
+    [],
+  );
 
   // Клик по любому интерактивному элементу — звук «клик» (SPEC §7.4); одно место вместо обработчика в каждой кнопке.
   useEffect(() => {
