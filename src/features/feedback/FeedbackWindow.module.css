@@ -1,7 +1,7 @@
 /* Окно обратной связи (SPEC §6.9): в углу у кнопки, без затемнения — карта под ним остаётся видна. */
 .window {
   position: fixed;
-  bottom: var(--space-4);
+  bottom: calc(var(--space-4) + env(safe-area-inset-bottom, 0px));
   left: calc(var(--rail-width) + var(--space-3));
   /* Верхний слой: из галереи окно открывает «Нашли ошибку?» (#74) — оно поверх неё. «О проекте» и галерею
      одновременно с окном не открыть: клик по ним — клик вне окна. */
@@ -123,6 +123,8 @@
   background: var(--bg-0);
   color: var(--text-1);
   font: inherit;
+  /* #252: меньше 16 px — Safari на iPhone приближает страницу при фокусе. */
+  font-size: max(1rem, 1em);
   line-height: 1.45;
   resize: vertical;
 }

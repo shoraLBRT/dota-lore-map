@@ -5,6 +5,8 @@
   display: grid;
   place-items: center;
   padding: var(--space-4);
+  padding-top: calc(var(--space-4) + env(safe-area-inset-top, 0px));
+  padding-bottom: calc(var(--space-4) + env(safe-area-inset-bottom, 0px));
   /* Затемнение как у галереи: карта под окном приглушена, окно отделяется от фона (аудит E13). */
   background: var(--veil-strong);
   animation: fade var(--dur-fade) var(--ease-out) both;

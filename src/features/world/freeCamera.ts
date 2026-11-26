@@ -3,6 +3,7 @@
 // Чистые функции — для тестов; хук `useFreeCamera` вешает жесты на кадр и ведёт плавное движение через rAF.
 
 import { useEffect, useLayoutEffect, useRef } from 'react';
+import { pageZoomed } from '../../app/pageZoom';
 import type { Camera } from '../../data/types';
 import { cameraTransform, clampCamera, prefersReducedMotion, type View } from './camera';
 import { perspectiveOf, tiltAt, untiltPoint } from './depth';
@@ -318,6 +319,8 @@ export function useFreeCamera({ viewportRef, layerRef, screenRef, view, current,
 
     const onDown = (e: PointerEvent) => {
       if (!live.current.enabled || (e.pointerType === 'mouse' && e.button !== 0)) return;
+      // Страница приближена браузером (#252): второй палец — щипок страницы, не камеры.
+      if (e.pointerType === 'touch' && pointers.size > 0 && pageZoomed()) return;
       stop();
       cam.current = live.current.current();
       const p = local(e);
@@ -447,6 +450,8 @@ export function useFreeCamera({ viewportRef, layerRef, screenRef, view, current,
       const g = e as Event & { scale: number; clientX: number; clientY: number };
       if (!live.current.enabled) return;
       if (e.currentTarget !== el && !(e.target as Element | null)?.closest?.('[data-map-tip]')) return;
+      // Страница приближена браузером (#252): щипок отдаём ему, иначе её не отдалить.
+      if (pageZoomed()) return;
       e.preventDefault();
       if (e.type === 'gesturestart') gesture = 1;
       else if (e.type === 'gesturechange' && g.scale > 0) {

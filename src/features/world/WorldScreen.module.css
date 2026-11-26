@@ -4,6 +4,8 @@
   /* На телефоне 100vh выше видимой части из-за панели адреса браузера. */
   height: 100dvh;
   overflow: hidden;
+  /* #252: viewport-fit=cover — верхняя полоса и путь ниже статус-бара и выреза iPhone; низ держат шторки. */
+  padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) 0 env(safe-area-inset-left, 0px);
 }
 
 .body {

@@ -46,6 +46,12 @@
   pointer-events: none;
 }
 
+/* #252: страница приближена браузером — щипок по карте отдаётся ему, чтобы её можно было отдалить. */
+:global(:root[data-page-zoom]) .layer,
+:global(:root[data-page-zoom]) .screen {
+  touch-action: pinch-zoom;
+}
+
 .screen > .svg {
   overflow: visible;
 }

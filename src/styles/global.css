@@ -17,6 +17,11 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* #252: двойное касание не приближает страницу (щипок — можно; у карты свои жесты). */
+html {
+  touch-action: manipulation;
+}
+
 body {
   background: radial-gradient(ellipse at center, var(--bg-1) 0%, var(--bg-0) 75%) fixed;
   min-height: 100vh;
