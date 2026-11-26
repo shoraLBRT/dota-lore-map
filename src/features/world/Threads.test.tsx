@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import type { HeroEvent } from '../../data/types';
 import type { Spot } from '../search/search';
 import type { StepKind } from '../search/threads';
-import { COMPACT_MARKS, Threads } from './Threads';
+import { BADGE_ICON, COMPACT_MARKS, Threads } from './Threads';
 
 // Отрисовка нитей (#67): шаг пути — сплошная со стрелкой, прочая связь — пунктир без стрелки; значок события.
 
@@ -70,5 +70,16 @@ describe('нити на карте (#67)', () => {
     // Значок по-прежнему прячется, если ему нет места на нити.
     const covered = draw('path', 'home', [0.8, 0.5], [{ left: 0, right: 1600, top: 0, bottom: 1000 }] as never, true);
     expect(covered.querySelector('[data-badge]')).toBeNull();
+  });
+});
+
+describe('значки событий на нитях (#254)', () => {
+  it('значок не меньше 20 px; передвижение без события (journey) — без значка, стрелка остаётся', () => {
+    expect(BADGE_ICON).toBeGreaterThanOrEqual(20);
+    const icon = draw('path', 'battle').querySelector('[data-badge] svg')!;
+    expect(Number(icon.getAttribute('width'))).toBe(BADGE_ICON);
+    const move = draw('path', 'journey');
+    expect(move.querySelector('[data-badge]')).toBeNull();
+    expect(move.querySelector('[data-arrow]')).not.toBeNull();
   });
 });

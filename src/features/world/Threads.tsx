@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react';
 import { EVENT_PATHS } from '../../components/EventIcon';
-import type { HeroThreads } from '../search/threads';
+import { stepBadge, type HeroThreads } from '../search/threads';
 import styles from './Threads.module.css';
 import tones from './tones.module.css';
 import { STAGE_HEIGHT, STAGE_WIDTH } from './camera';
@@ -9,10 +9,12 @@ import { arc, badgeAt } from './threadGeometry';
 
 const STAGE = (p: [number, number]) => [p[0] * STAGE_WIDTH, p[1] * STAGE_HEIGHT] as const;
 
-/** Радиус значка события, экранные px. */
-export const BADGE_R = 11;
+/** Радиус значка события, экранные px: круг 30 px, поле значка — BADGE_ICON px (#254: не меньше 20 px; было 22 и 15). */
+export const BADGE_R = 15;
+/** Сторона значка события внутри круга, экранные px. */
+export const BADGE_ICON = 22;
 /** Короче (экранные px) — значка на нити нет: он закрыл бы её целиком. */
-const MIN_BADGE_LEN = 56;
+const MIN_BADGE_LEN = 64;
 /** Короче — нет и стрелки. */
 const MIN_ARROW_LEN = 24;
 /** Просвет между значком и стрелкой, экранные px. */
@@ -50,7 +52,7 @@ export function Threads({ threads, scale, obstacles = [], clip, compact = false 
   const badgeR = BADGE_R * m;
   const ends = new Map(steps.flatMap((s) => [s.from, s.to]).map((s) => [s.key, s]));
   return (
-    <g className={[styles.threads, tones[tone]].join(' ')} aria-hidden="true" data-testid="threads">
+    <g className={[styles.threads, tones[tone]].join(' ')} aria-hidden="true" data-testid="threads" data-tone={tone}>
       {steps.map((step, i) => {
         const a = arc(step.from.point!, step.to.point!);
         const style = {
@@ -59,7 +61,9 @@ export function Threads({ threads, scale, obstacles = [], clip, compact = false 
           '--w': (2.2 * scale).toFixed(2),
         } as CSSProperties;
         const len = a.length / scale;
-        const badgeT = len >= MIN_BADGE_LEN * m ? badgeAt(a, badgeR * scale, obstacles, clip) : null;
+        // Передвижение без события (`journey`) — без значка: его показывают линия и стрелка (#254).
+        const badge = stepBadge(step);
+        const badgeT = badge && len >= MIN_BADGE_LEN * m ? badgeAt(a, badgeR * scale, obstacles, clip) : null;
         const arrowT =
           step.kind === 'path' && len >= MIN_ARROW_LEN
             ? badgeT === null
@@ -85,11 +89,11 @@ export function Threads({ threads, scale, obstacles = [], clip, compact = false 
                 <path className={styles.threadArrow} d="M-5 -4.5 4.5 0-5 4.5-2.5 0Z" data-arrow="" />
               </g>
             )}
-            {badgeT !== null && (
-              <g transform={`${at(badgeT)} scale(${km})`} className={styles.threadBadge} data-badge={step.event}>
+            {badge && badgeT !== null && (
+              <g transform={`${at(badgeT)} scale(${km})`} className={styles.threadBadge} data-badge={badge}>
                 <circle r={BADGE_R} />
-                <svg x={-7.5} y={-7.5} width={15} height={15} viewBox="0 0 24 24">
-                  <path d={EVENT_PATHS[step.event]} />
+                <svg x={-BADGE_ICON / 2} y={-BADGE_ICON / 2} width={BADGE_ICON} height={BADGE_ICON} viewBox="0 0 24 24">
+                  <path d={EVENT_PATHS[badge]} />
                 </svg>
               </g>
             )}

@@ -69,3 +69,26 @@ export function heroThreads(hero: Hero, spots: Spot[]): HeroThreads | undefined 
   return steps.length > 0 ? { steps, tone: placed[0]!.tone } : undefined;
 }
 
+
+/**
+ * События без значка на нити (#254): «путь, переезд» — само передвижение, его уже показывают сплошная линия
+ * и стрелка; значок там только загромождал бы путь.
+ */
+export const NO_BADGE: ReadonlySet<HeroEvent> = new Set<HeroEvent>(['journey']);
+
+/** Значок шага на карте или undefined — без значка (#254). */
+export const stepBadge = (step: ThreadStep): HeroEvent | undefined => (NO_BADGE.has(step.event) ? undefined : step.event);
+
+export interface ThreadLegendRows {
+  kinds: StepKind[];
+  /** Значки, которые могут встать на нити, — по первому появлению. */
+  events: HeroEvent[];
+  tone: Tone;
+}
+
+/** Строки легенды нитей на карте (#254): виды линий, значки и цвет — только те, что есть у этих нитей. */
+export function legendRows({ steps, tone }: HeroThreads): ThreadLegendRows {
+  const kinds = (['path', 'aside'] as const).filter((k) => steps.some((s) => s.kind === k));
+  const events = [...new Set(steps.map(stepBadge).filter((e): e is HeroEvent => e !== undefined))];
+  return { kinds, events, tone };
+}
