@@ -36,23 +36,19 @@ export interface Arc {
   stage: (t: number) => XY;
   /** Направление дуги при t (градусы, 0 — вправо, по часовой — вниз). */
   angle: (t: number) => number;
-  /** t, на котором от начала дуги пройдено `s` единиц сцены (обратная длина дуги, по таблице). */
-  tAt: (s: number) => number;
 }
 
 export function arc(from: Point, to: Point): Arc {
   const a = toStage(from);
   const b = toStage(to);
   const c = control(a, b);
-  // Таблица длины по 48 отрезкам: длина дуги и обратная функция «пройденный путь → t».
-  const cum = [0];
+  let length = 0;
   let prev = a;
-  for (let i = 1; i <= SAMPLES; i++) {
-    const p = at(a, c, b, i / SAMPLES);
-    cum.push(cum[i - 1]! + Math.hypot(p[0] - prev[0], p[1] - prev[1]));
+  for (let i = 1; i <= 24; i++) {
+    const p = at(a, c, b, i / 24);
+    length += Math.hypot(p[0] - prev[0], p[1] - prev[1]);
     prev = p;
   }
-  const length = cum[SAMPLES]!;
   const r = (n: number) => Math.round(n * 10) / 10;
   return {
     d: `M${r(a[0])} ${r(a[1])} Q${r(c[0])} ${r(c[1])} ${r(b[0])} ${r(b[1])}`,
@@ -68,77 +64,7 @@ export function arc(from: Point, to: Point): Arc {
       const dy = (1 - t) * (c[1] - a[1]) + t * (b[1] - c[1]);
       return (Math.atan2(dy, dx) * 180) / Math.PI;
     },
-    tAt: (dist) => {
-      if (dist <= 0) return 0;
-      if (dist >= length) return 1;
-      let i = 1;
-      while (cum[i]! < dist) i++;
-      const lo = cum[i - 1]!;
-      return (i - 1 + (dist - lo) / (cum[i]! - lo)) / SAMPLES;
-    },
   };
-}
-
-const SAMPLES = 48;
-const n1 = (n: number) => (Math.round(n * 10) / 10).toString();
-
-/** Отрезок дуги t0…t1 ломаной из `steps` звеньев (SVG path, сцена): по нему прорисовка, точка и пунктир каравана. */
-export function segment(a: Arc, t0: number, t1: number, steps = 32): { d: string; length: number } {
-  let d = '';
-  let length = 0;
-  let prev: XY | null = null;
-  for (let i = 0; i <= steps; i++) {
-    const p = a.stage(t0 + ((t1 - t0) * i) / steps);
-    d += `${i ? 'L' : 'M'}${n1(p[0])} ${n1(p[1])}`;
-    if (prev) length += Math.hypot(p[0] - prev[0], p[1] - prev[1]);
-    prev = p;
-  }
-  return { d, length };
-}
-
-/**
- * Ширина ленты пути (#168) на доле u ∈ [0, 1] её длины: мазок кисти — короткий набор у начала,
- * затем плавное сужение к наконечнику. w0 — наибольшая ширина, w1 — у конца.
- */
-export function taperWidth(u: number, w0: number, w1: number): number {
-  const swell = u < 0.12 ? 0.55 + 0.45 * Math.sin((u / 0.12) * (Math.PI / 2)) : 1;
-  const fall = u < 0.12 ? 1 : 1 - ((u - 0.12) / 0.88) ** 0.9;
-  return u < 0.12 ? w0 * swell : w1 + (w0 - w1) * fall;
-}
-
-/**
- * Лента с сужением (#168) вдоль дуги от t0 до t1: замкнутый контур (SVG path, сцена) — края смещены
- * по нормали на половину `taperWidth`. Конец не острый: там наконечник.
- */
-export function ribbon(a: Arc, t0: number, t1: number, w0: number, w1: number, steps = 40): string {
-  const left: XY[] = [];
-  const right: XY[] = [];
-  for (let i = 0; i <= steps; i++) {
-    const u = i / steps;
-    const t = t0 + (t1 - t0) * u;
-    const [x, y] = a.stage(t);
-    const rad = (a.angle(t) * Math.PI) / 180;
-    const h = taperWidth(u, w0, w1) / 2;
-    const [nx, ny] = [-Math.sin(rad) * h, Math.cos(rad) * h];
-    left.push([x + nx, y + ny]);
-    right.push([x - nx, y - ny]);
-  }
-  const pts = [...left, ...right.reverse()];
-  return `${pts.map(([x, y], i) => `${i ? 'L' : 'M'}${n1(x)} ${n1(y)}`).join('')}Z`;
-}
-
-/**
- * Шевроны каравана (#168): t через каждые `spacing` единиц сцены на участке s0…s1 (путь от начала дуги,
- * единицы сцены), кроме окна `skip` по t (значок события с просветом) — шеврон не налезает на значок и наконечник.
- */
-export function chevronsAt(a: Arc, s0: number, s1: number, spacing: number, skip?: [number, number]): number[] {
-  const out: number[] = [];
-  for (let s = s0 + spacing; s <= s1 - spacing * 0.6; s += spacing) {
-    const t = a.tAt(s);
-    if (skip && t > skip[0] && t < skip[1]) continue;
-    out.push(t);
-  }
-  return out;
 }
 
 /** Где на дуге пробовать значок события (#67): от середины к концам. */
@@ -150,12 +76,11 @@ const BADGE_TS = [0.5, 0.4, 0.6, 0.3, 0.7, 0.2, 0.8];
  * и целиком лежит в `clip` (видимая часть кадра: не под панелью и не под плашкой героя).
  * Свободной точки нет — null: значок не встаёт поверх подписи или под панель.
  */
-export function badgeAt(a: Arc, r: number, obstacles: Box[], clip?: Box, tail = r): number | null {
-  // Не ближе 2r к концам: там кольцо маркера и вспышка; к концу — краем значка не ближе `tail` (наконечник, #168).
+export function badgeAt(a: Arc, r: number, obstacles: Box[], clip?: Box): number | null {
+  // Не ближе 2r к концам: там кольцо маркера и вспышка.
   const edge = (2 * r) / a.length;
-  const end = 1 - Math.max(edge, (tail + r) / a.length);
   for (const t of BADGE_TS) {
-    if (t < edge || t > end) continue;
+    if (t < edge || t > 1 - edge) continue;
     const [x, y] = a.stage(t);
     if (clip && (x - r < clip.left || x + r > clip.right || y - r < clip.top || y + r > clip.bottom)) continue;
     const hit = obstacles.some((o) => x + r > o.left && x - r < o.right && y + r > o.top && y - r < o.bottom);

@@ -23,7 +23,6 @@ import { useRegionNames } from './regionLabelLayout';
 import { RegionLabels, RegionsLayer, UnmappedRegions, zoomedClass } from './RegionsLayer';
 import { RegionTooltip } from './RegionTooltip';
 import { Threads } from './Threads';
-import { threadStyleFrom } from './threadStyle';
 import { useDepth } from './useDepth';
 import { useCamera } from './useCamera';
 import { useFontsTick, useMeasuredLabels } from './useMeasuredLabels';
@@ -156,8 +155,6 @@ export function MapStage({
     withMedia: !!onOpenMedia,
   });
   const { shown } = tip;
-  // Рисунок пути (#168): `?threads=<вариант>` до `#` — сравнение вариантов для владельца.
-  const [threadVariant] = useState(() => threadStyleFrom(typeof location === 'undefined' ? '' : location.search));
   // Объём (#232, #233): наклон слоя карты и частиц региона на приближении, размытие краёв кадра — `useDepth`.
   const tiltRef = useRef<HTMLDivElement>(null);
   const tiltRefs = useMemo(() => [tiltRef] as const, []);
@@ -216,7 +213,6 @@ export function MapStage({
             scale={frame.threadScale}
             obstacles={threadLayout.obstacles}
             clip={threadLayout.clip}
-            variant={threadVariant}
           />
         )}
       </svg>

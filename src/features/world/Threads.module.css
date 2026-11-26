@@ -1,151 +1,7 @@
-/* Нити (SPEC §6.6, A5, A11). Рисунок #168 (`ribbon`, `caravan`): шаг за шагом по порядку остановок —
-   у шага --d (задержка) и --s (длительность) в долях --dur-thread; раскрывает его маска (.reveal).
-   Рисунок #67 (`legacy`) — ниже, классы .thread*. */
+/* Нити (SPEC §6.6, A5): прорисовка по stroke-dashoffset за --dur-thread, затем течение пунктира. */
 .threads {
   pointer-events: none;
   filter: drop-shadow(0 0 4px var(--hl)) drop-shadow(0 0 1px var(--hl-glow));
-}
-
-/* Маска шага: белый штрих по оси нити прорисовывается по stroke-dashoffset. */
-.reveal {
-  fill: none;
-  stroke: #fff;
-  stroke-linecap: butt;
-  stroke-dasharray: var(--len) var(--len);
-  stroke-dashoffset: var(--len);
-  animation: thread-draw calc(var(--dur-thread) * var(--s)) var(--ease-in-out) calc(var(--dur-thread) * var(--d)) forwards;
-}
-
-/* Лента: мазок с сужением к наконечнику, тёмный кант снаружи (paint-order), светлая сердцевина. */
-.ribbon {
-  fill: var(--hl);
-  stroke: var(--map-ink);
-  stroke-width: calc(var(--w) * 1.1);
-  stroke-linejoin: round;
-  paint-order: stroke;
-}
-
-.ribbonCore {
-  fill: none;
-  stroke: var(--hl-glow);
-  stroke-width: calc(var(--w) * 0.4);
-  stroke-linecap: round;
-  opacity: 0.85;
-}
-
-/* Караван: штрихи цвета стороны по тёмной тропе, шевроны по ходу пути. */
-.caravanCasing {
-  fill: none;
-  stroke: var(--map-ink);
-  stroke-width: calc(var(--w) * 2.3);
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.caravanDash {
-  fill: none;
-  stroke: var(--hl);
-  stroke-width: var(--w);
-  stroke-dasharray: var(--dash) var(--dash-gap);
-}
-
-.chevron {
-  fill: none;
-  stroke: var(--hl-glow);
-  stroke-width: 1.8;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-/* Прочая связь: точки по тёмной подложке, без стрелки. */
-.asideCasing,
-.asideDots {
-  fill: none;
-  stroke-linecap: round;
-  stroke-dasharray: 0 var(--gap);
-}
-
-.asideCasing {
-  stroke: var(--map-ink);
-  stroke-width: calc(var(--dot) * 2.2);
-}
-
-.asideDots {
-  stroke: var(--hl);
-  stroke-width: var(--dot);
-}
-
-/* Наконечник-«перо»: тело цвета стороны в тёмном канте, светлая верхняя грань. */
-.tipBody {
-  fill: var(--hl);
-  stroke: var(--map-ink);
-  stroke-width: 2.2;
-  stroke-linejoin: round;
-  paint-order: stroke;
-}
-
-.tipLit {
-  fill: var(--hl-glow);
-  opacity: 0.9;
-}
-
-/* Бегущая точка: одна «капля» штриха бежит по шагу, когда он прорисован, с паузой между пробегами. */
-.runner {
-  fill: none;
-  stroke: color-mix(in srgb, var(--hl-glow) 35%, #fff);
-  stroke-width: var(--run-w);
-  stroke-linecap: round;
-  /* pathLength = 100 (Threads.tsx): ключевые кадры без var() — с ним Chrome не интерполирует, а прыгает. */
-  stroke-dasharray: 0 200;
-  stroke-dashoffset: 0;
-  opacity: 0;
-  filter: drop-shadow(0 0 2px var(--hl-glow)) drop-shadow(0 0 6px var(--hl));
-  animation:
-    thread-run 3.6s var(--ease-in-out) calc(var(--dur-thread) * (var(--d) + var(--s)) + 300ms) infinite,
-    thread-run-fade 3.6s linear calc(var(--dur-thread) * (var(--d) + var(--s)) + 300ms) infinite;
-}
-
-/* Значок и наконечник встают с лёгким пружинным перелётом, когда до них дошла прорисовка. */
-.pop {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: thread-pop var(--dur-panel) var(--ease-spring) calc(var(--dur-thread) * var(--at, 0.6)) both;
-}
-
-.tip.pop {
-  transform-origin: right center;
-  animation-delay: calc(var(--dur-thread) * (var(--d) + var(--s) * 0.85));
-}
-
-@keyframes thread-pop {
-  from {
-    opacity: 0;
-    transform: scale(0.4);
-  }
-}
-
-@keyframes thread-run {
-  0% {
-    stroke-dashoffset: 0;
-  }
-
-  75%,
-  100% {
-    stroke-dashoffset: -100;
-  }
-}
-
-@keyframes thread-run-fade {
-  0%,
-  75%,
-  100% {
-    opacity: 0;
-  }
-
-  10%,
-  62% {
-    opacity: 1;
-  }
 }
 
 .threadCasing {
@@ -197,7 +53,8 @@
   stroke-linejoin: round;
 }
 
-.threadArrow {
+.threadArrow,
+.threadBadge {
   animation: thread-mark var(--dur-fade) var(--ease-out) calc(var(--dur-thread) * 0.6) both;
 }
 
@@ -208,7 +65,7 @@
   stroke-width: 2;
   transform-box: fill-box;
   transform-origin: center;
-  animation: thread-flash calc(var(--dur-thread) + 300ms) var(--ease-out) calc(var(--dur-thread) * var(--at, 0)) both;
+  animation: thread-flash calc(var(--dur-thread) + 300ms) var(--ease-out) both;
 }
 
 @keyframes thread-draw {
@@ -270,18 +127,8 @@
   }
 
   .threadArrow,
-  .pop {
+  .threadBadge {
     animation: none;
-  }
-
-  .reveal {
-    stroke-dasharray: none;
-    stroke-dashoffset: 0;
-    animation: none;
-  }
-
-  .runner {
-    display: none;
   }
 
   .flash {
