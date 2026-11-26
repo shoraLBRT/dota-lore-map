@@ -54,11 +54,11 @@ export function useThreadLayout({
         return side && side !== 'hidden' ? [ring, scaled(labelBox(side, m), m.x, m.y)] : [ring];
       });
     }
-    // Мир: видимые названия регионов и их гербы — рамки в px экрана от точки названия, в единицах сцены.
+    // Мир: названия регионов (видны все, #251) и их гербы — рамки в px экрана от точки названия, в единицах сцены.
     const k = frame.pxScale;
     return drawn.flatMap((r) => {
       const spot = names.spots.get(r.id);
-      if (!spot || frame.worldZoom < spot.from - 1e-6) return [];
+      if (!spot) return [];
       const [lx, ly] = toStage(r.layout!.label);
       return [spot.box, ...(spot.crest ? [spot.crest] : [])].map((b) => ({
         left: lx + b.left * k,
@@ -67,7 +67,7 @@ export function useThreadLayout({
         bottom: ly + b.bottom * k,
       }));
     });
-  }, [threads, active, labelItems, sides, markerScale, drawn, names, frame.pxScale, frame.worldZoom]);
+  }, [threads, active, labelItems, sides, markerScale, drawn, names, frame.pxScale]);
   // Видимая часть кадра в координатах сцены (левее панели, выше шторки, ниже плашки героя): значки — только в ней.
   const clip = useMemo<Box | undefined>(() => {
     if (!threads || view.width <= 0) return undefined;

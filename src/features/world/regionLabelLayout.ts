@@ -1,11 +1,10 @@
-// Названия регионов по уровням (#189, SPEC §8.6): какие видны, какого размера и с какой стороны от герба.
+// Названия регионов по уровням (#189, #251, SPEC §8.6): какого размера и с какой стороны от герба; видны все.
 // Чистые правила — в labels.ts; здесь — сборка из данных и кадра и хук для MapStage.
 
 import { useMemo } from 'react';
 import type { Lang, Region } from '../../data/types';
 import { heroesOfRegion } from '../../data/world';
 import {
-  LEVEL2_ZOOM,
   crestBox,
   nameBox,
   labelMetrics,
@@ -39,14 +38,12 @@ export interface NameOptions {
   widths: Record<string, number>;
   /** Мир, вписанный в кадр, px: от него размеры (`labelMetrics`). */
   fitted: number;
-  /** Самое дальнее приближение мира в этом кадре (1, на телефоне и с панелью — меньше). */
-  zoomFrom: number;
   /** Вес региона: внутри уровня тяжёлые ставятся первыми. */
   weight?: (r: Region) => number;
 }
 
 /** Названия для расстановки: первый уровень — первым (ему лучшие стороны), внутри — по весу, при равенстве — по порядку данных. */
-export function regionLabelItems(drawn: Region[], { name, levels, widths, fitted, zoomFrom, weight = regionWeight }: NameOptions): RegionLabelItem[] {
+export function regionLabelItems(drawn: Region[], { name, levels, widths, fitted, weight = regionWeight }: NameOptions): RegionLabelItem[] {
   return drawn
     .map((r, i) => {
       const level = levels.get(r.id) ?? 2;
@@ -65,7 +62,7 @@ export function regionLabelItems(drawn: Region[], { name, levels, widths, fitted
           width: widths[`r:${r.id}`] ?? longest * metrics.font * NAME_CHAR_EM,
           lines: lines.length,
           metrics,
-          from: level === 1 ? zoomFrom : Math.max(zoomFrom, LEVEL2_ZOOM),
+          minor: level > 1,
         },
       };
     })
@@ -80,14 +77,12 @@ export interface RegionNames {
   items: RegionLabelItem[];
 }
 
-const unplaced = (m: RegionLabelItem, from: number): RegionLabelSpot => {
-  const side = m.metrics.crest ? 'bottom' : 'center';
-  return { side, box: nameBox(side, m), crest: crestBox(m.metrics.crest), from };
-};
+const unplaced = (m: RegionLabelItem): RegionLabelSpot => ({ side: 'bottom', metrics: m.metrics, box: nameBox('bottom', m), crest: crestBox(m.metrics.crest) });
 
 /**
- * Уровни, размеры и стороны названий регионов на кадр (#189). `world` — размер мира в px при zoom 1 (слой карты),
- * `zoomMax` — потолок мира. Пересчёт — при смене кадра, языка и измерений, не на каждый кадр зума.
+ * Уровни, размеры и стороны названий регионов на кадр (#189, #251). `metrics` — полные размеры уровня (по ним
+ * меряются ширины), `spots[id].metrics` — с которыми название встало. `world` — размер мира в px при zoom 1 (слой карты),
+ * `zoomFrom` — самое дальнее приближение мира в кадре, `zoomMax` — потолок мира. Пересчёт — при смене кадра, языка и измерений, не на каждый кадр зума.
  */
 export function useRegionNames(
   drawn: Region[],
@@ -98,12 +93,12 @@ export function useRegionNames(
   const w = world.width;
   const h = world.height;
   return useMemo(() => {
-    const items = regionLabelItems(drawn, { name, levels, widths, fitted, zoomFrom });
-    // Кадр не измерен (jsdom, до первого замера): тесноту не узнать — все названия видны, под гербом или по центру.
+    const items = regionLabelItems(drawn, { name, levels, widths, fitted });
+    // Кадр не измерен (jsdom, до первого замера): тесноту не узнать — все названия под гербом.
     const spots =
       w > 0 && h > 0
-        ? placeRegionLabels(items, { width: w, height: h }, zoomMax)
-        : new Map(items.map((m) => [m.id, unplaced(m, zoomFrom)]));
+        ? placeRegionLabels(items, { width: w, height: h }, zoomFrom, zoomMax)
+        : new Map(items.map((m) => [m.id, unplaced(m)]));
     return { levels, items, spots, metrics: new Map(items.map((m) => [m.id, m.metrics])) };
     // eslint-disable-next-line react-hooks/exhaustive-deps -- `name` зависит только от языка
   }, [drawn, levels, widths, fitted, zoomFrom, zoomMax, w, h, lang]);

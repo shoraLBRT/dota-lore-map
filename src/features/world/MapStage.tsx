@@ -229,7 +229,6 @@ export function MapStage({
           focusRegions={focusRegions}
           previewRegions={previewRegions}
           names={names}
-          zoom={frame.worldZoom}
           onSelectRegion={onSelectRegion}
         />
         {active && (
