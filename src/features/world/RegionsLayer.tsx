@@ -178,8 +178,6 @@ interface LabelProps {
   previewRegions: Set<string> | null;
   /** Уровни, размеры и стороны названий (#189, `useRegionNames`). */
   names: RegionNames;
-  /** Приближение мира на экране. */
-  zoom: number;
   onSelectRegion: (regionId: string, source?: 'map' | 'list') => void;
 }
 
@@ -193,11 +191,11 @@ const BASELINE = 0.8;
 /**
  * Названия регионов (ARCHITECTURE A4, #180, #189): в экранном слое над слоем карты, поэтому чёткие на любом
  * приближении. Группа названия стоит в точке `layout.label` и масштабирована в px экрана: размеры и стороны —
- * `useRegionNames`. Первый уровень — с гербом; второй и третий видны с порога приближения (`from`).
- * Регион под мышью, фокусом или пунктом списка (#243) в мире подписан всегда, даже до своего порога: его название
- * рисуется последним, поверх соседей. Герб — цель для мыши (aria-hidden: клавиатура и диктор ходят по полигонам-кнопкам).
+ * `useRegionNames`. В мире подписаны все регионы на любом приближении, у каждого — герб (#251); второстепенное
+ * название, которому тесно, мельче: текст рисуется в полном кегле уровня и масштабируется (так его ширина меряется
+ * в полном кегле). Регион под мышью, фокусом или пунктом списка рисуется последним, поверх соседей (#243). Герб — цель для мыши (aria-hidden: клавиатура и диктор ходят по полигонам-кнопкам).
  */
-export function RegionLabels({ drawn, inWorld, tip, litId, focusRegions, previewRegions, names, zoom, onSelectRegion }: LabelProps) {
+export function RegionLabels({ drawn, inWorld, tip, litId, focusRegions, previewRegions, names, onSelectRegion }: LabelProps) {
   const { l } = useT();
   const { shownId, litId: overId, region: on } = tip;
   const heroClass = (regionId: string) =>
@@ -209,28 +207,27 @@ export function RegionLabels({ drawn, inWorld, tip, litId, focusRegions, preview
     <g aria-hidden="true" className={styles.labels}>
       {order.map(({ r, index }) => {
         const spot = names.spots.get(r.id);
-        const metrics = names.metrics.get(r.id);
-        if (!spot || !metrics) return null;
+        const full = names.metrics.get(r.id);
+        if (!spot || !full) return null;
+        const { metrics } = spot;
+        const k = metrics.font / full.font;
         const [lx, ly] = toStage(r.layout!.label);
         const name = l(r.name);
         const lines = nameLines(r, name);
         const level = names.levels.get(r.id) ?? 2;
-        const shown = zoom >= spot.from - 1e-6 || hovered(r.id);
         const { box } = spot;
         const anchor = spot.side === 'right' ? 'start' : spot.side === 'left' ? 'end' : 'middle';
         const tx = spot.side === 'right' ? box.left + 3 : spot.side === 'left' ? box.right - 3 : (box.left + box.right) / 2;
         const ty = box.top + 3 + metrics.font * BASELINE;
         const c = metrics.crest;
-        const button = c >= CREST_BUTTON && inWorld && shown;
+        const button = c >= CREST_BUTTON && inWorld;
         return (
           <g
             key={r.id}
             // Сдвиг и масштаб пишет камера (`placeAnchors`): слой подписей камерой не масштабируется (A4, #231).
             data-at={`${lx} ${ly}`}
-            className={[styles.spot, !shown && styles.off].filter(Boolean).join(' ')}
-            // Скрытое название не ловит наведение и не мешает подсказке (#193): у него нет `data-label`.
-            data-label={shown ? r.id : undefined}
-            data-label-off={shown ? undefined : r.id}
+            className={styles.spot}
+            data-label={r.id}
             data-level={level}
             // Номер в каскаде проявления подписей после интро (#187, WorldScreen `unveiling`).
             style={{ '--i': index } as CSSProperties}
@@ -261,9 +258,14 @@ export function RegionLabels({ drawn, inWorld, tip, litId, focusRegions, preview
                   <path className={styles.crestGlyph} d={crestPath(r.id)} transform={`scale(${(c / 40).toFixed(3)}) translate(-12 -12)`} />
                 </g>
               )}
-              <text className={styles.name} x={tx} y={ty} textAnchor={anchor} style={{ fontSize: `${metrics.font}px` }}>
+              <text
+                className={styles.name}
+                transform={k < 1 ? `translate(${tx} ${ty}) scale(${k.toFixed(3)})` : `translate(${tx} ${ty})`}
+                textAnchor={anchor}
+                style={{ fontSize: `${full.font}px` }}
+              >
                 {lines.map((line, i) => (
-                  <tspan key={i} x={tx} dy={i === 0 ? undefined : metrics.line} data-measure={`r:${r.id}`}>
+                  <tspan key={i} x={0} dy={i === 0 ? undefined : full.line} data-measure={`r:${r.id}`}>
                     {line}
                   </tspan>
                 ))}

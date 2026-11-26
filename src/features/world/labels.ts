@@ -190,13 +190,11 @@ export function placeEdgeLabels(items: EdgeLabel[], frame: Box): Map<string, { l
 
 // ——— Названия регионов по уровням (#189, SPEC §8.6) ———
 
-/** Уровень названия региона: 1 — главные, с гербом, видны всегда; 2 — появляются при приближении; 3 — ярусы и земли без мест, приглушённые. */
+/** Уровень названия региона: 1 — главные, крупные; 2 — прочие регионы континента; 3 — ярусы и земли без мест, приглушённые. */
 export type LabelLevel = 1 | 2 | 3;
 
 /** Сколько регионов в первом уровне. */
 export const LEVEL1_COUNT = 10;
-/** С этого приближения мира видны названия второго и третьего уровня. */
-export const LEVEL2_ZOOM = 1.35;
 /** Мир, вписанный в кадр, не уже этого (px) — названия в полный размер; уже — мельче, но не мельче минимума. */
 export const LABEL_FULL_SIZE = 768;
 
@@ -219,28 +217,45 @@ export function regionLevels<R extends LevelRegion>(regions: R[], weight: (r: R)
   return levels;
 }
 
-/** Размеры названия на экране, px: кегль, герб (0 — без герба), высота строки. */
+/** Размеры названия на экране, px: кегль, герб, высота строки. */
 export interface LabelMetrics {
   font: number;
   crest: number;
   line: number;
 }
 
-/** Полные размеры по уровням (кегль, герб) и наименьший кегль на узком кадре, px. */
-const LEVEL_SIZE: Record<LabelLevel, { font: number; crest: number; min: number }> = {
-  1: { font: 20, crest: 44, min: 12 },
-  2: { font: 15, crest: 0, min: 11 },
-  3: { font: 14, crest: 0, min: 10 },
+/**
+ * Полные размеры по уровням (кегль, герб) и наименьшие на узком кадре, px. Герб — у каждого региона (#251):
+ * у второго и третьего уровня он меньше.
+ */
+const LEVEL_SIZE: Record<LabelLevel, { font: number; crest: number; min: number; crestMin: number }> = {
+  1: { font: 20, crest: 44, min: 12, crestMin: 20 },
+  2: { font: 15, crest: 28, min: 11, crestMin: 16 },
+  3: { font: 14, crest: 26, min: 10, crestMin: 14 },
 };
-/** Наименьший герб на узком кадре, px. */
-const CREST_MIN = 20;
+
+const metricsOf = (font: number, crest: number): LabelMetrics => ({ font, crest, line: Math.round(font * 10.5) / 10 });
 
 /** Размеры названия уровня `level`, когда мир, вписанный в кадр, шириной `fitted` px. */
 export function labelMetrics(level: LabelLevel, fitted: number): LabelMetrics {
   const k = fitted > 0 ? Math.min(1, fitted / LABEL_FULL_SIZE) : 1;
   const s = LEVEL_SIZE[level];
-  const font = Math.max(s.min, Math.round(s.font * k));
-  return { font, crest: s.crest ? Math.max(CREST_MIN, Math.round(s.crest * k)) : 0, line: Math.round(font * 10.5) / 10 };
+  return metricsOf(Math.max(s.min, Math.round(s.font * k)), Math.max(s.crestMin, Math.round(s.crest * k)));
+}
+
+/**
+ * Ступени уменьшения названия второго и третьего уровня, которому тесно (#251): доля кегля и герба.
+ * Тесно и на последней ступени — название всё равно видно, там, где задевает меньше соседей.
+ */
+export const SHRINK_STEPS = [1, 0.88, 0.76, 0.66] as const;
+/** Меньше этого кегль и герб не уменьшаются, px. */
+export const SHRINK_FONT_MIN = 9;
+export const SHRINK_CREST_MIN = 12;
+
+/** Размеры названия на ступени уменьшения `k`; ширина текста уменьшается в той же доле. */
+export function shrinkMetrics(m: LabelMetrics, k: number): LabelMetrics {
+  if (k >= 1) return m;
+  return metricsOf(Math.max(SHRINK_FONT_MIN, Math.round(m.font * k)), Math.max(SHRINK_CREST_MIN, Math.round(m.crest * k)));
 }
 
 /** Зазор между гербом и названием, px. */
@@ -252,30 +267,30 @@ const WORLD_MARGIN = 6;
 /** Просвет между названиями и гербами, px. */
 const NAME_SPACE = 2;
 
-/** Сторона названия: у герба — под ним, справа или слева; без герба — по центру точки, выше или ниже неё. */
-export type NameSide = 'bottom' | 'right' | 'left' | 'center' | 'above' | 'below';
+/** Сторона названия у герба: под ним, справа, слева или над ним. */
+export type NameSide = 'bottom' | 'right' | 'left' | 'top';
 
 export interface RegionLabelItem {
   id: string;
   /** Точка названия (`layout.label`), доли мира. */
   x: number;
   y: number;
-  /** Ширина самой длинной строки, px, и число строк. */
+  /** Ширина самой длинной строки, px (при кегле `metrics.font`), и число строк. */
   width: number;
   lines: number;
   metrics: LabelMetrics;
-  /** С какого приближения название видно. */
-  from: number;
+  /** Второстепенное название (второй и третий уровень): если тесно — мельче (#251). */
+  minor?: boolean;
 }
 
 export interface RegionLabelSpot {
   side: NameSide;
+  /** Размеры, с которыми название встало (второстепенное могло уменьшиться). */
+  metrics: LabelMetrics;
   /** Рамка названия относительно точки, px экрана (без герба). */
   box: Box;
-  /** Рамка герба относительно точки, px; без герба — null. */
+  /** Рамка герба относительно точки, px. */
   crest: Box | null;
-  /** С какого приближения название видно на самом деле; Infinity — на этом кадре не показывается. */
-  from: number;
 }
 
 /** Рамка названия стороны `side` относительно точки, px. */
@@ -286,16 +301,12 @@ export function nameBox(side: NameSide, m: Pick<RegionLabelItem, 'width' | 'line
   switch (side) {
     case 'bottom':
       return { left: -w / 2, right: w / 2, top: r, bottom: r + h };
+    case 'top':
+      return { left: -w / 2, right: w / 2, top: -r - h, bottom: -r };
     case 'right':
       return { left: r, right: r + w, top: -h / 2, bottom: h / 2 };
     case 'left':
       return { left: -r - w, right: -r, top: -h / 2, bottom: h / 2 };
-    case 'center':
-      return { left: -w / 2, right: w / 2, top: -h / 2, bottom: h / 2 };
-    case 'above':
-      return { left: -w / 2, right: w / 2, top: -h - NAME_SPACE, bottom: -NAME_SPACE };
-    case 'below':
-      return { left: -w / 2, right: w / 2, top: NAME_SPACE, bottom: h + NAME_SPACE };
   }
 }
 
@@ -338,72 +349,95 @@ export function overlapsOnZoom(
   return open && lo <= hi;
 }
 
-/** Порядок сторон: у герба — под ним, затем справа и слева; без герба — по центру, выше, ниже, справа, слева. */
-const CREST_SIDES: NameSide[] = ['bottom', 'right', 'left'];
-const PLAIN_SIDES: NameSide[] = ['center', 'above', 'below', 'right', 'left'];
-/** Шаг, на который отодвигается порог появления названия, которому негде встать, — приближение мира. */
-export const LEVEL_STEP = 0.1;
+/** Порядок сторон названия у герба: под ним, справа, слева, над ним. */
+const NAME_SIDES: NameSide[] = ['bottom', 'right', 'left', 'top'];
 
 /**
- * Расстановка названий регионов (#189, SPEC §8.6). По порядку `items` (первый уровень — первым) название встаёт на
- * первую сторону, где во всём своём диапазоне приближений [from, zoomMax] не задевает уже поставленные названия,
- * гербы видимых регионов и край мира. Негде — порог появления `from` растёт шагами `LEVEL_STEP`; не нашлось места
- * и на потолке мира — название с гербом не показывается на этом кадре (`hidden`; регион — в списке и с клавиатуры).
+ * Расстановка названий регионов (#189, #251, SPEC §8.6): в мире подписаны все регионы на любом его приближении
+ * [zoomFrom, zoomMax]. По порядку `items` (первый уровень — первым) название встаёт на первую сторону от герба, где во
+ * всём диапазоне зума не задевает уже поставленные названия и гербы, гербы ещё не поставленных и край мира.
+ * Второстепенному (`minor`) негде — оно мельче, ступенями `SHRINK_STEPS`. Негде и на последней ступени (или это
+ * первый уровень) — встаёт на сторону в пределах мира, где задевает меньше соседей: название не прячется.
  * `world` — размер мира в px при zoom 1. Считается раз на кадр, язык и измерения, не на кадр анимации.
  */
 export function placeRegionLabels(
   items: RegionLabelItem[],
   world: { width: number; height: number },
+  zoomFrom: number,
   zoomMax: number,
 ): Map<string, RegionLabelSpot> {
+  const z1 = Math.max(zoomFrom, zoomMax);
   const spots = new Map<string, RegionLabelSpot>();
-  /** Порог появления каждого названия (растёт, если негде встать); Infinity — не показывается. */
-  const from = new Map(items.map((m) => [m.id, m.from]));
-  const until = (m: RegionLabelItem) => Math.max(from.get(m.id)!, zoomMax);
   const at = (m: RegionLabelItem) => [m.x, m.y] as const;
-  const crests = items.flatMap((m) => {
-    const box = crestBox(m.metrics.crest);
-    return box ? [{ m, box }] : [];
-  });
+  /** Поставленные рамки: названия и гербы. Гербы ещё не поставленных — по полному размеру, пока их место не решено. */
   const placed: { m: RegionLabelItem; box: Box }[] = [];
+  const pending = new Map(items.map((m) => [m.id, crestBox(m.metrics.crest)]));
+  const obstacles = (m: RegionLabelItem) => [
+    ...placed,
+    ...items.flatMap((o) => {
+      const box = o !== m ? pending.get(o.id) : null;
+      return box ? [{ m: o, box }] : [];
+    }),
+  ];
   for (const m of items) {
-    const others = [...placed, ...crests.filter((c) => c.m !== m && from.get(c.m.id)! < Infinity)];
-    const crest = crestBox(m.metrics.crest);
-    const free = (box: Box, z: number) => {
-      const own = crest ? [box, crest] : [box];
-      return others.every((o) => {
-        const z0 = Math.max(z, from.get(o.m.id)!);
-        const z1 = Math.min(Math.max(z, zoomMax), until(o.m));
-        return z0 > z1 || own.every((b) => !overlapsOnZoom(b, at(m), o.box, at(o.m), world, z0, z1, NAME_SPACE));
-      });
-    };
-    // Край мира — на самом дальнем зуме диапазона: ближе мир растёт быстрее, чем отходит название.
-    const inWorld = (b: Box, z: number) => {
-      const x = m.x * world.width * z;
-      const y = m.y * world.height * z;
+    pending.delete(m.id);
+    const others = obstacles(m);
+    const hits = (own: Box[]) =>
+      others.filter((o) => own.some((b) => overlapsOnZoom(b, at(m), o.box, at(o.m), world, zoomFrom, z1, NAME_SPACE))).length;
+    // Край мира — на самом дальнем зуме: ближе мир растёт быстрее, чем отходит название.
+    const inWorld = (b: Box) => {
+      const x = m.x * world.width * zoomFrom;
+      const y = m.y * world.height * zoomFrom;
       return (
         x + b.left >= WORLD_MARGIN &&
-        x + b.right <= world.width * z - WORLD_MARGIN &&
+        x + b.right <= world.width * zoomFrom - WORLD_MARGIN &&
         y + b.top >= WORLD_MARGIN &&
-        y + b.bottom <= world.height * z - WORLD_MARGIN
+        y + b.bottom <= world.height * zoomFrom - WORLD_MARGIN
       );
     };
-    const sides = (crest ? CREST_SIDES : PLAIN_SIDES).map((side) => ({ side, box: nameBox(side, m) }));
-    let pick: (typeof sides)[number] | undefined;
-    let z = m.from;
-    for (; z <= Math.max(m.from, zoomMax) + 1e-9; z += LEVEL_STEP) {
-      pick = sides.find((s) => inWorld(s.box, z) && free(s.box, z));
+    const variants = (k: number) => {
+      const metrics = shrinkMetrics(m.metrics, k);
+      const sized = { width: (m.width * metrics.font) / m.metrics.font, lines: m.lines, metrics };
+      const crest = crestBox(metrics.crest);
+      // Под гербом и над ним у края мира название сдвигается внутрь, пока ещё стоит под гербом (#251).
+      const nudge = (side: NameSide, b: Box): Box => {
+        if (side !== 'bottom' && side !== 'top') return b;
+        const x = m.x * world.width * zoomFrom;
+        const room = Math.max(0, (b.right - b.left - metrics.crest) / 2);
+        const dx = Math.max(WORLD_MARGIN - (x + b.left), Math.min(0, world.width * zoomFrom - WORLD_MARGIN - (x + b.right)));
+        const d = Math.max(-room, Math.min(room, dx));
+        return d ? { ...b, left: b.left + d, right: b.right + d } : b;
+      };
+      const base = NAME_SIDES.map((side) => ({ side, metrics, box: nudge(side, nameBox(side, sized)), crest }));
+      // Тесно — та же сторона со сдвигом вдоль герба: под ним и над ним — до края герба влево и вправо,
+      // сбоку — на полвысоты названия вверх и вниз (название всё ещё касается герба).
+      const shifted = base.flatMap((v) => {
+        const vertical = v.side === 'right' || v.side === 'left';
+        const room = vertical ? (v.box.bottom - v.box.top) / 2 : Math.max(0, (v.box.right - v.box.left - metrics.crest) / 2);
+        return [room, -room].map((d) => ({
+          ...v,
+          box: vertical ? { ...v.box, top: v.box.top + d, bottom: v.box.bottom + d } : { ...v.box, left: v.box.left + d, right: v.box.right + d },
+        }));
+      });
+      return [...base, ...shifted];
+    };
+    const steps = m.minor ? SHRINK_STEPS : [1];
+    let pick: ReturnType<typeof variants>[number] | undefined;
+    for (const k of steps) {
+      pick = variants(k).find((v) => inWorld(v.box) && hits(v.crest ? [v.box, v.crest] : [v.box]) === 0);
       if (pick) break;
     }
     if (!pick) {
-      from.set(m.id, Infinity);
-      spots.set(m.id, { side: sides[0]!.side, box: sides[0]!.box, crest, from: Infinity });
-      continue;
+      // Тесно везде: самая мелкая ступень, сторона в мире с наименьшим числом задетых соседей (при равенстве — первая).
+      const last = variants(steps[steps.length - 1]!);
+      const fits = last.filter((v) => inWorld(v.box));
+      const pool = fits.length ? fits : last;
+      const cost = (v: (typeof last)[number]) => hits(v.crest ? [v.box, v.crest] : [v.box]);
+      pick = pool.reduce((best, v) => (cost(v) < cost(best) ? v : best));
     }
-    from.set(m.id, z);
     placed.push({ m, box: pick.box });
-    spots.set(m.id, { side: pick.side, box: pick.box, crest, from: z });
+    if (pick.crest) placed.push({ m, box: pick.crest });
+    spots.set(m.id, { side: pick.side, metrics: pick.metrics, box: pick.box, crest: pick.crest });
   }
   return spots;
 }
-

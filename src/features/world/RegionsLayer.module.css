@@ -126,20 +126,11 @@
   }
 }
 
-/* Названия регионов (#189): группа в px экрана; первый уровень — с гербом, третий — приглушён. */
+/* Названия регионов (#189, #251): группа в px экрана; у каждого — герб, третий уровень приглушён. */
 .spot {
   transition:
     opacity var(--dur-fade) var(--ease-out),
     visibility 0s;
-}
-
-/* Название ещё не видно на этом приближении (уровни 2 и 3) — проявляется, когда мир приблизили. */
-.spot.off {
-  opacity: 0;
-  visibility: hidden;
-  transition:
-    opacity var(--dur-fade) var(--ease-out),
-    visibility 0s var(--dur-fade);
 }
 
 .label {

@@ -342,7 +342,7 @@ test('телефон (#196): мир во весь кадр двигается п
   await expect.poll(transform).not.toBe(before);
   await expectHash(page, '#/world');
 
-  // Щипок приближает — проявляются названия второго уровня; мест в мире нет (#243).
+  // Щипок приближает; названия второго уровня на месте, мест в мире нет (#243, #251).
   await touch('pointerdown', [[1, 150, 400], [2, 220, 400]]);
   for (let i = 1; i <= 10; i += 1) await touch('pointermove', [[1, 150 - i * 8, 400], [2, 220 + i * 8, 400]]);
   await touch('pointerup', [[2, 300, 400], [1, 70, 400]]);
@@ -356,4 +356,41 @@ test('телефон (#196): мир во весь кадр двигается п
   await list.getByRole('button', { name: 'Регионы' }).tap();
   await list.getByRole('button', { name: 'Айсрак' }).tap();
   await expectHash(page, '#/r/icewrack');
+});
+
+test('в мире все 27 регионов подписаны с гербом без наведения; названия и гербы не перекрываются (#251)', async ({ page, consoleErrors }, info) => {
+  void consoleErrors;
+  // Компьютер 1440 и телефон 390 (#251); телефонный проект — с касаниями и мобильным движком.
+  await page.setViewportSize(info.project.name === 'mobile' ? { width: 390, height: 844 } : { width: 1440, height: 900 });
+  await page.goto('./#/world');
+  const spots = page.locator('[data-screen-layer] [data-label]');
+  await expect(spots).toHaveCount(27);
+  await expect(page.locator('[data-screen-layer] [data-crest]')).toHaveCount(27);
+  // Мышь в стороне: подпись не зависит от наведения. Ждём посадку камеры и замер ширин.
+  if (info.project.name !== 'mobile') await page.mouse.move(2, 2);
+  await expect(async () => {
+    const res = await spots.evaluateAll((els) => {
+      const rects = els.flatMap((s) =>
+        [s.querySelector('text'), s.querySelector('[data-crest] circle[class*="crestDisc"]')]
+          .filter((el): el is Element => !!el)
+          .map((el) => ({ id: s.getAttribute('data-label')!, r: el.getBoundingClientRect() })),
+      );
+      const hidden = els
+        .filter((s) => {
+          const text = s.querySelector('text')!;
+          const r = text.getBoundingClientRect();
+          return r.width === 0 || getComputedStyle(s).visibility === 'hidden' || Number(getComputedStyle(s).opacity) < 0.99;
+        })
+        .map((s) => s.getAttribute('data-label'));
+      const bad: string[] = [];
+      for (let i = 0; i < rects.length; i += 1)
+        for (let j = i + 1; j < rects.length; j += 1) {
+          const a = rects[i]!;
+          const b = rects[j]!;
+          if (a.id !== b.id && a.r.left < b.r.right && b.r.left < a.r.right && a.r.top < b.r.bottom && b.r.top < a.r.bottom) bad.push(`${a.id}×${b.id}`);
+        }
+      return { hidden, bad };
+    });
+    expect(res).toEqual({ hidden: [], bad: [] });
+  }).toPass({ timeout: 15_000 });
 });

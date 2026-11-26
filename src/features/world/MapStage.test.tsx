@@ -450,11 +450,12 @@ describe('MapStage — подписи и подсказки (аудит E13)', (
     expect(document.querySelectorAll('[data-label]')).toHaveLength(2);
   });
 
-  it('герб первого уровня (#189): клик открывает регион, мышь на нём подсвечивает название; у яруса герба нет', () => {
+  it('герб первого уровня (#189): клик открывает регион, мышь на нём подсвечивает название; у яруса герб меньше и не кнопка (#251)', () => {
     const tier: Region = { ...region('b', true), tier: 'abyss' };
     const { onSelectRegion } = renderStage([region('a', true), tier]);
     const crest = document.querySelector('[data-crest="a"]')!;
-    expect(document.querySelector('[data-crest="b"]')).toBeNull();
+    expect(document.querySelector('[data-crest="b"]')).not.toBeNull();
+    expect(document.querySelector('[data-crest="b"] circle[class*="crestHit"]')).toBeNull();
     expect(label('a').closest('[data-level]')!.getAttribute('data-level')).toBe('1');
     expect(label('b').closest('[data-level]')!.getAttribute('data-level')).toBe('3');
     fireEvent.pointerEnter(crest, { pointerType: 'mouse' });
