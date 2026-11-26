@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import type { Hero, HeroEvent } from '../../data/types';
 import { getHero } from '../../data/world';
 import { heroSpots, type Spot } from './search';
-import { heroThreads } from './threads';
+import { heroThreads, legendRows, stepBadge } from './threads';
 
 // Нити со смыслом (#67, A11): шаги пути, прочие связи, значок — событие места, куда ведёт нить.
 
@@ -66,5 +66,18 @@ describe('нити героя (#67)', () => {
       'b>c:path:home',
       'b>a:aside:mention',
     ]);
+  });
+});
+
+describe('легенда нитей (#254)', () => {
+  it('строки — только виды линий и значки этих нитей, без journey; цвет — тон нитей', () => {
+    const a = spot('a', 'origin', [0.1, 0.1]);
+    const b = spot('b', 'journey', [0.5, 0.1]);
+    const c = spot('c', 'battle', [0.9, 0.1]);
+    const t = heroThreads(hero(), [a, b, c])!;
+    expect(t.steps.map(stepBadge)).toEqual([undefined, 'battle']);
+    expect(legendRows(t)).toEqual({ kinds: ['path'], events: ['battle'], tone: 'neutral' });
+    const m = heroThreads(hero(), [a, spot('d', 'mention', [0.3, 0.3]), c])!;
+    expect(legendRows(m)).toEqual({ kinds: ['path', 'aside'], events: ['battle', 'mention'], tone: 'neutral' });
   });
 });

@@ -22,6 +22,7 @@ import { labelMetrics } from './labels';
 import { useRegionNames } from './regionLabelLayout';
 import { RegionLabels, RegionsLayer, UnmappedRegions, zoomedClass } from './RegionsLayer';
 import { RegionTooltip } from './RegionTooltip';
+import { ThreadLegend } from './ThreadLegend';
 import { Threads } from './Threads';
 import { useDepth } from './useDepth';
 import { useCamera } from './useCamera';
@@ -305,6 +306,8 @@ export function MapStage({
               onOpenChange={(open) => (onRegionsOpen ?? setOwnOpen)(open)}
             />
           )}
+          {/* Легенда нитей (#254): пока на карте путь героя — что значат линии, значки и цвет. */}
+          {threads && <ThreadLegend threads={threads} top={coverTop} />}
           <ZoomControls controls={controls} right={panelCollapsed ? 0 : frame.cover} region={!inWorld} />
         </div>
       )}

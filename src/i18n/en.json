@@ -12,6 +12,8 @@
   "world.home": "Show the whole world",
   "world.homeRegion": "Show the whole region",
   "world.zoom": "Map zoom",
+  "legend.title": "Hero threads",
+  "legend.tone": "Colour: {side}, the side of the hero's first place",
   "world.regions": "Regions",
   "world.hint": "Pick a region to learn more",
   "world.move.mouse": "Drag the map to move, scroll to zoom",

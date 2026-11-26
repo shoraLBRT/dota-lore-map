@@ -39,15 +39,16 @@
   stroke-linejoin: round;
 }
 
+/* Значок события (#254): непрозрачный круг и светлый значок — читается поверх свечения нити. */
 .threadBadge circle {
-  fill: var(--map-ink);
+  fill: var(--bg-0);
   stroke: var(--hl);
   stroke-width: 1.5;
 }
 
 .threadBadge path {
   fill: none;
-  stroke: var(--hl-glow);
+  stroke: var(--text-1);
   stroke-width: 2.4;
   stroke-linecap: round;
   stroke-linejoin: round;
