@@ -27,6 +27,8 @@
   background: transparent;
   color: var(--text-1);
   font: inherit;
+  /* #252: не меньше 16 px — иначе Safari на iPhone приближает страницу при фокусе. */
+  font-size: max(1rem, 1em);
 }
 
 .input::placeholder {

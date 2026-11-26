@@ -7,6 +7,8 @@
   --hidden: 50dvh;
 
   position: fixed;
+  /* #252: текст шторки не уходит под полосу «домой» iPhone. */
+  padding-bottom: env(safe-area-inset-bottom, 0px);
   right: 0;
   bottom: 0;
   left: 0;

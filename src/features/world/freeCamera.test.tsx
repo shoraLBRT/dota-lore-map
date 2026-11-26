@@ -233,4 +233,37 @@ describe('жесты на телефоне (#196)', () => {
     expect(onFloor).toHaveBeenCalledTimes(1);
     cleanup();
   });
+
+  it('страница приближена браузером (#252): щипок и gesture* достаются странице, не камере', () => {
+    vi.stubGlobal('matchMedia', (q: string) => ({ matches: q.includes('reduce'), addEventListener() {}, removeEventListener() {} }));
+    const scale = (s: number) => Object.defineProperty(window, 'visualViewport', { configurable: true, value: { scale: s } });
+    const onChange = vi.fn();
+    const { getByTestId } = render(<Stage zoom={2} onChange={onChange} />);
+    const vp = getByTestId('vp');
+    const pinchOut = () => {
+      touch(vp, 'pointerdown', 1, 500, 400, 0);
+      touch(vp, 'pointerdown', 2, 600, 400, 0);
+      touch(vp, 'pointermove', 2, 700, 400, 20);
+      touch(vp, 'pointerup', 2, 700, 400, 40);
+      touch(vp, 'pointerup', 1, 500, 400, 40);
+    };
+    const gesture = () => {
+      const e = new Event('gesturestart', { bubbles: true, cancelable: true });
+      vp.dispatchEvent(e);
+      return e.defaultPrevented;
+    };
+
+    scale(2);
+    pinchOut();
+    expect(onChange).not.toHaveBeenCalled();
+    expect(gesture()).toBe(false);
+
+    scale(1);
+    pinchOut();
+    expect(onChange).toHaveBeenCalled();
+    expect(gesture()).toBe(true);
+    Object.defineProperty(window, 'visualViewport', { configurable: true, value: undefined });
+    cleanup();
+    vi.unstubAllGlobals();
+  });
 });

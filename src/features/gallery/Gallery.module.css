@@ -8,6 +8,8 @@
   grid-template: minmax(0, 1fr) / minmax(0, 1fr);
   place-items: center;
   padding: var(--space-5);
+  padding-top: calc(var(--space-5) + env(safe-area-inset-top, 0px));
+  padding-bottom: calc(var(--space-5) + env(safe-area-inset-bottom, 0px));
   background: var(--veil-strong);
   animation: fade var(--dur-fade) var(--ease-out) both;
 }
