@@ -62,7 +62,7 @@ function Screens() {
 
   return (
     <>
-      <WorldScreen screen={onIntro ? WORLD : screen} veiled={onIntro} unveiling={!onIntro && introLeaving} />
+      <WorldScreen screen={onIntro ? WORLD : screen} veiled={onIntro} unveiling={!onIntro && introLeaving} covered={galleryOpen} />
       {(onIntro || introLeaving) && <Intro leaving={!onIntro && introLeaving} onStart={start} onLeft={left} />}
       {gallery && <Gallery items={gallery.items} index={gallery.index} onSelect={selectMedia} onClose={closeGallery} />}
     </>

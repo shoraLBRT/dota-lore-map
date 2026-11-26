@@ -112,7 +112,13 @@
     font-size: 1.1rem;
     font-weight: 600;
     cursor: pointer;
-    backdrop-filter: blur(4px);
+  }
+
+  /* #255: без backdrop-filter над картой, которая движется, — фон плотнее вместо размытия. */
+  .body,
+  .toggle {
+    background: color-mix(in srgb, var(--bg-1, #111) 94%, transparent);
+    backdrop-filter: none;
   }
 
   .legend:not([data-open]) .body {

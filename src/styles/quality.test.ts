@@ -231,3 +231,38 @@ describe('свои шрифты (A8, #108)', () => {
     for (const p of preloads) expect(p).toMatch(/(cormorant-sc-(latin|cyrillic)-700|manrope-(latin|cyrillic)-wght).*crossorigin/);
   });
 });
+
+/** Тела всех блоков `@media (max-width: 767px)` файла (телефон, SPEC §13). */
+function phoneBlocks(text: string): string {
+  const out: string[] = [];
+  let at = text.indexOf('@media (max-width: 767px)');
+  while (at >= 0) {
+    const open = text.indexOf('{', at);
+    let depth = 0;
+    let end = open;
+    for (; end < text.length; end++) {
+      if (text[end] === '{') depth++;
+      else if (text[end] === '}' && --depth === 0) break;
+    }
+    out.push(text.slice(open + 1, end));
+    at = text.indexOf('@media (max-width: 767px)', end);
+  }
+  return out.join('\n');
+}
+
+describe('телефон без дорогих фильтров над картой (#255, A14)', () => {
+  // Пелена интро (WorldScreen) — над неподвижной картой и гаснет по opacity (A14), её не трогаем.
+  it('backdrop-filter над движущейся картой на телефоне снят (или блок скрыт)', () => {
+    for (const path of ['MapStage', 'ThreadLegend', 'ZoomControls'].map((n) => `features/world/${n}.module.css`)) {
+      expect(css(path), path).toMatch(/backdrop-filter:\s*blur/);
+      expect(/backdrop-filter:\s*none|display:\s*none/.test(phoneBlocks(css(path))), path).toBe(true);
+    }
+  });
+
+  it('ореол названий и гербов — обводкой, нити и картинка галереи — без filter', () => {
+    expect(phoneBlocks(css('features/world/RegionsLayer.module.css'))).toMatch(/\.name,\s*\.tierLabel \.name\s*\{[^}]*filter:\s*none/);
+    expect(phoneBlocks(css('features/world/RegionsLayer.module.css'))).toMatch(/\.crest\s*\{[^}]*filter:\s*none/);
+    expect(phoneBlocks(css('features/world/Threads.module.css'))).toMatch(/\.threads\s*\{[^}]*filter:\s*none/);
+    expect(phoneBlocks(css('features/gallery/Gallery.module.css'))).toMatch(/\.image\s*\{[^}]*filter:\s*none/);
+  });
+});

@@ -204,6 +204,12 @@
     padding: var(--space-6) var(--space-2) var(--space-2);
   }
 
+  /* #255: на весь экран тени у картинки не видно, а drop-shadow по большой картинке — лишний проход на каждой
+     смене кадра (листание свайпом). */
+  .image {
+    filter: none;
+  }
+
   .info {
     max-height: 40vh;
     padding: var(--space-4);

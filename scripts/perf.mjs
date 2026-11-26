@@ -1,13 +1,15 @@
 // Замер плавности (#185, ARCHITECTURE A14): `npm run perf [-- --no-build] [--headed] [--size 1440x900] [--runs 3] [--query <флаг>=…]`.
 // Боевая сборка (`vite build` + `vite preview`), Chromium с GPU; кадры считает requestAnimationFrame в странице.
 // Шаги: вход («Начать» → мир), колесо внутрь ×12, перетаскивание, колесо наружу до мира, клик по региону.
-// На телефоне (ширина < 768) свободной камеры в мире нет — только вход и регион из списка.
+// На телефоне (ширина < 768) свободной камеры в мире нет — вход, регион из списка, перетаскивание в регионе и
+// листание галереи ×6 (#255). `--engine webkit` — тот же замер в WebKit Playwright (без GPU: дорогие фильтры и
+// размытие в нём видны сильнее, чем в Chromium, — ближе к iPhone), `--cpu 4` — замедление процессора (Chromium, CDP).
 // Первая отрисовка (#186): `npm run perf -- --load [--net 4g] [--url <адрес>] [--runs 3]` — FCP, LCP, CLS и `load`
 // на холодном кэше (новый контекст на прогон); `--net 4g` — «Fast 4G» DevTools, `--url` — чужой адрес без сборки.
 // В `npm run check` не входит: цифры зависят от машины. Бюджет — в A14.
 /* global window, document, requestAnimationFrame -- функции для page.evaluate выполняются в браузере */
 import { spawn, spawnSync } from 'node:child_process';
-import { chromium } from '@playwright/test';
+import { chromium, webkit } from '@playwright/test';
 
 const args = process.argv.slice(2);
 const flag = (name) => args.includes(name);
@@ -31,6 +33,17 @@ const BASE = external || `http://localhost:${PORT}/dota-lore-map/`;
 /** Строка запроса до `#` (флаги прототипов для сравнения): `--query <флаг>=<значение>`. */
 const QUERY = opt('--query', '') ? `?${opt('--query', '')}` : '';
 const net4g = opt('--net', '') === '4g';
+const engine = opt('--engine', 'chromium');
+if (engine !== 'chromium' && engine !== 'webkit') {
+  console.error(`Движок — chromium или webkit; получено: ${engine}`);
+  process.exit(2);
+}
+/** Замедление процессора (Chromium, `Emulation.setCPUThrottlingRate`): 1 — без замедления. */
+const cpu = Math.max(1, Number(opt('--cpu', '1')) || 1);
+if (engine === 'webkit' && (cpu > 1 || loadMode)) {
+  console.error('--cpu и --load — только в Chromium (CDP)');
+  process.exit(2);
+}
 /** «Fast 4G» DevTools: 9 Мбит/с вниз, 1.5 вверх, задержка 60 мс × 2.75 (как в Chrome). */
 const FAST_4G = { offline: false, latency: 165, downloadThroughput: (9e6 / 8) * 0.9, uploadThroughput: (1.5e6 / 8) * 0.9 };
 /** Бюджет первой отрисовки (A14), мс: без троттлинга — FCP и LCP, на «Fast 4G» — FCP. */
@@ -181,6 +194,7 @@ async function run(browser) {
   const context = await browser.newContext({ viewport: { width, height }, locale: 'ru-RU', isMobile: mobile, hasTouch: mobile, deviceScaleFactor: mobile ? 3 : 1 });
   await context.addInitScript(RECORDER);
   const page = await context.newPage();
+  if (cpu > 1) await (await context.newCDPSession(page)).send('Emulation.setCPUThrottlingRate', { rate: cpu });
   await page.goto(BASE + QUERY + '#/', { waitUntil: 'load' });
   const start = page.getByRole('button', { name: 'Начать' });
   await start.waitFor();
@@ -242,15 +256,48 @@ async function run(browser) {
       await pause(page, 1500);
     }),
   );
+
+  if (mobile) {
+    // Телефон (#255): камера в регионе за пальцем и листание галереи — там на iPhone проседали кадры.
+    out.push(
+      await measure(page, 'тащить в регионе', async () => {
+        const x = Math.round(width * 0.5);
+        const y = Math.round(height * 0.3);
+        await page.mouse.move(x, y);
+        await page.mouse.down();
+        for (let i = 1; i <= 30; i++) {
+          await page.mouse.move(x - i * 4, y + i * 3);
+          await pause(page, 16);
+        }
+        await page.mouse.up();
+        await pause(page, 800);
+      }),
+    );
+    await page.evaluate(() => (window.location.hash = '#/r/skywrath?media=ghastly-eyrie-ascension-day'));
+    const next = page.getByRole('button', { name: 'Следующее медиа' });
+    await next.waitFor();
+    await pause(page, 1000);
+    out.push(
+      await measure(page, 'галерея ×6', async () => {
+        for (let i = 0; i < 6; i++) {
+          await next.click();
+          await pause(page, 500);
+        }
+      }),
+    );
+  }
   await context.close();
   return out;
 }
 
 const launchArgs = ['--use-angle=d3d11', '--enable-gpu', '--ignore-gpu-blocklist', '--enable-gpu-rasterization'];
 const headless = !flag('--headed');
-const browser = await chromium
-  .launch({ headless, args: launchArgs })
-  .catch(() => chromium.launch({ channel: 'chrome', headless, args: launchArgs }));
+const browser =
+  engine === 'webkit'
+    ? await webkit.launch({ headless })
+    : await chromium
+        .launch({ headless, args: launchArgs })
+        .catch(() => chromium.launch({ channel: 'chrome', headless, args: launchArgs }));
 let failed = false;
 try {
   const gpu = await (async () => {
@@ -265,7 +312,8 @@ try {
   })();
   if (loadMode) failed = await loadReport(browser, gpu);
   else {
-    console.log(`${width}x${height}${mobile ? ' (телефон)' : ''}, GPU: ${gpu}; бюджет: ≥ ${BUDGET.fps} к/с${mobile ? '' : `, p95 ≤ ${BUDGET.p95} мс, худший ≤ ${BUDGET.worst} мс`}`);
+    const how = `${engine === 'webkit' ? 'WebKit' : 'Chromium'}${cpu > 1 ? `, CPU ×${cpu}` : ''}`;
+    console.log(`${width}x${height}${mobile ? ' (телефон)' : ''}, ${how}, GPU: ${gpu}; бюджет: ≥ ${BUDGET.fps} к/с${mobile ? '' : `, p95 ≤ ${BUDGET.p95} мс, худший ≤ ${BUDGET.worst} мс`}`);
     for (let r = 0; r < runs; r++) {
       if (runs > 1) console.log(`— прогон ${r + 1}`);
       for (const s of await run(browser)) {

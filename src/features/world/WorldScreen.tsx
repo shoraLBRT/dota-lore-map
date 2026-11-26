@@ -28,6 +28,8 @@ interface Props {
   veiled?: boolean;
   /** Идёт A1: арт проясняется, подписи регионов проявляются каскадом после него (#187). */
   unveiling?: boolean;
+  /** Поверх карты открыта галерея (#255): на телефоне она закрывает весь кадр — эффекты карты встают. */
+  covered?: boolean;
 }
 
 /** Экраны «Мир», «Регион», «Место»: левая панель, карта, правая панель. Неизвестный регион или место — уровень выше. */
@@ -47,7 +49,7 @@ function screenView(screen: Screen, heroKey: Route['hero']) {
   return { region, place, screenKey, hero, profileOpen, panelKey };
 }
 
-export function WorldScreen({ screen, veiled = false, unveiling = false }: Props) {
+export function WorldScreen({ screen, veiled = false, unveiling = false, covered = false }: Props) {
   const { l, lang, t } = useT();
   const { route, open, hold, navigate } = useNavigation();
   const rootRef = useRef<HTMLDivElement>(null);
@@ -258,6 +260,7 @@ export function WorldScreen({ screen, veiled = false, unveiling = false }: Props
             onOpenMedia={openMedia}
             // Профиль героя в мире — своя шторка: список регионов вернётся, когда её закроют.
             regionList={mobile && !profileOpen}
+            paused={covered && mobile}
             regionsOpen={regionsOpen}
             onRegionsOpen={setRegionsOpen}
             coverTop={barBottom}
