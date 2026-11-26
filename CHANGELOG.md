@@ -1,5 +1,59 @@
 # Changelog
 
+## [0.5.0](https://github.com/shoraLBRT/dota-lore-map/compare/v0.4.0...v0.5.0) (2026-11-26)
+
+
+### Features
+
+* **feedback:** send feedback through the deployed worker ([#242](https://github.com/shoraLBRT/dota-lore-map/issues/242)) ([8a985ee](https://github.com/shoraLBRT/dota-lore-map/commit/8a985ee48ab00fbbcf695a9f164c2b2f37fb0f4f))
+* **feedback:** send feedback without a GitHub account via a Cloudflare worker ([#236](https://github.com/shoraLBRT/dota-lore-map/issues/236)) ([f354b88](https://github.com/shoraLBRT/dota-lore-map/commit/f354b8881b3aa47fa1d210984ee1e98391b2d43d))
+* **intro:** show the map behind the title and enter on click anywhere ([#202](https://github.com/shoraLBRT/dota-lore-map/issues/202)) ([8d7e5a1](https://github.com/shoraLBRT/dota-lore-map/commit/8d7e5a1c2e1d63292256273dd3971ef9220175d6))
+* **map:** add depth prototypes behind the depth URL flag ([#226](https://github.com/shoraLBRT/dota-lore-map/issues/226)) ([aa260e4](https://github.com/shoraLBRT/dota-lore-map/commit/aa260e4d6de34eada3d56d534316721e4e2fc19d))
+* **map:** add hero thread legend and larger event badges ([#266](https://github.com/shoraLBRT/dota-lore-map/issues/266)) ([9448ace](https://github.com/shoraLBRT/dota-lore-map/commit/9448acee0bdbe3044c55abc48f24027bbf84a4dc))
+* **map:** blur and dim the frame edges when zoomed in ([#240](https://github.com/shoraLBRT/dota-lore-map/issues/240)) ([176b74e](https://github.com/shoraLBRT/dota-lore-map/commit/176b74efdeb2fa40e0d2e6a7eb34358926852824)), closes [#233](https://github.com/shoraLBRT/dota-lore-map/issues/233)
+* **map:** draw place markers as star, diamond and dot with plate-free haloed labels ([#216](https://github.com/shoraLBRT/dota-lore-map/issues/216)) ([9b54d74](https://github.com/shoraLBRT/dota-lore-map/commit/9b54d743e0b47682fa7471500914346e85a33478))
+* **map:** fade the region highlight in and out and let its glow breathe ([#214](https://github.com/shoraLBRT/dota-lore-map/issues/214)) ([5d3a7b3](https://github.com/shoraLBRT/dota-lore-map/commit/5d3a7b39e4cc7c20429fb41cfbcc387de7963aca))
+* **map:** fill the free area with the region frame and fly the camera to places ([#221](https://github.com/shoraLBRT/dota-lore-map/issues/221)) ([b035654](https://github.com/shoraLBRT/dota-lore-map/commit/b035654954b5b65475f4d0837b79773bd56f9838))
+* **map:** part the clouds from the centre on region entry ([#239](https://github.com/shoraLBRT/dota-lore-map/issues/239)) ([8c98738](https://github.com/shoraLBRT/dota-lore-map/commit/8c98738a08874883a554ee162ee47c405c334705))
+* **map:** reveal places in the world by significance as the camera zooms in ([#224](https://github.com/shoraLBRT/dota-lore-map/issues/224)) ([b4d3a44](https://github.com/shoraLBRT/dota-lore-map/commit/b4d3a44a263ce49b7bfccf9799751cfb81c544f8))
+* **map:** show a first-visit hint that the map can be dragged and zoomed ([#227](https://github.com/shoraLBRT/dota-lore-map/issues/227)) ([d0c32ad](https://github.com/shoraLBRT/dota-lore-map/commit/d0c32ada8906cb9fb932d4b61e221a82d54ab673))
+* **map:** show only region names in world view ([#248](https://github.com/shoraLBRT/dota-lore-map/issues/248)) ([c6a322c](https://github.com/shoraLBRT/dota-lore-map/commit/c6a322c8f5560c3de058f070ec0fa4a90c53c182))
+* **map:** show region names by level with crests on the main regions ([#222](https://github.com/shoraLBRT/dota-lore-map/issues/222)) ([9dd2c28](https://github.com/shoraLBRT/dota-lore-map/commit/9dd2c28f2cfb1ae04b1da2c6c6a854fc8bfdc251))
+* **map:** show the phone world as a full-screen map with gestures and a regions sheet ([#225](https://github.com/shoraLBRT/dota-lore-map/issues/225)) ([b1355df](https://github.com/shoraLBRT/dota-lore-map/commit/b1355dfac123edabb96d7cda6edb45f5b237e883))
+* **map:** show the region tooltip only on its label, compact and hidden while the camera moves ([#217](https://github.com/shoraLBRT/dota-lore-map/issues/217)) ([e782952](https://github.com/shoraLBRT/dota-lore-map/commit/e7829529ac35e5b817ebd195fbcdc65b0e0a81be))
+* **map:** tilt the map with zoom by default ([#247](https://github.com/shoraLBRT/dota-lore-map/issues/247)) ([f00ba92](https://github.com/shoraLBRT/dota-lore-map/commit/f00ba922ace768fd9d3108f94d31358880b4ef42))
+* **nav:** add new navigation behind ?nav=new flag ([#249](https://github.com/shoraLBRT/dota-lore-map/issues/249)) ([b851035](https://github.com/shoraLBRT/dota-lore-map/commit/b851035f432ef258251a5267ee1515d440a15e7a))
+* **nav:** make the new navigation the only one ([#260](https://github.com/shoraLBRT/dota-lore-map/issues/260)) ([80a0798](https://github.com/shoraLBRT/dota-lore-map/commit/80a0798c32ccd9a106fdf536ffbe661674f93842))
+* **panel:** lift the phone sheet when its text is swiped ([#265](https://github.com/shoraLBRT/dota-lore-map/issues/265)) ([fe256e5](https://github.com/shoraLBRT/dota-lore-map/commit/fe256e521568f2ef520b687b2465d243d246e6c9))
+* **rail:** show the language as one menu button and drop the side legend ([#219](https://github.com/shoraLBRT/dota-lore-map/issues/219)) ([5ac548c](https://github.com/shoraLBRT/dota-lore-map/commit/5ac548c367ebf7d9383aafc9f60acb1e52dcc432))
+* **web:** play quiet wind and surf ambience and lower sound volume ([#262](https://github.com/shoraLBRT/dota-lore-map/issues/262)) ([08e57d0](https://github.com/shoraLBRT/dota-lore-map/commit/08e57d050aff714f50d1adb09470cc91a794cdf4))
+
+
+### Bug Fixes
+
+* **feedback:** log why Turnstile rejects a token ([#245](https://github.com/shoraLBRT/dota-lore-map/issues/245)) ([d7bf311](https://github.com/shoraLBRT/dota-lore-map/commit/d7bf3114dfd62077613679f66eebd9bb22cba959))
+* **hero:** show a portrait placeholder under the profile header art ([#218](https://github.com/shoraLBRT/dota-lore-map/issues/218)) ([91f35ea](https://github.com/shoraLBRT/dota-lore-map/commit/91f35eab6956d8200a6643b663bdf836de947651))
+* **map:** draw map labels in a screen layer so they stay crisp on zoom ([#206](https://github.com/shoraLBRT/dota-lore-map/issues/206)) ([4667d2c](https://github.com/shoraLBRT/dota-lore-map/commit/4667d2c66a1287e7a3c46984960a5ecbfc3729a7))
+* **map:** drop costly filters and pause map effects on phone ([#267](https://github.com/shoraLBRT/dota-lore-map/issues/267)) ([b319bf1](https://github.com/shoraLBRT/dota-lore-map/commit/b319bf15487e1649df107f036a5743b3f927f79d))
+* **map:** keep labels in step with the map when a render lags behind the gesture ([#241](https://github.com/shoraLBRT/dota-lore-map/issues/241)) ([dbf24c6](https://github.com/shoraLBRT/dota-lore-map/commit/dbf24c6d72fe98d33d2099f14e2c9c96af6319f5))
+* **map:** label all 27 regions in world view with a crest each ([#264](https://github.com/shoraLBRT/dota-lore-map/issues/264)) ([0bcd4fc](https://github.com/shoraLBRT/dota-lore-map/commit/0bcd4fc9d5d477b36f5c819b6b91cbffbf6642c9))
+* **map:** lower max zoom and slow the wheel ([#205](https://github.com/shoraLBRT/dota-lore-map/issues/205)) ([f1afc9b](https://github.com/shoraLBRT/dota-lore-map/commit/f1afc9b0ff5c0fc9012299b31218eda396281ab4))
+* **map:** nest zoom levels so the world never reaches the region frame ([#220](https://github.com/shoraLBRT/dota-lore-map/issues/220)) ([632a498](https://github.com/shoraLBRT/dota-lore-map/commit/632a49806d627acba645ce98275c513737c12f18))
+* **map:** show region focus ring only for keyboard focus, by region shape ([#213](https://github.com/shoraLBRT/dota-lore-map/issues/213)) ([1f89631](https://github.com/shoraLBRT/dota-lore-map/commit/1f896318133fa4f1a07a6dc131d952ccd93cf93d))
+* **map:** soften the region highlight and replace the region frame with a feathered veil ([#204](https://github.com/shoraLBRT/dota-lore-map/issues/204)) ([b9d18aa](https://github.com/shoraLBRT/dota-lore-map/commit/b9d18aac26311fba0408bee978e60689031a4cf7))
+* **map:** zoom the camera, not the page, on pinch over map tooltips ([#215](https://github.com/shoraLBRT/dota-lore-map/issues/215)) ([541aba9](https://github.com/shoraLBRT/dota-lore-map/commit/541aba9e2c7c67d002d14543ec9f449d5c9a31a1))
+* **ui:** make Esc, close and browser Back one step back for every window ([#229](https://github.com/shoraLBRT/dota-lore-map/issues/229)) ([c6cf8f2](https://github.com/shoraLBRT/dota-lore-map/commit/c6cf8f222a81493d5ae56efc0db7deff6874bdff))
+* **web:** keep the iPhone page at its scale and below the status bar ([#263](https://github.com/shoraLBRT/dota-lore-map/issues/263)) ([83039cf](https://github.com/shoraLBRT/dota-lore-map/commit/83039cf60d42583877f23ad0b044c739437b86aa))
+* **web:** keep the search query when its chunk loads while the search is open ([#261](https://github.com/shoraLBRT/dota-lore-map/issues/261)) ([cc065cf](https://github.com/shoraLBRT/dota-lore-map/commit/cc065cfadbf1b530844e8406613f0ffcb9884e3d))
+
+
+### Performance Improvements
+
+* **intro:** paint the intro before the script loads ([#201](https://github.com/shoraLBRT/dota-lore-map/issues/201)) ([46b8754](https://github.com/shoraLBRT/dota-lore-map/commit/46b87547e496cc9f484f00b19f485aae0c595888))
+* **map:** keep the screen label layer unscaled so wheel zoom stays in the frame budget ([#237](https://github.com/shoraLBRT/dota-lore-map/issues/237)) ([905a40b](https://github.com/shoraLBRT/dota-lore-map/commit/905a40b95ad04a3c620d94a7509cfbd099fc74a4))
+* **map:** remove jank on world entry, wheel zoom and region flight ([#199](https://github.com/shoraLBRT/dota-lore-map/issues/199)) ([f6b6681](https://github.com/shoraLBRT/dota-lore-map/commit/f6b66816f5312ff6651e9b5623c7bd5f2eeb8e8f))
+* **world:** render the region panel after the click without forced reflows ([#246](https://github.com/shoraLBRT/dota-lore-map/issues/246)) ([9d138fb](https://github.com/shoraLBRT/dota-lore-map/commit/9d138fb190ce741333817a39cae244f838b690da))
+
 ## [0.4.0](https://github.com/shoraLBRT/dota-lore-map/compare/v0.3.0...v0.4.0) (2026-11-19)
 
 
