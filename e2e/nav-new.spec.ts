@@ -1,6 +1,6 @@
 import AxeBuilder from '@axe-core/playwright';
 import type { Page } from '@playwright/test';
-import { test, expect, expectHash, panelHeading } from './fixtures';
+import { test, expect, expectHash, panelHeading, waitForSettled } from './fixtures';
 
 // Прототип новой навигации за `?nav=new` (#230, SPEC §5.1 «Правила окон»): «мир → регион → место → герой → закрыть всё»
 // каждым способом закрытия — ×, Esc, «назад» браузера, путь вверху карты. На `mobile` — тапы и шторки.
@@ -51,7 +51,7 @@ test('× закрывает каждое окно на шаг вверх, чип
   // Профиль поверх места: axe без серьёзных нарушений. В Firefox на CI страница падала внутри axe (Page crashed,
   // PR #249) — нарушения там не ищем, остальной сценарий идёт; axe — в Chromium, WebKit и на телефоне.
   if (info.project.name !== 'firefox') {
-    await page.waitForTimeout(800); // панель профиля въезжает
+    await waitForSettled(page); // панель профиля въезжает
     const { violations } = await new AxeBuilder({ page }).analyze();
     expect(violations.filter((v) => v.impact === 'serious' || v.impact === 'critical').map((v) => v.id)).toEqual([]);
   }
